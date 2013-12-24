@@ -12,14 +12,14 @@ class TestDynState
     [
         {:parked => :idling, :on => :ignite},
         {:idling => :first_gear, :first_gear => :second_gear, :on => :shift_up}          ,
-    {[:idling, :first_gear] => :parked, :on => :park,:before_transition=>"puts 'some'"},
+        {[:idling, :first_gear] => :parked, :on => :park,:do=>:savealt},
         #{:before_transition=> {:from => :parked, :except_to => :parked, :do => :put_on_seatbelt  }}
 
     ]
   end
   def machine
     vehicle = self
-    @machine ||= Machine.new(vehicle, :initial => :parked, :action => :save) do
+    @machine ||= Machine.new(vehicle, :initial => :parked, :action => :save,:action=>:savealt) do
       vehicle.transitions.each {|attrs| transition(attrs)}
     end
   end
