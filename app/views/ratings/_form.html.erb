@@ -1,4 +1,4 @@
-<%= form_for(@rating) do |f| %>
+<%= form_for(@rating,html: {class: "form-horizontal",'role' => 'form'}) do |f| %>
     <% if @rating.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
@@ -13,8 +13,6 @@
 
     <div class="field">
       <%= f.label :comments %>
-      <br/>
-      <%= f.text_field :comments %>
     </div>
 
     <div class="field">
@@ -22,9 +20,7 @@
       <h1>Dynamic Field</h1>
           <% @fields.each do |field| %>
               <%= f.label field.name.to_sym %>
-               <br />
               <%= f.send(field.type.to_sym, field.name.to_sym )%>
-          <br/>
           <% end %>
     </div>
 
