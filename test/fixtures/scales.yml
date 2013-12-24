@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  scale_description: MyString
+  range_from: MyString
+  range_to: MyString
+
+two:
+  scale_description: MyString
+  range_from: MyString
+  range_to: MyString

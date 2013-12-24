@@ -1,0 +1,33 @@
+<%= form_for(@document_template_master) do |f| %>
+  <% if @document_template_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@document_template_master.errors.count, "error") %> prohibited this document_template_master from being saved:</h2>
+
+      <ul>
+      <% @document_template_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dt_code %><br />
+    <%= f.text_field :dt_code %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :related_to %><br />
+    <%= f.text_field :related_to %>
+  </div>
+  <div class="field">
+    <%= f.label :file %><br />
+    <%= f.text_field :file %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

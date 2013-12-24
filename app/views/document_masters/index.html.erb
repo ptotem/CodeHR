@@ -1,0 +1,29 @@
+<h1>Listing document_masters</h1>
+
+<table>
+  <tr>
+    <th>Doc code</th>
+    <th>Name</th>
+    <th>Vc needed</th>
+    <th>Owner</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @document_masters.each do |document_master| %>
+  <tr>
+    <td><%= document_master.doc_code %></td>
+    <td><%= document_master.name %></td>
+    <td><%= document_master.vc_needed %></td>
+    <td><%= document_master.owner %></td>
+    <td><%= link_to 'Show', document_master %></td>
+    <td><%= link_to 'Edit', edit_document_master_path(document_master) %></td>
+    <td><%= link_to 'Destroy', document_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Document master', new_document_master_path %>

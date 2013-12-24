@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  is_group: false
+  obj_id: MyString
+
+two:
+  is_group: false
+  obj_id: MyString

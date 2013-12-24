@@ -1,0 +1,2 @@
+module RatingScalesHelper
+end

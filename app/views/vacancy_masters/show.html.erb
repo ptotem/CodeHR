@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vacancy code:</b>
+  <%= @vacancy_master.vacancy_code %>
+</p>
+
+<p>
+  <b>Manpower planning:</b>
+  <%= @vacancy_master.manpower_planning_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @vacancy_master.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @vacancy_master.status %>
+</p>
+
+<p>
+  <b>Sourcing strategy:</b>
+  <%= @vacancy_master.sourcing_strategy %>
+</p>
+
+<p>
+  <b>Hr rep:</b>
+  <%= @vacancy_master.hr_rep %>
+</p>
+
+<p>
+  <b>Hiring manager:</b>
+  <%= @vacancy_master.hiring_manager %>
+</p>
+
+<p>
+  <b>Ctc range from:</b>
+  <%= @vacancy_master.ctc_range_from %>
+</p>
+
+<p>
+  <b>Ctc range to:</b>
+  <%= @vacancy_master.ctc_range_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_vacancy_master_path(@vacancy_master) %> |
+<%= link_to 'Back', vacancy_masters_path %>

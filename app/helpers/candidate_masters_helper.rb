@@ -1,0 +1,2 @@
+module CandidateMastersHelper
+end

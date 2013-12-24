@@ -1,0 +1,20 @@
+class EmailDetail
+  include Mongoid::Document
+  include Mongoid::Paperclip
+  field :event, type: String
+  field :sender, type: String
+  has_mongoid_attached_file :attachment1
+  has_mongoid_attached_file :attachment2
+  has_mongoid_attached_file :attachment3
+  has_mongoid_attached_file :attachment4
+  has_mongoid_attached_file :attachment5
+
+  embeds_many :mail_tos
+  embeds_many :mail_ccs
+  embeds_many :mail_bccs
+
+  accepts_nested_attributes_for :mail_tos
+  accepts_nested_attributes_for :mail_ccs
+  accepts_nested_attributes_for :mail_bccs
+
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  salary_component_id: MyString
+  fixed_value: 1.5
+  internal_formula: MyString
+  fixed: false
+
+two:
+  salary_component_id: MyString
+  fixed_value: 1.5
+  internal_formula: MyString
+  fixed: false

@@ -1,0 +1,23 @@
+<h1>Listing salary_component_masters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @salary_component_masters.each do |salary_component_master| %>
+  <tr>
+    <td><%= salary_component_master.name %></td>
+    <td><%= link_to 'Show', salary_component_master %></td>
+    <td><%= link_to 'Edit', edit_salary_component_master_path(salary_component_master) %></td>
+    <td><%= link_to 'Destroy', salary_component_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Salary component master', new_salary_component_master_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vendor code:</b>
+  <%= @vendor_master.vendor_code %>
+</p>
+
+<p>
+  <b>Vendor name:</b>
+  <%= @vendor_master.vendor_name %>
+</p>
+
+<p>
+  <b>Vendor type:</b>
+  <%= @vendor_master.vendor_type %>
+</p>
+
+<p>
+  <b>Office phone number:</b>
+  <%= @vendor_master.office_phone_number %>
+</p>
+
+<p>
+  <b>Office fax number1:</b>
+  <%= @vendor_master.office_fax_number1 %>
+</p>
+
+<p>
+  <b>Office fax number2:</b>
+  <%= @vendor_master.office_fax_number2 %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendor_master_path(@vendor_master) %> |
+<%= link_to 'Back', vendor_masters_path %>

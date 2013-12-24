@@ -1,0 +1,41 @@
+<%= form_for(@vendor_master) do |f| %>
+  <% if @vendor_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vendor_master.errors.count, "error") %> prohibited this vendor_master from being saved:</h2>
+
+      <ul>
+      <% @vendor_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vendor_code %><br />
+    <%= f.text_field :vendor_code %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_name %><br />
+    <%= f.text_field :vendor_name %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_type %><br />
+    <%= f.text_field :vendor_type %>
+  </div>
+  <div class="field">
+    <%= f.label :office_phone_number %><br />
+    <%= f.text_field :office_phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :office_fax_number1 %><br />
+    <%= f.text_field :office_fax_number1 %>
+  </div>
+  <div class="field">
+    <%= f.label :office_fax_number2 %><br />
+    <%= f.text_field :office_fax_number2 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Job code:</b>
+  <%= @job_description_master.job_code %>
+</p>
+
+<p>
+  <b>Job title:</b>
+  <%= @job_description_master.job_title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @job_description_master.description %>
+</p>
+
+<p>
+  <b>Min year of experience:</b>
+  <%= @job_description_master.min_year_of_experience %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_description_master_path(@job_description_master) %> |
+<%= link_to 'Back', job_description_masters_path %>

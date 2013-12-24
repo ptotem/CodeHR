@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comments:</b>
+  <%= @rating.comments %>
+</p>
+
+<% @fields = DynamicField.where(:oclass => "Rating") %>
+<% @fields.each do |fi| %>
+    <p>
+      <b><%= fi.name %></b>
+      <%= eval("@rating.#{fi.name}") %>
+    </p>
+<% end %>
+
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>

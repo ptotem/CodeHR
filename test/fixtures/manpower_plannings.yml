@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  mp_code: MyString
+  period_from: 2013-12-22
+  period_to: 2013-12-22
+  requested_by: MyString
+  final_approved_number: MyString
+
+two:
+  mp_code: MyString
+  period_from: 2013-12-22
+  period_to: 2013-12-22
+  requested_by: MyString
+  final_approved_number: MyString

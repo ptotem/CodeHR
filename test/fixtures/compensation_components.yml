@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  final_ctc_fixed: 1
+  final_ctc_varriable: 1
+
+two:
+  final_ctc_fixed: 1
+  final_ctc_varriable: 1

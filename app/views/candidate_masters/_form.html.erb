@@ -1,0 +1,125 @@
+<%= form_for(@candidate_master) do |f| %>
+  <% if @candidate_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidate_master.errors.count, "error") %> prohibited this candidate_master from being saved:</h2>
+
+      <ul>
+      <% @candidate_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :candidate_code %><br />
+    <%= f.text_field :candidate_code %>
+  </div>
+  <div class="field">
+    <%= f.label :candidate_name %><br />
+    <%= f.text_field :candidate_name %>
+  </div>
+  <div class="field">
+    <%= f.label :candidate_middle_name %><br />
+    <%= f.text_field :candidate_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :marital_status %><br />
+    <%= f.text_field :marital_status %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br />
+    <%= f.date_select :date_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :total_work_exp_years %><br />
+    <%= f.number_field :total_work_exp_years %>
+  </div>
+  <div class="field">
+    <%= f.label :total_work_exp_months %><br />
+    <%= f.number_field :total_work_exp_months %>
+  </div>
+  <div class="field">
+    <%= f.label :official_email %><br />
+    <%= f.text_field :official_email %>
+  </div>
+  <div class="field">
+    <%= f.label :personal_email %><br />
+    <%= f.text_field :personal_email %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_name %><br />
+    <%= f.text_field :bank_name %>
+  </div>
+  <div class="field">
+    <%= f.label :account_number %><br />
+    <%= f.text_field :account_number %>
+  </div>
+  <div class="field">
+    <%= f.label :pf_no %><br />
+    <%= f.text_field :pf_no %>
+  </div>
+  <div class="field">
+    <%= f.label :esic_no %><br />
+    <%= f.text_field :esic_no %>
+  </div>
+  <div class="field">
+    <%= f.label :pan_no %><br />
+    <%= f.text_field :pan_no %>
+  </div>
+  <div class="field">
+    <%= f.label :current_location %><br />
+    <%= f.text_field :current_location %>
+  </div>
+  <div class="field">
+    <%= f.label :salary_expectation_fixed %><br />
+    <%= f.text_field :salary_expectation_fixed %>
+  </div>
+  <div class="field">
+    <%= f.label :salary_expectation_variable %><br />
+    <%= f.text_field :salary_expectation_variable %>
+  </div>
+  <div class="field">
+    <%= f.label :notice_period %><br />
+    <%= f.text_field :notice_period %>
+  </div>
+  <div class="field">
+    <%= f.label :notice_period_buyback? %><br />
+    <%= f.check_box :notice_period_buyback? %>
+  </div>
+  <div class="field">
+    <%= f.label :notice_period_buyback_amount %><br />
+    <%= f.text_field :notice_period_buyback_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks_1 %><br />
+    <%= f.text_area :remarks_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks_2 %><br />
+    <%= f.text_area :remarks_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks_3 %><br />
+    <%= f.text_area :remarks_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks_4 %><br />
+    <%= f.text_area :remarks_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks_5 %><br />
+    <%= f.text_area :remarks_5 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

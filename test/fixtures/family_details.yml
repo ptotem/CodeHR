@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  relationship: MyString
+  fname: MyString
+  mname: MyString
+  lname: MyString
+
+two:
+  relationship: MyString
+  fname: MyString
+  mname: MyString
+  lname: MyString

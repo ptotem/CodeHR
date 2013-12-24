@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Dt code:</b>
+  <%= @document_template_master.dt_code %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @document_template_master.description %>
+</p>
+
+<p>
+  <b>Related to:</b>
+  <%= @document_template_master.related_to %>
+</p>
+
+<p>
+  <b>File:</b>
+  <%= @document_template_master.file %>
+</p>
+
+
+<%= link_to 'Edit', edit_document_template_master_path(@document_template_master) %> |
+<%= link_to 'Back', document_template_masters_path %>

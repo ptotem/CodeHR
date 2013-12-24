@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  candidate_code: MyString
+  candidate_name: MyString
+  candidate_middle_name: MyString
+  status: MyString
+  gender: MyString
+  marital_status: MyString
+  date_of_birth: 2013-12-21
+  total_work_exp_years: 1
+  total_work_exp_months: 1
+  official_email: MyString
+  personal_email: MyString
+  bank_name: MyString
+  account_number: MyString
+  pf_no: MyString
+  esic_no: MyString
+  pan_no: MyString
+  current_location: MyString
+  salary_expectation_fixed: 1.5
+  salary_expectation_variable: 1.5
+  notice_period: MyString
+  notice_period_buyback?: false
+  notice_period_buyback_amount: 1.5
+  remarks_1: MyText
+  remarks_2: MyText
+  remarks_3: MyText
+  remarks_4: MyText
+  remarks_5: MyText
+
+two:
+  candidate_code: MyString
+  candidate_name: MyString
+  candidate_middle_name: MyString
+  status: MyString
+  gender: MyString
+  marital_status: MyString
+  date_of_birth: 2013-12-21
+  total_work_exp_years: 1
+  total_work_exp_months: 1
+  official_email: MyString
+  personal_email: MyString
+  bank_name: MyString
+  account_number: MyString
+  pf_no: MyString
+  esic_no: MyString
+  pan_no: MyString
+  current_location: MyString
+  salary_expectation_fixed: 1.5
+  salary_expectation_variable: 1.5
+  notice_period: MyString
+  notice_period_buyback?: false
+  notice_period_buyback_amount: 1.5
+  remarks_1: MyText
+  remarks_2: MyText
+  remarks_3: MyText
+  remarks_4: MyText
+  remarks_5: MyText

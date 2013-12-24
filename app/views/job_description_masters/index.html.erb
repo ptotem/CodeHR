@@ -1,0 +1,29 @@
+<h1>Listing job_description_masters</h1>
+
+<table>
+  <tr>
+    <th>Job code</th>
+    <th>Job title</th>
+    <th>Description</th>
+    <th>Min year of experience</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @job_description_masters.each do |job_description_master| %>
+  <tr>
+    <td><%= job_description_master.job_code %></td>
+    <td><%= job_description_master.job_title %></td>
+    <td><%= job_description_master.description %></td>
+    <td><%= job_description_master.min_year_of_experience %></td>
+    <td><%= link_to 'Show', job_description_master %></td>
+    <td><%= link_to 'Edit', edit_job_description_master_path(job_description_master) %></td>
+    <td><%= link_to 'Destroy', job_description_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Job description master', new_job_description_master_path %>

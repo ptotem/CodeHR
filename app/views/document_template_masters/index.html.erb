@@ -1,0 +1,29 @@
+<h1>Listing document_template_masters</h1>
+
+<table>
+  <tr>
+    <th>Dt code</th>
+    <th>Description</th>
+    <th>Related to</th>
+    <th>File</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @document_template_masters.each do |document_template_master| %>
+  <tr>
+    <td><%= document_template_master.dt_code %></td>
+    <td><%= document_template_master.description %></td>
+    <td><%= document_template_master.related_to %></td>
+    <td><%= document_template_master.file %></td>
+    <td><%= link_to 'Show', document_template_master %></td>
+    <td><%= link_to 'Edit', edit_document_template_master_path(document_template_master) %></td>
+    <td><%= link_to 'Destroy', document_template_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Document template master', new_document_template_master_path %>

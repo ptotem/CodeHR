@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  joined_from: 2013-12-21
+  leaved: 2013-12-21
+  organisation: MyString
+  designation: MyString
+
+two:
+  joined_from: 2013-12-21
+  leaved: 2013-12-21
+  organisation: MyString
+  designation: MyString

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @notification_master.code %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @notification_master.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @notification_master.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @notification_master.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_notification_master_path(@notification_master) %> |
+<%= link_to 'Back', notification_masters_path %>

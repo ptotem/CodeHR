@@ -1,0 +1,53 @@
+<%= form_for(@vacancy_master) do |f| %>
+  <% if @vacancy_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vacancy_master.errors.count, "error") %> prohibited this vacancy_master from being saved:</h2>
+
+      <ul>
+      <% @vacancy_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vacancy_code %><br />
+    <%= f.text_field :vacancy_code %>
+  </div>
+  <div class="field">
+    <%= f.label :manpower_planning_id %><br />
+    <%= f.number_field :manpower_planning_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :sourcing_strategy %><br />
+    <%= f.text_field :sourcing_strategy %>
+  </div>
+  <div class="field">
+    <%= f.label :hr_rep %><br />
+    <%= f.text_field :hr_rep %>
+  </div>
+  <div class="field">
+    <%= f.label :hiring_manager %><br />
+    <%= f.text_field :hiring_manager %>
+  </div>
+  <div class="field">
+    <%= f.label :ctc_range_from %><br />
+    <%= f.number_field :ctc_range_from %>
+  </div>
+  <div class="field">
+    <%= f.label :ctc_range_to %><br />
+    <%= f.number_field :ctc_range_to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

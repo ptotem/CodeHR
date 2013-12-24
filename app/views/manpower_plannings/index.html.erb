@@ -1,0 +1,31 @@
+<h1>Listing manpower_plannings</h1>
+
+<table>
+  <tr>
+    <th>Mp code</th>
+    <th>Period from</th>
+    <th>Period to</th>
+    <th>Requested by</th>
+    <th>Final approved number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @manpower_plannings.each do |manpower_planning| %>
+  <tr>
+    <td><%= manpower_planning.mp_code %></td>
+    <td><%= manpower_planning.period_from %></td>
+    <td><%= manpower_planning.period_to %></td>
+    <td><%= manpower_planning.requested_by %></td>
+    <td><%= manpower_planning.final_approved_number %></td>
+    <td><%= link_to 'Show', manpower_planning %></td>
+    <td><%= link_to 'Edit', edit_manpower_planning_path(manpower_planning) %></td>
+    <td><%= link_to 'Destroy', manpower_planning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Manpower planning', new_manpower_planning_path %>

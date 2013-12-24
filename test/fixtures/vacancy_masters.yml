@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vacancy_code: MyString
+  manpower_planning_id: 1
+  description: MyText
+  status: MyString
+  sourcing_strategy: MyString
+  hr_rep: MyString
+  hiring_manager: MyString
+  ctc_range_from: 1
+  ctc_range_to: 1
+
+two:
+  vacancy_code: MyString
+  manpower_planning_id: 1
+  description: MyText
+  status: MyString
+  sourcing_strategy: MyString
+  hr_rep: MyString
+  hiring_manager: MyString
+  ctc_range_from: 1
+  ctc_range_to: 1

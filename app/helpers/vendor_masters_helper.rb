@@ -1,0 +1,2 @@
+module VendorMastersHelper
+end

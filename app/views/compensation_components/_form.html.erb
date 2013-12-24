@@ -1,0 +1,25 @@
+<%= form_for(@compensation_component) do |f| %>
+  <% if @compensation_component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>
+
+      <ul>
+      <% @compensation_component.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :final_ctc_fixed %><br />
+    <%= f.number_field :final_ctc_fixed %>
+  </div>
+  <div class="field">
+    <%= f.label :final_ctc_varriable %><br />
+    <%= f.number_field :final_ctc_varriable %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

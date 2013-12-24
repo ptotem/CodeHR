@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  interview_type_id: MyString
+  interviewer: MyString
+  fromdate: 2013-12-22
+  fromtime: 2013-12-22 01:10:06
+  to_date: 2013-12-22
+  to_time: 2013-12-22 01:10:06
+
+two:
+  interview_type_id: MyString
+  interviewer: MyString
+  fromdate: 2013-12-22
+  fromtime: 2013-12-22 01:10:06
+  to_date: 2013-12-22
+  to_time: 2013-12-22 01:10:06

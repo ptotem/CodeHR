@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Mp code:</b>
+  <%= @manpower_planning.mp_code %>
+</p>
+
+<p>
+  <b>Period from:</b>
+  <%= @manpower_planning.period_from %>
+</p>
+
+<p>
+  <b>Period to:</b>
+  <%= @manpower_planning.period_to %>
+</p>
+
+<p>
+  <b>Requested by:</b>
+  <%= @manpower_planning.requested_by %>
+</p>
+
+<p>
+  <b>Final approved number:</b>
+  <%= @manpower_planning.final_approved_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_manpower_planning_path(@manpower_planning) %> |
+<%= link_to 'Back', manpower_plannings_path %>

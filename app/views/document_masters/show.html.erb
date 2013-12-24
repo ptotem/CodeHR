@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Doc code:</b>
+  <%= @document_master.doc_code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @document_master.name %>
+</p>
+
+<p>
+  <b>Vc needed:</b>
+  <%= @document_master.vc_needed %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @document_master.owner %>
+</p>
+
+
+<%= link_to 'Edit', edit_document_master_path(@document_master) %> |
+<%= link_to 'Back', document_masters_path %>

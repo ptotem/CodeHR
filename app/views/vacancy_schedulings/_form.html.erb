@@ -1,0 +1,17 @@
+<%= form_for(@vacancy_scheduling) do |f| %>
+  <% if @vacancy_scheduling.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vacancy_scheduling.errors.count, "error") %> prohibited this vacancy_scheduling from being saved:</h2>
+
+      <ul>
+      <% @vacancy_scheduling.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

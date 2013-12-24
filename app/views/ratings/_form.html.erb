@@ -1,0 +1,34 @@
+<%= form_for(@rating) do |f| %>
+    <% if @rating.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+          <ul>
+            <% @rating.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :comments %>
+      <br/>
+      <%= f.text_field :comments %>
+    </div>
+
+    <div class="field">
+      <% @fields = DynamicField.where(:oclass=>"Rating") %>
+      <h1>Dynamic Field</h1>
+          <% @fields.each do |field| %>
+              <%= f.label field.name.to_sym %>
+               <br />
+              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+          <br/>
+          <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

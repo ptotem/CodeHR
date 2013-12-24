@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  doc_code: MyString
+  name: MyString
+  vc_needed: false
+  owner: 1
+
+two:
+  doc_code: MyString
+  name: MyString
+  vc_needed: false
+  owner: 1
