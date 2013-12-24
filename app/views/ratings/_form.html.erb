@@ -1,35 +1,44 @@
-<%= form_for(@rating,html: {class: "form-horizontal",'role' => 'form'}) do |f| %>
-    <% if @rating.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
-          <ul>
-            <% @rating.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
+<div class="row-fluid">
+    <%= form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
+        <% if @rating.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+              <ul>
+                <% @rating.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="control-group">
+          <%= f.label :comments,:class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :comments %>
+          </div>
         </div>
-    <% end %>
 
-    <div class="field">
-      <%= f.label :comments %>
-      <br/>
-      <%= f.text_field :comments %>
-    </div>
 
-    <div class="field">
-      <% @fields = DynamicField.where(:oclass=>"Rating") %>
-      <h1>Dynamic Field</h1>
+
+          <% @fields = DynamicField.where(:oclass=>"Rating") %>
+            <h3 class="header lighter blue">Dynamic Field</h3>
           <% @fields.each do |field| %>
-              <%= f.label field.name.to_sym %>
-               <br />
-              <%= f.send(field.type.to_sym, field.name.to_sym )%>
-          <br/>
+          <div class="control-group">
+              <%= f.label field.name.to_sym,:class => "control-label" %>
+              <div class="controls">
+                <%= f.send(field.type.to_sym, field.name.to_sym )%>
+              </div>
+          </div>
           <% end %>
-    </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
 
-<% end %>
+        <div class="form-actions">
+            <%= f.submit :class=>"btn btn-info" %>
+        </div>
+
+    <% end %>
+</div>
+
+
