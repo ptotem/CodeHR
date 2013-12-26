@@ -1,5 +1,12 @@
 CodeHR::Application.routes.draw do
+<<<<<<< HEAD
   devise_for :admin_users, ActiveAdmin::Devise.config
+=======
+  mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
+
+  resources :roles
+
+>>>>>>> 080ed5d36341346651b140262c8770280393679b
 
   resources :compensation_components
 
@@ -46,11 +53,19 @@ CodeHR::Application.routes.draw do
   resources :employee_masters
 
 
+<<<<<<< HEAD
   mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
   #
+=======
+  
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+>>>>>>> 080ed5d36341346651b140262c8770280393679b
   devise_for :users
   #ActiveAdmin.routes(self)
 

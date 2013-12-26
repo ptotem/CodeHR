@@ -62,5 +62,8 @@ module CodeHR
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #Observer for mongoid classes, you can more classes in this list
+    config.mongoid.observers = :user_observer
   end
 end

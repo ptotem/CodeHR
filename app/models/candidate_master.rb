@@ -1,6 +1,10 @@
 class CandidateMaster
   include Mongoid::Document
   include Mongoid::Paperclip
+<<<<<<< HEAD
+=======
+
+>>>>>>> 080ed5d36341346651b140262c8770280393679b
   field :candidate_code, type: String
   field :candidate_name, type: String
   field :candidate_middle_name, type: String

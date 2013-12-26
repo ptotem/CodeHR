@@ -1,19 +1,37 @@
 class ProcessMaster
   include Mongoid::Document
   field :name, type: String
-  embeds_many :steps
-  accepts_nested_attributes_for :steps
+  #attr_accessible :name, :step_masters_attributes
 
-  state_machine :state, initial: :awaiting_selection do
+  embeds_many :step_masters
+  accepts_nested_attributes_for :step_masters
+
+  state_machine :state, initial: :created do
 
     after_transition :dispense_soda => :complete, :do => :manage_stock
+
+    after_transition :created => :initiate, :do => :init_process
+
+    after_transition :initiate => :processing, :do => :post_operating_process
+
+    after_transition :processing => :finished, :do => :post_finish_process
 
     event :button_press do
       transition :awaiting_selection => :dispense_soda, if: :in_stock?
     end
 
-    event :soda_dropped do
-      transition :dispense_soda => :complete
+    event :initialise_process do
+      transition :created => :initiate
+
+    end
+
+    event :start_processing do
+      transition :initiate => :processing
+    end
+
+    event :end_processing do
+
+      transition :processing => :finished
     end
 
   end
@@ -39,5 +57,39 @@ class ProcessMaster
         cola: 8
     }
   end
+
+  def load_process
+    puts "Step is loading....."
+    self.initialise_process
+  end
+
+  def init_process
+    puts "Initialise step...."
+    puts "Step is initialised...."
+    puts "Step is preparing to be processed"
+    self.start_processing
+  end
+
+  def post_operating_process
+    puts "step is processing.."
+    puts "Step is preparing for finish processing"
+    #self.end_processing
+    self.step_masters.first.load_step
+  end
+
+  def post_finish_process
+    puts "Process is finished"
+  end
+
+  def finish_process
+    puts "###################################################"
+    self.end_processing
+  end
+
+  def load_next_step(counter)
+    puts "Loading next steps of process..."
+    self.step_masters[counter].load_step
+  end
+
 
 end

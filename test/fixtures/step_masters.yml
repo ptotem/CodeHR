@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  oclass: MyString
+  oaction: MyString
+  action_to: MyString
+  content: MyString
+
+two:
+  name: MyString
+  oclass: MyString
+  oaction: MyString
+  action_to: MyString
+  content: MyString
