@@ -1,25 +1,46 @@
-<%= form_for(@compensation_component) do |f| %>
-  <% if @compensation_component.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>
+<div class="row-fluid">
+  <%= form_for(@compensation_component,html: {class: "form-horizontal"}) do |f| %>
+      <% if @compensation_component.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>
 
-      <ul>
-      <% @compensation_component.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+              <% @compensation_component.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :final_ctc_fixed %><br />
-    <%= f.number_field :final_ctc_fixed %>
-  </div>
-  <div class="field">
-    <%= f.label :final_ctc_varriable %><br />
-    <%= f.number_field :final_ctc_varriable %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <div class="control-group">
+        <%= f.label :final_ctc_fixed,:class => "control-label" %>
+        <div class="controls">
+          <%= f.number_field :final_ctc_fixed %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :final_ctc_varriable,:class => "control-label" %>
+        <div class="controls">
+          <%= f.number_field :final_ctc_varriable %>
+        </div>
+      </div>
+
+      <% @fields = DynamicField.where(:oclass=>"CompensationComponent") %>
+      <h3 class="header lighter blue">Dynamic Field</h3>
+      <% @fields.each do |field| %>
+          <div class="control-group">
+            <%= f.label field.name.to_sym,:class => "control-label" %>
+            <div class="controls">
+              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+            </div>
+          </div>
+      <% end %>
+
+      <div class="form-actions">
+        <%= f.submit :class=>"btn btn-info"  %>
+      </div>
+  <% end %>
+</div>
+
+

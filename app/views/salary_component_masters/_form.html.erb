@@ -1,21 +1,40 @@
-<%= form_for(@salary_component_master) do |f| %>
-  <% if @salary_component_master.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@salary_component_master.errors.count, "error") %> prohibited this salary_component_master from being saved:</h2>
+<div class="row-fluid">
+  <%= form_for(@salary_component_master,html: {class: "form-horizontal"}) do |f| %>
+      <% if @salary_component_master.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@salary_component_master.errors.count, "error") %> prohibited this salary_component_master from being saved:</h2>
 
-      <ul>
-      <% @salary_component_master.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+              <% @salary_component_master.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+
+      <div class="control-group">
+        <%= f.label :name,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+
+      <% @fields = DynamicField.where(:oclass=>"SalaryComponentMaster") %>
+      <h3 class="header lighter blue">Dynamic Field</h3>
+      <% @fields.each do |field| %>
+          <div class="control-group">
+            <%= f.label field.name.to_sym,:class => "control-label" %>
+            <div class="controls">
+              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+            </div>
+          </div>
+      <% end %>
+
+
+      <div class="form-actions">
+        <%= f.submit :class=>"btn btn-info" %>
+      </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+
