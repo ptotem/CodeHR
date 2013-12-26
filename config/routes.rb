@@ -1,4 +1,9 @@
 CodeHR::Application.routes.draw do
+  mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
+
+  resources :roles
+
+
   resources :compensation_components
 
 
@@ -44,7 +49,7 @@ CodeHR::Application.routes.draw do
   resources :employee_masters
 
 
-  mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
+  
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

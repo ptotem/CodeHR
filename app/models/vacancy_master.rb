@@ -14,4 +14,5 @@ class VacancyMaster
   belongs_to :job_description_master
   belongs_to :manpower_planning
   has_many :vacancy_schedulings
+  accepts_nested_attributes_for :vacancy_schedulings
 end

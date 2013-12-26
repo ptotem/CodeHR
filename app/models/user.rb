@@ -27,6 +27,9 @@ class User
   field :last_sign_in_ip,    :type => String
 
   has_one :employee_master
+  has_many :roles
+  accepts_nested_attributes_for :roles
+
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
@@ -38,3 +41,5 @@ class User
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
 end
+
+
