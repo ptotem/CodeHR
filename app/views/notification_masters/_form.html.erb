@@ -1,33 +1,61 @@
-<%= form_for(@notification_master) do |f| %>
-  <% if @notification_master.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@notification_master.errors.count, "error") %> prohibited this notification_master from being saved:</h2>
+<div class="row-fluid">
+  <%= form_for(@notification_master,html: {class: "form-horizontal"}) do |f| %>
+      <% if @notification_master.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@notification_master.errors.count, "error") %> prohibited this notification_master from being saved:</h2>
 
-      <ul>
-      <% @notification_master.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+              <% @notification_master.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+
+      <div class="control-group">
+       <%= f.label :code,:class => "control-label"  %>
+        <div class="controls">
+          <%= f.text_field :code %>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <%= f.label :title,:class => "control-label"  %>
+        <div class="controls">
+          <%= f.text_field :title %>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <%= f.label :description,:class => "control-label"  %>
+        <div class="controls">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <%= f.label :type,:class => "control-label"  %>
+        <div class="controls">
+          <%= f.text_field :type %>
+        </div>
+      </div>
+
+      <% @fields = DynamicField.where(:oclass=>"NotificationMaster") %>
+      <h3 class="header lighter blue">Dynamic Field</h3>
+      <% @fields.each do |field| %>
+          <div class="control-group">
+            <%= f.label field.name.to_sym,:class => "control-label" %>
+            <div class="controls">
+              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+            </div>
+          </div>
+      <% end %>
+
+
+      <div class="form-actions">
+        <%= f.submit :class=>"btn btn-info" %>
+      </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+
