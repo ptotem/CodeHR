@@ -1,5 +1,6 @@
 class CandidateMaster
   include Mongoid::Document
+  include Mongoid::Paperclip
   field :candidate_code, type: String
   field :candidate_name, type: String
   field :candidate_middle_name, type: String

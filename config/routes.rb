@@ -1,4 +1,6 @@
 CodeHR::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   resources :compensation_components
 
 
@@ -45,12 +47,12 @@ CodeHR::Application.routes.draw do
 
 
   mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
+  #
+  #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
+  #ActiveAdmin.routes(self)
+  #
   devise_for :users
-  ActiveAdmin.routes(self)
+  #ActiveAdmin.routes(self)
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

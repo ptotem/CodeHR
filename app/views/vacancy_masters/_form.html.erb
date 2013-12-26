@@ -1,53 +1,96 @@
-<%= form_for(@vacancy_master) do |f| %>
-  <% if @vacancy_master.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vacancy_master.errors.count, "error") %> prohibited this vacancy_master from being saved:</h2>
+<div class="row-fluid">
+  <%= form_for(@vacancy_master,html: {class: "form-horizontal"}) do |f| %>
+      <% if @vacancy_master.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@vacancy_master.errors.count, "error") %> prohibited this vacancy_master from being saved:</h2>
 
-      <ul>
-      <% @vacancy_master.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+              <% @vacancy_master.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :vacancy_code %><br />
-    <%= f.text_field :vacancy_code %>
-  </div>
-  <div class="field">
-    <%= f.label :manpower_planning_id %><br />
-    <%= f.number_field :manpower_planning_id %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :sourcing_strategy %><br />
-    <%= f.text_field :sourcing_strategy %>
-  </div>
-  <div class="field">
-    <%= f.label :hr_rep %><br />
-    <%= f.text_field :hr_rep %>
-  </div>
-  <div class="field">
-    <%= f.label :hiring_manager %><br />
-    <%= f.text_field :hiring_manager %>
-  </div>
-  <div class="field">
-    <%= f.label :ctc_range_from %><br />
-    <%= f.number_field :ctc_range_from %>
-  </div>
-  <div class="field">
-    <%= f.label :ctc_range_to %><br />
-    <%= f.number_field :ctc_range_to %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <div class="control-group">
+        <%= f.label :vacancy_code,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vacancy_code %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :manpower_planning_id,:class => "control-label" %>
+        <div class="controls">
+          <%= f.number_field :manpower_planning_id %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :description ,:class => "control-label"%>
+        <div class="controls">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :status,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :status %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :sourcing_strategy,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :sourcing_strategy %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :hr_rep,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :hr_rep %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :hiring_manager,:class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :hiring_manager %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :ctc_range_from,:class => "control-label" %>
+        <div class="controls">
+          <%= f.number_field :ctc_range_from %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :ctc_range_to,:class => "control-label" %>
+        <div class="controls">
+          <%= f.number_field :ctc_range_to %>
+        </div>
+      </div>
+
+      <% @fields = DynamicField.where(:oclass=>"VacancyMaster") %>
+      <h3 class="header lighter blue">Dynamic Field</h3>
+      <% @fields.each do |field| %>
+          <div class="control-group">
+            <%= f.label field.name.to_sym,:class => "control-label" %>
+            <div class="controls">
+              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+            </div>
+          </div>
+      <% end %>
+
+
+      <div class="form-actions">
+        <%= f.submit :class=>"btn btn-info" %>
+      </div>
+  <% end %>
+</div>
+
+
