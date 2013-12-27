@@ -43,6 +43,13 @@
         </div>
       </div>
 
+      <div class="control-group">
+        <%= f.label :dfile,:class => "control-label" %>
+        <div class="controls">
+          <%= f.file_field :dfile %>
+        </div>
+      </div>
+
       <% @fields = DynamicField.where(:oclass=>"DocumentMaster") %>
       <h3 class="header lighter blue">Dynamic Field</h3>
       <% @fields.each do |field| %>

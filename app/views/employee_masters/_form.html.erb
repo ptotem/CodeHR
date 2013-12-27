@@ -1,6 +1,6 @@
 
 <div class="row-fluid">
-<%= form_for(@employee_master,html: {class: "form-horizontal"}) do |f| %>
+<%= nested_form_for(@employee_master,html: {class: "form-horizontal"}) do |f| %>
 
     <% if @employee_master.errors.any? %>
         <div id="error_explanation">
@@ -281,12 +281,207 @@
     </div>
 
 
-    <div class="controls" style="max-width: 215px;">
+    <div class="control-group">
       <%= f.label :employee_cv,:class => "control-label" %>
       <div class="controls">
-        <%= f.file_field :employee_cv, :id => "id-input-file-1" %>
+        <%= f.file_field :employee_cv %>
       </div>
     </div>
+    <hr>
+
+    <%= f.fields_for :reporting_tos do |reporting_tos| %>
+        <div class="control-group">
+          <%= reporting_tos.label :reporting_officer_id,:class => "control-label" %>
+          <div class="controls">
+            <%= reporting_tos.text_field :reporting_officer_id %>
+            <%= reporting_tos.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "Reporting Tos", :reporting_tos %>
+    <hr>
+
+    <%= f.fields_for :employment_hists do |employment_hists| %>
+        <div class="control-group">
+          <%= employment_hists.label :joined_from,:class => "control-label" %>
+          <div class="controls">
+            <%= employment_hists.text_field :joined_from %>
+            <%= employment_hists.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= employment_hists.label :leaved,:class => "control-label" %>
+          <div class="controls">
+            <%= employment_hists.text_field :leaved %>
+            <%= employment_hists.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= employment_hists.label :organisation,:class => "control-label" %>
+          <div class="controls">
+            <%= employment_hists.text_field :organisation %>
+            <%= employment_hists.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= employment_hists.label :designation,:class => "control-label" %>
+          <div class="controls">
+            <%= employment_hists.text_field :designation %>
+            <%= employment_hists.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "Employment Hists", :employment_hists %>
+    <hr>
+
+    <%= f.fields_for :educations do |educations| %>
+        <div class="control-group">
+          <%= educations.label :name,:class => "control-label" %>
+          <div class="controls">
+            <%= educations.text_field :name %>
+            <%= educations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= educations.label :description,:class => "control-label" %>
+          <div class="controls">
+            <%= educations.text_field :description %>
+            <%= educations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= educations.label :marks,:class => "control-label" %>
+          <div class="controls">
+            <%= educations.text_field :marks %>
+            <%= educations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= educations.label :grade,:class => "control-label" %>
+          <div class="controls">
+            <%= educations.text_field :grade %>
+            <%= educations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "Educations", :educations %>
+    <hr>
+
+    <%= f.fields_for :family_details do |family_details| %>
+        <div class="control-group">
+          <%= family_details.label :relationship,:class => "control-label" %>
+          <div class="controls">
+            <%= family_details.text_field :relationship %>
+            <%= family_details.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= family_details.label :fname,:class => "control-label" %>
+          <div class="controls">
+            <%= family_details.text_field :fname %>
+            <%= family_details.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= family_details.label :mname,:class => "control-label" %>
+          <div class="controls">
+            <%= family_details.text_field :mname %>
+            <%= family_details.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= family_details.label :lname,:class => "control-label" %>
+          <div class="controls">
+            <%= family_details.text_field :lname %>
+            <%= family_details.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "Family Details", :family_details %>
+    <hr>
+
+    <%= f.fields_for :pf_nominations do |pf_nominations| %>
+        <div class="control-group">
+          <%= pf_nominations.label :relationship,:class => "control-label" %>
+          <div class="controls">
+            <%= pf_nominations.text_field :relationship %>
+            <%= pf_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= pf_nominations.label :fname,:class => "control-label" %>
+          <div class="controls">
+            <%= pf_nominations.text_field :fname %>
+            <%= pf_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= pf_nominations.label :mname,:class => "control-label" %>
+          <div class="controls">
+            <%= pf_nominations.text_field :mname %>
+            <%= pf_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= pf_nominations.label :lname,:class => "control-label" %>
+          <div class="controls">
+            <%= pf_nominations.text_field :lname %>
+            <%= pf_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "PF Nominations", :pf_nominations %>
+    <hr>
+
+    <%= f.fields_for :esis_nominations do |esis_nominations| %>
+        <div class="control-group">
+          <%= esis_nominations.label :relationship,:class => "control-label" %>
+          <div class="controls">
+            <%= esis_nominations.text_field :relationship %>
+            <%= esis_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= esis_nominations.label :fname,:class => "control-label" %>
+          <div class="controls">
+            <%= esis_nominations.text_field :fname %>
+            <%= esis_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= esis_nominations.label :mname,:class => "control-label" %>
+          <div class="controls">
+            <%= esis_nominations.text_field :mname %>
+            <%= esis_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= esis_nominations.label :lname,:class => "control-label" %>
+          <div class="controls">
+            <%= esis_nominations.text_field :lname %>
+            <%= esis_nominations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
+    <% end %>
+    <%= f.link_to_add "Esis Nominations", :esis_nominations %>
+    <hr>
+
+
 
 
     <% @fields = DynamicField.where(:oclass=>"EmployeeMaster") %>

@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@compensation_component,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@compensation_component,html: {class: "form-horizontal"}) do |f| %>
       <% if @compensation_component.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>
@@ -25,6 +25,48 @@
           <%= f.number_field :final_ctc_varriable %>
         </div>
       </div>
+      <hr>
+
+      <%= f.fields_for :formula_lists do |formula_lists| %>
+          <div class="control-group">
+            <%= formula_lists.label :salary_component_id,:class => "control-label" %>
+            <div class="controls">
+              <%= formula_lists.text_field :salary_component_id %>
+              <%= formula_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%=formula_lists.label :fixed_value ,:class => "control-label"%>
+            <div class="controls">
+              <%= formula_lists.text_field :fixed_value %>
+              <%= formula_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= formula_lists.label :internal_formula,:class => "control-label" %>
+            <div class="controls">
+              <%= formula_lists.text_field :internal_formula %>
+              <%= formula_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= formula_lists.label :fixed,:class => "control-label" %>
+            <div class="controls">
+              <label>
+                <%= formula_lists.check_box :fixed,'name' => 'form-field-checkbox' %>
+                <%= formula_lists.label :fixed,:class => "lbl" %>
+                <%= formula_lists.link_to_remove "Remove this task" %>
+              </label>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Formula Lists", :formula_lists %>
+      <hr>
+
 
       <% @fields = DynamicField.where(:oclass=>"CompensationComponent") %>
       <h3 class="header lighter blue">Dynamic Field</h3>

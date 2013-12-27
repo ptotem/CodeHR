@@ -1,6 +1,6 @@
 
 <div class="row-fluid">
-    <%= form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
+    <%= nested_form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
         <% if @rating.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
@@ -19,6 +19,19 @@
             <%= f.text_field :comments %>
           </div>
         </div>
+      <hr>
+
+      <%= f.fields_for :score_receiveds do |score_receiveds| %>
+          <div class="control-group">
+            <%= score_receiveds.label :score,:class => "control-label" %>
+            <div class="controls">
+              <%= score_receiveds.text_field :score %>
+              <%= score_receiveds.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.link_to_add "Score Receiveds", :score_receiveds %>
+      <hr>
 
 
 
