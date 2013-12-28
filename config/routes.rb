@@ -1,4 +1,7 @@
 CodeHR::Application.routes.draw do
+  resources :process_trs
+
+
   mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
 
   resources :roles
@@ -57,6 +60,7 @@ CodeHR::Application.routes.draw do
   devise_for :users
   ActiveAdmin.routes(self)
 
+  match 'role_creation/:process_id/:seq' => 'roles#new', :as => :role_creation
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
