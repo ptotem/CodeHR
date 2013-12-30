@@ -13,457 +13,525 @@
           </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :candidate_code,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :candidate_code %>
-        </div>
-      </div>
 
-      <div class="control-group">
-        <%= f.label :candidate_name,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :candidate_name %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :candidate_middle_name,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :candidate_middle_name %>
-        </div>
-      </div>
-
-
-      <div class="control-group">
-        <%= f.label :status,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :status %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :gender,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :gender %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :marital_status,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :marital_status %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :date_of_birth ,:class => "control-label"%>
-        <div class="controls">
-          <%= f.date_select :date_of_birth %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :total_work_exp_years,:class => "control-label" %>
-        <div class="controls">
-          <%= f.number_field :total_work_exp_years %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :total_work_exp_months,:class => "control-label" %>
-        <div class="controls">
-          <%= f.number_field :total_work_exp_months %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :official_email,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :official_email %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :personal_email,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :personal_email %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :bank_name,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :bank_name %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :account_number,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :account_number %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :pf_no,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :pf_no %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :esic_no,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :esic_no %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :pan_no,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :pan_no %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :current_location,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :current_location %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :salary_expectation_fixed,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :salary_expectation_fixed %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :salary_expectation_variable,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :salary_expectation_variable %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :notice_period %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period_buyback?,:class => "control-label" %>
-        <div class="controls">
-          <%= f.check_box :notice_period_buyback? %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period_buyback_amount,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :notice_period_buyback_amount %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_1 ,:class => "control-label"%>
-        <div class="controls">
-          <%= f.text_area :remarks_1 %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_2,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_2 %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_3,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_3 %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_4,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_4 %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_5,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_5 %>
-        </div>
-      </div>
-
-    <div class="control-group">
-      <%= f.label :employee_cv,:class => "control-label" %>
-      <div class="controls">
-        <%= f.file_field :employee_cv %>
-      </div>
-    </div>
-    <hr>
-
-    <%= f.fields_for :cand_educations do |cand_educations| %>
-
-         <div class="control-group">
-          <%= cand_educations.label :name,:class => "control-label" %>
-          <div class="controls">
-            <%= cand_educations.text_field :name %>
-            <%= cand_educations.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= cand_educations.label :description ,:class => "control-label"%>
-          <div class="controls">
-            <%= cand_educations.text_field :description %>
-            <%= cand_educations.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= cand_educations.label :marks,:class => "control-label" %>
-          <div class="controls">
-            <%= cand_educations.text_field :marks %>
-            <%= cand_educations.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= cand_educations.label :grade,:class => "control-label" %>
-          <div class="controls">
-            <%= cand_educations.text_field :grade %>
-            <%= cand_educations.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-    <% end %>
-    <%= f.link_to_add "Candidate Educations", :cand_educations %>
-    <hr>
-
-    <%= f.fields_for :candidate_contact_numbers do |candidate_contact_numbers| %>
-        <div class="control-group">
-          <%= candidate_contact_numbers.label :home,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_contact_numbers.text_field :home %>
-            <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_contact_numbers.label :mobile ,:class => "control-label"%>
-          <div class="controls">
-            <%= candidate_contact_numbers.text_field :mobile %>
-            <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_contact_numbers.label :office,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_contact_numbers.text_field :office %>
-            <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Candidate Contact Numbers", :candidate_contact_numbers %>
-    <hr>
-
-
-    <%= f.fields_for :candidate_employment_histories do |candidate_employment_histories| %>
-        <div class="control-group">
-          <%= candidate_employment_histories.label :joined_from,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_employment_histories.date_select :joined_from %>
-            <%= candidate_employment_histories.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_employment_histories.label :leaved ,:class => "control-label"%>
-          <div class="controls">
-            <%= candidate_employment_histories.date_select :leaved %>
-            <%= candidate_employment_histories.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_employment_histories.label :organisation,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_employment_histories.text_field :organisation %>
-            <%= candidate_employment_histories.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_employment_histories.label :designation,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_employment_histories.text_field :designation %>
-            <%= candidate_employment_histories.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Candidate Employment Histories", :candidate_employment_histories %>
-    <hr>
-
-    <%= f.fields_for :communication_addresses do |communication_addresses| %>
-        <div class="control-group">
-          <%= communication_addresses.label :address1,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :address1 %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :address2 ,:class => "control-label"%>
-          <div class="controls">
-            <%= communication_addresses.text_field :address2 %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :city,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :city %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :taluka,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :taluka %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :district,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :district %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :state,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :state %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :country,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :country %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= communication_addresses.label :zipcode,:class => "control-label" %>
-          <div class="controls">
-            <%= communication_addresses.text_field :zipcode %>
-            <%= communication_addresses.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Communication Addresses", :communication_addresses %>
-    <hr>
-
-    <%= f.fields_for :candidate_family_details do |candidate_family_details| %>
-        <div class="control-group">
-          <%= candidate_family_details.label :relaationship,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_family_details.text_field :relaationship %>
-            <%= candidate_family_details.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_family_details.label :fname ,:class => "control-label"%>
-          <div class="controls">
-            <%= candidate_family_details.text_field :fname %>
-            <%= candidate_family_details.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_family_details.label :mname,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_family_details.text_field :mname %>
-            <%= candidate_family_details.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= candidate_family_details.label :lname,:class => "control-label" %>
-          <div class="controls">
-            <%= candidate_family_details.text_field :lname %>
-            <%= candidate_family_details.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Candidate Family Details", :candidate_family_details %>
-    <hr>
-
-
-    <%= f.fields_for :job_preferences do |job_preferences| %>
-        <div class="control-group">
-          <%= job_preferences.label :vacancy_id,:class => "control-label" %>
-          <div class="controls">
-            <%= job_preferences.text_field :vacancy_id %>
-            <%= job_preferences.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Job Preferences", :job_preferences %>
-    <hr>
-
-    <%= f.fields_for :location_preferences do |location_preferences| %>
-        <div class="control-group">
-          <%= location_preferences.label :name,:class => "control-label" %>
-          <div class="controls">
-            <%= location_preferences.text_field :name %>
-            <%= location_preferences.link_to_remove "Remove this task" %>
-          </div>
-        </div>
-
-    <% end %>
-    <%= f.link_to_add "Location Preferences", :location_preferences %>
-    <hr>
-
-
-      <% @fields = DynamicField.where(:oclass=>"CandidateMaster") %>
-      <h3 class="header lighter blue">Dynamic Field</h3>
-      <% @fields.each do |field| %>
+    <div class="tabbable">
+      <ul class="nav nav-tabs" id="myTab">
+        <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">Candidate<b class="caret"></b></a>
+          <ul class="dropdown-menu dropdown-info">
+            <li><a data-toggle="tab" href="#dropdown1">Personal</a></li>
+            <li><a data-toggle="tab" href="#dropdown2">Bank Details</a></li>
+            <li><a data-toggle="tab" href="#dropdown3">Remarks</a></li>
+            <li><a data-toggle="tab" href="#dropdown4">Employee CV</a></li>
+          </ul>
+        </li>
+        <li><a data-toggle="tab" href="#cand_educations">Educations</a></li>
+        <li><a data-toggle="tab" href="#candidate_contact_numbers">Contact No</a></li>
+        <li><a data-toggle="tab" href="#candidate_employment_histories">Employment History</a></li>
+        <li><a data-toggle="tab" href="#communication_addresses">Communication Address</a></li>
+        <li><a data-toggle="tab" href="#candidate_family_details">Family Details</a></li>
+        <li><a data-toggle="tab" href="#job_preferences">Job Preferences</a></li>
+        <li><a data-toggle="tab" href="#location_preferences">Location Prefer</a></li>
+        <li><a data-toggle="tab" href="#dynamic_field">Dynamic Field</a></li>
+
+      </ul>
+      <div class="tab-content">
+
+        <div id="dropdown1" class="tab-pane in active">
+          <p>
           <div class="control-group">
-            <%= f.label field.name.to_sym,:class => "control-label" %>
+            <%= f.label :candidate_code,:class => "control-label" %>
             <div class="controls">
-              <%= f.send(field.type.to_sym, field.name.to_sym )%>
+              <%= f.text_field :candidate_code %>
             </div>
           </div>
-      <% end %>
+
+          <div class="control-group">
+            <%= f.label :candidate_name,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :candidate_name %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :candidate_middle_name,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :candidate_middle_name %>
+            </div>
+          </div>
 
 
-      <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+          <div class="control-group">
+            <%= f.label :status,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :status %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :gender,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :gender %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :marital_status,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :marital_status %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :date_of_birth ,:class => "control-label"%>
+            <div class="controls">
+              <%= f.date_select :date_of_birth %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :total_work_exp_years,:class => "control-label" %>
+            <div class="controls">
+              <%= f.number_field :total_work_exp_years %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :total_work_exp_months,:class => "control-label" %>
+            <div class="controls">
+              <%= f.number_field :total_work_exp_months %>
+            </div>
+          </div>
+
+          </p>
+        </div>
+
+        <div id="dropdown2" class="tab-pane">
+          <p>
+          <div class="control-group">
+            <%= f.label :official_email,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :official_email %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :personal_email,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :personal_email %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :bank_name,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :bank_name %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :account_number,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :account_number %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :pf_no,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :pf_no %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :esic_no,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :esic_no %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :pan_no,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :pan_no %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :current_location,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :current_location %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :salary_expectation_fixed,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :salary_expectation_fixed %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :salary_expectation_variable,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :salary_expectation_variable %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :notice_period,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :notice_period %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :notice_period_buyback?,:class => "control-label" %>
+            <div class="controls">
+              <%= f.check_box :notice_period_buyback? %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :notice_period_buyback_amount,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :notice_period_buyback_amount %>
+            </div>
+          </div>
+
+          </p>
+        </div>
+
+        <div id="dropdown3" class="tab-pane">
+          <p>
+          <div class="control-group">
+            <%= f.label :remarks_1 ,:class => "control-label"%>
+            <div class="controls">
+              <%= f.text_area :remarks_1,:style => 'width:90%;height:200px;' %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :remarks_2,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :remarks_2,:style => 'width:90%;height:200px;' %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :remarks_3,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :remarks_3,:style => 'width:90%;height:200px;' %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :remarks_4,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :remarks_4,:style => 'width:90%;height:200px;' %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :remarks_5,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :remarks_5,:style => 'width:90%;height:200px;' %>
+            </div>
+          </div>
+          </p>
+        </div>
+
+        <div id="dropdown4" class="tab-pane">
+          <p>
+          <div class="control-group">
+            <%= f.label :employee_cv,:class => "control-label" %>
+            <div class="controls">
+              <%= f.file_field :employee_cv %>
+            </div>
+          </div>
+          </p>
+        </div>
+
+
+        <div id="cand_educations" class="tab-pane">
+          <p>
+            <%= f.fields_for :cand_educations do |cand_educations| %>
+
+              <div class="control-group">
+                <%= cand_educations.label :name,:class => "control-label" %>
+                <div class="controls">
+                  <%= cand_educations.text_field :name %>
+                  <%= cand_educations.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= cand_educations.label :description ,:class => "control-label"%>
+                <div class="controls">
+                  <%= cand_educations.text_field :description %>
+                  <%= cand_educations.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= cand_educations.label :marks,:class => "control-label" %>
+                <div class="controls">
+                  <%= cand_educations.text_field :marks %>
+                  <%= cand_educations.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= cand_educations.label :grade,:class => "control-label" %>
+                <div class="controls">
+                  <%= cand_educations.text_field :grade %>
+                  <%= cand_educations.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+          <% end %>
+          <%= f.link_to_add "Candidate Educations", :cand_educations %>
+          </p>
+        </div>
+
+        <div id="candidate_contact_numbers" class="tab-pane">
+          <p>
+            <%= f.fields_for :candidate_contact_numbers do |candidate_contact_numbers| %>
+              <div class="control-group">
+                <%= candidate_contact_numbers.label :home,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_contact_numbers.text_field :home %>
+                  <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_contact_numbers.label :mobile ,:class => "control-label"%>
+                <div class="controls">
+                  <%= candidate_contact_numbers.text_field :mobile %>
+                  <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_contact_numbers.label :office,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_contact_numbers.text_field :office %>
+                  <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Candidate Contact Numbers", :candidate_contact_numbers %>
+          </p>
+        </div>
+
+        <div id="candidate_employment_histories" class="tab-pane">
+          <p>
+            <%= f.fields_for :candidate_employment_histories do |candidate_employment_histories| %>
+              <div class="control-group">
+                <%= candidate_employment_histories.label :joined_from,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_employment_histories.date_select :joined_from %>
+                  <%= candidate_employment_histories.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_employment_histories.label :leaved ,:class => "control-label"%>
+                <div class="controls">
+                  <%= candidate_employment_histories.date_select :leaved %>
+                  <%= candidate_employment_histories.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_employment_histories.label :organisation,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_employment_histories.text_field :organisation %>
+                  <%= candidate_employment_histories.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_employment_histories.label :designation,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_employment_histories.text_field :designation %>
+                  <%= candidate_employment_histories.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Candidate Employment Histories", :candidate_employment_histories %>
+          </p>
+        </div>
+
+        <div id="communication_addresses" class="tab-pane">
+          <p>
+            <%= f.fields_for :communication_addresses do |communication_addresses| %>
+              <div class="control-group">
+                <%= communication_addresses.label :address1,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :address1 %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :address2 ,:class => "control-label"%>
+                <div class="controls">
+                  <%= communication_addresses.text_field :address2 %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :city,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :city %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :taluka,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :taluka %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :district,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :district %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :state,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :state %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :country,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :country %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= communication_addresses.label :zipcode,:class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :zipcode %>
+                  <%= communication_addresses.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Communication Addresses", :communication_addresses %>
+          </p>
+        </div>
+
+        <div id="candidate_family_details" class="tab-pane">
+          <p>
+            <%= f.fields_for :candidate_family_details do |candidate_family_details| %>
+              <div class="control-group">
+                <%= candidate_family_details.label :relaationship,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_family_details.text_field :relaationship %>
+                  <%= candidate_family_details.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_family_details.label :fname ,:class => "control-label"%>
+                <div class="controls">
+                  <%= candidate_family_details.text_field :fname %>
+                  <%= candidate_family_details.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_family_details.label :mname,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_family_details.text_field :mname %>
+                  <%= candidate_family_details.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= candidate_family_details.label :lname,:class => "control-label" %>
+                <div class="controls">
+                  <%= candidate_family_details.text_field :lname %>
+                  <%= candidate_family_details.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Candidate Family Details", :candidate_family_details %>
+          </p>
+        </div>
+
+        <div id="job_preferences" class="tab-pane">
+          <p>
+            <%= f.fields_for :job_preferences do |job_preferences| %>
+              <div class="control-group">
+                <%= job_preferences.label :vacancy_id,:class => "control-label" %>
+                <div class="controls">
+                  <%= job_preferences.text_field :vacancy_id %>
+                  <%= job_preferences.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Job Preferences", :job_preferences %>
+          </p>
+        </div>
+
+        <div id="location_preferences" class="tab-pane">
+          <p>
+            <%= f.fields_for :location_preferences do |location_preferences| %>
+              <div class="control-group">
+                <%= location_preferences.label :name,:class => "control-label" %>
+                <div class="controls">
+                  <%= location_preferences.text_field :name %>
+                  <%= location_preferences.link_to_remove "Remove this task" %>
+                </div>
+              </div>
+
+          <% end %>
+          <%= f.link_to_add "Location Preferences", :location_preferences %>
+          </p>
+        </div>
+
+        <div id="dynamic_field" class="tab-pane">
+          <p>
+            <% @fields = DynamicField.where(:oclass=>"CandidateMaster") %>
+          <h3 class="header lighter blue">Dynamic Field</h3>
+          <% @fields.each do |field| %>
+              <div class="control-group">
+                <%= f.label field.name.to_sym,:class => "control-label" %>
+                <div class="controls">
+                  <%= f.send(field.type.to_sym, field.name.to_sym )%>
+                </div>
+              </div>
+          <% end %>
+
+
+          <div class="form-actions">
+            <%= f.submit :class=>"btn btn-info" %>
+          </div>
+          </p>
+        </div>
       </div>
+    </div>
+
+
   <% end %>
 </div>
 
