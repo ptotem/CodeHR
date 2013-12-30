@@ -18,13 +18,19 @@ module ApplicationHelper
         puts "In deletion"
       when "Notify"
         #Todo sending notification to user
-        @user=User.find(user_id)
-        unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
-        unm.save
-        unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
-        unm.email_details.build(:notification_master_id => unm._id,:event=>content)
-        unm.save
-        @user.save
+        case action_to
+          when "Admin"
+            @user=User.find(user_id)
+            unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
+            unm.save
+            unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.email_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.save
+            @user.save
+          when "Client"
+          when "PowerUser"
+        end
+
         AdminMailer.admin_mail(@user.email,"#{oclass} #{oaction}","#{content}")
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step

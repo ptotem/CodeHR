@@ -2,7 +2,8 @@ class GroupMaster
   include Mongoid::Document
   field :group_code, type: String
   field :group_name, type: String
-  field :compnany_id, type: Integer
+  field :company_master_id, type: String
+  field :child_group_master_ids, type: Array
   recursively_embeds_many
   belongs_to :company_master
   has_many :manpower_plannings

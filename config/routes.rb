@@ -2,6 +2,8 @@ CodeHR::Application.routes.draw do
 
   resources :clients
 
+  resources :group_masters
+
 
   resources :process_trs
 

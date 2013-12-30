@@ -1,0 +1,23 @@
+<h1>Listing group_masters</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @group_masters.each do |group_master| %>
+  <tr>
+    <td><%= group_master.group_name %></td>
+    <td><%= link_to 'Show', group_master %></td>
+    <td><%= link_to 'Edit', edit_group_master_path(group_master) %></td>
+    <td><%= link_to 'Destroy', group_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Group master', new_group_master_path %>
