@@ -35,7 +35,7 @@
       <%= f.link_to_add "Score Receiveds", :score_receiveds %>
       <hr>
 
-          <% @fields = DynamicField.where(:oclass=>"Rating") %>
+          <%# @fields = DynamicField.where(:oclass=>"Rating") %>
             <h3 class="header lighter blue">Dynamic Field</h3>
           <% @fields.each do |field| %>
           <div class="control-group">
