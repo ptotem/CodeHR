@@ -255,7 +255,7 @@
     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
     <li><a href="#"><i class="icon-user"></i> Profile</a></li>
     <li class="divider"></li>
-    <li><a href="#"><i class="icon-off"></i> Logout</a></li>
+    <li><a href="<%= destroy_user_session_path %>"><i class="icon-off"></i> Logout</a></li>
   </ul>
 </li>
 
@@ -292,22 +292,36 @@
     <!-- #sidebar-shortcuts -->
 
     <ul class="nav nav-list">
-
       <li>
         <a href="#" class="dropdown-toggle">
           <i class="icon-copy"></i>
-          <span>Document Mgmnt</span>
+          <span>User Management</span>
           <b class="arrow icon-angle-down"></b>
         </a>
         <ul class="submenu">
-          <li><%= link_to "Document Templates", ""%></li>
-          <li><%= link_to "Documents", ""%></li>
+          <li><%= link_to "Employee Masters", employee_masters_path%></li>
+          <li><%= link_to "Candidate Masters", candidate_masters_path%></li>
+          <li><%= link_to "Role" %></li>
         </ul>
       </li>
-
     </ul>
-    <ul class="nav nav-list">
 
+    <ul class="nav nav-list">
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <i class="icon-dashboard"></i>
+          <span>Document Management</span>
+          <b class="arrow icon-angle-down"></b>
+        </a>
+        <ul class="submenu">
+          <li><%= link_to "Document Masters", document_masters_path%></li>
+          <li><%= link_to "Document Template Masters", document_template_masters_path%></li>
+        </ul>
+      </li>
+    </ul>
+
+
+    <ul class="nav nav-list">
       <li>
         <a href="#" class="dropdown-toggle">
           <i class="icon-dashboard"></i>
@@ -318,10 +332,10 @@
           <li><%= link_to "Rules", ""%></li>
         </ul>
       </li>
-
     </ul>
-    <ul class="nav nav-list">
 
+
+    <ul class="nav nav-list">
       <li>
         <a href="#" class="dropdown-toggle">
           <i class="icon-group"></i>
@@ -329,11 +343,25 @@
           <b class="arrow icon-angle-down"></b>
         </a>
         <ul class="submenu">
-          <li><%= link_to "Vacancies", ""%></li>
-          <li><%= link_to "Candidates", ""%></li>
+          <li><%= link_to "Interview Type", interview_types_path %></li>
+          <li><%= link_to "Ratings", ratings_path %></li>
+          <li><%= link_to "Rating Scales", rating_scales_path %></li>
         </ul>
       </li>
+    </ul>
 
+    <ul class="nav nav-list">
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <i class="icon-group"></i>
+          <span>Process Management</span>
+          <b class="arrow icon-angle-down"></b>
+        </a>
+        <ul class="submenu">
+          <li><%= link_to "Process Master", ""%></li>
+          <li><%= link_to "Process TR", ""%></li>
+        </ul>
+      </li>
     </ul>
     <!--/.nav-list-->
 

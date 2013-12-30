@@ -2,6 +2,12 @@ class EmployeeMastersController < InheritedResources::Base
 
   def new
     @employee_master = EmployeeMaster.new
+    @employee_master.reporting_tos.build
+    @employee_master.employment_hists.build
+    @employee_master.educations.build
+    @employee_master.family_details.build
+    @employee_master.pf_nominations.build
+    @employee_master.esis_nominations.build
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"EmployeeMaster")
     @fields.each do |ss|

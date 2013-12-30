@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@manpower_planning,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@manpower_planning,html: {class: "form-horizontal"}) do |f| %>
       <% if @manpower_planning.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@manpower_planning.errors.count, "error") %> prohibited this manpower_planning from being saved:</h2>
@@ -13,39 +13,133 @@
       <% end %>
 
       <div class="control-group">
-        <%= f.label :mp_code %>
+        <%= f.label :mp_code,:class => "control-label" %>
         <div class="controls">
           <%= f.text_field :mp_code %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :period_from %>
+        <%= f.label :period_from,:class => "control-label" %>
         <div class="controls">
           <%= f.date_select :period_from %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :period_to %>
+        <%= f.label :period_to,:class => "control-label" %>
         <div class="controls">
           <%= f.date_select :period_to %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :requested_by %>
+        <%= f.label :requested_by,:class => "control-label" %>
         <div class="controls">
           <%= f.text_field :requested_by %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :final_approved_number %><br />
+        <%= f.label :final_approved_number,:class => "control-label" %>
         <div class="controls">
           <%= f.text_field :final_approved_number %>
         </div>
       </div>
+      <hr>
+
+      <%= f.fields_for :approval_mats do |approval_mats| %>
+          <div class="control-group">
+            <%= approval_mats.label :employee_master_id,:class => "control-label" %>
+            <div class="controls">
+              <%= approval_mats.text_field :employee_master_id %>
+              <%= approval_mats.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Approval Mats", :approval_mats %>
+      <hr>
+
+      <%= f.fields_for :vacancy_masters do |vacancy_masters| %>
+          <div class="control-group">
+            <%= vacancy_masters.label :vacancy_code,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :vacancy_code %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :manpower_planning_id,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :manpower_planning_id %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :description,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :description %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :status,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :status %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :sourcing_strategy,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :sourcing_strategy %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :hr_rep,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :hr_rep %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+
+          <div class="control-group">
+            <%= vacancy_masters.label :hiring_manager,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :hiring_manager %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :ctc_range_from,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :ctc_range_from %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vacancy_masters.label :ctc_range_to,:class => "control-label" %>
+            <div class="controls">
+              <%= vacancy_masters.text_field :ctc_range_to %>
+              <%= vacancy_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Vacancy Masters", :vacancy_masters %>
+      <hr>
+
+
 
       <% @fields = DynamicField.where(:oclass=>"ManpowerPlanning") %>
       <h3 class="header lighter blue">Dynamic Field</h3>

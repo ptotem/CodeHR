@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@rating_scale,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@rating_scale,html: {class: "form-horizontal"}) do |f| %>
       <% if @rating_scale.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@rating_scale.errors.count, "error") %> prohibited this rating_scale from being saved:</h2>
@@ -25,6 +25,37 @@
           <%= f.text_area :description %>
         </div>
       </div>
+      <hr>
+
+      <%= f.fields_for :scales do |scales| %>
+          <div class="control-group">
+            <%= scales.label :scale_description,:class => "control-label" %>
+            <div class="controls">
+              <%= scales.text_field :scale_description %>
+              <%= scales.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= scales.label :range_from,:class => "control-label" %>
+            <div class="controls">
+              <%= scales.text_field :range_from %>
+              <%= scales.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= scales.label :range_to,:class => "control-label" %>
+            <div class="controls">
+              <%= scales.text_field :range_to %>
+              <%= scales.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Email Details", :scales %>
+      <hr>
+
 
       <% @fields = DynamicField.where(:oclass=>"RatingScale") %>
       <h3 class="header lighter blue">Dynamic Field</h3>

@@ -14,7 +14,7 @@ class EmailDetail
   embeds_many :mail_tos
   embeds_many :mail_ccs
   embeds_many :mail_bccs
-
+  belongs_to :notification_master
   accepts_nested_attributes_for :mail_tos
   accepts_nested_attributes_for :mail_ccs
   accepts_nested_attributes_for :mail_bccs
