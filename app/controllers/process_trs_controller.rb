@@ -11,8 +11,9 @@ class ProcessTrsController < InheritedResources::Base
     end
     #Next line will initiate the state machine which then automatically runs all the steps include in Initiated Process/
     @process_tr.load_process
-    if !current_user.current_redirect_url.blank?
-      redirect_to current_user.current_redirect_url
+    @user  = User.find(current_user._id)
+    if !@user.current_redirect_url.blank?
+      redirect_to @user.current_redirect_url
       return
     end
 

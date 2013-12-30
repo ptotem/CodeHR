@@ -6,7 +6,7 @@ class RolesController < InheritedResources::Base
       @pro=ProcessTr.find(params[:process_id])
       @pro.step_trs[params[:seq].to_i].end_processing_step
       @user=current_user
-      @user.current_redirect_url=nil
+      @user.current_redirect_url=''
       @user.save
     end
     respond_to do |format|
@@ -25,11 +25,16 @@ class RolesController < InheritedResources::Base
   end
 
   def update
-
     @role = Role.find(params[:id])
-
     respond_to do |format|
-      if @role.update_attributes(params[:slide])
+      if @role.update_attributes(params[:role])
+        if !params[:process_id].nil?
+          @pro=ProcessTr.find(params[:process_id])
+          @pro.step_trs[params[:seq].to_i].end_processing_step
+          @user=current_user
+          @user.current_redirect_url=''
+          @user.save
+        end
         format.html { redirect_to @role, notice: 'Slide was successfully updated.' }
         format.json { head :no_content }
       else
@@ -42,8 +47,15 @@ class RolesController < InheritedResources::Base
   def destroy
     @role = Role.find(params[:id])
     @role.destroy
+    if !params[:process_id].nil?
+      @pro=ProcessTr.find(params[:process_id])
+      @pro.step_trs[params[:seq].to_i].end_processing_step
+      @user=current_user
+      @user.current_redirect_url=''
+      @user.save
+    end
     respond_to do |format|
-      format.html { redirect_to slides_url }
+      format.html { redirect_to roles_url }
       format.json { head :no_content }
     end
   end

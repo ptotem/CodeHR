@@ -11,6 +11,11 @@ module ApplicationHelper
         @user=User.find(user_id)
         @user.current_redirect_url="/role_updation/#{action_to}/#{pid}/#{stepno}"
         @user.save
+      when "Deletion"
+        @user=User.find(user_id)
+        @user.current_redirect_url="/role_deletion/#{action_to}/#{pid}/#{stepno}"
+        @user.save
+        puts "In deletion"
       when "Notify"
         #Todo sending notification to user
         @user=User.find(user_id)
