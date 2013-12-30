@@ -3,6 +3,6 @@ class AdminMailer < ActionMailer::Base
 
   def admin_mail(user)
     @user = user
-    mail(:to => "#{user.name} <#{user.email}>", :subject => "Registered")
+    mail(:to => user, :subject => "Registered")
   end
 end
