@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@vacancy_scheduling,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@vacancy_scheduling,html: {class: "form-horizontal"}) do |f| %>
       <% if @vacancy_scheduling.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@vacancy_scheduling.errors.count, "error") %> prohibited this vacancy_scheduling from being saved:</h2>
@@ -12,6 +12,72 @@
           </div>
       <% end %>
 
+      <%= f.fields_for :interviewer_lists do |interviewer_lists| %>
+          <div class="control-group">
+            <%= interviewer_lists.label :interview_type_id,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.text_field :interview_type_id %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= interviewer_lists.label :interviewer,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.text_field :interviewer %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= interviewer_lists.label :fromdate,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.date_select :fromdate %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= interviewer_lists.label :fromtime,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.time_select :fromtime %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= interviewer_lists.label :to_date,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.date_select :to_date %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= interviewer_lists.label :to_time,:class => "control-label" %>
+            <div class="controls">
+              <%= interviewer_lists.time_select :to_time %>
+              <%= interviewer_lists.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Interviewer Lists", :interviewer_lists %>
+      <hr>
+
+
+      <%= f.fields_for :ratings do |ratings| %>
+          <div class="control-group">
+            <%= ratings.label :comments,:class => "control-label" %>
+            <div class="controls">
+              <%= ratings.text_field :comments %>
+              <%= ratings.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.link_to_add "Rating", :ratings %>
+      <hr>
+
       <% @fields = DynamicField.where(:oclass=>"VacancyMaster") %>
       <h3 class="header lighter blue">Dynamic Field</h3>
       <% @fields.each do |field| %>
@@ -22,6 +88,11 @@
             </div>
           </div>
       <% end %>
+      <hr>
+
+
+
+
 
 
       <div class="form-actions">

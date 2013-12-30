@@ -4,4 +4,6 @@ class Rating
   embeds_many :score_receiveds
   has_many :dynamic_fields
   accepts_nested_attributes_for :score_receiveds
+
+  belongs_to :vacancy_scheduling
 end

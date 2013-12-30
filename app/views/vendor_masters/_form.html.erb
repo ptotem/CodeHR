@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@vendor_master,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@vendor_master,html: {class: "form-horizontal"}) do |f| %>
       <% if @vendor_master.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@vendor_master.errors.count, "error") %> prohibited this vendor_master from being saved:</h2>
@@ -53,6 +53,64 @@
           <%= f.text_field :office_fax_number2 %>
         </div>
       </div>
+      <hr>
+
+      <%= f.fields_for :vaddresses do |vaddresses| %>
+          <div class="control-group">
+            <%= vaddresses.label :city,:class => "control-label" %>
+            <div class="controls">
+              <%= vaddresses.text_field :city %>
+              <%= vaddresses.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= vaddresses.label :state,:class => "control-label" %>
+            <div class="controls">
+              <%= vaddresses.text_field :state %>
+              <%= vaddresses.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.link_to_add "VAddresses", :vaddresses %>
+      <hr>
+
+      <%= f.fields_for :contact_persons do |contact_persons| %>
+          <div class="control-group">
+            <%= contact_persons.label :name,:class => "control-label" %>
+            <div class="controls">
+              <%= contact_persons.text_field :name %>
+              <%= contact_persons.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= contact_persons.label :designation,:class => "control-label" %>
+            <div class="controls">
+              <%= contact_persons.text_field :designation %>
+              <%= contact_persons.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= contact_persons.label :phone1,:class => "control-label" %>
+            <div class="controls">
+              <%= contact_persons.text_field :phone1 %>
+              <%= contact_persons.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= contact_persons.label :phone2,:class => "control-label" %>
+            <div class="controls">
+              <%= contact_persons.text_field :phone2 %>
+              <%= contact_persons.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.link_to_add "Contact Persons", :contact_persons %>
+      <hr>
+      
 
       <% @fields = DynamicField.where(:oclass=>"VacancyScheduling") %>
       <h3 class="header lighter blue">Dynamic Field</h3>

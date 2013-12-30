@@ -7,4 +7,6 @@ class InterviewerList
   field :to_date, type: Date
   field :to_time, type: Time
   embedded_in :vacancy_scheduling
+
+
 end
