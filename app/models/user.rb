@@ -25,9 +25,13 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+  field :current_redirect_url, :type => String
+
 
   has_one :employee_master
   has_many :roles
+  has_and_belongs_to_many :notification_masters
+
   accepts_nested_attributes_for :roles
 
   ## Confirmable

@@ -1,24 +1,21 @@
 
+
 <div class="row-fluid">
-    <%= form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
-        <% if @rating.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
-              <ul>
-                <% @rating.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
 
-        <div class="control-group">
-          <%= f.label :comments,:class => "control-label" %>
-          <div class="controls">
-            <%= f.text_field :comments %>
-          </div>
+<%= nested_form_for(@rating,html: {class: "form-horizontal",'role' => 'form'}) do |f| %>
+    <% if @rating.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+          <ul>
+            <% @rating.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+
         </div>
+         <% end %>
 
 
 

@@ -2,6 +2,7 @@ class RatingsController < InheritedResources::Base
 
   def new
     @rating = Rating.new
+    @rating.score_receiveds.build
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"Rating")
     @fields.each do |ss|

@@ -14,6 +14,9 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+    <% if !params[:process_id].nil? %>
+        <%= hidden_field_tag :process_id, params[:process_id] %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

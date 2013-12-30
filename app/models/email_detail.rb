@@ -1,6 +1,7 @@
 class EmailDetail
   include Mongoid::Document
   include Mongoid::Paperclip
+  field :notification_master_id, type: String
   field :event, type: String
   field :sender, type: String
   has_mongoid_attached_file :attachment1
@@ -9,6 +10,7 @@ class EmailDetail
   has_mongoid_attached_file :attachment4
   has_mongoid_attached_file :attachment5
 
+  belongs_to :notification_master
   embeds_many :mail_tos
   embeds_many :mail_ccs
   embeds_many :mail_bccs

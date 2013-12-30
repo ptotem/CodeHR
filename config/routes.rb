@@ -1,6 +1,11 @@
 CodeHR::Application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  resources :clients
+
+
+  resources :process_trs
+
+
 
   mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
 
@@ -53,7 +58,7 @@ CodeHR::Application.routes.draw do
 
 
 
-  mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
+
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
@@ -61,6 +66,9 @@ CodeHR::Application.routes.draw do
   devise_for :users
   #ActiveAdmin.routes(self)
 
+  match 'role_creation/:process_id/:seq' => 'roles#new', :as => :role_creation
+  match 'role_updation/:id/:process_id/:seq' => 'roles#edit', :as => :role_updation
+  match 'role_deletion/:id/:process_id/:seq' => 'roles#destroy', :as => :role_deletion
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

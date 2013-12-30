@@ -24,4 +24,6 @@ class CompanyMaster
   accepts_nested_attributes_for :company_addresses
   accepts_nested_attributes_for :group_masters
 
+  belongs_to :client
+
 end

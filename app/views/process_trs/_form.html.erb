@@ -1,0 +1,24 @@
+<%= form_for(@process_tr) do |f| %>
+  <% if @process_tr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@process_tr.errors.count, "error") %> prohibited this process_tr from being saved:</h2>
+
+      <ul>
+      <% @process_tr.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%#= f.hidden_field :usr_id, "52bd2b2fce10bb9248000001" %>
+
+    <%= f.select :name, options_from_collection_for_select(ProcessMaster.all ,'id','name') %>
+    <%= text_field_tag :obj_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Start Process"%>
+  </div>
+<% end %>
