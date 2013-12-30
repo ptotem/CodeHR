@@ -51,6 +51,7 @@ gem 'actionmailer'
 gem 'mail'
 gem 'roo'
 gem 'contextio'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
