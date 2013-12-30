@@ -1,8 +1,9 @@
 class AdminMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def admin_mail(user)
+  def admin_mail(user,sub,msg)
     @user = user
-    mail(:to => user, :subject => "Registered")
+    @message=msg
+    mail(:to => user, :subject => sub)
   end
 end

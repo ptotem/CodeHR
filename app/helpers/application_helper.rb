@@ -25,6 +25,7 @@ module ApplicationHelper
         unm.email_details.build(:notification_master_id => unm._id,:event=>content)
         unm.save
         @user.save
+        AdminMailer.admin_mail(@user.email,"#{oclass} #{oaction}","#{content}")
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
     end
