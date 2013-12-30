@@ -1,10 +1,10 @@
 ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "reach.nseasy.com",
     :port                 => 587,
-    :domain               => "gmail.com",
-    :user_name            => "rakesh.rengaraj@gmail.com",
-    :password             => "rakesh_19april",
-    :authentication       => "plain",
+    :domain               => "ptotem.com",
+    :user_name            => "career@codehr.in",
+    :password             => "codehr123",
+    :authentication       => :login,
     :enable_starttls_auto => true
 }
 
