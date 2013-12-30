@@ -5,11 +5,23 @@ module ApplicationHelper
     case oaction
       when "Creation"
         @user=User.find(user_id)
-        puts @user
         @user.current_redirect_url="/role_creation/#{pid}/#{stepno}"
         @user.save
+      when "Updation"
+        @user=User.find(user_id)
+        @user.current_redirect_url="/role_updation/#{action_to}/#{pid}/#{stepno}"
+        @user.save
       when "Notify"
-        #call Notify action
+        #Todo sending notification to user
+        @user=User.find(user_id)
+        unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
+        unm.save
+        unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
+        unm.email_details.build(:notification_master_id => unm._id,:event=>content)
+        unm.save
+        @user.save
+        @pro=ProcessTr.find(pid)
+        @pro.step_trs[stepno].end_processing_step
     end
 
   end

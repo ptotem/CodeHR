@@ -1,4 +1,7 @@
 CodeHR::Application.routes.draw do
+  resources :clients
+
+
   resources :process_trs
 
 
@@ -61,6 +64,8 @@ CodeHR::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   match 'role_creation/:process_id/:seq' => 'roles#new', :as => :role_creation
+  match 'role_updation/:id/:process_id/:seq' => 'roles#edit', :as => :role_updation
+  match 'role_deletion/:id/:process_id/:seq' => 'roles#destroy', :as => :role_deletion
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

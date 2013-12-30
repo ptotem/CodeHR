@@ -7,7 +7,7 @@ class ProcessTrsController < InheritedResources::Base
     @p=ProcessMaster.find(params[:process_tr][:name])
     @process_tr=ProcessTr.create(:name=>@p.name,:user_id=>current_user._id)
     @p.step_masters.each do |sm|
-      @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>sm.action_to,:content=>sm.content)
+      @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content)
     end
     #Next line will initiate the state machine which then automatically runs all the steps include in Initiated Process/
     @process_tr.load_process
