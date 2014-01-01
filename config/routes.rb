@@ -68,6 +68,7 @@ CodeHR::Application.routes.draw do
   devise_for :users
   #ActiveAdmin.routes(self)
 
+  match 'groupmaster_creation/:process_id/:seq' => 'group_masters#new', :as => :group_creation
   match 'role_creation/:process_id/:seq' => 'roles#new', :as => :role_creation
   match 'role_updation/:id/:process_id/:seq' => 'roles#edit', :as => :role_updation
   match 'role_deletion/:id/:process_id/:seq' => 'roles#destroy', :as => :role_deletion

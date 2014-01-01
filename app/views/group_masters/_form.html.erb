@@ -21,6 +21,9 @@
       <div class="controls">
         <%= f.select :company_master_id, options_from_collection_for_select(CompanyMaster.all ,'id','company_name') %>
       </div>
+      <% if !params[:process_id].nil? %>
+          <%= hidden_field_tag :process_id, params[:process_id] %>
+      <% end %>
     </div>
     <div class="actions">
       <%= f.submit %>

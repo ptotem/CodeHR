@@ -41,7 +41,13 @@ class GroupMastersController < ApplicationController
   # POST /group_masters.json
   def create
     @group_master = GroupMaster.new(params[:group_master])
-
+    if !params[:process_id].nil?
+      @pro=ProcessTr.find(params[:process_id])
+      @pro.step_trs[params[:seq].to_i].end_processing_step
+      @user=current_user
+      @user.current_redirect_url=''
+      @user.save
+    end
     respond_to do |format|
       if @group_master.save
         format.html { redirect_to @group_master, notice: 'Group master was successfully created.' }
@@ -57,7 +63,13 @@ class GroupMastersController < ApplicationController
   # PUT /group_masters/1.json
   def update
     @group_master = GroupMaster.find(params[:id])
-
+    if !params[:process_id].nil?
+      @pro=ProcessTr.find(params[:process_id])
+      @pro.step_trs[params[:seq].to_i].end_processing_step
+      @user=current_user
+      @user.current_redirect_url=''
+      @user.save
+    end
     respond_to do |format|
       if @group_master.update_attributes(params[:group_master])
         format.html { redirect_to @group_master, notice: 'Group master was successfully updated.' }
@@ -74,7 +86,13 @@ class GroupMastersController < ApplicationController
   def destroy
     @group_master = GroupMaster.find(params[:id])
     @group_master.destroy
-
+    if !params[:process_id].nil?
+      @pro=ProcessTr.find(params[:process_id])
+      @pro.step_trs[params[:seq].to_i].end_processing_step
+      @user=current_user
+      @user.current_redirect_url=''
+      @user.save
+    end
     respond_to do |format|
       format.html { redirect_to group_masters_url }
       format.json { head :no_content }
