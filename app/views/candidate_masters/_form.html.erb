@@ -135,21 +135,21 @@
       <p>
 
       <div class="control-group">
-        <%= f.label :official_email, :class => "control-label" %>
+        <%= raw custom_lable(@candidate_master, :official_email) %>
         <div class="controls">
           <%= f.text_field :official_email %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :personal_email, :class => "control-label" %>
+        <%= raw custom_lable(@candidate_master, :personal_email) %>
         <div class="controls">
           <%= f.text_field :personal_email %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :bank_name, :class => "control-label" %>
+        <%= raw custom_lable(@candidate_master, :bank_name) %>
         <div class="controls">
           <%= f.text_field :bank_name %>
         </div>

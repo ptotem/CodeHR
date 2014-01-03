@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def custom_lable(object, attribute)
+    if object.class.validators_on(attribute).map(&:class).include? Mongoid::Validations::PresenceValidator
+      "<lable class='control-label'>"+attribute.to_s.gsub!('_',' ').titleize+" <span style='color:red;'>*</span></lable>"
+    else
+      "<lable class='control-label'>"+attribute.to_s.titleize+"</lable>"
+    end
+  end
+
   def step_processing(oclass,oaction,action_to,content,pid,stepno,user_id)
     #redirect_to "/roles/new"
     #Todo create a switch case based on different type of action

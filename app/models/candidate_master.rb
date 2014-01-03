@@ -49,4 +49,14 @@ class CandidateMaster
   accepts_nested_attributes_for :job_preferences
   accepts_nested_attributes_for :location_preferences
   accepts_nested_attributes_for :vacancy_schedulings
+
+  validates :official_email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
+  validates :personal_email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 end
