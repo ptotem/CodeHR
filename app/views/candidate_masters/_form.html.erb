@@ -113,7 +113,7 @@
           <div class="control-group">
             <%= f.label :total_work_exp_years, :class => "control-label" %>
             <div class="controls">
-              <%= f.number_field :total_work_exp_years %>
+              <%= f.number_field(:total_work_exp_years, :onkeypress=>"return isNumberKey(event)") %>
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@
           <div class="control-group">
             <%= f.label :total_work_exp_months, :class => "control-label" %>
             <div class="controls">
-              <%= f.number_field :total_work_exp_months %>
+              <%= f.number_field(:total_work_exp_months, :onkeypress=>"return isNumberKey(event)") %>
             </div>
           </div>
 
@@ -132,140 +132,190 @@
     </div>
 
     <div id="dropdown2" class="tab-pane">
-      <p>
+      <!--<p>-->
 
-      <div class="control-group">
-        <%= raw custom_lable(@candidate_master, :official_email) %>
-        <div class="controls">
-          <%= f.text_field :official_email %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= raw custom_lable(@candidate_master, :official_email) %>
+            <div class="controls">
+              <%= f.text_field :official_email %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= raw custom_lable(@candidate_master, :personal_email) %>
+            <div class="controls">
+              <%= f.text_field :personal_email %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= raw custom_lable(@candidate_master, :personal_email) %>
-        <div class="controls">
-          <%= f.text_field :personal_email %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= raw custom_lable(@candidate_master, :bank_name) %>
+            <div class="controls">
+              <%= f.text_field :bank_name %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :account_number, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :account_number %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= raw custom_lable(@candidate_master, :bank_name) %>
-        <div class="controls">
-          <%= f.text_field :bank_name %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :pf_no, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :pf_no %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :esic_no, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :esic_no %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :account_number, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :account_number %>
+
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :pan_no, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :pan_no %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :current_location, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :current_location %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :pf_no, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :pf_no %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :salary_expectation_fixed, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :salary_expectation_fixed %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :salary_expectation_variable, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :salary_expectation_variable %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :esic_no, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :esic_no %>
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="control-group">
+            <%= f.label :notice_period, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :notice_period %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :pan_no, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :pan_no %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :notice_period_buyback?, :class => "control-label" %>
+            <div class="controls">
+              <%= f.check_box :notice_period_buyback? %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :notice_period_buyback_amount, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :notice_period_buyback_amount %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :current_location, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :current_location %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :salary_expectation_fixed, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :salary_expectation_fixed %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :salary_expectation_variable, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :salary_expectation_variable %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :notice_period %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period_buyback?, :class => "control-label" %>
-        <div class="controls">
-          <%= f.check_box :notice_period_buyback? %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :notice_period_buyback_amount, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :notice_period_buyback_amount %>
-        </div>
-      </div>
-
-      </p>
+      <!--</p>-->
     </div>
 
     <div id="dropdown3" class="tab-pane">
-      <p>
+      <!--<p>-->
 
-      <div class="control-group">
-        <%= f.label :remarks_1, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_1, :style => 'width:90%;height:200px;' %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :remarks_1, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:remarks_1, size:"40x3") %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :remarks_2, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:remarks_2, size:"40x3") %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :remarks_2, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_2, :style => 'width:90%;height:200px;' %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :remarks_3, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:remarks_3, size:"40x3") %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :remarks_4, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:remarks_4, size:"40x3") %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :remarks_3, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_3, :style => 'width:90%;height:200px;' %>
-        </div>
-      </div>
 
-      <div class="control-group">
-        <%= f.label :remarks_4, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_4, :style => 'width:90%;height:200px;' %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :remarks_5, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:remarks_5, size:"40x3") %>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="control-group">
-        <%= f.label :remarks_5, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :remarks_5, :style => 'width:90%;height:200px;' %>
-        </div>
-      </div>
-      </p>
+      <!--</p>-->
     </div>
 
     <div id="dropdown4" class="tab-pane">
@@ -289,7 +339,6 @@
             <%= cand_educations.label :name, :class => "control-label" %>
             <div class="controls">
               <%= cand_educations.text_field :name %>
-              <%= cand_educations.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -297,7 +346,6 @@
             <%= cand_educations.label :description, :class => "control-label" %>
             <div class="controls">
               <%= cand_educations.text_field :description %>
-              <%= cand_educations.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -305,7 +353,6 @@
             <%= cand_educations.label :marks, :class => "control-label" %>
             <div class="controls">
               <%= cand_educations.text_field :marks %>
-              <%= cand_educations.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -313,9 +360,14 @@
             <%= cand_educations.label :grade, :class => "control-label" %>
             <div class="controls">
               <%= cand_educations.text_field :grade %>
-              <%= cand_educations.link_to_remove "Remove this task" %>
             </div>
           </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= cand_educations.link_to_remove "Remove this task" %>
+          </div>
+        </div>
       <% end %>
       <%= f.link_to_add "Candidate Educations", :cand_educations %>
       </p>
@@ -328,15 +380,13 @@
             <%= candidate_contact_numbers.label :home, :class => "control-label" %>
             <div class="controls">
               <%= candidate_contact_numbers.text_field :home %>
-              <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
             </div>
           </div>
 
           <div class="control-group">
             <%= candidate_contact_numbers.label :mobile, :class => "control-label" %>
             <div class="controls">
-              <%= candidate_contact_numbers.text_field :mobile %>
-              <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+              <%= candidate_contact_numbers.text_field(:mobile, :onkeypress=>"return isNumberKey(event)", :maxlength=>"10") %>
             </div>
           </div>
 
@@ -344,9 +394,14 @@
             <%= candidate_contact_numbers.label :office, :class => "control-label" %>
             <div class="controls">
               <%= candidate_contact_numbers.text_field :office %>
-              <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
             </div>
           </div>
+
+         <div class="control-group">
+           <div class="controls">
+             <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+           </div>
+         </div>
 
       <% end %>
       <%= f.link_to_add "Candidate Contact Numbers", :candidate_contact_numbers %>
@@ -360,7 +415,6 @@
             <%= candidate_employment_histories.label :joined_from, :class => "control-label" %>
             <div class="controls">
               <%= candidate_employment_histories.date_select :joined_from %>
-              <%= candidate_employment_histories.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -368,7 +422,6 @@
             <%= candidate_employment_histories.label :leaved, :class => "control-label" %>
             <div class="controls">
               <%= candidate_employment_histories.date_select :leaved %>
-              <%= candidate_employment_histories.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -376,7 +429,6 @@
             <%= candidate_employment_histories.label :organisation, :class => "control-label" %>
             <div class="controls">
               <%= candidate_employment_histories.text_field :organisation %>
-              <%= candidate_employment_histories.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -384,6 +436,11 @@
             <%= candidate_employment_histories.label :designation, :class => "control-label" %>
             <div class="controls">
               <%= candidate_employment_histories.text_field :designation %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls">
               <%= candidate_employment_histories.link_to_remove "Remove this task" %>
             </div>
           </div>
@@ -396,72 +453,91 @@
     <div id="communication_addresses" class="tab-pane">
       <p>
         <%= f.fields_for :communication_addresses do |communication_addresses| %>
-          <div class="control-group">
-            <%= communication_addresses.label :address1, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :address1 %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :address1, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :address1 %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :address2, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :address2 %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :city, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :city %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :taluka, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :taluka %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :district, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :district %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :state, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :state %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :country, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field :country %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= communication_addresses.label :zipcode, :class => "control-label" %>
+                <div class="controls">
+                  <%= communication_addresses.text_field(:zipcode, :onkeypress=>"return isNumberKey(event)") %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= communication_addresses.label :address2, :class => "control-label" %>
             <div class="controls">
-              <%= communication_addresses.text_field :address2 %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :city, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :city %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :taluka, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :taluka %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :district, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :district %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :state, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :state %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :country, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :country %>
-              <%= communication_addresses.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= communication_addresses.label :zipcode, :class => "control-label" %>
-            <div class="controls">
-              <%= communication_addresses.text_field :zipcode %>
               <%= communication_addresses.link_to_remove "Remove this task" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Communication Addresses", :communication_addresses %>
+      <%= f.link_to_add "Add New Candidate Address", :communication_addresses %>
       </p>
     </div>
 
@@ -472,7 +548,6 @@
             <%= candidate_family_details.label :relaationship, :class => "control-label" %>
             <div class="controls">
               <%= candidate_family_details.text_field :relaationship %>
-              <%= candidate_family_details.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -480,7 +555,6 @@
             <%= candidate_family_details.label :fname, :class => "control-label" %>
             <div class="controls">
               <%= candidate_family_details.text_field :fname %>
-              <%= candidate_family_details.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -488,7 +562,6 @@
             <%= candidate_family_details.label :mname, :class => "control-label" %>
             <div class="controls">
               <%= candidate_family_details.text_field :mname %>
-              <%= candidate_family_details.link_to_remove "Remove this task" %>
             </div>
           </div>
 
@@ -496,6 +569,11 @@
             <%= candidate_family_details.label :lname, :class => "control-label" %>
             <div class="controls">
               <%= candidate_family_details.text_field :lname %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls">
               <%= candidate_family_details.link_to_remove "Remove this task" %>
             </div>
           </div>
@@ -563,5 +641,14 @@
 
 <% end %>
 </div>
+
+<script>
+    function isNumberKey(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
 
 
