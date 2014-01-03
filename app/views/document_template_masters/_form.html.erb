@@ -64,7 +64,6 @@
                 <%= document_masters.label :doc_code,:class => "control-label" %>
                 <div class="controls">
                   <%= document_masters.text_field :doc_code %>
-                  <%= document_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
@@ -73,7 +72,6 @@
                 <%= document_masters.label :name ,:class => "control-label"%>
                 <div class="controls">
                   <%= document_masters.text_field :name %>
-                  <%= document_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
@@ -87,7 +85,6 @@
                   <label>
                     <%= document_masters.check_box :vc_needed,'name' => 'form-field-checkbox' %>
                     <%= document_masters.label :vc_needed,:class => "lbl" %>
-                    <%= document_masters.link_to_remove "Remove this task" %>
                   </label>
                 </div>
               </div>
@@ -97,12 +94,16 @@
                 <%= document_masters.label :owner,:class => "control-label" %>
                 <div class="controls">
                   <%= document_masters.text_field :owner %>
-                  <%= document_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
           </div>
 
+          <div class="control-group">
+            <div class="controls">
+              <%= document_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
 
       <% end %>
       <%= f.link_to_add "Document Masters", :document_masters %>
@@ -115,7 +116,6 @@
                 <%= notification_masters.label :code,:class => "control-label" %>
                 <div class="controls">
                   <%= notification_masters.text_field :code %>
-                  <%= notification_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
@@ -124,7 +124,6 @@
                 <%= notification_masters.label :title ,:class => "control-label"%>
                 <div class="controls">
                   <%= notification_masters.text_field :title %>
-                  <%= notification_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
@@ -136,7 +135,6 @@
                 <%= notification_masters.label :description,:class => "control-label" %>
                 <div class="controls">
                   <%= notification_masters.text_field :description %>
-                  <%= notification_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
@@ -145,11 +143,17 @@
                 <%= notification_masters.label :type,:class => "control-label" %>
                 <div class="controls">
                   <%= notification_masters.text_field :type %>
-                  <%= notification_masters.link_to_remove "Remove this task" %>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= notification_masters.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
 <% end %>
       <%= f.link_to_add "Notification Masters", :notification_masters %>
       <hr>
