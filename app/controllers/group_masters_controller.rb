@@ -42,6 +42,9 @@ class GroupMastersController < ApplicationController
   def create
     @group_master = GroupMaster.new(params[:group_master])
     if !params[:process_id].nil?
+      @group_master.created_by_process=true
+      @group_master.process_id=params[:process_id]
+      @group_master.save
       @pro=ProcessTr.find(params[:process_id])
       @pro.step_trs[params[:seq].to_i].end_processing_step
       @user=current_user

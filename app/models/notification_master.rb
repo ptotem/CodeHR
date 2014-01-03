@@ -10,6 +10,7 @@ class NotificationMaster
   has_many :email_details
 
   has_and_belongs_to_many :users
+  has_and_belongs_to_many :admin_users
   has_and_belongs_to_many :clients
 
   accepts_nested_attributes_for :notification_details

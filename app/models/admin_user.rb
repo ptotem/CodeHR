@@ -36,6 +36,9 @@ class AdminUser
 
   belongs_to :client
 
+  has_and_belongs_to_many :notification_masters
+  #accepts_nested_attributes_for :notification_masters
+
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
