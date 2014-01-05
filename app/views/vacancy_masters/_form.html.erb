@@ -12,66 +12,90 @@
           </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :vacancy_code,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vacancy_code %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :vacancy_code,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :vacancy_code %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :manpower_planning_id,:class => "control-label" %>
+            <div class="controls">
+              <%= f.number_field :manpower_planning_id %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :manpower_planning_id,:class => "control-label" %>
-        <div class="controls">
-          <%= f.number_field :manpower_planning_id %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :description ,:class => "control-label"%>
+            <div class="controls">
+              <%= f.text_area(:description, size:"20x5")  %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :status,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :status %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :description ,:class => "control-label"%>
-        <div class="controls">
-          <%= f.text_area :description %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :sourcing_strategy,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :sourcing_strategy %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :hr_rep,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :hr_rep %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :status,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :status %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :hiring_manager,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :hiring_manager %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :ctc_range_from,:class => "control-label" %>
+            <div class="controls">
+              <%= f.number_field :ctc_range_from %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :sourcing_strategy,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :sourcing_strategy %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :hr_rep,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :hr_rep %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :hiring_manager,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :hiring_manager %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :ctc_range_from,:class => "control-label" %>
-        <div class="controls">
-          <%= f.number_field :ctc_range_from %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :ctc_range_to,:class => "control-label" %>
-        <div class="controls">
-          <%= f.number_field :ctc_range_to %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :ctc_range_to,:class => "control-label" %>
+            <div class="controls">
+              <%= f.number_field :ctc_range_to %>
+            </div>
+          </div>
         </div>
       </div>
       <hr>

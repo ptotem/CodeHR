@@ -13,50 +13,71 @@
       <% end %>
 
       <%= f.fields_for :interviewer_lists do |interviewer_lists| %>
-          <div class="control-group">
-            <%= interviewer_lists.label :interview_type_id,:class => "control-label" %>
-            <div class="controls">
-              <%= interviewer_lists.text_field :interview_type_id %>
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= interviewer_lists.label :interview_type_id,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.text_field :interview_type_id %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= interviewer_lists.label :interviewer,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.text_field :interviewer %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="control-group">
+                <%= interviewer_lists.label :fromdate,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.date_select :fromdate %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="control-group">
+                <%= interviewer_lists.label :fromtime,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.time_select :fromtime %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="control-group">
+                <%= interviewer_lists.label :to_date,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.date_select :to_date %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="control-group">
+                <%= interviewer_lists.label :to_time,:class => "control-label" %>
+                <div class="controls">
+                  <%= interviewer_lists.time_select :to_time %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= interviewer_lists.label :interviewer,:class => "control-label" %>
             <div class="controls">
-              <%= interviewer_lists.text_field :interviewer %>
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= interviewer_lists.label :fromdate,:class => "control-label" %>
-            <div class="controls">
-              <%= interviewer_lists.date_select :fromdate %>
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= interviewer_lists.label :fromtime,:class => "control-label" %>
-            <div class="controls">
-              <%= interviewer_lists.time_select :fromtime %>
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= interviewer_lists.label :to_date,:class => "control-label" %>
-            <div class="controls">
-              <%= interviewer_lists.date_select :to_date %>
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= interviewer_lists.label :to_time,:class => "control-label" %>
-            <div class="controls">
-              <%= interviewer_lists.time_select :to_time %>
               <%= interviewer_lists.link_to_remove "Remove this task" %>
             </div>
           </div>
@@ -65,15 +86,24 @@
       <%= f.link_to_add "Interviewer Lists", :interviewer_lists %>
       <hr>
 
-
       <%= f.fields_for :ratings do |ratings| %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= ratings.label :comments,:class => "control-label" %>
+                <div class="controls">
+                  <%= ratings.text_field :comments %>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="control-group">
-            <%= ratings.label :comments,:class => "control-label" %>
             <div class="controls">
-              <%= ratings.text_field :comments %>
               <%= ratings.link_to_remove "Remove this task" %>
             </div>
           </div>
+
       <% end %>
       <%= f.link_to_add "Rating", :ratings %>
       <hr>

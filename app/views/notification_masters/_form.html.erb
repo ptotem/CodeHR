@@ -12,56 +12,79 @@
           </div>
       <% end %>
 
-      <div class="control-group">
-       <%= f.label :code,:class => "control-label"  %>
-        <div class="controls">
-          <%= f.text_field :code %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :code,:class => "control-label"  %>
+            <div class="controls">
+              <%= f.text_field :code %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :title,:class => "control-label"  %>
+            <div class="controls">
+              <%= f.text_field :title %>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="control-group">
-        <%= f.label :title,:class => "control-label"  %>
-        <div class="controls">
-          <%= f.text_field :title %>
+
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :description,:class => "control-label"  %>
+            <div class="controls">
+              <%= f.text_area(:description, size:"20x5")  %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :type,:class => "control-label"  %>
+            <div class="controls">
+              <%= f.text_field :type %>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="control-group">
-        <%= f.label :description,:class => "control-label"  %>
-        <div class="controls">
-          <%= f.text_area :description %>
-        </div>
-      </div>
-      
-      <div class="control-group">
-        <%= f.label :type,:class => "control-label"  %>
-        <div class="controls">
-          <%= f.text_field :type %>
-        </div>
-      </div>
+
       <hr>
 
       <%= f.fields_for :notification_details do |notification_details| %>
-          <div class="control-group">
-            <%= notification_details.label :notification_master_id,:class => "control-label" %>
-            <div class="controls">
-              <%= notification_details.text_field :notification_master_id %>
-              <%= notification_details.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="control-group">
+                <%= notification_details.label :notification_master_id,:class => "control-label" %>
+                <div class="controls">
+                  <%= notification_details.text_field :notification_master_id %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= notification_details.label :event,:class => "control-label" %>
+                <div class="controls">
+                  <%= notification_details.text_field :event %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= notification_details.label :sender,:class => "control-label" %>
+                <div class="controls">
+                  <%= notification_details.text_field :sender %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= notification_details.label :event,:class => "control-label" %>
             <div class="controls">
-              <%= notification_details.text_field :event %>
-              <%= notification_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= notification_details.label :sender,:class => "control-label" %>
-            <div class="controls">
-              <%= notification_details.text_field :sender %>
               <%= notification_details.link_to_remove "Remove this task" %>
             </div>
           </div>
@@ -72,61 +95,79 @@
 
 
       <%= f.fields_for :email_details do |email_details| %>
-      <div class="control-group">
-        <%= email_details.label :event,:class => "control-label" %>
-        <div class="controls">
-          <%= email_details.text_field :event %>
-          <%= email_details.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :event,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.text_field :event %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :sender,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.text_field :sender %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :attachment1,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.file_field :attachment1 %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :attachment2,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.file_field :attachment2 %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :attachment3,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.file_field :attachment3 %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :attachment4,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.file_field :attachment4 %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= email_details.label :attachment5,:class => "control-label" %>
+                <div class="controls">
+                  <%= email_details.file_field :attachment5 %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= email_details.link_to_remove "Remove this task" %>
+          </div>
         </div>
-      </div>
-
-      <div class="control-group">
-        <%= email_details.label :sender,:class => "control-label" %>
-        <div class="controls">
-          <%= email_details.text_field :sender %>
-          <%= email_details.link_to_remove "Remove this task" %>
-        </div>
-      </div>
-
-          <div class="control-group">
-            <%= email_details.label :attachment1,:class => "control-label" %>
-            <div class="controls">
-              <%= email_details.file_field :attachment1 %>
-              <%= email_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= email_details.label :attachment2,:class => "control-label" %>
-            <div class="controls">
-              <%= email_details.file_field :attachment2 %>
-              <%= email_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= email_details.label :attachment3,:class => "control-label" %>
-            <div class="controls">
-              <%= email_details.file_field :attachment3 %>
-              <%= email_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= email_details.label :attachment4,:class => "control-label" %>
-            <div class="controls">
-              <%= email_details.file_field :attachment4 %>
-              <%= email_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= email_details.label :attachment5,:class => "control-label" %>
-            <div class="controls">
-              <%= email_details.file_field :attachment5 %>
-              <%= email_details.link_to_remove "Remove this task" %>
-            </div>
-          </div>
 
   <% end %>
   <%= f.link_to_add "Email Details", :email_details %>
