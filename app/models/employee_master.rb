@@ -14,7 +14,7 @@ class EmployeeMaster
   field :group_id, type: Integer
   field :designation_joined_at, type: String
   field :current_designation, type: String
-  field :job_id, type: Integer
+  field :job_role_id, type: Integer
   field :band_id, type: Integer
   field :total_work_exp_years, type: Integer
   field :total_work_exp_months, type: Integer

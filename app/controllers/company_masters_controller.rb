@@ -27,6 +27,7 @@ class CompanyMastersController < ApplicationController
     @company_master = CompanyMaster.new
 
     @company_master.band_masters.build
+    @company_master.company_addresses.build
 
     respond_to do |format|
       format.html # new.html.erb
