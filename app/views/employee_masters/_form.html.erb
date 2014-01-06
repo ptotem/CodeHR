@@ -1,3 +1,8 @@
+<script>
+    $(function(){
+        $('.control-label').css('text-align','left');
+    })
+</script>
 
 <div class="row-fluid">
 <%= nested_form_for(@employee_master,html: {class: "form-horizontal"}) do |f| %>
@@ -45,18 +50,19 @@
 
         <!--<p>-->
         <div class="row-fluid">
+          <!--<div class="span6">-->
+            <!--<div class="control-group">-->
+              <!--<%#= raw custom_lable(@employee_master, :user_id) %>-->
+              <!--<div class="controls">-->
+                <!--<%#= f.number_field :user_id %>-->
+                <!--<%#= f.select :user_id, options_from_collection_for_select(User.all ,'id','name') %>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
           <div class="span6">
             <div class="control-group">
-              <%#= f.label :user_id,:class => "control-label" %>
-              <div class="controls">
-                <%#= f.number_field :user_id %>
-                <%#= f.select :user_id, options_from_collection_for_select(User.all ,'id','name') %>
-              </div>
-            </div>
-          </div>
-          <div class="span6">
-            <div class="control-group">
-              <%= f.label :employee_code,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :employee_code) %>
               <div class="controls">
                 <%= f.text_field :employee_code %>
               </div>
@@ -67,7 +73,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :employee_name,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :employee_name) %>
               <div class="controls">
                 <%= f.text_field :employee_name %>
               </div>
@@ -105,7 +111,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :marital_status,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :marital_status) %>
               <div class="controls">
                 <%= f.text_field :marital_status %>
               </div>
@@ -116,7 +122,7 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <%= f.label :date_of_birth,:class => "control-label" %>
+                <%= raw custom_lable(@employee_master, :date_of_birth) %>
                 <div class="controls">
                   <%= f.date_select :date_of_birth %>
                 </div>
@@ -131,7 +137,7 @@
         <div class="row-fluid">
           <div class="span12">
             <div class="control-group">
-              <%= f.label :date_of_joining,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :date_of_joining) %>
               <div class="controls">
                 <%= f.date_select :date_of_joining %>
               </div>
@@ -142,7 +148,7 @@
         <div class="row-fluid">
           <div class="span4">
             <div class="control-group">
-              <%= f.label :group_id,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :group_id) %>
               <div class="controls">
                 <%= f.number_field :group_id %>
               </div>
@@ -150,7 +156,7 @@
           </div>
           <div class="span4">
             <div class="control-group">
-              <%= f.label :designation_joined_at,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :designation_joined_at) %>
               <div class="controls">
                 <%= f.text_field :designation_joined_at %>
               </div>
@@ -161,7 +167,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :current_designation,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :current_designation) %>
               <div class="controls">
                 <%= f.text_field :current_designation %>
               </div>
@@ -169,7 +175,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :job_id,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :job_id) %>
               <div class="controls">
                 <%= f.number_field :job_id %>
               </div>
@@ -180,7 +186,7 @@
         <div class="row-fluid">
           <div class="span12">
             <div class="control-group">
-              <%= f.label :band_id,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :band_id) %>
               <div class="controls">
                 <%= f.number_field :band_id %>
               </div>
@@ -191,7 +197,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :total_work_exp_years,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :total_work_exp_years) %>
               <div class="controls">
                 <%= f.number_field :total_work_exp_years %>
               </div>
@@ -199,7 +205,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :total_work_exp_months,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :total_work_exp_months) %>
               <div class="controls">
                 <%= f.number_field :total_work_exp_months %>
               </div>
@@ -210,7 +216,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :official_email,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :official_email) %>
               <div class="controls">
                 <%= f.text_field :official_email %>
               </div>
@@ -218,7 +224,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :personal_email,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :personal_email) %>
               <div class="controls">
                 <%= f.text_field :personal_email %>
               </div>
@@ -229,7 +235,7 @@
         <div class="row-fluid">
           <div class="span12">
             <div class="control-group">
-              <%= f.label :contact_numbers,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :contact_numbers) %>
               <div class="controls">
                 <%= f.text_field :contact_numbers %>
               </div>
@@ -240,7 +246,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :personal_address,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :personal_address) %>
               <div class="controls">
                 <%= f.text_area(:personal_address, size:"20x5")  %>
               </div>
@@ -248,7 +254,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :address_for_communication,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :address_for_communication) %>
               <div class="controls">
                 <%= f.text_area(:address_for_communication, size:"20x5")  %>
               </div>
@@ -264,7 +270,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :bank_name,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :bank_name) %>
               <div class="controls">
                 <%= f.text_field :bank_name %>
               </div>
@@ -272,7 +278,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :account_number,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :account_number) %>
               <div class="controls">
                 <%= f.text_field :account_number %>
               </div>
@@ -283,7 +289,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :rf_no,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :rf_no) %>
               <div class="controls">
                 <%= f.text_field :rf_no %>
               </div>
@@ -291,7 +297,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :esic_no,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :esic_no) %>
               <div class="controls">
                 <%= f.text_field :esic_no %>
               </div>
@@ -302,7 +308,7 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= f.label :pan_no,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :pan_no) %>
               <div class="controls">
                 <%= f.text_field :pan_no %>
               </div>
@@ -310,7 +316,7 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= f.label :blood_group,:class => "control-label" %>
+              <%= raw custom_lable(@employee_master, :blood_group) %>
               <div class="controls">
                 <%= f.text_field :blood_group %>
               </div>
@@ -645,13 +651,14 @@
         <% end %>
 
 
-        <div class="form-actions">
-          <%= f.submit :class=>"btn btn-info" %>
-        </div>
+
         </p>
       </div>
     </div>
   </div>
+    <div class="form-actions">
+      <%= f.submit :class=>"btn btn-info" %>
+    </div>
 
 <% end %>
 </div>

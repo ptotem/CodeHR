@@ -127,50 +127,25 @@
 <li class="purple">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <i class="icon-bell-alt icon-animated-bell icon-only"></i>
-    <span class="badge badge-important">8</span>
+    <span class="badge badge-important"><%= current_user.notification_masters.count %></span>
   </a>
   <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
     <li class="nav-header">
-      <i class="icon-warning-sign"></i> 8 Notifications
+      <i class="icon-warning-sign"></i> <%= current_user.notification_masters.count %> Unread Notifications
     </li>
 
     <li>
       <a href="#">
         <div class="clearfix">
-          <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i> New comments</span>
-          <span class="pull-right badge badge-info">+12</span>
+          <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i> New Notifications</span>
+          <span class="pull-right badge badge-info"><%= current_user.notification_masters.count %></span>
         </div>
       </a>
     </li>
 
     <li>
       <a href="#">
-        <i class="icon-user btn btn-mini btn-primary"></i> Bob just signed up as an editor ...
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left"><i class="icon-shopping-cart btn btn-mini btn-success"></i> New orders</span>
-          <span class="pull-right badge badge-success">+8</span>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left"><i class="icon-twitter btn btn-mini btn-info"></i> Followers</span>
-          <span class="pull-right badge badge-info">+4</span>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        See all notifications
-        <i class="icon-arrow-right"></i>
+        <%= link_to 'See all notifications', notification_masters_path %>
       </a>
     </li>
   </ul>
@@ -247,7 +222,14 @@
   <a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
     <img alt="Jason's Photo" src="/assets/user.jpg" class="nav-user-photo"/>
 							<span id="user_info">
-								<small>Welcome,</small> Jason
+								<small>Welcome,</small>
+                              <!--Jason-->
+                              <% if current_user.name.blank? %>
+                                User
+                              <% else %>
+                                <%= current_user.name %>
+                              <% end %>
+
 							</span>
     <i class="icon-caret-down"></i>
   </a>
