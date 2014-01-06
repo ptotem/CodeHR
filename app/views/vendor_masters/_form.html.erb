@@ -12,101 +12,140 @@
           </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :vendor_code,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vendor_code %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :vendor_code,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :vendor_code %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :vendor_name ,:class => "control-label"%>
+            <div class="controls">
+              <%= f.text_field :vendor_name %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :vendor_name ,:class => "control-label"%>
-        <div class="controls">
-          <%= f.text_field :vendor_name %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :vendor_type,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :vendor_type %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :office_phone_number,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :office_phone_number %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :vendor_type,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vendor_type %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :office_fax_number1,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :office_fax_number1 %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :office_fax_number2,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :office_fax_number2 %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :office_phone_number,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :office_phone_number %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :office_fax_number1,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :office_fax_number1 %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <%= f.label :office_fax_number2,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :office_fax_number2 %>
-        </div>
-      </div>
       <hr>
 
       <%= f.fields_for :vaddresses do |vaddresses| %>
-          <div class="control-group">
-            <%= vaddresses.label :city,:class => "control-label" %>
-            <div class="controls">
-              <%= vaddresses.text_field :city %>
-              <%= vaddresses.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= vaddresses.label :city,:class => "control-label" %>
+                <div class="controls">
+                  <%= vaddresses.text_field :city %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= vaddresses.label :state,:class => "control-label" %>
+                <div class="controls">
+                  <%= vaddresses.text_field :state %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= vaddresses.label :state,:class => "control-label" %>
             <div class="controls">
-              <%= vaddresses.text_field :state %>
               <%= vaddresses.link_to_remove "Remove this task" %>
             </div>
           </div>
+
       <% end %>
       <%= f.link_to_add "VAddresses", :vaddresses %>
       <hr>
 
       <%= f.fields_for :contact_persons do |contact_persons| %>
-          <div class="control-group">
-            <%= contact_persons.label :name,:class => "control-label" %>
-            <div class="controls">
-              <%= contact_persons.text_field :name %>
-              <%= contact_persons.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= contact_persons.label :name,:class => "control-label" %>
+                <div class="controls">
+                  <%= contact_persons.text_field :name %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= contact_persons.label :designation,:class => "control-label" %>
+                <div class="controls">
+                  <%= contact_persons.text_field :designation %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= contact_persons.label :phone1,:class => "control-label" %>
+                <div class="controls">
+                  <%= contact_persons.text_field :phone1 %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= contact_persons.label :phone2,:class => "control-label" %>
+                <div class="controls">
+                  <%= contact_persons.text_field :phone2 %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= contact_persons.label :designation,:class => "control-label" %>
             <div class="controls">
-              <%= contact_persons.text_field :designation %>
               <%= contact_persons.link_to_remove "Remove this task" %>
             </div>
           </div>
 
-          <div class="control-group">
-            <%= contact_persons.label :phone1,:class => "control-label" %>
-            <div class="controls">
-              <%= contact_persons.text_field :phone1 %>
-              <%= contact_persons.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= contact_persons.label :phone2,:class => "control-label" %>
-            <div class="controls">
-              <%= contact_persons.text_field :phone2 %>
-              <%= contact_persons.link_to_remove "Remove this task" %>
-            </div>
-          </div>
       <% end %>
       <%= f.link_to_add "Contact Persons", :contact_persons %>
       <hr>

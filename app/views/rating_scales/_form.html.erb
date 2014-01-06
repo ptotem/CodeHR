@@ -12,42 +12,60 @@
           </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :name,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :name %>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :name,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :name %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :description,:class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area(:description, size:"20x5")  %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :description,:class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :description %>
-        </div>
-      </div>
       <hr>
 
       <%= f.fields_for :scales do |scales| %>
-          <div class="control-group">
-            <%= scales.label :scale_description,:class => "control-label" %>
-            <div class="controls">
-              <%= scales.text_field :scale_description %>
-              <%= scales.link_to_remove "Remove this task" %>
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= scales.label :scale_description,:class => "control-label" %>
+                <div class="controls">
+                  <%= scales.text_field :scale_description %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+              <div class="control-group">
+                <%= scales.label :range_from,:class => "control-label" %>
+                <div class="controls">
+                  <%= scales.text_field :range_from %>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= scales.label :range_to,:class => "control-label" %>
+                <div class="controls">
+                  <%= scales.text_field :range_to %>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="control-group">
-            <%= scales.label :range_from,:class => "control-label" %>
             <div class="controls">
-              <%= scales.text_field :range_from %>
-              <%= scales.link_to_remove "Remove this task" %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%= scales.label :range_to,:class => "control-label" %>
-            <div class="controls">
-              <%= scales.text_field :range_to %>
               <%= scales.link_to_remove "Remove this task" %>
             </div>
           </div>
