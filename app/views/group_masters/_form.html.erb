@@ -10,12 +10,16 @@
           </ul>
         </div>
     <% end %>
+
     <div class="control-group">
       <%= f.label :group_name, :class => "control-label" %>
       <div class="controls">
         <%= f.text_field :group_name %>
       </div>
     </div>
+
+
+
     <div class="control-group">
       <%= f.label :company, :class => "control-label" %>
       <div class="controls">
@@ -25,6 +29,14 @@
           <%= hidden_field_tag :process_id, params[:process_id] %>
       <% end %>
     </div>
+
+    <div class="control-group">
+      <%= f.label :parent_group, :class => "control-label" %>
+      <div class="controls">
+        <%= f.select :parent_group_id, options_from_collection_for_select(GroupMaster.all,'id','group_name') %>
+      </div>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>

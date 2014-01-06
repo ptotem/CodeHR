@@ -25,7 +25,8 @@ class GroupMastersController < ApplicationController
   # GET /group_masters/new.json
   def new
     @group_master = GroupMaster.new
-
+    #@group_master.child_groups.build
+    #@group_master.parent_group.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group_master }

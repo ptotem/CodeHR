@@ -11,6 +11,11 @@ class GroupMaster
   has_many :manpower_plannings
   has_many :vacancy_masters
   has_many :employee_masters
+
+  has_many :child_groups, :class_name => 'GroupMaster', :inverse_of => :parent_group
+  belongs_to :parent_group, :class_name => 'GroupMaster', :inverse_of => :child_group
+
+  #accepts_nested_attributes_for :parent_group
   accepts_nested_attributes_for :manpower_plannings
   accepts_nested_attributes_for :vacancy_masters
   accepts_nested_attributes_for :employee_masters
