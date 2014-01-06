@@ -191,9 +191,10 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= raw custom_lable(@employee_master, :job_id) %>
+              <%= raw custom_lable(@employee_master, :job_role_id) %>
               <div class="controls">
-                <%= f.number_field :job_id %>
+                <%#= f.number_field :job_id %>
+                <%= f.select :job_role_id ,options_from_collection_for_select(Role.all ,'id','name') %>
               </div>
             </div>
           </div>
