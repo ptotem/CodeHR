@@ -1,4 +1,4 @@
-<%= form_for(@company_master) do |f| %>
+<%= nested_form_for(@company_master) do |f| %>
     <% if @company_master.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@company_master.errors.count, "error") %> prohibited this company_master from being
@@ -116,6 +116,33 @@
       <div class="controls">
         <%= f.text_area :remarks_5 %>
       </div>
+    </div>
+
+    <div class="control-group">
+      <h3>Enter Band for Company</h3>
+      <%= f.fields_for :band_masters do |band| %>
+          <div class="control-group">
+            <%= band.label :band_code,:class => "control-label" %>
+            <div class="controls">
+              <%= band.text_field :band_code %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= band.label :band_name,:class => "control-label" %>
+            <div class="controls">
+              <%= band.text_field :band_name %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= band.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+
+      <% end %>
+      <%= f.link_to_add "Add New Band", :band_masters %></p>
     </div>
 
     <div class="actions">

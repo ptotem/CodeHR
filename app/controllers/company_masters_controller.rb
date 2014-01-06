@@ -26,6 +26,8 @@ class CompanyMastersController < ApplicationController
   def new
     @company_master = CompanyMaster.new
 
+    @company_master.band_masters.build
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @company_master }
