@@ -14,4 +14,11 @@ class ManpowerPlanning
 
   accepts_nested_attributes_for :approval_mats
   accepts_nested_attributes_for :vacancy_masters
+
+  validates :mp_code, :presence => true
+  validates :period_from, :presence => true
+  validates :period_to, :presence => true
+  validates :requested_by, :presence => true
+  validates :final_approved_number, :presence => true
+
 end

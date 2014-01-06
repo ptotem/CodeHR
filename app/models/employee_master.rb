@@ -54,4 +54,65 @@ class EmployeeMaster
   accepts_nested_attributes_for :family_details
   accepts_nested_attributes_for :pf_nominations
   accepts_nested_attributes_for :esis_nominations
+
+  #uncomment these starts
+  validates :employee_code, :presence => true
+
+  validates :employee_name,
+            :presence   => true,
+            :format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
+
+  validates :employee_middle_name_name,
+            :format     => { :with => /^[A-Za-z.&]*\z/ }
+
+  validates :status,
+            :presence => true,
+            :format     => { :with => /^[A-Za-z.&]*\z/ }
+
+
+  validates :gender,
+            :presence => true
+
+  def self.genders
+    %w(M F O)
+  end
+
+  validates_inclusion_of :gender, :in => EmployeeMaster.genders
+  #uncomment these ends
+
+  validates :marital_status, :presence => true
+  validates :date_of_birth, :presence => true
+
+  validates :date_of_joining, :presence => true
+
+  #def not_long_ago?( date_of_joining )
+  #  date_of_joining >= 1.day.ago
+  #end
+
+
+  #validates :group_id, :presence => true
+  #validates :designation_joined_at, :presence => true
+  #validates :current_designation, :presence => true
+  #validates :job_id, :presence => true
+  #validates :band_id, :presence => true
+  #validates :reporting_tos, :presence => true
+  #validates :total_work_exp_years, :presence => true
+  #validates :total_work_exp_months, :presence => true
+  #validates :employment_hists, :presence => true
+  #validates :official_email, :presence => true
+  #validates :personal_email, :presence => true
+  #validates :contact_numbers, :presence => true
+  #validates :personal_address, :presence => true
+  #validates :address_for_communication, :presence => true
+  #
+  #validates :bank_name, :presence => true
+  #validates :account_number, :presence => true
+  #validates :pf_nominations, :presence => true
+  #validates :rf_no, :presence => true
+  #validates :esic_no, :presence => true
+  #validates :pan_no, :presence => true
+  #validates :esis_nominations, :presence => true
+  #validates :blood_group, :presence => true
+
+
 end

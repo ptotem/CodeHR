@@ -1,3 +1,145 @@
+<style type="text/css">
+
+
+    /*html {*/
+        /*background-color: #EEEEEE;*/
+    /*}*/
+    /*body {*/
+        /*background-color: #FFFFFF;*/
+        /*border-radius: 10px;*/
+        /*box-shadow: 1px 1px 8px #444444;*/
+        /*color: #444444;*/
+        /*font-family: Freesans,sans-serif;*/
+        /*font-size: 13px;*/
+        /*margin: 15px auto;*/
+        /*padding: 2em 4em;*/
+        /*width: 860px;*/
+    /*}*/
+    /*a, a:visited {*/
+        /*color: #4183C4;*/
+        /*text-decoration: none;*/
+    /*}*/
+    /*a:hover {*/
+        /*text-decoration: underline;*/
+    /*}*/
+    pre, code {
+        font-size: 12px;
+    }
+    pre {
+        overflow: auto;
+        width: 100%;
+    }
+    small {
+        font-size: 90%;
+    }
+    small code {
+        font-size: 11px;
+    }
+    .placeholder {
+        outline: 1px dashed #4183C4;
+    }
+    .mjs-nestedSortable-error {
+        background: none repeat scroll 0 0 #FBE3E4;
+        border-color: rgba(0, 0, 0, 0);
+    }
+    ol {
+        margin: 0;
+        padding: 0 0 0 30px;
+    }
+    ol.sortable, ol.sortable ol {
+        list-style-type: none;
+        margin: 0 0 0 25px;
+        padding: 0;
+    }
+    ol.sortable {
+        margin: 4em 0;
+    }
+    .sortable li {
+        margin: 5px 0 0;
+        padding: 0;
+    }
+    .sortable li div {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background: linear-gradient(to bottom, #FFFFFF 0%, #F6F6F6 47%, #EDEDED 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+        border-color: #D4D4D4 #D4D4D4 #BCBCBC;
+        border-image: none;
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px;
+        cursor: move;
+        margin: 0;
+        padding: 6px;
+    }
+    .sortable li.mjs-nestedSortable-branch div {
+        background: -moz-linear-gradient(center top , #FFFFFF 0%, #F6F6F6 47%, #F0ECE9 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+    .sortable li.mjs-nestedSortable-leaf div {
+        background: -moz-linear-gradient(center top , #FFFFFF 0%, #F6F6F6 47%, #BCCCBC 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+    li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+        background: none repeat scroll 0 0 #FAFAFA;
+        border-color: #999999;
+    }
+    .disclose {
+        cursor: pointer;
+        display: none;
+        width: 10px;
+    }
+    .sortable li.mjs-nestedSortable-collapsed > ol {
+        display: none;
+    }
+    .sortable li.mjs-nestedSortable-branch > div > .disclose {
+        display: inline-block;
+    }
+    .sortable li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
+        content: "+ ";
+    }
+    .sortable li.mjs-nestedSortable-expanded > div > .disclose > span:before {
+        content: "- ";
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+    h2 {
+        font-size: 1.2em;
+        font-style: italic;
+        font-weight: normal;
+        margin-bottom: 1.5em;
+        margin-top: 0.2em;
+    }
+    h3 {
+        font-size: 1em;
+        margin: 1em 0 0.3em;
+    }
+    p, ol, ul, pre, form {
+        margin-bottom: 1em;
+        margin-top: 0;
+    }
+    dl {
+        margin: 0;
+    }
+    dd {
+        margin: 0;
+        padding: 0 0 0 1.5em;
+    }
+    code {
+        background: none repeat scroll 0 0 #E5E5E5;
+    }
+    input {
+        vertical-align: text-bottom;
+    }
+    .notice {
+        color: #CC3333;
+    }
+
+
+</style>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -5,6 +147,108 @@
   <%= @process_tr.name %>
 </p>
 
+<!--<ol class="sortable">-->
+  <!--<li><div>Some content</div></li>-->
+  <!--<li>-->
+    <!--<div>Some content</div>-->
+    <!--<ol>-->
+      <!--<li><div>Some sub-item content</div></li>-->
+      <!--<li><div>Some sub-item content</div></li>-->
+    <!--</ol>-->
+  <!--</li>-->
+  <!--<li><div>Some content</div></li>-->
+<!--</ol>-->
+
+<section id="demo">
+  <ol class="sortable ui-sortable">
+    <li id="list_1" class="mjs-nestedSortable-branch mjs-nestedSortable-expanded"><div><span class="disclose"><span></span></span>Item 1</div>
+      <ol>
+        <li id="list_2" class="mjs-nestedSortable-branch mjs-nestedSortable-collapsed"><div><span class="disclose"><span></span></span>Sub Item 1.1</div>
+          <ol>
+            <li id="list_3" class="mjs-nestedSortable-leaf"><div><span class="disclose"><span></span></span>Sub Item 1.2</div>
+            </li></ol>
+        </li></ol>
+    </li><li id="list_4" class="mjs-nestedSortable-leaf"><div><span class="disclose"><span></span></span>Item 2</div>
+  </li><li id="list_5" class="mjs-nestedSortable-branch mjs-nestedSortable-expanded"><div><span class="disclose"><span></span></span>Item 3</div>
+    <ol>
+      <li class="mjs-nestedSortable-no-nesting mjs-nestedSortable-leaf" id="list_6"><div><span class="disclose"><span></span></span>Sub Item 3.1 (no nesting)</div>
+      </li><li id="list_7" class="mjs-nestedSortable-branch mjs-nestedSortable-collapsed"><div><span class="disclose"><span></span></span>Sub Item 3.2</div>
+      <ol>
+        <li id="list_8" class="mjs-nestedSortable-leaf"><div><span class="disclose"><span></span></span>Sub Item 3.2.1</div>
+        </li></ol>
+    </li></ol>
+  </li><li id="list_9" class="mjs-nestedSortable-leaf"><div><span class="disclose"><span></span></span>Item 4</div>
+  </li><li id="list_10" class="mjs-nestedSortable-leaf"><div><span class="disclose"><span></span></span>Item 5</div>
+  </li></ol>
+
+</section>
+
 
 <%= link_to 'Edit', edit_process_tr_path(@process_tr) %> |
 <%= link_to 'Back', process_trs_path %>
+
+<script type="text/javascript" src="assets/jquery.mjs.nestedSortable.js"></script>
+
+<script>
+
+    $(function() {
+        $('ol.sortable').nestedSortable({
+            forcePlaceholderSize: true,
+            handle: 'div',
+            helper: 'clone',
+            items: 'li',
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            maxLevels: 3,
+            isTree: true,
+            expandOnHover: 700,
+            startCollapsed: true
+        });
+
+
+        $('.disclose').on('click', function() {
+            $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
+        })
+        $('#serialize').click(function(){
+            serialized = $('ol.sortable').nestedSortable('serialize');
+            $('#serializeOutput').text(serialized+'\n\n');
+        })
+        $('#toHierarchy').click(function(e){
+            hiered = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
+            hiered = dump(hiered);
+            (typeof($('#toHierarchyOutput')[0].textContent) != 'undefined') ?
+                    $('#toHierarchyOutput')[0].textContent = hiered : $('#toHierarchyOutput')[0].innerText = hiered;
+        })
+        $('#toArray').click(function(e){
+            arraied = $('ol.sortable').nestedSortable('toArray', {startDepthCount: 0});
+            arraied = dump(arraied);
+            (typeof($('#toArrayOutput')[0].textContent) != 'undefined') ?
+                    $('#toArrayOutput')[0].textContent = arraied : $('#toArrayOutput')[0].innerText = arraied;
+        })
+    });
+    function dump(arr,level) {
+        var dumped_text = "";
+        if(!level) level = 0;
+//The padding given at the beginning of the line.
+        var level_padding = "";
+        for(var j=0;j<level+1;j++) level_padding += " ";
+        if(typeof(arr) == 'object') { //Array/Hashes/Objects
+            for(var item in arr) {
+                var value = arr[item];
+                if(typeof(value) == 'object') { //If it is an array,
+                    dumped_text += level_padding + "'" + item + "' ...\n";
+                    dumped_text += dump(value,level+1);
+                } else {
+                    dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+                }
+            }
+        } else { //Strings/Chars/Numbers etc.
+            dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+        }
+        return dumped_text;
+    }
+</script>
