@@ -3,5 +3,5 @@ class BandMaster
   field :band_code, type: String
   field :band_name, type: String
 
-  embedded_in :company_master
+  belongs_to :company_master
 end

@@ -21,7 +21,7 @@ class CompanyMaster
 
   embeds_many :company_addresses
   has_many :group_masters
-  embeds_many :band_masters
+  has_many :band_masters
 
 
   accepts_nested_attributes_for :company_addresses
