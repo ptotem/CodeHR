@@ -1,0 +1,124 @@
+<%= form_for(@company_master) do |f| %>
+    <% if @company_master.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@company_master.errors.count, "error") %> prohibited this company_master from being
+            saved:</h2>
+
+          <ul>
+            <% @company_master.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="control-group">
+      <%= f.label :company_code, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :company_code %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :company_name, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :company_name %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :office_phone_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :office_phone_number %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :office_fax_number_1, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :office_fax_number_1 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :office_fax_number_2, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :office_fax_number_2 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :vat_reg_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :vat_reg_number %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :st_reg_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :st_reg_number %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :pan_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :pan_number %>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <%= f.label :pf_reg_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :pf_reg_number %>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <%= f.label :esic_reg_number, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :esic_reg_number %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :remarks_1, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :remarks_1 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :remarks_2, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :remarks_2 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :remarks_3, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :remarks_3 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :remarks_4, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :remarks_4 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :remarks_5, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :remarks_5 %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

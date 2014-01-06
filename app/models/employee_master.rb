@@ -39,6 +39,7 @@ class EmployeeMaster
   has_mongoid_attached_file :employee_cv
 
   belongs_to :user
+  belongs_to :group_master
 
   embeds_many :reporting_tos
   embeds_many :employment_hists
@@ -54,4 +55,14 @@ class EmployeeMaster
   accepts_nested_attributes_for :family_details
   accepts_nested_attributes_for :pf_nominations
   accepts_nested_attributes_for :esis_nominations
+
+  validates :official_email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
+  validates :personal_email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 end

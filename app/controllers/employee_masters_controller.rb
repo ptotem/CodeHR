@@ -14,5 +14,12 @@ class EmployeeMastersController < InheritedResources::Base
       @employee_master.write_attribute(ss.name.to_sym,"")
     end
   end
+  #
+  #def create
+  #  #render :text => params
+  #  #return
+  #  @employee_master =EmployeeMaster.new(params[:employee_master])
+  #  @employee_master.save
+  #end
 
 end

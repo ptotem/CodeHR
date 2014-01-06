@@ -1,0 +1,21 @@
+<h1>Listing company_masters</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @company_masters.each do |company_master| %>
+  <tr>
+    <td><%= link_to 'Show', company_master %></td>
+    <td><%= link_to 'Edit', edit_company_master_path(company_master) %></td>
+    <td><%= link_to 'Destroy', company_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company master', new_company_master_path %>

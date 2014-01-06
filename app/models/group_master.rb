@@ -10,6 +10,8 @@ class GroupMaster
   belongs_to :company_master
   has_many :manpower_plannings
   has_many :vacancy_masters
+  has_many :employee_masters
   accepts_nested_attributes_for :manpower_plannings
   accepts_nested_attributes_for :vacancy_masters
+  accepts_nested_attributes_for :employee_masters
 end
