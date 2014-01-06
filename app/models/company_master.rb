@@ -16,7 +16,7 @@ class CompanyMaster
   field :remarks_4, type: String
   field :remarks_5, type: String
   field :parent_company_ids, type: Array, default: []
-  field :child_company_master_ids, type: Array
+  field :child_company_master_ids, type: String
   recursively_embeds_many
   embeds_many :company_addresses
   has_many :group_masters

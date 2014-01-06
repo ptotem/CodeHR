@@ -1,0 +1,17 @@
+<%= form_for(@process_master) do |f| %>
+  <% if @process_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@process_master.errors.count, "error") %> prohibited this process_master from being saved:</h2>
+
+      <ul>
+      <% @process_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
