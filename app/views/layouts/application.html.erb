@@ -11,7 +11,7 @@
   <%#= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript" src="/assets/jquery.js"></script>
+  <!--<script type="text/javascript" src="/assets/jquery.js"></script>-->
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
   <!-- basic styles -->
   <link href="/assets/bootstrap.min.css" rel="stylesheet"/>
@@ -631,12 +631,12 @@
          $('#MyTree').tree({ dataSource: stubDataSource , multiSelect:true })
          */
 
-        $('.date-picker').datepicker();
-        $('#timepicker1').timepicker({
-            minuteStep: 1,
-            showSeconds: true,
-            showMeridian: false
-        });
+//        $('.date-picker').datepicker();
+//        $('#timepicker1').timepicker({
+//            minuteStep: 1,
+//            showSeconds: true,
+//            showMeridian: false
+//        });
 
         $('#id-date-range-picker-1').daterangepicker();
 
