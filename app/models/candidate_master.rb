@@ -78,7 +78,7 @@ class CandidateMaster
     %w(M F O)
   end
 
-  validates_inclusion_of :gender, :in => EmployeeMaster.genders
+  validates_inclusion_of :gender, :in => CandidateMaster.genders
 
   validates :marital_status, :presence => true
   validates :date_of_birth, :presence => true

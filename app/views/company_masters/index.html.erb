@@ -2,13 +2,18 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Company Code</th>
+    <th>Company Name</th>
+    <th>Office Phone Number</th>
+    <th>PAN Number</th>
   </tr>
 
 <% @company_masters.each do |company_master| %>
   <tr>
+    <td><%= company_master.company_code %></td>
+    <td><%= company_master.company_name %></td>
+    <td><%= company_master.office_phone_number %></td>
+    <td><%= company_master.pan_number %></td>
     <td><%= link_to 'Show', company_master %></td>
     <td><%= link_to 'Edit', edit_company_master_path(company_master) %></td>
     <td><%= link_to 'Destroy', company_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
