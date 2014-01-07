@@ -60,17 +60,10 @@ class EmployeeDetail
             :presence => true,
             numericality: { only_integer: true }
 
-  validates :personal_email,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-
   validates :contact_numbers,
             :presence => true,
             length: { is: 10 },
             numericality: { only_integer: true }
-
-  validates :personal_address, :presence => true
 
   validates :bank_name, :presence => true
   validates :account_number, :presence => true

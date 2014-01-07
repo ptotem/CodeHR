@@ -15,7 +15,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :final_ctc_fixed,:class => "control-label" %>
+            <%#= f.label :final_ctc_fixed,:class => "control-label" %>
+            <%= raw custom_lable(@compensation_component, :final_ctc_fixed) %>
             <div class="controls">
               <%= f.number_field :final_ctc_fixed %>
             </div>
@@ -24,6 +25,7 @@
         <div class="span6">
           <div class="control-group">
             <%= f.label :final_ctc_varriable,:class => "control-label" %>
+            <%= raw custom_lable(@compensation_component, :final_ctc_varriable) %>
             <div class="controls">
               <%= f.number_field :final_ctc_varriable %>
             </div>

@@ -50,6 +50,12 @@ class CandidateMaster
   accepts_nested_attributes_for :location_preferences
   accepts_nested_attributes_for :vacancy_schedulings
 
+  validates :candidate_code, :presence => true
+
+  validates :candidate_name,
+            :presence   => true,
+            :format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
+
   validates :official_email,
             :presence => true,
             :uniqueness => true,
@@ -59,4 +65,51 @@ class CandidateMaster
             :presence => true,
             :uniqueness => true,
             :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
+  validates :status,
+            :presence => true,
+            :format     => { :with => /^[A-Za-z.&]*\z/ }
+
+
+  validates :gender,
+            :presence => true
+
+  def self.genders
+    %w(M F O)
+  end
+
+  validates_inclusion_of :gender, :in => EmployeeMaster.genders
+
+  validates :marital_status, :presence => true
+  validates :date_of_birth, :presence => true
+
+  validates :total_work_exp_years,
+            :presence => true,
+            numericality: { only_integer: true, greater_than: 0 }
+
+  validates :total_work_exp_months,
+            :presence => true,
+            numericality: { only_integer: true }
+
+  validates :personal_email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
+  validates :candidate_contact_numbers,
+            :presence => true,
+            length: { is: 10 },
+            numericality: { only_integer: true }
+
+  validates :communication_addresses,
+            :presence => true
+
+  validates :current_location, :presence => true
+  validates :salary_expectation_fixed, :presence => true
+  validates :salary_expectation_variable, :presence => true
+
+  validates :notice_period, :presence => true
+  validates :notice_period_buyback?, :presence => true
+
+
 end
