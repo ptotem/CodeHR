@@ -87,6 +87,17 @@
         </div>
       </div>
 
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :status,:class => "control-label" %>
+            <div class="controls">
+              <%= f.select :status, ['Selected', 'Rejected', 'Interviewed', 'Blocked'] %>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 
@@ -95,7 +106,8 @@
       <div class="control-group">
         <%= raw custom_lable(@candidate_master, :marital_status) %>
         <div class="controls">
-          <%= f.text_field :marital_status %>
+          <%#= f.text_field :marital_status %>
+          <%= f.select(:marital_status, [['Married'], ['Unmarried'], ['Separated'], ['In Relationship']]) %>
         </div>
       </div>
 

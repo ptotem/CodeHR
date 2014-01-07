@@ -96,10 +96,11 @@ class CandidateMaster
             :uniqueness => true,
             :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 
-  validates :candidate_contact_numbers,
-            :presence => true,
-            length: { is: 10 },
-            numericality: { only_integer: true }
+  #TODO: check this
+  #validates :candidate_contact_numbers,
+  #          :presence => true,
+  #          length: { is: 10 },
+  #          numericality: { only_integer: true }
 
   validates :communication_addresses,
             :presence => true
@@ -109,7 +110,7 @@ class CandidateMaster
   validates :salary_expectation_variable, :presence => true
 
   validates :notice_period, :presence => true
-  validates :notice_period_buyback?, :presence => true
+  #validates :notice_period_buyback?, :presence => true
 
 
 end
