@@ -14,6 +14,12 @@ class EmployeeMastersController < InheritedResources::Base
     #render :text => params
     #return
     @employee_master =EmployeeMaster.new(params[:employee_master])
+
+    @employee_master.date_of_joining = Date.strptime(params[:employee_master][:date_of_joining], "%m/%d/%Y")
+
+    @employee_master.date_of_birth =Date.strptime(params[:employee_master][:date_of_birth], "%m/%d/%Y")
+    #render :json=>@employee_master
+    #return
     @employee_master.user=User.create!(:email =>@employee_master.official_email, :password =>"password", :password_confirmation =>"password")
     respond_to do |format|
       if @employee_master.save
