@@ -6,4 +6,6 @@ class Rating
   accepts_nested_attributes_for :score_receiveds
 
   belongs_to :vacancy_scheduling
+
+  validates :comments, :presence => true
 end

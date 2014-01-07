@@ -12,4 +12,11 @@ class VendorMaster
 
   accepts_nested_attributes_for :vaddresses
   accepts_nested_attributes_for :contact_persons
+
+  validates :vendor_name, :presence => true
+  validates :vendor_type, :presence => true
+  validates :office_phone_number, :presence => true
+
+  #TODO: validations for embedded fields
+
 end

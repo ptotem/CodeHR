@@ -209,30 +209,20 @@
                 <div class="control-group">
                   <%= employment_hists.label :address1,:class => "control-label" %>
                   <div class="controls">
-                    <div class="row-fluid input-append date">
-                      <%= employment_hists.text_field :address1, :class=>"span6 date-picker" %>
-                      <!--<input type="text" data-date-format="dd-mm-yyyy" id="joined_from" class="span10 date-picker">-->
-                      <span class="add-on"><i class="icon-calendar"></i></span>
-                    </div>
+                      <%= employment_hists.text_area(:address1, :size=>"40x4") %>
                   </div>
                 </div>
               </span>
-            </span>
-
-
-            <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
                   <%= employment_hists.label :address,:class => "control-label" %>
                   <div class="controls">
-                    <div class="row-fluid input-append date">
-                      <%= employment_hists.text_field :address, :class=>"span6 date-picker" %>
-                      <span class="add-on"><i class="icon-calendar"></i></span>
-                    </div>
+                    <%= employment_hists.text_area(:address, :size=>"40x4")  %>
                   </div>
                 </div>
               </span>
             </span>
+
 
             <span class="row-fluid">
               <span class="span6">
@@ -243,9 +233,6 @@
                   </div>
                 </div>
               </span>
-            </span>
-
-            <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
                   <%= employment_hists.label :taluka,:class => "control-label" %>
@@ -265,9 +252,6 @@
                   </div>
                 </div>
               </span>
-            </span>
-
-            <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
                   <%= employment_hists.label :state,:class => "control-label" %>
@@ -287,9 +271,6 @@
                   </div>
                 </div>
               </span>
-            </span>
-
-            <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
                   <%= employment_hists.label :pin,:class => "control-label" %>

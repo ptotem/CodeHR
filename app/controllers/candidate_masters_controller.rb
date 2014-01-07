@@ -15,4 +15,24 @@ class CandidateMastersController < InheritedResources::Base
     end
   end
 
+  #def create
+  #  #render :text => params
+  #  #return
+  #  @candidate_master = CandidateMaster.new(params[:candidate_master])
+  #
+  #  @candidate_master.date_of_birth = Date.strptime(params[:candidate_master][:date_of_birth], "%m/%d/%Y")
+  #  #render :json=>@candidate_master
+  #  #return
+  #  respond_to do |format|
+  #    if @candidate_master.save
+  #      format.html { redirect_to @candidate_master, notice: 'Candidate master was successfully created.' }
+  #      format.json { render json: @candidate_master, status: :created, location: @candidate_master }
+  #    else
+  #      format.html { render action: "new" }
+  #      format.json { render json: @candidate_master.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
+
+
 end

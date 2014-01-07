@@ -23,7 +23,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :vendor_name ,:class => "control-label"%>
+            <%#= f.label :vendor_name ,:class => "control-label"%>
+            <%= raw custom_lable(@vendor_master, :vendor_name) %>
             <div class="controls">
               <%= f.text_field :vendor_name %>
             </div>
@@ -34,7 +35,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :vendor_type,:class => "control-label" %>
+            <%#= f.label :vendor_type,:class => "control-label" %>
+            <%= raw custom_lable(@vendor_master, :vendor_type) %>
             <div class="controls">
               <%= f.text_field :vendor_type %>
             </div>
@@ -42,7 +44,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :office_phone_number,:class => "control-label" %>
+            <%#= f.label :office_phone_number,:class => "control-label" %>
+            <%= raw custom_lable(@vendor_master, :office_phone_number) %>
             <div class="controls">
               <%= f.text_field :office_phone_number %>
             </div>

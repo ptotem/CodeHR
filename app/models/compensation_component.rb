@@ -6,4 +6,8 @@ class CompensationComponent
 
   embeds_many :formula_lists
   accepts_nested_attributes_for :formula_lists
+
+  validates :final_ctc_fixed, :presence => true
+  validates :final_ctc_varriable, :presence => true
+
 end
