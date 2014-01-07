@@ -13,32 +13,8 @@
     <th>Date of joining</th>
     <th>Group</th>
     <th>Designation joined at</th>
-    <th>Current designation</th>
-    <th>Job</th>
-    <th>Band</th>
-    <th>Total work exp years</th>
-    <th>Total work exp months</th>
     <th>Official email</th>
-    <th>Personal email</th>
-    <th>Contact numbers</th>
-    <th>Personal address</th>
     <th>Address for communication</th>
-    <th>Bank name</th>
-    <th>Account number</th>
-    <th>Rf no</th>
-    <th>Esic no</th>
-    <th>Pan no</th>
-    <th>Blood group</th>
-    <th>Date of leaving</th>
-    <th>Nature of separation</th>
-    <th>Remarks 1</th>
-    <th>Remarks 2</th>
-    <th>Remarks 3</th>
-    <th>Remarks 4</th>
-    <th>Remarks 5</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @employee_masters.each do |employee_master| %>
@@ -52,31 +28,10 @@
     <td><%= employee_master.marital_status %></td>
     <td><%= employee_master.date_of_birth %></td>
     <td><%= employee_master.date_of_joining %></td>
-    <td><%= employee_master.group_id %></td>
+    <td><%= employee_master.group_master_id %></td>
     <td><%= employee_master.designation_joined_at %></td>
-    <td><%= employee_master.current_designation %></td>
-    <td><%= employee_master.job_id %></td>
-    <td><%= employee_master.band_id %></td>
-    <td><%= employee_master.total_work_exp_years %></td>
-    <td><%= employee_master.total_work_exp_months %></td>
     <td><%= employee_master.official_email %></td>
-    <td><%= employee_master.personal_email %></td>
-    <td><%= employee_master.contact_numbers %></td>
-    <td><%= employee_master.personal_address %></td>
     <td><%= employee_master.address_for_communication %></td>
-    <td><%= employee_master.bank_name %></td>
-    <td><%= employee_master.account_number %></td>
-    <td><%= employee_master.rf_no %></td>
-    <td><%= employee_master.esic_no %></td>
-    <td><%= employee_master.pan_no %></td>
-    <td><%= employee_master.blood_group %></td>
-    <td><%= employee_master.date_of_leaving %></td>
-    <td><%= employee_master.nature_of_separation %></td>
-    <td><%= employee_master.remarks_1 %></td>
-    <td><%= employee_master.remarks_2 %></td>
-    <td><%= employee_master.remarks_3 %></td>
-    <td><%= employee_master.remarks_4 %></td>
-    <td><%= employee_master.remarks_5 %></td>
     <td><%= link_to 'Show', employee_master %></td>
     <td><%= link_to 'Edit', edit_employee_master_path(employee_master) %></td>
     <td><%= link_to 'Destroy', employee_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>

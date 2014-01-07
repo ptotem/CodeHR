@@ -4,5 +4,5 @@ class PfNomination
   field :fname, type: String
   field :mname, type: String
   field :lname, type: String
-  embedded_in :employee_master
+  embedded_in :employee_detail
 end

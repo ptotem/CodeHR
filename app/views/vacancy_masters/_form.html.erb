@@ -15,7 +15,7 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :vacancy_code,:class => "control-label" %>
+            <%= raw custom_lable(@vacancy_master, :vacancy_code) %>
             <div class="controls">
               <%= f.text_field :vacancy_code %>
             </div>
@@ -34,7 +34,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :description ,:class => "control-label"%>
+            <%= f.label :description,:class => "control-label" %>
+            <%#= raw custom_lable(@vacancy_master, :description) %>
             <div class="controls">
               <%= f.text_area(:description, size:"20x5")  %>
             </div>
@@ -43,6 +44,7 @@
         <div class="span6">
           <div class="control-group">
             <%= f.label :status,:class => "control-label" %>
+            <%#= raw custom_lable(@vacancy_master, :status) %>
             <div class="controls">
               <%= f.text_field :status %>
             </div>
@@ -53,7 +55,7 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :sourcing_strategy,:class => "control-label" %>
+            <%= raw custom_lable(@vacancy_master, :sourcing_strategy) %>
             <div class="controls">
               <%= f.text_field :sourcing_strategy %>
             </div>
@@ -61,7 +63,7 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :hr_rep,:class => "control-label" %>
+            <%= raw custom_lable(@vacancy_master, :hr_rep) %>
             <div class="controls">
               <%= f.text_field :hr_rep %>
             </div>
@@ -80,7 +82,7 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :ctc_range_from,:class => "control-label" %>
+            <%= raw custom_lable(@vacancy_master, :ctc_range_from) %>
             <div class="controls">
               <%= f.number_field :ctc_range_from %>
             </div>
@@ -91,7 +93,7 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :ctc_range_to,:class => "control-label" %>
+            <%= raw custom_lable(@vacancy_master, :ctc_range_to) %>
             <div class="controls">
               <%= f.number_field :ctc_range_to %>
             </div>

@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <b>Employee middle name name:</b>
+  <b>Employee middle name :</b>
   <%= @employee_master.employee_middle_name_name %>
 </p>
 
@@ -47,7 +47,7 @@
 
 <p>
   <b>Group:</b>
-  <%= @employee_master.group_id %>
+  <%= @employee_master.group_master_id %>
 </p>
 
 <p>
@@ -56,120 +56,14 @@
 </p>
 
 <p>
-  <b>Current designation:</b>
-  <%= @employee_master.current_designation %>
-</p>
-
-<p>
-  <b>Job:</b>
-  <%= @employee_master.job_id %>
-</p>
-
-<p>
-  <b>Band:</b>
-  <%= @employee_master.band_id %>
-</p>
-
-<p>
-  <b>Total work exp years:</b>
-  <%= @employee_master.total_work_exp_years %>
-</p>
-
-<p>
-  <b>Total work exp months:</b>
-  <%= @employee_master.total_work_exp_months %>
-</p>
-
-<p>
   <b>Official email:</b>
   <%= @employee_master.official_email %>
 </p>
 
 <p>
-  <b>Personal email:</b>
-  <%= @employee_master.personal_email %>
-</p>
-
-<p>
-  <b>Contact numbers:</b>
-  <%= @employee_master.contact_numbers %>
-</p>
-
-<p>
-  <b>Personal address:</b>
-  <%= @employee_master.personal_address %>
-</p>
-
-<p>
   <b>Address for communication:</b>
-  <%= @employee_master.address_for_communication %>
+  <%= @employee_detail.address_for_communication %>
 </p>
-
-<p>
-  <b>Bank name:</b>
-  <%= @employee_master.bank_name %>
-</p>
-
-<p>
-  <b>Account number:</b>
-  <%= @employee_master.account_number %>
-</p>
-
-<p>
-  <b>Rf no:</b>
-  <%= @employee_master.rf_no %>
-</p>
-
-<p>
-  <b>Esic no:</b>
-  <%= @employee_master.esic_no %>
-</p>
-
-<p>
-  <b>Pan no:</b>
-  <%= @employee_master.pan_no %>
-</p>
-
-<p>
-  <b>Blood group:</b>
-  <%= @employee_master.blood_group %>
-</p>
-
-<p>
-  <b>Date of leaving:</b>
-  <%= @employee_master.date_of_leaving %>
-</p>
-
-<p>
-  <b>Nature of separation:</b>
-  <%= @employee_master.nature_of_separation %>
-</p>
-
-<p>
-  <b>Remarks 1:</b>
-  <%= @employee_master.remarks_1 %>
-</p>
-
-<p>
-  <b>Remarks 2:</b>
-  <%= @employee_master.remarks_2 %>
-</p>
-
-<p>
-  <b>Remarks 3:</b>
-  <%= @employee_master.remarks_3 %>
-</p>
-
-<p>
-  <b>Remarks 4:</b>
-  <%= @employee_master.remarks_4 %>
-</p>
-
-<p>
-  <b>Remarks 5:</b>
-  <%= @employee_master.remarks_5 %>
-</p>
-
 
 <%= link_to 'Edit', edit_employee_master_path(@employee_master) %> |
 <%= link_to 'Back', employee_masters_path %>

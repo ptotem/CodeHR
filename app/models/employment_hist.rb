@@ -5,5 +5,5 @@ class EmploymentHist
   field :organisation, type: String
   field :designation, type: String
 
-  embedded_in :employee_master
+  embedded_in :employee_detail
 end

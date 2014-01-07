@@ -6,4 +6,12 @@ class VacancyScheduling
   has_many :ratings
   accepts_nested_attributes_for :interviewer_lists
   accepts_nested_attributes_for :ratings
+
+  validates :interview_type_id, :presence => true
+
+  #validates :candidate_master_id, :presence => true
+  #validates :vacancy_master_id, :presence => true
+
+  #validates :interviewer_lists, :presence => true
+
 end

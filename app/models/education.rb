@@ -4,5 +4,5 @@ class Education
   field :description, type: String
   field :marks, type: Float
   field :grade, type: String
-  embedded_in :employee_master
+  embedded_in :employee_detail
 end
