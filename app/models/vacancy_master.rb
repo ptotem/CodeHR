@@ -15,4 +15,15 @@ class VacancyMaster
   belongs_to :manpower_planning
   has_many :vacancy_schedulings
   accepts_nested_attributes_for :vacancy_schedulings
+
+  validates :vacancy_code, :presence => true
+  validates :description, :presence => true
+
+  validates :status, :presence => true
+
+  validates :sourcing_strategy, :presence => true
+  validates :hr_rep, :presence => true
+  validates :ctc_range_from, :presence => true
+  validates :ctc_range_to, :presence => true
+
 end
