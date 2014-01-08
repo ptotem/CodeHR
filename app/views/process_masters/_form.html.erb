@@ -22,23 +22,66 @@
       </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row-fluid" id="start_nesting_step_master">
       <div class="span12">
-        <%= f.fields_for :step_masters do |step_master| %>
-            <div class="control-group">
-              <%#= step_master.label :name, :class => "control-label" %>
-              <label class="control-label">Step 1</label>
-              <div class="controls">
-                <%= step_master.text_field :name %>
-                <%= step_master.link_to_remove "Remove this task" %>
+
+
+            <div class="tabbable tabs-left">
+              <ul class="nav nav-tabs" id="steps_list">
+                <li class="active"><a data-toggle="tab" href="#step1">Step 1</a></li>
+                <!--<li><a data-toggle="tab" href="#step2">Step 2</a></li>-->
+              </ul>
+              <div class="tab-content">
+                <div id="step1" class="tab-pane in active">
+                  <%= f.fields_for :step_masters do |step_master| %>
+                      <p>Step 1</p>
+                      <%= step_master.text_field :name, :class=>"step_masters_text_fields" %>
+                      <%= step_master.link_to_remove "Remove this task" %>
+                  <% end %>
+                </div>
+                <!--<div id="step2" class="tab-pane">-->
+                  <!--<p>Step 2</p>-->
+                  <!--<%#= step_master.text_field :name, :class=>"step_masters_text_fields" %>-->
+                  <!--<%#= step_master.link_to_remove "Remove this task" %>-->
+                <!--</div>-->
               </div>
             </div>
-        <% end %>
         <%= f.link_to_add "Add New Step", :step_masters %>
+
+
       </div>
     </div>
     <br>
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
+
+<script>
+    var nested_form_text_fields_len;
+
+    $(function() {
+        $('a.add_nested_fields').on('click', function(){
+            nested_form_text_fields_len = $("#start_nesting_step_master").find(".step_masters_text_fields").length + 1;
+            $(this).prev().find('.control-group').first().find('.control-label').text("");
+            $(this).prev().find('.control-group').first().find('.control-label').text("Step " + nested_form_text_fields_len);
+
+            $("#steps_list").append('<li><a data-toggle="tab" href="#step2">Step 2</a></li>');
+            //$(".tab-content").append('<div id="profile3" class="tab-pane">' +
+            //                            '<p>Food truck fixie locavore, accusamus mcsweeneys marfa nulla single-origin coffee squid.</p>' +
+            //                            '<p>Raw denim you probably havent heard of them jean shorts Austin.</p>' +
+            //                    '</div>');
+
+            window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
+                //alert($(link).attr('class'));
+                var $tr = $(link).prev().find('.tab-content').find('.tab-pane').last();
+                return $(content).insertAfter($tr);
+                //return $tr.append(content);
+            }
+
+        })
+    });
+
+
+</script>
