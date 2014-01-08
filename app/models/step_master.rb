@@ -5,6 +5,8 @@ class StepMaster
   field :oaction, type: String
   field :action_to, type: String
   field :content, type: String
+  field :sequence, type: Integer
+
   embedded_in :process_master
 
   state_machine :state, initial: :created do
