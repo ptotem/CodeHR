@@ -32,4 +32,20 @@ class EmployeeMastersController < InheritedResources::Base
     end
   end
 
+  def import_employee_masters
+    render :layout => false
+  end
+
+  def importing_employee_masters
+    #render :text => params[:file][:original_filename]
+
+    if request.post? && params[:file].present?
+      EmployeeMaster.import(params[:file])
+      #redirect_to '/employee_masters', notice: "Slides imported."
+    else
+      redirect_to '/import_employee_masters', notice: "Slides couldn't be imported."
+    end
+
+  end
+
 end

@@ -42,41 +42,42 @@ class EmployeeDetail
   accepts_nested_attributes_for :pf_nominations
   accepts_nested_attributes_for :esis_nominations
 
-  validates :personal_email,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-
-
-  validates :current_designation, :presence => true
-  validates :job_role_id, :presence => true
-  validates :band_id, :presence => true
-
-  validates :total_work_exp_years,
-            :presence => true,
-            numericality: { only_integer: true, greater_than: 0 }
-
-  validates :total_work_exp_months,
-            :presence => true,
-            numericality: { only_integer: true }
-
-  validates :contact_numbers,
-            :presence => true,
-            length: { is: 10 },
-            numericality: { only_integer: true }
-
-  validates :bank_name, :presence => true
-  validates :account_number, :presence => true
-  validates :rf_no, :presence => true
-  validates :esic_no, :presence => true
-  validates :pan_no, :presence => true
-
-  validates :blood_group, :presence => true
-
-  #embeds_many associations validations starts
-  validates :employment_hists, :presence => true
-  validates :pf_nominations, :presence => true
-  validates :esis_nominations, :presence => true
-  #embeds_many associations validations ends
+  #TODO: uncomment validations
+  #validates :personal_email,
+  #          :presence => true,
+  #          :uniqueness => true,
+  #          :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  #
+  #
+  #validates :current_designation, :presence => true
+  #validates :job_role_id, :presence => true
+  #validates :band_id, :presence => true
+  #
+  #validates :total_work_exp_years,
+  #          :presence => true,
+  #          numericality: { only_integer: true, greater_than: 0 }
+  #
+  #validates :total_work_exp_months,
+  #          :presence => true,
+  #          numericality: { only_integer: true }
+  #
+  #validates :contact_numbers,
+  #          :presence => true,
+  #          length: { is: 10 },
+  #          numericality: { only_integer: true }
+  #
+  #validates :bank_name, :presence => true
+  #validates :account_number, :presence => true
+  #validates :rf_no, :presence => true
+  #validates :esic_no, :presence => true
+  #validates :pan_no, :presence => true
+  #
+  #validates :blood_group, :presence => true
+  #
+  ##embeds_many associations validations starts
+  #validates :employment_hists, :presence => true
+  #validates :pf_nominations, :presence => true
+  #validates :esis_nominations, :presence => true
+  ##embeds_many associations validations ends
 
 end

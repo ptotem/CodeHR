@@ -78,6 +78,13 @@ CodeHR::Application.routes.draw do
   match 'role_creation/:process_id/:seq' => 'roles#new', :as => :role_creation
   match 'role_updation/:id/:process_id/:seq' => 'roles#edit', :as => :role_updation
   match 'role_deletion/:id/:process_id/:seq' => 'roles#destroy', :as => :role_deletion
+
+  match 'import_employee_masters' => 'employee_masters#import_employee_masters', :as => :import_employee_masters
+  match 'importing_employee_masters' => 'employee_masters#importing_employee_masters', :as => :importing_employee_masters
+
+  match 'import_group_masters' => 'group_masters#import_group_masters', :as => :import_group_masters
+  match 'importing_group_masters' => 'group_masters#importing_group_masters', :as => :importing_group_masters
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

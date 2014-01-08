@@ -102,4 +102,21 @@ class GroupMastersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def import_group_masters
+    render :layout => false
+  end
+
+  def importing_group_masters
+    #render :text => params[:file][:original_filename]
+
+    if request.post? && params[:file].present?
+      GroupMaster.import(params[:file])
+      #redirect_to '/employee_masters', notice: "Slides imported."
+    else
+      redirect_to '/import_group_masters', notice: "Group Masters couldn't be imported."
+    end
+
+  end
+
 end

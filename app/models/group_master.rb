@@ -19,4 +19,26 @@ class GroupMaster
   accepts_nested_attributes_for :manpower_plannings
   accepts_nested_attributes_for :vacancy_masters
   accepts_nested_attributes_for :employee_masters
+
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    (2..spreadsheet.last_row).each do |i|
+      @group_master = GroupMaster.create!(group_code:spreadsheet.row(i)[1].to_s, group_name:spreadsheet.row(i)[2].to_s)
+      @group_master.save
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when '.csv' then
+        Roo::Csv.new(file.path, nil, :ignore)
+      when '.xls' then
+        Roo::Excel.new(file.path, nil, :ignore)
+      when '.xlsx' then
+        Roo::Excelx.new(file.path, nil, :ignore)
+      else
+        raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
 end
