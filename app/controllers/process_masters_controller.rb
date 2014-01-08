@@ -25,7 +25,7 @@ class ProcessMastersController < ApplicationController
   # GET /process_masters/new.json
   def new
     @process_master = ProcessMaster.new
-
+    @process_master.step_masters.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @process_master }

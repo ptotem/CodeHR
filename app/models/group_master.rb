@@ -23,7 +23,7 @@ class GroupMaster
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     (2..spreadsheet.last_row).each do |i|
-      @group_master = GroupMaster.create!(group_code:spreadsheet.row(i)[1].to_s, group_name:spreadsheet.row(i)[2].to_s)
+      @group_master = GroupMaster.create!(group_code:spreadsheet.row(i)[0].to_s, group_name:spreadsheet.row(i)[1].to_s)
       @group_master.save
     end
   end

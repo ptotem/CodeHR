@@ -2,14 +2,15 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
+    <th>Group Code</th>
+    <th>Group Name</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @group_masters.each do |group_master| %>
   <tr>
+    <td><%= group_master.group_code %></td>
     <td><%= group_master.group_name %></td>
     <td><%= link_to 'Show', group_master %></td>
     <td><%= link_to 'Edit', edit_group_master_path(group_master) %></td>

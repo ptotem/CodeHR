@@ -6,7 +6,7 @@ class EmployeeDetail
 
 
   field :current_designation, type: String
-  field :job_role_id, type: Integer
+  field :job_role_id, type: String
   field :band_id, type: Integer
   field :total_work_exp_years, type: Integer
   field :total_work_exp_months, type: Integer
