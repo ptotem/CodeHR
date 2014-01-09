@@ -67,6 +67,8 @@ CodeHR::Application.routes.draw do
 
   resources :company_masters
 
+  resources :process_masters
+
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
