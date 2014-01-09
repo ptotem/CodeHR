@@ -424,6 +424,10 @@
 <script type="text/javascript">
 
     $(function() {
+        $(document).ajaxSend(function(e, xhr, options) {
+            var token = $("meta[name='csrf-token']").attr("content");
+            xhr.setRequestHeader("X-CSRF-Token", token);
+        });
 
         var oTable = $('#table_report').dataTable({
 //                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",

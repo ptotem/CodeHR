@@ -26,6 +26,8 @@ class ProcessMastersController < ApplicationController
   def new
     @process_master = ProcessMaster.new
     @process_master.step_masters.build
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @process_master }
@@ -80,4 +82,21 @@ class ProcessMastersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def get_data
+    @returning_data = Array.new
+
+    @model_name = params[:model_name][0]
+    @model_name_class = @model_name.classify.constantize
+    #@data = @model_name_class.all
+    @data = User.all
+
+    @data.each do |i|
+      @returning_data<<"#{i.name}|#{i.email}"
+    end
+    render :text => @returning_data
+    return
+
+  end
+
 end

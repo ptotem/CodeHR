@@ -90,6 +90,8 @@ CodeHR::Application.routes.draw do
   match 'import_group_masters' => 'group_masters#import_group_masters', :as => :import_group_masters
   match 'importing_group_masters' => 'group_masters#importing_group_masters', :as => :importing_group_masters
 
+  match '/get_data' => 'process_masters#get_data', :as => :get_data
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

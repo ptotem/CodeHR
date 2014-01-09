@@ -23,15 +23,22 @@
     <%= f.label :col_validation %><br />
     <%= f.check_box :col_validation %>
   </div>
+    <br>
   <div class="field">
     <%= f.label :col_type %><br />
     <%= f.text_field :col_type %>
   </div>
   <div class="field">
-    <%= f.label :col_seqience %><br />
-    <%= f.number_field :col_seqience %>
+    <%= f.label :col_sequence %><br />
+    <%= f.number_field :col_sequence %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $(function(){
+      $(':checkbox').css('opacity','1');
+  })
+</script>
