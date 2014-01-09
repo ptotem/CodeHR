@@ -1,0 +1,2 @@
+module RatingConfsHelper
+end

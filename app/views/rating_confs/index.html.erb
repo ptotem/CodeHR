@@ -1,0 +1,31 @@
+<h1>Listing rating_confs</h1>
+
+<table>
+  <tr>
+    <th>Col name</th>
+    <th>Col lable</th>
+    <th>Col validation</th>
+    <th>Col type</th>
+    <th>Col seqience</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rating_confs.each do |rating_conf| %>
+  <tr>
+    <td><%= rating_conf.col_name %></td>
+    <td><%= rating_conf.col_lable %></td>
+    <td><%= rating_conf.col_validation %></td>
+    <td><%= rating_conf.col_type %></td>
+    <td><%= rating_conf.col_seqience %></td>
+    <td><%= link_to 'Show', rating_conf %></td>
+    <td><%= link_to 'Edit', edit_rating_conf_path(rating_conf) %></td>
+    <td><%= link_to 'Destroy', rating_conf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rating conf', new_rating_conf_path %>

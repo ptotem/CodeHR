@@ -1,5 +1,8 @@
 CodeHR::Application.routes.draw do
 
+  resources :rating_confs
+
+
   resources :employee_details
 
 

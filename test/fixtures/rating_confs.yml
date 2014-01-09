@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  col_name: MyString
+  col_lable: MyString
+  col_validation: false
+  col_type: MyString
+  col_seqience: 1
+
+two:
+  col_name: MyString
+  col_lable: MyString
+  col_validation: false
+  col_type: MyString
+  col_seqience: 1

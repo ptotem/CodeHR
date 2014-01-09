@@ -1,0 +1,57 @@
+
+
+<div class="row-fluid">
+
+    <%= nested_form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
+        <% if @rating.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+              <ul>
+                <% @rating.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="control-group">
+          <%= f.label :comments,:class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :comments %>
+          </div>
+        </div>
+      <hr>
+
+      <%= f.fields_for :score_receiveds do |score_receiveds| %>
+          <div class="control-group">
+            <%= score_receiveds.label :score,:class => "control-label" %>
+            <div class="controls">
+              <%= score_receiveds.text_field :score %>
+              <%= score_receiveds.link_to_remove "Remove this task" %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.link_to_add "Score Receiveds", :score_receiveds %>
+      <hr>
+
+          <%# @fields = DynamicField.where(:oclass=>"Rating") %>
+            <h3 class="header lighter blue">Dynamic Field</h3>
+          <% @fields.each do |field| %>
+          <div class="control-group">
+              <%= f.label field.name.to_sym,:class => "control-label" %>
+              <div class="controls">
+                <%= f.send(field.type.to_sym, field.name.to_sym )%>
+              </div>
+          </div>
+          <% end %>
+
+
+        <div class="form-actions">
+            <%= f.submit :class=>"btn btn-info" %>
+        </div>
+
+    <% end %>
+</div>
+
+

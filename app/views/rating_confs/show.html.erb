@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Col name:</b>
+  <%= @rating_conf.col_name %>
+</p>
+
+<p>
+  <b>Col lable:</b>
+  <%= @rating_conf.col_lable %>
+</p>
+
+<p>
+  <b>Col validation:</b>
+  <%= @rating_conf.col_validation %>
+</p>
+
+<p>
+  <b>Col type:</b>
+  <%= @rating_conf.col_type %>
+</p>
+
+<p>
+  <b>Col seqience:</b>
+  <%= @rating_conf.col_seqience %>
+</p>
+
+
+<%= link_to 'Edit', edit_rating_conf_path(@rating_conf) %> |
+<%= link_to 'Back', rating_confs_path %>
