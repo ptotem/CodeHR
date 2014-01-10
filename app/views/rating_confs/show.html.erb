@@ -7,7 +7,8 @@
 
 <p>
   <b>Col lable:</b>
-  <%= @rating_conf.col_lable %>
+  <%#= @rating_conf.col_lable %>
+  <%= best_in_place @rating_conf, :col_lable, :type => :input %>
 </p>
 
 <p>
@@ -21,10 +22,19 @@
 </p>
 
 <p>
-  <b>Col seqience:</b>
-  <%= @rating_conf.col_seqience %>
+  <b>Col col_sequence:</b>
+  <%= @rating_conf.col_sequence %>
 </p>
 
 
 <%= link_to 'Edit', edit_rating_conf_path(@rating_conf) %> |
 <%= link_to 'Back', rating_confs_path %>
+
+<script src="/assets/best_in_place.js"></script>
+
+<script>
+    $(document).ready(function() {
+        /* Activating Best In Place */
+        $(".best_in_place").best_in_place()
+    });
+</script>
