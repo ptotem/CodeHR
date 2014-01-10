@@ -1,20 +1,28 @@
-<h1>Listing vacancy_schedulings</h1>
+<h1>Listing Vacancy Schedulings</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @vacancy_schedulings.each do |vacancy_scheduling| %>
-  <tr>
-    <td><%= link_to 'Show', vacancy_scheduling %></td>
-    <td><%= link_to 'Edit', edit_vacancy_scheduling_path(vacancy_scheduling) %></td>
-    <td><%= link_to 'Destroy', vacancy_scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @vacancy_schedulings.each do |vacancy_scheduling| %>
+              <tr>
+                <td><%= link_to 'Show', vacancy_scheduling %></td>
+                <td><%= link_to 'Edit', edit_vacancy_scheduling_path(vacancy_scheduling) %></td>
+                <td><%= link_to 'Destroy', vacancy_scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

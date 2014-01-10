@@ -50,6 +50,14 @@
                 </div>
               </div>
             </div>
+            <div class="span6">
+              <div class="control-group">
+                <%= raw custom_lable(@company_master, :client_id) %>
+                <div class="controls">
+                  <%= f.select :client_id, options_from_collection_for_select(Client.all,'id','name') %>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="row-fluid">

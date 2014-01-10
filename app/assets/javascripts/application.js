@@ -12,5 +12,4 @@
 //
 //= require jquery
 //= require jquery_nested_form
-//= require best_in_place
 //= require_tree .

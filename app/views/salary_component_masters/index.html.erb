@@ -1,22 +1,30 @@
-<h1>Listing salary_component_masters</h1>
+<h1>Listing Salary Component Masters</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @salary_component_masters.each do |salary_component_master| %>
-  <tr>
-    <td><%= salary_component_master.name %></td>
-    <td><%= link_to 'Show', salary_component_master %></td>
-    <td><%= link_to 'Edit', edit_salary_component_master_path(salary_component_master) %></td>
-    <td><%= link_to 'Destroy', salary_component_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @salary_component_masters.each do |salary_component_master| %>
+              <tr>
+                <td><%= salary_component_master.name %></td>
+                <td><%= link_to 'Show', salary_component_master %></td>
+                <td><%= link_to 'Edit', edit_salary_component_master_path(salary_component_master) %></td>
+                <td><%= link_to 'Destroy', salary_component_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

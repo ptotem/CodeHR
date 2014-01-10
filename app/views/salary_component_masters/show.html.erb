@@ -1,10 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @salary_component_master.name %>
-</p>
-
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Company Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @salary_component_master.name %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_salary_component_master_path(@salary_component_master) %> |
 <%= link_to 'Back', salary_component_masters_path %>
