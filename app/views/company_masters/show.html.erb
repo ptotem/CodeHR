@@ -1,9 +1,32 @@
 <p id="notice"><%= notice %></p>
-<p id="name"><%= @company_master.company_name %></p>
-<p><%= @company_master.company_code %></p>
-<p><%= @company_master.company_name %></p>
-<p><%= @company_master.office_phone_number %></p>
-<p><%= @company_master.pan_number %></p>
+
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Company Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Company Name</th>
+            <td id="name"><%= @company_master.company_name %></td>
+          </tr>
+          <tr>
+            <th>Company Code</th>
+            <td><%= @company_master.company_code %></td>
+          </tr>
+          <tr>
+            <th>Office Phone Number</th>
+            <td><%= @company_master.office_phone_number %></td>
+          </tr>
+          <tr>
+            <th>PAN Number</th>
+            <td><%= @company_master.pan_number %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_company_master_path(@company_master) %> |
 <%= link_to 'Back', company_masters_path %>

@@ -1,5 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Process Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @process_master.name %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_process_master_path(@process_master) %> |
 <%= link_to 'Back', process_masters_path %>

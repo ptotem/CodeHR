@@ -1,43 +1,54 @@
-<h1>Listing employee_masters</h1>
+<h1>Listing Employee Masters</h1>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Employee code</th>
-    <th>Employee name</th>
-    <th>Employee middle name name</th>
-    <th>Status</th>
-    <th>Gender</th>
-    <!--<th>Marital status</th>-->
-    <!--<th>Date of birth</th>-->
-    <th>Date of joining</th>
-    <th>Group</th>
-    <th>Designation joined at</th>
-    <th>Official email</th>
-    <!--<th>Address for communication</th>-->
-  </tr>
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>User</th>
+            <th>Employee Code</th>
+            <th>Employee Name</th>
+            <th>Employee Middle Name</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <!--<th>Marital status</th>-->
+            <!--<th>Date of birth</th>-->
+            <th>Date of Joining</th>
+            <th>Group</th>
+            <th>Designation Joined At</th>
+            <th>Official Email</th>
+            <!--<th>Address for communication</th>-->
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @employee_masters.each do |employee_master| %>
-  <tr>
-    <td><%= employee_master.user_id %></td>
-    <td><%= employee_master.employee_code %></td>
-    <td><%= employee_master.employee_name %></td>
-    <td><%= employee_master.employee_middle_name_name %></td>
-    <td><%= employee_master.status %></td>
-    <td><%= employee_master.gender %></td>
-    <!--<td><%#= employee_master.marital_status %></td>-->
-    <!--<td><%#= employee_master.date_of_birth %></td>-->
-    <td><%= employee_master.date_of_joining %></td>
-    <td><%= employee_master.group_master_id %></td>
-    <td><%= employee_master.designation_joined_at %></td>
-    <td><%= employee_master.official_email %></td>
-    <!--<td><%#= employee_master.address_for_communication %></td>-->
-    <td><%= link_to 'Show', employee_master %></td>
-    <td><%= link_to 'Edit', edit_employee_master_path(employee_master) %></td>
-    <td><%= link_to 'Destroy', employee_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @employee_masters.each do |employee_master| %>
+              <tr>
+                <td><%= employee_master.user_id %></td>
+                <td><%= employee_master.employee_code %></td>
+                <td><%= employee_master.employee_name %></td>
+                <td><%= employee_master.employee_middle_name_name %></td>
+                <td><%= employee_master.status %></td>
+                <td><%= employee_master.gender %></td>
+                <!--<td><%#= employee_master.marital_status %></td>-->
+                <!--<td><%#= employee_master.date_of_birth %></td>-->
+                <td><%= employee_master.date_of_joining %></td>
+                <td><%= employee_master.group_master_id %></td>
+                <td><%= employee_master.designation_joined_at %></td>
+                <td><%= employee_master.official_email %></td>
+                <!--<td><%#= employee_master.address_for_communication %></td>-->
+                <td><%= link_to 'Show', employee_master %></td>
+                <td><%= link_to 'Edit', edit_employee_master_path(employee_master) %></td>
+                <td><%= link_to 'Destroy', employee_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

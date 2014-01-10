@@ -1,25 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Job code:</b>
-  <%= @job_description_master.job_code %>
-</p>
-
-<p>
-  <b>Job title:</b>
-  <%= @job_description_master.job_title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @job_description_master.description %>
-</p>
-
-<p>
-  <b>Min year of experience:</b>
-  <%= @job_description_master.min_year_of_experience %>
-</p>
-
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Job Description Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Job Code</th>
+            <td><%= @job_description_master.job_code %></td>
+          </tr>
+          <tr>
+            <th>Job Title</th>
+            <td><%= @job_description_master.job_title %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @job_description_master.description %></td>
+          </tr>
+          <tr>
+            <th>Min Year of Experience</th>
+            <td><%= @job_description_master.min_year_of_experience %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_job_description_master_path(@job_description_master) %> |
 <%= link_to 'Back', job_description_masters_path %>

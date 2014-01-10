@@ -1,35 +1,44 @@
-<h1>Listing rating_confs</h1>
+<h1>Listing Rating Confs</h1>
 
-<table>
-  <tr>
-    <th>Col Name</th>
-    <th>Col Lable</th>
-    <th>Col Validation</th>
-    <th>Col Type</th>
-    <th>Col Sequence</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+    <div class="offset1 span8">
+      <table id="rating_confs_list" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+              <th>Col Name</th>
+              <th>Col Lable</th>
+              <th class="center">Col Validation</th>
+              <th>Col Type</th>
+              <th>Col Sequence</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+        </thead>
 
-<% @rating_confs.each do |rating_conf| %>
-  <tr>
-    <td><%= rating_conf.col_name %></td>
+        <tbody>
+            <% @rating_confs.each do |rating_conf| %>
+                <tr>
+                  <td><%= rating_conf.col_name %></td>
+                  <td><%= best_in_place rating_conf, :col_lable, :type => :input %></td>
+                  <td class='center'>
+                    <label>
+                        <%= check_box_tag 'col_validation' %>
+                        <span class="lbl"></span>
+                    </label>
+                  </td>
+                  <td><%= rating_conf.col_type %></td>
+                  <td><%= best_in_place rating_conf, :col_sequence, :type => :input %></td>
 
-    <!--<td><%#= rating_conf.col_lable %></td>-->
-    <td><%= best_in_place rating_conf, :col_lable, :type => :input %></td>
-
-    <!--<td><%#= rating_conf.col_validation %></td>-->
-    <td><%= check_box_tag 'col_validation' %></td>
-
-    <td><%= rating_conf.col_type %></td>
-    <td><%= rating_conf.col_sequence %></td>
-    <td><%= link_to 'Show', rating_conf %></td>
-    <td><%= link_to 'Edit', edit_rating_conf_path(rating_conf) %></td>
-    <td><%= link_to 'Destroy', rating_conf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+                  <td><%= link_to 'Show', rating_conf %></td>
+                  <td><%= link_to 'Edit', edit_rating_conf_path(rating_conf) %></td>
+                  <td><%= link_to 'Destroy', rating_conf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
 
 <br />
 
@@ -39,10 +48,8 @@
 <script src="/assets/best_in_place.js"></script>
 
 <script>
-    $(function(){
-        $(':checkbox').css('opacity','1');
-
+    $(document).ready(function() {
         /* Activating Best In Place */
-        $(".best_in_place").best_in_place();
-    })
+        jQuery(".best_in_place").best_in_place();
+    });
 </script>

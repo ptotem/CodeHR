@@ -1,30 +1,38 @@
-<h1>Listing manpower_plannings</h1>
+<h1>Listing Manpower Plannings</h1>
 
-<table>
-  <tr>
-    <th>Mp code</th>
-    <th>Period from</th>
-    <th>Period to</th>
-    <th>Requested by</th>
-    <th>Final approved number</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Mp Code</th>
+            <th>Period From</th>
+            <th>Period To</th>
+            <th>Requested By</th>
+            <th>Final Approved Number</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @manpower_plannings.each do |manpower_planning| %>
-  <tr>
-    <td><%= manpower_planning.mp_code %></td>
-    <td><%= manpower_planning.period_from %></td>
-    <td><%= manpower_planning.period_to %></td>
-    <td><%= manpower_planning.requested_by %></td>
-    <td><%= manpower_planning.final_approved_number %></td>
-    <td><%= link_to 'Show', manpower_planning %></td>
-    <td><%= link_to 'Edit', edit_manpower_planning_path(manpower_planning) %></td>
-    <td><%= link_to 'Destroy', manpower_planning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @manpower_plannings.each do |manpower_planning| %>
+              <tr>
+                <td><%= manpower_planning.mp_code %></td>
+                <td><%= manpower_planning.period_from %></td>
+                <td><%= manpower_planning.period_to %></td>
+                <td><%= manpower_planning.requested_by %></td>
+                <td><%= manpower_planning.final_approved_number %></td>
+                <td><%= link_to 'Show', manpower_planning %></td>
+                <td><%= link_to 'Edit', edit_manpower_planning_path(manpower_planning) %></td>
+                <td><%= link_to 'Destroy', manpower_planning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

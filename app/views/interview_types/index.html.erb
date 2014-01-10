@@ -1,24 +1,32 @@
-<h1>Listing interview_types</h1>
+<h1>Listing Interview Types</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @interview_types.each do |interview_type| %>
-  <tr>
-    <td><%= interview_type.name %></td>
-    <td><%= interview_type.description %></td>
-    <td><%= link_to 'Show', interview_type %></td>
-    <td><%= link_to 'Edit', edit_interview_type_path(interview_type) %></td>
-    <td><%= link_to 'Destroy', interview_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @interview_types.each do |interview_type| %>
+              <tr>
+                <td><%= interview_type.name %></td>
+                <td><%= interview_type.description %></td>
+                <td><%= link_to 'Show', interview_type %></td>
+                <td><%= link_to 'Edit', edit_interview_type_path(interview_type) %></td>
+                <td><%= link_to 'Destroy', interview_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

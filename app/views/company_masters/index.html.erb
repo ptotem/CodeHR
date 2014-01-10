@@ -1,25 +1,36 @@
-<h1>Listing company_masters</h1>
+<h1>Listing Company Masters</h1>
 
-<table>
-  <tr>
-    <th>Company Code</th>
-    <th>Company Name</th>
-    <th>Office Phone Number</th>
-    <th>PAN Number</th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Company Code</th>
+            <th>Company Name</th>
+            <th>Office Phone Number</th>
+            <th>PAN Number</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @company_masters.each do |company_master| %>
-  <tr>
-    <td><%= company_master.company_code %></td>
-    <td><%= company_master.company_name %></td>
-    <td><%= company_master.office_phone_number %></td>
-    <td><%= company_master.pan_number %></td>
-    <td><%= link_to 'Show', company_master %></td>
-    <td><%= link_to 'Edit', edit_company_master_path(company_master) %></td>
-    <td><%= link_to 'Destroy', company_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @company_masters.each do |company_master| %>
+              <tr>
+                <td><%= company_master.company_code %></td>
+                <td><%= company_master.company_name %></td>
+                <td><%= company_master.office_phone_number %></td>
+                <td><%= company_master.pan_number %></td>
+                <td><%= link_to 'Show', company_master %></td>
+                <td><%= link_to 'Edit', edit_company_master_path(company_master) %></td>
+                <td><%= link_to 'Destroy', company_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

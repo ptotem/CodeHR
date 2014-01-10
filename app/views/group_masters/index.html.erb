@@ -1,23 +1,32 @@
-<h1>Listing group_masters</h1>
+<h1>Listing Group Masters</h1>
 
-<table>
-  <tr>
-    <th>Group Code</th>
-    <th>Group Name</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Group Code</th>
+            <th>Group Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @group_masters.each do |group_master| %>
-  <tr>
-    <td><%= group_master.group_code %></td>
-    <td><%= group_master.group_name %></td>
-    <td><%= link_to 'Show', group_master %></td>
-    <td><%= link_to 'Edit', edit_group_master_path(group_master) %></td>
-    <td><%= link_to 'Destroy', group_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @group_masters.each do |group_master| %>
+              <tr>
+                <td><%= group_master.group_code %></td>
+                <td><%= group_master.group_name %></td>
+                <td><%= link_to 'Show', group_master %></td>
+                <td><%= link_to 'Edit', edit_group_master_path(group_master) %></td>
+                <td><%= link_to 'Destroy', group_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

@@ -1,22 +1,31 @@
-<h1>Listing process_trs</h1>
+<h1>Listing Process trs</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @process_trs.each do |process_tr| %>
-  <tr>
-    <td><%= process_tr.name %></td>
-    <td><%= link_to 'Show', process_tr %></td>
-    <td><%= link_to 'Edit', edit_process_tr_path(process_tr) %></td>
-    <td><%= link_to 'Destroy', process_tr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @process_trs.each do |process_tr| %>
+              <tr>
+                <td><%= process_tr.name %></td>
+                <td><%= link_to 'Show', process_tr %></td>
+                <td><%= link_to 'Edit', edit_process_tr_path(process_tr) %></td>
+                <td><%= link_to 'Destroy', process_tr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <br />
 

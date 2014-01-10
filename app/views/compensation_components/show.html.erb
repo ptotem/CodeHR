@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Final ctc fixed:</b>
-  <%= @compensation_component.final_ctc_fixed %>
-</p>
-
-<p>
-  <b>Final ctc varriable:</b>
-  <%= @compensation_component.final_ctc_varriable %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Compensation Component Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Final CTC Fixed</th>
+            <td><%= @compensation_component.final_ctc_fixed %></td>
+          </tr>
+          <tr>
+            <th>Final CTC Variable</th>
+            <td><%= @compensation_component.final_ctc_varriable %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_compensation_component_path(@compensation_component) %> |

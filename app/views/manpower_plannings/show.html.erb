@@ -1,29 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Mp code:</b>
-  <%= @manpower_planning.mp_code %>
-</p>
-
-<p>
-  <b>Period from:</b>
-  <%= @manpower_planning.period_from %>
-</p>
-
-<p>
-  <b>Period to:</b>
-  <%= @manpower_planning.period_to %>
-</p>
-
-<p>
-  <b>Requested by:</b>
-  <%= @manpower_planning.requested_by %>
-</p>
-
-<p>
-  <b>Final approved number:</b>
-  <%= @manpower_planning.final_approved_number %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Manpower Planning Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Mp Code</th>
+            <td><%= @manpower_planning.mp_code %></td>
+          </tr>
+          <tr>
+            <th>Period From</th>
+            <td><%= @manpower_planning.period_from %></td>
+          </tr>
+          <tr>
+            <th>Period To</th>
+            <td><%= @manpower_planning.period_to %></td>
+          </tr>
+          <tr>
+            <th>Requested By</th>
+            <td><%= @manpower_planning.requested_by %></td>
+          </tr>
+          <tr>
+            <th>Final Approved Number</th>
+            <td><%= @manpower_planning.final_approved_number %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_manpower_planning_path(@manpower_planning) %> |

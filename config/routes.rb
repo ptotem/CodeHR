@@ -87,6 +87,9 @@ CodeHR::Application.routes.draw do
   match 'import_employee_masters' => 'employee_masters#import_employee_masters', :as => :import_employee_masters
   match 'importing_employee_masters' => 'employee_masters#importing_employee_masters', :as => :importing_employee_masters
 
+  #match 'import_candidate_masters' => 'employee_masters#import_employee_masters', :as => :import_employee_masters
+  #match 'importing_employee_masters' => 'employee_masters#importing_employee_masters', :as => :importing_employee_masters
+
   match 'import_group_masters' => 'group_masters#import_group_masters', :as => :import_group_masters
   match 'importing_group_masters' => 'group_masters#importing_group_masters', :as => :importing_group_masters
 

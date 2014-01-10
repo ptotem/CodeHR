@@ -34,5 +34,21 @@ class CandidateMastersController < InheritedResources::Base
   #  end
   #end
 
+  def import_candidate_masters
+    render :layout => false
+  end
+
+  def importing_candidate_masters
+    #render :text => params[:file][:original_filename]
+
+    if request.post? && params[:file].present?
+      CandidateMaster.import(params[:file])
+      #redirect_to '/employee_masters', notice: "Slides imported."
+    else
+      redirect_to '/import_employee_masters', notice: "Slides couldn't be imported."
+    end
+
+  end
+
 
 end
