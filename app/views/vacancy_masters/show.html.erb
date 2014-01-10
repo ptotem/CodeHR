@@ -1,50 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Vacancy code:</b>
-  <%= @vacancy_master.vacancy_code %>
-</p>
-
-<p>
-  <b>Manpower planning:</b>
-  <%= @vacancy_master.manpower_planning_id %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @vacancy_master.description %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @vacancy_master.status %>
-</p>
-
-<p>
-  <b>Sourcing strategy:</b>
-  <%= @vacancy_master.sourcing_strategy %>
-</p>
-
-<p>
-  <b>Hr rep:</b>
-  <%= @vacancy_master.hr_rep %>
-</p>
-
-<p>
-  <b>Hiring manager:</b>
-  <%= @vacancy_master.hiring_manager %>
-</p>
-
-<p>
-  <b>Ctc range from:</b>
-  <%= @vacancy_master.ctc_range_from %>
-</p>
-
-<p>
-  <b>Ctc range to:</b>
-  <%= @vacancy_master.ctc_range_to %>
-</p>
-
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Vacancy Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Vacancy Code</th>
+            <td><%= @vacancy_master.vacancy_code %></td>
+          </tr>
+          <tr>
+            <th>Manpower Planning</th>
+            <td><%= @vacancy_master.manpower_planning_id %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @vacancy_master.description %></td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td><%= @vacancy_master.status %></td>
+          </tr>
+          <tr>
+            <th>Sourcing Strategy</th>
+            <td><%= @vacancy_master.sourcing_strategy %></td>
+          </tr>
+          <tr>
+            <th>HR Rep</th>
+            <td><%= @vacancy_master.hr_rep %></td>
+          </tr>
+          <tr>
+            <th>CTC Range From</th>
+            <td><%= @vacancy_master.ctc_range_from %></td>
+          </tr>
+          <tr>
+            <th>CTC Range To</th>
+            <td><%= @vacancy_master.ctc_range_to %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_vacancy_master_path(@vacancy_master) %> |
 <%= link_to 'Back', vacancy_masters_path %>

@@ -1,38 +1,46 @@
-<h1>Listing vacancy_masters</h1>
+<h1>Listing Vacancy Masters</h1>
 
-<table>
-  <tr>
-    <th>Vacancy code</th>
-    <th>Manpower planning</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Sourcing strategy</th>
-    <th>Hr rep</th>
-    <th>Hiring manager</th>
-    <th>Ctc range from</th>
-    <th>Ctc range to</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Vacancy Code</th>
+            <th>Manpower Planning</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Sourcing Strategy</th>
+            <th>HR Rep</th>
+            <th>Hiring Manager</th>
+            <th>CTC Range From</th>
+            <th>CTC Range To</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @vacancy_masters.each do |vacancy_master| %>
-  <tr>
-    <td><%= vacancy_master.vacancy_code %></td>
-    <td><%= vacancy_master.manpower_planning_id %></td>
-    <td><%= vacancy_master.description %></td>
-    <td><%= vacancy_master.status %></td>
-    <td><%= vacancy_master.sourcing_strategy %></td>
-    <td><%= vacancy_master.hr_rep %></td>
-    <td><%= vacancy_master.hiring_manager %></td>
-    <td><%= vacancy_master.ctc_range_from %></td>
-    <td><%= vacancy_master.ctc_range_to %></td>
-    <td><%= link_to 'Show', vacancy_master %></td>
-    <td><%= link_to 'Edit', edit_vacancy_master_path(vacancy_master) %></td>
-    <td><%= link_to 'Destroy', vacancy_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @vacancy_masters.each do |vacancy_master| %>
+              <tr>
+                <td><%= vacancy_master.vacancy_code %></td>
+                <td><%= vacancy_master.manpower_planning_id %></td>
+                <td><%= vacancy_master.description %></td>
+                <td><%= vacancy_master.status %></td>
+                <td><%= vacancy_master.sourcing_strategy %></td>
+                <td><%= vacancy_master.hr_rep %></td>
+                <td><%= vacancy_master.hiring_manager %></td>
+                <td><%= vacancy_master.ctc_range_from %></td>
+                <td><%= vacancy_master.ctc_range_to %></td>
+                <td><%= link_to 'Show', vacancy_master %></td>
+                <td><%= link_to 'Edit', edit_vacancy_master_path(vacancy_master) %></td>
+                <td><%= link_to 'Destroy', vacancy_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

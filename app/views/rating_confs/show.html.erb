@@ -1,40 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Col name:</b>
-  <%= @rating_conf.col_name %>
-</p>
 
-<p>
-  <b>Col lable:</b>
-  <%#= @rating_conf.col_lable %>
-  <%#= best_in_place @rating_conf, :col_lable, :type => :input %>
-</p>
-
-<p>
-  <b>Col validation:</b>
-  <%= @rating_conf.col_validation %>
-</p>
-
-<p>
-  <b>Col type:</b>
-  <%= @rating_conf.col_type %>
-</p>
-
-<p>
-  <b>Col col_sequence:</b>
-  <%= @rating_conf.col_sequence %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Rating Conf Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Column Name</th>
+            <td><%= @rating_conf.col_name %></td>
+          </tr>
+          <tr>
+            <th>Column Lable</th>
+            <!--<td><%#= @rating_conf.col_lable %></td>-->
+            <td><%= best_in_place @rating_conf, :col_lable, :type => :input %></td>
+          </tr>
+          <tr>
+            <th>Column Validation</th>
+            <td><%= @rating_conf.col_validation %></td>
+          </tr>
+          <tr>
+            <th>Column Type</th>
+            <td><%= @rating_conf.col_type %></td>
+          </tr>
+          <tr>
+            <th>Column Sequence</th>
+            <td><%= @rating_conf.col_sequence %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_rating_conf_path(@rating_conf) %> |
 <%= link_to 'Back', rating_confs_path %>
-
-<!--<script src="/assets/best_in_place.js"></script>-->
-
-<!--<script>-->
-//    $(document).ready(function() {
-//        /* Activating Best In Place */
-//        $(".best_in_place").best_in_place()
-//    });
-<!--</script>-->

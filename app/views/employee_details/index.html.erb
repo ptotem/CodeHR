@@ -1,59 +1,70 @@
-<h1>Listing employee_details</h1>
+<h1>Listing Employee Details</h1>
 
-<table>
-  <tr>
-    <th>Current designation</th>
-    <th>Job</th>
-    <th>Band</th>
-    <th>Total work exp years</th>
-    <th>Total work exp months</th>
-    <th>Personal email</th>
-    <th>Contact numbers</th>
-    <th>Personal address</th>
-    <th>Bank name</th>
-    <th>Account number</th>
-    <th>Rf no</th>
-    <th>Esic no</th>
-    <th>Pan no</th>
-    <th>Blood group</th>
-    <th>Date of leaving</th>
-    <th>Nature of separation</th>
-    <th>Remarks 1</th>
-    <th>Remarks 2</th>
-    <th>Remarks 3</th>
-    <th>Remarks 4</th>
-    <th>Remarks 5</th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Current Designation</th>
+            <th>Job</th>
+            <th>Band</th>
+            <th>Total Work Exp (years)</th>
+            <th>Total Work Exp (months)</th>
+            <th>Personal Email</th>
+            <th>Contact Numbers</th>
+            <!--<th>Personal Address</th>-->
+            <!--<th>Bank Name</th>-->
+            <!--<th>Account Number</th>-->
+            <!--<th>Rf No.</th>-->
+            <!--<th>Esic No.</th>-->
+            <!--<th>PAN No.</th>-->
+            <!--<th>Blood Group</th>-->
+            <!--<th>Date of Leaving</th>-->
+            <!--<th>Nature of Separation</th>-->
+            <!--<th>Remarks 1</th>-->
+            <!--<th>Remarks 2</th>-->
+            <!--<th>Remarks 3</th>-->
+            <!--<th>Remarks 4</th>-->
+            <!--<th>Remarks 5</th>-->
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @employee_details.each do |employee_detail| %>
-  <tr>
-    <td><%= employee_detail.current_designation %></td>
-    <td><%= employee_detail.job_role_id %></td>
-    <td><%= employee_detail.band_id %></td>
-    <td><%= employee_detail.total_work_exp_years %></td>
-    <td><%= employee_detail.total_work_exp_months %></td>
-    <td><%= employee_detail.personal_email %></td>
-    <td><%= employee_detail.contact_numbers %></td>
-    <td><%= employee_detail.personal_address %></td>
-    <td><%= employee_detail.bank_name %></td>
-    <td><%= employee_detail.account_number %></td>
-    <td><%= employee_detail.rf_no %></td>
-    <td><%= employee_detail.esic_no %></td>
-    <td><%= employee_detail.pan_no %></td>
-    <td><%= employee_detail.blood_group %></td>
-    <td><%= employee_detail.date_of_leaving %></td>
-    <td><%= employee_detail.nature_of_separation %></td>
-    <td><%= employee_detail.remarks_1 %></td>
-    <td><%= employee_detail.remarks_2 %></td>
-    <td><%= employee_detail.remarks_3 %></td>
-    <td><%= employee_detail.remarks_4 %></td>
-    <td><%= employee_detail.remarks_5 %></td>
-    <td><%= link_to 'Show', employee_detail %></td>
-    <td><%= link_to 'Edit', edit_employee_detail_path(employee_detail) %></td>
-    <td><%= link_to 'Destroy', employee_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @employee_details.each do |employee_detail| %>
+              <tr>
+                <td><%= employee_detail.current_designation %></td>
+                <td><%= employee_detail.job_role_id %></td>
+                <td><%= employee_detail.band_id %></td>
+                <td><%= employee_detail.total_work_exp_years %></td>
+                <td><%= employee_detail.total_work_exp_months %></td>
+                <td><%= employee_detail.personal_email %></td>
+                <td><%= employee_detail.contact_numbers %></td>
+                <!--<td><%#= employee_detail.personal_address %></td>-->
+                <!--<td><%#= employee_detail.bank_name %></td>-->
+                <!--<td><%#= employee_detail.account_number %></td>-->
+                <!--<td><%#= employee_detail.rf_no %></td>-->
+                <!--<td><%#= employee_detail.esic_no %></td>-->
+                <!--<td><%#= employee_detail.pan_no %></td>-->
+                <!--<td><%#= employee_detail.blood_group %></td>-->
+                <!--<td><%#= employee_detail.date_of_leaving %></td>-->
+                <!--<td><%#= employee_detail.nature_of_separation %></td>-->
+                <!--<td><%#= employee_detail.remarks_1 %></td>-->
+                <!--<td><%#= employee_detail.remarks_2 %></td>-->
+                <!--<td><%#= employee_detail.remarks_3 %></td>-->
+                <!--<td><%#= employee_detail.remarks_4 %></td>-->
+                <!--<td><%#= employee_detail.remarks_5 %></td>-->
+                <td><%= link_to 'Show', employee_detail %></td>
+                <td><%= link_to 'Edit', edit_employee_detail_path(employee_detail) %></td>
+                <td><%= link_to 'Destroy', employee_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

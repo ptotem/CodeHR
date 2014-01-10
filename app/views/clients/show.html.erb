@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name</b>
-  <%= @client.name %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @client.address %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Group Company Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+      <tr>
+        <th>Name</th>
+        <td><%= @client.name %></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><%= @client.address %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
