@@ -36,7 +36,8 @@
                 <!--<td><%#= employee_master.marital_status %></td>-->
                 <!--<td><%#= employee_master.date_of_birth %></td>-->
                 <td><%= employee_master.date_of_joining %></td>
-                <td><%= employee_master.group_master_id %></td>
+                <!--<td><%#= employee_master.group_master_id %></td>-->
+                <td><%= @employee_master.group_master.group_name rescue nil %></td>
                 <td><%= employee_master.designation_joined_at %></td>
                 <td><%= employee_master.official_email %></td>
                 <!--<td><%#= employee_master.address_for_communication %></td>-->

@@ -1,34 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Vendor code:</b>
-  <%= @vendor_master.vendor_code %>
-</p>
-
-<p>
-  <b>Vendor name:</b>
-  <%= @vendor_master.vendor_name %>
-</p>
-
-<p>
-  <b>Vendor type:</b>
-  <%= @vendor_master.vendor_type %>
-</p>
-
-<p>
-  <b>Office phone number:</b>
-  <%= @vendor_master.office_phone_number %>
-</p>
-
-<p>
-  <b>Office fax number1:</b>
-  <%= @vendor_master.office_fax_number1 %>
-</p>
-
-<p>
-  <b>Office fax number2:</b>
-  <%= @vendor_master.office_fax_number2 %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Vendor Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Vendor Code</th>
+            <td><%= @vendor_master.vendor_code %></td>
+          </tr>
+          <tr>
+            <th>Vendor Name</th>
+            <td><%= @vendor_master.vendor_code %></td>
+          </tr>
+          <tr>
+            <th>Vendor Type</th>
+            <td><%= @vendor_master.vendor_type %></td>
+          </tr>
+          <tr>
+            <th>Office Phone Number</th>
+            <td><%= @vendor_master.office_phone_number%></td>
+          </tr>
+          <tr>
+            <th>Office Fax Number1</th>
+            <td><%= @vendor_master.office_fax_number1 %></td>
+          </tr>
+          <tr>
+            <th>Office Fax Number2</th>
+            <td><%= @vendor_master.office_fax_number2 %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_vendor_master_path(@vendor_master) %> |

@@ -1,32 +1,41 @@
-<h1>Listing vendor_masters</h1>
+<h1>Listing Vendor Masters</h1>
 
-<table>
-  <tr>
-    <th>Vendor code</th>
-    <th>Vendor name</th>
-    <th>Vendor type</th>
-    <th>Office phone number</th>
-    <th>Office fax number1</th>
-    <th>Office fax number2</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Vendor Code</th>
+            <th>Vendor Name</th>
+            <th>Vendor Type</th>
+            <th>Office Phone Number</th>
+            <th>Office Fax Number1</th>
+            <th>Office Fax Number2</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @vendor_masters.each do |vendor_master| %>
-  <tr>
-    <td><%= vendor_master.vendor_code %></td>
-    <td><%= vendor_master.vendor_name %></td>
-    <td><%= vendor_master.vendor_type %></td>
-    <td><%= vendor_master.office_phone_number %></td>
-    <td><%= vendor_master.office_fax_number1 %></td>
-    <td><%= vendor_master.office_fax_number2 %></td>
-    <td><%= link_to 'Show', vendor_master %></td>
-    <td><%= link_to 'Edit', edit_vendor_master_path(vendor_master) %></td>
-    <td><%= link_to 'Destroy', vendor_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @vendor_masters.each do |vendor_master| %>
+              <tr>
+                <td><%= vendor_master.vendor_code %></td>
+                <td><%= vendor_master.vendor_name %></td>
+                <td><%= vendor_master.vendor_type %></td>
+                <td><%= vendor_master.office_phone_number %></td>
+                <td><%= vendor_master.office_fax_number1 %></td>
+                <td><%= vendor_master.office_fax_number2 %></td>
+                <td><%= link_to 'Show', vendor_master %></td>
+                <td><%= link_to 'Edit', edit_vendor_master_path(vendor_master) %></td>
+                <td><%= link_to 'Destroy', vendor_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <br />
 

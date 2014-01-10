@@ -223,7 +223,6 @@
     <img alt="Jason's Photo" src="/assets/user.jpg" class="nav-user-photo"/>
 							<span id="user_info">
 								<small>Welcome,</small>
-                              <!--Jason-->
                               <% if current_user.name.blank? %>
                                 User
                               <% else %>
@@ -233,8 +232,18 @@
     <i class="icon-caret-down"></i>
   </a>
   <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-    <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+    <li>
+      <a href="/employee_masters/<%= current_user.employee_master.id rescue nil %>/edit">
+        <i class="icon-cog"></i>
+        Settings
+      </a>
+    </li>
+    <li>
+      <a href="/employee_details/<%= current_user.employee_detail.id rescue nil %>/edit">
+        <i class="icon-user"></i>
+        Profile
+      </a>
+    </li>
     <li class="divider"></li>
     <li><a href="<%= destroy_user_session_path %>"><i class="icon-off"></i> Logout</a></li>
   </ul>
