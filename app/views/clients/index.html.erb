@@ -1,8 +1,8 @@
-<h1>Listing clients</h1>
+<h1>Listing Group Company</h1>
 
 <table>
   <tr>
-    <th>Name;string</th>
+    <th>Name</th>
     <th>Address</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @clients.each do |client| %>
   <tr>
-    <td><%= client.name;string %></td>
+    <td><%= client.name %></td>
     <td><%= client.address %></td>
     <td><%= link_to 'Show', client %></td>
     <td><%= link_to 'Edit', edit_client_path(client) %></td>
