@@ -1,28 +1,36 @@
-<h1>Listing notification_masters</h1>
+<h1>Listing Notification Masters</h1>
 
-<table>
-  <tr>
-    <th>Code</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @notification_masters.each do |notification_master| %>
-  <tr>
-    <td><%= notification_master.code %></td>
-    <td><%= notification_master.title %></td>
-    <td><%= notification_master.description %></td>
-    <td><%= notification_master.type %></td>
-    <td><%= link_to 'Show', notification_master %></td>
-    <td><%= link_to 'Edit', edit_notification_master_path(notification_master) %></td>
-    <td><%= link_to 'Destroy', notification_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @notification_masters.each do |notification_master| %>
+              <tr>
+                <td><%= notification_master.code %></td>
+                <td><%= notification_master.title %></td>
+                <td><%= notification_master.description %></td>
+                <td><%= notification_master.type %></td>
+                <td><%= link_to 'Show', notification_master %></td>
+                <td><%= link_to 'Edit', edit_notification_master_path(notification_master) %></td>
+                <td><%= link_to 'Destroy', notification_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 

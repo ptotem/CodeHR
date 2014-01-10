@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Dt code:</b>
-  <%= @document_template_master.dt_code %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @document_template_master.description %>
-</p>
-
-<p>
-  <b>Related to:</b>
-  <%= @document_template_master.related_to %>
-</p>
-
-<p>
-  <b>File:</b>
-  <%= @document_template_master.dtfile %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Company Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Dt Code</th>
+            <td><%= @document_template_master.dt_code %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @document_template_master.description %></td>
+          </tr>
+          <tr>
+            <th>Related To</th>
+            <td><%= @document_template_master.related_to %></td>
+          </tr>
+          <tr>
+            <th>File</th>
+            <td><%= @document_template_master.dtfile %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_document_template_master_path(@document_template_master) %> |

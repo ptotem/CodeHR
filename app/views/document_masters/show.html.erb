@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Doc code:</b>
-  <%= @document_master.doc_code %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @document_master.name %>
-</p>
-
-<p>
-  <b>Vc needed:</b>
-  <%= @document_master.vc_needed %>
-</p>
-
-<p>
-  <b>Owner:</b>
-  <%= @document_master.owner %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Document Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Doc Code</th>
+            <td><%= @document_master.doc_code %></td>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <td><%= @document_master.name %></td>
+          </tr>
+          <tr>
+            <th>Vc Needed</th>
+            <td><%= @document_master.vc_needed %></td>
+          </tr>
+          <tr>
+            <th>Owner</th>
+            <td><%= @document_master.owner %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_document_master_path(@document_master) %> |

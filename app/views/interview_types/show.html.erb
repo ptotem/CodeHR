@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @interview_type.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @interview_type.description %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Interview Type Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @interview_type.name %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @interview_type.description %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_interview_type_path(@interview_type) %> |

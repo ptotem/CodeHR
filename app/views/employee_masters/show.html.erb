@@ -1,69 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @employee_master.user_id %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Employee Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>User</th>
+            <td><%= @employee_master.user_id %></td>
+          </tr>
+          <tr>
+            <th>Employee Code</th>
+            <td><%= @employee_master.employee_code %></td>
+          </tr>
+          <tr>
+            <th>Employee Name</th>
+            <td><%= @employee_master.employee_name %></td>
+          </tr>
+          <tr>
+            <th>Employee Middle Name</th>
+            <td><%= @employee_master.employee_middle_name_name %></td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td><%= @employee_master.status %></td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td><%= @employee_master.gender %></td>
+          </tr>
+          <tr>
+            <th>Marital Status</th>
+            <td><%= @employee_master.marital_status %></td>
+          </tr>
+          <tr>
+            <th>Date of Birth</th>
+            <td><%= @employee_master.date_of_birth %></td>
+          </tr>
+          <tr>
+            <th>Date of Joining</th>
+            <td><%= @employee_master.date_of_joining %></td>
+          </tr>
+          <tr>
+            <th>Group</th>
+            <td><%= @employee_master.group_master_id %></td>
+          </tr>
+          <tr>
+            <th>Designation Joined At</th>
+            <td><%= @employee_master.designation_joined_at %></td>
+          </tr>
+          <tr>
+            <th>Official Email</th>
+            <td><%= @employee_master.official_email %></td>
+          </tr>
+          <tr>
+            <th>Address for Communication</th>
+            <td><%= @employee_master.address_for_communication %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p>
-  <b>Employee code:</b>
-  <%= @employee_master.employee_code %>
-</p>
-
-<p>
-  <b>Employee name:</b>
-  <%= @employee_master.employee_name %>
-</p>
-
-<p>
-  <b>Employee middle name :</b>
-  <%= @employee_master.employee_middle_name_name %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @employee_master.status %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @employee_master.gender %>
-</p>
-
-<p>
-  <b>Marital status:</b>
-  <%= @employee_master.marital_status %>
-</p>
-
-<p>
-  <b>Date of birth:</b>
-  <%= @employee_master.date_of_birth %>
-</p>
-
-<p>
-  <b>Date of joining:</b>
-  <%= @employee_master.date_of_joining %>
-</p>
-
-<p>
-  <b>Group:</b>
-  <%= @employee_master.group_master_id %>
-</p>
-
-<p>
-  <b>Designation joined at:</b>
-  <%= @employee_master.designation_joined_at %>
-</p>
-
-<p>
-  <b>Official email:</b>
-  <%= @employee_master.official_email %>
-</p>
-
-<p>
-  <b>Address for communication:</b>
-  <%= @employee_master.address_for_communication %>
-</p>
 
 <%= link_to 'Edit', edit_employee_master_path(@employee_master) %> |
 <%= link_to 'Back', employee_masters_path %>

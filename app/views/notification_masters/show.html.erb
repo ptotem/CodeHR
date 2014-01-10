@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Code:</b>
-  <%= @notification_master.code %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @notification_master.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @notification_master.description %>
-</p>
-
-<p>
-  <b>Type:</b>
-  <%= @notification_master.type %>
-</p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Notification Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Code</th>
+            <td><%= @notification_master.code %></td>
+          </tr>
+          <tr>
+            <th>Title</th>
+            <td><%= @notification_master.title %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @notification_master.description %></td>
+          </tr>
+          <tr>
+            <th>Type</th>
+            <td><%= @notification_master.type %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_notification_master_path(@notification_master) %> |

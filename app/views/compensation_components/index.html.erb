@@ -1,24 +1,32 @@
-<h1>Listing compensation_components</h1>
+<h1>Listing Compensation Components</h1>
 
-<table>
-  <tr>
-    <th>Final ctc fixed</th>
-    <th>Final ctc varriable</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="offset1 span8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Final CTC Fixed</th>
+            <th>Final CTC Variable</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
 
-<% @compensation_components.each do |compensation_component| %>
-  <tr>
-    <td><%= compensation_component.final_ctc_fixed %></td>
-    <td><%= compensation_component.final_ctc_varriable %></td>
-    <td><%= link_to 'Show', compensation_component %></td>
-    <td><%= link_to 'Edit', edit_compensation_component_path(compensation_component) %></td>
-    <td><%= link_to 'Destroy', compensation_component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <tbody>
+          <% @compensation_components.each do |compensation_component| %>
+              <tr>
+                <td><%= compensation_component.final_ctc_fixed %></td>
+                <td><%= compensation_component.final_ctc_varriable %></td>
+                <td><%= link_to 'Show', compensation_component %></td>
+                <td><%= link_to 'Edit', edit_compensation_component_path(compensation_component) %></td>
+                <td><%= link_to 'Destroy', compensation_component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br />
 
