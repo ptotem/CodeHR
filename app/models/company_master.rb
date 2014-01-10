@@ -35,18 +35,19 @@ class CompanyMaster
   validates :company_code, :presence => true
 
   validates :company_name,
-            :presence => true,
-            :format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
+            :presence => true
+            # ,
+            #:format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
 
   validates :company_addresses, :presence => true
 
-  validates :office_phone_number,
-            :presence => true,
-            numericality: { only_integer: true }
+  validates :office_phone_number, :presence => true,
+           # numericality: { only_integer: true }
 
   validates :office_fax_number_1,
-            :presence => true,
-            numericality: { only_integer: true }
+            :presence => true
+            #,
+            #numericality: { only_integer: true }
 
   validates :pan_number, :presence => true
 
