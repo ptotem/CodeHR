@@ -1,5 +1,3 @@
-
-
 <div class="row-fluid">
 
     <%= nested_form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
@@ -15,42 +13,51 @@
             </div>
         <% end %>
 
-        <% RatingConf.all.each  do |rc| %>
+        <% @conf.each  do |rc| %>
             <% case rc.type %>
                 <% when "single"  %>
                     <div class="control-group">
                       <label for="<%= rc.col_lable.to_s %>" class="control-label"><%= rc.col_lable.to_s %></label>
                       <div class="controls">
-                        <%= f.text_field rc.col_name.to_sym %>
+                        <%= f.send(rc.col_type.to_sym, rc.col_name.to_sym )%>
                       </div>
                     </div>
+                <% when "associated"  %>
+                  <div class="control-group">
+                    <label for="<%= rc.col_lable.to_s %>" class="control-label"><%= rc.col_lable.to_s %></label>
+                    <div class="controls">
+                      <%= f.send(rc.col_type.to_sym, rc.col_name.to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name') )%>
+                    </div>
+                  </div>
+                <% when "parent" %>
+                    <%= f.fields_for rc.col_name.to_sym do |score_receiveds| %>
+                        <h3><%= rc.col_lable %></h3>
+                        <div class="control-group">
+                            <% @fi = RatingConf.where(:type => "child",:parent => "score_receiveds") %>
+                            <% @fi.each do |fi1| %>
+                              <label for="<%= fi1.col_lable.to_s %>" class="control-label"><%= fi1.col_lable.to_s %></label>
+                              <div class="controls">
+                                <%= score_receiveds.send(fi1.col_type.to_sym, fi1.col_name.to_sym )%>
+                                <%= score_receiveds.link_to_remove "Remove Score Received" %>
+                              </div>
+                            <% end %>
+                            <%= f.link_to_add "Add Score", :score_receiveds %>
+                        </div>
+                    <% end %>
+
+                <% when "dynamic" %>
+                    <% @fields = DynamicField.where(:oclass=>"Rating") %>
+                    <h3 class="header lighter blue">Dynamic Field</h3>
+                    <% @fields.each do |field| %>
+                        <div class="control-group">
+                            <%= f.label field.name.to_sym,:class => "control-label" %>
+                            <div class="controls">
+                                <%= f.send(field.type.to_sym, field.name.to_sym )%>
+                            </div>
+                        </div>
+                    <% end %>
             <% end %>
         <% end %>
-      <!--<hr>-->
-
-      <!--<%#= f.fields_for :score_receiveds do |score_receiveds| %>-->
-          <!--<div class="control-group">-->
-            <!--<%#= score_receiveds.label :score,:class => "control-label" %>-->
-            <!--<div class="controls">-->
-              <!--<%#= score_receiveds.text_field :score %>-->
-              <!--<%#= score_receiveds.link_to_remove "Remove this task" %>-->
-            <!--</div>-->
-          <!--</div>-->
-      <!--<%# end %>-->
-      <!--<%#= f.link_to_add "Score Receiveds", :score_receiveds %>-->
-      <!--<hr>-->
-
-          <!--<%# @fields = DynamicField.where(:oclass=>"Rating") %>-->
-            <!--<h3 class="header lighter blue">Dynamic Field</h3>-->
-          <!--<%# @fields.each do |field| %>-->
-          <!--<div class="control-group">-->
-              <!--<%#= f.label field.name.to_sym,:class => "control-label" %>-->
-              <!--<div class="controls">-->
-                <!--<%#= f.send(field.type.to_sym, field.name.to_sym )%>-->
-              <!--</div>-->
-          <!--</div>-->
-          <!--<%# end %>-->
-
 
         <div class="form-actions">
             <%= f.submit :class=>"btn btn-info" %>
