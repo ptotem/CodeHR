@@ -20,7 +20,7 @@
             <% @rating_confs.each do |rating_conf| %>
                 <tr>
                   <td><%= rating_conf.col_name %></td>
-                  <td><%= best_in_place rating_conf, :col_lable, :type => :input %></td>
+                  <td><%#= best_in_place rating_conf, :col_lable, :type => :input %><%= rating_conf.col_lable %></td>
                   <td class='center'>
                     <label>
                         <%= check_box_tag 'col_validation' %>
@@ -28,7 +28,7 @@
                     </label>
                   </td>
                   <td><%= rating_conf.col_type %></td>
-                  <td><%= best_in_place rating_conf, :col_sequence, :type => :input %></td>
+                  <td><%#= best_in_place rating_conf, :col_sequence, :type => :input %><%= rating_conf.col_sequence %></td>
 
                   <td><%= link_to 'Show', rating_conf %></td>
                   <td><%= link_to 'Edit', edit_rating_conf_path(rating_conf) %></td>
@@ -45,11 +45,11 @@
 <%= link_to 'New Rating conf', new_rating_conf_path %>
 
 <!--<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
-<script src="/assets/best_in_place.js"></script>
+<!--<script src="/assets/best_in_place.js"></script>-->
 
-<script>
-    $(document).ready(function() {
-        /* Activating Best In Place */
-        jQuery(".best_in_place").best_in_place();
-    });
-</script>
+<!--<script>-->
+//    $(document).ready(function() {
+//        /* Activating Best In Place */
+//        jQuery(".best_in_place").best_in_place();
+//    });
+<!--</script>-->
