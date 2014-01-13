@@ -1,5 +1,8 @@
 class CandidateMastersController < InheritedResources::Base
   def new
+    @form_config= t('config.CandidateMaster.form.new')
+    @form=@form_config[:fields]
+
     @candidate_master = CandidateMaster.new
     @candidate_master.cand_educations.build
     @candidate_master.candidate_contact_numbers.build
@@ -50,5 +53,10 @@ class CandidateMastersController < InheritedResources::Base
 
   end
 
+  def edit
+    @form_config= t('config.CandidateMaster.form.edit')
+    @form=@form_config[:fields]
+    @candidate_master = CandidateMaster.find(params[:id])
+  end
 
 end
