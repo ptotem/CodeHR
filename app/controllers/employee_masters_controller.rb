@@ -1,6 +1,9 @@
 class EmployeeMastersController < InheritedResources::Base
 
   def new
+    @form_config= t('config.EmployeeMaster.form.new')
+    @form=@form_config[:fields]
+
     @employee_master = EmployeeMaster.new
     @employee_master.reporting_tos.build
     #@rating.write_attribute(:test1, "")
@@ -43,6 +46,12 @@ class EmployeeMastersController < InheritedResources::Base
         format.json { render json: @employee_master.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+    @form_config= t('config.EmployeeMaster.form.edit')
+    @form=@form_config[:fields]
+    @employee_master = EmployeeMaster.find(params[:id])
   end
 
   #Function to handle tagging for EmployeeMaster
