@@ -2,7 +2,6 @@
   <% if @role.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
-
       <ul>
       <% @role.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,14 +10,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <label for="<%= @form[:role_name].to_s %>" class="control-label"><%= @form[:role_name].to_s %></label>
+    <div class="controls">
+        <%= f.text_field :name %>
+    </div>
     <% if !params[:process_id].nil? %>
         <%= hidden_field_tag :process_id, params[:process_id] %>
     <% end %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
   </div>
 <% end %>

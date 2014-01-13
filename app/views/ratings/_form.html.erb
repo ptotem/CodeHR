@@ -13,31 +13,31 @@
             </div>
         <% end %>
 
-        <% @conf.each  do |rc| %>
-            <% case rc.type %>
+        <% @form.each  do |_,rc| %>
+            <% case rc[:class_type] %>
                 <% when "single"  %>
                     <div class="control-group">
-                      <label for="<%= rc.col_lable.to_s %>" class="control-label"><%= rc.col_lable.to_s %></label>
+                      <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
                       <div class="controls">
-                        <%= f.send(rc.col_type.to_sym, rc.col_name.to_sym )%>
+                        <%= f.send(rc[:type].to_sym, rc[:name].to_sym )%>
                       </div>
                     </div>
                 <% when "associated"  %>
                   <div class="control-group">
-                    <label for="<%= rc.col_lable.to_s %>" class="control-label"><%= rc.col_lable.to_s %></label>
+                    <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
                     <div class="controls">
-                      <%= f.send(rc.col_type.to_sym, rc.col_name.to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name') )%>
+                      <%= f.send(rc[:type].to_sym, rc[:name].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name') )%>
                     </div>
                   </div>
                 <% when "parent" %>
-                    <%= f.fields_for rc.col_name.to_sym do |score_receiveds| %>
-                        <h3><%= rc.col_lable %></h3>
+                    <%= f.fields_for rc[:name].to_sym do |score_receiveds| %>
+                        <h3><%= rc[:label] %></h3>
                         <div class="control-group">
-                            <% @fi = RatingConf.where(:type => "child",:parent => "score_receiveds") %>
-                            <% @fi.each do |fi1| %>
-                              <label for="<%= fi1.col_lable.to_s %>" class="control-label"><%= fi1.col_lable.to_s %></label>
+                            <%@fi = rc[:child] %>
+                            <% @fi.each do |i,fil| %>
+                              <label for="<%= fil[:label].to_s %>" class="control-label"><%= fil[:label].to_s %></label>
                               <div class="controls">
-                                <%= score_receiveds.send(fi1.col_type.to_sym, fi1.col_name.to_sym )%>
+                                <%= score_receiveds.send(fil[:type].to_sym, fil[:name].to_sym )%>
                                 <%= score_receiveds.link_to_remove "Remove Score Received" %>
                               </div>
                             <% end %>
@@ -60,7 +60,7 @@
         <% end %>
 
         <div class="form-actions">
-            <%= f.submit :class=>"btn btn-info" %>
+            <%= f.submit "#{@form_config[:submit]}", :class=>"btn btn-info" %>
         </div>
 
     <% end %>

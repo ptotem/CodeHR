@@ -2,4 +2,99 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  config:
+    Rating:
+      form:
+        new:
+          name: 'New Rating Form'
+          submit: 'Create'
+          fields:
+            comments:
+              name: 'comments'
+              label: 'Comment'
+              type: 'text_field'
+              sequence: 4
+              class_type: 'single'
+              parent: ''
+            vacancy_scheduling_id:
+              name: 'vacancy_scheduling_id'
+              label: 'Scheduling ID'
+              type: 'select'
+              sequence: 3
+              class_type: 'associated'
+              parent: ''
+            score_recieveds:
+              name: 'score_receiveds'
+              label: 'Scoring'
+              type: 'field'
+              sequence: 2
+              class_type: 'parent'
+              parent: ''
+              child:
+                score:
+                  name: 'score'
+                  label: 'Score'
+                  type: 'text_field'
+                  sequence: 5
+                  class_type: 'child'
+                  parent: 'score_receiveds'
+            dynamic_fields:
+              name: 'dynamic_fields'
+              label: 'Dynamic Fields'
+              type: ''
+              sequence: 1
+              class_type: 'dynamic'
+              parent: ''
+        edit:
+          name: 'Edit Rating'
+          submit: 'Update Rating'
+          fields:
+            comments:
+              name: 'comments'
+              label: 'Comment'
+              type: 'text_field'
+              sequence: 4
+              class_type: 'single'
+              parent: ''
+            vacancy_scheduling_id:
+              name: 'vacancy_scheduling_id'
+              label: 'Scheduling ID'
+              type: 'select'
+              sequence: 3
+              class_type: 'associated'
+              parent: ''
+            score_recieveds:
+              name: 'score_receiveds'
+              label: 'Scoring'
+              type: 'field'
+              sequence: 2
+              class_type: 'parent'
+              parent: ''
+              child:
+                score:
+                  name: 'score'
+                  label: 'Score'
+                  type: 'text_field'
+                  sequence: 5
+                  class_type: 'child'
+                  parent: 'score_receiveds'
+            dynamic_fields:
+              name: 'dynamic_fields'
+              label: 'Dynamic Fields'
+              type: ''
+              sequence: 1
+              class_type: 'dynamic'
+              parent: ''
+    Role:
+      form:
+        new:
+          name: 'New Role Form'
+          submit: 'Create Role'
+          fields:
+            role_name:  'Role Name'
+        edit:
+          name: 'Edit Role Form'
+          submit: 'Update Role'
+          fields:
+            role_name:  'Role Name'
+

@@ -1,4 +1,10 @@
 class RolesController < InheritedResources::Base
+  def new
+    @role=Role.new
+    @form_config= t('config.Role.form.new')
+    @form=@form_config[:fields]
+  end
+
   def create
     @role= Role.new(params[:role])
     @role.save
@@ -21,6 +27,8 @@ class RolesController < InheritedResources::Base
   end
 
   def edit
+    @form_config= t('config.Role.form.edit')
+    @form=@form_config[:fields]
     @role=Role.find(params[:id])
   end
 

@@ -66,7 +66,7 @@ class EmployeeMastersController < InheritedResources::Base
     @employee_master.save
     if !params[:process_id].nil?
       @pro=ProcessTr.find(params[:process_id])
-      @pro.chits.create!(name:"User",ocname:"EmployeeMaster",oid:@employee_master._id)
+      @pro.chits.create!(name:"Role",ocname:"Role",oid:@employee_master.role)
       @user=current_user
       @user.current_redirect_url=''
       @user.save
@@ -86,7 +86,7 @@ class EmployeeMastersController < InheritedResources::Base
     @employee_master.save
     if !params[:process_id].nil?
       @pro=ProcessTr.find(params[:process_id])
-      #@pro.chits.create!(name:"User",ocname:"EmployeeMaster",oid:@employee_master._id)
+      @pro.chits.create!(name:"Group",ocname:"GroupMaster",oid:@employee_master.group_master_id)
       @user=current_user
       @user.current_redirect_url=''
       @user.save
@@ -102,6 +102,22 @@ class EmployeeMastersController < InheritedResources::Base
 
   def manager_tagging
     @employee_master=EmployeeMaster.find(params[:id])
+    @employee_master.reporting_tos.create!(:reporting_officer_id => params[:manager_id])
+    @employee_master.save
+    if !params[:process_id].nil?
+      @pro=ProcessTr.find(params[:process_id])
+      @pro.chits.create!(name:"Group",ocname:"GroupMaster",oid:@employee_master.group_master_id)
+      @user=current_user
+      @user.current_redirect_url=''
+      @user.save
+      @pro.step_trs[params[:seq].to_i].end_processing_step
+    end
+
+    @user=User.find(current_user._id)
+    if !@user.current_redirect_url.blank?
+      redirect_to @user.current_redirect_url
+      return
+    end
   end
 
 
