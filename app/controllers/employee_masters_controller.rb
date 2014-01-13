@@ -106,7 +106,7 @@ class EmployeeMastersController < InheritedResources::Base
     @employee_master.save
     if !params[:process_id].nil?
       @pro=ProcessTr.find(params[:process_id])
-      @pro.chits.create!(name:"Group",ocname:"GroupMaster",oid:@employee_master.group_master_id)
+      @pro.chits.create!(name:"Manager",ocname:"EmployeeMaster",oid:@employee_master.reporting_tos.first.reporting_officer_id)
       @user=current_user
       @user.current_redirect_url=''
       @user.save

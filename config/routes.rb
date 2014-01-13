@@ -107,7 +107,7 @@ CodeHR::Application.routes.draw do
 
   match '/role_tag' =>'employee_masters#role_tagging', :as => :role_tag
   match '/group_tag' =>'employee_masters#group_tagging', :as => :group_tag
-  match '/manager_tag/:id/:manager_id/:process_id/:seq' =>'employee_masters#manager_tagging', :as => :manager_tag
+  match '/manager_tag' =>'employee_masters#manager_tagging', :as => :manager_tag
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

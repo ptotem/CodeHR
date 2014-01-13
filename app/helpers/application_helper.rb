@@ -84,6 +84,11 @@ module ApplicationHelper
             end
             puts "Mail to power user delivered"
             @pro.step_trs[stepno].end_processing_step
+          when "Manager"
+            @pro=ProcessTr.find(pid)
+            @a=@pro.chits.where(:name=>"Manager").first
+            @manager=eval(@a.ocname).find(@a.oid)
+            @pro.step_trs[stepno].end_processing_step
           when "Array"
             puts "To be done"
         end
