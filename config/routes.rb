@@ -98,6 +98,17 @@ CodeHR::Application.routes.draw do
 
   match '/get_data' => 'process_masters#get_data', :as => :get_data
 
+
+  match '/employeemaster_creation/:process_id/:seq'=>'employee_masters#new', :as=>:employee_creation
+
+  match '/employeemaster_tagging_role/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_role', :as => :employeemaster_tagging_role
+  match '/employeemaster_tagging_groupmaster/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_groupmaster', :as => :employeemaster_tagging_groupmaster
+  match '/employeemaster_tagging_manager/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_manager', :as => :employeemaster_tagging_manager
+
+  match '/role_tag' =>'employee_masters#role_tagging', :as => :role_tag
+  match '/group_tag' =>'employee_masters#group_tagging', :as => :group_tag
+  match '/manager_tag/:id/:manager_id/:process_id/:seq' =>'employee_masters#manager_tagging', :as => :manager_tag
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

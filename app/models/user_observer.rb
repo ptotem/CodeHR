@@ -4,5 +4,6 @@ class UserObserver < Mongoid::Observer
     puts "Testing whether observer is working in rails 3...."
     #Notifications.user("admin@example.com", "New User", user).deliver
     puts "Checking"
+    #redirect_to "/"
   end
 end

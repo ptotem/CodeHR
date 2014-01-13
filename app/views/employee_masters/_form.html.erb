@@ -149,6 +149,9 @@
             </div>
           </div>
           <div class="span6">
+            <% if !params[:process_id].nil? %>
+                <%= hidden_field_tag :process_id, params[:process_id] %>
+            <% end %>
             <div class="control-group">
               <%= raw custom_lable(@employee_master, :address_for_communication) %>
               <div class="controls">

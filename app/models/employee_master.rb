@@ -10,10 +10,11 @@ class EmployeeMaster
   field :marital_status, type: String
   field :date_of_birth, type: Date
   field :date_of_joining, type: Date
-
+  field :role, type: String
   field :designation_joined_at, type: String
   field :official_email, type: String
   field :address_for_communication, type: String
+  field :approved, type: Boolean
 
   belongs_to :user
   belongs_to :group_master

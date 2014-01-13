@@ -4,7 +4,10 @@ class ProcessTr
   field :user_id, type: String
 
   embeds_many :step_trs
+  embeds_many :chits
+
   accepts_nested_attributes_for :step_trs
+  accepts_nested_attributes_for :chits
 
   state_machine :state, initial: :created do
 

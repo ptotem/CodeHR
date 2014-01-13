@@ -7,7 +7,11 @@ class StepMaster
   field :content, type: String
   field :sequence, type: Integer
 
+  embeds_many :action_arr_masters
+
   embedded_in :process_master
+
+  accepts_nested_attributes_for :action_arr_masters
 
   state_machine :state, initial: :created do
 

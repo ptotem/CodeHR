@@ -7,7 +7,7 @@ class ProcessTrsController < InheritedResources::Base
     @p=ProcessMaster.find(params[:process_tr][:name])
     @process_tr=ProcessTr.create(:name=>@p.name,:user_id=>current_user._id)
     @p.step_masters.each do |sm|
-      if sm.oaction == "Notify"
+      if (sm.oaction == "Notify" || sm.oaction=="Tagging")
         @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>sm.action_to,:content=>sm.content)
       else
         @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content)
@@ -30,6 +30,10 @@ class ProcessTrsController < InheritedResources::Base
         format.json { render json: @process_tr.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+
   end
 
   def navigate

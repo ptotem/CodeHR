@@ -1,0 +1,9 @@
+<%= form_tag :group_tag do %>
+    <div class="control-group">
+      <%= hidden_field_tag :id, @employee_master._id %>
+      <%= select_tag "group_id", options_from_collection_for_select(GroupMaster.all,"id","group_name") %>
+      <%= hidden_field_tag :process_id, params[:process_id] %>
+      <%= hidden_field_tag :seq, params[:seq] %>
+    </div>
+    <%= submit_tag "Confirm" %>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  a_class_name: MyString
+  dep_class_name: MyString
+  a_obj_id: MyString
+
+two:
+  a_class_name: MyString
+  dep_class_name: MyString
+  a_obj_id: MyString

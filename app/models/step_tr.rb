@@ -9,6 +9,9 @@ class StepTr
   field :content, type: String
   field :sequence, type: Integer
 
+  embeds_many :action_arrs
+  accepts_nested_attributes_for :action_arrs
+
   embedded_in :process_tr
 
   state_machine :state, initial: :created do
@@ -86,6 +89,7 @@ class StepTr
     #"/roles/new"
     step_processing(self.oclass,self.oaction,self.action_to,self.content,self.process_tr._id,self.process_tr.step_trs.index(self),self.process_tr.user_id)
     #call_redirect
+    #ApplicationController.process_redirection(self.process_tr.user_id)
   end
 
   def post_finish_step
