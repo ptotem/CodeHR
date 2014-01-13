@@ -24,6 +24,9 @@ class GroupMastersController < ApplicationController
   # GET /group_masters/new
   # GET /group_masters/new.json
   def new
+    @form_config= t('config.GroupMaster.form.new')
+    @form=@form_config[:fields]
+
     @group_master = GroupMaster.new
     #@group_master.child_groups.build
     #@group_master.parent_group.build
@@ -35,6 +38,8 @@ class GroupMastersController < ApplicationController
 
   # GET /group_masters/1/edit
   def edit
+    @form_config= t('config.GroupMaster.form.edit')
+    @form=@form_config[:fields]
     @group_master = GroupMaster.find(params[:id])
   end
 

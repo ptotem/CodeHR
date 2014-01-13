@@ -12,7 +12,7 @@
     <% end %>
 
     <div class="control-group">
-      <%= f.label :group_name, :class => "control-label" %>
+      <label for="<%= @form[:group_name].to_s %>" class="control-label"><%= @form[:group_name].to_s %></label>
       <div class="controls">
         <%= f.text_field :group_name %>
       </div>
@@ -21,7 +21,7 @@
 
 
     <div class="control-group">
-      <%= f.label :company, :class => "control-label" %>
+      <label for="<%= @form[:company].to_s %>" class="control-label"><%= @form[:company].to_s %></label>
       <div class="controls">
         <%= f.select :company_master_id, options_from_collection_for_select(CompanyMaster.all ,'id','company_name') %>
       </div>
@@ -31,13 +31,13 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :parent_group, :class => "control-label" %>
+      <label for="<%= @form[:parent_group].to_s %>" class="control-label"><%= @form[:parent_group].to_s %></label>
       <div class="controls">
         <%= f.select :parent_group_id, options_from_collection_for_select(GroupMaster.all,'id','group_name') %>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit @form_config[:submit] %>
     </div>
 <% end %>

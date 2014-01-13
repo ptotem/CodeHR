@@ -91,10 +91,26 @@ en:
           name: 'New Role Form'
           submit: 'Create Role'
           fields:
-            role_name:  'Role Name'
+            role_name:  'Name Of Role'
         edit:
           name: 'Edit Role Form'
           submit: 'Update Role'
           fields:
             role_name:  'Role Name'
+    GroupMaster:
+      form:
+        new:
+          name: 'New Group'
+          submit: 'Create New Group'
+          fields:
+            group_name: "Name"
+            company: "Company Name"
+            parent_group: "Group Collection"
+        edit:
+          name: 'Edit Group'
+          submit: 'Update Group'
+          fields:
+            group_name: "Name"
+            company: "Company Name"
+            parent_group: "Group Collection"
 
