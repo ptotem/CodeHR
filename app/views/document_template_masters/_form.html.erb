@@ -15,7 +15,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :dt_code,:class => "control-label" %>
+            <%#= f.label :dt_code,:class => "control-label" %>
+            <label for="<%= @form[:dt_code].to_s %>" class="control-label"><%= @form[:dt_code].to_s %></label>
             <div class="controls">
               <%= f.text_field :dt_code %>
             </div>
@@ -23,7 +24,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :description,:class => "control-label" %>
+            <%#= f.label :description,:class => "control-label" %>
+            <label for="<%= @form[:description].to_s %>" class="control-label"><%= @form[:description].to_s %></label>
             <div class="controls">
               <%= f.text_area(:description, size:"40x3") %>
             </div>
@@ -34,7 +36,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :related_to,:class => "control-label" %>
+            <%#= f.label :related_to,:class => "control-label" %>
+            <label for="<%= @form[:related_to].to_s %>" class="control-label"><%= @form[:related_to].to_s %></label>
             <div class="controls">
               <%= f.text_field :related_to %>
             </div>
@@ -42,7 +45,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :dtfile,:class => "control-label" %>
+            <%#= f.label :dtfile,:class => "control-label" %>
+            <label for="<%= @form[:dtfile].to_s %>" class="control-label"><%= @form[:dtfile].to_s %></label>
             <div class="controls">
               <%= f.file_field :dtfile %>
             </div>
@@ -61,7 +65,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= notification_masters.label :code,:class => "control-label" %>
+                <%#= notification_masters.label :code,:class => "control-label" %>
+                <label for="<%= @form[:notification_master_code].to_s %>" class="control-label"><%= @form[:notification_master_code].to_s %></label>
                 <div class="controls">
                   <%= notification_masters.text_field :code %>
                 </div>
@@ -69,7 +74,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= notification_masters.label :title ,:class => "control-label"%>
+                <%#= notification_masters.label :title ,:class => "control-label"%>
+                <label for="<%= @form[:notification_master_title].to_s %>" class="control-label"><%= @form[:notification_master_title].to_s %></label>
                 <div class="controls">
                   <%= notification_masters.text_field :title %>
                 </div>
@@ -80,7 +86,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= notification_masters.label :description,:class => "control-label" %>
+                <%#= notification_masters.label :description,:class => "control-label" %>
+                <label for="<%= @form[:notification_master_description].to_s %>" class="control-label"><%= @form[:notification_master_description].to_s %></label>
                 <div class="controls">
                   <%= notification_masters.text_field :description %>
                 </div>
@@ -88,7 +95,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= notification_masters.label :type,:class => "control-label" %>
+                <%#= notification_masters.label :type,:class => "control-label" %>
+                <label for="<%= @form[:notification_master_type].to_s %>" class="control-label"><%= @form[:notification_master_type].to_s %></label>
                 <div class="controls">
                   <%= notification_masters.text_field :type %>
                 </div>
@@ -121,7 +129,7 @@
 
 
       <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+        <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
 
 

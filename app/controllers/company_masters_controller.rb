@@ -24,6 +24,9 @@ class CompanyMastersController < ApplicationController
   # GET /company_masters/new
   # GET /company_masters/new.json
   def new
+    @form_config= t('config.CompanyMaster.form.new')
+    @form=@form_config[:fields]
+
     @company_master = CompanyMaster.new
 
     @company_master.band_masters.build
@@ -37,6 +40,8 @@ class CompanyMastersController < ApplicationController
 
   # GET /company_masters/1/edit
   def edit
+    @form_config= t('config.CompanyMaster.form.edit')
+    @form=@form_config[:fields]
     @company_master = CompanyMaster.find(params[:id])
   end
 

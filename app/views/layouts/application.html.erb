@@ -127,21 +127,22 @@
 <li class="purple">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <i class="icon-bell-alt icon-animated-bell icon-only"></i>
-    <span class="badge badge-important"><%= current_user.notification_masters.count %></span>
+    <span class="badge badge-important"><%= current_user.notification_masters.where(read: false).count %></span>
   </a>
   <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
     <li class="nav-header">
-      <i class="icon-warning-sign"></i> <%= current_user.notification_masters.count %> Unread Notifications
+      <i class="icon-warning-sign"></i> <%= current_user.notification_masters.where(read: false).count %> Unread Notifications
     </li>
 
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i> New Notifications</span>
-          <span class="pull-right badge badge-info"><%= current_user.notification_masters.count %></span>
-        </div>
-      </a>
-    </li>
+    <% current_user.notification_masters.where(read: false).limit(5).asc(:created_at).each do |nm| %>
+        <li>
+          <a href="/notification_masters/<%= nm.id %>">
+            <div class="clearfix">
+              <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i><%= nm.title %></span>
+            </div>
+          </a>
+        </li>
+    <% end %>
 
     <li>
       <a href="#">
@@ -152,70 +153,70 @@
 </li>
 
 
-<li class="green">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <i class="icon-envelope-alt icon-animated-vertical icon-only"></i>
-    <span class="badge badge-success">5</span>
-  </a>
-  <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
-    <li class="nav-header">
-      <i class="icon-envelope"></i> 5 Messages
-    </li>
+<!--<li class="green">-->
+  <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+    <!--<i class="icon-envelope-alt icon-animated-vertical icon-only"></i>-->
+    <!--<span class="badge badge-success">5</span>-->
+  <!--</a>-->
+  <!--<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">-->
+    <!--<li class="nav-header">-->
+      <!--<i class="icon-envelope"></i> 5 Messages-->
+    <!--</li>-->
 
-    <li>
-      <a href="#">
-        <img alt="Alex's Avatar" class="msg-photo" src="/assets/avatar.png"/>
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Alex:</span>
-											Ciao sociis natoque penatibus et auctor ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>a moment ago</span>
-										</span>
-									</span>
-      </a>
-    </li>
+    <!--<li>-->
+      <!--<a href="#">-->
+        <!--<img alt="Alex's Avatar" class="msg-photo" src="/assets/avatar.png"/>-->
+									<!--<span class="msg-body">-->
+										<!--<span class="msg-title">-->
+											<!--<span class="blue">Alex:</span>-->
+											<!--Ciao sociis natoque penatibus et auctor ...-->
+										<!--</span>-->
+										<!--<span class="msg-time">-->
+											<!--<i class="icon-time"></i> <span>a moment ago</span>-->
+										<!--</span>-->
+									<!--</span>-->
+      <!--</a>-->
+    <!--</li>-->
 
-    <li>
-      <a href="#">
-        <img alt="Susan's Avatar" class="msg-photo" src="/assets/avatar3.png"/>
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Susan:</span>
-											Vestibulum id ligula porta felis euismod ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>20 minutes ago</span>
-										</span>
-									</span>
-      </a>
-    </li>
+    <!--<li>-->
+      <!--<a href="#">-->
+        <!--<img alt="Susan's Avatar" class="msg-photo" src="/assets/avatar3.png"/>-->
+									<!--<span class="msg-body">-->
+										<!--<span class="msg-title">-->
+											<!--<span class="blue">Susan:</span>-->
+											<!--Vestibulum id ligula porta felis euismod ...-->
+										<!--</span>-->
+										<!--<span class="msg-time">-->
+											<!--<i class="icon-time"></i> <span>20 minutes ago</span>-->
+										<!--</span>-->
+									<!--</span>-->
+      <!--</a>-->
+    <!--</li>-->
 
-    <li>
-      <a href="#">
-        <img alt="Bob's Avatar" class="msg-photo" src="/assets/avatar4.png"/>
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Bob:</span>
-											Nullam quis risus eget urna mollis ornare ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>3:15 pm</span>
-										</span>
-									</span>
-      </a>
-    </li>
+    <!--<li>-->
+      <!--<a href="#">-->
+        <!--<img alt="Bob's Avatar" class="msg-photo" src="/assets/avatar4.png"/>-->
+									<!--<span class="msg-body">-->
+										<!--<span class="msg-title">-->
+											<!--<span class="blue">Bob:</span>-->
+											<!--Nullam quis risus eget urna mollis ornare ...-->
+										<!--</span>-->
+										<!--<span class="msg-time">-->
+											<!--<i class="icon-time"></i> <span>3:15 pm</span>-->
+										<!--</span>-->
+									<!--</span>-->
+      <!--</a>-->
+    <!--</li>-->
 
-    <li>
-      <a href="#">
-        See all messages
-        <i class="icon-arrow-right"></i>
-      </a>
-    </li>
+    <!--<li>-->
+      <!--<a href="#">-->
+        <!--See all messages-->
+        <!--<i class="icon-arrow-right"></i>-->
+      <!--</a>-->
+    <!--</li>-->
 
-  </ul>
-</li>
+  <!--</ul>-->
+<!--</li>-->
 
 
 <li class="light-blue user-profile">

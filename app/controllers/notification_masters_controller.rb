@@ -10,4 +10,18 @@ class NotificationMastersController < InheritedResources::Base
       @notification_master.write_attribute(ss.name.to_sym,"")
     end
   end
+
+  def show
+    @notification_master = NotificationMaster.find(params[:id])
+
+    @notification_master.read = true
+    @notification_master.save
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @notification_master }
+    end
+
+  end
+
 end

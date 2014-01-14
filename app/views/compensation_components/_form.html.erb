@@ -15,8 +15,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%#= f.label :final_ctc_fixed,:class => "control-label" %>
-            <%= raw custom_lable(@compensation_component, :final_ctc_fixed) %>
+            <%#= raw custom_lable(@compensation_component, :final_ctc_fixed) %>
+            <label for="<%= @form[:final_ctc_fixed].to_s %>" class="control-label"><%= @form[:final_ctc_fixed].to_s %></label>
             <div class="controls">
               <%= f.number_field :final_ctc_fixed %>
             </div>
@@ -24,8 +24,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :final_ctc_varriable,:class => "control-label" %>
-            <%= raw custom_lable(@compensation_component, :final_ctc_varriable) %>
+            <%#= raw custom_lable(@compensation_component, :final_ctc_varriable) %>
+            <label for="<%= @form[:final_ctc_varriable].to_s %>" class="control-label"><%= @form[:final_ctc_varriable].to_s %></label>
             <div class="controls">
               <%= f.number_field :final_ctc_varriable %>
             </div>
@@ -39,7 +39,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= formula_lists.label :salary_component_id,:class => "control-label" %>
+                <%#= formula_lists.label :salary_component_id,:class => "control-label" %>
+                <label for="<%= @form[:salary_component_id].to_s %>" class="control-label"><%= @form[:salary_component_id].to_s %></label>
                 <div class="controls">
                   <%= formula_lists.text_field :salary_component_id %>
                 </div>
@@ -47,7 +48,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%=formula_lists.label :fixed_value ,:class => "control-label"%>
+                <%#=formula_lists.label :fixed_value ,:class => "control-label"%>
+                <label for="<%= @form[:fixed_value].to_s %>" class="control-label"><%= @form[:fixed_value].to_s %></label>
                 <div class="controls">
                   <%= formula_lists.text_field :fixed_value %>
                 </div>
@@ -58,7 +60,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= formula_lists.label :internal_formula,:class => "control-label" %>
+                <%#= formula_lists.label :internal_formula,:class => "control-label" %>
+                <label for="<%= @form[:internal_formula].to_s %>" class="control-label"><%= @form[:internal_formula].to_s %></label>
                 <div class="controls">
                   <%= formula_lists.text_field :internal_formula %>
                 </div>
@@ -66,7 +69,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= formula_lists.label :fixed,:class => "control-label" %>
+                <%#= formula_lists.label :fixed,:class => "control-label" %>
+                <label for="<%= @form[:fixed].to_s %>" class="control-label"><%= @form[:fixed].to_s %></label>
                 <div class="controls">
                   <label>
                     <%= formula_lists.check_box :fixed,'name' => 'form-field-checkbox' %>

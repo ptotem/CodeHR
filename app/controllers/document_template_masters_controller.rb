@@ -1,5 +1,9 @@
 class DocumentTemplateMastersController < InheritedResources::Base
+
   def new
+    @form_config= t('config.DocumentTemplateMaster.form.new')
+    @form=@form_config[:fields]
+
     @document_template_master = DocumentTemplateMaster.new
     @document_template_master.document_masters.build
     @document_template_master.notification_masters.build
@@ -8,6 +12,12 @@ class DocumentTemplateMastersController < InheritedResources::Base
     @fields.each do |ss|
       @document_template_master.write_attribute(ss.name.to_sym,"")
     end
+  end
+
+  def edit
+    @form_config= t('config.DocumentTemplateMaster.form.edit')
+    @form=@form_config[:fields]
+    @document_template_master = DocumentTemplateMaster.find(params[:id])
   end
 
 end

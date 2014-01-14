@@ -13,21 +13,24 @@
       <% end %>
 
       <div class="control-group">
-        <%= f.label :doc_code,:class => "control-label" %>
+        <%#= f.label :doc_code,:class => "control-label" %>
+        <label for="<%= @form[:doc_code].to_s %>" class="control-label"><%= @form[:doc_code].to_s %></label>
         <div class="controls">
           <%= f.text_field :doc_code %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :document_template_master_id,:class => "control-label" %>
+        <%#= f.label :document_template_master_id,:class => "control-label" %>
+        <label for="<%= @form[:document_template_master_id].to_s %>" class="control-label"><%= @form[:document_template_master_id].to_s %></label>
         <div class="controls">
           <%= f.select :document_template_master_id, options_from_collection_for_select(DocumentTemplateMaster.all ,'id','dt_code') %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :name,:class => "control-label" %>
+        <%#= f.label :name,:class => "control-label" %>
+        <label for="<%= @form[:doc_name].to_s %>" class="control-label"><%= @form[:doc_name].to_s %></label>
         <div class="controls">
           <%= f.text_field :name %>
         </div>
@@ -35,7 +38,8 @@
 
 
       <div class="control-group">
-        <%= f.label :vc_needed,:class => "control-label" %>
+        <%#= f.label :vc_needed,:class => "control-label" %>
+        <label for="<%= @form[:vc_needed].to_s %>" class="control-label"><%= @form[:vc_needed].to_s %></label>
         <div class="controls">
           <%= f.check_box :vc_needed %>
         </div>
@@ -43,14 +47,16 @@
 
 
       <div class="control-group">
-        <%= f.label :owner,:class => "control-label" %>
+        <%#= f.label :owner,:class => "control-label" %>
+        <label for="<%= @form[:owner].to_s %>" class="control-label"><%= @form[:owner].to_s %></label>
         <div class="controls">
           <%= f.number_field :owner %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :dfile,:class => "control-label" %>
+        <%#= f.label :dfile,:class => "control-label" %>
+        <label for="<%= @form[:dfile].to_s %>" class="control-label"><%= @form[:dfile].to_s %></label>
         <div class="controls">
           <%= f.file_field :dfile %>
         </div>
@@ -70,7 +76,7 @@
 
 
       <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+        <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
 
   <% end %>
