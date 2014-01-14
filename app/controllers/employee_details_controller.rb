@@ -1,6 +1,8 @@
 class EmployeeDetailsController < InheritedResources::Base
 
   def new
+    @form_config= t('config.EmployeeDetail.form.new')
+    @form=@form_config[:fields]
     @employee_detail = EmployeeDetail.new
     @employee_detail.employment_hists.build
     @employee_detail.educations.build
@@ -11,6 +13,12 @@ class EmployeeDetailsController < InheritedResources::Base
     @fields.each do |ss|
       @employee_detail.write_attribute(ss.name.to_sym,"")
     end
+  end
+
+  def edit
+    @form_config= t('config.EmployeeDetail.form.edit')
+    @form=@form_config[:fields]
+    @employee_detail = EmployeeDetail.find(params[:id])
   end
 
 end

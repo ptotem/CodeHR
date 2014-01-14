@@ -16,7 +16,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :job_code,:class => "control-label" %>
+            <%#= f.label :job_code,:class => "control-label" %>
+            <label for="<%= @form[:job_code].to_s %>" class="control-label"><%= @form[:job_code].to_s %></label>
             <div class="controls">
               <%= f.text_field :job_code %>
             </div>
@@ -24,7 +25,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :job_title,:class => "control-label" %>
+            <%#= f.label :job_title,:class => "control-label" %>
+            <label for="<%= @form[:job_title].to_s %>" class="control-label"><%= @form[:job_title].to_s %></label>
             <div class="controls">
               <%= f.text_field :job_title %>
             </div>
@@ -35,7 +37,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :description,:class => "control-label" %>
+            <%#= f.label :description,:class => "control-label" %>
+            <label for="<%= @form[:description].to_s %>" class="control-label"><%= @form[:description].to_s %></label>
             <div class="controls">
               <%= f.text_area(:description, :size=>"40x4")  %>
             </div>
@@ -43,7 +46,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :min_year_of_experience ,:class => "control-label"%>
+            <%#= f.label :min_year_of_experience ,:class => "control-label"%>
+            <label for="<%= @form[:min_year_of_experience].to_s %>" class="control-label"><%= @form[:min_year_of_experience].to_s %></label>
             <div class="controls">
               <%= f.number_field :min_year_of_experience %>
             </div>
@@ -57,7 +61,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= qualifications.label :name,:class => "control-label" %>
+                <%#= qualifications.label :name,:class => "control-label" %>
+                <label for="<%= @form[:qualification_name].to_s %>" class="control-label"><%= @form[:qualification_name].to_s %></label>
                 <div class="controls">
                   <%= qualifications.text_field :name %>
                 </div>
@@ -65,7 +70,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= qualifications.label :description,:class => "control-label" %>
+                <%#= qualifications.label :description,:class => "control-label" %>
+                <label for="<%= @form[:qualification_description].to_s %>" class="control-label"><%= @form[:qualification_description].to_s %></label>
                 <div class="controls">
                   <%= qualifications.text_field :description %>
                 </div>
@@ -76,7 +82,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= qualifications.label :marks,:class => "control-label" %>
+                <%#= qualifications.label :marks,:class => "control-label" %>
+                <label for="<%= @form[:qualification_marks].to_s %>" class="control-label"><%= @form[:qualification_marks].to_s %></label>
                 <div class="controls">
                   <%= qualifications.text_field :marks %>
                 </div>
@@ -84,7 +91,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= qualifications.label :grade,:class => "control-label" %>
+                <%#= qualifications.label :grade,:class => "control-label" %>
+                <label for="<%= @form[:qualification_grade].to_s %>" class="control-label"><%= @form[:qualification_grade].to_s %></label>
                 <div class="controls">
                   <%= qualifications.text_field :grade %>
                 </div>
@@ -288,7 +296,7 @@
 
 
       <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+        <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
   <% end %>
 

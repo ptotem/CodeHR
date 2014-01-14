@@ -1,6 +1,8 @@
 class CompensationComponentsController < InheritedResources::Base
 
   def new
+    @form_config= t('config.CompensationComponent.form.new')
+    @form=@form_config[:fields]
     @compensation_component = CompensationComponent.new
     @compensation_component.formula_lists.build
     #@rating.write_attribute(:test1, "")
@@ -9,4 +11,11 @@ class CompensationComponentsController < InheritedResources::Base
       @compensation_component.write_attribute(ss.name.to_sym,"")
     end
   end
+
+  def edit
+    @form_config= t('config.CompensationComponent.form.edit')
+    @form=@form_config[:fields]
+    @compensation_component = CompensationComponent.find(params[:id])
+  end
+
 end

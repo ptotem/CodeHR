@@ -43,13 +43,14 @@
 
       <!--</p>-->
     </div>
-    <div id="dropdown2" class="tab-pane">
+    <div id="dropdown2" class="tab-pane active">
       <!--<p>-->
 
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :current_designation) %>
+            <%#= raw custom_lable(@employee_detail, :current_designation) %>
+            <label for="<%= @form[:current_designation].to_s %>" class="control-label"><%= @form[:current_designation].to_s %></label>
             <div class="controls">
               <%= f.text_field :current_designation %>
             </div>
@@ -57,7 +58,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :job_role_id) %>
+            <%#= raw custom_lable(@employee_detail, :job_role_id) %>
+            <label for="<%= @form[:job_role_id].to_s %>" class="control-label"><%= @form[:job_role_id].to_s %></label>
             <div class="controls">
               <%#= f.number_field :job_id %>
               <%= f.select :job_role_id ,options_from_collection_for_select(Role.all ,'id','name') %>
@@ -69,7 +71,8 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :band_id) %>
+            <%#= raw custom_lable(@employee_detail, :band_id) %>
+            <label for="<%= @form[:band_id].to_s %>" class="control-label"><%= @form[:band_id].to_s %></label>
             <div class="controls">
               <%#= f.number_field :band_id %>
               <%= f.select :band_id ,options_from_collection_for_select(BandMaster.all ,'id','band_name') %>
@@ -81,7 +84,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :total_work_exp_years) %>
+            <%#= raw custom_lable(@employee_detail, :total_work_exp_years) %>
+            <label for="<%= @form[:total_work_exp_years].to_s %>" class="control-label"><%= @form[:total_work_exp_years].to_s %></label>
             <div class="controls">
               <%= f.number_field :total_work_exp_years %>
             </div>
@@ -89,7 +93,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :total_work_exp_months) %>
+            <%#= raw custom_lable(@employee_detail, :total_work_exp_months) %>
+            <label for="<%= @form[:total_work_exp_months].to_s %>" class="control-label"><%= @form[:total_work_exp_months].to_s %></label>
             <div class="controls">
               <%= f.number_field :total_work_exp_months %>
             </div>
@@ -100,7 +105,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :personal_email) %>
+            <%#= raw custom_lable(@employee_detail, :personal_email) %>
+            <label for="<%= @form[:personal_email].to_s %>" class="control-label"><%= @form[:personal_email].to_s %></label>
             <div class="controls">
               <%= f.text_field :personal_email %>
             </div>
@@ -111,7 +117,8 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :contact_numbers) %>
+            <%#= raw custom_lable(@employee_detail, :contact_numbers) %>
+            <label for="<%= @form[:contact_numbers].to_s %>" class="control-label"><%= @form[:contact_numbers].to_s %></label>
             <div class="controls">
               <%= f.phone_field :contact_numbers %>
             </div>
@@ -122,7 +129,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :personal_address) %>
+            <%#= raw custom_lable(@employee_detail, :personal_address) %>
+            <label for="<%= @form[:personal_address].to_s %>" class="control-label"><%= @form[:personal_address].to_s %></label>
             <div class="controls">
               <%= f.text_area(:personal_address, size:"20x5")  %>
             </div>
@@ -138,7 +146,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :bank_name) %>
+            <%#= raw custom_lable(@employee_detail, :bank_name) %>
+            <label for="<%= @form[:bank_name].to_s %>" class="control-label"><%= @form[:bank_name].to_s %></label>
             <div class="controls">
               <%= f.text_field :bank_name %>
             </div>
@@ -146,7 +155,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :account_number) %>
+            <%#= raw custom_lable(@employee_detail, :account_number) %>
+            <label for="<%= @form[:account_number].to_s %>" class="control-label"><%= @form[:account_number].to_s %></label>
             <div class="controls">
               <%= f.text_field :account_number %>
             </div>
@@ -157,7 +167,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :rf_no) %>
+            <%#= raw custom_lable(@employee_detail, :rf_no) %>
+            <label for="<%= @form[:rf_no].to_s %>" class="control-label"><%= @form[:rf_no].to_s %></label>
             <div class="controls">
               <%= f.text_field :rf_no %>
             </div>
@@ -165,7 +176,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :esic_no) %>
+            <%#= raw custom_lable(@employee_detail, :esic_no) %>
+            <label for="<%= @form[:esic_no].to_s %>" class="control-label"><%= @form[:esic_no].to_s %></label>
             <div class="controls">
               <%= f.text_field :esic_no %>
             </div>
@@ -176,7 +188,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :pan_no) %>
+            <%#= raw custom_lable(@employee_detail, :pan_no) %>
+            <label for="<%= @form[:pan_no].to_s %>" class="control-label"><%= @form[:pan_no].to_s %></label>
             <div class="controls">
               <%= f.text_field :pan_no %>
             </div>
@@ -184,7 +197,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= raw custom_lable(@employee_detail, :blood_group) %>
+            <%#= raw custom_lable(@employee_detail, :blood_group) %>
+            <label for="<%= @form[:blood_group].to_s %>" class="control-label"><%= @form[:blood_group].to_s %></label>
             <div class="controls">
               <%= f.text_field :blood_group %>
             </div>
@@ -195,7 +209,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :date_of_leaving,:class => "control-label" %>
+            <%#= f.label :date_of_leaving,:class => "control-label" %>
+            <label for="<%= @form[:date_of_leaving].to_s %>" class="control-label"><%= @form[:date_of_leaving].to_s %></label>
             <div class="controls">
               <%#= f.date_select :date_of_leaving %>
               <div class="row-fluid input-append date">
@@ -210,7 +225,8 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="control-group">
-            <%= f.label :nature_of_separation,:class => "control-label" %>
+            <%#= f.label :nature_of_separation,:class => "control-label" %>
+            <label for="<%= @form[:nature_of_separation].to_s %>" class="control-label"><%= @form[:nature_of_separation].to_s %></label>
             <div class="controls">
               <%= f.text_field :nature_of_separation %>
             </div>
@@ -226,7 +242,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :remarks_1,:class => "control-label" %>
+            <%#= f.label :remarks_1,:class => "control-label" %>
+            <label for="<%= @form[:remarks_1].to_s %>" class="control-label"><%= @form[:remarks_1].to_s %></label>
             <div class="controls">
               <%= f.text_area(:remarks_1, size:"40x3") %>
             </div>
@@ -234,7 +251,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :remarks_2,:class => "control-label" %>
+            <%#= f.label :remarks_2,:class => "control-label" %>
+            <label for="<%= @form[:remarks_2].to_s %>" class="control-label"><%= @form[:remarks_2].to_s %></label>
             <div class="controls">
               <%= f.text_area(:remarks_2, size:"40x3") %>
             </div>
@@ -245,7 +263,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :remarks_3,:class => "control-label" %>
+            <%#= f.label :remarks_3,:class => "control-label" %>
+            <label for="<%= @form[:remarks_3].to_s %>" class="control-label"><%= @form[:remarks_3].to_s %></label>
             <div class="controls">
               <%= f.text_area(:remarks_3, size:"40x3") %>
             </div>
@@ -253,7 +272,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :remarks_4,:class => "control-label" %>
+            <%#= f.label :remarks_4,:class => "control-label" %>
+            <label for="<%= @form[:remarks_4].to_s %>" class="control-label"><%= @form[:remarks_4].to_s %></label>
             <div class="controls">
               <%= f.text_area(:remarks_4, size:"40x3") %>
             </div>
@@ -264,7 +284,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :remarks_5,:class => "control-label" %>
+            <%#= f.label :remarks_5,:class => "control-label" %>
+            <label for="<%= @form[:remarks_5].to_s %>" class="control-label"><%= @form[:remarks_5].to_s %></label>
             <div class="controls">
               <%= f.text_area(:remarks_5, size:"40x3") %>
             </div>
@@ -278,7 +299,8 @@
       <p>
 
       <div class="control-group">
-        <%= f.label :employee_cv,:class => "control-label" %>
+        <%#= f.label :employee_cv,:class => "control-label" %>
+        <label for="<%= @form[:employee_cv].to_s %>" class="control-label"><%= @form[:employee_cv].to_s %></label>
         <div class="controls">
           <%= f.file_field :employee_cv %>
         </div>
@@ -298,7 +320,8 @@
             <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
-                  <%= employment_hists.label :joined_from,:class => "control-label" %>
+                  <%#= employment_hists.label :joined_from,:class => "control-label" %>
+                  <label for="<%= @form[:joined_from].to_s %>" class="control-label"><%= @form[:joined_from].to_s %></label>
                   <div class="controls">
                     <div class="row-fluid input-append date">
                       <%= employment_hists.text_field :joined_from, :class=>"span6 date-picker" %>
@@ -315,7 +338,8 @@
               <span class="span6">
                 <div class="control-group">
                   <%#= employment_hists.label :leaved,:class => "control-label" %>
-                  <lable class="control-label" style="font-size: 14px;">Left</lable>
+                  <!--<lable class="control-label" style="font-size: 14px;">Left</lable>-->
+                  <label for="<%= @form[:leaved].to_s %>" class="control-label"><%= @form[:leaved].to_s %></label>
                   <div class="controls">
                     <div class="row-fluid input-append date">
                       <%= employment_hists.text_field :leaved, :class=>"span6 date-picker" %>
@@ -329,7 +353,8 @@
             <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
-                  <%= employment_hists.label :organisation,:class => "control-label" %>
+                  <%#= employment_hists.label :organisation,:class => "control-label" %>
+                  <label for="<%= @form[:organisation].to_s %>" class="control-label"><%= @form[:organisation].to_s %></label>
                   <div class="controls">
                     <%= employment_hists.text_field :organisation %>
                   </div>
@@ -340,7 +365,8 @@
             <span class="row-fluid">
               <span class="span6">
                 <div class="control-group">
-                  <%= employment_hists.label :designation,:class => "control-label" %>
+                  <%#= employment_hists.label :designation,:class => "control-label" %>
+                  <label for="<%= @form[:designation].to_s %>" class="control-label"><%= @form[:designation].to_s %></label>
                   <div class="controls">
                     <%= employment_hists.text_field :designation %>
                   </div>
@@ -366,28 +392,32 @@
     <div id="educations" class="tab-pane">
       <p><%= f.fields_for :educations do |educations| %>
           <div class="control-group">
-            <%= educations.label :name,:class => "control-label" %>
+            <%#= educations.label :name,:class => "control-label" %>
+            <label for="<%= @form[:name].to_s %>" class="control-label"><%= @form[:name].to_s %></label>
             <div class="controls">
               <%= educations.text_field :name %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= educations.label :description,:class => "control-label" %>
+            <%#= educations.label :description,:class => "control-label" %>
+            <label for="<%= @form[:description].to_s %>" class="control-label"><%= @form[:description].to_s %></label>
             <div class="controls">
               <%= educations.text_field :description %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= educations.label :marks,:class => "control-label" %>
+            <%#= educations.label :marks,:class => "control-label" %>
+            <label for="<%= @form[:marks].to_s %>" class="control-label"><%= @form[:marks].to_s %></label>
             <div class="controls">
               <%= educations.text_field :marks %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= educations.label :grade,:class => "control-label" %>
+            <%#= educations.label :grade,:class => "control-label" %>
+            <label for="<%= @form[:grade].to_s %>" class="control-label"><%= @form[:grade].to_s %></label>
             <div class="controls">
               <%= educations.text_field :grade %>
             </div>
@@ -407,28 +437,32 @@
       <p>
         <%= f.fields_for :family_details do |family_details| %>
           <div class="control-group">
-            <%= family_details.label :relationship,:class => "control-label" %>
+            <%#= family_details.label :relationship,:class => "control-label" %>
+            <label for="<%= @form[:family_detail_relationship].to_s %>" class="control-label"><%= @form[:family_detail_relationship].to_s %></label>
             <div class="controls">
               <%= family_details.text_field :relationship %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= family_details.label :fname,:class => "control-label" %>
+            <%#= family_details.label :fname,:class => "control-label" %>
+            <label for="<%= @form[:family_detail_fname].to_s %>" class="control-label"><%= @form[:family_detail_fname].to_s %></label>
             <div class="controls">
               <%= family_details.text_field :fname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= family_details.label :mname,:class => "control-label" %>
+            <%#= family_details.label :mname,:class => "control-label" %>
+            <label for="<%= @form[:family_detail_mname].to_s %>" class="control-label"><%= @form[:family_detail_mname].to_s %></label>
             <div class="controls">
               <%= family_details.text_field :mname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= family_details.label :lname,:class => "control-label" %>
+            <%#= family_details.label :lname,:class => "control-label" %>
+            <label for="<%= @form[:family_detail_lname].to_s %>" class="control-label"><%= @form[:family_detail_lname].to_s %></label>
             <div class="controls">
               <%= family_details.text_field :lname %>
             </div>
@@ -449,28 +483,32 @@
       <p>
         <%= f.fields_for :pf_nominations do |pf_nominations| %>
           <div class="control-group">
-            <%= pf_nominations.label :relationship,:class => "control-label" %>
+            <%#= pf_nominations.label :relationship,:class => "control-label" %>
+            <label for="<%= @form[:pf_nomination_relationship].to_s %>" class="control-label"><%= @form[:pf_nomination_relationship].to_s %></label>
             <div class="controls">
               <%= pf_nominations.text_field :relationship %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= pf_nominations.label :fname,:class => "control-label" %>
+            <%#= pf_nominations.label :fname,:class => "control-label" %>
+            <label for="<%= @form[:pf_nomination_fname].to_s %>" class="control-label"><%= @form[:pf_nomination_fname].to_s %></label>
             <div class="controls">
               <%= pf_nominations.text_field :fname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= pf_nominations.label :mname,:class => "control-label" %>
+            <%#= pf_nominations.label :mname,:class => "control-label" %>
+            <label for="<%= @form[:pf_nomination_mname].to_s %>" class="control-label"><%= @form[:pf_nomination_mname].to_s %></label>
             <div class="controls">
               <%= pf_nominations.text_field :mname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= pf_nominations.label :lname,:class => "control-label" %>
+            <%#= pf_nominations.label :lname,:class => "control-label" %>
+            <label for="<%= @form[:pf_nomination_lname].to_s %>" class="control-label"><%= @form[:pf_nomination_lname].to_s %></label>
             <div class="controls">
               <%= pf_nominations.text_field :lname %>
             </div>
@@ -491,28 +529,32 @@
       <p>
         <%= f.fields_for :esis_nominations do |esis_nominations| %>
           <div class="control-group">
-            <%= esis_nominations.label :relationship,:class => "control-label" %>
+            <%#= esis_nominations.label :relationship,:class => "control-label" %>
+            <label for="<%= @form[:esis_nomination_relationship].to_s %>" class="control-label"><%= @form[:esis_nomination_relationship].to_s %></label>
             <div class="controls">
               <%= esis_nominations.text_field :relationship %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= esis_nominations.label :fname,:class => "control-label" %>
+            <%#= esis_nominations.label :fname,:class => "control-label" %>
+            <label for="<%= @form[:esis_nomination_fname].to_s %>" class="control-label"><%= @form[:esis_nomination_fname].to_s %></label>
             <div class="controls">
               <%= esis_nominations.text_field :fname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= esis_nominations.label :mname,:class => "control-label" %>
+            <%#= esis_nominations.label :mname,:class => "control-label" %>
+            <label for="<%= @form[:esis_nomination_mname].to_s %>" class="control-label"><%= @form[:esis_nomination_mname].to_s %></label>
             <div class="controls">
               <%= esis_nominations.text_field :mname %>
             </div>
           </div>
 
           <div class="control-group">
-            <%= esis_nominations.label :lname,:class => "control-label" %>
+            <%#= esis_nominations.label :lname,:class => "control-label" %>
+            <label for="<%= @form[:esis_nomination_lname].to_s %>" class="control-label"><%= @form[:esis_nomination_lname].to_s %></label>
             <div class="controls">
               <%= esis_nominations.text_field :lname %>
             </div>
@@ -538,7 +580,7 @@
     </div>
     
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @form_config[:submit] %>
   </div>
 <% end %>
 
