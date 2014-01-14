@@ -545,6 +545,11 @@ en:
             qualification_description: "Description"
             qualification_marks: "Marks"
             qualification_grade: "Grade"
+            manpower_planning_mp_code: "Manpower Planning Code"
+            manpower_planning_period_from: "Period From"
+            manpower_planning_period_to: "Period To"
+            manpower_planning_requested_by: "Requested By"
+            manpower_planning_final_approved_number: "Final Approved Number"
         edit:
           name: 'Edit Job Description'
           submit: 'Update Job Description'
@@ -557,3 +562,53 @@ en:
             qualification_description: "Description"
             qualification_marks: "Marks"
             qualification_grade: "Grade"
+    ManpowerPlanning:
+      form:
+        new:
+          name: 'New Manpower Planning'
+          submit: 'Create New Manpower Planning'
+          fields:
+            mp_code: "Manpower Planning Code"
+            period_from: "Period From"
+            period_to: "Period To"
+            requested_by: "Requested By"
+            final_approved_number: "Final Approved Number"
+            employee_master_id: "Employee Master ID"
+        edit:
+          name: 'Edit Manpower Planning'
+          submit: 'Update Manpower Planning'
+          fields:
+            mp_code: "Manpower Planning Code"
+            period_from: "Period From"
+            period_to: "Period To"
+            requested_by: "Requested By"
+            final_approved_number: "Final Approved Number"
+            employee_master_id: "Employee Master ID"
+    VacancyMaster:
+      form:
+        new:
+          name: 'New Vacancy'
+          submit: 'Create New Vacancy'
+          fields:
+            vacancy_code: "Vacancy Code"
+            manpower_planning_id: "Manpower Planning ID"
+            description: "Description"
+            status: "Status"
+            sourcing_strategy: "Sourcing Strategy"
+            hr_rep: "HR Rep"
+            hiring_manager: "Hiring Manager"
+            ctc_range_from: "CTC Range From"
+            ctc_range_to: "CTC Range To"
+        edit:
+          name: 'Edit Vacancy'
+          submit: 'Update Vacancy'
+          fields:
+            vacancy_code: "Vacancy Code"
+            manpower_planning_id: "Manpower Planning ID"
+            description: "Description"
+            status: "Status"
+            sourcing_strategy: "Sourcing Strategy"
+            hr_rep: "HR Rep"
+            hiring_manager: "Hiring Manager"
+            ctc_range_from: "CTC Range From"
+            ctc_range_to: "CTC Range To"
