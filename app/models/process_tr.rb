@@ -5,9 +5,11 @@ class ProcessTr
 
   embeds_many :step_trs
   embeds_many :chits
+  has_many :approval_mats
 
   accepts_nested_attributes_for :step_trs
   accepts_nested_attributes_for :chits
+  accepts_nested_attributes_for :approval_mats
 
   state_machine :state, initial: :created do
 

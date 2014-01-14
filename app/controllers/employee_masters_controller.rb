@@ -5,7 +5,7 @@ class EmployeeMastersController < InheritedResources::Base
     @form=@form_config[:fields]
 
     @employee_master = EmployeeMaster.new
-    @employee_master.reporting_tos.build
+    #@employee_master.reporting_tos.build
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"EmployeeMaster")
     @fields.each do |ss|

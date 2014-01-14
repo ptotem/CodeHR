@@ -74,5 +74,6 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'activeadmin-mongoid'
 gem 'validates_timeliness', '~> 3.0'
 gem 'roo'
+gem 'resque-scheduler'
 #gem 'best_in_place', github: 'bernat/best_in_place'
 

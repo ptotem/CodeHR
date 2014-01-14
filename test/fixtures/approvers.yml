@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_master_id: MyString
+  approved: false
+  escalated: false
+  escalated_from: MyString
+  active: false
+
+two:
+  employee_master_id: MyString
+  approved: false
+  escalated: false
+  escalated_from: MyString
+  active: false
