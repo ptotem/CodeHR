@@ -9,14 +9,12 @@ module ApplicationHelper
   end
 
   def step_processing(oclass,oaction,action_to,content,pid,stepno,user_id)
-    #redirect_to "/roles/new"
     #Todo create a switch case based on different type of action
     case oaction
       when "Creation"
         @user=User.find(user_id)
         @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{pid}/#{stepno}"
         @user.save
-        #redirect_to("/power_admin")
       when "Updation"
         @user=User.find(user_id)
         @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{action_to}/#{pid}/#{stepno}"
@@ -30,7 +28,6 @@ module ApplicationHelper
         #Todo sending notification to user
         puts "To see whether it is coming or not....."
         puts action_to
-
         case action_to
           when "Admin"
             puts "In admin"
@@ -84,6 +81,20 @@ module ApplicationHelper
             end
             puts "Mail to power user delivered"
             @pro.step_trs[stepno].end_processing_step
+          when "Manager"
+            @pro=ProcessTr.find(pid)
+            @a=@pro.chits.where(:name=>"Manager").first
+            @manager=eval(@a.ocname).find(@a.oid).user
+            puts @manager
+            unm=@manager.notification_masters.build title:"System Notification" , description:content,  type:"test1"
+            unm.save
+            unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.email_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.save
+            @manager.save
+            AdminMailer.admin_mail(@manager.email,"#{oclass} #{oaction}","#{content}").deliver
+            puts "Mail to admin is delivered"
+            @pro.step_trs[stepno].end_processing_step
           when "Array"
             puts "To be done"
         end
@@ -94,8 +105,25 @@ module ApplicationHelper
         @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}_#{action_to.downcase}/#{@chit.oid}/#{pid}/#{stepno}"
         @user.save
         puts "Process is in Tagging....."
-
-
+      when "Approval"
+        @pro=ProcessTr.find(pid)
+        puts "Current Process is in approval stage"
+        puts "Sending approval request to People."
+        if action_to == "User"
+          link="/user_approval/"+@pro.chits.where(:name=>"User").first.oid
+          #Creating the approver request
+          @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>link,:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
+          #Creating the approver for approval
+          @step= @pro.step_trs[stepno]
+          @step.action_arrs.each do |aa|
+            @app.approver.create!(:employee_master_id=>obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+          end
+          @app.send_notification
+        end
+        @pro.step_trs[stepno].end_processing_step
+        #create a approval request for this process
+        #Send the notification to all the people given in action array..
+        #cre
     end
 
   end

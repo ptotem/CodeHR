@@ -8,9 +8,12 @@ class ProcessTrsController < InheritedResources::Base
     @process_tr=ProcessTr.create(:name=>@p.name,:user_id=>current_user._id)
     @p.step_masters.each do |sm|
       if (sm.oaction == "Notify" || sm.oaction=="Tagging")
-        @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>sm.action_to,:content=>sm.content)
+        @step=@process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>sm.action_to,:content=>sm.content)
       else
-        @process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content)
+        @step=@process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content)
+      end
+      sm.action_arr_masters.each do |saam|
+        @step.action_arrs.build(:a_cls_name=>saam.a_class_name,:dep_clas_name=>saam.dep_class_name,:obj_id=>saam.a_obj_id)
       end
     end
     #Next line will initiate the state machine which then automatically runs all the steps include in Initiated Process/

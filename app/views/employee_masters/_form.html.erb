@@ -23,7 +23,7 @@
   <div class="tabbable">
     <ul class="nav nav-tabs" id="myTab">
       <li><a data-toggle="tab" href="#dropdown1">Employees</a></li>
-      <li><a data-toggle="tab" href="#reporting">Reporting Tos</a></li>
+      <!--<li><a data-toggle="tab" href="#reporting">Reporting Tos</a></li>-->
     </ul>
 
 
@@ -200,22 +200,22 @@
       </div>
 
 
-      <div id="reporting" class="tab-pane">
-        <p>
-          <%= f.fields_for :reporting_tos do |reporting_tos| %>
-            <div class="control-group">
-              <%#= reporting_tos.label :reporting_officer_id,:class => "control-label" %>
-              <label for="<%= @form[:reporting_officer].to_s %>" class="control-label"><%= @form[:reporting_officer].to_s %></label>
-              <div class="controls">
-                <%#= reporting_tos.text_field :reporting_officer_id %>
-                <%= reporting_tos.select :reporting_officer_id ,options_from_collection_for_select(EmployeeMaster.all ,'id','employee_name') %>
-                <%= reporting_tos.link_to_remove "Remove this task" %>
-              </div>
-            </div>
-        <% end %>
-        <%= f.link_to_add "Reporting Tos", :reporting_tos %>
-        </p>
-      </div>
+      <!--<div id="reporting" class="tab-pane">-->
+        <!--<p>-->
+          <!--<%#= f.fields_for :reporting_tos do |reporting_tos| %>-->
+            <!--<div class="control-group">-->
+              <!--<%#= reporting_tos.label :reporting_officer_id,:class => "control-label" %>-->
+              <!--<label for="<%#= @form[:reporting_officer].to_s %>" class="control-label"><%#= @form[:reporting_officer].to_s %></label>-->
+              <!--<div class="controls">-->
+                <!--<%#= reporting_tos.text_field :reporting_officer_id %>-->
+                <!--<%#= reporting_tos.select :reporting_officer_id ,options_from_collection_for_select(EmployeeMaster.all ,'id','employee_name') %>-->
+                <!--<%#= reporting_tos.link_to_remove "Remove this task" %>-->
+              <!--</div>-->
+            <!--</div>-->
+        <!--<%# end %>-->
+        <!--<%#= f.link_to_add "Reporting Tos", :reporting_tos %>-->
+        <!--</p>-->
+      <!--</div>-->
 
       <div id="employ_hists" class="tab-pane">
         <!--<p>-->
