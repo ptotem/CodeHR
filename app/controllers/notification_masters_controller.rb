@@ -1,6 +1,9 @@
 class NotificationMastersController < InheritedResources::Base
 
   def new
+    @form_config= t('config.NotificationMaster.form.new')
+    @form=@form_config[:fields]
+
     @notification_master = NotificationMaster.new
     @notification_master.notification_details.build
     @notification_master.email_details.build
@@ -22,6 +25,12 @@ class NotificationMastersController < InheritedResources::Base
       format.json { render json: @notification_master }
     end
 
+  end
+
+  def edit
+    @form_config= t('config.NotificationMaster.form.edit')
+    @form=@form_config[:fields]
+    @notification_master = NotificationMaster.find(params[:id])
   end
 
 end

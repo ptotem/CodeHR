@@ -15,7 +15,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :code,:class => "control-label"  %>
+            <%#= f.label :code,:class => "control-label"  %>
+            <label for="<%= @form[:code].to_s %>" class="control-label"><%= @form[:code].to_s %></label>
             <div class="controls">
               <%= f.text_field :code %>
             </div>
@@ -23,7 +24,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :title,:class => "control-label"  %>
+            <%#= f.label :title,:class => "control-label"  %>
+            <label for="<%= @form[:title].to_s %>" class="control-label"><%= @form[:title].to_s %></label>
             <div class="controls">
               <%= f.text_field :title %>
             </div>
@@ -34,7 +36,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :description,:class => "control-label"  %>
+            <%#= f.label :description,:class => "control-label"  %>
+            <label for="<%= @form[:description].to_s %>" class="control-label"><%= @form[:description].to_s %></label>
             <div class="controls">
               <%= f.text_area(:description, size:"20x5")  %>
             </div>
@@ -42,7 +45,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :type,:class => "control-label"  %>
+            <%#= f.label :type,:class => "control-label"  %>
+            <label for="<%= @form[:type].to_s %>" class="control-label"><%= @form[:type].to_s %></label>
             <div class="controls">
               <%= f.text_field :type %>
             </div>
@@ -56,7 +60,8 @@
           <div class="row-fluid">
             <div class="span12">
               <div class="control-group">
-                <%= notification_details.label :notification_master_id,:class => "control-label" %>
+                <%#= notification_details.label :notification_master_id,:class => "control-label" %>
+                <label for="<%= @form[:notification_master_id].to_s %>" class="control-label"><%= @form[:notification_master_id].to_s %></label>
                 <div class="controls">
                   <%= notification_details.text_field :notification_master_id %>
                 </div>
@@ -67,7 +72,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= notification_details.label :event,:class => "control-label" %>
+                <%#= notification_details.label :event,:class => "control-label" %>
+                <label for="<%= @form[:event].to_s %>" class="control-label"><%= @form[:event].to_s %></label>
                 <div class="controls">
                   <%= notification_details.text_field :event %>
                 </div>
@@ -75,7 +81,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= notification_details.label :sender,:class => "control-label" %>
+                <%#= notification_details.label :sender,:class => "control-label" %>
+                <label for="<%= @form[:sender].to_s %>" class="control-label"><%= @form[:sender].to_s %></label>
                 <div class="controls">
                   <%= notification_details.text_field :sender %>
                 </div>
@@ -98,7 +105,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :event,:class => "control-label" %>
+                <%#= email_details.label :event,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_event].to_s %>" class="control-label"><%= @form[:email_detail_event].to_s %></label>
                 <div class="controls">
                   <%= email_details.text_field :event %>
                 </div>
@@ -106,7 +114,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :sender,:class => "control-label" %>
+                <%#= email_details.label :sender,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_sender].to_s %>" class="control-label"><%= @form[:email_detail_sender].to_s %></label>
                 <div class="controls">
                   <%= email_details.text_field :sender %>
                 </div>
@@ -117,7 +126,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :attachment1,:class => "control-label" %>
+                <%#= email_details.label :attachment1,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_attachment1].to_s %>" class="control-label"><%= @form[:email_detail_attachment1].to_s %></label>
                 <div class="controls">
                   <%= email_details.file_field :attachment1 %>
                 </div>
@@ -125,7 +135,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :attachment2,:class => "control-label" %>
+                <%#= email_details.label :attachment2,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_attachment2].to_s %>" class="control-label"><%= @form[:email_detail_attachment2].to_s %></label>
                 <div class="controls">
                   <%= email_details.file_field :attachment2 %>
                 </div>
@@ -136,7 +147,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :attachment3,:class => "control-label" %>
+                <%#= email_details.label :attachment3,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_attachment3].to_s %>" class="control-label"><%= @form[:email_detail_attachment3].to_s %></label>
                 <div class="controls">
                   <%= email_details.file_field :attachment3 %>
                 </div>
@@ -144,7 +156,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :attachment4,:class => "control-label" %>
+                <%#= email_details.label :attachment4,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_attachment4].to_s %>" class="control-label"><%= @form[:email_detail_attachment4].to_s %></label>
                 <div class="controls">
                   <%= email_details.file_field :attachment4 %>
                 </div>
@@ -155,7 +168,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= email_details.label :attachment5,:class => "control-label" %>
+                <%#= email_details.label :attachment5,:class => "control-label" %>
+                <label for="<%= @form[:email_detail_attachment5].to_s %>" class="control-label"><%= @form[:email_detail_attachment5].to_s %></label>
                 <div class="controls">
                   <%= email_details.file_field :attachment5 %>
                 </div>
@@ -187,7 +201,7 @@
 
 
       <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+        <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
   <% end %>
 

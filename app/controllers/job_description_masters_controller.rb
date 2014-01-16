@@ -7,6 +7,10 @@ class JobDescriptionMastersController < InheritedResources::Base
     @job_description_master = JobDescriptionMaster.new
     @job_description_master.qualifications.build
     @job_description_master.manpower_plannings.build
+
+    #@mpp_form_config= t('config.ManpowerPlanning.form.new')
+    #@mpp_form=@mpp_form_config[:fields]
+
     @job_description_master.vacancy_masters.build
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"JobDescriptionMaster")

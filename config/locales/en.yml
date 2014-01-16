@@ -545,11 +545,20 @@ en:
             qualification_description: "Description"
             qualification_marks: "Marks"
             qualification_grade: "Grade"
-#            manpower_planning_mp_code: "Manpower Planning Code"
-#            manpower_planning_period_from: "Period From"
-#            manpower_planning_period_to: "Period To"
-#            manpower_planning_requested_by: "Requested By"
-#            manpower_planning_final_approved_number: "Final Approved Number"
+            manpower_planning_mp_code: "Manpower Planning Code"
+            manpower_planning_period_from: "Period From"
+            manpower_planning_period_to: "Period To"
+            manpower_planning_requested_by: "Requested By"
+            manpower_planning_final_approved_number: "Final Approved Number"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
         edit:
           name: 'Edit Job Description'
           submit: 'Update Job Description'
@@ -562,11 +571,20 @@ en:
             qualification_description: "Description"
             qualification_marks: "Marks"
             qualification_grade: "Grade"
-#            manpower_planning_mp_code: "Manpower Planning Code"
-#            manpower_planning_period_from: "Period From"
-#            manpower_planning_period_to: "Period To"
-#            manpower_planning_requested_by: "Requested By"
-#            manpower_planning_final_approved_number: "Final Approved Number"
+            manpower_planning_mp_code: "Manpower Planning Code"
+            manpower_planning_period_from: "Period From"
+            manpower_planning_period_to: "Period To"
+            manpower_planning_requested_by: "Requested By"
+            manpower_planning_final_approved_number: "Final Approved Number"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
     ManpowerPlanning:
       form:
         new:
@@ -579,6 +597,15 @@ en:
             requested_by: "Requested By"
             final_approved_number: "Final Approved Number"
             employee_master_id: "Employee Master ID"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
         edit:
           name: 'Edit Manpower Planning'
           submit: 'Update Manpower Planning'
@@ -589,6 +616,15 @@ en:
             requested_by: "Requested By"
             final_approved_number: "Final Approved Number"
             employee_master_id: "Employee Master ID"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
     VacancyMaster:
       form:
         new:
@@ -617,3 +653,67 @@ en:
             hiring_manager: "Hiring Manager"
             ctc_range_from: "CTC Range From"
             ctc_range_to: "CTC Range To"
+    NotificationMaster:
+      form:
+        new:
+          name: 'New Notification'
+          submit: 'Create New Notification'
+          fields:
+            code: "Code"
+            title: "Title"
+            description: "Description"
+            type: "Type"
+            read: "Read"
+            notification_master_id: "Notification Master ID"
+            event: "Event"
+            sender: "Sender"
+            email_detail_event: "Event"
+            email_detail_sender: "Sender"
+            email_detail_attachment1: "Attachment 1"
+            email_detail_attachment2: "Attachment 2"
+            email_detail_attachment3: "Attachment 3"
+            email_detail_attachment4: "Attachment 4"
+            email_detail_attachment5: "Attachment 5"
+        edit:
+          name: 'Edit Notification'
+          submit: 'Update Notification'
+          fields:
+            code: "Code"
+            title: "Title"
+            description: "Description"
+            type: "Type"
+            read: "Read"
+            notification_master_id: "Notification Master ID"
+            event: "Event"
+            sender: "Sender"
+            email_detail_event: "Event"
+            email_detail_sender: "Sender"
+            email_detail_attachment1: "Attachment 1"
+            email_detail_attachment2: "Attachment 2"
+            email_detail_attachment3: "Attachment 3"
+            email_detail_attachment4: "Attachment 4"
+            email_detail_attachment5: "Attachment 5"
+    ProcessMaster:
+      form:
+        new:
+          name: 'New Process'
+          submit: 'Create New Process'
+          fields:
+            name: "Process Name"
+            step_master_name: "Step Master Name"
+            step_master_oclass: "Class"
+            step_master_oaction: "Action"
+            step_master_action_to: "Action To"
+            step_master_content: "Content"
+            step_master_sequence: "Sequence"
+        edit:
+          name: 'Edit Process'
+          submit: 'Update Process'
+          fields:
+            name: "Process Name"
+            step_master_name: "Step Master Name"
+            step_master_oclass: "Class"
+            step_master_oaction: "Action"
+            step_master_action_to: "Action To"
+            step_master_content: "Content"
+            step_master_sequence: "Sequence"
