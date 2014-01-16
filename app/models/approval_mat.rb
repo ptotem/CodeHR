@@ -7,6 +7,8 @@ class ApprovalMat
   field :finished, type: Boolean
   field :process_tr_id, type: String
   field :step_no, type: Integer
+  field :employee_master_id, type: String
+
   embeds_many :approvers
   accepts_nested_attributes_for :approvers
   belongs_to :process_tr

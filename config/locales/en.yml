@@ -7,25 +7,25 @@ en:
       form:
         new:
           name: 'New Rating Form'
-          submit: 'Create'
+          submit: 'Create Rating'
           fields:
             comments:
               name: 'comments'
-              label: 'Comment'
+              label: 'Comments'
               type: 'text_field'
               sequence: 4
               class_type: 'single'
               parent: ''
             vacancy_scheduling_id:
               name: 'vacancy_scheduling_id'
-              label: 'Scheduling ID'
+              label: 'Vacancy Schedule ID'
               type: 'select'
               sequence: 3
               class_type: 'associated'
               parent: ''
             score_recieveds:
               name: 'score_receiveds'
-              label: 'Scoring'
+              label: 'Scores Received'
               type: 'field'
               sequence: 2
               class_type: 'parent'
@@ -40,7 +40,7 @@ en:
                   parent: 'score_receiveds'
             dynamic_fields:
               name: 'dynamic_fields'
-              label: 'Dynamic Fields'
+              label: 'Additional Information'
               type: ''
               sequence: 1
               class_type: 'dynamic'
@@ -51,21 +51,21 @@ en:
           fields:
             comments:
               name: 'comments'
-              label: 'Comment'
+              label: 'Comments'
               type: 'text_field'
               sequence: 4
               class_type: 'single'
               parent: ''
             vacancy_scheduling_id:
               name: 'vacancy_scheduling_id'
-              label: 'Scheduling ID'
+              label: 'Vacancy Schedule ID'
               type: 'select'
               sequence: 3
               class_type: 'associated'
               parent: ''
             score_recieveds:
               name: 'score_receiveds'
-              label: 'Scoring'
+              label: 'Scores Received'
               type: 'field'
               sequence: 2
               class_type: 'parent'
@@ -80,7 +80,7 @@ en:
                   parent: 'score_receiveds'
             dynamic_fields:
               name: 'dynamic_fields'
-              label: 'Dynamic Fields'
+              label: 'Additional Information'
               type: ''
               sequence: 1
               class_type: 'dynamic'
@@ -88,12 +88,12 @@ en:
     Role:
       form:
         new:
-          name: 'New Role Form'
+          name: 'Create New Role'
           submit: 'Create Role'
           fields:
-            role_name:  'Name Of Role'
+            role_name:  'Role Name'
         edit:
-          name: 'Edit Role Form'
+          name: 'Edit Role'
           submit: 'Update Role'
           fields:
             role_name:  'Role Name'
@@ -103,14 +103,14 @@ en:
           name: 'New Group'
           submit: 'Create New Group'
           fields:
-            group_name: "Name"
+            group_name: "Group Name"
             company: "Company Name"
             parent_group: "Group Collection"
         edit:
           name: 'Edit Group'
           submit: 'Update Group'
           fields:
-            group_name: "Name"
+            group_name: "Group Name"
             company: "Company Name"
             parent_group: "Group Collection"
     CandidateMaster:
@@ -119,15 +119,15 @@ en:
           name: 'New Candidate'
           submit: 'Create New Candidate'
           fields:
-            candidate_code: "Code"
-            candidate_name: "Name"
+            candidate_code: "Candidate Code"
+            candidate_name: "Candidate Name"
             candidate_middle_name: "Middle Name"
             status: "Status"
             gender: "Gender"
             marital_status: "Marital Status"
             date_of_birth: "Date of Birth"
-            total_work_exp_years: "Total Work Exp. (years)"
-            total_work_exp_months: "Total Work Exp. (months)"
+            total_work_exp_years: "Total Work Exp. in years"
+            total_work_exp_months: "Total Work Exp. in months"
             official_email: "Official E-mail"
             personal_email: "Personal E-mail"
             bank_name: "Bank Name"
@@ -136,8 +136,8 @@ en:
             esic_no: "ESIC No."
             pan_no: "PAN No."
             current_location: "Current Location"
-            salary_expectation_fixed: "Salary Expectation Fixed"
-            salary_expectation_variable: "Salary Expectation Variable"
+            salary_expectation_fixed: "Salary Expectation-Fixed"
+            salary_expectation_variable: "Salary Expectation-Variable"
             notice_period: "Notice Period"
             notice_period_buyback?: "Notice Period Buyback?"
             notice_period_buyback_amount: "Notice Period Buyback Amount"
@@ -145,7 +145,7 @@ en:
             remarks_2: "Remark 2"
             remarks_3: "Remark 3"
             remarks_4: "Remark 4"
-            remarks_5: "Remark 4"
+            remarks_5: "Remark 5"
             employee_cv: "Employee CV"
             name: "Name"
             description: "Description"
@@ -155,7 +155,7 @@ en:
             mobile: "Mobile"
             office: "Office"
             joined_from: "Joined From"
-            leaved: "Left"
+            leaved: "Previous Organisation Details"
             organisation: "Organisation"
             designation: "Designation"
             address1: "Address 1"
@@ -176,15 +176,15 @@ en:
           name: 'Edit Candidate'
           submit: 'Update Candidate'
           fields:
-            candidate_code: "Code"
-            candidate_name: "Name"
+            candidate_code: "Candidate Code"
+            candidate_name: "Candidate Name"
             candidate_middle_name: "Middle Name"
             status: "Status"
             gender: "Gender"
             marital_status: "Marital Status"
             date_of_birth: "Date of Birth"
-            total_work_exp_years: "Total Work Exp. (years)"
-            total_work_exp_months: "Total Work Exp. (months)"
+            total_work_exp_years: "Total Work Exp. in years"
+            total_work_exp_months: "Total Work Exp. in months"
             official_email: "Official E-mail"
             personal_email: "Personal E-mail"
             bank_name: "Bank Name"
@@ -202,7 +202,7 @@ en:
             remarks_2: "Remark 2"
             remarks_3: "Remark 3"
             remarks_4: "Remark 4"
-            remarks_5: "Remark 4"
+            remarks_5: "Remark 5"
             employee_cv: "Employee CV"
             name: "Name"
             description: "Description"
@@ -212,7 +212,7 @@ en:
             mobile: "Mobile"
             office: "Office"
             joined_from: "Joined From"
-            leaved: "Left"
+            leaved: "Previous Organisation Details"
             organisation: "Organisation"
             designation: "Designation"
             address1: "Address 1"
@@ -249,7 +249,7 @@ en:
             address_for_communication: "Address for Communication"
             approved: "Approved"
             group_master: "Group Collection"
-            reporting_officer: "Reporting to Officer"
+            reporting_officer: "Reporting Manager"
         edit:
           name: 'Edit Employee'
           submit: 'Update Employee'
@@ -268,7 +268,7 @@ en:
             address_for_communication: "Address for Communication"
             approved: "Approved"
             group_master: "Group Collection"
-            reporting_officer: "Reporting to Officer"
+            reporting_officer: "Reporting Manager"
     EmployeeDetail:
       form:
         new:
@@ -278,8 +278,8 @@ en:
             current_designation: "Current Designation"
             job_role_id: "Job Role ID"
             band_id: "Band ID"
-            total_work_exp_years: "Total Work Exp. (years)"
-            total_work_exp_months: "Total Work Exp. (months)"
+            total_work_exp_years: "Total Work Exp. in years"
+            total_work_exp_months: "Total Work Exp. in months"
             personal_email: "Personal E-mail"
             contact_numbers: "Contact Numbers"
             personal_address: "Personal Address"
@@ -298,7 +298,7 @@ en:
             remarks_5: "Remark 5"
             employee_cv: "Employee CV"
             joined_from: "Joined From"
-            leaved: "Left"
+            leaved: "Previous Organisation Details"
             organisation: "Organisation"
             designation: "Designation"
             name: "Name"
@@ -324,8 +324,8 @@ en:
             current_designation: "Current Designation"
             job_role_id: "Job Role ID"
             band_id: "Band ID"
-            total_work_exp_years: "Total Work Exp. (years)"
-            total_work_exp_months: "Total Work Exp. (months)"
+            total_work_exp_years: "Total Work Exp. in years"
+            total_work_exp_months: "Total Work Exp. in months"
             personal_email: "Personal E-mail"
             contact_numbers: "Contact Numbers"
             personal_address: "Personal Address"
@@ -344,7 +344,7 @@ en:
             remarks_5: "Remark 5"
             employee_cv: "Employee CV"
             joined_from: "Joined From"
-            leaved: "Left"
+            leaved: "Previous Organisation Details"
             organisation: "Organisation"
             designation: "Designation"
             name: "Name"
@@ -366,8 +366,8 @@ en:
     Client:
       form:
         new:
-          name: 'New Client'
-          submit: 'Create New Client'
+          name: 'New Company Group'
+          submit: 'Create New Company Group'
           fields:
             name: "Name"
             address: "Address"
@@ -376,8 +376,8 @@ en:
             admin_password: "Password"
             admin_password_confirmation: "Confirm Password"
         edit:
-          name: 'Edit Client'
-          submit: 'Update Client'
+          name: 'Edit Company Group'
+          submit: 'Update Company Group'
           fields:
             name: "Name"
             address: "Address"
@@ -419,7 +419,7 @@ en:
             pin: "PIN Code"
         edit:
           name: 'Edit Company'
-          submit: 'Update Company'
+          submit: 'Update Company Details'
           fields:
             company_code: "Company Code"
             company_name: "Company Name"
@@ -477,7 +477,7 @@ en:
           fields:
             doc_code: "Document Code"
             doc_name: "Document Name"
-            vc_needed: "VC Needed"
+            vc_needed: "Version Control Needed?"
             owner: "Owner"
             dfile: "Document File"
             document_template_master_id: "Document Template Master ID"
@@ -487,7 +487,7 @@ en:
           fields:
             doc_code: "Document Code"
             doc_name: "Document Name"
-            vc_needed: "VC Needed"
+            vc_needed: "Version Control Needed?"
             owner: "Owner"
             dfile: "Document File"
             document_template_master_id: "Document Template Master ID"
@@ -550,6 +550,15 @@ en:
             manpower_planning_period_to: "Period To"
             manpower_planning_requested_by: "Requested By"
             manpower_planning_final_approved_number: "Final Approved Number"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
         edit:
           name: 'Edit Job Description'
           submit: 'Update Job Description'
@@ -562,6 +571,20 @@ en:
             qualification_description: "Description"
             qualification_marks: "Marks"
             qualification_grade: "Grade"
+            manpower_planning_mp_code: "Manpower Planning Code"
+            manpower_planning_period_from: "Period From"
+            manpower_planning_period_to: "Period To"
+            manpower_planning_requested_by: "Requested By"
+            manpower_planning_final_approved_number: "Final Approved Number"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
     ManpowerPlanning:
       form:
         new:
@@ -574,6 +597,15 @@ en:
             requested_by: "Requested By"
             final_approved_number: "Final Approved Number"
             employee_master_id: "Employee Master ID"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
         edit:
           name: 'Edit Manpower Planning'
           submit: 'Update Manpower Planning'
@@ -584,6 +616,15 @@ en:
             requested_by: "Requested By"
             final_approved_number: "Final Approved Number"
             employee_master_id: "Employee Master ID"
+            vacancy_master_vacancy_code: "Vacancy Code"
+            vacancy_master_manpower_planning_id: "Manpower Planning ID"
+            vacancy_master_description: "Description"
+            vacancy_master_status: "Status"
+            vacancy_master_sourcing_strategy: "Sourcing Strategy"
+            vacancy_master_hr_rep: "HR Rep"
+            vacancy_master_hiring_manager: "Hiring Manager"
+            vacancy_master_ctc_range_from: "CTC Range From"
+            vacancy_master_ctc_range_to: "CTC Range To"
     VacancyMaster:
       form:
         new:
@@ -612,3 +653,67 @@ en:
             hiring_manager: "Hiring Manager"
             ctc_range_from: "CTC Range From"
             ctc_range_to: "CTC Range To"
+    NotificationMaster:
+      form:
+        new:
+          name: 'New Notification'
+          submit: 'Create New Notification'
+          fields:
+            code: "Code"
+            title: "Title"
+            description: "Description"
+            type: "Type"
+            read: "Read"
+            notification_master_id: "Notification Master ID"
+            event: "Event"
+            sender: "Sender"
+            email_detail_event: "Event"
+            email_detail_sender: "Sender"
+            email_detail_attachment1: "Attachment 1"
+            email_detail_attachment2: "Attachment 2"
+            email_detail_attachment3: "Attachment 3"
+            email_detail_attachment4: "Attachment 4"
+            email_detail_attachment5: "Attachment 5"
+        edit:
+          name: 'Edit Notification'
+          submit: 'Update Notification'
+          fields:
+            code: "Code"
+            title: "Title"
+            description: "Description"
+            type: "Type"
+            read: "Read"
+            notification_master_id: "Notification Master ID"
+            event: "Event"
+            sender: "Sender"
+            email_detail_event: "Event"
+            email_detail_sender: "Sender"
+            email_detail_attachment1: "Attachment 1"
+            email_detail_attachment2: "Attachment 2"
+            email_detail_attachment3: "Attachment 3"
+            email_detail_attachment4: "Attachment 4"
+            email_detail_attachment5: "Attachment 5"
+    ProcessMaster:
+      form:
+        new:
+          name: 'New Process'
+          submit: 'Create New Process'
+          fields:
+            name: "Process Name"
+            step_master_name: "Step Master Name"
+            step_master_oclass: "Class"
+            step_master_oaction: "Action"
+            step_master_action_to: "Action To"
+            step_master_content: "Content"
+            step_master_sequence: "Sequence"
+        edit:
+          name: 'Edit Process'
+          submit: 'Update Process'
+          fields:
+            name: "Process Name"
+            step_master_name: "Step Master Name"
+            step_master_oclass: "Class"
+            step_master_oaction: "Action"
+            step_master_action_to: "Action To"
+            step_master_content: "Content"
+            step_master_sequence: "Sequence"

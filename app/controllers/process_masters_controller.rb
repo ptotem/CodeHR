@@ -24,6 +24,9 @@ class ProcessMastersController < ApplicationController
   # GET /process_masters/new
   # GET /process_masters/new.json
   def new
+    @form_config= t('config.ProcessMaster.form.new')
+    @form=@form_config[:fields]
+
     @process_master = ProcessMaster.new
     @process_master.step_masters.build
 
@@ -36,6 +39,8 @@ class ProcessMastersController < ApplicationController
 
   # GET /process_masters/1/edit
   def edit
+    @form_config= t('config.ProcessMaster.form.edit')
+    @form=@form_config[:fields]
     @process_master = ProcessMaster.find(params[:id])
   end
 

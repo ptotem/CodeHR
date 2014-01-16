@@ -192,7 +192,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= vacancy_masters.label :vacancy_code,:class => "control-label" %>
+                <%#= vacancy_masters.label :vacancy_code,:class => "control-label" %>
+                <label for="<%= @form[:vacancy_master_vacancy_code].to_s %>" class="control-label"><%= @form[:vacancy_master_vacancy_code].to_s %></label>
                 <div class="controls">
                   <%= vacancy_masters.text_field :vacancy_code %>
                 </div>
@@ -200,7 +201,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= vacancy_masters.label :manpower_planning_id,:class => "control-label" %>
+                <%#= vacancy_masters.label :manpower_planning_id,:class => "control-label" %>
+                <label for="<%= @form[:vacancy_master_manpower_planning_id].to_s %>" class="control-label"><%= @form[:vacancy_master_manpower_planning_id].to_s %></label>
                 <div class="controls">
                   <%= vacancy_masters.text_field :manpower_planning_id %>
                 </div>
@@ -211,7 +213,8 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :description,:class => "control-label" %>
+              <%#= vacancy_masters.label :description,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_description].to_s %>" class="control-label"><%= @form[:vacancy_master_description].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :description %>
               </div>
@@ -219,7 +222,8 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :status,:class => "control-label" %>
+              <%#= vacancy_masters.label :status,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_status].to_s %>" class="control-label"><%= @form[:vacancy_master_status].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :status %>
               </div>
@@ -231,7 +235,8 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :sourcing_strategy,:class => "control-label" %>
+              <%#= vacancy_masters.label :sourcing_strategy,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_sourcing_strategy].to_s %>" class="control-label"><%= @form[:vacancy_master_sourcing_strategy].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :sourcing_strategy %>
               </div>
@@ -239,7 +244,8 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :hr_rep,:class => "control-label" %>
+              <%#= vacancy_masters.label :hr_rep,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_hr_rep].to_s %>" class="control-label"><%= @form[:vacancy_master_hr_rep].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :hr_rep %>
               </div>
@@ -250,7 +256,8 @@
         <div class="row-fluid">
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :hiring_manager,:class => "control-label" %>
+              <%#= vacancy_masters.label :hiring_manager,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_hiring_manager].to_s %>" class="control-label"><%= @form[:vacancy_master_hiring_manager].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :hiring_manager %>
               </div>
@@ -258,7 +265,8 @@
           </div>
           <div class="span6">
             <div class="control-group">
-              <%= vacancy_masters.label :ctc_range_from,:class => "control-label" %>
+              <%#= vacancy_masters.label :ctc_range_from,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_ctc_range_from].to_s %>" class="control-label"><%= @form[:vacancy_master_ctc_range_from].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :ctc_range_from %>
               </div>
@@ -269,7 +277,8 @@
         <div class="row-fluid">
           <div class="span12">
             <div class="control-group">
-              <%= vacancy_masters.label :ctc_range_to,:class => "control-label" %>
+              <%#= vacancy_masters.label :ctc_range_to,:class => "control-label" %>
+              <label for="<%= @form[:vacancy_master_ctc_range_to].to_s %>" class="control-label"><%= @form[:vacancy_master_ctc_range_to].to_s %></label>
               <div class="controls">
                 <%= vacancy_masters.text_field :ctc_range_to %>
               </div>
