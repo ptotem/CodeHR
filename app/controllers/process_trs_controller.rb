@@ -1,5 +1,7 @@
 class ProcessTrsController < InheritedResources::Base
   def new
+    @form_config= t('config.ProcessTr.form.new')
+    @form=@form_config[:fields]
     @process_tr=ProcessTr.new
   end
 
@@ -36,7 +38,9 @@ class ProcessTrsController < InheritedResources::Base
   end
 
   def edit
-
+    @form_config= t('config.ProcessTr.form.edit')
+    @form=@form_config[:fields]
+    @process_tr = ProcessTr.find(params[:id])
   end
 
   def navigate

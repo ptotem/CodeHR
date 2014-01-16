@@ -15,7 +15,8 @@
       <div class="row-fluid">
         <div class="span6">
           <div class="control-group">
-            <%= f.label :name,:class => "control-label" %>
+            <%#= f.label :name,:class => "control-label" %>
+            <label for="<%= @form[:name].to_s %>" class="control-label"><%= @form[:name].to_s %></label>
             <div class="controls">
               <%= f.text_field :name %>
             </div>
@@ -23,7 +24,8 @@
         </div>
         <div class="span6">
           <div class="control-group">
-            <%= f.label :description,:class => "control-label" %>
+            <%#= f.label :description,:class => "control-label" %>
+            <label for="<%= @form[:description].to_s %>" class="control-label"><%= @form[:description].to_s %></label>
             <div class="controls">
               <%= f.text_area(:description, size:"20x5")  %>
             </div>
@@ -37,7 +39,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= scales.label :scale_description,:class => "control-label" %>
+                <%#= scales.label :scale_description,:class => "control-label" %>
+                <label for="<%= @form[:scale_description].to_s %>" class="control-label"><%= @form[:scale_description].to_s %></label>
                 <div class="controls">
                   <%= scales.text_field :scale_description %>
                 </div>
@@ -48,7 +51,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= scales.label :range_from,:class => "control-label" %>
+                <%#= scales.label :range_from,:class => "control-label" %>
+                <label for="<%= @form[:range_from].to_s %>" class="control-label"><%= @form[:range_from].to_s %></label>
                 <div class="controls">
                   <%= scales.text_field :range_from %>
                 </div>
@@ -56,7 +60,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= scales.label :range_to,:class => "control-label" %>
+                <%#= scales.label :range_to,:class => "control-label" %>
+                <label for="<%= @form[:range_to].to_s %>" class="control-label"><%= @form[:range_to].to_s %></label>
                 <div class="controls">
                   <%= scales.text_field :range_to %>
                 </div>
@@ -88,7 +93,7 @@
 
 
       <div class="form-actions">
-        <%= f.submit :class=>"btn btn-info" %>
+        <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
   <% end %>
 
