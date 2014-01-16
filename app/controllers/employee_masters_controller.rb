@@ -1,5 +1,13 @@
 class EmployeeMastersController < InheritedResources::Base
 
+  load_and_authorize_resource :only => [:index]
+
+  def index
+    authorize! :index, EmployeeMaster
+
+    @employee_masters = EmployeeMaster.accessible_by(current_ability)
+  end
+
   def new
     @form_config= t('config.EmployeeMaster.form.new')
     @form=@form_config[:fields]
@@ -52,6 +60,25 @@ class EmployeeMastersController < InheritedResources::Base
     @form_config= t('config.EmployeeMaster.form.edit')
     @form=@form_config[:fields]
     @employee_master = EmployeeMaster.find(params[:id])
+  end
+
+  def show
+    @employee_master = EmployeeMaster.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @employee_master }
+    end
+  end
+
+  def emp_master_approval
+    @employee_master = EmployeeMaster.find(params[:id])
+    render :action => :show
+  end
+
+  def approve_emp_master
+    render :text => "hello"
+    return
   end
 
   #Function to handle tagging for EmployeeMaster

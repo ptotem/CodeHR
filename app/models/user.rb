@@ -6,7 +6,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :superuser
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -27,7 +27,7 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
   field :current_redirect_url, :type => String
-
+  field :superuser, :type => Boolean, :default => false
 
   has_one :employee_master
   has_many :roles

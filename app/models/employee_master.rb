@@ -27,6 +27,10 @@ class EmployeeMaster
 
   accepts_nested_attributes_for :reporting_tos
 
+  rails_admin do
+    navigation_label "Emp Masters"
+  end
+
   #TODO: uncomment validations
   #validates :official_email,
   #          :presence => true,

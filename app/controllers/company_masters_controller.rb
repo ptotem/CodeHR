@@ -1,7 +1,15 @@
 class CompanyMastersController < ApplicationController
   # GET /company_masters
   # GET /company_masters.json
+
+  load_and_authorize_resource :only => [:index]
+
+
   def index
+    authorize! :index, CompanyMaster
+
+    @company_masters1 = CompanyMaster.accessible_by(current_ability)
+
     @company_masters = CompanyMaster.all
 
     respond_to do |format|
