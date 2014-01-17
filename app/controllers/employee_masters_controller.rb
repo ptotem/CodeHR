@@ -1,12 +1,11 @@
 class EmployeeMastersController < InheritedResources::Base
 
-  load_and_authorize_resource :only => [:index]
+  #load_and_authorize_resource :only => [:index]
 
-  def index
-    authorize! :index, EmployeeMaster
-
-    @employee_masters = EmployeeMaster.accessible_by(current_ability)
-  end
+  #def index
+  #  authorize! :index, EmployeeMaster
+  #  @employee_masters = EmployeeMaster.accessible_by(current_ability)
+  #end
 
   def new
     @form_config= t('config.EmployeeMaster.form.new')

@@ -1,8 +1,15 @@
-<h1>Listing Candidate Master</h1>
+<div class="row-fluid">
+  <div class="span4">
+    <%= link_to 'New Candidate Master', new_candidate_master_path, :class=>"btn btn-info" %>
+  </div>
+</div>
+
+<br>
 
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-striped table-bordered table-hover">
+    <div class="table-header">Listing Candidate Master</div>
+    <table id="candidate_master_table" class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
             <th>Candidate Code</th>
@@ -78,6 +85,13 @@
   </div>
 </div>
 
-<br />
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
+<%= javascript_include_tag "custom_dataTable" %>
 
-<%= link_to 'New Candidate master', new_candidate_master_path %>
+
+<script>
+    $(function(){
+        apply_dataTable('#candidate_master_table', '#candidate_master_table_wrapper','#candidate_master_table_length', '#candidate_master_table_filter');
+    });
+</script>
