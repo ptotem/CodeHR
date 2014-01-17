@@ -2,7 +2,7 @@ class CompanyMastersController < ApplicationController
   # GET /company_masters
   # GET /company_masters.json
 
-  load_and_authorize_resource :only => [:index]
+  #load_and_authorize_resource :only => [:index]
 
   def index
     #authorize! :index, CompanyMaster
