@@ -109,18 +109,20 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
-        if action_to == "User"
+        #if action_to == "User"
           link="/user_approval/"+@pro.chits.where(:name=>"User").first.oid
           #Creating the approver request
           @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>link,:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
           #Creating the approver for approval
+          puts "Sunny"
           @step= @pro.step_trs[stepno]
           @step.action_arrs.each do |aa|
-            @app.approver.create!(:employee_master_id=>obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+            @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
           end
           @app.send_notification
-        end
-        @pro.step_trs[stepno].end_processing_step
+          puts "Approval"
+        #end
+        #@pro.step_trs[stepno].end_processing_step
         #create a approval request for this process
         #Send the notification to all the people given in action array..
         #cre
