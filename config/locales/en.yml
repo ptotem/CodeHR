@@ -11,9 +11,9 @@ en:
           fields:
             comments:
               name: 'comments'
-              label: 'Comments'
+              label: 'Comment'
               type: 'text_field'
-              sequence: 4
+              sequence: 1
               class_type: 'single'
               parent: ''
             vacancy_scheduling_id:
@@ -42,7 +42,7 @@ en:
               name: 'dynamic_fields'
               label: 'Additional Information'
               type: ''
-              sequence: 1
+              sequence: 4
               class_type: 'dynamic'
               parent: ''
         edit:
