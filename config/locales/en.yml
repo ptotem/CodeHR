@@ -717,3 +717,79 @@ en:
             step_master_action_to: "Action To"
             step_master_content: "Content"
             step_master_sequence: "Sequence"
+    ProcessTr:
+      form:
+        new:
+          name: 'New Process TR'
+          submit: 'Create New Process TR'
+          fields:
+            name: "Process TR Name"
+            user_id: "User ID"
+        edit:
+          name: 'Edit Process TR'
+          submit: 'Update Process TR'
+          fields:
+            name: "Process TR Name"
+            user_id: "User ID"
+    RatingConf:
+      form:
+        new:
+          name: 'New Rating Conf'
+          submit: 'Create New Rating Conf'
+          fields:
+            col_name: "Col Name"
+            col_lable: "Col Lable"
+            col_validation: "Col Validation"
+            col_type: "Col Type"
+            col_sequence: "Col Sequence"
+            col_show: "Col Show"
+            is_model: "is Model?"
+            is_nested: "is Nested?"
+            type: "Type"
+            parent: "Parent"
+        edit:
+          name: 'Edit Rating Conf'
+          submit: 'Update Rating Conf'
+          fields:
+            col_name: "Col Name"
+            col_lable: "Col Lable"
+            col_validation: "Col Validation"
+            col_type: "Col Type"
+            col_sequence: "Col Sequence"
+            col_show: "Col Show"
+            is_model: "is Model?"
+            is_nested: "is Nested?"
+            type: "Type"
+            parent: "Parent"
+    RatingScale:
+      form:
+        new:
+          name: 'New Rating Scale'
+          submit: 'Create New Rating Scale'
+          fields:
+            name: "Name"
+            description: "Description"
+            scale_description: "Scale Description"
+            range_from: "Range From"
+            range_to: "Range To"
+        edit:
+          name: 'Edit Rating Scale'
+          submit: 'Update Rating Scale'
+          fields:
+            name: "Name"
+            description: "Description"
+            scale_description: "Scale Description"
+            range_from: "Range From"
+            range_to: "Range To"
+    SalaryComponentMaster:
+      form:
+        new:
+          name: 'New Salary Component'
+          submit: 'Create New Salary Component'
+          fields:
+            name: "Name"
+        edit:
+          name: 'Edit Salary Component'
+          submit: 'Update Salary Component'
+          fields:
+            name: "Name"

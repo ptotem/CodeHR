@@ -1,5 +1,6 @@
 class CompanyMaster
   include Mongoid::Document
+  #include CanCan::ModelAdditions::ClassMethods
   field :company_code, type: String
   field :company_name, type: String
   field :office_phone_number, type: String
@@ -31,6 +32,10 @@ class CompanyMaster
   accepts_nested_attributes_for :band_masters
 
   belongs_to :client
+
+  rails_admin do
+    navigation_label "Company Master"
+  end
 
   validates :company_code, :presence => true
 

@@ -12,13 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%#= f.label :name %>
+    <label for="<%= @form[:name].to_s %>" class="control-label"><%= @form[:name].to_s %></label>
     <%#= f.hidden_field :usr_id, "52bd2b2fce10bb9248000001" %>
 
     <%= f.select :name, options_from_collection_for_select(ProcessMaster.all ,'id','name') %>
     <%= text_field_tag :obj_id %>
   </div>
   <div class="actions">
-    <%= f.submit "Start Process"%>
+    <%= f.submit @form_config[:submit] %>
   </div>
 <% end %>

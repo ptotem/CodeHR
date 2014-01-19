@@ -65,6 +65,37 @@
   </div>
 </div>
 
+<% if params[:action]=="emp_master_approval" %>
+    <div class="row-fluid">
+      <div class="offset4 span2">
+        <%= button_tag "Approve", :class=>"btn btn-info", :id=>"approve_btn" %>
+      </div>
+    </div>
+<% end %>
 
 <%= link_to 'Edit', edit_employee_master_path(@employee_master) %> |
 <%= link_to 'Back', employee_masters_path %>
+
+<script>
+  $(function(){
+     $("#approve_btn").on('click', function(){
+
+         var emp_id = "<%= @employee_master.id %>";
+
+         var data = {emp_id: []};
+         data["emp_id"].push(emp_id);
+
+         $.ajax({
+             url: "/approve_emp_master",
+             type: "post",
+             async: false,
+             data: JSON.stringify(data),
+             contentType: "application/json",
+             success: function (data) {
+                 console.log(data);
+             }
+         });
+
+     });
+  });
+</script>

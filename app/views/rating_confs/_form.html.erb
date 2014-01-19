@@ -12,28 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :col_name %><br />
+    <%#= f.label :col_name %><br />
+    <label for="<%= @form[:col_name].to_s %>" class="control-label"><%= @form[:col_name].to_s %></label>
     <%= f.text_field :col_name %>
   </div>
   <div class="field">
-    <%= f.label :col_lable %><br />
+    <%#= f.label :col_lable %><br />
+    <label for="<%= @form[:col_lable].to_s %>" class="control-label"><%= @form[:col_lable].to_s %></label>
     <%= f.text_field :col_lable %>
   </div>
   <div class="field">
-    <%= f.label :col_validation %><br />
+    <%#= f.label :col_validation %><br />
+    <label for="<%= @form[:col_validation].to_s %>" class="control-label"><%= @form[:col_validation].to_s %></label>
     <%= f.check_box :col_validation %>
   </div>
     <br>
   <div class="field">
-    <%= f.label :col_type %><br />
+    <%#= f.label :col_type %><br />
+    <label for="<%= @form[:col_type].to_s %>" class="control-label"><%= @form[:col_type].to_s %></label>
     <%= f.text_field :col_type %>
   </div>
   <div class="field">
-    <%= f.label :col_sequence %><br />
+    <%#= f.label :col_sequence %><br />
+    <label for="<%= @form[:col_sequence].to_s %>" class="control-label"><%= @form[:col_sequence].to_s %></label>
     <%= f.number_field :col_sequence %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @form_config[:submit] %>
   </div>
 <% end %>
 

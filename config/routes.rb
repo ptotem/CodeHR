@@ -109,6 +109,13 @@ CodeHR::Application.routes.draw do
   match '/group_tag' =>'employee_masters#group_tagging', :as => :group_tag
   match '/manager_tag' =>'employee_masters#manager_tagging', :as => :manager_tag
 
+  match '/emp_master_approval/:id' =>'employee_masters#emp_master_approval', :as => :emp_master_approval
+  match '/approve_emp_master' =>'employee_masters#approve_emp_master', :as => :approve_emp_master
+
+  match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
+  match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

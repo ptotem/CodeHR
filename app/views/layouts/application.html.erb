@@ -52,7 +52,7 @@
 <div class="container-fluid">
 
 
-<a class="brand" href="#">
+<a class="brand" href="/">
   <small><i class="icon-leaf"></i> CodeHR</small>
 </a>
 <ul class="nav ace-nav pull-right">
@@ -269,9 +269,9 @@
     <div id="sidebar-shortcuts">
       <div id="sidebar-shortcuts-large">
         <button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
-        <button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
-        <button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
-        <button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
+        <a href="<%= vacancy_masters_path %>" class="btn btn-small btn-info"><i class="icon-pencil"></i></a>
+        <a href="<%= manpower_plannings_path %>" class="btn btn-small btn-warning"><i class="icon-group"></i></a>
+        <a href="<%= notification_masters_path %>" class="btn btn-small btn-danger"><i class="icon-cogs"></i></a>
       </div>
       <div id="sidebar-shortcuts-mini">
         <span class="btn btn-success"></span>
@@ -292,7 +292,7 @@
         <ul class="submenu">
           <li><%= link_to "Employee Masters", employee_masters_path%></li>
           <li><%= link_to "Candidate Masters", candidate_masters_path%></li>
-          <li><%= link_to "Role" %></li>
+          <li><%= link_to "Role", roles_path %></li>
         </ul>
       </li>
     </ul>
@@ -337,6 +337,8 @@
           <li><%= link_to "Interview Type", interview_types_path %></li>
           <li><%= link_to "Ratings", ratings_path %></li>
           <li><%= link_to "Rating Scales", rating_scales_path %></li>
+          <li><%= link_to "Vacancy Master", vacancy_masters_path %></li>
+          <li><%= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>
         </ul>
       </li>
     </ul>
