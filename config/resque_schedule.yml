@@ -1,0 +1,11 @@
+do_my_job:
+  every: 30s
+  class: MyJob
+  args:
+  description: Runs the perform method in MyJob
+FixSchedulesJob:
+  description: "Add any missing email sending schedules"
+  queue: send_emails
+  every:
+    - "1m"
+    - :first_in: "10s"
