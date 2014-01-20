@@ -205,13 +205,19 @@
             window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
                 l =  $(content).find(".control-label").text("Step " + nested_form_name_text_fields_len);
                 $(content).append(l)
+
+                var p = $(content).find(".control-label").parent().parent().parent().parent().attr('class');
+                var last_child = $('.'+p).children().last().attr('onClick',"remove_tab_li($(this))");
+
+                $(content).append(last_child)
+
                 var content_html = $(content).html();
 
                 var $tr = $(link).prev().find('.tab-content').find(".tab-pane:last-child"); //get last added tab
                 $('.tab-content').find('.tab-pane').removeClass('in active');
                 var c =  $(content).insertAfter($tr).wrap('<div id=step'+nested_form_name_text_fields_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
                 c.find(".control-label").remove();
-                return c.append(l);
+                return c.append(l, last_child);
                 //return $tr.append(content);
             }
 
@@ -223,6 +229,7 @@
 
 
         });
+
 
         $('#oclass').on('change', function() {
             var model_name = $(this).val();
@@ -293,6 +300,17 @@
         }
 
     });
+
+    function remove_tab_li(this_obj){
+        var tab_pane_id = $(this_obj).parent().parent().attr('id');
+
+        $('#sortable').children().find('a').each(function () {
+            if ( $(this).attr('href') == "#"+tab_pane_id) {
+                $(this).parent().empty().remove();
+            }
+        });
+
+    }
 
 
 </script>
