@@ -5,7 +5,7 @@ class ManpowerPlanning
   field :period_to, type: Date
   field :requested_by, type: String
   field :final_approved_number, type: String
-
+  field :role, type: String
   belongs_to :group_master
   belongs_to :job_description_master
 
