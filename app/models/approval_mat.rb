@@ -25,14 +25,14 @@ class ApprovalMat
   def send_notification
     puts "Inside Send Notification"
     self.approvers.each do |aa|
-      @approver=User.find(aa.employee_master_id)
-      unm=@approver.notification_masters.build title:self.name , description:self.description,  type:"Approval"
+      @approver=EmployeeMaster.find(aa.employee_master_id)
+      unm=@approver.user.notification_masters.build title:self.name , description:self.description,  type:"Approval"
       unm.save
       unm.notification_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.email_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.save
       @approver.save
-      AdminMailer.admin_mail(@approver.email,"Approval Request","#{self.description}").deliver
+      AdminMailer.admin_mail(@approver.official_email,"Approval Request","#{self.description} #{self.link}").deliver
       puts "Client mail delivered"
     end
     self.schedule_send_email
@@ -46,7 +46,7 @@ class ApprovalMat
     config[:args] = id
     config[:every] = '50s'
     Resque.set_schedule name, config
-    #puts "Resque task is scheduled"
+    puts "Resque task is scheduled"
   end
 
 

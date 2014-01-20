@@ -97,6 +97,37 @@ module ApplicationHelper
             @pro.step_trs[stepno].end_processing_step
           when "Array"
             puts "To be done"
+            @pro=ProcessTr.find(pid)
+            @action_arrs=@pro.step_trs[stepno].action_arrs
+            #to get the array data and send them notification
+            puts "Got the data"
+            @action_arrs.each do |aarr|
+              @user=eval(aarr.a_cls_name).find(aarr.obj_id)
+              unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
+              unm.save
+              unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
+              unm.email_details.build(:notification_master_id => unm._id,:event=>content)
+              unm.save
+              @user.save
+              AdminMailer.admin_mail(@user.email,"#{oclass} #{oaction}","#{content}").deliver
+              puts "Mail to admin is delivered"
+            end
+            @pro.step_trs[stepno].end_processing_step
+          when "User"
+            @pro=ProcessTr.find(pid)
+            @user=EmployeeMaster.find(@pro.chits.where(:name=>"User").first.oid).user
+            unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
+            unm.save
+            unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.email_details.build(:notification_master_id => unm._id,:event=>content)
+            unm.save
+            @user.save
+            AdminMailer.admin_mail(@user.email,"#{oclass} #{oaction}","#{content}").deliver
+            puts "Mail to User is delivered"
+            @pro=ProcessTr.find(pid)
+            @pro.step_trs[stepno].end_processing_step
+            puts "This was the last step of the process..."
+
         end
       when "Tagging"
         @user=User.find(user_id)
@@ -109,23 +140,23 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
-        #if action_to == "User"
-          link="/user_approval/"+@pro.chits.where(:name=>"User").first.oid
-          #Creating the approver request
-          @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>link,:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
-          #Creating the approver for approval
-          puts "Sunny"
-          @step= @pro.step_trs[stepno]
-          @step.action_arrs.each do |aa|
-            @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
-          end
-          @app.send_notification
-          puts "Approval"
-        #end
-        #@pro.step_trs[stepno].end_processing_step
-        #create a approval request for this process
-        #Send the notification to all the people given in action array..
-        #cre
+
+        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
+        link="http://codehr.in/employeemaster_approval/#{@pro.chits.where(:name=>"User").first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
+        @app.link=link
+        @app.save
+        @step= @pro.step_trs[stepno]
+        @step.action_arrs.each do |aa|
+          @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+        end
+        @app.send_notification
+        puts "Approval"
+      when "Completed"
+        puts "Process in system completetion stage"
+        @pro=ProcessTr.find(pid)
+        @pro.step_trs[stepno].end_processing_step
+        puts "Process is completed."
+
     end
 
   end

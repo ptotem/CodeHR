@@ -1,6 +1,6 @@
 # RailsAdmin config file. Generated on December 25, 2013 12:27
 # See github.com/sferik/rails_admin for more informations
-
+require 'cancan/model_adapters/mongoid_adapter'
 RailsAdmin.config do |config|
 
 

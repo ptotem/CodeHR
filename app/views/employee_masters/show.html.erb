@@ -86,13 +86,14 @@
          data["emp_id"].push(emp_id);
 
          $.ajax({
-             url: "/approve_emp_master",
+             url: "/approve_process/<%= params[:approval_id] %>/<%= params[:process_id] %>/<%= params[:step_no] %>/<%= @employee_master._id %>",
              type: "post",
              async: false,
              data: JSON.stringify(data),
              contentType: "application/json",
              success: function (data) {
                  console.log(data);
+                 alert(data);
              }
          });
 

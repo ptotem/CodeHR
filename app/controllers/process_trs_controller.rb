@@ -50,12 +50,15 @@ class ProcessTrsController < InheritedResources::Base
 
   def approve_process
     #This action will get called whenever any approver approves any process.
-    @pro=ProcessTr.find(parmas[:process_id])
+    @pro=ProcessTr.find(params[:process_id])
     @step_no=params[:step_no].to_i
     @app_mat=ApprovalMat.find(params[:approval_id])
-    @approver=EmployeeMaster.find(params[:aapprover_id])
+    @approver=EmployeeMaster.find(params[:approver_id])
     #approve current process
-    @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>@approver._id).first
+    @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
+    #render :text => @approval
+    #return
+
     @approval.approved=true
     @approval.active=false
     @approval.save
@@ -66,6 +69,11 @@ class ProcessTrsController < InheritedResources::Base
       @app_mat.finished=true
       @app_mat.save
       @pro.step_trs[@step_no].end_processing_step
+      render :text=>"Approval is finished...."
+      return
     end
+
+    render :text=>"Process Approval is completed now next step is over.."
+    return
   end
 end
