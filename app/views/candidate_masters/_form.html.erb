@@ -420,11 +420,11 @@
 
         <div class="control-group">
           <div class="controls">
-            <%= cand_educations.link_to_remove "Remove this task" %>
+            <%= cand_educations.link_to_remove "Remove this record" %>
           </div>
         </div>
       <% end %>
-      <%= f.link_to_add "Candidate Educations", :cand_educations %>
+      <%= f.link_to_add "Add new record", :cand_educations %>
       </p>
     </div>
 
@@ -457,12 +457,12 @@
 
          <div class="control-group">
            <div class="controls">
-             <%= candidate_contact_numbers.link_to_remove "Remove this task" %>
+             <%= candidate_contact_numbers.link_to_remove "Remove this record" %>
            </div>
          </div>
 
       <% end %>
-      <%= f.link_to_add "Candidate Contact Numbers", :candidate_contact_numbers %>
+      <%= f.link_to_add "Add new record", :candidate_contact_numbers %>
       </p>
     </div>
 
@@ -519,12 +519,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= candidate_employment_histories.link_to_remove "Remove this task" %>
+              <%= candidate_employment_histories.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Candidate Employment Histories", :candidate_employment_histories %>
+      <%= f.link_to_add "Add new record", :candidate_employment_histories %>
       </p>
     </div>
 
@@ -618,12 +618,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= communication_addresses.link_to_remove "Remove this task" %>
+              <%= communication_addresses.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Add New Candidate Address", :communication_addresses %>
+      <%= f.link_to_add "Add new record", :communication_addresses %>
       </p>
     </div>
 
@@ -664,12 +664,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= candidate_family_details.link_to_remove "Remove this task" %>
+              <%= candidate_family_details.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Candidate Family Details", :candidate_family_details %>
+      <%= f.link_to_add "Add new record", :candidate_family_details %>
       </p>
     </div>
 
@@ -681,12 +681,12 @@
             <label for="<%= @form[:vacancy_id].to_s %>" class="control-label"><%= @form[:vacancy_id].to_s %></label>
             <div class="controls">
               <%= job_preferences.text_field :vacancy_id %>
-              <%= job_preferences.link_to_remove "Remove this task" %>
+              <%= job_preferences.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Job Preferences", :job_preferences %>
+      <%= f.link_to_add "Add new record", :job_preferences %>
       </p>
     </div>
 
@@ -698,12 +698,12 @@
             <label for="<%= @form[:loc_name].to_s %>" class="control-label"><%= @form[:loc_name].to_s %></label>
             <div class="controls">
               <%= location_preferences.text_field :name %>
-              <%= location_preferences.link_to_remove "Remove this task" %>
+              <%= location_preferences.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Location Preferences", :location_preferences %>
+      <%= f.link_to_add "Add new record", :location_preferences %>
       </p>
     </div>
 
@@ -729,7 +729,7 @@
     </div>
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
-      <%= f.submit @form_config[:submit] %>
+      <%= f.submit @form_config[:submit], :class => "btn btn-info" %>
     </div>
 
 <% end %>

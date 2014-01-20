@@ -86,12 +86,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= interviewer_lists.link_to_remove "Remove this task" %>
+              <%= interviewer_lists.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Interviewer Lists", :interviewer_lists %>
+      <%= f.link_to_add "Add new record", :interviewer_lists %>
       <hr>
 
       <%= f.fields_for :ratings do |ratings| %>
@@ -108,12 +108,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= ratings.link_to_remove "Remove this task" %>
+              <%= ratings.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Rating", :ratings %>
+      <%= f.link_to_add "Add new record", :ratings %>
       <hr>
 
       <% @fields = DynamicField.where(:oclass=>"VacancyMaster") %>

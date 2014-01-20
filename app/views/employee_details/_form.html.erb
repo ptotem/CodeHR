@@ -378,7 +378,7 @@
               <span class="span6">
                 <div class="control-group">
                   <div class="controls">
-                    <%= employment_hists.link_to_remove "Remove this task" %>
+                    <%= employment_hists.link_to_remove "Remove this record" %>
                   </div>
                 </div>
               </span>
@@ -386,7 +386,7 @@
 
 
         <% end %>
-        <%= f.link_to_add "Employment Hists", :employment_hists, :onclick=>"add_dp()" %></p>
+        <%= f.link_to_add "Add new record", :employment_hists, :onclick=>"add_dp()" %></p>
     </div>
 
     <div id="educations" class="tab-pane">
@@ -425,12 +425,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= educations.link_to_remove "Remove this task" %>
+              <%= educations.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Educations", :educations %></p>
+      <%= f.link_to_add "Add new record", :educations %></p>
     </div>
 
     <div id="family_details" class="tab-pane">
@@ -470,12 +470,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= family_details.link_to_remove "Remove this task" %>
+              <%= family_details.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Family Details", :family_details %>
+      <%= f.link_to_add "Add new record", :family_details %>
       </p>
     </div>
 
@@ -516,12 +516,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= pf_nominations.link_to_remove "Remove this task" %>
+              <%= pf_nominations.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "PF Nominations", :pf_nominations %>
+      <%= f.link_to_add "Add new record", :pf_nominations %>
       </p>
     </div>
 
@@ -562,12 +562,12 @@
 
           <div class="control-group">
             <div class="controls">
-              <%= esis_nominations.link_to_remove "Remove this task" %>
+              <%= esis_nominations.link_to_remove "Remove this record" %>
             </div>
           </div>
 
       <% end %>
-      <%= f.link_to_add "Esis Nominations", :esis_nominations %>
+      <%= f.link_to_add "Add new record", :esis_nominations %>
       </p>
     </div>
 
@@ -580,7 +580,7 @@
     </div>
     
   <div class="actions">
-    <%= f.submit @form_config[:submit] %>
+    <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
   </div>
 <% end %>
 

@@ -14,7 +14,7 @@
 
     <div class="tabbable">
       <ul class="nav nav-tabs" id="myTab">
-        <li><a data-toggle="tab" href="#new_comp_tab">New Company</a></li>
+        <li class="active"><a data-toggle="tab" href="#new_comp_tab">New Company</a></li>
         <li><a data-toggle="tab" href="#address_tab">Company Address</a></li>
         <li><a data-toggle="tab" href="#remarks_tab">Remarks</a></li>
         <li><a data-toggle="tab" href="#band_tab">Band</a></li>
@@ -216,12 +216,12 @@
 
                 <div class="control-group">
                   <div class="controls">
-                    <%= band.link_to_remove "Remove this task" %>
+                    <%= band.link_to_remove "Remove this record" %>
                   </div>
                 </div>
 
             <% end %>
-            <%= f.link_to_add "Add New Band", :band_masters %></p>
+            <%= f.link_to_add "Add new record", :band_masters %></p>
           </div>
         </div>
 
@@ -317,7 +317,7 @@
               <span class="span6">
                 <div class="control-group">
                   <div class="controls">
-                    <%= employment_hists.link_to_remove "Remove this task" %>
+                    <%= employment_hists.link_to_remove "Remove this record" %>
                   </div>
                 </div>
               </span>
@@ -325,13 +325,13 @@
 
 
             <% end %>
-            <%= f.link_to_add "Employment Hists", :company_addresses, :onclick=>"add_dp()" %></p>
+            <%= f.link_to_add "Add new record", :company_addresses %></p>
         </div>
       </div>
     </div>
 
 
-    <div class="actions">
-      <%= f.submit %>
+    <div class="form-actions">
+      <%= f.submit @form_config[:submit], :class => "btn btn-info" %>
     </div>
 <% end %>
