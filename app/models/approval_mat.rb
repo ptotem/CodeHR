@@ -8,6 +8,7 @@ class ApprovalMat
   field :process_tr_id, type: String
   field :step_no, type: Integer
   field :employee_master_id, type: String
+  field :created_at, type: DateTime, default: DateTime.now
 
   embeds_many :approvers
   accepts_nested_attributes_for :approvers
@@ -45,7 +46,7 @@ class ApprovalMat
     config[:args] = id
     config[:every] = '50s'
     Resque.set_schedule name, config
-    puts "Resque task is scheduled"
+    #puts "Resque task is scheduled"
   end
 
 
