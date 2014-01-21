@@ -100,6 +100,7 @@ CodeHR::Application.routes.draw do
 
 
   match '/employeemaster_creation/:process_id/:seq'=>'employee_masters#new', :as=>:employee_creation
+  match '/manpowerplanning_creation/:process_id/:seq'=>'manpower_plannings#new', :as=>:manpowerplan_creation
 
   match '/employeemaster_tagging_role/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_role', :as => :employeemaster_tagging_role
   match '/employeemaster_tagging_groupmaster/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_groupmaster', :as => :employeemaster_tagging_groupmaster
@@ -110,6 +111,9 @@ CodeHR::Application.routes.draw do
   match '/manager_tag' =>'employee_masters#manager_tagging', :as => :manager_tag
 
   match '/employeemaster_approval/:id/:process_id/:step_no/:approval_id' =>'employee_masters#emp_master_approval', :as => :emp_master_approval
+  match '/manpowerplanning_approval/:id/:process_id/:step_no/:approval_id' =>'manpower_plannings#mp_approval', :as => :mp_approval
+
+
   match '/approve_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#approve_process', :as => :approve_emp_master
 
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval

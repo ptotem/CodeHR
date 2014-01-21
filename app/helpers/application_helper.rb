@@ -142,12 +142,19 @@ module ApplicationHelper
         puts "Sending approval request to People."
 
         @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
-        link="http://codehr.in/employeemaster_approval/#{@pro.chits.where(:name=>"User").first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
+        link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         @app.link=link
         @app.save
         @step= @pro.step_trs[stepno]
         @step.action_arrs.each do |aa|
-          @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+          if aa.dep_class_name.blank?
+           @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+          else
+            @grps=EmployeeMaster.where(aa.dep_class_name.to_sym => aa.obj_id)
+            @grps.each do |grp|
+              @app.approvers.create!(:employee_master_id=>grp._id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+            end
+          end
         end
         @app.send_notification
         puts "Approval"

@@ -6,6 +6,7 @@ class ManpowerPlanning
   field :requested_by, type: String
   field :final_approved_number, type: String
   field :role, type: String
+  field :process_id, type:String
   belongs_to :group_master
   belongs_to :job_description_master
 
@@ -18,12 +19,12 @@ class ManpowerPlanning
   validates :mp_code, :presence => true
 
   validates :period_from, :presence => true
-  validates_date :period_from, :before => lambda { :period_to }
+  #validates_date :period_from, :before => lambda { :period_to }
 
   validates :period_to, :presence => true
-  validates_date :period_to, :after => lambda { :period_from }
+  #validates_date :period_to, :after => lambda { :period_from }
 
   validates :requested_by, :presence => true
-  validates :final_approved_number, :presence => true
+  #validates :final_approved_number, :presence => true
 
 end

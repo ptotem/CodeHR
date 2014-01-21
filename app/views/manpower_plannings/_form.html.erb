@@ -39,6 +39,9 @@
                     </td>
                     <td>
                       <div class="input-append date">
+                        <% if !params[:process_id].nil? %>
+                            <%= hidden_field_tag :process_id, params[:process_id] %>
+                        <% end %>
                         <%= f.text_field :period_from, :class=>"date-picker" %>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                       </div>
