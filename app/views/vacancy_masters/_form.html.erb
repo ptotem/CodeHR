@@ -48,7 +48,7 @@
             <%#= f.label :status,:class => "control-label" %>
             <label for="<%= @form[:status].to_s %>" class="control-label"><%= @form[:status].to_s %></label>
             <div class="controls">
-              <%= f.text_field :status %>
+              <%= f.select :status, ['Active', 'Transferred', 'Resigned', 'Separated'] %>
             </div>
           </div>
         </div>

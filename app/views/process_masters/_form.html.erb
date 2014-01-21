@@ -303,9 +303,12 @@
 
     function remove_tab_li(this_obj){
         var tab_pane_id = $(this_obj).parent().parent().attr('id');
-
+        //console.log(tab_pane_id);
         $('#sortable').children().find('a').each(function () {
             if ( $(this).attr('href') == "#"+tab_pane_id) {
+                $(this).parent().prev().addClass('active');
+                //$('.tab-content').find("#"+tab_pane_id).empty().remove();
+                $('.tab-content').find("#"+tab_pane_id).prev().addClass('active');
                 $(this).parent().empty().remove();
             }
         });
