@@ -27,6 +27,7 @@
                   <th><label for="<%= @form[:period_from].to_s %>" class="control-label"><%= @form[:period_from].to_s %></label></th>
                   <th><label for="<%= @form[:period_to].to_s %>" class="control-label"><%= @form[:period_to].to_s %></label></th>
                   <th><label for="<%= @form[:requested_by].to_s %>" class="control-label"><%= @form[:requested_by].to_s %></label></th>
+                  <th><label for="<%= @form[:role].to_s %>" class="control-label"><%= @form[:role].to_s %></label></th>
                   <th><label for="<%= @form[:final_approved_number].to_s %>" class="control-label"><%= @form[:final_approved_number].to_s %></label></th>
                 </tr>
             </thead>
@@ -49,7 +50,10 @@
                       </div>
                     </td>
                     <td>
-                      <%= f.text_field :requested_by %>
+                      <%= f.select :requested_by, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name') %>
+                    </td>
+                    <td>
+                      <%= f.select :role, options_from_collection_for_select(Role.all,'id','name') %>
                     </td>
                     <td>
                       <%= f.text_field :final_approved_number %>

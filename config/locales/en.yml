@@ -595,6 +595,7 @@ en:
             period_from: "Period From"
             period_to: "Period To"
             requested_by: "Requested By"
+            role : "Role"
             final_approved_number: "Final Approved Number"
             employee_master_id: "Employee Master ID"
             vacancy_master_vacancy_code: "Vacancy Code"
