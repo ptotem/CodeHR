@@ -121,12 +121,12 @@
         <div class="span6">
           <div class="control-group">
             <%#= raw custom_lable(@candidate_master, :date_of_birth) %>
-            <label for="<%= @form[:date_of_birth].to_s %>" class="control-label"><%= @form[:date_of_birth].to_s %></label>
+            <label for="<%= @form[:date_of_birth].to_s %>" class="control-label"><%= @form[:date_of_birth].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
             <div class="controls">
               <%#= f.date_select :date_of_birth %>
               <div class="row-fluid input-append date">
-                <%= f.text_field :date_of_birth, :class=>"span6 date-picker" %>
-                <span class="add-on"><i class="icon-calendar"></i></span>
+                <%= f.text_field :date_of_birth, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
+                <span class="add-on" style="height: 19px;"><i class="icon-calendar"></i></span>
               </div>
             </div>
           </div>
@@ -473,11 +473,11 @@
             <span class="span6">
                  <div class="control-group">
                    <%#= candidate_employment_histories.label :joined_from, :class => "control-label" %>
-                   <label for="<%= @form[:joined_from].to_s %>" class="control-label"><%= @form[:joined_from].to_s %></label>
+                   <label for="<%= @form[:joined_from].to_s %>" class="control-label"><%= @form[:joined_from].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
                    <div class="controls">
                      <%#= candidate_employment_histories.date_select :joined_from %>
                      <div class="row-fluid input-append date">
-                       <%= candidate_employment_histories.text_field :joined_from, :class=>"span6 date-picker" %>
+                       <%= candidate_employment_histories.text_field :joined_from, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                        <span class="add-on"><i class="icon-calendar"></i></span>
                      </div>
                    </div>
@@ -491,11 +491,7 @@
                    <!--<lable class="control-label">Left</lable>-->
                    <label for="<%= @form[:leaved].to_s %>" class="control-label"><%= @form[:leaved].to_s %></label>
                    <div class="controls">
-                     <%#= candidate_employment_histories.date_select :leaved %>
-                     <div class="row-fluid input-append date">
-                       <%= candidate_employment_histories.text_field :leaved, :class=>"span6 date-picker" %>
-                       <span class="add-on"><i class="icon-calendar"></i></span>
-                     </div>
+                     <%= candidate_employment_histories.text_field :leaved %>
                    </div>
                  </div>
             </span>

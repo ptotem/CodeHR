@@ -23,7 +23,7 @@
     <div class="control-group">
       <label for="<%= @form[:company].to_s %>" class="control-label"><%= @form[:company].to_s %></label>
       <div class="controls">
-        <%= f.select :company_master_id, options_from_collection_for_select(CompanyMaster.all ,'id','company_name') %>
+        <%= f.select :company_master_id, options_from_collection_for_select(CompanyMaster.all,'id','company_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
       </div>
       <% if !params[:process_id].nil? %>
           <%= hidden_field_tag :process_id, params[:process_id] %>
@@ -33,7 +33,7 @@
     <div class="control-group">
       <label for="<%= @form[:parent_group].to_s %>" class="control-label"><%= @form[:parent_group].to_s %></label>
       <div class="controls">
-        <%= f.select :parent_group_id, options_from_collection_for_select(GroupMaster.all,'id','group_name') %>
+        <%= f.select :parent_group_id, options_from_collection_for_select(GroupMaster.all,'id','group_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
       </div>
     </div>
 
@@ -41,3 +41,13 @@
       <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
     </div>
 <% end %>
+
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>

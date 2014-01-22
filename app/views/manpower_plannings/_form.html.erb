@@ -24,8 +24,8 @@
             <thead>
                 <tr>
                   <th><label for="<%= @form[:mp_code].to_s %>" class="control-label"><%= @form[:mp_code].to_s %></label></th>
-                  <th><label for="<%= @form[:period_from].to_s %>" class="control-label"><%= @form[:period_from].to_s %></label></th>
-                  <th><label for="<%= @form[:period_to].to_s %>" class="control-label"><%= @form[:period_to].to_s %></label></th>
+                  <th><label for="<%= @form[:period_from].to_s %>" class="control-label"><%= @form[:period_from].to_s %> <sub>(dd-mm-yyyy)</sub> </label></th>
+                  <th><label for="<%= @form[:period_to].to_s %>" class="control-label"><%= @form[:period_to].to_s %> <sub>(dd-mm-yyyy)</sub> </label></th>
                   <th><label for="<%= @form[:requested_by].to_s %>" class="control-label"><%= @form[:requested_by].to_s %></label></th>
                   <th><label for="<%= @form[:role].to_s %>" class="control-label"><%= @form[:role].to_s %></label></th>
                   <th><label for="<%= @form[:final_approved_number].to_s %>" class="control-label"><%= @form[:final_approved_number].to_s %></label></th>
@@ -39,22 +39,21 @@
                     </td>
                     <td>
                       <div class="input-append date">
-                        <%= f.text_field :period_from, :class=>"date-picker" %>
+                        <%= f.text_field :period_from, :class=>"date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                       </div>
                     </td>
                     <td>
                       <div class="input-append date">
-                        <%= f.text_field :period_to, :class=>"date-picker" %>
+                        <%= f.text_field :period_to, :class=>"date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                         <span class="add-on"><i class="icon-calendar"></i></span>
                       </div>
                     </td>
                     <td>
-                      <%#= f.select :requested_by, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name') %>
                       <%= f.select :requested_by, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
                     </td>
                     <td>
-                      <%= f.select :role, options_from_collection_for_select(Role.all,'id','name') %>
+                      <%= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
                     </td>
                     <td>
                       <%= f.text_field :final_approved_number %>
@@ -214,7 +213,7 @@
 <!--<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
 <script src="/assets/bootstrap-datepicker.min.js"></script>
 
-<link rel="stylesheet" href="/assets/chosen.css" />
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
 <script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
 
 <script>

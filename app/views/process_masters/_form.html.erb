@@ -75,7 +75,7 @@
                           <div class="control-group">
                             <label class="custom-control-label">Class Name</label>
                             <div class="controls">
-                              <%= select_tag 'oclass', options_for_select(Mongoid.models.collect{ |u| [u] }) %>
+                              <%= select_tag 'oclass', options_for_select(Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "chzn-select"} %>
                             </div>
                           </div>
                         </div>
@@ -152,10 +152,17 @@
 <script type="text/javascript" src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript" src="/assets/jquery.mjs.nestedSortable.js"></script>
 
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+
 <script>
     var nested_form_name_text_fields_len;
 
     $(function() {
+
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
 

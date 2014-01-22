@@ -62,7 +62,7 @@
             <label for="<%= @form[:job_role_id].to_s %>" class="control-label"><%= @form[:job_role_id].to_s %></label>
             <div class="controls">
               <%#= f.number_field :job_id %>
-              <%= f.select :job_role_id ,options_from_collection_for_select(Role.all ,'id','name') %>
+              <%= f.select :job_role_id, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@
             <label for="<%= @form[:band_id].to_s %>" class="control-label"><%= @form[:band_id].to_s %></label>
             <div class="controls">
               <%#= f.number_field :band_id %>
-              <%= f.select :band_id ,options_from_collection_for_select(BandMaster.all ,'id','band_name') %>
+              <%= f.select :band_id, options_from_collection_for_select(BandMaster.all,'id','band_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
             </div>
           </div>
         </div>
@@ -210,11 +210,11 @@
         <div class="span6">
           <div class="control-group">
             <%#= f.label :date_of_leaving,:class => "control-label" %>
-            <label for="<%= @form[:date_of_leaving].to_s %>" class="control-label"><%= @form[:date_of_leaving].to_s %></label>
+            <label for="<%= @form[:date_of_leaving].to_s %>" class="control-label"><%= @form[:date_of_leaving].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
             <div class="controls">
               <%#= f.date_select :date_of_leaving %>
               <div class="row-fluid input-append date">
-                <%= f.text_field :date_of_leaving, :class=>"span6 date-picker" %>
+                <%= f.text_field :date_of_leaving, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                 <span class="add-on"><i class="icon-calendar"></i></span>
               </div>
             </div>
@@ -321,10 +321,10 @@
               <span class="span6">
                 <div class="control-group">
                   <%#= employment_hists.label :joined_from,:class => "control-label" %>
-                  <label for="<%= @form[:joined_from].to_s %>" class="control-label"><%= @form[:joined_from].to_s %></label>
+                  <label for="<%= @form[:joined_from].to_s %>" class="control-label"><%= @form[:joined_from].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
                   <div class="controls">
                     <div class="row-fluid input-append date">
-                      <%= employment_hists.text_field :joined_from, :class=>"span6 date-picker" %>
+                      <%= employment_hists.text_field :joined_from, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                       <!--<input type="text" data-date-format="dd-mm-yyyy" id="joined_from" class="span10 date-picker">-->
                       <span class="add-on"><i class="icon-calendar"></i></span>
                     </div>
@@ -341,10 +341,7 @@
                   <!--<lable class="control-label" style="font-size: 14px;">Left</lable>-->
                   <label for="<%= @form[:leaved].to_s %>" class="control-label"><%= @form[:leaved].to_s %></label>
                   <div class="controls">
-                    <div class="row-fluid input-append date">
-                      <%= employment_hists.text_field :leaved, :class=>"span6 date-picker" %>
-                      <span class="add-on"><i class="icon-calendar"></i></span>
-                    </div>
+                    <%= employment_hists.text_field :leaved %>
                   </div>
                 </div>
               </span>
@@ -587,6 +584,10 @@
 <!--<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
 <script src="/assets/bootstrap-datepicker.min.js"></script>
 
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+
 <script>
     $(function(){
         $('.date-picker').datepicker();
@@ -594,6 +595,9 @@
         $('body').on('click', function(){
             $('.date-picker').show();
         });
+
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
     });
     function add_dp(){
         $('.date-picker').datepicker();

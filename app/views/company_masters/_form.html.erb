@@ -58,7 +58,7 @@
                 <%#= raw custom_lable(@company_master, :client_id) %>
                 <label for="<%= @form[:client_id].to_s %>" class="control-label"><%= @form[:client_id].to_s %></label>
                 <div class="controls">
-                  <%= f.select :client_id, options_from_collection_for_select(Client.all,'id','name') %>
+                  <%= f.select :client_id, options_from_collection_for_select(Client.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
                 </div>
               </div>
             </div>
@@ -335,3 +335,13 @@
       <%= f.submit @form_config[:submit], :class => "btn btn-info" %>
     </div>
 <% end %>
+
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>
