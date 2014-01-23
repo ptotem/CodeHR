@@ -165,14 +165,16 @@
                                             <tr>
                                               <th>What</th>
                                               <th>Select</th>
-                                              <th>Day / Time</th>
+                                              <th class="dependent_on_select">Day / Time</th>
                                             </tr>
                                         </thead>
                                     </tbody>
                                     <tr>
                                       <th>Reminder?</th>
-                                      <td style="width: 12%"><%= check_box_tag 'reminder', 'no' %></td>
-                                      <td>
+                                      <td style="width: 12%">
+                                        <%= check_box_tag 'reminder', 'no', false, class: 'select_what_options' %>
+                                      </td>
+                                      <td class="date-time-selections">
                                           <div class="input-append date">
                                             <%= text_field_tag 'reminder_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
                                             <span class="add-on"><i class="icon-calendar"></i></span>
@@ -187,8 +189,10 @@
                                     </tr>
                                     <tr>
                                       <th>Escalate?</th>
-                                      <td style="width: 12%"><%= check_box_tag 'escalate', 'no' %></td>
-                                      <td>
+                                      <td style="width: 12%">
+                                        <%= check_box_tag 'escalate', 'no', false, class: 'select_what_options' %>
+                                      </td>
+                                      <td class="date-time-selections">
                                         <div class="input-append date">
                                             <%= text_field_tag 'escalate_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
                                             <span class="add-on"><i class="icon-calendar"></i></span>
@@ -203,8 +207,10 @@
                                     </tr>
                                     <tr>
                                       <th>Auto Assign?</th>
-                                      <td style="width: 12%"><%= check_box_tag 'auto_assign', 'no' %></td>
-                                      <td>
+                                      <td style="width: 12%">
+                                        <%= check_box_tag 'auto_assign', 'no', false, class: 'select_what_options' %>
+                                      </td>
+                                      <td class="date-time-selections">
                                         <div class="input-append date">
                                             <%= text_field_tag 'auto_assign_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
                                             <span class="add-on"><i class="icon-calendar"></i></span>
@@ -302,9 +308,6 @@
 
         $('.bootstrap-timepicker-widget .dropdown-menu.open').css('left','180px');
 
-        //$('#reminder').css('margin-left','50px');
-        //$('#escalate').css('margin-left','50px');
-        //$('#auto_asign').css('margin-left','50px');
 
     //$(".action_input").on('change', function(){
         //if( $(this).is(":checked") ){
@@ -380,6 +383,18 @@
 //            },3000);
 
 
+        });
+
+        $('.select_what_options').on('change', function() {
+            var next_adj_cell = $(this).parent().next();
+
+            if ($(this).is(":checked"))
+            {
+                $(next_adj_cell).show();
+            }
+            else{
+                $(next_adj_cell).hide();
+            }
         });
 
 
