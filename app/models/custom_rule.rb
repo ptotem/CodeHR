@@ -17,7 +17,6 @@ class CustomRule
   def add_engine_rule
     @rule=self
     @rule_name=self.name
-    #Todo:
     rule_obj = self.object
     rule_subj = self.subject
     rule_actions = self.rule_actions.all

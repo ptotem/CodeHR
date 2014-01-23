@@ -9,7 +9,9 @@ module ApplicationHelper
   end
 
   def step_processing(oclass,oaction,action_to,content,pid,stepno,user_id)
-    #Todo create a switch case based on different type of action
+    #todo: Making it more generic making a function for for the actions which are repeating itself in different controller
+    #todo: Making routing dynamic and generic
+
     case oaction
       when "Creation"
         @user=User.find(user_id)
@@ -25,7 +27,6 @@ module ApplicationHelper
         @user.save
         puts "In deletion"
       when "Notify"
-        #Todo sending notification to user
         puts "To see whether it is coming or not....."
         puts action_to
         case action_to
@@ -102,7 +103,7 @@ module ApplicationHelper
             #to get the array data and send them notification
             puts "Got the data"
             @action_arrs.each do |aarr|
-              @user=eval(aarr.a_cls_name).find(aarr.obj_id)
+              @user=eval(aarr.a_cls_name).find(aarr.obj_id).user
               unm=@user.notification_masters.build title:"System Notification" , description:content,  type:"test1"
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>content)
@@ -147,10 +148,10 @@ module ApplicationHelper
         @app.save
         @step= @pro.step_trs[stepno]
         @step.action_arrs.each do |aa|
-          if aa.dep_class_name.blank?
+          if aa.dep_clas_name.blank?
            @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
           else
-            @grps=EmployeeMaster.where(aa.dep_class_name.to_sym => aa.obj_id)
+            @grps=EmployeeMaster.where(aa.dep_clas_name.to_sym => aa.obj_id)
             @grps.each do |grp|
               @app.approvers.create!(:employee_master_id=>grp._id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
             end
@@ -158,6 +159,12 @@ module ApplicationHelper
         end
         @app.send_notification
         puts "Approval"
+      when "Release"
+        puts "Process in release stage..."
+        @pro=ProcessTr.find(pid)
+        @user=User.find(user_id)
+        @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first._id}/#{pid}/#{stepno}"
+        @user.save
       when "Completed"
         puts "Process in system completetion stage"
         @pro=ProcessTr.find(pid)

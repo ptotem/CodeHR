@@ -19,11 +19,11 @@ class VacancyMaster
   validates :vacancy_code, :presence => true
   validates :description, :presence => true
 
-  validates :status, :presence => true
+  #validates :status, :presence => true
 
-  validates :sourcing_strategy, :presence => true
-  validates :hr_rep, :presence => true
-  validates :ctc_range_from, :presence => true
-  validates :ctc_range_to, :presence => true
+  #validates :sourcing_strategy, :presence => true
+  #validates :hr_rep, :presence => true
+  #validates :ctc_range_from, :presence => true
+  #validates :ctc_range_to, :presence => true
 
 end

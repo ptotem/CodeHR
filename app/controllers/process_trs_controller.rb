@@ -54,22 +54,21 @@ class ProcessTrsController < InheritedResources::Base
     @step_no=params[:step_no].to_i
     @app_mat=ApprovalMat.find(params[:approval_id])
     @approver=EmployeeMaster.find(params[:approver_id])
-    #approve current process
     @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
-    #render :text => @approval
-    #return
 
-    @approval.approved=true
-    @approval.active=false
-    @approval.save
-    @app_mat.save
-    #Checck whether all the approver finished approving.
+    if !@approval.nil?
+      @approval.approved=true
+      @approval.active=false
+      @approval.save
+      @app_mat.save
+    end
+
     if @app_mat.approvers.where(:active => true).count<=0
       #Approval process finished beccause all the approvers finished approving
       @app_mat.finished=true
       @app_mat.save
       @pro.step_trs[@step_no].end_processing_step
-      render :text=>"Approval is finished...."
+      render :text=>"finished"
       return
     end
 

@@ -7,6 +7,7 @@ class ManpowerPlanning
   field :final_approved_number, type: String
   field :role, type: String
   field :process_id, type:String
+  field :status, type: String
   belongs_to :group_master
   belongs_to :job_description_master
 

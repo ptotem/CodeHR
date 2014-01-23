@@ -101,6 +101,10 @@ CodeHR::Application.routes.draw do
 
   match '/employeemaster_creation/:process_id/:seq'=>'employee_masters#new', :as=>:employee_creation
   match '/manpowerplanning_creation/:process_id/:seq'=>'manpower_plannings#new', :as=>:manpowerplan_creation
+  match '/manpowerplanning_release/:id/:process_id/:seq'=>'manpower_plannings#mp_release', :as=>:manpowerplan_release
+
+  match '/manpowerplanning_released/:id/:process_id/:seq'=>'manpower_plannings#release', as: :mp_released
+  #match '/manpowerplanning_released/:id/:process_id/:seq'=>'manpower_plannings#release', as: :mp_released
 
   match '/employeemaster_tagging_role/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_role', :as => :employeemaster_tagging_role
   match '/employeemaster_tagging_groupmaster/:id/:process_id/:seq' =>'employee_masters#employeemaster_tagging_groupmaster', :as => :employeemaster_tagging_groupmaster
