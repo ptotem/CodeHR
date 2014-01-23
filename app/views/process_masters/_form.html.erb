@@ -155,7 +155,7 @@
                             <div class="span2">
                               <h5>Step 1c</h5>
                             </div>
-                            <div class="span4">
+                            <div class="span8">
                               <h5>Name :- Step 1 - Pending</h5>
                               <div class="row-fluid">
                                 <div class="span12">
@@ -163,37 +163,49 @@
                                     <tr>
                                       <th>Reminder?</th>
                                       <td style="width: 12%"><%= check_box_tag 'reminder', 'no' %></td>
-                                      <td>
-                                        <div class="control-group">
-                                          <div class="row-fluid input-append date">
+                                      <td style="position: relative">
+                                          <div class="input-append date" style="float: left;">
                                             <%= text_field_tag 'reminder_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
                                             <span class="add-on"><i class="icon-calendar"></i></span>
                                           </div>
-                                        </div>
+                                          <div class="input-append bootstrap-timepicker" style="top: -30px;">
+                                            <div class="controls">
+                                              <%= text_field_tag 'reminder_time', '', maxlength: 15, size: 30, class: "input-small timepicker" %>
+                                              <span class="add-on"><i class="icon-time"></i></span>
+                                            </div>
+                                          </div>
                                       </td>
                                     </tr>
                                     <tr>
                                       <th>Escalate?</th>
                                       <td style="width: 12%"><%= check_box_tag 'escalate', 'no' %></td>
-                                      <td>
-                                        <div class="control-group">
-                                          <div class="row-fluid input-append date">
-                                            <%= text_field_tag 'reminder_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
+                                      <td style="position: relative">
+                                        <div class="input-append date" style="float: left;">
+                                            <%= text_field_tag 'escalate_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
                                             <span class="add-on"><i class="icon-calendar"></i></span>
                                           </div>
-                                        </div>
+                                          <div class="input-append bootstrap-timepicker" style="top: -30px;">
+                                            <div class="controls">
+                                              <%= text_field_tag 'escalate_time', '', maxlength: 15, size: 30, class: "input-small timepicker" %>
+                                              <span class="add-on"><i class="icon-time"></i></span>
+                                            </div>
+                                          </div>
                                       </td>
                                     </tr>
                                     <tr>
                                       <th>Auto Assign?</th>
-                                      <td style="width: 12%"><%= check_box_tag 'auto_asign', 'no' %></td>
-                                      <td>
-                                        <!--<div class="control-group">-->
-                                          <!--<div class="row-fluid input-append date">-->
-                                            <!--<input type="text" data-date-format="dd-mm-yyyy" id="id-date-picker-1" class="span10 date-picker">-->
-                                            <!--<span class="add-on"><i class="icon-calendar"></i></span>-->
-                                          <!--</div>-->
-                                        <!--</div>-->
+                                      <td style="width: 12%"><%= check_box_tag 'auto_assign', 'no' %></td>
+                                      <td style="position: relative">
+                                        <div class="input-append date" style="float: left; ">
+                                            <%= text_field_tag 'auto_assign_day', '', maxlength: 15, size: 30, class: "span6 date-picker" %>
+                                            <span class="add-on"><i class="icon-calendar"></i></span>
+                                          </div>
+                                          <div class="input-append bootstrap-timepicker" style="top: -30px;">
+                                            <div class="controls">
+                                              <%= text_field_tag 'auto_assign_time', '', maxlength: 15, size: 30, class: "input-small timepicker" %>
+                                              <span class="add-on"><i class="icon-time"></i></span>
+                                            </div>
+                                          </div>
                                       </td>
                                     </tr>
                                   </table>
@@ -246,9 +258,9 @@
 
 
 <script src="/assets/bootstrap-datepicker.min.js"></script>
-<!--<script type="text/javascript" src="/assets/bootstrap-timepicker.min.js"></script>-->
+<script type="text/javascript" src="/assets/bootstrap-timepicker.min.js"></script>
 <!--<script>jQuery.noConflict();</script>-->
-<!--<link rel="stylesheet" href="/assets/bootstrap-timepicker.css" />-->
+<link rel="stylesheet" href="/assets/bootstrap-timepicker.css" />
 
 
 <script>
@@ -257,6 +269,17 @@
     $(function() {
 
         $('.date-picker').datepicker();
+
+        $('.timepicker').timepicker({
+            minuteStep: 1,
+            showSeconds: false,
+            showMeridian: false
+        });
+
+        $('body').on('click', function(){
+            $('.date-picker').show();
+            $('.timepicker').show();
+        });
 
         $(".chzn-select").chosen();
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
