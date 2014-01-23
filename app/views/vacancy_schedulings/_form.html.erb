@@ -145,46 +145,54 @@
   <% end %>
 </div>
 
-<!--<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+<script src="/assets/prototype.js"></script>
 <script src="/assets/bootstrap-datepicker.min.js"></script>
-
 <script type="text/javascript" src="/assets/bootstrap-timepicker.min.js"></script>
+
+
 <link rel="stylesheet" href="/assets/bootstrap-timepicker.css" />
 
+
 <script>
-    $(function(){
+    jQuery.noConflict();
+    jQuery( document ).ready(function ( $ ) {
+        // You can use the locally-scoped $ in here as an alias to jQuery.
+        $('.date-picker').datepicker();
 
-        label_left();
-        add_dp();
-        add_tp();
-
+        $('.timepicker').timepicker({
+            minuteStep: 1,
+            showSeconds: false,
+            showMeridian: false
+        });
 
         $('body').on('click', function(){
             $('.date-picker').show();
             $('.timepicker').show();
         });
 
-        $('a.add_nested_fields').on('click', function(){
-            add_tp();
-            label_left();
-        });
+        //$('a.add_nested_fields').on('click', function(){
+            $(document).on('nested:fieldAdded', function(event){
+                // this field was just inserted into your form
+                var field = event.field;
+                alert(event);
+                alert(field);
+                // it's a jQuery object already! Now you can find date input
+                var dateField = field.find('.date-picker');
+                // and activate datepicker on it
+                dateField.datepicker();
+            })
+        //})
+
 
     });
 
-    function label_left(){
-        $('.control-label').css('text-align','left');
+    // The $ variable in the global scope has the prototype.js meaning.
+    window.onload = function(){
+//        var dateField = $('.date-picker');
+//        $(dateField).datepicker();
+
     }
 
-    function add_dp(){
-        $('.date-picker').datepicker();
-    }
-
-    function add_tp(){
-        $('.timepicker').timepicker({
-            minuteStep: 1,
-            showSeconds: false,
-            showMeridian: false
-        });
-    }
 </script>
+
 
