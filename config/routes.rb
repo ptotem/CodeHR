@@ -115,6 +115,8 @@ CodeHR::Application.routes.draw do
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
   match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
 
+  match '/destroy_all' =>'notification_masters#destroy_all', :as => :destroy_all_notifications
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

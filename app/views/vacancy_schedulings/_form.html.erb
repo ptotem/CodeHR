@@ -148,15 +148,13 @@
 <script src="/assets/prototype.js"></script>
 <script src="/assets/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="/assets/bootstrap-timepicker.min.js"></script>
-
+<script>jQuery.noConflict();</script>
 
 <link rel="stylesheet" href="/assets/bootstrap-timepicker.css" />
 
 
 <script>
-    jQuery.noConflict();
-    jQuery( document ).ready(function ( $ ) {
-        // You can use the locally-scoped $ in here as an alias to jQuery.
+    jQuery(function($){
         $('.date-picker').datepicker();
 
         $('.timepicker').timepicker({
@@ -165,34 +163,35 @@
             showMeridian: false
         });
 
-        $('body').on('click', function(){
-            $('.date-picker').show();
-            $('.timepicker').show();
-        });
-
-        //$('a.add_nested_fields').on('click', function(){
+        $('a.add_nested_fields').on('click', function(){
+            //alert("1");
             $(document).on('nested:fieldAdded', function(event){
                 // this field was just inserted into your form
                 var field = event.field;
-                alert(event);
-                alert(field);
+                alert("2")
                 // it's a jQuery object already! Now you can find date input
                 var dateField = field.find('.date-picker');
                 // and activate datepicker on it
                 dateField.datepicker();
             })
-        //})
+        });
 
+
+//        $('a.add_nested_fields').on('click', function(){
+//            $(document).on('nested:fieldAdded', function(event){
+//                // this field was just inserted into your form
+//                var field = event.field;
+//                alert(event);
+//                alert(field);
+//                // it's a jQuery object already! Now you can find date input
+//                var dateField = field.find('.date-picker');
+//                alert(dateField);
+//                // and activate datepicker on it
+//                dateField.datepicker();
+//            })
+//        })
 
     });
-
-    // The $ variable in the global scope has the prototype.js meaning.
-    window.onload = function(){
-//        var dateField = $('.date-picker');
-//        $(dateField).datepicker();
-
-    }
-
 </script>
 
 
