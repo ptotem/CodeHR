@@ -2,6 +2,7 @@ module SendEmailJob
   @queue = :send_emails
   def self.perform(approval_id)
     puts "Inside Send email Job.....#{approval_id}"
+    #todo :checking and making it as per the function
     @app=ApprovalMat.find(approval_id)
     puts "Approval..#{@app._id}"
     #check if deadline...

@@ -72,6 +72,8 @@ CodeHR::Application.routes.draw do
 
   resources :process_masters
 
+  resources :user_tasks
+
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
@@ -122,6 +124,9 @@ CodeHR::Application.routes.draw do
 
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
   match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
+  match '/notifications'=>'notification_masters#notifications', :as => :notifications
+  match '/tasks'=>'user_tasks#tasks', :as => :tasks
+
 
 
   # The priority is based upon order of creation:
