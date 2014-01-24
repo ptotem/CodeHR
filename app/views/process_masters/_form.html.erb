@@ -36,9 +36,9 @@
         /*z-index: 1;*/
     }
 
-    /*table > input, textarea, .uneditable-input{*/
-        /*width: 35px;*/
-    /*}*/
+    .date-time-selections {
+        width: 30%;
+    }
 
 </style>
 <%= nested_form_for(@process_master, html: {class: "form-horizontal"}) do |f| %>
@@ -168,7 +168,7 @@
                               <h5>Step 1a</h5>
                             </div>
                             <div class="span4">
-                              <h5>Name :- Step 1 - Approved</h5>
+                              <h5><span class="nested_step_names">Step 1</span> - Approved</h5>
                             </div>
                             <div class="span6">
                               <h5 style="float: left; padding-right: 5px; position: relative; top: -5px;">Goto Step</h5>
@@ -180,7 +180,7 @@
                               <h5>Step 1b</h5>
                             </div>
                             <div class="span4">
-                              <h5>Name :- Step 1 - Rejected</h5>
+                              <h5><span class="nested_step_names">Step 1</span> - Rejected</h5>
                             </div>
                             <div class="span6">
                               <h5 style="float: left; padding-right: 5px; position: relative; top: -5px;">Goto Step</h5>
@@ -192,7 +192,7 @@
                               <h5>Step 1c</h5>
                             </div>
                             <div class="span8">
-                              <h5>Name :- Step 1 - Pending</h5>
+                              <h5><span class="nested_step_names">Step 1</span> - Pending</h5>
                               <div class="row-fluid">
                                 <div class="span12">
                                   <table class="table table-striped table-bordered table-hover">
@@ -201,9 +201,9 @@
                                             <tr>
                                               <th>Select</th>
                                               <th>Action</th>
-                                              <th class="dependent_on_select">Day | Hour | Min</th>
+                                              <th class="dependent_on_select" style="text-align: center;">Day | Hour | Min</th>
                                               <th>Repeat</th>
-                                              <th>Day | Hour | Min</th>
+                                              <th style="text-align: center;">Day | Hour | Min</th>
                                             </tr>
                                         </thead>
                                     </tbody>
@@ -212,7 +212,7 @@
                                         <%= check_box_tag 'reminder', 'no', false, class: 'select_what_options' %>
                                       </td>
                                       <td>Reminder?</td>
-                                      <td class="date-time-selections">
+                                      <td class="date-time-selections" style="text-align: center;">
                                         <%= text_field_tag 'reminder_day', nil, placeholder: 'Day' %>
                                         <%= text_field_tag 'reminder_hour', nil, placeholder: 'Hour' %>
                                         <%= text_field_tag 'reminder_min', nil, placeholder: 'Min' %>
@@ -220,7 +220,7 @@
                                       <td>
                                         <%= check_box_tag 'repeat', 'no', false, class: 'repeat_options' %>
                                       </td>
-                                      <td class="repeat-date-time-selections">
+                                      <td class="repeat-date-time-selections" style="text-align: center;">
                                         <%= text_field_tag 'repeat_reminder_day', nil, placeholder: 'Day' %>
                                         <%= text_field_tag 'repeat_reminder_hour', nil, placeholder: 'Hour' %>
                                         <%= text_field_tag 'repeat_reminder_min', nil, placeholder: 'Min' %>
@@ -231,7 +231,7 @@
                                         <%= check_box_tag 'escalate', 'no', false, class: 'select_what_options' %>
                                       </td>
                                       <td>Escalate?</td>
-                                      <td class="date-time-selections">
+                                      <td class="date-time-selections" style="text-align: center;">
                                         <%= text_field_tag 'escalate_day', nil, placeholder: 'Day' %>
                                         <%= text_field_tag 'escalate_hour', nil, placeholder: 'Hour' %>
                                         <%= text_field_tag 'escalate_min', nil, placeholder: 'Min' %>
@@ -239,7 +239,7 @@
                                       <td>
                                         <%= check_box_tag 'repeat', 'no', false, class: 'repeat_options' %>
                                       </td>
-                                      <td class="escalate-date-time-selections">
+                                      <td class="escalate-date-time-selections" style="text-align: center;">
                                         <%= text_field_tag 'repeat_escalate_day', nil, placeholder: 'Day' %>
                                         <%= text_field_tag 'repeat_escalate_hour', nil, placeholder: 'Hour' %>
                                         <%= text_field_tag 'repeat_escalate_min', nil, placeholder: 'Min' %>
@@ -250,7 +250,7 @@
                                         <%= check_box_tag 'auto_assign', 'no', false, class: 'select_what_options' %>
                                       </td>
                                       <td>Auto Assign?</td>
-                                      <td class="date-time-selections">
+                                      <td class="date-time-selections" style="text-align: center;">
                                         <%= text_field_tag 'auto_assign_day', nil, placeholder: 'Day' %>
                                         <%= text_field_tag 'auto_assign_hour', nil, placeholder: 'Hour' %>
                                         <%= text_field_tag 'auto_assign_min', nil, placeholder: 'Min' %>
@@ -258,12 +258,22 @@
                                       <td>
                                         <h5>to</h5>
                                       </td>
-                                      <td>
-                                        <%= radio_button_tag 'auto_assign_to_obj', "single", true, :class => "auto_assign_to_objs" %><span class="lbl">Single</span>
-                                        <%= radio_button_tag 'auto_assign_to_obj', "bulk", true, :class => "auto_assign_to_objs" %><span class="lbl">Bulk</span>
-                                        <%= select_tag "auto_assign_to", options_for_select(["User 1", "User 2", "User 3"], "User 1"), class: 'auto_assign_tos' %>
+                                      <td style="text-align: center;">
+                                        <table style="width: 100%;">
+                                          <tr>
+                                            <td style="border-left: none; text-align: center;">
+                                              <%= radio_button_tag 'auto_assign_to_obj', "single", true, :class => "auto_assign_to_single_objs" %><span class="lbl">Single</span>
+                                            </td>
+                                            <td style="border-left: none;">
+                                              <%= radio_button_tag 'auto_assign_to_obj', "bulk", true, :class => "auto_assign_to_bulk_objs" %><span class="lbl">Bulk</span>
+                                            </td>
+                                          </tr>
+                                        </table>
 
-                                        <div class="span10">
+
+                                        <%= select_tag "auto_assign_to", options_for_select(["User 1", "User 2", "User 3"], "User 1"), class: 'auto_assign_tos' %>
+                                        <br><hr>
+                                        <div class="span11">
                                           <div id="auto_assign_to_header" class="table-header">Listing Objects</div>
                                           <h5 id="auto_assign_to__text">No objects available.</h5>
                                           <table id="auto_assign_to_list" class="table table-striped table-bordered table-hover">
@@ -275,9 +285,9 @@
                                             </tr>
                                             <tr>
                                               <td><%= check_box_tag 'select_obj_1', 'no', false, class: 'select_bulk_objects' %></td>
-                                              <td><%= radio_button_tag 'radio_obj_1', "single", true, :class => "select_single_objects" %></td>
-                                              <td>User 3</td>
-                                              <td>User 4</td>
+                                              <td><%= radio_button_tag 'radio_obj_1', "single", false, :class => "select_single_objects", style:"position: relative; top: 0px; opacity: 1;" %></td>
+                                              <td>User 1 Name</td>
+                                              <td>User 1 Email</td>
                                             </tr>
                                           </table>
                                         </div>
@@ -325,7 +335,7 @@
 
 
 <script>
-    var nested_form_name_text_fields_len;
+    var nested_form_name_text_fields_len, this_step_name;
 
     $(function() {
 
@@ -353,6 +363,8 @@
         $(':checkbox').css('opacity','1');
         //$(':radio').css('opacity','1');
 
+        $('.children_steps').find('table').find('input[type=text]').css('width','40px');
+
         $('.bootstrap-timepicker-widget .dropdown-menu.open').css('left','180px');
 
         //load_bindings();
@@ -373,6 +385,24 @@
                 $("input.user_select_checkbox").hide();
                 $("input.user_select_radio").removeAttr("disabled");
                 $("input.user_select_radio").show();
+            }
+        });
+
+        $(".auto_assign_to_single_objs").on('change', function(){
+            if( $(this).is(":checked") ){
+                $("input.select_bulk_objects").attr("disabled", true);
+                $("input.select_bulk_objects").hide();
+                $("input.select_single_objects").removeAttr("disabled");
+                $("input.select_single_objects").show();
+            }
+        });
+
+        $(".auto_assign_to_bulk_objs").on('change', function(){
+            if( $(this).is(":checked") ){
+                $("input.select_single_objects").attr("disabled", true);
+                $("input.select_single_objects").hide();
+                $("input.select_bulk_objects").removeAttr("disabled");
+                $("input.select_bulk_objects").show();
             }
         });
 
@@ -526,6 +556,8 @@
         if ($(this_obj).is(":checked"))
         {
             $(children_steps).show();
+            this_step_name = $(this_obj).parent().parent().parent().next().find('input[type=text]').val();
+            $('.nested_step_names').text(this_step_name);
         }
         else{
             $(children_steps).hide();
