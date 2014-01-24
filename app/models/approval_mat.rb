@@ -28,6 +28,8 @@ class ApprovalMat
       @approver=EmployeeMaster.find(aa.employee_master_id)
       unm=@approver.user.notification_masters.build title:self.name , description:self.description,  type:"Approval"
       unm.save
+      utask=@approver.user.user_tasks.build title:self.name , description:self.description,  type:"Approval", seen: false
+      utask.save
       unm.notification_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.email_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.save

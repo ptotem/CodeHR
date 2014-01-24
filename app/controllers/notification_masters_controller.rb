@@ -33,10 +33,20 @@ class NotificationMastersController < InheritedResources::Base
     @notification_master = NotificationMaster.find(params[:id])
   end
 
+
   def destroy_all
     #@notification_masters = NotificationMaster.all
     NotificationMaster.destroy_all
     redirect_to notification_masters_path
+  end
+
+  def notifications
+    @notifications =current_user.notification_masters.where(:read => false)
+    @notifications = @notifications.reverse!
+    respond_to do |format|
+      format.html
+      format.json {render json: @notifications}
+    end
   end
 
 end

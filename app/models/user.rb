@@ -31,9 +31,11 @@ class User
 
   has_one :employee_master
   has_many :roles
+  has_many :user_tasks
   has_and_belongs_to_many :notification_masters
 
   accepts_nested_attributes_for :roles
+  accepts_nested_attributes_for :user_tasks
 
   ## Confirmable
   # field :confirmation_token,   :type => String

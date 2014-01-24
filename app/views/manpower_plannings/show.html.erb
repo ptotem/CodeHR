@@ -31,7 +31,58 @@
     </table>
   </div>
 </div>
+<% if params[:action]=="mp_approval" %>
+    <div class="row-fluid">
+      <div class="offset4 span2">
+        <%= button_tag "Approve", :class=>"btn btn-info", :id=>"approve_btn" %>
+        <%= button_tag "Reject", :class=>"btn btn-info", :id=>"reject_btn" %>
+        <%= text_field_tag "change","Enter your Comment" , :id=>"comment_btn" %>
+      </div>
+    </div>
+<% end %>
+
+<% if params[:action] =="mp_release" %>
+    <div class="row-fluid">
+      <div class="span2 offset3">
+        <%#= button_tag "Release", :class=>"btn btn-info", :id=>"release_btn" %>
+        <a href="<%= mp_released_path(params[:id],params[:process_id],params[:seq]) %>" id="release_btn" class="btn btn-info">Release</a>
+        <%= button_tag "Consolidate", :class=>"btn btn-danger", :id=>"consolidate_btn" %>
+      </div>
+    </div>
+<% end %>
 
 
 <%= link_to 'Edit', edit_manpower_planning_path(@manpower_planning) %> |
 <%= link_to 'Back', manpower_plannings_path %>
+
+<script>
+    $(function(){
+        $("#approve_btn").on('click', function(){
+
+            var emp_id = "<%= @manpower_planning.id %>";
+
+            var data = {emp_id: []};
+            data["emp_id"].push(emp_id);
+
+            $.ajax({
+                url: "/approve_process/<%= params[:approval_id] %>/<%= params[:process_id] %>/<%= params[:step_no] %>/<%= current_user.employee_master._id %>",
+                type: "post",
+                async: false,
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                    if(data=="finished")
+                    {
+                        <% @user=User.find(current_user._id) %>
+                        <% if !@user.current_redirect_url.blank? %>
+                            window.location = "<%= @user.current_redirect_url %>";
+                        <% end %>
+                    }
+                }
+            });
+
+        });
+    });
+</script>

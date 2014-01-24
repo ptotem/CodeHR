@@ -59,65 +59,27 @@
 <li class="grey">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <i class="icon-tasks"></i>
-    <span class="badge">4</span>
+    <span class="badge" id="remtask"><%= current_user.user_tasks.where(read: false).count %></span>
   </a>
   <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
-    <li class="nav-header">
-      <i class="icon-ok"></i> 4 Tasks to complete
+    <li class="nav-header" id="remain_task">
+      <i class="icon-ok"></i> <%= current_user.user_tasks.where(read: false).count %> Tasks to complete
     </li>
+
+    <% current_user.user_tasks.where(read: false).limit(5).asc(:created_at).each do |nm| %>
+        <li class="unduntask">
+          <a href="/user_tasks/<%= nm._id %>">
+            <div class="clearfix">
+              <span class="pull-left"><%= nm.description %></span>
+            </div>
+          </a>
+        </li>
+    <% end %>
 
     <li>
       <a href="#">
-        <div class="clearfix">
-          <span class="pull-left">Software Update</span>
-          <span class="pull-right">65%</span>
-        </div>
-        <div class="progress progress-mini">
-          <div class="bar" style="width:65%"></div>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left">Hardware Upgrade</span>
-          <span class="pull-right">35%</span>
-        </div>
-        <div class="progress progress-mini progress-danger">
-          <div class="bar" style="width:35%"></div>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left">Unit Testing</span>
-          <span class="pull-right">15%</span>
-        </div>
-        <div class="progress progress-mini progress-warning">
-          <div class="bar" style="width:15%"></div>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        <div class="clearfix">
-          <span class="pull-left">Bug Fixes</span>
-          <span class="pull-right">90%</span>
-        </div>
-        <div class="progress progress-mini progress-success progress-striped active">
-          <div class="bar" style="width:90%"></div>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a href="#">
-        See tasks with details
-        <i class="icon-arrow-right"></i>
+         <%= link_to 'See tasks with details', user_tasks_path %>
+        <!--<i class="icon-arrow-right"></i>-->
       </a>
     </li>
   </ul>
@@ -127,15 +89,15 @@
 <li class="purple">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <i class="icon-bell-alt icon-animated-bell icon-only"></i>
-    <span class="badge badge-important"><%= current_user.notification_masters.where(read: false).count %></span>
+    <span id="notcnt" class="badge badge-important"><%= current_user.notification_masters.where(read: false).count %></span>
   </a>
   <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
-    <li class="nav-header">
+    <li class="nav-header" id="nott">
       <i class="icon-warning-sign"></i> <%= current_user.notification_masters.where(read: false).count %> Unread Notifications
     </li>
 
     <% current_user.notification_masters.where(read: false).limit(5).asc(:created_at).each do |nm| %>
-        <li>
+        <li class="unread_nott">
           <a href="/notification_masters/<%= nm.id %>">
             <div class="clearfix">
               <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i><%= nm.description.truncate(35) %></span>
@@ -454,7 +416,8 @@
             var token = $("meta[name='csrf-token']").attr("content");
             xhr.setRequestHeader("X-CSRF-Token", token);
         });
-
+        poll_notification();
+        poll_task();
         var oTable = $('#table_report').dataTable({
 //                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",
@@ -687,9 +650,58 @@
 
 
         $(".knob").knob();
-
-
     });
+
+    function poll_notification() {
+        //alert('Sunny');
+        return $.get('/notifications.json', null, function(data, status, jqXHR) {
+            var d, m, msgsSorted, _i, _len;
+            $('.unread_nott').empty().remove();
+            $('#nott').html('<i class="icon-warning-sign"></i>'+data.length+' Unread Notifications');
+            $('#notcnt').html(data.length);
+            for (_i = 0; _i < data.length; _i++) {
+                m = data[_i];
+                var $a = $('.purple_open').find('.navbar-pink');
+                var link= "/notification_masters/"+ m._id;
+                var b= '<li class="unread_nott"><a href="'+link+'"><div class="clearfix">'+
+                        '<span class="pull-left">' +
+                        '<i class="icon-comment btn btn-mini btn-pink"></i>' +
+                        m.description +
+                        '</span>'+
+                        '</div></a></li>';
+                $(b).insertAfter($('#nott'));
+            }
+            return setTimeout(poll_notification, 5000);
+        });
+        console.log('testing')
+    };
+
+
+    function poll_task() {
+        return $.get('/tasks.json', null, function(data, status, jqXHR) {
+            var d, m, msgsSorted, _i, _len;
+            $('.unduntask').empty().remove();
+            $('#remain_task').html('<i class="icon-ok"></i> '+data.length+' Tasks to complete');
+            $('#remtask').html(data.length);
+            for (_i = 0; _i < data.length; _i++) {
+                m = data[_i];
+                var $a = $('.purple_open').find('.navbar-pink');
+                var link= "/notification_masters/"+ m._id;
+                var b= '<li class="unduntask"><a href="'+link+'"><div class="clearfix">'+
+                        '<span class="pull-left">' +
+                        '<i class="icon-comment btn btn-mini btn-pink"></i>' +
+                        m.description +
+                        '</span>'+
+                        '</div></a></li>';
+                $(b).insertAfter($('#remain_task'));
+            }
+            return setTimeout(poll_task, 5000);
+        });
+        console.log('testing')
+    };
+
+
+
 
 </script>
 
