@@ -26,7 +26,7 @@
                   <div class="control-group">
                     <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
                     <div class="controls">
-                      <%= f.send(rc[:type].to_sym, rc[:name].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name') )%>
+                      <%= f.send(rc[:type].to_sym, rc[:name].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}) %>
                     </div>
                   </div>
                 <% when "parent" %>
@@ -38,10 +38,10 @@
                               <label for="<%= fil[:label].to_s %>" class="control-label"><%= fil[:label].to_s %></label>
                               <div class="controls">
                                 <%= score_receiveds.send(fil[:type].to_sym, fil[:name].to_sym )%>
-                                <%= score_receiveds.link_to_remove "Remove Score Received" %>
+                                <%= score_receiveds.link_to_remove "Remove this record" %>
                               </div>
                             <% end %>
-                            <%= f.link_to_add "Add Score", :score_receiveds %>
+                            <%= f.link_to_add "Add new record", :score_receiveds %>
                         </div>
                     <% end %>
 
@@ -65,5 +65,15 @@
 
     <% end %>
 </div>
+
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>
 
 

@@ -102,12 +102,12 @@
 
         <div class="control-group">
           <div class="controls">
-            <%= qualifications.link_to_remove "Remove this task" %>
+            <%= qualifications.link_to_remove "Remove this record" %>
           </div>
         </div>
 
       <% end %>
-      <%= f.link_to_add "Qualifications", :qualifications %>
+      <%= f.link_to_add "Add new record", :qualifications %>
       <hr>
 
 
@@ -128,11 +128,11 @@
           <div class="span6">
             <div class="control-group">
               <%#= manpower_plannings.label :period_from,:class => "control-label" %>
-              <label for="<%= @form[:manpower_planning_period_from].to_s %>" class="control-label"><%= @form[:manpower_planning_period_from].to_s %></label>
+              <label for="<%= @form[:manpower_planning_period_from].to_s %>" class="control-label"><%= @form[:manpower_planning_period_from].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
               <div class="controls">
                 <%#= manpower_plannings.date_select :period_from %>
                 <div class="row-fluid input-append date">
-                  <%= manpower_plannings.text_field :period_from, :class=>"span6 date-picker" %>
+                  <%= manpower_plannings.text_field :period_from, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                   <span class="add-on"><i class="icon-calendar"></i></span>
                 </div>
               </div>
@@ -144,11 +144,11 @@
           <div class="span6">
             <div class="control-group">
               <%#= manpower_plannings.label :period_to,:class => "control-label" %>
-              <label for="<%= @form[:manpower_planning_period_to].to_s %>" class="control-label"><%= @form[:manpower_planning_period_to].to_s %></label>
+              <label for="<%= @form[:manpower_planning_period_to].to_s %>" class="control-label"><%= @form[:manpower_planning_period_to].to_s %> <sub>(dd-mm-yyyy)</sub> </label>
               <div class="controls">
                 <%#= manpower_plannings.date_select :period_to %>
                 <div class="row-fluid input-append date">
-                  <%= manpower_plannings.text_field :period_to, :class=>"span6 date-picker" %>
+                  <%= manpower_plannings.text_field :period_to, :class=>"span6 date-picker", :"data-date-format"=>"dd-mm-yyyy" %>
                   <span class="add-on"><i class="icon-calendar"></i></span>
                 </div>
               </div>
@@ -179,12 +179,12 @@
 
             <div class="control-group">
               <div class="controls">
-                <%= manpower_plannings.link_to_remove "Remove this task" %>
+                <%= manpower_plannings.link_to_remove "Remove this record" %>
               </div>
             </div>
 
       <% end %>
-      <%= f.link_to_add "Manpower Plannings", :manpower_plannings %>
+      <%= f.link_to_add "Add new record", :manpower_plannings %>
       <hr>
 
 
@@ -288,12 +288,12 @@
 
         <div class="control-group">
           <div class="controls">
-            <%= vacancy_masters.link_to_remove "Remove this task" %>
+            <%= vacancy_masters.link_to_remove "Remove this record" %>
           </div>
         </div>
 
       <% end %>
-      <%= f.link_to_add "Vacancy Masters", :vacancy_masters %>
+      <%= f.link_to_add "Add new record", :vacancy_masters %>
       <hr>
 
 

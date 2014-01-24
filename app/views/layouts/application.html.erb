@@ -100,7 +100,7 @@
         <li class="unread_nott">
           <a href="/notification_masters/<%= nm.id %>">
             <div class="clearfix">
-              <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i><%= nm.description %></span>
+              <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i><%= nm.description.truncate(35) %></span>
             </div>
           </a>
         </li>

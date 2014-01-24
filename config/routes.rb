@@ -128,6 +128,8 @@ CodeHR::Application.routes.draw do
   match '/tasks'=>'user_tasks#tasks', :as => :tasks
 
 
+  match '/destroy_all' =>'notification_masters#destroy_all', :as => :destroy_all_notifications
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

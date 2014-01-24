@@ -42,4 +42,10 @@ class NotificationMastersController < InheritedResources::Base
     end
   end
 
+  def destroy_all
+    #@notification_masters = NotificationMaster.all
+    NotificationMaster.destroy_all
+    redirect_to notification_masters_path
+  end
+
 end

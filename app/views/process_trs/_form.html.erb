@@ -15,11 +15,22 @@
     <%#= f.label :name %>
     <label for="<%= @form[:name].to_s %>" class="control-label"><%= @form[:name].to_s %></label>
     <%#= f.hidden_field :usr_id, "52bd2b2fce10bb9248000001" %>
-
-    <%= f.select :name, options_from_collection_for_select(ProcessMaster.all ,'id','name') %>
+    <%= f.select :name, options_from_collection_for_select(ProcessMaster.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
     <%= text_field_tag :obj_id %>
   </div>
+
+
   <div class="actions">
-    <%= f.submit @form_config[:submit] %>
+    <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
   </div>
 <% end %>
+
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>

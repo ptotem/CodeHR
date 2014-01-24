@@ -24,7 +24,7 @@
         <%#= f.label :document_template_master_id,:class => "control-label" %>
         <label for="<%= @form[:document_template_master_id].to_s %>" class="control-label"><%= @form[:document_template_master_id].to_s %></label>
         <div class="controls">
-          <%= f.select :document_template_master_id, options_from_collection_for_select(DocumentTemplateMaster.all ,'id','dt_code') %>
+          <%= f.select :document_template_master_id, options_from_collection_for_select(DocumentTemplateMaster.all,'id','dt_code'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
         </div>
       </div>
 
@@ -82,10 +82,15 @@
   <% end %>
 </div>
 
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
 <script>
     $(function(){
         $(":checkbox").css('opacity','1');
-    });
 
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
 </script>
 
