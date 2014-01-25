@@ -416,8 +416,8 @@
             var token = $("meta[name='csrf-token']").attr("content");
             xhr.setRequestHeader("X-CSRF-Token", token);
         });
-        poll_notification();
-        poll_task();
+//        poll_notification();
+//        poll_task();
         var oTable = $('#table_report').dataTable({
 //                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",

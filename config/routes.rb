@@ -81,6 +81,10 @@ CodeHR::Application.routes.draw do
   devise_for :users
   #ActiveAdmin.routes(self)
 
+  match '/reports' => 'welcomes#report', :as=> :report
+  match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
+  match '/get_data' => 'welcomes#get_data', :as=> :get_data
+
   match 'groupmaster_creation/:process_id/:seq' => 'group_masters#new', :as => :group_creation
   match 'groupmaster_updation/:id/:process_id/:seq' => 'group_masters#edit', :as => :group_updation
   match 'groupmaster_deletion/:id/:process_id/:seq' => 'group_masters#destroy', :as => :group_updation
