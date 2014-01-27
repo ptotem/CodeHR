@@ -39,7 +39,7 @@
               <%#= raw custom_lable(@employee_master, :employee_code) %>
               <label for="<%= @form[:employee_code].to_s %>" class="control-label"><%= @form[:employee_code].to_s %></label>
               <div class="controls">
-                <%= f.text_field :employee_code %>
+                <%= f.text_field :employee_code,:value => @em_code,:disabled=>'disabled' %>
               </div>
             </div>
           </div>

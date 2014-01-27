@@ -91,6 +91,7 @@
                             <label class="control-label">Step Name</label>
                             <div class="controls">
                               <%= step_master.text_field :name, :class=>"step_masters_name_text_fields" %>
+                              <%= step_master.hidden_field :sequence, :class=>"my_seq" %>
                             </div>
                           </div>
                         </div>
@@ -102,7 +103,7 @@
                             <label class="custom-control-label">Action to be performed</label>
                             <div class="controls">
                               <%#= step_master.text_field :oaction %>
-                              <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval"], disabled: ""), {:class=>"my_cls"} %>
+                              <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify"], disabled: ""), {:class=>"my_cls"} %>
                             </div>
                           </div>
                         </div>
@@ -115,7 +116,7 @@
                           <div class="control-group">
                             <label class="custom-control-label">Object</label>
                             <div class="controls">
-                              <%= step_master.select :oclass, options_for_select(Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"} %>
+                              <%= step_master.select :oclass, options_for_select(["","System"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"} %>
                               <%#= step_master.text_field :content %>
                             </div>
                             <label class="custom-control-label">Content</label>
@@ -127,7 +128,7 @@
                           <div class="control-group">
                             <label class="control-label">To</label>
                             <div class="controls">
-                              <%= step_master.select :action_to, options_for_select(["Admin","Manager"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
+                              <%= step_master.select :action_to, options_for_select(["","Admin","Manager"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
                             </div>
                           </div>
                         </div>
@@ -376,7 +377,17 @@
         //$(".chzn-select").chosen();
         //$(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
-        $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
+        var seq_val, this_li_a;
+        $("#sortable").sortable({stop: function(event,ui){
+                //alert("done")
+                console.log($(ui.item).index());
+                $('#sortable').find('li').each(function(i,v){
+                    var chandu =$(v).find('a').attr('href');
+                    $(chandu).find('.my_seq').val($(v).index());
+                });
+
+            }
+        });  //nested form's fields (step_master -> steps) sortable
 
         $('.control-label').css('text-align','left');
         $(':checkbox').css('opacity','1');

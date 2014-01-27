@@ -3,6 +3,10 @@
 
 en:
   config:
+    AutoCode:
+      EmployeeMaster:
+        text: "PTOE"
+        digit: "8"
     Rating:
       form:
         new:

@@ -14,6 +14,8 @@ class EmployeeMastersController < InheritedResources::Base
     @employee_master = EmployeeMaster.new
     #@employee_master.reporting_tos.build
     #@rating.write_attribute(:test1, "")
+    @num=EmployeeMaster.last.employee_code.gsub(t('config.AutoCode.EmployeeMaster.text'),'').to_i
+    @em_code= t('config.AutoCode.EmployeeMaster.text')+sprintf('%0'+t('config.AutoCode.EmployeeMaster.digit')+'d',(@num+1))
     @fields = DynamicField.where(:oclass=>"EmployeeMaster")
     @fields.each do |ss|
       @employee_master.write_attribute(ss.name.to_sym,"")
