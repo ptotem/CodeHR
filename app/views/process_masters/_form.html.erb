@@ -82,6 +82,9 @@
                               <%= check_box_tag 'previous_step', 'no', false, class: 'children-steps-control', :onchange=>"bind_children_steps_control($(this));" %>
                             </div>
                           </div>
+
+
+
                         </div>
                         <div class="span6">
                           <div class="control-group">
@@ -99,7 +102,7 @@
                             <label class="custom-control-label">Action to be performed</label>
                             <div class="controls">
                               <%#= step_master.text_field :oaction %>
-                              <%= select("oaction", "oaction", %w[Create Update Delete], {}, { index: nil }) %>
+                              <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval"], disabled: ""), {:class=>"my_cls"} %>
                             </div>
                           </div>
                         </div>
@@ -112,7 +115,19 @@
                           <div class="control-group">
                             <label class="custom-control-label">Object</label>
                             <div class="controls">
-                              <%= select_tag 'oclass', options_for_select(Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select", :onchange=>"display_objects($(this));"} %>
+                              <%= step_master.select :oclass, options_for_select(Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"} %>
+                              <%#= step_master.text_field :content %>
+                            </div>
+                            <label class="custom-control-label">Content</label>
+                            <div class="controls">
+                              <%#= step_master.select :oclass, options_for_select(Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select", :onchange=>"display_objects($(this));"} %>
+                              <%= step_master.text_field :content %>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">To</label>
+                            <div class="controls">
+                              <%= step_master.select :action_to, options_for_select(["Admin","Manager"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
                             </div>
                           </div>
                         </div>
@@ -340,7 +355,7 @@
 
 <script>
     var nested_form_name_text_fields_len, this_step_name;
-
+    var action_arr_index=0;
     $(function() {
 
         //load_bindings();
@@ -496,15 +511,17 @@
     }
 
     function display_objects(this_obj){
+        //alert("Sunny");
+        console.log($(this_obj).closest('.row-fluid'));
 
         var parent_tab = $(this_obj).parent().parent().parent().parent().parent().parent();
         var model_name = $(this_obj).val();
-
+        var step_name = $(this_obj).parents('.fields').find('.step_masters_name_text_fields').val();
         var data = {model_name: []};
         data["model_name"].push(model_name);
 
         $.ajax({
-            url: "/get_data",
+            url: "/get_column_data",
             type: "post",
             async: false,
             data: JSON.stringify(data),
@@ -522,10 +539,18 @@
                     ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
                     user_name = ele.split('|')[0];
                     email = ele.split('|')[1];
-                    $user_row = '<tr>'+$checkbox_col+$radio_button_col+'<td>'+user_name+'</td><td>'+email+'</td></tr>';
+                    my_id = ele.split('|')[2];
+                    $user_row = '<tr>'+
+                            '<td style="position: relative;"><input type="checkbox" name="action_arr['+action_arr_index+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                            '<td style="position: relative;"><input type="radio" name="action_arr[]" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+
+                                user_name+
+                                '</td><td>'+email+'</td></tr>';
                     $(parent_tab).find(".users-list").append($user_row);
                 });
                 $(':checkbox, :radio').css('opacity','1');
+
+                action_arr_index=action_arr_index+1;
             }
         });
 

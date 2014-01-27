@@ -5,6 +5,7 @@ class VacancyMaster
   field :description, type: String
   field :status, type: String
   field :sourcing_strategy, type: String
+  field :refer_doc_id, type: String
   field :hr_rep, type: String
   field :hiring_manager, type: String
   field :ctc_range_from, type: Integer

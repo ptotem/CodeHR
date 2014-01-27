@@ -47,6 +47,8 @@ class ProcessMastersController < ApplicationController
   # POST /process_masters
   # POST /process_masters.json
   def create
+    render :json => params
+    return
     @process_master = ProcessMaster.new(params[:process_master])
 
     respond_to do |format|
@@ -97,7 +99,7 @@ class ProcessMastersController < ApplicationController
     @data = User.all
 
     @data.each do |i|
-      @returning_data<<"#{i.name}|#{i.email}"
+      @returning_data<<"#{i.name}|#{i.email}|#{i._id}"
     end
     render :text => @returning_data
     return
