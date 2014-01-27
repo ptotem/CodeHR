@@ -10,5 +10,5 @@ class ProcessMasterApproval
   field :repeat_min, type: String
 
   #embedded_in :process_master
-
+  embedded_in :step_master
 end
