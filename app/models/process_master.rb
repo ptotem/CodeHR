@@ -4,10 +4,10 @@ class ProcessMaster
   #attr_accessible :name, :step_masters_attributes
 
   embeds_many :step_masters
-  embeds_many :process_master_approvals
+  #embeds_many :process_master_approvals
 
   accepts_nested_attributes_for :step_masters
-  accepts_nested_attributes_for :process_master_approvals
+  #accepts_nested_attributes_for :process_master_approvals
 
   state_machine :state, initial: :created do
 

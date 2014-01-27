@@ -50,8 +50,15 @@ class ProcessMastersController < ApplicationController
 
     @process_master = ProcessMaster.new(params[:process_master])
     if params[:action_arr]
-      render :json => params
-      return
+      @process_master.step_masters.each_with_index do |pms, index|
+        if params[:action_arr][index.to_s]
+          params[:action_arr][index.to_s].each do |e|
+           pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>e)
+          end
+          pms.action_to="Array"
+          pms.save!
+        end
+      end
     else
       render :json => @process_master
       return
