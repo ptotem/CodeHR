@@ -15,15 +15,15 @@ module ApplicationHelper
     case oaction
       when "Creation"
         @user=User.find(user_id)
-        @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{pid}/#{stepno}"
+        @user.current_redirect_url="/creation/#{oclass}/#{pid}/#{stepno}"
         @user.save
       when "Updation"
         @user=User.find(user_id)
-        @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{action_to}/#{pid}/#{stepno}"
+        @user.current_redirect_url="/updation/#{oclass}/#{action_to}/#{pid}/#{stepno}"
         @user.save
       when "Deletion"
         @user=User.find(user_id)
-        @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{action_to}/#{pid}/#{stepno}"
+        @user.current_redirect_url="/deletion/#{oclass}/#{action_to}/#{pid}/#{stepno}"
         @user.save
         puts "In deletion"
       when "Notify"
@@ -149,7 +149,7 @@ module ApplicationHelper
         @step= @pro.step_trs[stepno]
         @step.action_arrs.each do |aa|
           if aa.dep_clas_name.blank?
-           @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+            @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
           else
             @grps=EmployeeMaster.where(aa.dep_clas_name.to_sym => aa.obj_id)
             @grps.each do |grp|
