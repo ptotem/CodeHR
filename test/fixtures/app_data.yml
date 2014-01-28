@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  approve_step: MyString
+  reject_step: MyString
+  reminder: MyString
+  rep_reminder: MyString
+  escalate: MyString
+  rem_escalate: MyString
+
+two:
+  approve_step: MyString
+  reject_step: MyString
+  reminder: MyString
+  rep_reminder: MyString
+  escalate: MyString
+  rem_escalate: MyString
