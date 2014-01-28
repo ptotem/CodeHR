@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= nested_form_for(@compensation_component,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@compensation_component, :url => (@new ? generic_create_path(@compensation_component.class) : generic_update_path(@compensation_component.class,@compensation_component.id)), html: {class: "form-horizontal"}) do |f| %>
       <% if @compensation_component.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>

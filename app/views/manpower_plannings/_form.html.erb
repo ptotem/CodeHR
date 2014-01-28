@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= nested_form_for(@manpower_planning,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@manpower_planning, :url => (@new ? generic_create_path(@manpower_planning.class) : generic_update_path(@manpower_planning.class,@manpower_planning.id)), html: {class: "form-horizontal"}) do |f| %>
       <% if @manpower_planning.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@manpower_planning.errors.count, "error") %> prohibited this manpower_planning from being saved:</h2>

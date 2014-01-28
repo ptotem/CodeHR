@@ -1,4 +1,4 @@
-<%= form_for(@rating_conf) do |f| %>
+<%= form_for @rating_conf,:url => (@new ? generic_create_path(@rating_conf.class) : generic_update_path(@rating_conf.class,@rating_conf.id)) do |f| %>
   <% if @rating_conf.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rating_conf.errors.count, "error") %> prohibited this rating_conf from being saved:</h2>

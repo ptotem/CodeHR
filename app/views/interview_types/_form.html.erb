@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for(@interview_type,html: {class: "form-horizontal"}) do |f| %>
+  <%= form_for @interview_type,:url => (@new ? generic_create_path(@interview_type.class) : generic_update_path(@interview_type.class,@interview_type.id)) do |f| %>
       <% if @interview_type.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@interview_type.errors.count, "error") %> prohibited this interview_type from being saved:</h2>
