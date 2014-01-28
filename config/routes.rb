@@ -90,8 +90,8 @@ CodeHR::Application.routes.draw do
   match '/deletion/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :deletion
   match '/gshow/:model_name/:id' => 'generic#show', as: :gshow
 
-  match '/gen_create' => 'generic#create',:as=>:generic_create
-  match '/gen_update/:id' => 'generic#update',:as=>:generic_update
+  match '/gen_create/:model_name' => 'generic#create',:as=>:generic_create
+  match '/gen_update/:model_name/:id' => 'generic#update',:as=>:generic_update
 
   match 'groupmaster_creation/:process_id/:seq' => 'group_masters#new', :as => :group_creation
   match 'groupmaster_updation/:id/:process_id/:seq' => 'group_masters#edit', :as => :group_updation
