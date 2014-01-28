@@ -27,6 +27,8 @@ class EmployeeMaster
 
   accepts_nested_attributes_for :reporting_tos
 
+  after_create :create_user
+
   rails_admin do
     navigation_label "Emp Masters"
   end
@@ -105,6 +107,11 @@ class EmployeeMaster
       else
         raise "Unknown file type: #{file.original_filename}"
     end
+  end
+
+  def create_user
+    self.user=User.create!(:email =>self.official_email, :password =>"password", :password_confirmation =>"password")
+    self.save
   end
 
 

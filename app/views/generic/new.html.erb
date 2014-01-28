@@ -2,6 +2,6 @@
   <h1><%= @form_config[:name] %></h1>
 </div>
 
-<%= render :partial => 'employee_masters/form' %>
+<%= render :partial => "#{params[:model_name].underscore.pluralize}/form" %>
 
-<%= link_to 'Back', employee_masters_path %>
+<%= link_to 'Back', eval("#{params[:model_name].underscore.pluralize}_path") %>

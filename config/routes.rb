@@ -85,7 +85,13 @@ CodeHR::Application.routes.draw do
   match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
 
-  match '/generic' => 'generic#new'
+  match '/creation/:model_name/(:process_id)/(:seq)' => 'generic#new', :as => :creation
+  match '/updation/:model_name/:id/(:process_id)/(:seq)' => 'generic#edit', :as => :updation
+  match '/deletion/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :deletion
+  match '/gshow/:model_name/:id' => 'generic#show', as: :gshow
+
+  match '/gen_create' => 'generic#create',:as=>:generic_create
+  match '/gen_update/:id' => 'generic#update',:as=>:generic_update
 
   match 'groupmaster_creation/:process_id/:seq' => 'group_masters#new', :as => :group_creation
   match 'groupmaster_updation/:id/:process_id/:seq' => 'group_masters#edit', :as => :group_updation

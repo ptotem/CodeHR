@@ -7,27 +7,26 @@ class GenericController < ApplicationController
     end
 
     def new
-      @form_config= t('config.EmployeeMaster.form.new')
+      @class_name = params[:model_name]
+      @form_config= t('config.'+@class_name+'.form.new')
       @form=@form_config[:fields]
+      @employee_master = eval(@class_name).new
 
-      @employee_master = EmployeeMaster.new
-      #@employee_master.reporting_tos.build
-      #@rating.write_attribute(:test1, "")
-      @num=EmployeeMaster.last.employee_code.gsub(t('config.AutoCode.EmployeeMaster.text'),'').to_i
-      @em_code= t('config.AutoCode.EmployeeMaster.text')+sprintf('%0'+t('config.AutoCode.EmployeeMaster.digit')+'d',(@num+1))
-      @fields = DynamicField.where(:oclass=>"EmployeeMaster")
+      instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).new)
+
+      #@num=eval(@class_name).last.employee_code.gsub(t('config.AutoCode.'+@class_name+'.text'),'').to_i
+      #@em_code= t('config.AutoCode.'+@class_name+'.digit')+sprintf('%0'+t('config.AutoCode.'+@class_name+'.digit')+'d',(@num+1))
+      @fields = DynamicField.where(:oclass=>@class_name)
       @fields.each do |ss|
         @employee_master.write_attribute(ss.name.to_sym,"")
       end
-      #render :partial => 'employee_masters/form'
     end
 
     def create
+      render :text => params
+      return
       @employee_master =EmployeeMaster.new(params[:employee_master])
-      @employee_master.date_of_joining = Date.strptime(params[:employee_master][:date_of_joining], "%m/%d/%Y")
-      @employee_master.date_of_birth =Date.strptime(params[:employee_master][:date_of_birth], "%m/%d/%Y")
-      @employee_master.user=User.create!(:email =>@employee_master.official_email, :password =>"password", :password_confirmation =>"password")
-      @employee_master.save
+
 
       #process_redirection
 
@@ -57,19 +56,23 @@ class GenericController < ApplicationController
       end
     end
 
+    def update
+      render :text => "Sunny"
+      return
+    end
+
     def edit
-      @form_config= t('config.EmployeeMaster.form.edit')
+      @class_name = params[:model_name]
+      @form_config= t('config.'+params[:model_name]+'.form.edit')
       @form=@form_config[:fields]
-      @employee_master = EmployeeMaster.find(params[:id])
+      instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
+      render :action => :new
     end
 
     def show
-      @employee_master = EmployeeMaster.find(params[:id])
-
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @employee_master }
-      end
+      @class_name = params[:model_name]
+      instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
+      render "#{params[:model_name].underscore.pluralize}/show"
     end
 
     def emp_master_approval

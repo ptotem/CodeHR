@@ -8,13 +8,7 @@ class RolesController < InheritedResources::Base
   def create
     @role= Role.new(params[:role])
     @role.save
-    if !params[:process_id].nil?
-      @pro=ProcessTr.find(params[:process_id])
-      @pro.step_trs[params[:seq].to_i].end_processing_step
-      @user=current_user
-      @user.current_redirect_url=''
-      @user.save
-    end
+    call_next_step(params[:process_id],params[:seq])
     respond_to do |format|
       if @role.save
         format.html { redirect_to @role, notice: 'role was successfully created.' }
