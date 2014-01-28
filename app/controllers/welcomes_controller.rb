@@ -21,6 +21,7 @@ class WelcomesController < InheritedResources::Base
 
   def get_data
     @a=Array.new
+    @final_array = Array.new
     @class=eval(params[:classname][0])
     grp_by=params[:group_by][0]
     @fields=params[:field][0]
@@ -41,11 +42,14 @@ class WelcomesController < InheritedResources::Base
         @temp[:cvalue] = arr.instance_eval(key).instance_eval(@str) rescue nil
         @a<<@temp
       end
+      @final_array << @a
+      @a = []
     end
 
 
 
-    render :json => @a
+
+    render :json => @final_array
     return
   end
 

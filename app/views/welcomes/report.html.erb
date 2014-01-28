@@ -70,7 +70,7 @@
         });
         $('#main-tab').append('<lable>Group by: </lable><select id="grp_dec">'+a+'</select>');
         $('#main-tab').append('<button onclick="load_fields()">OK</button>')
-        $('#main-tab').append('<table><tbody id="dis_tab"><tr>'+b+'</tr></tbody></table>');
+        $('#main-tab').append('<table id="report_table"><tbody id="dis_tab"><tr>'+b+'</tr></tbody></table>');
     }
 
     function load_fields(){
@@ -88,8 +88,21 @@
             contentType: "application/json; charset=utf-8",
             //dataType: "json",
             success: function(result){
-                alert(result.d);
-                console.log(result);
+
+                var table_row = ""
+                for(var i= 0 ;i< result.length;i++)
+                {
+                    for(var j=0;j<result[i].length;j++)
+                    {
+                     console.log(result[i][j])
+                     table_row += "<td>"+result[i][j].cvalue+"</td>"
+                    }
+                    $("#report_table").append("<tr>"+table_row+"</tr>")
+                    table_row = ""
+
+
+//                    console.log(result[i])
+                }
 //                var j=0;
 //                $.each(result,function(i,v){
 //
