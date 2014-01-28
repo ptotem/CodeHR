@@ -278,21 +278,21 @@
                                         <table style="width: 100%;">
                                           <tr>
                                             <td style="border-left: none; text-align: center;">
-                                              <%= radio_button_tag 'auto_assign_to_obj', "single", true, :class => "auto_assign_to_single_objs" %><span class="lbl">Single</span>
+                                              <%= radio_button_tag 'auto_assign_to_obj', "single", true, :class => "auto_assign_to_single_obj", :onchange=>"auto_assign_to_single_obj($(this));" %><span class="lbl">Single</span>
                                             </td>
                                             <td style="border-left: none;">
-                                              <%= radio_button_tag 'auto_assign_to_obj', "bulk", true, :class => "auto_assign_to_bulk_objs" %><span class="lbl">Bulk</span>
+                                              <%= radio_button_tag 'auto_assign_to_obj', "bulk", true, :class => "auto_assign_to_bulk_objs", :onchange=>"auto_assign_to_bulk_objs($(this));" %><span class="lbl">Bulk</span>
                                             </td>
                                           </tr>
                                         </table>
 
 
-                                        <%= select_tag "auto_assign_to", options_for_select(["User 1", "User 2", "User 3"], "User 1"), class: 'auto_assign_tos' %>
+                                        <%= select_tag "auto_assign_to", options_for_select(["","System"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {class: 'auto_assign_tos', :onchange=>"nested_display_objects($(this));"} %>
                                         <br><hr>
                                         <div class="span11">
                                           <div id="auto_assign_to_header" class="table-header">Listing Objects</div>
-                                          <h5 id="auto_assign_to__text">No objects available.</h5>
-                                          <table id="auto_assign_to_list" class="table table-striped table-bordered table-hover">
+                                          <h5 class="auto_assign_to_text">No objects available.</h5>
+                                          <table class="auto_assign_to_list" class="table table-striped table-bordered table-hover">
                                             <tr>
                                               <th>Check</th>
                                               <th>Radio</th>
@@ -300,10 +300,10 @@
                                               <th>E-mail</th>
                                             </tr>
                                             <tr>
-                                              <td><%= check_box_tag 'select_obj_1', 'no', false, class: 'select_bulk_objects' %></td>
-                                              <td><%= radio_button_tag 'radio_obj_1', "single", false, :class => "select_single_objects", style:"position: relative; top: 0px; opacity: 1;" %></td>
-                                              <td>User 1 Name</td>
-                                              <td>User 1 Email</td>
+                                              <!--<td><%#= check_box_tag 'select_obj_1', 'no', false, class: 'select_bulk_objects' %></td>-->
+                                              <!--<td><%#= radio_button_tag 'radio_obj_1', "single", false, :class => "select_single_objects", style:"position: relative; top: 0px; opacity: 1;" %></td>-->
+                                              <!--<td>User 1 Name</td>-->
+                                              <!--<td>User 1 Email</td>-->
                                             </tr>
                                           </table>
                                         </div>
@@ -398,24 +398,6 @@
         $('.bootstrap-timepicker-widget .dropdown-menu.open').css('left','180px');
 
         //load_bindings();
-
-        $(".auto_assign_to_single_objs").on('change', function(){
-            if( $(this).is(":checked") ){
-                $("input.select_bulk_objects").attr("disabled", true);
-                $("input.select_bulk_objects").hide();
-                $("input.select_single_objects").removeAttr("disabled");
-                $("input.select_single_objects").show();
-            }
-        });
-
-        $(".auto_assign_to_bulk_objs").on('change', function(){
-            if( $(this).is(":checked") ){
-                $("input.select_single_objects").attr("disabled", true);
-                $("input.select_single_objects").hide();
-                $("input.select_bulk_objects").removeAttr("disabled");
-                $("input.select_bulk_objects").show();
-            }
-        });
 
         //newly added newsted fields in tabbable
         $('a.add_nested_fields').on('click', function(){
@@ -567,6 +549,55 @@
 
     }
 
+
+    function nested_display_objects(this_obj){
+        //console.log($(this_obj).parent().find('.auto_assign_to_list').html());
+
+        var table = $(this_obj).parent().find('.auto_assign_to_list');
+        //$(table).empty();
+        var model_name = $(this_obj).val();
+        //console.log(model_name);
+
+        //var step_name = $(this_obj).parents('.fields').find('.step_masters_name_text_fields').val();
+        var data = {model_name: []};
+        data["model_name"].push(model_name);
+
+        $.ajax({
+            url: "/get_column_data",
+            type: "post",
+            async: false,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (data) {
+                $(table).show();
+                $(this_obj).parent().find('.auto_assign_to_text').hide();
+                var user_name, email;
+                var user_name_td, email_td;
+                var $user_row;
+                //var $checkbox_col = '<td><input type="checkbox" value="no" name="select_obj_1" id="select_obj_1" class="select_bulk_objects"></td>';
+                //var $radio_button_col = '<td><input type="radio" value="single" style="position: relative; top: 0px; opacity: 1;" name="radio_obj_1" id="radio_obj_1_single" class="select_single_objects"></td>';
+                //$(table+ "tr:not(:first-child)").empty();
+                $.each(data.split(','), function (d, ele) {
+                    ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
+                    user_name = ele.split('|')[0];
+                    email = ele.split('|')[1];
+                    nested_my_id = ele.split('|')[2];
+                    $user_row = '<tr>'+
+                            '<td><input type="checkbox" name="action_arr['+nested_action_arr_index+'][]" value='+nested_my_id+' class="select_bulk_objects"></td>'+
+                            '<td><input type="radio" name="action_arr[]" value='+nested_my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                            '<td>'+
+                            user_name+
+                            '</td><td>'+email+'</td></tr>';
+                    $(table).append($user_row);
+                });
+                $(':checkbox, :radio').css('opacity','1');
+
+                nested_action_arr_index=nested_action_arr_index+1;
+            }
+        });
+
+    }
+
     function select_single_obj(this_obj){
         if( $(this_obj).is(":checked") ){
             $("input.user_select_checkbox").attr("disabled", true);
@@ -602,6 +633,24 @@
         }
 
         //toggle children steps - ends
+    }
+
+    function auto_assign_to_bulk_objs(this_obj){
+        if( $(this_obj).is(":checked") ){
+            $("input.select_single_objects").attr("disabled", true);
+            $("input.select_single_objects").hide();
+            $("input.select_bulk_objects").removeAttr("disabled");
+            $("input.select_bulk_objects").show();
+        }
+    }
+
+    function auto_assign_to_single_obj(this_obj){
+        if( $(this_obj).is(":checked") ){
+            $("input.select_bulk_objects").attr("disabled", true);
+            $("input.select_bulk_objects").hide();
+            $("input.select_single_objects").removeAttr("disabled");
+            $("input.select_single_objects").show();
+        }
     }
 
 
