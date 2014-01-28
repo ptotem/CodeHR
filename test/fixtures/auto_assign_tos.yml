@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  oclass: MyString
+  dclass: MyString
+  objid: MyString
+
+two:
+  oclass: MyString
+  dclass: MyString
+  objid: MyString

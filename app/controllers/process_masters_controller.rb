@@ -30,7 +30,6 @@ class ProcessMastersController < ApplicationController
     @process_master = ProcessMaster.new
     @process_master.step_masters.build
 
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @process_master }
@@ -47,6 +46,8 @@ class ProcessMastersController < ApplicationController
   # POST /process_masters
   # POST /process_masters.json
   def create
+    #render :json=>params
+    #return
 
     @process_master = ProcessMaster.new(params[:process_master])
     if params[:action_arr]
@@ -57,6 +58,11 @@ class ProcessMastersController < ApplicationController
           end
           pms.action_to="Array"
           pms.save!
+        end
+        if params[:action_app_arr][index.to_s]
+          params[:action_app_arr][index.to_s].each do |e|
+            pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>e)
+          end
         end
       end
     else

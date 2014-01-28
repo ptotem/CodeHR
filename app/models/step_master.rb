@@ -6,12 +6,25 @@ class StepMaster
   field :action_to, type: String
   field :content, type: String
   field :sequence, type: Integer
+  field :approved_next_step, type: String
+  field :reject_next_step, type: String
+  field :reminder, type: String
+  field :rep_reminder, type: String
+  field :escalate, type: String
+  field :rep_escalate, type: String
+  field :auto_assign, type: String
+
+
 
   embeds_many :action_arr_masters
+
+  embeds_many :auto_assign_tos
 
   embedded_in :process_master
 
   accepts_nested_attributes_for :action_arr_masters
+
+  accepts_nested_attributes_for :auto_assign_tos
 
   state_machine :state, initial: :created do
 
