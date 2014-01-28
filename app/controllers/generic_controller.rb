@@ -13,52 +13,45 @@ class GenericController < ApplicationController
       @employee_master = eval(@class_name).new
 
       instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).new)
-
-      #@num=eval(@class_name).last.employee_code.gsub(t('config.AutoCode.'+@class_name+'.text'),'').to_i
-      #@em_code= t('config.AutoCode.'+@class_name+'.digit')+sprintf('%0'+t('config.AutoCode.'+@class_name+'.digit')+'d',(@num+1))
+      @new=true
       @fields = DynamicField.where(:oclass=>@class_name)
       @fields.each do |ss|
-        @employee_master.write_attribute(ss.name.to_sym,"")
+        instance_variable_get("@#{params[:model_name].underscore}").write_attribute(ss.name.to_sym,"")
       end
     end
 
     def create
-      render :text => params
-      return
-      @employee_master =EmployeeMaster.new(params[:employee_master])
-
-
-      #process_redirection
-
+      instance_variable_set("@#{params[:model_name].underscore}",instance_eval(params[:model_name]).new(params[params[:model_name].underscore.to_sym]))
+      instance_variable_get("@#{params[:model_name].underscore}").save
       if !params[:process_id].nil?
         @pro=ProcessTr.find(params[:process_id])
-        @pro.chits.create!(name:"User",ocname:"EmployeeMaster",oid:@employee_master._id)
+        @pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
         @user=current_user
         @user.current_redirect_url=''
         @user.save
         @pro.step_trs[params[:seq].to_i].end_processing_step
       end
-
       @user=User.find(current_user._id)
       if !@user.current_redirect_url.blank?
         redirect_to @user.current_redirect_url
         return
       end
-
       respond_to do |format|
-        if @employee_master.save
-          format.html { redirect_to @employee_master, notice: 'Company master was successfully created.' }
-          format.json { render json: @employee_master, status: :created, location: @employee_master }
+        if instance_variable_get("@#{params[:model_name].underscore}").save
+          format.html { redirect_to instance_variable_get("@#{params[:model_name].underscore}"), notice: 'Company master was successfully created.' }
+          format.json { render json: instance_variable_get("@#{params[:model_name].underscore}"), status: :created, location: instance_variable_get("@#{params[:model_name].underscore}") }
         else
           format.html { render action: "new" }
-          format.json { render json: @employee_master.errors, status: :unprocessable_entity }
+          format.json { render json: instance_variable_get("@#{params[:model_name].underscore}").errors, status: :unprocessable_entity }
         end
       end
     end
 
     def update
-      render :text => "Sunny"
+      render :text => params[:seq]
       return
+
+
     end
 
     def edit
