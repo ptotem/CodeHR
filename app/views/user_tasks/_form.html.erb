@@ -1,4 +1,4 @@
-<%= form_for(@user_task) do |f| %>
+<%= form_for @user_task,:url => (@new ? generic_create_path(@user_task.class) : generic_update_path(@user_task.class,@user_task.id)) do |f| %>
   <% if @user_task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_task.errors.count, "error") %> prohibited this user_task from being saved:</h2>

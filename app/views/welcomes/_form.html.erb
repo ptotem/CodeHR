@@ -1,4 +1,4 @@
-<%= form_for(@welcome) do |f| %>
+<%= form_for @welcome,:url => (@new ? generic_create_path(@welcome.class) : generic_update_path(@welcome.class,@welcome.id)) do |f| %>
   <% if @welcome.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@welcome.errors.count, "error") %> prohibited this welcome from being saved:</h2>

@@ -1,4 +1,4 @@
-<%= nested_form_for(@employee_detail, html: {class: "form-horizontal"}) do |f| %>
+<%= nested_form_for(@employee_detail, :url => (@new ? generic_create_path(@employee_detail.class) : generic_update_path(@employee_detail.class,@employee_detail.id)), html: {class: "form-horizontal"}) do |f| %>
   <% if @employee_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee_detail.errors.count, "error") %> prohibited this employee_detail from being saved:</h2>

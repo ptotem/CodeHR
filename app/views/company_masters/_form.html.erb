@@ -1,4 +1,4 @@
-<%= nested_form_for(@company_master) do |f| %>
+<%= nested_form_for(@company_master, :url => (@new ? generic_create_path(@company_master.class) : generic_update_path(@company_master.class,@company_master.id)), html: {class: "form-horizontal"}) do |f| %>
     <% if @company_master.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@company_master.errors.count, "error") %> prohibited this company_master from being

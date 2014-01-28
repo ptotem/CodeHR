@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= nested_form_for(@rating_scale,html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@rating_scale, :url => (@new ? generic_create_path(@rating_scale.class) : generic_update_path(@rating_scale.class,@rating_scale.id)), html: {class: "form-horizontal"}) do |f| %>
       <% if @rating_scale.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@rating_scale.errors.count, "error") %> prohibited this rating_scale from being saved:</h2>
