@@ -44,7 +44,11 @@ class ApprovalMat
       unm.email_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.save
       @approver.save
-      AdminMailer.admin_mail(@approver.official_email,"Approval Request","#{self.description} #{self.link}").deliver
+      link1="http://localhost:3000/approve_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
+      link2="http://localhost:3000/reject_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
+      puts link1
+      puts link2
+      AdminMailer.show_mail(@approver.official_email,"Approval Request","#{self.description}",self.ocls,self.oid,link1,link2).deliver
       puts "Client mail delivered"
     end
     self.schedule_send_email
