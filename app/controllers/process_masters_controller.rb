@@ -63,6 +63,8 @@ class ProcessMastersController < ApplicationController
           params[:action_app_arr][index.to_s].each do |e|
             pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>e)
           end
+          pms.action_to="Array"
+          pms.save!
         end
       end
     else
