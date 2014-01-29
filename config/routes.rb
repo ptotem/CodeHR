@@ -18,6 +18,7 @@ CodeHR::Application.routes.draw do
 
 
 
+
   mount RailsAdmin::Engine => '/power_admin', :as => 'rails_admin'
 
   resources :roles
@@ -73,6 +74,8 @@ CodeHR::Application.routes.draw do
   resources :process_masters
 
   resources :user_tasks
+
+  resources :approval_mats
 
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
