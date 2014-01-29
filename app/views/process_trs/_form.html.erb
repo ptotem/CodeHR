@@ -1,4 +1,4 @@
-<%= form_for @process_tr,:url => (@new ? generic_create_path(@process_tr.class) : generic_update_path(@process_tr.class,@process_tr.id)) do |f| %>
+<%= form_for @process_tr do |f| %>
   <% if @process_tr.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@process_tr.errors.count, "error") %> prohibited this process_tr from being saved:</h2>

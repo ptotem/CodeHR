@@ -141,8 +141,8 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
-        @step=@pro.step_trs[:stepno]
-        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @rep.auto_assign)
+        @step=@pro.step_trs[stepno]
+        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @step.auto_assign)
         link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         @app.link=link
         @app.save
@@ -184,10 +184,26 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
         #@obj=@pro.chits
-      when "loop"
+      when "Loop"
         #System in the loop"
-
+        puts "Loop Started"
+        @pro=ProcessTr.find(pid)
+        @pro.step_trs[stepno].end_processing_step
+      when "EndLoop"
+        puts "Reached Loop End"
+        @pro=ProcessTr.find(pid)
+        #if false
+          @pro.step_trs[@pro.step_trs.find(@pro.loop_step).index..step_no].map{|i| i.state="created"}
+          @pro.save
+          @pro.step_trs[@pro.step_trs.find(@pro.loop_step).index].initialise_step
+        #else
+          @pro.step_trs[stepno].end_processing_step
+        #end
     end
+
+  end
+
+  def check_state
 
   end
 

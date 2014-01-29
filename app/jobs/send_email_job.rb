@@ -1,4 +1,4 @@
-module SendReminderJob
+module SendEmailJob
   @queue = :send_emails
   def self.perform(approval_id)
     @app=ApprovalMat.find(approval_id)
@@ -23,8 +23,10 @@ module SendReminderJob
       puts "reminder mail is delivered"
       Resque.remove_schedule("send_email_#{@app._id}")
       #Setting the repeat of reminder
-      if @app.rep_reminder.blank?
+      if !@app.rep_reminder.blank?
+        puts "Inside reminder"
         @app.set_repeat_reminder
+        puts "Set repeat"
       end
       #
     end

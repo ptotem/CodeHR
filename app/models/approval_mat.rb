@@ -46,6 +46,7 @@ class ApprovalMat
       puts "Client mail delivered"
     end
     self.schedule_send_email
+    self.set_escalation
   end
 
   def schedule_send_email
@@ -54,7 +55,7 @@ class ApprovalMat
     config = {}
     config[:class] = 'SendEmailJob'
     config[:args] = id
-    config[:after] = '50s'
+    config[:every] = self.reminder
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
@@ -70,7 +71,7 @@ class ApprovalMat
     config = {}
     config[:class] = 'RepeatReminderJob'
     config[:args] = id
-    config[:after] = self.rep_reminder
+    config[:every] = self.rep_reminder
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
@@ -82,7 +83,7 @@ class ApprovalMat
     config = {}
     config[:class] = 'SetEscalationJob'
     config[:args] = id
-    config[:after] =self.escalate
+    config[:every] =self.escalate
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
@@ -94,7 +95,7 @@ class ApprovalMat
     config = {}
     config[:class] = 'RepeatEscalationJob'
     config[:args] = id
-    config[:after] = self.rep_escalate
+    config[:every] = self.rep_escalate
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
