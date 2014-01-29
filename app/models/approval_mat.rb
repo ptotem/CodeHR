@@ -65,14 +65,38 @@ class ApprovalMat
 
   def set_repeat_reminder
     #todo: Set repeat every
+    puts ""
+    name = "repeat_reminder_#{id}"
+    config = {}
+    config[:class] = 'RepeatReminderJob'
+    config[:args] = id
+    config[:after] = self.rep_reminder
+    Resque.set_schedule name, config
+    puts "Resque task is scheduled"
   end
 
   def set_escalation
-
+    Resque.remove_schedule("repeat_reminder_#{id}")
+    puts ""
+    name = "set_escalation_#{id}"
+    config = {}
+    config[:class] = 'SetEscalationJob'
+    config[:args] = id
+    config[:after] =self.escalate
+    Resque.set_schedule name, config
+    puts "Resque task is scheduled"
   end
 
   def repeat_escalation
-
+    #todo: Set repeat every
+    puts ""
+    name = "repeat_escalation_#{id}"
+    config = {}
+    config[:class] = 'RepeatEscalationJob'
+    config[:args] = id
+    config[:after] = self.rep_escalate
+    Resque.set_schedule name, config
+    puts "Resque task is scheduled"
   end
 
   def auto_assign
@@ -80,7 +104,15 @@ class ApprovalMat
   end
 
   def next_step
-    #write here about n
+    @pro=ProcessTr.find(self.process_id)
+    if self.approved
+      @pro.step_trs[self.step_no].state = "finished"
+      @pro.step_trs[self.approved_next_step].initialise_step
+    else
+      @pro.step_trs[self.reject_next_step..self.step_no].map{|i| i.state = "created"}
+      @pro.save
+      @pro.step_trs[self.reject_next_step].initialize_step
+    end
   end
 
   def check_resque_scheduler

@@ -1,14 +1,9 @@
-module SendReminderJob
+module SetEscalationJob
   @queue = :send_emails
   def self.perform(approval_id)
     @app=ApprovalMat.find(approval_id)
-    puts "Inside Send email Job.....#{approval_id}"
-    #todo :checking and making it as per the function
-
+    puts "Inside Set Escalation Job.....#{approval_id}"
     puts "Approval..#{@app._id}"
-    puts "Hello Sunny"
-    #check if deadline...
-    #if @app.created_at < @app.created+3
     @app.approvers.each do |aa|
       puts "checking"
       @approver=EmployeeMaster.find(aa.employee_master_id)
@@ -19,12 +14,11 @@ module SendReminderJob
       unm.save
       @approver.save
       puts "saved"
-      AdminMailer.admin_mail(@approver.user.email,"Reminder Approval","Testing").deliver
+      AdminMailer.admin_mail(@approver.user.email,"Escalation","Testing").deliver
       puts "reminder mail is delivered"
-      Resque.remove_schedule("send_email_#{@app._id}")
-      #Setting the repeat of reminder
-      if @app.rep_reminder.blank?
-        @app.set_repeat_reminder
+      Resque.remove_schedule("send_escalation_#{@app._id}")
+      if !@app.rep_escalate.blank?
+        @app.repeat_escalation
       end
       #
     end
