@@ -88,16 +88,47 @@
             contentType: "application/json; charset=utf-8",
             //dataType: "json",
             success: function(result){
-
+                current_row =""
                 var table_row = ""
                 for(var i= 0 ;i< result.length;i++)
                 {
-                    for(var j=0;j<result[i].length;j++)
+                    console.log(result[i])
+                    if($("#"+result[i][grp_name]).length === 0)
                     {
-                     console.log(result[i][j])
-                     table_row += "<td>"+result[i][j].cvalue+"</td>"
+                        $("#report_table").append("<tr id="+result[i][grp_name]+"></tr>")
+
                     }
-                    $("#report_table").append("<tr>"+table_row+"</tr>")
+                    for(var j=0;j<Object.keys(result[i]).length;j++)
+                    {
+                        console.log(result[i][grp_name]);
+                        $("#"+result[i][grp_name]).append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>")
+
+                    }
+
+
+
+
+//                    for(var j=0;j<result[i].length;j++)
+//                    {
+//                        if (result[i][j].cname === grp_name)
+//                        {
+//                            current_row = result[i][j].cvalue;
+//                            if($("#"+result[i][j].cvalue).length === 0)
+//                            {
+//                                $("#report_table").append("<tr id="+result[i][j].cvalue+"><td>"+result[i][j].cvalue+"</td></tr>")
+//
+//                            }
+//
+//
+//                        }
+//                        else
+//                         $("#"+current_row).append("<td>"+result[i][j].cvalue+"</td>")
+
+
+
+//                        table_row += "<td>"+result[i][j].cvalue+"</td>"
+//                    }
+//                    $("#report_table").append("<tr>"+table_row+"</tr>")
                     table_row = ""
 
 

@@ -172,14 +172,16 @@ module ApplicationHelper
         puts "Process in release stage..."
         @pro=ProcessTr.find(pid)
         @user=User.find(user_id)
-        @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first._id}/#{pid}/#{stepno}"
+        a="/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{pid}/#{stepno}"
+        @user.user_tasks.create!(:user_id=>user_id,title:"Release #{oclass}",description:"Visit this link to release <a href="+a+"></a>")
+        @user.current_redirect_url=a
         @user.save
       when "Completed"
         puts "Process in system completetion stage"
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
         puts "Process is completed."
-      when "Checkstate"
+      when "CheckState"
         puts "System in check state"
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
@@ -189,6 +191,8 @@ module ApplicationHelper
         puts "Loop Started"
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
+        @pro.loop_step= stepno
+        @pro.save
       when "EndLoop"
         puts "Reached Loop End"
         @pro=ProcessTr.find(pid)

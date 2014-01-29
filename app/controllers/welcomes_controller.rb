@@ -20,7 +20,7 @@ class WelcomesController < InheritedResources::Base
   end
 
   def get_data
-    @a=Array.new
+    @a={}
     @final_array = Array.new
     @class=eval(params[:classname][0])
     grp_by=params[:group_by][0]
@@ -32,7 +32,7 @@ class WelcomesController < InheritedResources::Base
         @temp=Hash.new
         @temp[:cname] = i
         @temp[:cvalue] = arr.instance_eval(i)
-        @a<<@temp
+        @a = @a.merge({@temp[:cname]=>@temp[:cvalue]})
       end
       @association.map do |i|
         key = @class.reflections.select{|j,v| v.class_name ==i[:classname]}.keys.first
@@ -40,10 +40,10 @@ class WelcomesController < InheritedResources::Base
         @str=i[:myfield]
         @temp[:cname] = @str
         @temp[:cvalue] = arr.instance_eval(key).instance_eval(@str) rescue nil
-        @a<<@temp
+        @a = @a.merge({@temp[:cname]=>@temp[:cvalue]})
       end
       @final_array << @a
-      @a = []
+      @a = {}
     end
 
 

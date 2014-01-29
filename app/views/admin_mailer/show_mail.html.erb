@@ -166,31 +166,29 @@
 <div class="table-header">Table Header</div>
 <table class="table table-striped table-bordered table-hover">
 
-  <!--<thead>-->
-      <!--<tr>-->
-        <!--<th>Employee Code</th>-->
-        <!--<th>Employee Name</th>-->
-        <!--<th>Status</th>-->
-        <!--<th>Gender</th>-->
-      <!--</tr>-->
-  <!--</thead>-->
+  <thead>
+  <tr>
+  <th>Column Name</th>
+  <th>Value</th>
+  <!--<th>Status</th>-->
+  <!--<th>Gender</th>-->
+  </tr>
+  </thead>
 
-  <!--<tbody>-->
-  <!--<%# @array.each do |arr| %>-->
-      <!--<tr>-->
-        <!--<td><%#= arr %></td>-->
-        <!--<td><%#= arr %></td>-->
-        <!--<td><%#= arr %></td>-->
-        <!--<td><%#= arr %></td>-->
-      <!--</tr>-->
-  <!--<%# end %>-->
-  <!--</tbody>-->
+  <tbody>
+  <% @data.class.fields.keys.each do |arr| %>
+  <tr>
+  <td><%= arr %></td>
+  <td><%= @data.instance_eval(arr) %></td>
+  </tr>
+  <% end %>
+  </tbody>
 
 </table>
 <%#= render 'employee_master/form' %>
 
-<a href="#" class="btn btn-info">Approve</a>
-<a href="#" class="btn btn-danger">Reject</a>
+<a href="<%=  %>" class="btn btn-info">Approve</a>
+<a href="<%=  %>" class="btn btn-danger">Reject</a>
 
 </body>
 
