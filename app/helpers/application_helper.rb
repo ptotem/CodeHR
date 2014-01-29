@@ -142,7 +142,7 @@ module ApplicationHelper
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
         @step=@pro.step_trs[stepno]
-        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @step.auto_assign)
+        @app=ApprovalMat.create!(:name=>@pro.name,ocls:oclass,oid:@pro.chits.first.oid,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @step.auto_assign)
         link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         @app.link=link
         @app.save

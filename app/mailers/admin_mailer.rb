@@ -13,6 +13,8 @@ class AdminMailer < ActionMailer::Base
     @user=user
     @message = msg
     @data=eval(oclass).find(oid)
+    @link1 = link1
+    @link2 = link2
     #@oid=oid
     mail(:to=>user, :subject => sub)
   end

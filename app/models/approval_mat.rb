@@ -2,6 +2,8 @@ require 'resque_scheduler'
 class ApprovalMat
   include Mongoid::Document
   field :name, type: String
+  field :ocls, type: String
+  field :oid, type: String
   field :description, type: String
   field :link, type: String
   field :finished, type: Boolean
