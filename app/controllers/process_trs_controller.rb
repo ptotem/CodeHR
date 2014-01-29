@@ -12,10 +12,13 @@ class ProcessTrsController < InheritedResources::Base
       if (sm.oaction == "Notify" || sm.oaction=="Tagging")
         @step=@process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>sm.action_to,:content=>sm.content)
       else
-        @step=@process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content)
+        @step=@process_tr.step_trs.build(:name=>sm.name,:oclass=>sm.oclass,:oaction=>sm.oaction,:action_to=>params[:obj_id],:content=>sm.content,:approved_next_step=> sm.approved_next_step,:reject_next_step=> sm.reject_next_step ,:reminder=> sm.reminder,:rep_reminder=> sm.rep_reminder,:escalate=> sm.escalate ,:rep_escalate=> sm.rep_escalate,:auto_assign=>sm.auto_assign)
       end
       sm.action_arr_masters.each do |saam|
         @step.action_arrs.build(:a_cls_name=>saam.a_class_name,:dep_clas_name=>saam.dep_class_name,:obj_id=>saam.a_obj_id)
+      end
+      sm.auto_assign_tos.each do |saat|
+        @step.auto_assign_to_trs.build(aclass:saat.aclass,dclass:saat.dclass,objid=>saat.objid)
       end
     end
     #Next line will initiate the state machine which then automatically runs all the steps include in Initiated Process/

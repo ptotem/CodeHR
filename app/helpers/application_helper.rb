@@ -141,12 +141,11 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
-
-        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno)
+        @step=@pro.step_trs[:stepno]
+        @app=ApprovalMat.create!(:name=>@pro.name,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @rep.auto_assign)
         link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         @app.link=link
         @app.save
-        @step= @pro.step_trs[stepno]
         @step.action_arrs.each do |aa|
           if aa.dep_clas_name.blank?
             @app.approvers.create!(:employee_master_id=>aa.obj_id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
@@ -154,6 +153,16 @@ module ApplicationHelper
             @grps=EmployeeMaster.where(aa.dep_clas_name.to_sym => aa.obj_id)
             @grps.each do |grp|
               @app.approvers.create!(:employee_master_id=>grp._id,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+            end
+          end
+        end
+        @step.auto_assign_to_trs.each do |aa|
+          if aa.dclass.blank?
+            @app.approvers.create!(:employee_master_id=>aa.objid,:approved=>false,:escalated=>true,:escalated_from=>nil,:active=>false)
+          else
+            @grps=EmployeeMaster.where(aa.dclass.to_sym => aa.objid)
+            @grps.each do |grp|
+              @app.approvers.create!(:employee_master_id=>grp._id,:approved=>false,:escalated=>true,:escalated_from=>nil,:active=>false)
             end
           end
         end
@@ -170,6 +179,13 @@ module ApplicationHelper
         @pro=ProcessTr.find(pid)
         @pro.step_trs[stepno].end_processing_step
         puts "Process is completed."
+      when "Checkstate"
+        puts "System in check state"
+        @pro=ProcessTr.find(pid)
+        @pro.step_trs[stepno].end_processing_step
+        #@obj=@pro.chits
+      when "loop"
+        #System in the loop"
 
     end
 

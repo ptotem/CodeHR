@@ -9,6 +9,14 @@ class ApprovalMat
   field :step_no, type: Integer
   field :employee_master_id, type: String
   field :created_at, type: DateTime, default: DateTime.now
+  field :approved_next_step, type: String
+  field :reject_next_step, type: String
+  field :reminder, type: String
+  field :rep_reminder, type: String
+  field :escalate, type: String
+  field :rep_escalate, type: String
+  field :auto_assign, type: String
+
 
   embeds_many :approvers
   accepts_nested_attributes_for :approvers
@@ -46,11 +54,34 @@ class ApprovalMat
     config = {}
     config[:class] = 'SendEmailJob'
     config[:args] = id
-    config[:every] = '50s'
+    config[:after] = '50s'
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
 
+  def schedule_reminder_mail
+    #toDo: to send reminder
+  end
+
+  def set_repeat_reminder
+    #todo: Set repeat every
+  end
+
+  def set_escalation
+
+  end
+
+  def repeat_escalation
+
+  end
+
+  def auto_assign
+    #todo: write logic of auto assigning1
+  end
+
+  def next_step
+    #write here about n
+  end
 
   def check_resque_scheduler
     puts "Resque testing started..."
