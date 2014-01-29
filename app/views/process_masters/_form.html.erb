@@ -320,11 +320,6 @@
     </div>
     <br>
 
-    <% if !params[:process_id].nil? %>
-        <%= hidden_field_tag :process_id, params[:process_id] %>
-        <%= hidden_field_tag :seq, params[:seq] %>
-    <% end %>
-
     <div class="actions">
       <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
     </div>
@@ -442,7 +437,7 @@
                         for(var j =0;j<step_values.length;j++)
                         {
                             if(step_values[i]!=step_values[j])
-                            $(ele).next().append("<option value="+[j]+">"+step_values[j]+"</option>");
+                            $(ele).next().append("<option value="+[j+1]+">"+step_values[j]+"</option>");
                         }
                     });
                 }
