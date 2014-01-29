@@ -116,7 +116,7 @@
                           <div class="control-group">
                             <label class="custom-control-label">Object</label>
                             <div class="controls">
-                              <%= step_master.select :oclass, options_for_select(["","System"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"} %>
+                              <%= step_master.select :oclass, options_for_select(["","System"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select", :selected => step_master.object.oclass), {:class => "models-select"} %>
                               <%#= step_master.text_field :content %>
                             </div>
                             <label class="custom-control-label">Content</label>
@@ -128,7 +128,7 @@
                           <div class="control-group">
                             <label class="control-label">To</label>
                             <div class="controls">
-                              <%= step_master.select :action_to, options_for_select(["","Admin","Manager"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select"), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
+                              <%= step_master.select :action_to, options_for_select(["","Admin","Manager"]+Mongoid.models.collect{ |u| [u] }, :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
                             </div>
                           </div>
                         </div>
@@ -443,6 +443,14 @@
 
         //execute this code in edit mode
         if (form_act == "edit"){
+
+            var parent_tab = [];
+            $('.tab-content').find('.my_seq').each(function(index,elem){
+                parent_tab.push($(elem).parent().parent().parent().parent().parent().parent().attr('id'));
+                //$(elem).val()
+            });
+            //alert(parent_tab);
+
             var $edit_fields, edit_fields_len;
             $edit_fields = $(".tab-content").find('.tab-pane').find(".fields");
             $('.tab-pane').empty().remove();
