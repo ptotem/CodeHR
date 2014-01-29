@@ -9,6 +9,7 @@ class ApprovalMat
   field :step_no, type: Integer
   field :employee_master_id, type: String
   field :created_at, type: DateTime, default: DateTime.now
+
   field :approved_next_step, type: String
   field :reject_next_step, type: String
   field :reminder, type: String

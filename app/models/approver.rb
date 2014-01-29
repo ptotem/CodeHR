@@ -5,5 +5,6 @@ class Approver
   field :escalated, type: Boolean
   field :escalated_from, type: String
   field :active, type: Boolean
+  field :auto_assign, type: Boolean
   embedded_in :approval_mat
 end

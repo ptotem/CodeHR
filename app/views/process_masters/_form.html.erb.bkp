@@ -332,13 +332,13 @@
                 <p>Save this record?</p>
               </div>
               <div class="modal-footer">
-                <a href="#" id="save_record_yes_btn" class="save_record_btns btn btn-primary">Yes</a>
-                <a href="#" id="save_record_no_btn" class="save_record_btns btn btn-danger">No</a>
+                <a href="#" id="save_record_yes_btn" class="btn btn-primary">Yes</a>
+                <a href="#" id="save_record_no_btn" class="btn btn-danger">No</a>
               </div>
             </div>
             <a href="#SaveRecordModal" id="save_record_btn" style="display: none;" role="button" class="btn" data-toggle="modal">Save Record</a>
 
-        <%= f.link_to_add "Add new record", :step_masters %>
+        <%= f.link_to_add "Add new record", :step_masters, :onclick=>"show_save_record_modal($(this));" %>
 
 
       </div>
@@ -378,6 +378,8 @@
         //load_bindings();
         $('.date-picker').datepicker();
 
+        console.clear();
+
         $('.timepicker').timepicker({
             minuteStep: 1,
             showSeconds: false,
@@ -416,59 +418,16 @@
         //load_bindings();
 
         //newly added newsted fields in tabbable
-        $('a.add_nested_fields').on('click', function(event) {
-            //$("#SaveRecordModal").modal({ // wire up the actual modal functionality and show the dialog
-                //"backdrop" : "static",
-                //"keyboard" : true,
-                //"show" : true // ensure the modal is shown immediately
-            //});
-            event.stopPropagation();
-            event.preventDefault();
-            $('#SaveRecordModal').modal('show');
+        //$('a.add_nested_fields').on('click', function(){
 
-            $('.save_record_btns').on('click', function(){
+        //});
 
-                if ( $(this).attr('id') == "save_record_yes_btn"){
+        $('#save_record_yes_btn').on('click', function(){
+            add_nested_fields();
+        });
 
-                        nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length + 1; //get number of name text fields in nested form (step_master)
-
-                        $('#sortable').find('li').removeClass('active');
-                        var ht = '<li class="active">' +
-                                    '<a data-toggle="tab" href=#step'+nested_form_name_text_fields_len+'>' + "Step "+nested_form_name_text_fields_len + '</a>' +
-                                 '</li>'; //html for tab list (Step 1, Step 2, etc...).
-
-                        $("#sortable").append(ht); //add tab in list of steps
-
-                        $(this).prev().find('.tab-content').find("#step"+nested_form_name_text_fields_len).find('.control-label').first().text("");
-                        $(this).prev().find('.tab-content').find("#step"+nested_form_name_text_fields_len).find('.control-label').first().text("Step " + nested_form_name_text_fields_len);  //change label of step_master's name field acc. to sequence
-
-                        //using nested_form's prototype which gets the html of of newly added nested field
-                        window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-                            l =  $(content).find(".control-label").first().text("Step " + nested_form_name_text_fields_len);
-                            $(content).append(l)
-
-                            var p = $(content).find(".control-label").parent().parent().parent().parent().attr('class');
-                            var last_child = $('.'+p).children().last().attr('onClick',"remove_tab_li($(this))");
-
-                            $(content).append(last_child)
-
-                            var content_html = $(content).html();
-
-                            var $tr = $(link).prev().find('.tab-content').find(".tab-pane:last-child"); //get last added tab
-                            $('.tab-content').find('.tab-pane').removeClass('in active');
-                            var c =  $(content).insertAfter($tr).wrap('<div id=step'+nested_form_name_text_fields_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
-                            c.find(".control-label").remove();
-                            return c.append(l, last_child);
-                            //return $tr.append(content);
-                        }
-                    $('#SaveRecordModal').modal('hide');
-                }
-                else{
-                    $('#SaveRecordModal').modal('hide');
-                }
-
-            });
-
+        $('#save_record_no_btn').on('click', function(){
+            $('#SaveRecordModal').modal('hide');
         });
 
         $('.select_what_options').on('change', function() {
@@ -555,6 +514,51 @@
         }
 
     });
+
+    function show_save_record_modal(this_obj){
+        //$("#SaveRecordModal").modal({ // wire up the actual modal functionality and show the dialog
+        //"backdrop" : "static",
+        //"keyboard" : true,
+        //"show" : true // ensure the modal is shown immediately
+        //});
+        $('#SaveRecordModal').modal('show');
+        alert($(this_obj).attr('class'));
+    }
+
+    function add_nested_fields(){
+        nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length + 1; //get number of name text fields in nested form (step_master)
+
+        $('#sortable').find('li').removeClass('active');
+        var ht = '<li class="active">' +
+                '<a data-toggle="tab" href=#step'+nested_form_name_text_fields_len+'>' + "Step "+nested_form_name_text_fields_len + '</a>' +
+                '</li>'; //html for tab list (Step 1, Step 2, etc...).
+
+        $("#sortable").append(ht); //add tab in list of steps
+
+        $(this).prev().find('.tab-content').find("#step"+nested_form_name_text_fields_len).find('.control-label').first().text("");
+        $(this).prev().find('.tab-content').find("#step"+nested_form_name_text_fields_len).find('.control-label').first().text("Step " + nested_form_name_text_fields_len);  //change label of step_master's name field acc. to sequence
+
+        //using nested_form's prototype which gets the html of of newly added nested field
+        window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
+            l =  $(content).find(".control-label").first().text("Step " + nested_form_name_text_fields_len);
+            $(content).append(l)
+
+            var p = $(content).find(".control-label").parent().parent().parent().parent().attr('class');
+            var last_child = $('.'+p).children().last().attr('onClick',"remove_tab_li($(this))");
+
+            $(content).append(last_child)
+
+            var content_html = $(content).html();
+
+            var $tr = $(link).prev().find('.tab-content').find(".tab-pane:last-child"); //get last added tab
+            $('.tab-content').find('.tab-pane').removeClass('in active');
+            var c =  $(content).insertAfter($tr).wrap('<div id=step'+nested_form_name_text_fields_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+            c.find(".control-label").remove();
+            return c.append(l, last_child);
+            //return $tr.append(content);
+        }
+        $('#SaveRecordModal').modal('hide');
+    }
 
     function remove_tab_li(this_obj){
         var tab_pane_id = $(this_obj).parent().parent().attr('id');
