@@ -526,7 +526,7 @@
 
     function display_objects(this_obj){
         //alert("Sunny");
-        console.log($(this_obj).closest('.row-fluid'));
+        //console.log($(this_obj).closest('.row-fluid'));
 
         var parent_tab = $(this_obj).parent().parent().parent().parent().parent().parent();
         var model_name = $(this_obj).val();
@@ -541,6 +541,8 @@
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (data) {
+                console.log(data)
+
                 $(parent_tab).find('.users-list').show();
                 $(parent_tab).find('.not-available-text').hide();
                 var user_name, email;
@@ -549,19 +551,46 @@
                 var $checkbox_col = '<td style="position: relative;"><input type="checkbox" name="vehicle" value="Car" class="user_select_checkbox" style="position: relative; top: 0;"></td>';
                 var $radio_button_col = '<td style="position: relative;"><input type="radio" name="sex" value="female" class="user_select_radio" style="position: relative; top: 0;"></td>';
                 $(parent_tab).find(".users-list tr:not(:first-child)").empty();
-                $.each(data.split(','), function (d, ele) {
-                    ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
-                    user_name = ele.split('|')[0];
-                    email = ele.split('|')[1];
-                    my_id = ele.split('|')[2];
+
+                  //Now
+//                var table_row = "";
+                for(var i= 0 ;i< data.length;i++)
+                {
+
+
+                    my_id = data[i]["_id"];
                     $user_row = '<tr>'+
                             '<td style="position: relative;"><input type="checkbox" name="action_arr['+action_arr_index+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                             '<td style="position: relative;"><input type="radio" name="action_arr[]" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
-                            '<td>'+
-                            user_name+
-                            '</td><td>'+email+'</td></tr>';
+                            '<td>'+data[i]["employee_name"]+         '</td><td>'+data[i]["official_email"]+'</td></tr>';
                     $(parent_tab).find(".users-list").append($user_row);
-                });
+
+//                        table_row += "<td>"+data[i][j].cvalue+"</td>"
+//                      $(parent_tab).find(".users-list").append($user_row);
+//
+//                    $("#report_table").append("<tr>"+table_row+"</tr>");
+//                    table_row = "";
+
+                    //console.log(result[i])
+                }
+
+
+
+//                  //Earlier
+//                $.each(data.split(','), function (d, ele) {
+//                    ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
+//                    console.log(ele)
+////                    user_name = ele.split('|')[0];
+//                    user_name = ele["cvalue"]
+//                    email = ele["cvalue"]
+////                    email = ele.split('|')[1];
+//                    my_id = ele.split('|')[2];
+//                    $user_row = '<tr>'+
+//                            '<td style="position: relative;"><input type="checkbox" name="action_arr['+action_arr_index+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+//                            '<td style="position: relative;"><input type="radio" name="action_arr[]" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+//                            '<td>'+user_name+         '</td><td>'+email+'</td></tr>';
+//                    $(parent_tab).find(".users-list").append($user_row);
+//                });
                 $(':checkbox, :radio').css('opacity','1');
 
                 action_arr_index=action_arr_index+1;
@@ -598,19 +627,41 @@
                 //var $checkbox_col = '<td><input type="checkbox" value="no" name="select_obj_1" id="select_obj_1" class="select_bulk_objects"></td>';
                 //var $radio_button_col = '<td><input type="radio" value="single" style="position: relative; top: 0px; opacity: 1;" name="radio_obj_1" id="radio_obj_1_single" class="select_single_objects"></td>';
                 //$(table+ "tr:not(:first-child)").empty();
-                $.each(data.split(','), function (d, ele) {
-                    ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
-                    user_name = ele.split('|')[0];
-                    email = ele.split('|')[1];
-                    my_id = ele.split('|')[2];
+
+
+                for(var i= 0 ;i< data.length;i++)
+                {
+
+
+                    my_id = data[i]["_id"];
                     $user_row = '<tr>'+
                             '<td><input type="checkbox" name="action_app_arr['+(action_arr_index-1)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
                             '<td><input type="radio" name="action_app_arr['+(action_arr_index-1)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
-                            '<td>'+
-                            user_name+
-                            '</td><td>'+email+'</td></tr>';
+                            '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                     $(table).append($user_row);
-                });
+
+//                        table_row += "<td>"+data[i][j].cvalue+"</td>"
+//                      $(parent_tab).find(".users-list").append($user_row);
+//
+//                    $("#report_table").append("<tr>"+table_row+"</tr>");
+//                    table_row = "";
+
+                    //console.log(result[i])
+                }
+
+//                $.each(data.split(','), function (d, ele) {
+//                    ele = ele.toString().replace('[', '').replace(']', '').replace(/"/g, '');
+//                    user_name = ele.split('|')[0];
+//                    email = ele.split('|')[1];
+//                    my_id = ele.split('|')[2];
+//                    $user_row = '<tr>'+
+//                            '<td><input type="checkbox" name="action_app_arr['+(action_arr_index-1)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
+//                            '<td><input type="radio" name="action_app_arr['+(action_arr_index-1)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+//                            '<td>'+
+//                            user_name+
+//                            '</td><td>'+email+'</td></tr>';
+//                    $(table).append($user_row);
+//                });
                 $(':checkbox, :radio').css('opacity','1');
 
                 action_arr_index=action_arr_index+1;

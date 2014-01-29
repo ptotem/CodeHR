@@ -112,18 +112,41 @@ class ProcessMastersController < ApplicationController
   end
 
   def get_data
-    @returning_data = Array.new
 
-    @model_name = params[:model_name][0]
-    @model_name_class = @model_name.classify.constantize
-    #@data = @model_name_class.all
-    @data = User.all
+    @class_name = params[:model_name][0]
+    @a = Array.new
+    @final_array = Array.new
+    @class=eval(params[:model_name][0])
+    @b = Array.new
 
-    @data.each do |i|
-      @returning_data<<"#{i.name}|#{i.email}|#{i._id}"
+
+    if @class_name == "EmployeeMaster"
+        @b = ["employee_name", "official_email","_id"]
+        EmployeeMaster.all.each do |em|
+          @temp=Hash.new
+          @b.each do |i|
+
+            #@temp[:cname] = i
+            @temp[i] = em.instance_eval(i)
+
+          end
+          @a<<@temp
+        end
+    elsif @class_name == "Role"
+        @b = ["name"]
+        Role.all.each do |em|
+          @b.each do |i|
+            @temp=Hash.new
+            #@temp[:cname] = i
+            @temp[i] = em.instance_eval(i)
+            @a<<@temp
+          end
+        end
     end
-    render :text => @returning_data
+
+    render :json => @a
     return
+
 
   end
 
