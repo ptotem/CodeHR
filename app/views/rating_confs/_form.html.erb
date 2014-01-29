@@ -37,6 +37,12 @@
     <label for="<%= @form[:col_sequence].to_s %>" class="control-label"><%= @form[:col_sequence].to_s %></label>
     <%= f.number_field :col_sequence %>
   </div>
+
+  <% if !params[:process_id].nil? %>
+    <%= hidden_field_tag :process_id, params[:process_id] %>
+    <%= hidden_field_tag :seq, params[:seq] %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
   </div>

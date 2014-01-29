@@ -717,6 +717,12 @@
     </div>
     </div>
     </div>
+
+    <% if !params[:process_id].nil? %>
+        <%= hidden_field_tag :process_id, params[:process_id] %>
+        <%= hidden_field_tag :seq, params[:seq] %>
+    <% end %>
+
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
       <%= f.submit @form_config[:submit], :class => "btn btn-info" %>
