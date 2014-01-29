@@ -17,8 +17,10 @@ class ProcessTrsController < InheritedResources::Base
       sm.action_arr_masters.each do |saam|
         @step.action_arrs.build(:a_cls_name=>saam.a_class_name,:dep_clas_name=>saam.dep_class_name,:obj_id=>saam.a_obj_id)
       end
-      sm.auto_assign_tos.each do |saat|
-        @step.auto_assign_to_trs.build(aclass:saat.aclass,dclass:saat.dclass,objid=>saat.objid)
+      if sm.auto_assign_tos
+        sm.auto_assign_tos.each do |saat|
+          @step.auto_assign_to_trs.build(aclass:saat.oclass,dclass:saat.dclass,objid:saat.objid)
+        end
       end
     end
     #Next line will initiate the state machine which then automatically runs all the steps include in Initiated Process/

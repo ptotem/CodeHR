@@ -2,6 +2,7 @@ class ProcessTr
   include Mongoid::Document
   field :name, type: String
   field :user_id, type: String
+  field :loop_step, type: String
 
   embeds_many :step_trs
   embeds_many :chits
