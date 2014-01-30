@@ -100,7 +100,7 @@
               <label class="custom-control-label actions-tobe-performed-name">Action to be performed</label>
               <div class="controls">
                 <%#= step_master.text_field :oaction %>
-                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify"], disabled: ""), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
+                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify","Release"], disabled: ""), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
               </div>
             </div>
           </div>

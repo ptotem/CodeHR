@@ -48,9 +48,31 @@ class GenericController < ApplicationController
     end
 
     def update
-      render :text => params[:seq]
-      return
+      @class_name = params[:model_name]
+      instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
+      respond_to do |format|
+        if instance_variable_get("@#{params[:model_name].underscore}").update_attributes(params[params[:model_name].underscore.to_sym])
 
+          instance_variable_get("@#{params[:model_name].underscore}").save
+          if !params[:process_id].nil?
+            @pro=ProcessTr.find(params[:process_id])
+            @pro.step_trs[params[:seq].to_i].end_processing_step
+            @user=current_user
+            @user.current_redirect_url=''
+            @user.save
+          end
+          @user=User.find(current_user._id)
+          if !@user.current_redirect_url.blank?
+            redirect_to @user.current_redirect_url
+            return
+          end
+          format.html { redirect_to instance_variable_get("@#{params[:model_name].underscore}"), notice: 'Slide was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to instance_variable_get("@#{params[:model_name].underscore}"), notice: 'Slide could not be updated.' }
+          format.json { render json: instance_variable_get("@#{params[:model_name].underscore}").errors, status: :unprocessable_entity }
+        end
+      end
 
     end
 
