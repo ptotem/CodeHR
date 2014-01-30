@@ -13,7 +13,7 @@
       <% end %>
 
       <div class="row-fluid">
-        <div class="span12">
+        <div class="span8">
           <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -29,7 +29,7 @@
             <tbody>
                 <tr>
                     <td>
-                      <%= f.text_field :mp_code %>
+                      <%= f.text_field :mp_code, {:class => "my_width"} %>
                     </td>
                     <td>
                       <div class="input-append date">
@@ -56,7 +56,7 @@
                       <%= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
                     </td>
                     <td>
-                      <%= f.text_field :final_approved_number %>
+                      <%= f.text_field :final_approved_number, {:class => "my_width"} %>
                     </td>
                 </tr>
             </tbody>
@@ -203,7 +203,7 @@
           <!--</div>-->
       <!--<%# end %>-->
 
-      <div class="form-actions">
+      <div class="actions">
         <%= f.submit @form_config[:submit], :class=>"btn btn-info" %>
       </div>
   <% end %>
@@ -228,6 +228,13 @@
 
         $(".chzn-select").chosen();
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+
+        //$(":input").css('width','85%');
+        $("input.my_width:text").css('width','85%');
+        $("input.date-picker:text").css('width','76%');
+
+        $(".chzn-select").css('width','95%');
+        $(".chzn-container").css('width','95%');
     });
     function add_dp(){
         $('.date-picker').datepicker();

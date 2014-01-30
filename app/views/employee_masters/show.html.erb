@@ -37,11 +37,17 @@
           </tr>
           <tr>
             <th>Date of Birth</th>
-            <td><%= I18n.l @employee_master.date_of_birth, :format => :default %></td>
+            <td>
+              <%#= I18n.l @employee_master.date_of_birth, :format => :default %>
+              <%= l(@employee_master.date_of_birth, :format => :default) if @employee_master.date_of_birth %>
+            </td>
           </tr>
           <tr>
             <th>Date of Joining</th>
-            <td><%= I18n.l @employee_master.date_of_joining, :format => :default %></td>
+            <td>
+              <%#= I18n.l @employee_master.date_of_joining, :format => :default %>
+              <%= l(@employee_master.date_of_joining, :format => :default) if @employee_master.date_of_joining %>
+            </td>
           </tr>
           <tr>
             <th>Group</th>

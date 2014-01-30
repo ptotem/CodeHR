@@ -35,7 +35,7 @@
           <div class="row-fluid" style="margin-top: 1%;">
             <div class="span2">
               <div class="control-group">
-                <label class="control-label">Fromdate <sub>(dd-mm-yyyy)</sub> </label>
+                <label class="control-label">From Date &nbsp;<sub>(dd-mm-yyyy)</sub> </label>
               </div>
             </div>
             <div class="span4" style="margin-left: -5px;">
@@ -49,7 +49,7 @@
 
             <div class="span2">
               <div class="control-group">
-                <label class="control-label" style="position: relative; left: 35px;">To date <sub>(dd-mm-yyyy)</sub> </label>
+                <label class="control-label" style="position: relative; left: 35px;">To Date &nbsp;<sub>(dd-mm-yyyy)</sub> </label>
               </div>
             </div>
             <div class="span4">
@@ -66,7 +66,8 @@
           <div class="row-fluid">
             <div class="span6">
               <div class="control-group">
-                <%= interviewer_lists.label :fromtime,:class => "control-label" %>
+                <%#= interviewer_lists.label :fromtime, :class => "control-label" %>
+                <label class="control-label" style="position: relative; top: 11px;">From Time</label>
                 <div class="input-append bootstrap-timepicker">
                     <div class="controls" style="position: relative">
                       <%#= interviewer_lists.time_select :fromtime %>
@@ -78,7 +79,8 @@
             </div>
             <div class="span6">
               <div class="control-group">
-                <%= interviewer_lists.label :to_time,:class => "control-label" %>
+                <%#= interviewer_lists.label :to_time,:class => "control-label" %>
+                <label class="control-label" style="position: relative; top: 11px;">To Time</label>
                 <div class="input-append bootstrap-timepicker">
                   <div class="controls" style="position: relative">
                     <%#= interviewer_lists.time_select :fromtime %>
@@ -160,8 +162,11 @@
 
 <script>
     jQuery(function($){
+
+        $('.control-label').css('text-align','left');
         $('.date-picker').datepicker();
 
+        $('sub').css('bottom','-0.05em');
         $('.timepicker').timepicker({
             minuteStep: 1,
             showSeconds: false,

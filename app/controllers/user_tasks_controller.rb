@@ -91,4 +91,10 @@ class UserTasksController < ApplicationController
       format.json {render json: @tasks}
     end
   end
+
+  def destroy_all_user_tasks
+    UserTask.destroy_all
+    redirect_to user_tasks_path
+  end
+
 end

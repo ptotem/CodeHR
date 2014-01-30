@@ -733,8 +733,8 @@ en:
     ProcessTr:
       form:
         new:
-          name: 'New Process TR'
-          submit: 'Create New Process TR'
+          name: 'Initiate New Process'
+          submit: 'Initiate'
           fields:
             name: "Process TR Name"
             user_id: "User ID"

@@ -17,7 +17,7 @@
         <li class="active"><a data-toggle="tab" href="#new_comp_tab">New Company</a></li>
         <li><a data-toggle="tab" href="#address_tab">Company Address</a></li>
         <li><a data-toggle="tab" href="#remarks_tab">Remarks</a></li>
-        <li><a data-toggle="tab" href="#band_tab">Band</a></li>
+        <!--<li><a data-toggle="tab" href="#band_tab">Band</a></li>-->
       </ul>
 
       <div class="tab-content">
@@ -196,34 +196,35 @@
           </div>
         </div>
 
-        <div id="band_tab" class="tab-pane">
-          <div class="control-group">
-            <h3>Enter Band for Company</h3>
-            <%= f.fields_for :band_masters do |band| %>
-                <div class="control-group">
-                  <%= band.label :band_code,:class => "control-label" %>
-                  <div class="controls">
-                    <%= band.text_field :band_code %>
-                  </div>
-                </div>
+        <!--<div id="band_tab" class="tab-pane">-->
+          <!--<div class="control-group">-->
+            <!--<h3>Enter Band for Company</h3>-->
+            <!--<%#= f.fields_for :band_masters do |band| %>-->
+                <!--<div class="control-group">-->
+                  <!--<%#= band.label :band_code,:class => "control-label" %>-->
+                  <!--<div class="controls">-->
+                    <!--<%#= band.text_field :band_code %>-->
+                  <!--</div>-->
+                <!--</div>-->
 
-                <div class="control-group">
-                  <%= band.label :band_name,:class => "control-label" %>
-                  <div class="controls">
-                    <%= band.text_field :band_name %>
-                  </div>
-                </div>
+                <!--<div class="control-group">-->
+                  <!--<%#= band.label :band_name,:class => "control-label" %>-->
+                  <!--<div class="controls">-->
+                    <!--<%#= band.text_field :band_name %>-->
+                  <!--</div>-->
+                <!--</div>-->
 
-                <div class="control-group">
-                  <div class="controls">
-                    <%= band.link_to_remove "Remove this record" %>
-                  </div>
-                </div>
+                <!--<div class="control-group">-->
+                  <!--<div class="controls">-->
+                    <!--<%#= band.link_to_remove "Remove this record" %>-->
+                  <!--</div>-->
+                <!--</div>-->
 
-            <% end %>
-            <%= f.link_to_add "Add new record", :band_masters %></p>
-          </div>
-        </div>
+            <!--<%# end %>-->
+            <%#= f.link_to_add "Add new record", :band_masters %>
+        <!--</p>-->
+          <!--</div>-->
+        <!--</div>-->
 
         <div id="address_tab" class="tab-pane">
           <p>

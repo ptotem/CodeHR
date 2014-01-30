@@ -144,7 +144,8 @@ CodeHR::Application.routes.draw do
   match '/tasks'=>'user_tasks#tasks', :as => :tasks
 
 
-  match '/destroy_all' =>'notification_masters#destroy_all', :as => :destroy_all_notifications
+  match '/destroy_all_notifications' =>'notification_masters#destroy_all_notifications', :as => :destroy_all_notifications
+  match '/destroy_all_user_tasks' =>'user_tasks#destroy_all_user_tasks', :as => :destroy_all_user_tasks
 
 
   # The priority is based upon order of creation:
