@@ -56,10 +56,11 @@ class GenericController < ApplicationController
           instance_variable_get("@#{params[:model_name].underscore}").save
           if !params[:process_id].nil?
             @pro=ProcessTr.find(params[:process_id])
-            @pro.step_trs[params[:seq].to_i].end_processing_step
+            @pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
             @user=current_user
             @user.current_redirect_url=''
             @user.save
+            @pro.step_trs[params[:seq].to_i].end_processing_step
           end
           @user=User.find(current_user._id)
           if !@user.current_redirect_url.blank?
