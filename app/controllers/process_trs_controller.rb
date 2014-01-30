@@ -88,6 +88,9 @@ class ProcessTrsController < InheritedResources::Base
     @approver=EmployeeMaster.find(params[:approver_id])
     @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
     if !@app_mat.finished
+      @app_mat.rejected=true
+      @app_mat.save
+      @app_mat.rejected
     else
       render :text=>"This process is already approved"
     end

@@ -137,6 +137,7 @@ CodeHR::Application.routes.draw do
 
 
   match '/approve_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#approve_process', :as => :approve_emp_master
+  match '/reject_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#reject_process', :as => :approve_emp_master
 
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
   match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
