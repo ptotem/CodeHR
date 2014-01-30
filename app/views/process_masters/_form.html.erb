@@ -369,7 +369,7 @@
         var seq_val, this_li_a;
         $("#sortable").sortable({stop: function(event,ui){
             //alert("done")
-            console.log($(ui.item).index());
+            //console.log($(ui.item).index());
             $('#sortable').find('li').each(function(i,v){
                 var chandu =$(v).find('a').attr('href');
                 $(chandu).find('.my_seq').val($(v).index());
@@ -388,8 +388,10 @@
 
         //load_bindings();
 
+
         //newly added newsted fields in tabbable
         $('a.add_nested_fields').on('click', function(){
+
             nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length + 1; //get number of name text fields in nested form (step_master)
 
             $('#sortable').find('li').removeClass('active');
@@ -421,23 +423,45 @@
                 return c.append(l, last_child);
                 //return $tr.append(content);
             }
+
+
             setTimeout(function(){
+                seq_arr = [];
+                $('#sortable').find('li').each(function(i,v){
+                    var chandu = $(v).find('a').attr('href').split('#')[1];
+                    var this_tab_id = $('.tab-content').find('#'+chandu);
+                    $(this_tab_id).find('.my_seq').val($(v).index());
+                    seq_arr.push($(this_tab_id).find('.my_seq').val($(v).index()));
+                    //console.log(seq_arr[i]);
+                });
+
                 step_values = [];
+                seq_values = [];
+                var par_tab;
+                var par_tab_seq;
                 $("#sortable").children().each(function(index,ele){
                     //if(!$(ele).hasClass("active"))
-                      step_values.push($(ele).children().text())
-
+                      step_values.push($(ele).children().text());
+                      par_tab = $(ele).children().attr('href').split("#")[1];
+                      par_tab_seq = $('#'+par_tab).find('.my_seq').val();
+                      //console.log(par_tab_seq)
+                      seq_values.push(par_tab_seq);
                 });
 
 
                 for(var i =0;i<step_values.length;i++)
                 {
                     $("#step"+(i+1)).find(".goto_step").each(function(index,ele){
+                        var this_tab_seq = $("#step"+(i+1)).find('.my_seq').val();
+                        //console.log(this_tab_seq);
                         $(ele).next().html("");
                         for(var j =0;j<step_values.length;j++)
                         {
-                            if(step_values[i]!=step_values[j])
-                            $(ele).next().append("<option value="+[j+1]+">"+step_values[j]+"</option>");
+                            if(step_values[i]!=step_values[j]){
+                                //console.log(seq_arr[i]);
+                                //$(ele).next().append("<option value="+[j+1]+">"+step_values[j]+"</option>");
+                                $(ele).next().append("<option value="+seq_values[j]+">"+step_values[j]+"</option>");
+                            }
                         }
                     });
                 }
