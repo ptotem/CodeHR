@@ -50,9 +50,9 @@
 
             var data = {emp_id: []};
             data["emp_id"].push(emp_id);
-
+            <% step_no = ApprovalMat.find(params[:approval_id]).step_no  %>
             $.ajax({
-                url: "/approve_process/<%= params[:approval_id] %>/<%= params[:process_id] %>/<%= params[:step_no] %>/<%= current_user.employee_master._id %>",
+                url: "/approve_process/<%= params[:approval_id] %>/<%= params[:process_id] %>/<%= step_no %>/<%= current_user.employee_master._id %>",
                 type: "post",
                 async: false,
                 data: JSON.stringify(data),
