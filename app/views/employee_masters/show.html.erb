@@ -37,11 +37,11 @@
           </tr>
           <tr>
             <th>Date of Birth</th>
-            <td><%= @employee_master.date_of_birth %></td>
+            <td><%= I18n.l @employee_master.date_of_birth, :format => :default %></td>
           </tr>
           <tr>
             <th>Date of Joining</th>
-            <td><%= @employee_master.date_of_joining %></td>
+            <td><%= I18n.l @employee_master.date_of_joining, :format => :default %></td>
           </tr>
           <tr>
             <th>Group</th>

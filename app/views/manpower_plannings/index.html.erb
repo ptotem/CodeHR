@@ -27,8 +27,8 @@
           <% @manpower_plannings.each do |manpower_planning| %>
               <tr>
                 <td><%= manpower_planning.mp_code %></td>
-                <td><%= manpower_planning.period_from %></td>
-                <td><%= manpower_planning.period_to %></td>
+                <td><%= l(manpower_planning.period_from, :format => :default) if manpower_planning.period_from %></td>
+                <td><%= l(manpower_planning.period_to, :format => :default) if manpower_planning.period_to %></td>
                 <td><%= manpower_planning.requested_by %></td>
                 <td><%= manpower_planning.final_approved_number %></td>
                 <td><%= link_to 'Show', manpower_planning %></td>

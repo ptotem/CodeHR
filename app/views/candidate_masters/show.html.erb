@@ -9,7 +9,7 @@
       <tbody>
           <tr>
             <th>Candidate Code</th>
-            <td><%= @candidate_master.candidate_code %></td>
+            <td><%#= @candidate_master.candidate_code %></td>
           </tr>
           <tr>
             <th>Candidate Name</th>
@@ -41,7 +41,7 @@
           </tr>
           <tr>
             <th>Date of Birth</th>
-            <td><%= @candidate_master.date_of_birth %></td>
+            <td><%= I18n.l @candidate_master.date_of_birth, :format => :default %></td>
           </tr>
           <tr>
             <th>Total Work Exp. (years)</th>

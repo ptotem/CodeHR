@@ -13,11 +13,11 @@
           </tr>
           <tr>
             <th>Period From</th>
-            <td><%= @manpower_planning.period_from %></td>
+            <td><%= I18n.l @manpower_planning.period_from, :format => :default %></td>
           </tr>
           <tr>
             <th>Period To</th>
-            <td><%= @manpower_planning.period_to %></td>
+            <td><%= I18n.l @manpower_planning.period_to, :format => :default %></td>
           </tr>
           <tr>
             <th>Requested By</th>

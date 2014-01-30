@@ -13,7 +13,7 @@
       <thead>
           <tr>
             <th>Vacancy Code</th>
-            <th>Manpower Planning</th>
+            <!--<th>Manpower Planning</th>-->
             <th>Description</th>
             <th>Status</th>
             <th>Sourcing Strategy</th>
@@ -31,7 +31,7 @@
           <% @vacancy_masters.each do |vacancy_master| %>
               <tr>
                 <td><%= vacancy_master.vacancy_code %></td>
-                <td><%= vacancy_master.manpower_planning_id %></td>
+                <!--<td><%#= vacancy_master.manpower_planning_id %></td>-->
                 <td><%= vacancy_master.description %></td>
                 <td><%= vacancy_master.status %></td>
                 <td><%= vacancy_master.sourcing_strategy %></td>

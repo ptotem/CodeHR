@@ -1,5 +1,102 @@
 <p id="notice"><%= notice %></p>
 
 
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Approval Mat Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @approval_mat.name %></td>
+          </tr>
+
+          <!--<tr>-->
+            <!--<th>Object Class</th>-->
+            <!--<td><%#= @approval_mat.ocls %></td>-->
+          <!--</tr>-->
+
+          <!--<tr>-->
+            <!--<th>Object id</th>-->
+            <!--<td><%#= @approval_mat.oid %></td>-->
+          <!--</tr>-->
+
+          <tr>
+            <th>Description</th>
+            <td><%= @approval_mat.description %></td>
+          </tr>
+
+          <tr>
+            <th>Link</th>
+            <td><%= @approval_mat.link %></td>
+          </tr>
+
+          <tr>
+            <th>Finished</th>
+            <td><%= @approval_mat.finished %></td>
+          </tr>
+
+          <!--<tr>-->
+            <!--<th>Process TR id</th>-->
+            <!--<td><%#= @approval_mat.process_tr_id %></td>-->
+          <!--</tr>-->
+
+          <tr>
+            <th>Step No.</th>
+            <td><%= @approval_mat.step_no %></td>
+          </tr>
+
+          <!--<tr>-->
+            <!--<th>Employee Master id</th>-->
+            <!--<td><%#= @approval_mat.employee_master_id %></td>-->
+          <!--</tr>-->
+
+          <!--<tr>-->
+            <!--<th>Created At</th>-->
+            <!--<td><%#= @approval_mat.created_at %></td>-->
+          <!--</tr>-->
+
+          <tr>
+            <th>Approved Next Step</th>
+            <td><%= @approval_mat.approved_next_step %></td>
+          </tr>
+
+          <tr>
+            <th>Reject Next Step</th>
+            <td><%= @approval_mat.reject_next_step %></td>
+          </tr>
+
+          <tr>
+            <th>Reminder</th>
+            <td><%= @approval_mat.reminder %></td>
+          </tr>
+
+          <tr>
+            <th>Repeat Reminder</th>
+            <td><%= @approval_mat.rep_reminder %></td>
+          </tr>
+
+          <tr>
+            <th>Escalate</th>
+            <td><%= @approval_mat.escalate %></td>
+          </tr>
+
+          <tr>
+            <th>Repeat Escalate</th>
+            <td><%= @approval_mat.rep_escalate %></td>
+          </tr>
+
+          <tr>
+            <th>Auto Assign</th>
+            <td><%= @approval_mat.auto_assign %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_approval_mat_path(@approval_mat) %> |
 <%= link_to 'Back', approval_mats_path %>

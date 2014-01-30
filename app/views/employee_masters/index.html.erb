@@ -33,7 +33,7 @@
                 <td><%= employee_master.employee_name %></td>
                 <td><%= employee_master.status %></td>
                 <td><%= employee_master.gender %></td>
-                <td><%= employee_master.date_of_joining %></td>
+                <td><%= l(employee_master.date_of_joining, :format => :default) if employee_master.date_of_joining %></td>
                 <td><%= employee_master.designation_joined_at %></td>
                 <td><%= employee_master.employee_detail.current_designation rescue nil %></td>
                 <td><%= employee_master.official_email %></td>
