@@ -46,8 +46,6 @@ class ProcessMastersController < ApplicationController
   # POST /process_masters
   # POST /process_masters.json
   def create
-    #render :json=>params
-    #return
 
     @process_master = ProcessMaster.new(params[:process_master])
     if params[:action_arr]
