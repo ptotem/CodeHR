@@ -166,6 +166,12 @@ module ApplicationHelper
             end
           end
         end
+        #todo: Add redirection url and task
+
+        @user=User.find(user_id)
+        @user.user_tasks.create!(:user_id=>user_id,title:"Confirm or change approval request",description:"Visit this link to send approval",link:"updation/ApprovalMat/#{@app._id}/#{@pro._id}/#{stepno}",seen:false)
+        @user.current_redirect_url=a
+        @user.save
         @app.send_notification
         puts "Approval"
       when "Release"

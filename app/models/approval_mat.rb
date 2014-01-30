@@ -36,7 +36,7 @@ class ApprovalMat
 
   def send_notification
     puts "Inside Send Notification"
-    self.approvers.each do |aa|
+    self.approvers.where(:active => true).each do |aa|
       @approver=EmployeeMaster.find(aa.employee_master_id)
       unm=@approver.user.notification_masters.build title:self.name , description:self.description,  type:"Approval"
       unm.save
@@ -110,6 +110,16 @@ class ApprovalMat
 
   def auto_assign
     #todo: write logic of auto assigning1
+    @self.approvers.where(:active => true).each do |e|
+      @self.active = false
+      self.save
+    end
+
+    @self.approvers.where(:auto_assign => true).each do |e|
+      @self.active =true
+      @self.save
+    end
+
   end
 
   def next_step
