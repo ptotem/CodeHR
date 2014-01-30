@@ -52,8 +52,8 @@ class ApprovalMat
       AdminMailer.show_mail(@approver.official_email,"Approval Request","#{self.description}",self.ocls,self.oid,link1,link2).deliver
       puts "Client mail delivered"
     end
-    self.schedule_send_email
-    self.set_escalation
+    #self.schedule_send_email
+    #self.set_escalation
   end
 
   def schedule_send_email
