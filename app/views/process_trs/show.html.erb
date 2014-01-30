@@ -96,43 +96,61 @@
     <div class="table-header">Name :- <%= @process_tr.name %></div>
     <table class="table table-striped table-bordered table-hover">
       <thead>
-      <tr>
-        <th>Name</th>
-        <th>State</th>
-      </tr>
+          <tr>
+            <th>Name</th>
+            <th>State</th>
+          </tr>
       </thead>
 
       <tbody>
-      <% @process_tr.step_trs.each do |step| %>
-          <tr>
-            <td><%= step.name %></td>
-            <td><%= step.state %></td>
-          </tr>
-      <% end %>
+          <% @process_tr.step_trs.each do |step| %>
+              <tr>
+                <td>
+                  <%= step.name %>
+                </td>
+                <td>
+                  <% if step.state == "finished" %>
+                    <span class='label label-success'><%= step.state %></span>
+                  <% elsif step.state == "processing" %>
+                    <span class='label label-info arrowed-in'><%= step.state %></span>
+                  <% elsif step.state == "created" %>
+                    <span class='label label-warning arrowed arrowed-right'><%= step.state %></span>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
       </tbody>
     </table>
   </div>
 </div>
 
-<h4><b>Steps:</b></h4>
-<div class="row-fluid">
-  <div class="span4">
-    <section id="demo">
-      <ol class="sortable ui-sortable">
-        <li id="list_4" class="mjs-nestedSortable-leaf">
-          <div><span class="disclose"><span></span></span>Item 2</div>
-        </li>
-        <li id="list_9" class="mjs-nestedSortable-leaf">
-          <div><span class="disclose"><span></span></span>Item 4</div>
-        </li>
-        <li id="list_10" class="mjs-nestedSortable-leaf">
-          <div><span class="disclose"><span></span></span>Item 5</div>
-        </li>
-      </ol>
 
-    </section>
-  </div>
-</div>
+
+<!--<span class='label label-warning'>Expiring</span>-->
+<!--<span class='label label-success'>Registered</span>-->
+<!--<span class="label label-inverse arrowed-in">Flagged</span>-->
+<!--<span class="label label-info arrowed arrowed-right">Sold</span>-->
+
+<!--<br>-->
+<!--<h4><b>Steps:</b></h4>-->
+<!--<div class="row-fluid">-->
+  <!--<div class="span4">-->
+    <!--<section id="demo">-->
+      <!--<ol class="sortable ui-sortable">-->
+        <!--<li id="list_4" class="mjs-nestedSortable-leaf">-->
+          <!--<div><span class="disclose"><span></span></span>Item 2</div>-->
+        <!--</li>-->
+        <!--<li id="list_9" class="mjs-nestedSortable-leaf">-->
+          <!--<div><span class="disclose"><span></span></span>Item 4</div>-->
+        <!--</li>-->
+        <!--<li id="list_10" class="mjs-nestedSortable-leaf">-->
+          <!--<div><span class="disclose"><span></span></span>Item 5</div>-->
+        <!--</li>-->
+      <!--</ol>-->
+
+    <!--</section>-->
+  <!--</div>-->
+<!--</div>-->
 
 
 
