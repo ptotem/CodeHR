@@ -68,9 +68,13 @@ class GenericController < ApplicationController
       render "#{params[:model_name].underscore.pluralize}/show"
     end
 
-    def emp_master_approval
-      @employee_master = EmployeeMaster.find(params[:id])
-      render :action => :show
+    def approval
+      #@employee_master = EmployeeMaster.find(params[:id])
+      @class_name = params[:model_name]
+      instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
+      #render "#{params[:model_name].underscore.pluralize}/show"
+      #render :text =>instance_variable_get("@#{params[:model_name].underscore}").class.fields.keys
+      #return
     end
 
     def approve_emp_master

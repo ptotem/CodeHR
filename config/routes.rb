@@ -91,7 +91,7 @@ CodeHR::Application.routes.draw do
   match '/creation/:model_name/(:process_id)/(:seq)' => 'generic#new', :as => :creation
   match '/updation/:model_name/:id/(:process_id)/(:seq)' => 'generic#edit', :as => :updation
   match '/deletion/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :deletion
-  match '/approval/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :approval
+  match '/approval/:model_name/:id/(:process_id)/(:seq)' => 'generic#approval', :as => :approval
   match '/gshow/:model_name/:id' => 'generic#show', as: :gshow
 
   match '/gen_create/:model_name' => 'generic#create',:as=>:generic_create
