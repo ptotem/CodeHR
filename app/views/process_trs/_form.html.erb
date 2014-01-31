@@ -65,14 +65,24 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         $('.chzn-select').on('change', function(){
-            this_text = $('.chzn-select option:selected').html();
+            //alert($('.chzn-select option:selected').val());
+            //this_text = $('.chzn-select option:selected').html();
 
-            if ( (this_text.indexOf("Updation") >= 0) || (this_text.toLowerCase().indexOf("Updation") >= 0) ){
-                $('.my_class').show();
-            }
-            else{
-                $('.my_class').hide();
-            }
+            $.get("/get_value/"+$('.chzn-select option:selected').val(),function(result){
+//                alert(result)
+                console.log(result) ;
+                $("#obj_id").html('');
+                $.each(result,function(i,v){
+                    $("#obj_id").append('<option value="'+ v.id+'">'+ v.field+'</option>');
+                });
+            });
+            $('.my_class').show();
+//            if ( (this_text.indexOf("Creation") >= 0) || (this_text.toLowerCase().indexOf("Creation") >= 0) ){
+//                $('.my_class').show();
+//            }
+//            else{
+//                $('.my_class').hide();
+//            }
         });
     });
 </script>

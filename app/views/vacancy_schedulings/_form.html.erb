@@ -19,7 +19,7 @@
                 <%= interviewer_lists.label :interview_type_id,:class => "control-label" %>
                 <div class="controls">
                   <%#= interviewer_lists.text_field :interview_type_id %>
-                  <%= interviewer_lists.select :interview_type_id, options_from_collection_for_select(RatingScale.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
+                  <%= interviewer_lists.select :interview_type_id, options_from_collection_for_select(InterviewType.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
                 <%= interviewer_lists.label :interviewer,:class => "control-label" %>
                 <div class="controls">
                   <%#= interviewer_lists.text_field :interviewer %>
-                  <%= interviewer_lists.select :interviewer, options_from_collection_for_select(InterviewerList.all,'id','interviewer'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+                  <%= interviewer_lists.select :interviewer, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
                 </div>
               </div>
             </div>

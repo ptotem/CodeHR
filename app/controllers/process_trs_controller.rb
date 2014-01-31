@@ -97,4 +97,23 @@ class ProcessTrsController < InheritedResources::Base
       render :text=>"This process is already approved"
     end
   end
+
+  def get_value
+    @pro=ProcessMaster.find(params[:id])
+    @o=@pro.step_masters.select{|i| i.oclass!="System"}.first.oclass
+    @result = Array.new
+    #@fields = Array.new
+    if !EmployeeMaster.fields.keys.select{|i| i.include?("name")}.first.nil?
+      @fields = eval(@o).fields.keys.select{|i| i.include?("name")}.first
+    elsif
+      @fields = eval(@o).fields.keys.select{|i| i.include?("code")}.first
+    else
+      @fields = "_id"
+    end
+
+    eval(@o).all.each do |obj|
+      @result << {id: obj._id, field: obj.instance_eval(@fields)}
+    end
+    render :json =>@result
+  end
 end
