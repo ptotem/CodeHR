@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vacancy_master_id: MyString
+  candidate_master_id: MyString
+
+two:
+  vacancy_master_id: MyString
+  candidate_master_id: MyString

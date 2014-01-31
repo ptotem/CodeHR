@@ -66,7 +66,7 @@
       <i class="icon-ok"></i> <%= current_user.user_tasks.where(seen: false).count %> Tasks to complete
     </li>
 
-    <% current_user.user_tasks.where(seen: false).limit(5).asc(:created_at).each do |nm| %>
+    <% current_user.user_tasks.where(seen: false).limit(5).desc(:created_at).each do |nm| %>
         <li class="unduntask">
           <a href="/user_tasks/<%= nm._id %>">
             <div class="clearfix">
@@ -96,7 +96,7 @@
       <i class="icon-warning-sign"></i> <%= current_user.notification_masters.where(read: false).count %> Unread Notifications
     </li>
 
-    <% current_user.notification_masters.where(read: false).limit(5).asc(:created_at).each do |nm| %>
+    <% current_user.notification_masters.where(read: false).limit(5).desc(:created_at).each do |nm| %>
         <li class="unread_nott">
           <a href="/notification_masters/<%= nm.id %>">
             <div class="clearfix">
