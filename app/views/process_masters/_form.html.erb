@@ -127,7 +127,7 @@
               <label class="control-label">To</label>
               <div class="controls">
                 <%#= step_master.select :action_to, options_for_select(["","Admin","Manager"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
-                <%= step_master.select :action_to, options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"]], :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
+                <%= step_master.select :action_to, options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]], :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
               </div>
             </div>
           </div>
@@ -148,7 +148,7 @@
               <div class="span12">
                 <div class="control-group">
                   <label class="custom-control-label" style="padding:0 0 0 4%;">
-                    <%= radio_button_tag 'action_option', "single", true, :class => "action-input-radio", :onchange=>"select_single_obj($(this));" %><span class="lbl">Single Object</span>
+                    <%= radio_button_tag 'action_option', "single", false, :class => "action-input-radio", :onchange=>"select_single_obj($(this));" %><span class="lbl">Single Object</span>
                   </label>
                 </div>
               </div>
@@ -157,7 +157,7 @@
               <div class="span12">
                 <div class="control-group">
                   <label class="custom-control-label" style="padding:0 0 0 4%;">
-                    <%= radio_button_tag 'action_option', "bulk", true, :class => "action-input-checkbox", :onchange=>"select_bulk_objs($(this));" %><span class="lbl">Bulk Objects</span>
+                    <%= radio_button_tag 'action_option', "bulk", false, :class => "action-input-checkbox", :onchange=>"select_bulk_objs($(this));" %><span class="lbl">Bulk Objects</span>
                   </label>
                 </div>
               </div>
@@ -173,8 +173,8 @@
               <tr>
                 <th>Select Multiple</th>
                 <th>Select Single</th>
-                <th>Name</th>
-                <th>E-mail</th>
+                <th>Field 1</th>
+                <th>Field 2</th>
               </tr>
               <tr>
               </tr>
@@ -224,49 +224,49 @@
                       <tr>
                         <th>Select</th>
                         <th>Action</th>
-                        <th class="dependent_on_select" style="text-align: center;">Postfix <br>d:day / m:minute / h:hour</th>
+                        <th class="dependent_on_select" style="text-align: center;">Postfix <br>d:day / h:hour/ m:minute</th>
                         <th>Repeat</th>
-                        <th style="text-align: center;">Postfix <br>d:day / m:minute / h:hour</th>
+                        <th style="text-align: center;">Postfix <br>d:day / h:hour/ m:minute</th>
                       </tr>
                       </thead>
                       </tbody>
                       <tr>
                         <td style="width: 12%">
-                          <%= check_box_tag 'reminder', 'no', false, class: 'select_what_options' %>
+                          <%= check_box_tag 'reminder', 'yes', false, class: 'select_what_options', :onchange=>"toggle_rea_options($(this));" %>
                         </td>
                         <td>Reminder?</td>
                         <td class="date-time-selections" style="text-align: center;">
-                          <%= step_master.text_field :reminder , placeholder: 'Reminder' %>
+                          <%= step_master.text_field :reminder , placeholder: 'Reminder', disabled: true %>
                         </td>
                         <td>
-                          <%= check_box_tag 'repeat', 'no', false, class: 'repeat_options' %>
+                          <%= check_box_tag 'repeat', 'yes', false, class: 'repeat_options', :onchange=>"toggle_repeat_r_options($(this));" %>
                         </td>
                         <td class="repeat-date-time-selections" style="text-align: center;">
-                          <%= step_master.text_field :rep_reminder , placeholder: 'Repeat Reminder' %>
+                          <%= step_master.text_field :rep_reminder , placeholder: 'Repeat Reminder', disabled: true %>
                         </td>
                       </tr>
                       <tr>
                         <td style="width: 12%">
-                          <%= check_box_tag 'escalate', 'no', false, class: 'select_what_options' %>
+                          <%= check_box_tag 'escalate', 'yes', false, class: 'select_what_options', :onchange=>"toggle_rea_options($(this));" %>
                         </td>
                         <td>Escalate?</td>
                         <td class="date-time-selections" style="text-align: center;">
-                          <%= step_master.text_field :escalate , placeholder: 'Escalate' %>
+                          <%= step_master.text_field :escalate , placeholder: 'Escalate', disabled: true %>
                         </td>
                         <td>
-                          <%= check_box_tag 'repeat', 'no', false, class: 'repeat_options' %>
+                          <%#= check_box_tag 'repeat', 'yes', false, class: 'repeat_options', :onchange=>"toggle_rea_options($(this));" %>
                         </td>
                         <td class="escalate-date-time-selections" style="text-align: center;">
-                          <%= step_master.text_field :rep_escalate , placeholder: 'Repeat Escalate' %>
+                          <%#= step_master.text_field :rep_escalate , placeholder: 'Repeat Escalate', disabled: true %>
                         </td>
                       </tr>
                       <tr>
                         <td style="width: 12%">
-                          <%= check_box_tag 'auto_assign', 'no', false, class: 'select_what_options' %>
+                          <%= check_box_tag 'auto_assign', 'yes', false, class: 'select_what_options', :onchange=>"toggle_rea_options($(this));" %>
                         </td>
                         <td>Auto Assign?</td>
                         <td class="date-time-selections" style="text-align: center;">
-                          <%= step_master.text_field :auto_assign , placeholder: 'Auto Assign' %>
+                          <%= step_master.text_field :auto_assign , placeholder: 'Auto Assign', disabled: true %>
                         </td>
                         <td>
                           <h5>to</h5>
@@ -285,7 +285,7 @@
 
 
                           <%#= select_tag "auto_assign_to", options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select"), {class: 'auto_assign_tos', :onchange=>"nested_display_objects($(this));"} %>
-                          <%= select_tag "auto_assign_to", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"]], :include_blank => "Select"), {class: 'auto_assign_tos', :onchange=>"nested_display_objects($(this));"} %>
+                          <%= select_tag "auto_assign_to", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]], :include_blank => "Select"), {class: 'auto_assign_tos', :onchange=>"nested_display_objects($(this));"} %>
 
                           <br><hr>
                           <div class="span11">
@@ -295,8 +295,8 @@
                               <tr>
                                 <th>Select Multiple</th>
                                 <th>Select Single</th>
-                                <th>Name</th>
-                                <th>E-mail</th>
+                                <th>Field 1</th>
+                                <th>Field 2</th>
                               </tr>
                               <tr>
                                 <!--<td><%#= check_box_tag 'select_obj_1', 'no', false, class: 'select_bulk_objects' %></td>-->
@@ -492,17 +492,6 @@
 
         });
 
-        $('.select_what_options').on('change', function() {
-            var next_adj_cell = $(this).parent().next();
-
-            if ($(this).is(":checked"))
-            {
-                $(next_adj_cell).show();
-            }
-            else{
-                $(next_adj_cell).hide();
-            }
-        });
 
         //view settings for edit form
         var form_id = $('.form-horizontal').attr('id');
@@ -585,7 +574,8 @@
         var step_name = $(this_obj).parents('.fields').find('.step_masters_name_text_fields').val();
         var data = {model_name: []};
         data["model_name"].push(model_name);
-
+        //console.log(parent_tab);
+        //console.log(model_name);
         $.ajax({
             url: "/get_column_data",
             type: "post",
@@ -639,6 +629,18 @@
                         $(parent_tab).find(".users-list").append($user_row);
                     }
                     $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                }
+                else if ( model_name == "VendorMaster" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
                 }
 
                 $(':checkbox, :radio').css('opacity','1');
@@ -714,6 +716,18 @@
                     }
                     $(table).find("tr:first").find("th:last").hide();
                 }
+                else if ( model_name == "VendorMaster" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
+                                '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
+                        $(table).append($user_row);
+                    }
+                    $(table).find("tr:first").find("th:last").show();
+                }
 
                 $(':checkbox, :radio').css('opacity','1');
 
@@ -724,20 +738,23 @@
     }
 
     function select_single_obj(this_obj){
+        var this_checkboxes = $(this_obj).parent().parent().parent().parent().parent().parent().find('.users-list').find('.user_select_checkbox');
+        var this_radio_btns = $(this_obj).parent().parent().parent().parent().parent().parent().find('.users-list').find('.user_select_radio');
+
         if( $(this_obj).is(":checked") ){
-            $("input.user_select_checkbox").attr("disabled", true);
-            $("input.user_select_checkbox").hide();
-            $("input.user_select_radio").removeAttr("disabled");
-            $("input.user_select_radio").show();
+            $(this_checkboxes).attr("disabled", true);
+            $(this_radio_btns).removeAttr("disabled");
         }
     }
 
     function select_bulk_objs(this_ob){
+
+        var this_checkboxes = $(this_ob).parent().parent().parent().parent().parent().parent().find('.users-list').find('.user_select_checkbox');
+        var this_radio_btns = $(this_ob).parent().parent().parent().parent().parent().parent().find('.users-list').find('.user_select_radio');
+
         if( $(this_ob).is(":checked") ){
-            $("input.user_select_radio").attr("disabled", true);
-            $("input.user_select_radio").hide();
-            $("input.user_select_checkbox").removeAttr("disabled");
-            $("input.user_select_checkbox").show();
+            $(this_radio_btns).attr("disabled", true);
+            $(this_checkboxes).removeAttr("disabled");
         }
     }
 
@@ -790,6 +807,30 @@
             $("input.select_bulk_objects").hide();
             $("input.select_single_objects").removeAttr("disabled");
             $("input.select_single_objects").show();
+        }
+    }
+
+
+    function toggle_rea_options(this_obj){
+
+        var next_adj_cell_tb = $(this_obj).parent().parent().find('td').eq(2).children();
+        if ($(this_obj).is(":checked"))
+        {
+            $(next_adj_cell_tb).prop('disabled', false);
+        }
+        else{
+            $(next_adj_cell_tb).prop('disabled', true);
+        }
+    }
+
+    function toggle_repeat_r_options(this_obj){
+        var next_adj_cell_tb = $(this_obj).parent().parent().find('td').eq(4).children();
+        if ($(this_obj).is(":checked"))
+        {
+            $(next_adj_cell_tb).prop('disabled', false);
+        }
+        else{
+            $(next_adj_cell_tb).prop('disabled', true);
         }
     }
 

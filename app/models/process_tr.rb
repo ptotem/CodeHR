@@ -1,5 +1,6 @@
 class ProcessTr
   include Mongoid::Document
+  field :code, type: String
   field :name, type: String
   field :user_id, type: String
   field :loop_step, type: String

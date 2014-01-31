@@ -150,6 +150,16 @@ class ProcessMastersController < ApplicationController
             @a<<@temp
           end
         end
+    elsif @class_name == "VendorMaster"
+      @b = ["vendor_name", "vendor_type", "_id"]
+      VendorMaster.all.each do |em|
+        @b.each do |i|
+          @temp=Hash.new
+          #@temp[:cname] = i
+          @temp[i] = em.instance_eval(i)
+          @a<<@temp
+        end
+      end
     end
 
     render :json => @a

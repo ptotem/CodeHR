@@ -8,7 +8,7 @@ class Ability
     #cannot :read, :all # allow everyone to read everything
 
     user ||= User.new
-    if user.email=='admin@ptotem.com'
+    if user.email=='example@ptotem.com'
       can :manage, :all
       can :access, :rails_admin # only allow admin users to access Rails Admin
       can :dashboard # allow access to dashboard

@@ -15,6 +15,9 @@ en:
       EmployeeMaster:
         text: "PTOE"
         digit: "8"
+      ProcessTr:
+        text: "ProcessTxn"
+        digit: "3"
     Rating:
       form:
         new:
@@ -736,13 +739,13 @@ en:
           name: 'Initiate New Process'
           submit: 'Initiate'
           fields:
-            name: "Process TR Name"
+            name: "Process Transaction Name"
             user_id: "User ID"
         edit:
           name: 'Edit Process TR'
           submit: 'Update Process TR'
           fields:
-            name: "Process TR Name"
+            name: "Process Transaction Name"
             user_id: "User ID"
     RatingConf:
       form:

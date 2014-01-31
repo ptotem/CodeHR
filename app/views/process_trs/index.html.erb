@@ -12,7 +12,10 @@
     <table id="process_tr_table" class="table table-striped table-bordered table-hover">
       <thead>
           <tr>
+            <th>Code</th>
             <th>Name</th>
+            <th>Initiator</th>
+            <th>State</th>
             <th></th>
             <th></th>
             <th></th>
@@ -22,7 +25,10 @@
       <tbody>
           <% @process_trs.each do |process_tr| %>
               <tr>
+                <td><%= process_tr.code %></td>
                 <td><%= process_tr.name %></td>
+                <td><%= User.where(:"_id"=>process_tr.user_id).first.email rescue nil %></td>
+                <td><%= process_tr.state %></td>
                 <td><%= link_to 'Show', process_tr %></td>
                 <td><%= link_to 'Edit', edit_process_tr_path(process_tr) %></td>
                 <td><%= link_to 'Destroy', process_tr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
