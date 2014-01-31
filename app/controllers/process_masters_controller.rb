@@ -41,6 +41,7 @@ class ProcessMastersController < ApplicationController
     @form_config= t('config.ProcessMaster.form.edit')
     @form=@form_config[:fields]
     @process_master = ProcessMaster.find(params[:id])
+    gon.step_masters = @process_master.step_masters
   end
 
   # POST /process_masters
@@ -48,20 +49,35 @@ class ProcessMastersController < ApplicationController
   def create
 
     @process_master = ProcessMaster.new(params[:process_master])
+    #render :text => params[:action_arr].kind_of?(Hash)
+    #return
     if params[:action_arr]
+
       @process_master.step_masters.each_with_index do |pms, index|
-        if params[:action_arr][index.to_s]
-          params[:action_arr][index.to_s].each do |e|
-           pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>e)
+        if params[:action_arr].kind_of?(Hash)
+          if params[:action_arr][index.to_s]
+            params[:action_arr][index.to_s].each do |e|
+             pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>e)
+            end
+            pms.action_to="Array"
+            pms.save!
           end
+        else
+          pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>params[:action_arr])
           pms.action_to="Array"
           pms.save!
         end
         if params[:action_app_arr]
-          if params[:action_app_arr][index.to_s]
-            params[:action_app_arr][index.to_s].each do |e|
-              pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>e)
+          if params[:action_app_arr].kind_of?(Hash)
+            if params[:action_app_arr][index.to_s]
+              params[:action_app_arr][index.to_s].each do |e|
+                pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>e)
+              end
+              pms.action_to="Array"
+              pms.save!
             end
+          else
+            pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>params[:action_app_arr])
             pms.action_to="Array"
             pms.save!
           end
@@ -87,6 +103,40 @@ class ProcessMastersController < ApplicationController
 
     respond_to do |format|
       if @process_master.update_attributes(params[:process_master])
+
+        if params[:action_arr]
+
+          @process_master.step_masters.each_with_index do |pms, index|
+            if params[:action_arr].kind_of?(Hash)
+              if params[:action_arr][index.to_s]
+                params[:action_arr][index.to_s].each do |e|
+                  pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>e)
+                end
+                pms.action_to="Array"
+                pms.save!
+              end
+            else
+              pms.action_arr_masters.build(:a_class_name=>"EmployeeMaster", :dep_class_name=>"", :a_obj_id=>params[:action_arr])
+              pms.action_to="Array"
+              pms.save!
+            end
+            if params[:action_app_arr]
+              if params[:action_app_arr].kind_of?(Hash)
+                if params[:action_app_arr][index.to_s]
+                  params[:action_app_arr][index.to_s].each do |e|
+                    pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>e)
+                  end
+                  pms.action_to="Array"
+                  pms.save!
+                end
+              else
+                pms.auto_assign_tos.build(:oclass=>"EmployeeMaster", :dep_class_name =>"",:objid=>params[:action_app_arr])
+                pms.action_to="Array"
+                pms.save!
+              end
+            end
+          end
+        end
         format.html { redirect_to @process_master, notice: 'Process master was successfully updated.' }
         format.json { head :no_content }
       else

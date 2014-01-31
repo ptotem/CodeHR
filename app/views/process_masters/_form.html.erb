@@ -41,6 +41,7 @@
     }
 
 </style>
+<%= include_gon %>
 <%= nested_form_for(@process_master, html: {class: "form-horizontal"}) do |f| %>
     <% if @process_master.errors.any? %>
         <div id="error_explanation">
@@ -100,7 +101,7 @@
               <label class="custom-control-label actions-tobe-performed-name">Action to be performed</label>
               <div class="controls">
                 <%#= step_master.text_field :oaction %>
-                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify","Release"], disabled: ""), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
+                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify","Release"], disabled: "", :selected => step_master.object.oaction), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
               </div>
             </div>
           </div>
@@ -127,7 +128,8 @@
               <label class="control-label">To</label>
               <div class="controls">
                 <%#= step_master.select :action_to, options_for_select(["","Admin","Manager"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
-                <%= step_master.select :action_to, options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]], :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
+                <%#= step_master.select :action_to, options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]], :include_blank => "Select", :selected => step_master.object.action_to), {:class => "models-select"}, :onchange=>"display_objects($(this));" %>
+                <%= step_master.select :action_to, options_for_select([["EmployeeMaster"], ["GroupMaster"], ["Role"], ["VendorMaster"]], :selected => step_master.object.action_to),{} ,{:class => "models-select",:onchange=>"display_objects($(this));"} %>
               </div>
             </div>
           </div>
@@ -359,7 +361,7 @@
     var action_arr_index=0;
     var count = 0;
     $(function() {
-
+        //console.log(gon.step_masters)
         //load_bindings();
         $('.date-picker').datepicker();
 
@@ -514,19 +516,43 @@
             $edit_fields = $(".tab-content").find('.tab-pane').find(".fields");
             $('.tab-pane').empty().remove();
             $('.nav-tabs#sortable').empty();
+            <%# @in=0 %>
+            setTimeout(function(){
+                $edit_fields.each(function(index,elem){
+                    tab_list = '<li>' +
+                            '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
+                            '</li>';
+                    $('.nav-tabs#sortable').append(tab_list);
+                    //$("#routetype option[value='quietest']").attr("selected", "selected");
+                    //$('.models-select')[index].
+                    <%# if @process_master.step_masters[@in].action_arr %>
+                    setTimeout(function(){
+                        if(gon.step_masters[index].action_arr_masters != undefined){
+                            //alert(gon.step_masters[index].action_arr_masters.first.a_obj_id)
+                            display_objects($("#step"+(index+1)).find(".models-select"));
+                           // console.log('sunny');
+                            //$(".users-list").hide();
+                            gon.step_masters[index].action_arr_masters.each(function(i,v){
+                                $($("#step"+(index+1)).find('.user_select_checkbox[value="'+ i.a_obj_id+'"]')[0]).prop("checked", "checked")
+                                console.log(i.a_obj_id)
+                            });
+                            $($(".users-list")[index]).show();
+                        }
+                    },1000);
 
-            $edit_fields.each(function(index,elem){
-                tab_list = '<li>' +
-                        '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
-                        '</li>';
-                $('.nav-tabs#sortable').append(tab_list);
-                var a="step"+(index+1);
-                $('.tab-content').append('<div id='+a+' class="tab-pane in active">'+$(elem).html()+'</div>');
-            });
+                    var a="step"+(index+1);
+                    $('.tab-content').append('<div id='+a+' class="tab-pane in active">'+$(elem).html()+'</div>');
+                    <%# @in = @in +1 %>
+                });
+            },500)
+
+
+
 
             $('.tab-pane:not(:first)').hide();
 
             $("#sortable").find('li').on('click', function() {
+
                 var this_li_child_href = $(this).children().attr('href');
                 var lastChar = this_li_child_href.substr(this_li_child_href.length - 1); // => "1"
                 var intlastChar;
@@ -579,7 +605,7 @@
     function display_objects(this_obj){
         //alert("Sunny");
         //console.log($(this_obj).closest('.row-fluid'));
-
+        console.log(this_obj)
         var parent_tab = $(this_obj).parent().parent().parent().parent().parent().parent();
         var model_name = $(this_obj).val();
         var step_name = $(this_obj).parents('.fields').find('.step_masters_name_text_fields').val();
@@ -611,7 +637,7 @@
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
                                 '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -623,7 +649,7 @@
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
                                 '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["group_name"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -635,7 +661,7 @@
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
                                 '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["name"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -647,7 +673,7 @@
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
                                 '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }

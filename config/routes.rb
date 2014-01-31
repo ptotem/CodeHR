@@ -1,5 +1,8 @@
 CodeHR::Application.routes.draw do
 
+  resources :planning_manpowers
+
+
   resources :salary_strucutures
 
 

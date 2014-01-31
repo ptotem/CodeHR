@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  group: MyString
+  band: MyString
+  position: MyString
+  position_nature: MyString
+  ff_source: MyString
+  location: MyString
+  supervisor: MyString
+  comments: MyText
+
+two:
+  group: MyString
+  band: MyString
+  position: MyString
+  position_nature: MyString
+  ff_source: MyString
+  location: MyString
+  supervisor: MyString
+  comments: MyText

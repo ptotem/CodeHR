@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Planning Manpower Details :-
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Code</th>
+            <td><%= @notification_master.code %></td>
+          </tr>
+          <tr>
+            <th>Group</th>
+            <td><%= @planning_manpower.group %></td>
+          </tr>
+          <tr>
+            <th>Band</th>
+            <td><%= @planning_manpower.band %></td>
+          </tr>
+          <tr>
+            <th>Position</th>
+            <td><%= @planning_manpower.position %></td>
+          </tr>
+          <tr>
+            <th>Position nature</th>
+            <td><%= @planning_manpower.position_nature %></td>
+          </tr>
+          <tr>
+            <th>Ff source</th>
+            <td><%= @planning_manpower.ff_source %></td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td><%= @planning_manpower.location %></td>
+          </tr>
+          <tr>
+            <th>Supervisor</th>
+            <td><%= @planning_manpower.supervisor %></td>
+          </tr>
+          <tr>
+            <th>Comments</th>
+            <td><%= @planning_manpower.comments %></td>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_planning_manpower_path(@planning_manpower) %> |
+<%= link_to 'Back', planning_manpowers_path %>

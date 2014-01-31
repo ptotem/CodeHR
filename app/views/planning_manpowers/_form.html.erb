@@ -1,0 +1,94 @@
+<%= form_for(@planning_manpower) do |f| %>
+  <% if @planning_manpower.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@planning_manpower.errors.count, "error") %> prohibited this planning_manpower from being saved:</h2>
+
+      <ul>
+      <% @planning_manpower.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :group %></label>
+          <div class="controls">
+            <%= f.select :group ,options_from_collection_for_select(GroupMaster.all ,'id','group_name') %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :band %></label>
+          <div class="controls">
+            <%= f.select :band, options_for_select([["Mid"], ["Sr"], ["Top"]], :include_blank => "Select") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :position %></label>
+          <div class="controls">
+            <%= f.text_field :position %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :position_nature %></label>
+          <div class="controls">
+            <%= f.select :position_nature, options_for_select([["Fresh position"], ["Backfill"], ["Temporary"], ["Permenent"], ["Contract"]], :include_blank => "Select") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :ff_source %></label>
+          <div class="controls">
+            <%= f.select :ff_source, options_for_select([["Hiring"], ["Transfer"], ["Promotion"]], :include_blank => "Select") %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :location %></label>
+          <div class="controls">
+            <%#= f.select :location ,options_from_collection_for_select(GroupMaster.all ,'id','group_name') %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :supervisor %></label>
+          <div class="controls">
+            <%= f.select :supervisor ,options_from_collection_for_select(EmployeeMaster.all ,'id','employee_name') %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label"><%= f.label :comments %></label>
+          <div class="controls">
+            <%= f.text_area(:comments, size:"20x5")  %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="actions">
+    <%= f.submit :class=>"btn btn-info" %>
+  </div>
+<% end %>
