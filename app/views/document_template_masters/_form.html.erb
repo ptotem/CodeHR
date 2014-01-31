@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= nested_form_for(@document_template_master, :url => (@new ? generic_create_path(@document_template_master.class) : generic_update_path(@document_template_master.class,@document_template_master.id)), html: {class: "form-horizontal"}) do |f| %>
+  <%= nested_form_for(@document_template_master,html: {class: "form-horizontal"}) do |f| %>
       <% if @document_template_master.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@document_template_master.errors.count, "error") %> prohibited this document_template_master from being saved:</h2>
@@ -16,7 +16,7 @@
         <div class="span6">
           <div class="control-group">
             <%#= f.label :dt_code,:class => "control-label" %>
-            <label for="<%= @form[:dt_code].to_s %>" class="control-label"><%= @form[:dt_code].to_s %></label>
+            <label for="<%= @form[:dt_code].to_s %>" class="control-label" style="width: 180px;"><%= @form[:dt_code].to_s %></label>
             <div class="controls">
               <%= f.text_field :dt_code %>
             </div>
@@ -61,58 +61,58 @@
       <hr>
 
 
-      <%= f.fields_for :notification_masters do |notification_masters| %>
-          <div class="row-fluid">
-            <div class="span6">
-              <div class="control-group">
-                <%#= notification_masters.label :code,:class => "control-label" %>
-                <label for="<%= @form[:notification_master_code].to_s %>" class="control-label"><%= @form[:notification_master_code].to_s %></label>
-                <div class="controls">
-                  <%= notification_masters.text_field :code %>
-                </div>
-              </div>
-            </div>
-            <div class="span6">
-              <div class="control-group">
-                <%#= notification_masters.label :title ,:class => "control-label"%>
-                <label for="<%= @form[:notification_master_title].to_s %>" class="control-label"><%= @form[:notification_master_title].to_s %></label>
-                <div class="controls">
-                  <%= notification_masters.text_field :title %>
-                </div>
-              </div>
-            </div>
-          </div>
+      <%#= f.fields_for :notification_masters do |notification_masters| %>
+          <!--<div class="row-fluid">-->
+            <!--<div class="span6">-->
+              <!--<div class="control-group">-->
+                <!--<%#= notification_masters.label :code,:class => "control-label" %>-->
+                <!--<label for="<#%= @form[:notification_master_code].to_s %>" class="control-label"><%#= @form[:notification_master_code].to_s %></label>-->
+                <!--<div class="controls">-->
+                  <!--<%#= notification_masters.text_field :code %>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="span6">-->
+              <!--<div class="control-group">-->
+                <!--<%#= notification_masters.label :title ,:class => "control-label"%>-->
+                <!--<label for="<%#= @form[:notification_master_title].to_s %>" class="control-label"><%#= @form[:notification_master_title].to_s %></label>-->
+                <!--<div class="controls">-->
+                  <!--<%#= notification_masters.text_field :title %>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div class="row-fluid">
-            <div class="span6">
-              <div class="control-group">
-                <%#= notification_masters.label :description,:class => "control-label" %>
-                <label for="<%= @form[:notification_master_description].to_s %>" class="control-label"><%= @form[:notification_master_description].to_s %></label>
-                <div class="controls">
-                  <%= notification_masters.text_field :description %>
-                </div>
-              </div>
-            </div>
-            <div class="span6">
-              <div class="control-group">
-                <%#= notification_masters.label :type,:class => "control-label" %>
-                <label for="<%= @form[:notification_master_type].to_s %>" class="control-label"><%= @form[:notification_master_type].to_s %></label>
-                <div class="controls">
-                  <%= notification_masters.text_field :type %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--<div class="row-fluid">-->
+            <!--<div class="span6">-->
+              <!--<div class="control-group">-->
+                <!--<%#= notification_masters.label :description,:class => "control-label" %>-->
+                <!--<label for="<%#= @form[:notification_master_description].to_s %>" class="control-label"><%#= @form[:notification_master_description].to_s %></label>-->
+                <!--<div class="controls">-->
+                  <!--<%#= notification_masters.text_field :description %>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="span6">-->
+              <!--<div class="control-group">-->
+                <!--<%#= notification_masters.label :type,:class => "control-label" %>-->
+                <!--<label for="<%#= @form[:notification_master_type].to_s %>" class="control-label"><%#= @form[:notification_master_type].to_s %></label>-->
+                <!--<div class="controls">-->
+                  <!--<%#= notification_masters.text_field :type %>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
-          <div class="control-group">
-            <div class="controls">
-              <%= notification_masters.link_to_remove "Remove this record" %>
-            </div>
-          </div>
+          <!--<div class="control-group">-->
+            <!--<div class="controls">-->
+              <!--<%#= notification_masters.link_to_remove "Remove this record" %>-->
+            <!--</div>-->
+          <!--</div>-->
 
-<% end %>
-      <%= f.link_to_add "Add new record", :notification_masters %>
-      <hr>
+      <%# end %>
+      <%#= f.link_to_add "Add new record", :notification_masters %>
+      <!--<hr>-->
 
 
 
@@ -139,6 +139,12 @@
 
 <% end %>
 </div>
+
+<script>
+  $(function(){
+     $('.control-label').css('text-align','left');
+  });
+</script>
 
 
 
