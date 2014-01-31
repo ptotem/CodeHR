@@ -125,15 +125,23 @@ class ProcessMastersController < ApplicationController
         EmployeeMaster.all.each do |em|
           @temp=Hash.new
           @b.each do |i|
-
             #@temp[:cname] = i
             @temp[i] = em.instance_eval(i)
-
           end
           @a<<@temp
         end
+    elsif @class_name == "GroupMaster"
+      @b = ["group_name", "_id"]
+      GroupMaster.all.each do |em|
+        @temp=Hash.new
+        @b.each do |i|
+          #@temp[:cname] = i
+          @temp[i] = em.instance_eval(i)
+        end
+        @a<<@temp
+      end
     elsif @class_name == "Role"
-        @b = ["name"]
+        @b = ["name", "_id"]
         Role.all.each do |em|
           @b.each do |i|
             @temp=Hash.new
