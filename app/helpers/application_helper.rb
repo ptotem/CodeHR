@@ -133,7 +133,7 @@ module ApplicationHelper
       when "Tagging"
         @user=User.find(user_id)
         @pro=ProcessTr.find(pid)
-        @chit=@pro.chits.where(:name=>"User").first
+        @chit=@pro.chits.first
         @user.current_redirect_url="/#{oclass.downcase}_#{oaction.downcase}_#{action_to.downcase}/#{@chit.oid}/#{pid}/#{stepno}"
         @user.save
         puts "Process is in Tagging....."
@@ -169,10 +169,9 @@ module ApplicationHelper
         #todo: Add redirection url and task
 
         @user=User.find(user_id)
-        @user.user_tasks.create!(:user_id=>user_id,title:"Confirm or change approval request",description:"Visit this link to send approval",link:"updation/ApprovalMat/#{@app._id}/#{@pro._id}/#{stepno}",seen:false)
-        @user.current_redirect_url=a
+        @user.user_tasks.create!(:user_id=>user_id,title:"Confirm or change approval request",description:"Visit this link to send approval",link:"/updation/ApprovalMat/#{@app._id}/#{@pro._id}/#{stepno}",seen:false)
+        @user.current_redirect_url="/approval_updation/#{@app._id}/#{@pro._id}/#{stepno}"
         @user.save
-        @app.send_notification
         puts "Approval"
       when "Release"
         puts "Process in release stage..."

@@ -84,6 +84,7 @@ class ApprovalMatsController < ApplicationController
 
   def send_approval_request
     @approval_mat = ApprovalMat.find(params[:id])
-    #@approval_mat.send_notification
+    @approval_mat.send_notification
+    redirect_to "/process_trs/#{@approval_mat.process_tr_id}"
   end
 end

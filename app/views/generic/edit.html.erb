@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= @form_config[:name] %></h1>
+  <h1><%= @form_config[:name] rescue "Edit Form"%></h1>
 </div>
 
 <%= render :partial => "#{params[:model_name].underscore.pluralize}/form" %>

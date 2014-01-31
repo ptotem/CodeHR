@@ -80,7 +80,7 @@ class GenericController < ApplicationController
     def edit
       @class_name = params[:model_name]
       @form_config= t('config.'+params[:model_name]+'.form.edit')
-      @form=@form_config[:fields]
+      @form=@form_config[:fields] rescue ""
       instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
       render :action => :new
     end

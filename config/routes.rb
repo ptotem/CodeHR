@@ -96,7 +96,7 @@ CodeHR::Application.routes.draw do
   match '/approval/:model_name/:id/(:approval_id)/(:process_id)/(:seq)' => 'generic#approval', :as => :approval
   match '/gshow/:model_name/:id' => 'generic#show', as: :gshow
 
-  match '/approval_updation/:id/(:approval_id)/(:process_id)/(:seq)' => 'approval_mats#edit', :as => :approval
+  match '/approval_updation/:id/(:process_id)/(:seq)' => 'approval_mats#edit', :as => :approval
   match '/send_approval_request/:id'=>'approval_mats#send_approval_request'
 
   match '/gen_create/:model_name' => 'generic#create',:as=>:generic_create
