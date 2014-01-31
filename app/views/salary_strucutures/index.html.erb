@@ -1,0 +1,25 @@
+<h1>Listing salary_strucutures</h1>
+
+<table>
+  <tr>
+    <th>Vacancy master</th>
+    <th>Candidate master</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @salary_strucutures.each do |salary_strucuture| %>
+  <tr>
+    <td><%= salary_strucuture.vacancy_master_id %></td>
+    <td><%= salary_strucuture.candidate_master_id %></td>
+    <td><%= link_to 'Show', salary_strucuture %></td>
+    <td><%= link_to 'Edit', edit_salary_strucuture_path(salary_strucuture) %></td>
+    <td><%= link_to 'Destroy', salary_strucuture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Salary strucuture', new_salary_strucuture_path %>

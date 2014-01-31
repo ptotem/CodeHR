@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vacancy master:</b>
+  <%= @salary_strucuture.vacancy_master_id %>
+</p>
+
+<p>
+  <b>Candidate master:</b>
+  <%= @salary_strucuture.candidate_master_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_salary_strucuture_path(@salary_strucuture) %> |
+<%= link_to 'Back', salary_strucutures_path %>

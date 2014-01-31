@@ -85,26 +85,27 @@ class ProcessTr
 
   def post_finish_process
     puts "Process is finished"
-    #@notified= Array.new
-    #@groups= Array.new
-    #@creator =User.find(self.user_id)#.employee_master
-    #
-    #@notified = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="EmployeeMaster"}.map{|k| k.obj_id}}.flatten!
-    #@groups = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="GroupMaster"}}.flatten!
-    #
-    #if @groups.count>0
-    #  @groups.each do |i|
-    #    @notified << EmployeeMaster.where(:group_master_id => i).first.user_id
-    #  end
-    #end
-    #@notified << @notified.flatten!
-    #@notified << @creator.employee_master._id
-    #@notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq
-    #@notified = @notified.flatten.compact.uniq
-    ##@notified.each do |noti|
-    ##  User.find(noti).notification_masters.create!(:title => "#{self.name} is Finished" ,:description => "This process hass finished processing.",read:false)
-    ##end
-    #puts "#{@notified & @notified}"
+    @notified= Array.new
+    @groups= Array.new
+    @creator =User.find(self.user_id)#.employee_master
+
+    @notified = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="EmployeeMaster"}.map{|k| k.obj_id}}.flatten!
+    @groups = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="GroupMaster"}}.flatten!
+
+    if @groups.count>0
+      @groups.each do |i|
+        @notified << EmployeeMaster.where(:group_master_id => i).first.user_id
+      end
+    end
+    @notified << @notified.flatten!
+    @notified << @creator.employee_master._id
+    @notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq
+    @notified = @notified.flatten.compact.uniq
+    @notified.each do |noti|
+      EmployeeMaster.find(noti).user.notification_masters.create!(:title => "#{self.name} is Finished" ,:description => "This process hass finished processing.",read:false)
+      AdminMailer.admin_mail(EmployeeMaster.find(noti).user.email,"#{self.name} is Finished","This process is finished processing.")
+    end
+    puts "Notification Sent to everyone...."
   end
 
   def finish_process

@@ -1,5 +1,9 @@
 class CompensationComponent
   include Mongoid::Document
+
+  field :vacancy_master_id, type: String
+  field :candidate_master_id, type: String
+
   field :final_ctc_fixed, type: Integer
   field :final_ctc_varriable, type: Integer
   belongs_to :vacancy_master

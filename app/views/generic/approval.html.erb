@@ -11,9 +11,16 @@
           <tr>
 
             <% if cls=="_id"%>
+            <% elsif cls!="_id" and cls.include?("_ids") %>
+                <% @class = cls.gsub("_ids","").camelize %>
+                <% @class = eval(@class) %>
+                <% @obj_name = @class.fields.keys.map{|i| (i.include?('name')?i:nil) }.compact.first rescue "" %>
+                <% @id= instance_variable_get("@#{params[:model_name].underscore}").instance_eval(cls) %>
+                <th><%= t("config.#{@class_name}.form.new.fields."+cls) %></th>
+                <td><%= @id.map{|i| @class.find(i).instance_eval(@obj_name)} rescue ""%></td>
             <% elsif cls!="_id" and cls.include?("_id") %>
                 <% @class = cls.gsub("_id","").camelize %>
-                <% @class = eval(@class) %>
+                <% @class = eval(@class.singularize) %>
                 <% @obj_name = @class.fields.keys.map{|i| (i.include?('name')?i:nil) }.compact.first rescue "" %>
                 <% @id= instance_variable_get("@#{params[:model_name].underscore}").instance_eval(cls) %>
                 <th><%= t("config.#{@class_name}.form.new.fields."+cls) %></th>

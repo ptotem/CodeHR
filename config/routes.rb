@@ -1,5 +1,8 @@
 CodeHR::Application.routes.draw do
 
+  resources :salary_strucutures
+
+
   resources :welcomes
 
 
