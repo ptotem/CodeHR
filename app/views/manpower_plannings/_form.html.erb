@@ -67,7 +67,7 @@
 
 
 
-      <hr>
+      <hr style="width: 91%;">
 
       <!--<%#= f.fields_for :approval_mats do |approval_mats| %>-->
           <!--<div class="control-group">-->
@@ -218,6 +218,10 @@
 
 <script>
     $(function(){
+
+        $('html, body').css('overflow','hidden');
+        $('sub').css('bottom','0.01em');
+
         $('.date-picker').datepicker();
 
         $('.control-label').css('text-align','left');
@@ -233,8 +237,10 @@
         $("input.my_width:text").css('width','85%');
         $("input.date-picker:text").css('width','76%');
 
-        $(".chzn-select").css('width','95%');
-        $(".chzn-container").css('width','95%');
+//        $(".chzn-select").css('width','95%');
+//        $(".chzn-container").css('width','95%');
+//        $(".chzn-drop>input:text").css('width','95%');
+//        $(".chzn-drop>div").css('width','95%');
     });
     function add_dp(){
         $('.date-picker').datepicker();

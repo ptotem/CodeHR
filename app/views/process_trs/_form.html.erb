@@ -44,9 +44,7 @@
         $('.chzn-select').on('change', function(){
             this_text = $('.chzn-select option:selected').html();
 
-            if (this_text.indexOf("Updation") >= 0){
-                $('.my_class').show();
-            } else if (this_text.toLowerCase().indexOf("Testing") >= 0){
+            if ( (this_text.indexOf("Updation") >= 0) || (this_text.toLowerCase().indexOf("Updation") >= 0) ){
                 $('.my_class').show();
             }
             else{

@@ -13,6 +13,7 @@ class StepMaster
   field :escalate, type: String
   field :rep_escalate, type: String
   field :auto_assign, type: String
+  field :configurable, type: Boolean , :default => false
 
 
 
