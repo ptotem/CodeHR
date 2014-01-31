@@ -783,7 +783,7 @@ en:
           name: 'New Rating Scale'
           submit: 'Create New Rating Scale'
           fields:
-            name: "Name"
+            name: "Interview Type"
             description: "Description"
             scale_description: "Scale Description"
             range_from: "Range From"
@@ -792,7 +792,7 @@ en:
           name: 'Edit Rating Scale'
           submit: 'Update Rating Scale'
           fields:
-            name: "Name"
+            name: "Interview Type"
             description: "Description"
             scale_description: "Scale Description"
             range_from: "Range From"

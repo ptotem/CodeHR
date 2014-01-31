@@ -27,8 +27,19 @@
               <tr>
                 <td><%= process_tr.code %></td>
                 <td><%= process_tr.name %></td>
-                <td><%= User.where(:"_id"=>process_tr.user_id).first.email rescue nil %></td>
-                <td><%= process_tr.state %></td>
+                <td><%= User.where(:"_id"=>process_tr.user_id).first.name rescue nil %></td>
+                <td>
+                  <%#= process_tr.state %>
+
+                  <% if process_tr.state == "finished" %>
+                      <span class='label label-success'><%= process_tr.state %></span>
+                  <% elsif process_tr.state == "processing" %>
+                      <span class='label label-info arrowed-in'><%= process_tr.state %></span>
+                  <% elsif process_tr.state == "created" %>
+                      <span class='label label-warning arrowed arrowed-right'><%= process_tr.state %></span>
+                  <% end %>
+
+                </td>
                 <td><%= link_to 'Show', process_tr %></td>
                 <td><%= link_to 'Edit', edit_process_tr_path(process_tr) %></td>
                 <td><%= link_to 'Destroy', process_tr, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -406,9 +406,11 @@
             count=count+1;
             nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length + 1; //get number of name text fields in nested form (step_master)
 
+            var sortable_lis = $('#sortable').find('li').length + 1;
             $('#sortable').find('li').removeClass('active');
             var ht = '<li class="active">' +
-                    '<a data-toggle="tab" href=#step'+nested_form_name_text_fields_len+'>' + "Step "+nested_form_name_text_fields_len + '</a>' +
+                    //'<a data-toggle="tab" href=#step'+nested_form_name_text_fields_len+'>' + "Step "+nested_form_name_text_fields_len + '</a>' +
+                    '<a data-toggle="tab" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
                     '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
             $("#sortable").append(ht); //add tab in list of steps
@@ -431,7 +433,8 @@
 
                 var $tr = $(link).prev().find('.tab-content').find(".tab-pane:last-child"); //get last added tab
                 $('.tab-content').find('.tab-pane').removeClass('in active');
-                var c =  $(content).insertAfter($tr).wrap('<div id=step'+nested_form_name_text_fields_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+                //var c =  $(content).insertAfter($tr).wrap('<div id=step'+nested_form_name_text_fields_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active">'); //insert new nested form in tab after last tab
                 //c.find(".control-label").remove();
                 //return c.append(l);
                 return c;
@@ -536,10 +539,14 @@
     });
 
     function remove_tab_li(this_obj){
+
+        var sortable_lis = $('#sortable').find('li').length;
         var tab_pane_id = $(this_obj).parent().parent().attr('id');
         //console.log($(this_obj));
         //console.log(tab_pane_id);
         //TODO: add/remove using sequence
+
+
         $('#sortable').children().find('a').each(function () {
             if ( $(this).attr('href') == "#"+tab_pane_id) {
                 $(this).parent().prev().addClass('active');
@@ -551,6 +558,10 @@
                 $(this_obj).parent().parent().empty().remove();
             }
         });
+        $('#sortable').find("li").each(function(index,ele){
+            $(ele).children("a").text("Step "+parseInt(index+1))
+
+        })  ;
 
         nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length; //get number of name text fields in nested form (step_master)
         //console.log(nested_form_name_text_fields_len);
@@ -599,8 +610,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -611,8 +622,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["group_name"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -623,8 +634,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["name"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -635,8 +646,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -685,8 +696,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
-                                '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" disabled value='+my_id+' class="select_bulk_objects"></td>'+
+                                '<td><input type="radio" name="action_app_arr['+(count)+']" disabled value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                         $(table).append($user_row);
                     }
@@ -697,8 +708,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
-                                '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" disabled value='+my_id+' class="select_bulk_objects"></td>'+
+                                '<td><input type="radio" name="action_app_arr['+(count)+']" disabled value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["group_name"]+'</td></tr>';
                         $(table).append($user_row);
                     }
@@ -709,8 +720,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
-                                '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" disabled value='+my_id+' class="select_bulk_objects"></td>'+
+                                '<td><input type="radio" name="action_app_arr['+(count)+']" disabled value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["name"]+'</td></tr>';
                         $(table).append($user_row);
                     }
@@ -721,8 +732,8 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
-                                '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                                '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" disabled value='+my_id+' class="select_bulk_objects"></td>'+
+                                '<td><input type="radio" name="action_app_arr['+(count)+']" disabled value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
                         $(table).append($user_row);
                     }

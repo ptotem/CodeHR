@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Band Master Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Band Code</th>
+            <td><%= @band_master.band_code %></td>
+          </tr>
+          <tr>
+            <th>Band Name</th>
+            <td><%= @band_master.band_name %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_band_master_path(@band_master) %> |
+<%= link_to 'Back', band_masters_path %>

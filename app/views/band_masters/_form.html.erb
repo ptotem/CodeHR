@@ -1,0 +1,60 @@
+<%= form_for(@band_master) do |f| %>
+  <% if @band_master.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@band_master.errors.count, "error") %> prohibited this band_master from being saved:</h2>
+
+      <ul>
+      <% @band_master.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="control-group">
+          <label class="control-label">Band Code</label>
+          <div class="controls">
+            <%= f.text_field :band_code %>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="control-group">
+          <label class="control-label">Band Name</label>
+          <div class="controls">
+            <%= f.text_field :band_name %>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="control-group">
+          <label class="control-label">Group Collection</label>
+          <div class="controls">
+            <%= f.select :company_master_id, options_from_collection_for_select(CompanyMaster.all,'id','company_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+          </div>
+
+          <% if !params[:process_id].nil? %>
+              <%= hidden_field_tag :process_id, params[:process_id] %>
+              <%= hidden_field_tag :seq, params[:seq] %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit :class=>"btn btn-info" %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>
