@@ -73,7 +73,7 @@
         <div class="control-group">
           <%= f.label :auto_assign %>
           <div class="controls">
-            <%= f.text_field :auto_assign %>
+            <%= f.text_field :auto_assign, :value=>"" rescue ""%>
           </div>
         </div>
       </div>
@@ -140,7 +140,9 @@
 
     <div class="form-actions">
       <%= f.submit :class=>"btn btn-info" %>
-      <%= button_tag "Send Approval Request" %>
+      <% if params[:action] == "edit" %>
+        <a href="/send_approval_request/<%= @approval_mat._id %>" class="btn btn-danger">Continue</a>
+      <% end %>
     </div>
 <% end %>
 

@@ -45,7 +45,7 @@
           </tr>
           <tr>
             <th>Group</th>
-            <td><%= @employee_master.group_master.group_name rescue nil %></td>
+            <td><%= @employee_master.group_masters.map{|i| i.group_name}.to_s.gsub!("[","").gsub!("]","").gsub('"',"") rescue nil %></td>
             <!--<td><%#= GroupMaster.find("#{@employee_master.group_master_id}").group_name %></td>-->
           </tr>
           <tr>

@@ -112,7 +112,7 @@
               <%#= raw custom_lable(@employee_master, :group_master_id) %>
               <label for="<%= @form[:group_master].to_s %>" class="control-label"><%= @form[:group_master].to_s %></label>
               <div class="controls">
-                <%= f.select :group_master_id, options_from_collection_for_select(GroupMaster.all,'id','group_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+                <%= f.select :group_master_ids, options_from_collection_for_select(GroupMaster.all,'id','group_name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple=>true} %>
               </div>
             </div>
           </div>

@@ -67,9 +67,6 @@ class ProcessMastersController < ApplicationController
           end
         end
       end
-    else
-      render :json => @process_master
-      return
     end
 
     respond_to do |format|

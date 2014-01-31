@@ -17,7 +17,8 @@ class EmployeeMaster
   field :approved, type: Boolean
 
   belongs_to :user
-  belongs_to :group_master
+  #belongs_to :group_master
+  has_and_belongs_to_many :group_masters
 
   field :group_master_id, type: String
 
@@ -26,6 +27,8 @@ class EmployeeMaster
   has_one :employee_detail
 
   accepts_nested_attributes_for :reporting_tos
+  accepts_nested_attributes_for :group_masters
+
 
   after_create :create_user
 
