@@ -3,7 +3,7 @@
 <div class="row-fluid">
   <div class="offset1 span6">
     <div class="table-header">
-      Task Details :-
+      Notification Master Details :-
     </div>
     <table class="table table-striped table-bordered table-hover">
       <tbody>
@@ -13,11 +13,11 @@
           </tr>
           <tr>
             <th>Description</th>
-            <td><%= @user_task.description %></td>
+            <td><a href="<%= @user_task.link %>"><%= raw @user_task.description %></a></td>
           </tr>
           <tr>
-            <th>Seen</th>
-            <td><%= @user_task.seen %></td>
+            <th>Type</th>
+            <td><%= @user_task.type rescue "" %></td>
           </tr>
       </tbody>
     </table>

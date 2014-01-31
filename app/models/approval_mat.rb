@@ -7,6 +7,7 @@ class ApprovalMat
   field :description, type: String
   field :link, type: String
   field :finished, type: Boolean
+  field :rejected, type: Boolean
   field :process_tr_id, type: String
   field :step_no, type: Integer
   field :employee_master_id, type: String
@@ -35,25 +36,25 @@ class ApprovalMat
 
   def send_notification
     puts "Inside Send Notification"
-    self.approvers.each do |aa|
+    self.approvers.where(:active => true).each do |aa|
       @approver=EmployeeMaster.find(aa.employee_master_id)
       unm=@approver.user.notification_masters.build title:self.name , description:self.description,  type:"Approval"
       unm.save
-      utask=@approver.user.user_tasks.build title:self.name , description:self.description,  type:"Approval", seen: false
+      utask=@approver.user.user_tasks.create title:"Approval Request" , description:"Please visit the url and approve", link:"/approval/#{self.ocls}/#{self.oid}/#{self._id}/#{self.process_tr_id}/#{self.step_no}",  type:"Approval", seen: false
       utask.save
       unm.notification_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.email_details.build(:notification_master_id => unm._id,:event=>self.description)
       unm.save
       @approver.save
-      link1="http://localhost:3000/approve_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
-      link2="http://localhost:3000/reject_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
+      link1="http://codehr.in/approve_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
+      link2="http://codehr.in/reject_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
       puts link1
       puts link2
       AdminMailer.show_mail(@approver.official_email,"Approval Request","#{self.description}",self.ocls,self.oid,link1,link2).deliver
       puts "Client mail delivered"
     end
-    self.schedule_send_email
-    self.set_escalation
+    #self.schedule_send_email
+    #self.set_escalation
   end
 
   def schedule_send_email
@@ -109,6 +110,16 @@ class ApprovalMat
 
   def auto_assign
     #todo: write logic of auto assigning1
+    @self.approvers.where(:active => true).each do |e|
+      @self.active = false
+      self.save
+    end
+
+    @self.approvers.where(:auto_assign => true).each do |e|
+      @self.active =true
+      @self.save
+    end
+
   end
 
   def next_step
@@ -121,6 +132,18 @@ class ApprovalMat
       @pro.save
       @pro.step_trs[self.reject_next_step].initialize_step
     end
+  end
+
+  def rejected
+    @pro=ProcessTr.find(self.process_tr_id)
+    @user=User.find(@pro.user_id)
+    @pro.step_trs[self.reject_next_step.to_i].oaction="Updation"
+    @pro.step_trs[self.reject_next_step.to_i].action_to=@pro.chits.first.oid
+    @pro.step_trs[self.reject_next_step.to_i..self.step_no.to_i].map{|i| i.state = "created"}
+    @pro.save
+    @user.user_tasks.create!(:title=>"Apprroval request reject", :description => "click here to update", :link=>"/updation/#{@pro.chits.first.ocname}/#{@pro.chits.first.oid}/#{@pro._id}/#{self.reject_next_step}", seen:false)
+    @user.save
+    @pro.step_trs[self.reject_next_step.to_i].load_step
   end
 
   def check_resque_scheduler

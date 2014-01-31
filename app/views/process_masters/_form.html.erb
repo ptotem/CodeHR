@@ -100,7 +100,7 @@
               <label class="custom-control-label actions-tobe-performed-name">Action to be performed</label>
               <div class="controls">
                 <%#= step_master.text_field :oaction %>
-                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify"], disabled: ""), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
+                <%= step_master.select :oaction,options_for_select(["Creation", "Updation", "Deletion", "Tagging", "Approval","Notify","Release"], disabled: ""), {:class=>"my_cls"}, :onchange=>"bind_children_steps_control($(this));" %>
               </div>
             </div>
           </div>
@@ -346,6 +346,7 @@
 <script>
     var nested_form_name_text_fields_len, this_step_name;
     var action_arr_index=0;
+    var count = 0;
     $(function() {
 
         //load_bindings();
@@ -391,7 +392,7 @@
 
         //newly added newsted fields in tabbable
         $('a.add_nested_fields').on('click', function(){
-
+            count=count+1;
             nested_form_name_text_fields_len = $("#start_nesting_step_master").find(".step_masters_name_text_fields").length + 1; //get number of name text fields in nested form (step_master)
 
             $('#sortable').find('li').removeClass('active');
@@ -584,8 +585,8 @@
 
                     my_id = data[i]["_id"];
                     $user_row = '<tr>'+
-                            '<td style="position: relative;"><input type="checkbox" name="action_arr['+action_arr_index+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                            '<td style="position: relative;"><input type="radio" name="action_arr[]" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                            '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                            '<td style="position: relative;"><input type="radio" name="action_arr['+count+']" value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                             '<td>'+data[i]["employee_name"]+         '</td><td>'+data[i]["official_email"]+'</td></tr>';
                     $(parent_tab).find(".users-list").append($user_row);
 
@@ -659,8 +660,8 @@
 
                     my_id = data[i]["_id"];
                     $user_row = '<tr>'+
-                            '<td><input type="checkbox" name="action_app_arr['+(action_arr_index-1)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
-                            '<td><input type="radio" name="action_app_arr['+(action_arr_index-1)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
+                            '<td><input type="checkbox" name="action_app_arr['+(count)+'][]" value='+my_id+' class="select_bulk_objects"></td>'+
+                            '<td><input type="radio" name="action_app_arr['+(count)+']" value='+my_id+' class="select_single_objects" style="position: relative; top: 0;"></td>'+
                             '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                     $(table).append($user_row);
 

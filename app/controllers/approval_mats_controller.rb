@@ -61,7 +61,7 @@ class ApprovalMatsController < ApplicationController
 
     respond_to do |format|
       if @approval_mat.update_attributes(params[:approval_mat])
-        format.html { redirect_to @approval_mat, notice: 'Approval mat was successfully updated.' }
+        format.html { redirect_to "/approval_updation/#{@approval_mat._id}/#{params[:process_id]}/#{params[:seq]}", notice: 'Approval mat was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,5 +80,10 @@ class ApprovalMatsController < ApplicationController
       format.html { redirect_to approval_mats_url }
       format.json { head :no_content }
     end
+  end
+
+  def send_approval_request
+    @approval_mat = ApprovalMat.find(params[:id])
+    #@approval_mat.send_notification
   end
 end

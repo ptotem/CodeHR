@@ -59,18 +59,18 @@
 <li class="grey">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     <i class="icon-tasks"></i>
-    <span class="badge" id="remtask"><%= current_user.user_tasks.where(read: false).count %></span>
+    <span class="badge" id="remtask"><%= current_user.user_tasks.where(seen: false).count %></span>
   </a>
   <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
     <li class="nav-header" id="remain_task">
-      <i class="icon-ok"></i> <%= current_user.user_tasks.where(read: false).count %> Tasks to complete
+      <i class="icon-ok"></i> <%= current_user.user_tasks.where(seen: false).count %> Tasks to complete
     </li>
 
-    <% current_user.user_tasks.where(read: false).limit(5).asc(:created_at).each do |nm| %>
+    <% current_user.user_tasks.where(seen: false).limit(5).asc(:created_at).each do |nm| %>
         <li class="unduntask">
           <a href="/user_tasks/<%= nm._id %>">
             <div class="clearfix">
-              <span class="pull-left"><%= nm.description %></span>
+              <span class="pull-left"><%= nm.title %></span>
             </div>
           </a>
         </li>

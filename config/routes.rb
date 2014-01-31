@@ -91,8 +91,11 @@ CodeHR::Application.routes.draw do
   match '/creation/:model_name/(:process_id)/(:seq)' => 'generic#new', :as => :creation
   match '/updation/:model_name/:id/(:process_id)/(:seq)' => 'generic#edit', :as => :updation
   match '/deletion/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :deletion
-  match '/approval/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :approval
+  match '/approval/:model_name/:id/(:approval_id)/(:process_id)/(:seq)' => 'generic#approval', :as => :approval
   match '/gshow/:model_name/:id' => 'generic#show', as: :gshow
+
+  match '/approval_updation/:id/(:approval_id)/(:process_id)/(:seq)' => 'approval_mats#edit', :as => :approval
+  match '/send_approval_request/:id'=>'approval_mats#send_approval_request'
 
   match '/gen_create/:model_name' => 'generic#create',:as=>:generic_create
   match '/gen_update/:model_name/:id' => 'generic#update',:as=>:generic_update
@@ -137,6 +140,7 @@ CodeHR::Application.routes.draw do
 
 
   match '/approve_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#approve_process', :as => :approve_emp_master
+  match '/reject_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#reject_process', :as => :approve_emp_master
 
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
   match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
