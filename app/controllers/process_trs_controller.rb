@@ -3,7 +3,7 @@ class ProcessTrsController < InheritedResources::Base
     @form_config= t('config.ProcessTr.form.new')
     @form=@form_config[:fields]
     @process_tr=ProcessTr.new
-    @num = ProcessTr.last.code.gsub(t('config.AutoCode.ProcessTr.text'),'').to_i
+    @num = ProcessTr.last.code.gsub(t('config.AutoCode.ProcessTr.text'),'').to_i  rescue 1
     @process_tr_code = t('config.AutoCode.ProcessTr.text')+sprintf('%0'+t('config.AutoCode.ProcessTr.digit')+'d',(@num+1))
   end
 
