@@ -2,6 +2,7 @@ class VacancyMaster
   include Mongoid::Document
   field :vacancy_code, type: String
   field :manpower_planning_id, type: Integer
+  field :vendor_master_id, type: String
   field :description, type: String
   field :status, type: String
   field :sourcing_strategy, type: String

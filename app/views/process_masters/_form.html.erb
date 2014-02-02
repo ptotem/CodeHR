@@ -529,7 +529,9 @@
                     setTimeout(function(){
                         if(gon.step_masters[index].action_arr_masters != undefined){
                             //alert(gon.step_masters[index].action_arr_masters.first.a_obj_id)
-                            display_objects($("#step"+(index+1)).find(".models-select"));
+                            //display_objects($("#step"+(index+1)).find(".models-select"));
+                            //console.log("index :- " + index);
+                            display_objects1($("#step"+(index+1), index).find(".models-select"));
                            // console.log('sunny');
                             //$(".users-list").hide();
                             gon.step_masters[index].action_arr_masters.each(function(i,v){
@@ -613,6 +615,95 @@
         data["model_name"].push(model_name);
         //console.log(parent_tab);
         //console.log(model_name);
+        $.ajax({
+            url: "/get_column_data",
+            type: "post",
+            async: false,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (data) {
+                //console.log(data)
+                //console.log("selected model : " + model_name);
+                $(parent_tab).find('.users-list').show();
+                $(parent_tab).find('.not-available-text').hide();
+                var user_name, email;
+                var user_name_td, email_td;
+                var $user_row;
+                var $checkbox_col = '<td style="position: relative;"><input type="checkbox" name="vehicle" value="Car" class="user_select_checkbox" style="position: relative; top: 0;"></td>';
+                var $radio_button_col = '<td style="position: relative;"><input type="radio" name="sex" value="female" class="user_select_radio" style="position: relative; top: 0;"></td>';
+                $(parent_tab).find(".users-list tr:not(:first-child)").empty();
+
+                if ( model_name == "EmployeeMaster" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                }
+                else if ( model_name == "GroupMaster" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["group_name"]+'</td></tr>';
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                }
+                else if ( model_name == "Role" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["name"]+'</td></tr>';
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                }
+                else if ( model_name == "VendorMaster" ) {
+                    for(var i= 0 ;i< data.length;i++)
+                    {
+                        my_id = data[i]["_id"];
+                        $user_row = '<tr>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
+                                '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                }
+
+                $(':checkbox, :radio').css('opacity','1');
+
+                action_arr_index=action_arr_index+1;
+            }
+        });
+
+    }
+
+
+    function display_objects1(this_obj, i){
+        //alert("Sunny");
+        //console.log($(this_obj).closest('.row-fluid'));
+        console.log(this_obj, i);
+        console.log($(this_obj).val());
+
+        var parent_tab = $(this_obj).parent().parent().parent().parent().parent().parent();
+        var model_name = $(this_obj).val();
+        var step_name = $(this_obj).parents('.fields').find('.step_masters_name_text_fields').val();
+        var data = {model_name: []};
+        data["model_name"].push(model_name);
+        console.log(parent_tab);
+        console.log(model_name);
         $.ajax({
             url: "/get_column_data",
             type: "post",

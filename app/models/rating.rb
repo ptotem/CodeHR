@@ -1,6 +1,7 @@
 class Rating
   include Mongoid::Document
   field :comments, type: String
+  field :candidate_master_id, type: String
   embeds_many :score_receiveds
   has_many :dynamic_fields
   accepts_nested_attributes_for :score_receiveds

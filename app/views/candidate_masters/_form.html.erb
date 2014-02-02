@@ -91,7 +91,7 @@
             <%#= f.label :status,:class => "control-label" %>
             <label for="<%= @form[:status].to_s %>" class="control-label"><%= @form[:status].to_s %></label>
             <div class="controls">
-              <%= f.select :status, ['Selected', 'Rejected', 'Interviewed', 'Blocked'] %>
+              <%= f.select :status, ['Selected', 'Rejected', 'Interviewed', 'Shortlisted', 'On hold', ' Blocked'] %>
             </div>
           </div>
         </div>
