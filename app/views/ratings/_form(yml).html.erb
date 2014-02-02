@@ -1,0 +1,84 @@
+<div class="row-fluid">
+
+    <%= nested_form_for(@rating, :url => (@new ? generic_create_path(@rating.class) : generic_update_path(@rating.class,@rating.id)), html: {class: "form-horizontal"}) do |f| %>
+        <% if @rating.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+              <ul>
+                <% @rating.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <% @form.each  do |_,rc| %>
+            <% case rc[:class_type] %>
+                <% when "single"  %>
+                    <div class="control-group">
+                      <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
+                      <div class="controls">
+                        <%= f.send(rc[:type].to_sym, rc[:name].to_sym )%>
+                      </div>
+                    </div>
+                <% when "associated"  %>
+                  <div class="control-group">
+                    <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
+                    <div class="controls">
+                      <%= f.send(rc[:type].to_sym, rc[:name].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}) %>
+                    </div>
+                  </div>
+                <% when "parent" %>
+                    <%= f.fields_for rc[:name].to_sym do |score_receiveds| %>
+                        <h3><%= rc[:label] %></h3>
+                        <div class="control-group">
+                            <%@fi = rc[:child] %>
+                            <% @fi.each do |i,fil| %>
+                              <label for="<%= fil[:label].to_s %>" class="control-label"><%= fil[:label].to_s %></label>
+                              <div class="controls">
+                                <%= score_receiveds.send(fil[:type].to_sym, fil[:name].to_sym )%>
+                                <%= score_receiveds.link_to_remove "Remove this record" %>
+                              </div>
+                            <% end %>
+                            <%= f.link_to_add "Add new record", :score_receiveds %>
+                        </div>
+                    <% end %>
+
+                <% when "dynamic" %>
+                    <% @fields = DynamicField.where(:oclass=>"Rating") %>
+                    <h3 class="header lighter blue">Dynamic Field</h3>
+                    <% @fields.each do |field| %>
+                        <div class="control-group">
+                            <%= f.label field.name.to_sym,:class => "control-label" %>
+                            <div class="controls">
+                                <%= f.send(field.type.to_sym, field.name.to_sym )%>
+                            </div>
+                        </div>
+                    <% end %>
+            <% end %>
+        <% end %>
+
+        <% if !params[:process_id].nil? %>
+            <%= hidden_field_tag :process_id, params[:process_id] %>
+            <%= hidden_field_tag :seq, params[:seq] %>
+        <% end %>
+
+        <div class="form-actions">
+            <%= f.submit "#{@form_config[:submit]}", :class=>"btn btn-info" %>
+        </div>
+
+    <% end %>
+</div>
+
+<!--<link rel="stylesheet" href="/assets/chosen.css" />-->
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>
+
+
