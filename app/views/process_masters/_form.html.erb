@@ -74,6 +74,7 @@
     </ul>
     <div class="tab-content">
     <div id="step1" class="tab-pane in active">
+    <% i = 0 %>
     <%= f.fields_for :step_masters do |step_master| %>
         <div class="row-fluid">
           <!--<div class="span6">-->
@@ -171,7 +172,7 @@
           <div class="span6">
             <div class="users-list_header table-header">Listing Objects</div>
             <h5 class="not-available-text">No objects available.</h5>
-            <table class="users-list table table-striped table-bordered table-hover" style="display: none;">
+            <table class="users-list indexing<%=i%> table table-striped table-bordered table-hover" style="display: none;">
               <tr>
                 <th>Select Multiple</th>
                 <th>Select Single</th>
@@ -321,7 +322,7 @@
         </div>
 
         <%= step_master.link_to_remove "Remove this record", :onClick=>"remove_tab_li($(this));" %>
-
+        <% i = i+1 %>
     <% end %>
     </div>
     </div>
@@ -516,42 +517,48 @@
             $edit_fields = $(".tab-content").find('.tab-pane').find(".fields");
             $('.tab-pane').empty().remove();
             $('.nav-tabs#sortable').empty();
-            <%# @in=0 %>
             setTimeout(function(){
                 $edit_fields.each(function(index,elem){
                     tab_list = '<li>' +
                             '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
                             '</li>';
                     $('.nav-tabs#sortable').append(tab_list);
-                    //$("#routetype option[value='quietest']").attr("selected", "selected");
-                    //$('.models-select')[index].
-                    <%# if @process_master.step_masters[@in].action_arr %>
                     setTimeout(function(){
                         if(gon.step_masters[index].action_arr_masters != undefined){
-                            //alert(gon.step_masters[index].action_arr_masters.first.a_obj_id)
-                            //display_objects($("#step"+(index+1)).find(".models-select"));
-                            //console.log("index :- " + index);
-                            display_objects1($("#step"+(index+1), index).find(".models-select"));
-                           // console.log('sunny');
-                            //$(".users-list").hide();
+//                            console.log("index :- " + index);
+                            display_objects1($("#step"+(index+1)).find(".models-select"),index);
                             gon.step_masters[index].action_arr_masters.each(function(i,v){
                                 $($("#step"+(index+1)).find('.user_select_checkbox[value="'+ i.a_obj_id+'"]')[0]).prop("checked", "checked")
-                                console.log(i.a_obj_id)
+//                                console.log(i.a_obj_id)
                             });
                             $($(".users-list")[index]).show();
                         }
-                    },1000);
+                    },500);
+
+                    setTimeout(function(){
+                        $('.tab-pane:not(:first)').hide();
+                        $("#sortable").find('li').on('click', function() {
+
+                            var this_li_child_href = $(this).children().attr('href');
+                            var lastChar = this_li_child_href.substr(this_li_child_href.length - 1); // => "1"
+                            var intlastChar;
+                            intlastChar = parseInt(lastChar);
+                            $('.tab-pane').hide();
+                            $("#step"+intlastChar).show();
+                        });
+                    },2000)
 
                     var a="step"+(index+1);
                     $('.tab-content').append('<div id='+a+' class="tab-pane in active">'+$(elem).html()+'</div>');
-                    <%# @in = @in +1 %>
+                    action_arr_index++;
+                    count=action_arr_index-1;
                 });
             },500)
 
 
 
 
-            $('.tab-pane:not(:first)').hide();
+                $('.tab-pane:not(:first)').hide();
 
             $("#sortable").find('li').on('click', function() {
 
@@ -691,10 +698,11 @@
     }
 
 
-    function display_objects1(this_obj, i){
+    function display_objects1(this_obj, ind){
         //alert("Sunny");
+//        alert(ind);
         //console.log($(this_obj).closest('.row-fluid'));
-        console.log(this_obj, i);
+        console.log(this_obj, ind);
         console.log($(this_obj).val());
 
         var parent_tab = $(this_obj).parent().parent().parent().parent().parent().parent();
@@ -720,55 +728,55 @@
                 var $user_row;
                 var $checkbox_col = '<td style="position: relative;"><input type="checkbox" name="vehicle" value="Car" class="user_select_checkbox" style="position: relative; top: 0;"></td>';
                 var $radio_button_col = '<td style="position: relative;"><input type="radio" name="sex" value="female" class="user_select_radio" style="position: relative; top: 0;"></td>';
-                $(parent_tab).find(".users-list tr:not(:first-child)").empty();
+               // $(parent_tab).find(".indeing tr:not(:first-child)").empty();
 
                 if ( model_name == "EmployeeMaster" ) {
                     for(var i= 0 ;i< data.length;i++)
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+ind+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                                 '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
-                        $(parent_tab).find(".users-list").append($user_row);
+                        $(parent_tab).find(".indexing"+ind).append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    $(parent_tab).find(".indexing"+ind).find("tr:first").find("th:last").show();
                 }
                 else if ( model_name == "GroupMaster" ) {
                     for(var i= 0 ;i< data.length;i++)
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+ind+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                                 '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["group_name"]+'</td></tr>';
-                        $(parent_tab).find(".users-list").append($user_row);
+                        $(parent_tab).find(".indexing"+ind).append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    $(parent_tab).find(".indexing"+ind).find("tr:first").find("th:last").hide();
                 }
                 else if ( model_name == "Role" ) {
                     for(var i= 0 ;i< data.length;i++)
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+ind+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                                 '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["name"]+'</td></tr>';
-                        $(parent_tab).find(".users-list").append($user_row);
+                        $(parent_tab).find(".indexing"+ind).append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    $(parent_tab).find(".indexing"+ind).find("tr:first").find("th:last").hide();
                 }
                 else if ( model_name == "VendorMaster" ) {
                     for(var i= 0 ;i< data.length;i++)
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+ind+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                                 '<td style="position: relative;"><input type="radio" name="action_arr" disabled value='+my_id+' class="user_select_radio" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
-                        $(parent_tab).find(".users-list").append($user_row);
+                        $(parent_tab).find(".indexing"+ind).append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    $(parent_tab).find(".indexing"+ind).find("tr:first").find("th:last").show();
                 }
 
                 $(':checkbox, :radio').css('opacity','1');

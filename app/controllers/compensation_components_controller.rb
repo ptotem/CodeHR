@@ -4,9 +4,7 @@ class CompensationComponentsController < InheritedResources::Base
     @form_config= t('config.CompensationComponent.form.new')
     @form=@form_config[:fields]
     @compensation_component = CompensationComponent.new
-    SalaryComponentMaster.all.each do |sc|
-      @compensation_component.formula_lists.build(:salary_component_id=>sc.name)
-    end
+
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"CompensationComponent")
     @fields.each do |ss|

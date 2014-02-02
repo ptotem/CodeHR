@@ -1,4 +1,7 @@
 <div class="row-fluid">
+  <% SalaryComponentMaster.all.each do |sc| %>
+    <% @compensation_component.formula_lists.build(:salary_component_id=>sc.name) %>
+  <% end %>
   <%= nested_form_for(@compensation_component, :url => (@new ? generic_create_path(@compensation_component.class) : generic_update_path(@compensation_component.class,@compensation_component.id)), html: {class: "form-horizontal"}) do |f| %>
       <% if @compensation_component.errors.any? %>
           <div id="error_explanation">
