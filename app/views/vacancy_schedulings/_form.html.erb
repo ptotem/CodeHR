@@ -27,8 +27,7 @@
               <div class="control-group">
                 <%= interviewer_lists.label :interviewer,:class => "control-label" %>
                 <div class="controls">
-                  <%#= interviewer_lists.text_field :interviewer %>
-                  <%= interviewer_lists.select :interviewer, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+                  <%= interviewer_lists.select :interviewer, options_from_collection_for_select(EmployeeMaster.all,'id','employee_name'), {}, {:multiple => true, :class => "chzn-select"} %>
                 </div>
               </div>
             </div>

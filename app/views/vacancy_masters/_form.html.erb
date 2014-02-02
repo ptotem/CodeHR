@@ -60,8 +60,15 @@
             <%#= raw custom_lable(@vacancy_master, :sourcing_strategy) %>
             <label for="<%= @form[:sourcing_strategy].to_s %>" class="control-label"><%= @form[:sourcing_strategy].to_s %></label>
             <div class="controls">
-              <%#= f.text_field :sourcing_strategy %>
-              <%= f.select :sourcing_strategy, options_for_select(["Internal Job Posting", "External Recruitment", "Job Sites", "Website"]) %>
+              <%= f.select :sourcing_strategy, options_for_select(["Internal Job Posting", "External Recruitment", "Job Sites", "Website"]), {}, {:multiple => true, :class => "chzn-select"} %>
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <label for="Candidate" class="control-label">Vendor Masters</label>
+            <div class="controls">
+              <%= f.select :vendor_master_id, options_from_collection_for_select(VendorMaster.all, :id, :vendor_name), {}, {:multiple => true, :class => "chzn-select"} %>
             </div>
           </div>
         </div>
