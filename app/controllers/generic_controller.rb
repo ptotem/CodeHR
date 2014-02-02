@@ -22,25 +22,30 @@ class GenericController < ApplicationController
 
     def create
       instance_variable_set("@#{params[:model_name].underscore}",instance_eval(params[:model_name]).new(params[params[:model_name].underscore.to_sym]))
-      instance_variable_get("@#{params[:model_name].underscore}").save
-      if !params[:process_id].nil?
-        @pro=ProcessTr.find(params[:process_id])
-        @pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
-        @user=current_user
-        @user.current_redirect_url=''
-        @user.save
-        @pro.step_trs[params[:seq].to_i].end_processing_step
-      end
-      @user=User.find(current_user._id)
-      if !@user.current_redirect_url.blank?
-        redirect_to @user.current_redirect_url
-        return
-      end
+
       respond_to do |format|
         if instance_variable_get("@#{params[:model_name].underscore}").save
+          instance_variable_get("@#{params[:model_name].underscore}").save
+          if !params[:process_id].nil?
+            @pro=ProcessTr.find(params[:process_id])
+            @pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
+            @user=current_user
+            @user.current_redirect_url=''
+            @user.save
+            @pro.step_trs[params[:seq].to_i].end_processing_step
+          end
+          @user=User.find(current_user._id)
+          if !@user.current_redirect_url.blank?
+            redirect_to @user.current_redirect_url
+            return
+          end
           format.html { redirect_to instance_variable_get("@#{params[:model_name].underscore}"), notice: 'Company master was successfully created.' }
           format.json { render json: instance_variable_get("@#{params[:model_name].underscore}"), status: :created, location: instance_variable_get("@#{params[:model_name].underscore}") }
         else
+          @class_name = params[:model_name]
+          @form_config= t('config.'+@class_name+'.form.new')
+          @form=@form_config[:fields]
+          @new = true
           format.html { render action: "new" }
           format.json { render json: instance_variable_get("@#{params[:model_name].underscore}").errors, status: :unprocessable_entity }
         end

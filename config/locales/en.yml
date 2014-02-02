@@ -18,6 +18,9 @@ en:
       ProcessTr:
         text: "ProcessTxn"
         digit: "3"
+      CandidateMaster:
+        text: "CAND"
+        digit: "3"
     Rating:
       form:
         new:

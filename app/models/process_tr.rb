@@ -90,8 +90,8 @@ class ProcessTr
     @groups= Array.new
     @creator =User.find(self.user_id)#.employee_master
 
-    @notified = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="EmployeeMaster"}.map{|k| k.obj_id}}.flatten! rescue nil
-    @groups = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="GroupMaster"}}.flatten! rescue nil
+    @notified = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="EmployeeMaster"}.map{|k| k.obj_id}}.flatten! rescue []
+    @groups = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="GroupMaster"}}.flatten! rescue []
 
     if @groups.count>0
       @groups.each do |i|
@@ -100,7 +100,7 @@ class ProcessTr
     end
     @notified << @notified.flatten!
     @notified << @creator.employee_master._id
-    @notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq rescue nil
+    @notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq rescue []
     @notified = @notified.flatten.compact.uniq
     @notified.each do |noti|
       EmployeeMaster.find(noti).user.notification_masters.create!(:title => "#{self.name} is Finished" ,:description => "This process hass finished processing.",read:false)

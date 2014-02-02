@@ -56,60 +56,60 @@ class CandidateMaster
             :presence   => true,
             :format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
 
-  validates :official_email,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-
-  validates :personal_email,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-
+  #validates :official_email,
+  #          :presence => true,
+  #          :uniqueness => true,
+  #          :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  #
+  #validates :personal_email,
+  #          :presence => true,
+  #          :uniqueness => true,
+  #          :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  #
   validates :status,
-            :presence => true,
-            :format     => { :with => /^[A-Za-z.&]*\z/ }
-
-
+            :presence => true
+  #          :format     => { :with => /^[A-Za-z.&]*\z/ }
+  #
+  #
   validates :gender,
             :presence => true
-
+  #
   def self.genders
     %w(M F O)
   end
-
-  validates_inclusion_of :gender, :in => CandidateMaster.genders
-
-  validates :marital_status, :presence => true
-  validates :date_of_birth, :presence => true
-
-  validates :total_work_exp_years,
-            :presence => true,
-            numericality: { only_integer: true, greater_than: 0 }
-
-  validates :total_work_exp_months,
-            :presence => true,
-            numericality: { only_integer: true }
-
-  validates :personal_email,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-
-  #TODO: check this
-  #validates :candidate_contact_numbers,
+  #
+  #validates_inclusion_of :gender, :in => CandidateMaster.genders
+  #
+  #validates :marital_status, :presence => true
+  #validates :date_of_birth, :presence => true
+  #
+  #validates :total_work_exp_years,
   #          :presence => true,
-  #          length: { is: 10 },
+  #          numericality: { only_integer: true, greater_than: 0 }
+  #
+  #validates :total_work_exp_months,
+  #          :presence => true,
   #          numericality: { only_integer: true }
-
-  validates :communication_addresses,
-            :presence => true
-
-  validates :current_location, :presence => true
-  validates :salary_expectation_fixed, :presence => true
-  validates :salary_expectation_variable, :presence => true
-
-  validates :notice_period, :presence => true
+  #
+  #validates :personal_email,
+  #          :presence => true,
+  #          :uniqueness => true,
+  #          :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  #
+  ##TODO: check this
+  ##validates :candidate_contact_numbers,
+  ##          :presence => true,
+  ##          length: { is: 10 },
+  ##          numericality: { only_integer: true }
+  #
+  #validates :communication_addresses,
+  #          :presence => true
+  #
+  #validates :current_location, :presence => true
+  #validates :salary_expectation_fixed, :presence => true
+  #validates :salary_expectation_variable, :presence => true
+  #
+  #validates :notice_period, :presence => true
   #validates :notice_period_buyback?, :presence => true
 
 
