@@ -99,7 +99,7 @@ class ProcessTr
       end
     end
     @notified << @notified.flatten!
-    @notified << @creator.employee_master._id rescue self.user_id
+    @notified << @creator.employee_master._id rescue nil
     @notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq rescue []
     @notified = @notified.flatten.compact.uniq
     @notified.each do |noti|
