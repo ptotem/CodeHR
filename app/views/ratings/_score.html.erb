@@ -1,6 +1,7 @@
 <div class="row-fluid">
   <div class="span4">
-    <%= f.select :rating_scale_id, options_for_select([]+RatingScale.all.map { |i| i.name }),{},{:onchange=>"change_data($(this));"} %>
+    <%#= f.select :rating_scale_id, options_for_select([]+RatingScale.all.map { |i| i.name }),{},{:onchange=>"change_data($(this));"} %>
+    <%= f.text_field :rating_scale_id ,{:disabled => true} %>
   </div>
 </div>
 
@@ -15,11 +16,9 @@
     </tr>
     </thead>
     <tbody>
-    <%= f.fields_for :rating_measures do |formula_lists| %>
-        <div class="my_res_table">
-            <%= render 'measure', :f => formula_lists %>
+        <div class="my_div">
+            <%= render 'new_meas', :f => f %>
         </div>
-    <% end %>
     </tbody>
   </table>
 

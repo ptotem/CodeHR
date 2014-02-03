@@ -39,8 +39,9 @@
             <%= render 'score', :f => score_receiveds %>
           </div>
           <br>
+          <%= score_receiveds.link_to_remove "Remove this record" %>
       <% end %>
-      <%= f.link_to_add "Add New Records", :score_receiveds %>
+      <%#= f.link_to_add "Add New Records", :score_receiveds %>
 
       <div class="form-actions">
         <%= f.submit :class => "btn btn-info" %>
@@ -57,7 +58,8 @@
     });
 
     function change_data(this_obj){
-        alert(this_obj);
+        //alert(this_obj);
+       $(this_obj).parents('.score-rate').find('.my_div').empty();
     }
 </script>
 
