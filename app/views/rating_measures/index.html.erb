@@ -1,0 +1,31 @@
+<h1>Listing rating_measures</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Priority</th>
+    <th>Range from</th>
+    <th>Range to</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rating_measures.each do |rating_measure| %>
+  <tr>
+    <td><%= rating_measure.name %></td>
+    <td><%= rating_measure.priority %></td>
+    <td><%= rating_measure.range_from %></td>
+    <td><%= rating_measure.range_to %></td>
+    <td><%= rating_measure.score %></td>
+    <td><%= link_to 'Show', rating_measure %></td>
+    <td><%= link_to 'Edit', edit_rating_measure_path(rating_measure) %></td>
+    <td><%= link_to 'Destroy', rating_measure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rating measure', new_rating_measure_path %>

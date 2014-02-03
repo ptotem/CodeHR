@@ -1,77 +1,64 @@
 <div class="row-fluid">
 
-    <%= nested_form_for(@rating,html: {class: "form-horizontal"}) do |f| %>
-        <% if @rating.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+  <%= nested_form_for(@rating, html: {class: "form-horizontal"}) do |f| %>
+      <% if @rating.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
-              <ul>
-                <% @rating.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
+            <ul>
+              <% @rating.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <label for="Candidate" class="control-label">Candidate</label>
+
+            <div class="controls">
+              <%= f.select :candidate_master_id, options_from_collection_for_select(CandidateMaster.all, :id, :candidate_name) %>
             </div>
-        <% end %>
-
-
-        <div class="control-group">
-          <label for="Candidate" class="control-label">Candidate</label>
-          <div class="controls">
-            <%= f.select :candidate_master_id,options_from_collection_for_select(CandidateMaster.all, :id, :candidate_name) %>
           </div>
         </div>
-      <hr>
-
+        <div class="span6">
+          <div class="control-group">
+            <%= f.label :comments, :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_area :comments, :size => "(18x5)" %>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       <%= f.fields_for :score_receiveds do |score_receiveds| %>
-          <div class="row-fluid">
-            <div class="span4">
-                <%= score_receiveds.select :rating_scale_id, options_for_select([]+RatingScale.all.map{|i| i.name}) %>
-            </div>
-            <div class="span4">
-                <%= score_receiveds.label :score,:class => "control-label", :style=>"float: left; width: 15%; padding-right: 5px" %>
-                <%= score_receiveds.text_field :score %>
-            </div>
-            <div class="span4">
-              <%= score_receiveds.link_to_remove "Remove this record" %>
-            </div>
+          <div class="score-rate">
+            <%= render 'score', :f => score_receiveds %>
           </div>
           <br>
       <% end %>
       <%= f.link_to_add "Add New Records", :score_receiveds %>
 
-      <hr>
-
-      <div class="row-fluid">
-        <div class="span6">
-          <div class="control-group">
-            <%= f.label :comments,:class => "control-label" %>
-          <div class="controls">
-            <%= f.text_area :comments, :size=>"(20x5)" %>
-          </div>
-          </div>
-        </div>
+      <div class="form-actions">
+        <%= f.submit :class => "btn btn-info" %>
       </div>
-      <hr>
 
-          <%# @fields = DynamicField.where(:oclass=>"Rating") %>
-            <h3 class="header lighter blue">Dynamic Field</h3>
-          <% @fields.each do |field| %>
-          <div class="control-group">
-              <%= f.label field.name.to_sym,:class => "control-label" %>
-              <div class="controls">
-                <%= f.send(field.type.to_sym, field.name.to_sym )%>
-              </div>
-          </div>
-          <% end %>
-
-
-        <div class="form-actions">
-            <%= f.submit :class=>"btn btn-info" %>
-        </div>
-
-    <% end %>
+  <% end %>
 </div>
+
+</div>
+
+<script>
+    $(function(){
+        $('.range').css('width', '20%');
+    });
+
+    function change_data(this_obj){
+        alert(this_obj);
+    }
+</script>
 
 

@@ -18,9 +18,14 @@ class RatingsController < InheritedResources::Base
     @form_config= t('config.Rating.form.new')
     @form=@form_config[:fields]
     @rating = Rating.new
-    RatingScale.all.each do |rc|
-      @rating.score_receiveds.build()
+    i=@rating.score_receiveds.build
+    RatingScale.first.scales.each do |j|
+      i.rating_measures.build(:name => j.scale_name, :range_from => j.range_from, :range_to => j.range_to)
     end
+
+    #RatingScale.all.each do |rc|
+    #  @rating.score_receiveds.build()
+    #end
     #@rating.write_attribute(:test1, "")
     @fields = DynamicField.where(:oclass=>"Rating")
     @fields.each do |ss|
@@ -45,4 +50,12 @@ class RatingsController < InheritedResources::Base
   #  render :text => params
   #  return
   #end
+
+  def change_data
+    @scale = params[:scale]
+
+    #RatingScale.where(:name=>@scale).first.scales.each do |j|
+    #  i.rating_measures.build(:name => j.scale_name, :range_from => j.range_from, :range_to => j.range_to)
+    #end
+  end
 end
