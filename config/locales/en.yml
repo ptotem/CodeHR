@@ -644,6 +644,32 @@ en:
             vacancy_master_hiring_manager: "Hiring Manager"
             vacancy_master_ctc_range_from: "CTC Range From"
             vacancy_master_ctc_range_to: "CTC Range To"
+    PlanningManpower:
+      form:
+        new:
+          name: 'New Planning Manpower'
+          submit: 'Create New Planning Manpower'
+          fields:
+            group: "Group"
+            band: "Band"
+            position: "Position"
+            position_nature: "Nature of Position"
+            ff_source: "Fulfillment Source"
+            location: "Location"
+            supervisor: "Supervisor"
+            comments: "Comments"
+        edit:
+          name: 'Edit Planning Manpower'
+          submit: 'Update Planning Manpower'
+          fields:
+            group: "Group"
+            band: "Band"
+            position: "Position"
+            position_nature: "Nature of Position"
+            ff_source: "Fulfillment Source"
+            location: "Location"
+            supervisor: "Supervisor"
+            comments: "Comments"
     VacancyMaster:
       form:
         new:

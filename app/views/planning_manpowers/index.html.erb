@@ -33,7 +33,10 @@
   <tbody>
     <% @planning_manpowers.each do |planning_manpower| %>
       <tr>
-        <td><%= planning_manpower.group %></td>
+        <td>
+          <%#= planning_manpower.group %>
+          <%= GroupMaster.find(@planning_manpower.group).group_name %>
+        </td>
         <td><%= planning_manpower.band %></td>
         <td><%= planning_manpower.position %></td>
         <td><%= planning_manpower.position_nature %></td>

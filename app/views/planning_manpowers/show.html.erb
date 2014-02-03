@@ -9,12 +9,11 @@
     <table class="table table-striped table-bordered table-hover">
       <tbody>
           <tr>
-            <th>Code</th>
-            <td><%= @notification_master.code %></td>
-          </tr>
-          <tr>
             <th>Group</th>
-            <td><%= @planning_manpower.group %></td>
+            <td>
+              <%#= @planning_manpower.group %>
+              <%= GroupMaster.find(@planning_manpower.group).group_name %>
+            </td>
           </tr>
           <tr>
             <th>Band</th>
@@ -25,11 +24,11 @@
             <td><%= @planning_manpower.position %></td>
           </tr>
           <tr>
-            <th>Position nature</th>
+            <th>Nature of Position</th>
             <td><%= @planning_manpower.position_nature %></td>
           </tr>
           <tr>
-            <th>Ff source</th>
+            <th>Fulfillment Source</th>
             <td><%= @planning_manpower.ff_source %></td>
           </tr>
           <tr>
@@ -38,7 +37,10 @@
           </tr>
           <tr>
             <th>Supervisor</th>
-            <td><%= @planning_manpower.supervisor %></td>
+            <td>
+              <%#= @planning_manpower.supervisor %>
+              <%= EmployeeMaster.find(@planning_manpower.supervisor).employee_name %>
+            </td>
           </tr>
           <tr>
             <th>Comments</th>
