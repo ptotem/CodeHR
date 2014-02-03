@@ -11,18 +11,25 @@
             <th>Comments</th>
             <td><%= @rating.comments %></td>
           </tr>
+          <tr>
+            <th>Candidate</th>
+            <td><%= @rating.candidate_master.candidate_name  rescue ""%></td>
+          </tr>
+          <tr>
+            <th>Score Received:</th>
+            <td></td>
+          </tr>
+          <%# @rating.score_receiveds.each do |i| %>
+          <tr>
+            <%#= i.sr_name %>
+          </tr>
+            <%# end %>
       </tbody>
     </table>
   </div>
 </div>
 
-<% @fields = DynamicField.where(:oclass => "Rating") %>
-<% @fields.each do |fi| %>
-    <p>
-      <b><%= fi.name %></b>
-      <%= eval("@rating.#{fi.name}") %>
-    </p>
-<% end %>
+
 
 <%= link_to 'Edit', edit_rating_path(@rating) %> |
 <%= link_to 'Back', ratings_path %>

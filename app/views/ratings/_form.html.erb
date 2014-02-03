@@ -37,7 +37,7 @@
 
       <%= f.fields_for :score_receiveds do |score_receiveds| %>
           <div class="score-rate">
-            <%= render 'score', :f => score_receiveds %>
+            <%= render 'ratings/score', :f => score_receiveds %>
           </div>
           <br>
           <%= score_receiveds.link_to_remove "Remove this record" %>

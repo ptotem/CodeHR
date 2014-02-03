@@ -21,7 +21,7 @@ class GenericController < ApplicationController
 
       if @class_name == "Rating"
         RatingScale.all.each do |rating|
-          i=@rating.score_receiveds.build(rating_scale_id:rating._id)
+          i=@rating.score_receiveds.build(rating_scale_id:rating._id,sr_name:rating.name)
           rating.scales.each do |j|
             i.rating_measures.build(:name => j.scale_name, :range_from => j.range_from, :range_to => j.range_to)
           end
