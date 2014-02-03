@@ -1,9 +1,10 @@
-class Scale
+class RatingMeasure
   include Mongoid::Document
-  field :scale_name, type: String
-  field :scale_description, type: String
+  field :name, type: String
   field :priority, type: Integer
   field :range_from, type: String
   field :range_to, type: String
-  embedded_in :rating_scale
+  field :score, type: String
+
+  embedded_in :score_received
 end

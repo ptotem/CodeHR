@@ -1,0 +1,37 @@
+<%= form_for(@rating_measure) do |f| %>
+  <% if @rating_measure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating_measure.errors.count, "error") %> prohibited this rating_measure from being saved:</h2>
+
+      <ul>
+      <% @rating_measure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.number_field :priority %>
+  </div>
+  <div class="field">
+    <%= f.label :range_from %><br />
+    <%= f.text_field :range_from %>
+  </div>
+  <div class="field">
+    <%= f.label :range_to %><br />
+    <%= f.text_field :range_to %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

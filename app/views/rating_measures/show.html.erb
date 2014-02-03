@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @rating_measure.name %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @rating_measure.priority %>
+</p>
+
+<p>
+  <b>Range from:</b>
+  <%= @rating_measure.range_from %>
+</p>
+
+<p>
+  <b>Range to:</b>
+  <%= @rating_measure.range_to %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @rating_measure.score %>
+</p>
+
+
+<%= link_to 'Edit', edit_rating_measure_path(@rating_measure) %> |
+<%= link_to 'Back', rating_measures_path %>
