@@ -1,4 +1,5 @@
-<%= form_for(@planning_manpower) do |f| %>
+<%#= form_for(@planning_manpower) do |f| %>
+<%= form_for(@planning_manpower, :url => (@new ? generic_create_path(@planning_manpower.class) : generic_update_path(@planning_manpower.class,@planning_manpower.id)), html: {class: "form-horizontal"}) do |f| %>
   <% if @planning_manpower.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@planning_manpower.errors.count, "error") %> prohibited this planning_manpower from being saved:</h2>
@@ -86,6 +87,11 @@
         </div>
       </div>
     </div>
+
+    <% if !params[:process_id].nil? %>
+        <%= hidden_field_tag :process_id, params[:process_id] %>
+        <%= hidden_field_tag :seq, params[:seq] %>
+    <% end %>
 
 
   <div class="actions">
