@@ -92,16 +92,17 @@ class ProcessTr
 
     @notified = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="EmployeeMaster"}.map{|k| k.obj_id}}.flatten! rescue []
     @groups = self.step_trs.select{|i| i.oaction =="Notify"}.map{|i| i.action_arrs.select{|j| j.a_cls_name=="GroupMaster"}}.flatten! rescue []
-
+    if !@groups.nil?
     if @groups.count>0
       @groups.each do |i|
         @notified << EmployeeMaster.where(:group_master_id => i).first.user_id
       end
     end
-    @notified << @notified.flatten!
-    @notified << @creator.employee_master._id rescue nil
+    end
+    @notified << @notified.flatten! rescue []
+    @notified << @creator.employee_master._id rescue self.user_id
     @notified << ApprovalMat.where(:process_tr_id=>self._id).map{|i| i.approvers.map{|i| i.employee_master_id}}.flatten!.uniq rescue []
-    @notified = @notified.flatten.compact.uniq
+    @notified = @notified.flatten.compact.uniq rescue []
     @notified.each do |noti|
       EmployeeMaster.find(noti).user.notification_masters.create!(:title => "#{self.name} is Finished" ,:description => "This process hass finished processing.",read:false)
       AdminMailer.admin_mail(EmployeeMaster.find(noti).user.email,"#{self.name} is Finished","This process is finished processing.")
