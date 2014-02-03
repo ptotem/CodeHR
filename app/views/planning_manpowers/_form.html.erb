@@ -62,7 +62,7 @@
         <div class="control-group">
           <label for="<%= @form[:location].to_s %>" class="control-label"><%= @form[:location].to_s %></label>
           <div class="controls">
-            <%= f.select :location , options_for_select([]+EmployeeMaster.last.group_masters.last.company_master.company_addresses.all.map{|i| i.city}.uniq), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+            <%= f.select :location , options_for_select([]+EmployeeMaster.last.group_masters.last.company_master.company_addresses.all.map{|i| i.city}.uniq, :selected => f.object.location), {:include_blank => "Select"}, {:class => "chzn-select"} %>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
         <div class="control-group">
           <label for="<%= @form[:supervisor].to_s %>" class="control-label"><%= @form[:supervisor].to_s %></label>
           <div class="controls">
-            <%= f.select :supervisor ,options_from_collection_for_select(EmployeeMaster.all ,'id','employee_name'), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+            <%= f.select :supervisor ,options_from_collection_for_select(EmployeeMaster.all ,'id','employee_name', :selected => f.object.supervisor), {:include_blank => "Select"}, {:class => "chzn-select"} %>
           </div>
         </div>
       </div>

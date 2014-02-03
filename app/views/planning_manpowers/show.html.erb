@@ -10,7 +10,10 @@
       <tbody>
           <tr>
             <th>Group</th>
-            <td><%= @planning_manpower.group %></td>
+            <td>
+              <%#= @planning_manpower.group %>
+              <%= GroupMaster.find(@planning_manpower.group).group_name %>
+            </td>
           </tr>
           <tr>
             <th>Band</th>
@@ -34,7 +37,10 @@
           </tr>
           <tr>
             <th>Supervisor</th>
-            <td><%= @planning_manpower.supervisor %></td>
+            <td>
+              <%#= @planning_manpower.supervisor %>
+              <%= EmployeeMaster.find(@planning_manpower.supervisor).employee_name %>
+            </td>
           </tr>
           <tr>
             <th>Comments</th>
