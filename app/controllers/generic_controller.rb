@@ -42,6 +42,7 @@ class GenericController < ApplicationController
           format.html { redirect_to instance_variable_get("@#{params[:model_name].underscore}"), notice: 'Company master was successfully created.' }
           format.json { render json: instance_variable_get("@#{params[:model_name].underscore}"), status: :created, location: instance_variable_get("@#{params[:model_name].underscore}") }
         else
+          #this is to display the validation error
           @class_name = params[:model_name]
           @form_config= t('config.'+@class_name+'.form.new')
           @form=@form_config[:fields]
