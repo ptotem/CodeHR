@@ -164,6 +164,8 @@ CodeHR::Application.routes.draw do
 
   match '/get_value/:id'=>'process_trs#get_value'
 
+  match '/new_process_creation_from' =>'generic#new_process_creation'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
