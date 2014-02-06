@@ -11,42 +11,86 @@ en:
             attribute: 'comments'
             label: 'Comment'
             type: 'text_field'
+            level: 'this'
           vacancy_scheduling_id:
             attribute: 'vacancy_scheduling_id'
             label: 'Vacancy Scheduling'
             type: 'select'
-          field:
-            nested_field:
-              object: 'score_receiveds'
-              fields:
-                sr_name:
-                  attribute: 'sr_name'
-                  label: 'SR Name'
-                  type: 'text_field'
-                rating_scale_id:
-                  attribute: 'rating_scale_id'
-                  label: 'Rating Scale'
-                  type: 'select'
-                nested_field:
-                  object: 'rating_measures'
-                  fields:
-                    name:
-                      attribute: 'name'
-                      label: 'Name'
-                      type: 'text_field'
-                    priority:
-                      attribute: 'priority'
-                      label: 'Priority'
-                      type: 'text_field'
-                    range_from:
-                      attribute: 'range_from'
-                      label: 'Range From'
-                      type: 'text_field'
-                    range_to:
-                      attribute: 'range_to'
-                      label: 'Range To'
-                      type: 'text_field'
-                    score:
-                      attribute: 'score'
-                      label: 'Score'
-                      type: 'text_field'
+            level: 'this'
+          score_recieveds:
+            attribute: 'score_recieveds'
+            label: 'Scores Received'
+            type: 'field'
+            level: 'nested'
+            fields:
+              sr_name:
+                attribute: 'sr_name'
+                label: 'SR Name'
+                type: 'text_field'
+                level: 'this'
+              rating_scale_id:
+                attribute: 'rating_scale_id'
+                label: 'Rating Scale'
+                type: 'select'
+                level: 'this'
+              rating_measures:
+                attribute: 'rating_measures'
+                label: 'Rating Measures'
+                type: 'field'
+                level: 'nested'
+                fields:
+                  name:
+                    attribute: 'name'
+                    label: 'Name'
+                    type: 'text_field'
+                    level: 'this'
+                  priority:
+                    attribute: 'priority'
+                    label: 'Priority'
+                    type: 'text_field'
+                    level: 'this'
+                  range_from:
+                    attribute: 'range_from'
+                    label: 'Range From'
+                    type: 'text_field'
+                    level: 'this'
+                  range_to:
+                    attribute: 'range_to'
+                    label: 'Range To'
+                    type: 'text_field'
+                    level: 'this'
+                  score:
+                    attribute: 'score'
+                    label: 'Score'
+                    type: 'text_field'
+                    level: 'this'
+    CandidateMaster:
+      name: "New Candidate Master form"
+      object: "CandidateMaster"
+      fields:
+        col1:
+          candidate_code:
+            attribute: 'candidate_code'
+            label: 'Candidate Code'
+            type: 'text_field'
+            level: 'this'
+          candidate_name:
+            attribute: 'candidate_name'
+            label: 'Candidate Name'
+            type: 'text_field'
+            level: 'this'
+          candidate_middle_name:
+            attribute: 'candidate_middle_name'
+            label: 'Candidate Middle Name'
+            type: 'text_field'
+            level: 'this'
+          status:
+            attribute: 'status'
+            label: 'Status'
+            type: 'text_field'
+            level: 'this'
+          status:
+            attribute: 'gender'
+            label: 'Gender'
+            type: 'text_field'
+            level: 'this'

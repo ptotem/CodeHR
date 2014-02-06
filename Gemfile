@@ -65,7 +65,6 @@ gem 'contextio'
 # gem 'debugger', group: [:development, :test]
 gem 'mongoid'#, git:'https://github.com/mongoid/mongoid.git'
 gem 'mongoid-history'
-gem 'cancan'
 gem 'bson_ext'
 
 gem 'roadie'
@@ -75,7 +74,6 @@ gem "paperclip", "3.4.2"
 gem 'aws-sdk', '~> 1.3.4'
 gem 'activeadmin-mongoid'
 gem 'validates_timeliness', '~> 3.0'
-gem 'roo'
 gem 'resque'
 gem 'resque-scheduler'
 gem "gon"

@@ -211,10 +211,19 @@ class GenericController < ApplicationController
 
     def new_process_creation
       @object = t('forms.Rating.object')
+        #@object = t('forms.CandidateMaster.object')
       instance_variable_set("@#{@object.underscore}",eval(@object).new)
-      @object_fields = t('forms.Rating.fields')
-      render :json => @object_fields
-      return
+
+      @form_config = t('forms.Rating')
+      #@form_config = t('forms.CandidateMaster')
+      @form = @form_config[:fields]
+
+      @real_obj = eval(@object).new
+      @form_nested_obj = @real_obj.score_receiveds.build
+
+      #render :json => @form
+      #return
+
     end
 
 
