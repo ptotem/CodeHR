@@ -209,4 +209,14 @@ class GenericController < ApplicationController
       end
     end
 
+    def new_process_creation
+      @object = t('forms.Rating.object')
+      instance_variable_set("@#{@object.underscore}",eval(@object).new)
+      @object_fields = t('forms.Rating.fields')
+      render :json => @object_fields
+      return
+    end
+
+
+
 end

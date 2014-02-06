@@ -21,14 +21,14 @@ en:
               fields:
                 sr_name:
                   attribute: 'sr_name'
-                  label: 'sr name'
+                  label: 'SR Name'
                   type: 'text_field'
                 rating_scale_id:
                   attribute: 'rating_scale_id'
                   label: 'Rating Scale'
-                  type: 'Select'
+                  type: 'select'
                 nested_field:
-                  object: 'RatingMeasure'
+                  object: 'rating_measures'
                   fields:
                     name:
                       attribute: 'name'
@@ -50,4 +50,3 @@ en:
                       attribute: 'score'
                       label: 'Score'
                       type: 'text_field'
-

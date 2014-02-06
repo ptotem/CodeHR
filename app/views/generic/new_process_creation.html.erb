@@ -1,40 +1,60 @@
-<%= form_for "@#{@object.underscore}" do |f| %>
+<%= nested_form_for "@#{@object.underscore}" do |f| %>
 
-    <% @object_fields[:col1].each do |_,rc| %>
-        <%#= rc %>
-        <div class="control-group">
-          <label for="<%= rc[:label].to_s %>" class="control-label"><%= rc[:label].to_s %></label>
-          <div class="controls">
-            <% case rc[:type] %>
-                <% when "text_field" %>
-                    <%= f.send(rc[:type].to_sym, rc[:attribute].to_sym) %>
-                <% when "select" %>
-                    <%= f.send(rc[:type].to_sym, rc[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
-            <% end %>
-          </div>
-        </div>
-
-    <% end %>
-
-
-    <% @object_fields[:col1][:field][:nested_field][:fields].each do |_, nf| %>
-        <%#= nf %>
-
-        <%= f.fields_for @object_fields[:col1][:field][:nested_field][:object].to_sym do |score_receiveds| %>
-            <h3><%= nf[:label] %></h3>
+    <% @object_fields.each do |_,rc| %>
+        <% rc.each do |_, r| %>
             <div class="control-group">
-              <!--<%# @fi = rc[:child] %>-->
-              <% @object_fields[:col1][:field][:nested_field][:fields].each do |i,fil| %>
-                  <label for="<%= fil[:label].to_s %>" class="control-label"><%= fil[:label].to_s %></label>
-                  <div class="controls">
-                      <%= score_receiveds.send(fil[:type].to_sym, fil[:attribute].to_sym )%>
-                      <%= score_receiveds.link_to_remove "Remove this record" %>
-                  </div>
-              <% end %>
-              <!--<%#= f.link_to_add "Add new record", :score_receiveds %>-->
+              <label for="<%= r[:label].to_s %>" class="control-label"><%= r[:label].to_s %></label>
+              <div class="controls">
+                  <% case r[:type] %>
+                    <% when "text_field" %>
+                        <%= f.send(r[:type].to_sym, r[:attribute].to_sym) %>
+                    <% when "select" %>
+                        <%= f.send(r[:type].to_sym, r[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
+                  <% end %>
+              </div>
             </div>
+            <%#= rc[:field][:nested_field][:object] %>
+
+
+            <%= f.fields_for rc[:field][:nested_field][:object].to_sym do |score_receiveds| %>
+                <% rc[:field][:nested_field][:fields].each do |nf| %>
+                    <h3><%= nf[1][:label] %></h3>
+                    <div class="control-group">
+                      <label for="<%= nf[1][:label].to_s %>" class="control-label"><%= nf[1][:label].to_s %></label>
+                      <div class="controls">
+                        <%#= score_receiveds.send(nf[1][:type].to_sym, nf[1][:attribute].to_sym) %>
+                        <%= score_receiveds.link_to_remove "Remove this record" %>
+                      </div>
+                      <%#= f.link_to_add "Add new record", :score_receiveds %>
+                    </div>
+
+                <% end %>
+
+            <% end %>
+
         <% end %>
 
     <% end %>
 
+        <!--<h1>-->
+        <!--<%#= f.fields_for @object_fields[:col1][:field][:nested_field][:object].to_sym do |score_receiveds| %>-->
+            <!--<h3><%#= nf[:label] %></h3>-->
+            <!--<div class="control-group">-->
+              <!--<%# @object_fields[:col1][:field][:nested_field][:fields].each do |i,fil| %>-->
+                  <!--<label for="<%#= fil[:label].to_s %>" class="control-label"><%#= fil[:label].to_s %></label>-->
+                  <!--<div class="controls">-->
+                    <!--<%#= fil[:type] %>-->
+                    <!--<%# case fil[:type] %>-->
+                        <!--<%# when "text_field" %>-->
+                            <!--<%#= score_receiveds.send(fil[:type].to_sym, fil[:attribute].to_sym) %>-->
+                        <!--<%# when "select" %>-->
+                            <!--<%#= score_receiveds.send(fil[:type].to_sym, fil[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>-->
+                    <!--<%# end %>-->
+                  <!--</div>-->
+              <!--<%# end %>-->
+            <!--</div>-->
+            <!--<%#= score_receiveds.link_to_remove "Remove this record" %>-->
+            <!--<%#= f.link_to_add "Add new record", :score_receiveds %>-->
+        <!--<%# end %>-->
+        <!--</h1>-->
 <% end %>
