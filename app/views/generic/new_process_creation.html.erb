@@ -1,5 +1,4 @@
-<%= nested_form_for "@#{@object.underscore}" do |f| %>
-<%#= nested_form_for @real_obj do |f| %>
+<%= nested_form_for @real_obj do |f| %>
 
     <% @form.each  do |_,rc| %>
         <% rc.each do |r| %>
@@ -9,12 +8,17 @@
                 <% case r[1][:type] %>
                 <% when "text_field" %>
                     <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
+                <% when "text_area" %>
+                    <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
                 <% when "select" %>
                     <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
+                <% when "check_box" %>
+                    <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
                 <% end %>
             <% when "nested" %>
                 <% @nf = ":#{r[1][:attribute]}" %>
-                <%= f.fields_for @nf.to_sym do |score_receiveds| %>
+                <%# f.fields_for @nf.to_sym do |score_receiveds| %>
+                <%= f.fields_for :score_receiveds do |score_receiveds| %>
                     <h3><%= r[1][:label] %></h3>
                     <div class="control-group">
                       <% @fi = r[1][:fields] %>
@@ -24,19 +28,37 @@
                               <label for="<%= fil[:label].to_s %>" class="control-label"><%= fil[:label].to_s %></label>
                               <% case fil[:type] %>
                               <% when "text_field" %>
-                                  <%= f.send(fil[:type].to_sym, fil[:attribute].to_sym) %>
+                                  <%= score_receiveds.send(fil[:type].to_sym, fil[:attribute].to_sym) %>
                               <% when "select" %>
-                                  <%= f.send(fil[:type].to_sym, fil[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
+                                  <%= score_receiveds.send(fil[:type].to_sym, fil[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
                               <% end %>
                           <% when "nested" %>
                               <% @nf2 = ":#{fil[:attribute]}" %>
-                              <%= @nf2 %>
+                              <h3><%= fil[:label] %></h3>
+                              <% @fi2 = fil[:fields] %>
+                              <%= f.fields_for :rating_measures do |rating_measures| %>
+                                  <div class="control-group">
+                                      <% @fi2.each do |i,fil2| %>
+                                          <% case fil2[:level] %>
+                                          <% when "this" %>
+                                                <label for="<%= fil2[:label].to_s %>" class="control-label"><%= fil2[:label].to_s %></label>
+                                                <% case fil2[:type] %>
+                                                <% when "text_field" %>
+                                                    <%= rating_measures.send(fil2[:type].to_sym, fil2[:attribute].to_sym) %>
+                                                <% when "select" %>
+                                                    <%= rating_measures.send(fil2[:type].to_sym, fil2[:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
+                                                <% end %>
+                                          <% end %>
+                                      <% end %>
+                                  </div>
+                                  <%= rating_measures.link_to_remove "Remove Rating Measures" %>
+                              <% end %>
                           <% end %>
                       <% end %>
-                      <%= score_receiveds.link_to_remove "Remove this task" %>
+                      <%= score_receiveds.link_to_remove "Remove Score Receiveds" %>
                     </div>
                 <% end %>
-                <%= f.link_to_add "Add new record", :score_receiveds %>
+                <%= f.link_to_add "Add New Score Receiveds", :score_receiveds %>
             <% end %>
         <% end %>
     <% end %>

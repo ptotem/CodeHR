@@ -211,7 +211,7 @@ class GenericController < ApplicationController
 
     def new_process_creation
       @object = t('forms.Rating.object')
-        #@object = t('forms.CandidateMaster.object')
+      #@object = t('forms.CandidateMaster.object')
       instance_variable_set("@#{@object.underscore}",eval(@object).new)
 
       @form_config = t('forms.Rating')
