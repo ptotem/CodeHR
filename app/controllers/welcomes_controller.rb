@@ -53,5 +53,40 @@ class WelcomesController < InheritedResources::Base
     return
   end
 
+  def my_report
+    @report_date = params[:report_date][0]
+    @reviewed_by = params[:reviewed_by][0]
+
+    @ma = params[:newArray][0]
+
+    gon.json={
+        :object_hash =>
+            {
+                :report_date => @report_date,
+                :reviewed_by => @reviewed_by,
+                :rows =>
+                      @ma.each_with_index do |ma, index|
+                        {
+                            :"row_#{index}" => ma
+                        }
+                      end
+            }
+
+    }.to_json
+
+    render :json => gon.json
+    return
+
+    #@newa = Array.new
+    #@ma.each_with_index do |ma, index|
+    #  @newa << ma
+    #  @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @newa)
+    #  @d_report.save!
+    #end
+
+    render :json => "DReport Created"
+    return
+  end
+
 
 end

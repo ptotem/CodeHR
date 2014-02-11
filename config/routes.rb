@@ -88,6 +88,8 @@ CodeHR::Application.routes.draw do
 
   resources :band_masters
 
+  resources :d_reports
+
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
@@ -96,6 +98,8 @@ CodeHR::Application.routes.draw do
   #ActiveAdmin.routes(self)
 
   match '/reports' => 'welcomes#report', :as=> :report
+  match '/my_report' => 'welcomes#my_report', :as=> :my_report
+  match '/show_report' => 'd_reports#show_report', :as=> :show_report
   match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
 

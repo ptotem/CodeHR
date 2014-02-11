@@ -12,7 +12,10 @@
           <tr>
             <td>
                 <!--<label class="custom-control-label" style="padding:0 0 0 4%;">-->
-                  <%= radio_button_tag 'action_option', model, false, :class => "action_input" %><span class="lbl" style="padding-left: 5px;"><%= model %></span>
+                  <%#= radio_button_tag 'action_option', model, false, :class => "action_input" %>
+                    <!--<span class="lbl" style="padding-left: 5px;"><%#= model %></span>-->
+                  <%= radio_button_tag 'action_option', model, false, :class => "action_input" , :onclick=>"get_my_data($(this));" %>
+                    <span class="lbl" style="padding-left: 5px;"><%= model %></span>
                 <!--</label>-->
             </td>
           </tr>
@@ -56,13 +59,16 @@
     var all_fields=[];
     var class_name='';
     var grp_name=''
-    $('.action_input').on('click',function(){
-        class_name=this.value;
+    var my_fields;
+
+    function get_my_data(this_obj){
+
+        class_name = $(this_obj).val();
         var object_fields_table = $('#mmod').find('#object_fields_table').find('tbody');
 
         var tableHeader = "<thead><tr><th>Object Name</th></tr></thead>";
 
-        $.get('/get_fields/'+this.value,function(data){
+        $.get('/get_fields/'+$(this_obj).val(),function(data){
             $(object_fields_table).html('');
             $('#object_fields_table').append('<button onclick="select_field()">OK</button>');
 
@@ -81,8 +87,8 @@
                 $('#mmod').append('<div class="table-header">'+v.class_name+'</div>');
                 tableClass = v.class_name;
                 $('#mmod').append('<table class="dataTable table table-striped table-bordered table-hover table-'+ tableClass +' " id="object_associated_fields_table_'+i+'">' +
-                                    '<thead><tr><th>Object Name</th></tr></thead>'+
-                                    '<tbody></tbody>' +
+                        '<thead><tr><th>Object Name</th></tr></thead>'+
+                        '<tbody></tbody>' +
                         '</table>');
 
                 $.each(v.fields,function(i,vi){
@@ -97,8 +103,7 @@
             });
         });
 
-    });
-
+    }
 
     function select_field(){
         selected_field=[];
@@ -138,6 +143,7 @@
         data["group_by"].push(grp_name);
         data["field"].push(selected_field);
         data["association"].push(associated_field);
+        my_fields = data["association"];
         $.ajax({
             type: "POST",
             url: "/get_data",
@@ -145,22 +151,27 @@
             contentType: "application/json; charset=utf-8",
             //dataType: "json",
             success: function(result){
-                current_row =""
-                var table_row = ""
+                current_row ="";
+                var table_row = "";
                 var object_field_val_table = $('#main-tab').find('#report_table');
+
+//                console.log("class_name :- " + class_name);
+//                console.log(data["association"]);
+//                console.log("selected_field :- " + selected_field);
+
                 for(var i= 0 ;i< result.length;i++)
                 {
-                    console.log(result[i])
+                    //console.log(result[i])
                     if($("#"+result[i][grp_name]).length === 0)
                     {
                         //$("#report_table").append("<tr id="+result[i][grp_name]+"></tr>");
-                        $(object_field_val_table).find("#dis_tab").append("<tr id="+result[i][grp_name]+"></tr>")
+                        $(object_field_val_table).find("#dis_tab").append("<tr id="+result[i][grp_name]+"></tr>");
+                        //$(object_field_val_table).append("<tr id="+result[i][grp_name]+"></tr>");
                     }
                     for(var j=0;j<Object.keys(result[i]).length;j++)
                     {
-                        console.log(result[i][grp_name]);
-                        $("#"+result[i][grp_name]).append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>")
-
+                        //console.log(result[i][grp_name]);
+                        $("#"+result[i][grp_name]).append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>");
                     }
 
 
@@ -187,7 +198,7 @@
 //                        table_row += "<td>"+result[i][j].cvalue+"</td>"
 //                    }
 //                    $("#report_table").append("<tr>"+table_row+"</tr>")
-                    table_row = ""
+                    table_row = "";
 
 
 //                    console.log(result[i])
@@ -200,9 +211,76 @@
 //                    j++;
 //                });
 
-                apply_dataTable('#report_table', '#report_table_wrapper','#report_table_length', '#report_table_filter');
+
+                //$('#main-tab').append('<button class="btn btn-primary" onclick="add_to_report(class_name, my_fields, selected_field)">' + "Add to Report" + '</button>');
+
+                var report_fields_html = '<div class="row-fluid">' +
+                                            '<div class="span6">' +
+                                                '<input type="text" id="reviewed_by" style="width: 70%;" placeholder="Reviewed By">' +
+                                            '</div>' +
+                                         '</div>' +
+                                         '<div class="row-fluid">' +
+                                            '<div class="span6">' +
+                                                '<input type="text" id="report_date" style="width: 70%;" placeholder="Report Date">' +
+                                            '</div>' +
+                                            '<div class="offset2 span4">' +
+                                                '<button class="btn btn-small btn-primary" onclick="add_to_report()">' + "Add to Report" + '</button>' +
+                                            '</div>' +
+                                         '</div>';
+                //$('#main-tab').append('<button class="btn btn-primary" onclick="add_to_report()">' + "Add to Report" + '</button>');
+                //$('#main-tab').append('<input type="text" id="form-field-6" style="width: 20%;" class="ace-tooltip" data-original-title="Hello Tooltip!">');
+
+                $('#main-tab').append(report_fields_html);
+//                setTimeout(function(){
+//                    apply_dataTable('#report_table', '#report_table_wrapper','#report_table_length', '#report_table_filter');
+//                }, 2000);
+
 
             }
         });
+    }
+
+    //function add_to_report(master_obj, associations, fields_selected){
+    function add_to_report(){
+        console.log("--- add_to_report() ----");
+
+
+        var tr = $("#report_table").find("#dis_tab tr");
+        var tr_len = $(tr).length;
+        var myarray = new Array();
+
+        var reviewed_by = $('#main-tab').find("#reviewed_by").val();
+        var report_date = $('#main-tab').find("#report_date").val();
+
+        var newArray=[];
+
+        $(tr).each(function(index,ele) {
+            //myarray[index] = new Array($(ele).find('td').length);
+            var subArray=[];
+
+            $(ele).find('td').each(function(j, elem){
+                //myarray.push($(elem).text());
+                subArray.push($(elem).text());
+            });
+            newArray.push(subArray);
+        });
+        //console.log(myarray);
+
+        var data = {newArray: [], reviewed_by: [], report_date: []};
+        data["newArray"].push(newArray);
+        data["reviewed_by"].push(reviewed_by);
+        data["report_date"].push(report_date);
+
+        $.ajax({
+            type: "POST",
+            url: "/my_report",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            //dataType: "json",
+            success: function(result){
+                console.log(result);
+            }
+        });
+
     }
 </script>
