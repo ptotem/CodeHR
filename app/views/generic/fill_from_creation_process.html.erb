@@ -1,0 +1,109 @@
+<%= form_tag :review_form do |f|%>
+    <h1><%= @form_config[:name] %></h1>
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="myTab">
+          <% @fields[:tabs].map{|i,v| v[:name]}.each_with_index do |tab,index| %>
+            <li><a data-toggle="tab" href="#dropdown<%= index %>"><%= tab %></a></li>
+          <% end %>
+        </ul>
+        <div class="tab-content">
+          <% @fields_name = @fields[:tabs].map{|i,v| v}%>
+          <% @fields_name.each_with_index do |tab_val,index| %>
+              <% if tab_val[:type]!="sub-form" %>
+                <div id="dropdown<%= index %>" class="tab-pane">
+                    <div class="row-fluid">
+                    <% @tab_val = tab_val[:cols].map{|i,v| v} %>
+                    <% @tab_val.each_with_index do |col_val,index| %>
+                        <div class="span6">
+                          <% @col_val = col_val.map{|i,v| v} %>
+                          <% @col_val.each_with_index do |cv| %>
+                          <div class="control-group">
+                            <label for="<%= cv[:label]%>" class="control-label"><%= cv[:label] %></label>
+                            <div class="controls">
+                              <% case cv[:type] %>
+                                <% when "text_field_tag" %>
+                                  <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                <% when "select_tag" %>
+                                  <% if cv[:options] == 'model' %>
+                                    <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id","").camelize).all,'id','id') %>
+                                  <% else %>
+                                      <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]) %>
+                                  <% end %>
+                              <% end %>
+                            </div>
+                          </div>
+                          <% end %>
+                        </div>
+                    <% end %>
+                    </div>
+                </div>
+              <% else %>
+                  <% @tba = tab_val[:attribute] %>
+                  <div id="dropdown<%= index %>" class="tab-pane">
+                    <div class="row-fluid">
+                        <%= render :partial => 'generic/subform', :locals => {:fi =>tab_val[:attribute],:form_index => 0, :main_form => params[:model_name]}  %>
+                    </div>
+                  </div>
+                  <input type="hidden" class="formIndex" value="0">
+                  <input type="button" name="Add New SubForm" id="addNewSubform" value="Add New" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
+              <% end %>
+
+          <% end %>
+        </div>
+    </div>
+    <div class="form-actions">
+      <%#= f.submit :class => "btn btn-info" %>
+      <%= submit_tag "Submit", :class => "btn btn-info" %>
+    </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+    var ddchildlen
+    $(function(){
+        ddchildlen=$('#myTab').children.length;
+        $("#dropdown0").addClass("active");
+    });
+
+    function add_new_subform(this_obj,title,tba,model_name){
+        var data = {fi: [], form_index: [], main_form: []};
+        data["fi"].push(tba);
+        data["form_index"].push(parseInt($(this_obj).prev().val())+1);
+        data["main_form"].push(model_name);
+        $.ajax({
+            url: "<%= subform_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(this_obj).prev().val(parseInt($(this_obj).prev().val())+1);
+                var a="dropdown"+ddchildlen
+                $('#myTab').append('<li><a data-toggle="tab" href="#'+a+'">'+title+'</a></li>');
+                var newDiv = $(this_obj).parent().append('<div id="'+a+'" class="tab-pane"></div>');
+                $("#"+a).append(data);
+                ddchildlen++;
+            }
+        });
+    }
+
+    function add_new_nested_fields(this_obj,nf,main_form,fi,form_index,this_sf){
+        var data = {new_fields: [],main_form : [], fi: [], form_index: [], this_sf: [], my_index: []};
+        data["new_fields"].push(nf);
+        data["main_form"].push(main_form.toString());
+        data["fi"].push(fi.toString());
+        data["form_index"].push(form_index);
+        data["this_sf"].push(this_sf.toString());
+        data["my_index"].push($(this_obj).parent().find('.my_index').val());
+        $.ajax({
+            url: "<%= nested_subform_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(this_obj).parent().find('.my_index').val(parseInt($(this_obj).parent().find('.my_index').val())+1);
+                console.log(data);
+                $(this_obj).parent().find('.my_body').append(data);
+            }
+        });
+    }
+
+</script>

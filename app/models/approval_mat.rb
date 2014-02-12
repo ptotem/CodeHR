@@ -108,12 +108,12 @@ class ApprovalMat
 
   def auto_assign
     #todo: write logic of auto assigning1
-    @self.approvers.where(:active => true).each do |e|
+    self.approvers.where(:active => true).each do |e|
       @self.active = false
       self.save
     end
 
-    @self.approvers.where(:auto_assign => true).each do |e|
+    self.approvers.where(:auto_assign => true).each do |e|
       @self.active =true
       @self.save
     end
@@ -132,7 +132,7 @@ class ApprovalMat
     end
   end
 
-  def rejected
+  def rejected_app
     @pro=ProcessTr.find(self.process_tr_id)
     @user=User.find(@pro.user_id)
     @pro.step_trs[self.reject_next_step.to_i].oaction="Updation"

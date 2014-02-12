@@ -6,514 +6,81 @@ en:
       name: "New Rating Form"
       object: "Rating"
       fields:
-        col1:
-          comments:
-            attribute: 'comments'
-            label: 'Comment'
-            type: 'text_field'
-            level: 'this'
-          vacancy_scheduling_id:
-            attribute: 'vacancy_scheduling_id'
-            label: 'Vacancy Scheduling'
-            type: 'select'
-            level: 'this'
-          score_recieveds:
-            attribute: 'score_recieveds'
-            label: 'Scores Received'
-            type: 'field'
-            level: 'nested'
-            fields:
-              sr_name:
-                attribute: 'sr_name'
-                label: 'SR Name'
-                type: 'text_field'
-                level: 'this'
-              rating_scale_id:
-                attribute: 'rating_scale_id'
-                label: 'Rating Scale'
-                type: 'select'
-                level: 'this'
-              rating_measures:
-                attribute: 'rating_measures'
-                label: 'Rating Measures'
-                type: 'field'
-                level: 'nested'
-                fields:
-                  name:
-                    attribute: 'name'
-                    label: 'Name'
-                    type: 'text_field'
-                    level: 'this'
-                  priority:
-                    attribute: 'priority'
-                    label: 'Priority'
-                    type: 'text_field'
-                    level: 'this'
-                  range_from:
-                    attribute: 'range_from'
-                    label: 'Range From'
-                    type: 'text_field'
-                    level: 'this'
-                  range_to:
-                    attribute: 'range_to'
-                    label: 'Range To'
-                    type: 'text_field'
-                    level: 'this'
-                  score:
-                    attribute: 'score'
-                    label: 'Score'
-                    type: 'text_field'
-                    level: 'this'
-    CandidateMaster:
-      name: "New Candidate Master Form"
-      object: "CandidateMaster"
+        tabs:
+          tab1:
+            name: "Ratings"
+            type: "standard"
+            cols:
+              col1:
+                comments:
+                  attribute: 'comments'
+                  label: 'Comment'
+                  type: 'text_field_tag'
+              col2:
+                vacancy_scheduling_id:
+                  attribute: 'vacancy_scheduling_id'
+                  label: 'Vacancy Scheduling'
+                  type: 'select_tag'
+                  options: ["A","B","C","D"]
+          tab2:
+            name: "Scores"
+            type: 'sub-form'
+            attribute: 'ScoreReceived'
+            score_receiveds:
+              type: 'sub-form'
+    ScoreReceived:
+      name: "New Score Received Form"
+      object: "ScoreReceived"
       fields:
-        col1:
-          candidate_code:
-            attribute: 'candidate_code'
-            label: 'Candidate Code'
-            type: 'text_field'
-            level: 'this'
-          candidate_name:
-            attribute: 'candidate_name'
-            label: 'Candidate Name'
-            type: 'text_field'
-            level: 'this'
-          candidate_middle_name:
-            attribute: 'candidate_middle_name'
-            label: 'Candidate Middle Name'
-            type: 'text_field'
-            level: 'this'
-          status:
-            attribute: 'status'
-            label: 'Status'
-            type: 'text_field'
-            level: 'this'
-          gender:
-            attribute: 'gender'
-            label: 'Gender'
-            type: 'text_field'
-            level: 'this'
-          marital_status:
-            attribute: 'marital_status'
-            label: 'Marital Status'
-            type: 'text_field'
-            level: 'this'
-          date_of_birth:
-            attribute: 'date_of_birth'
-            label: 'Date of Birth'
-            type: 'date'
-            level: 'this'
-          total_work_exp_years:
-            attribute: 'total_work_exp_years'
-            label: 'Total Work Exp. (in years)'
-            type: 'text_field'
-            level: 'this'
-          total_work_exp_months:
-            attribute: 'total_work_exp_months'
-            label: 'Total Work Exp. (in months)'
-            type: 'text_field'
-            level: 'this'
-          official_email:
-            attribute: 'official_email'
-            label: 'Official E-mail'
-            type: 'text_field'
-            level: 'this'
-          personal_email:
-            attribute: 'personal_email'
-            label: 'Personal E-mail'
-            type: 'text_field'
-            level: 'this'
-          bank_name:
-            attribute: 'bank_name'
-            label: 'Bank Name'
-            type: 'text_field'
-            level: 'this'
-          account_number:
-            attribute: 'account_number'
-            label: 'Account Number'
-            type: 'text_field'
-            level: 'this'
-          pf_no:
-            attribute: 'pf_no'
-            label: 'PF No.'
-            type: 'text_field'
-            level: 'this'
-          esic_no:
-            attribute: 'esic_no'
-            label: 'ESIC No.'
-            type: 'text_field'
-            level: 'this'
-          pan_no:
-            attribute: 'pan_no'
-            label: 'PAN No.'
-            type: 'text_field'
-            level: 'this'
-          current_location:
-            attribute: 'current_location'
-            label: 'Current Location'
-            type: 'text_field'
-            level: 'this'
-          salary_expectation_fixed:
-            attribute: 'salary_expectation_fixed'
-            label: 'Salary Expectation (Fixed)'
-            type: 'text_field'
-            level: 'this'
-          salary_expectation_variable:
-            attribute: 'salary_expectation_variable'
-            label: 'Salary Expectation (Variable)'
-            type: 'text_field'
-            level: 'this'
-          notice_period:
-            attribute: 'notice_period'
-            label: 'Notice Period'
-            type: 'text_field'
-            level: 'this'
-          notice_period_buyback?:
-            attribute: 'notice_period_buyback?'
-            label: 'Notice Period Buyback?'
-            type: 'check_box'
-            level: 'this'
-          notice_period_buyback_amount:
-            attribute: 'notice_period_buyback_amount'
-            label: 'Notice Period Buyback Amount'
-            type: 'text_field'
-            level: 'this'
-          remarks_1:
-            attribute: 'remarks_1'
-            label: 'Remark 1'
-            type: 'text_area'
-            level: 'this'
-          remarks_2:
-            attribute: 'remarks_2'
-            label: 'Remark 2'
-            type: 'text_area'
-            level: 'this'
-          remarks_3:
-            attribute: 'remarks_3'
-            label: 'Remark 3'
-            type: 'text_area'
-            level: 'this'
-          remarks_4:
-            attribute: 'remarks_4'
-            label: 'Remark 4'
-            type: 'text_area'
-            level: 'this'
-          remarks_5:
-            attribute: 'remarks_5'
-            label: 'Remark 5'
-            type: 'text_area'
-            level: 'this'
-          employee_cv:
-            attribute: 'employee_cv'
-            label: 'employee_cv'
-            type: 'file'
-            level: 'this'
-          cand_educations:
-            attribute: 'cand_educations'
-            label: 'Candidate Educations'
-            type: 'field'
-            level: 'nested'
-            fields:
-              name:
-                attribute: 'name'
-                label: 'Name'
-                type: 'text_field'
-                level: 'this'
-              description:
-                attribute: 'description'
-                label: 'Description'
-                type: 'text_field'
-                level: 'this'
-              marks:
-                attribute: 'marks'
-                label: 'Marks'
-                type: 'text_field'
-                level: 'this'
-              grade:
-                attribute: 'grade'
-                label: 'Grade'
-                type: 'text_field'
-                level: 'this'
-          candidate_contact_numbers:
-            attribute: 'candidate_contact_numbers'
-            label: 'Candidate Contact Numbers'
-            type: 'field'
-            level: 'nested'
-            fields:
-              home:
-                attribute: 'home'
-                label: 'Home'
-                type: 'text_field'
-                level: 'this'
-              mobile:
-                attribute: 'mobile'
-                label: 'Mobile'
-                type: 'text_field'
-                level: 'this'
-              office:
-                attribute: 'office'
-                label: 'Office'
-                type: 'text_field'
-                level: 'this'
-          candidate_employment_histories:
-            attribute: 'candidate_employment_histories'
-            label: 'Candidate Employment Histories'
-            type: 'field'
-            level: 'nested'
-            fields:
-              joined_from:
-                attribute: 'joined_from'
-                label: 'Joined From'
-                type: 'date'
-                level: 'this'
-              leaved:
-                attribute: 'leaved'
-                label: 'Left'
-                type: 'date'
-                level: 'this'
-              organisation:
-                attribute: 'organisation'
-                label: 'Organisation'
-                type: 'text_field'
-                level: 'this'
-              designation:
-                attribute: 'designation'
-                label: 'Designation'
-                type: 'text_field'
-                level: 'this'
-          communication_addresses:
-            attribute: 'communication_addresses'
-            label: 'Communication Addresses'
-            type: 'field'
-            level: 'nested'
-            fields:
-              address1:
-                attribute: 'address1'
-                label: 'Address 1'
-                type: 'text_area'
-                level: 'this'
-              address2:
-                attribute: 'address2'
-                label: 'Address 2'
-                type: 'text_area'
-                level: 'this'
-              city:
-                attribute: 'city'
-                label: 'City'
-                type: 'text_field'
-                level: 'this'
-              taluka:
-                attribute: 'taluka'
-                label: 'Taluka'
-                type: 'text_field'
-                level: 'this'
-              district:
-                attribute: 'district'
-                label: 'District'
-                type: 'text_field'
-                level: 'this'
-              state:
-                attribute: 'state'
-                label: 'State'
-                type: 'text_field'
-                level: 'this'
-              country:
-                attribute: 'country'
-                label: 'Country'
-                type: 'text_field'
-                level: 'this'
-              zipcode:
-                attribute: 'zipcode'
-                label: 'PIN Code'
-                type: 'text_field'
-                level: 'this'
-          candidate_family_details:
-            attribute: 'candidate_family_details'
-            label: 'Candidate Family Details'
-            type: 'field'
-            level: 'nested'
-            fields:
-              relaationship:
-                attribute: 'relaationship'
-                label: 'Relationship'
-                type: 'text_field'
-                level: 'this'
-              fname:
-                attribute: 'fname'
-                label: 'First name'
-                type: 'text_field'
-                level: 'this'
-              mname:
-                attribute: 'mname'
-                label: 'Middle Name'
-                type: 'text_field'
-                level: 'this'
-              lname:
-                attribute: 'lname'
-                label: 'Last Name'
-                type: 'text_field'
-                level: 'this'
-          job_preferences:
-            attribute: 'job_preferences'
-            label: 'Job Preferences'
-            type: 'field'
-            level: 'nested'
-            fields:
-              vacancy_id:
-                attribute: 'vacancy_id'
-                label: 'Vacancy'
-                type: 'select'
-                level: 'this'
-          location_preferences:
-            attribute: 'location_preferences'
-            label: 'Location Preferences'
-            type: 'field'
-            level: 'nested'
-            fields:
-              name:
-                attribute: 'name'
-                label: 'Name'
-                type: 'text_field'
-                level: 'this'
-    CompanyMaster:
-      name: "New Company Master Form"
-      object: "CompanyMaster"
+        tabs:
+          tab1:
+            name: "Score"
+            type: "standard"
+            cols:
+              col1:
+                sr_name:
+                  attribute: 'sr_name'
+                  label: 'SR Name'
+                  type: 'text_field_tag'
+              col2:
+                rating_scale_id:
+                  attribute: 'rating_scale_id'
+                  label: 'Rating Scale'
+                  type: 'select_tag'
+                  options: 'model'
+          tab2:
+            name: "Rating Scale"
+            type: "sub-form"
+            attribute: 'RatingMeasure'
+            rating_measures:
+              type: 'sub-form'
+    RatingMeasure:
+      name: "New Rating Measure Form"
+      object: "RatingMeasure"
       fields:
-        col1:
-          company_code:
-            attribute: 'company_code'
-            label: 'Company Code'
-            type: 'text_field'
-            level: 'this'
-          company_name:
-            attribute: 'company_name'
-            label: 'Company Name'
-            type: 'text_field'
-            level: 'this'
-          office_phone_number:
-            attribute: 'office_phone_number'
-            label: 'Office Phone Number'
-            type: 'text_field'
-            level: 'this'
-          office_fax_number_1:
-            attribute: 'office_fax_number_1'
-            label: 'Office FAX Number 1'
-            type: 'text_field'
-            level: 'this'
-          office_fax_number_2:
-            attribute: 'office_fax_number_2'
-            label: 'Office FAX Number 2'
-            type: 'text_field'
-            level: 'this'
-          vat_reg_number:
-            attribute: 'vat_reg_number'
-            label: 'VAT Registration Number'
-            type: 'text_field'
-            level: 'this'
-          st_reg_number:
-            attribute: 'st_reg_number'
-            label: 'ST Registration Number'
-            type: 'text_field'
-            level: 'this'
-          pan_number:
-            attribute: 'pan_number'
-            label: 'PAN Number'
-            type: 'text_field'
-            level: 'this'
-          pf_reg_number:
-            attribute: 'pf_reg_number'
-            label: 'PF Registration Number'
-            type: 'text_field'
-            level: 'this'
-          esic_reg_number:
-            attribute: 'esic_reg_number'
-            label: 'ESIC Registration Number'
-            type: 'text_field'
-            level: 'this'
-          remarks_1:
-            attribute: 'remarks_1'
-            label: 'Remark 1'
-            type: 'text_area'
-            level: 'this'
-          remarks_2:
-            attribute: 'remarks_2'
-            label: 'Remark 2'
-            type: 'text_area'
-            level: 'this'
-          remarks_3:
-            attribute: 'remarks_3'
-            label: 'Remark 3'
-            type: 'text_area'
-            level: 'this'
-          remarks_4:
-            attribute: 'remarks_4'
-            label: 'Remark 4'
-            type: 'text_area'
-            level: 'this'
-          remarks_5:
-            attribute: 'remarks_5'
-            label: 'Remark 5'
-            type: 'text_area'
-            level: 'this'
-          client_id:
-            attribute: 'client_id'
-            label: 'Client'
-            type: 'select'
-            level: 'this'
-          parent_company_ids:
-            attribute: 'parent_company_ids'
-            label: 'Parent Company'
-            type: 'select'
-            level: 'this'
-          child_company_master_ids:
-            attribute: 'child_company_master_ids'
-            label: 'Child Company Master'
-            type: 'select'
-            level: 'this'
-          company_addresses:
-            attribute: 'company_addresses'
-            label: 'Company Addresses'
-            type: 'field'
-            level: 'nested'
-            fields:
-              address1:
-                attribute: 'address1'
-                label: 'Address 1'
-                type: 'text_area'
-                level: 'this'
-              address:
-                attribute: 'address'
-                label: 'address'
-                type: 'text_area'
-                level: 'this'
-              city:
-                attribute: 'city'
-                label: 'City'
-                type: 'text_field'
-                level: 'this'
-              taluka:
-                attribute: 'taluka'
-                label: 'Taluka'
-                type: 'text_field'
-                level: 'this'
-              district:
-                attribute: 'district'
-                label: 'District'
-                type: 'text_field'
-                level: 'this'
-              state:
-                attribute: 'state'
-                label: 'State'
-                type: 'text_field'
-                level: 'this'
-              country:
-                attribute: 'country'
-                label: 'Country'
-                type: 'text_field'
-                level: 'this'
-              pin:
-                attribute: 'pin'
-                label: 'PIN'
-                type: 'text_field'
-                level: 'this'
+        tabs:
+          tab1:
+            name: "Rating Scale"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                priority:
+                  attribute: 'priority'
+                  label: 'Priority'
+                  type: 'text_field_tag'
+                range_from:
+                  attribute: 'range_from'
+                  label: 'Range From'
+                  type: 'text_field_tag'
+                range_to:
+                  attribute: 'range_to'
+                  label: 'Range To'
+                  type: 'text_field_tag'
+                score:
+                  attribute: 'score'
+                  label: 'Score'
+                  type: 'text_field_tag'
