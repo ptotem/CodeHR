@@ -57,35 +57,45 @@ class WelcomesController < InheritedResources::Base
     @report_date = params[:report_date][0]
     @reviewed_by = params[:reviewed_by][0]
 
-    @ma = params[:newArray][0]
+    @obj_hash = params[:newArray][0]
+    @newa = Array.new
 
-    gon.json={
-        :object_hash =>
-            {
-                :report_date => @report_date,
-                :reviewed_by => @reviewed_by,
-                :rows =>
-                      @ma.each_with_index do |ma, index|
-                        {
-                            :"row_#{index}" => ma
-                        }
-                      end
-            }
+    @d_report_count = DReport.count
 
-    }.to_json
+    if @d_report_count == 0
+      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @newa)
 
-    render :json => gon.json
-    return
+      @obj_hash.each_with_index do |obj_hash, index|
+        @d_report.object_hash << obj_hash
+        @d_report.save!
+      end
+      render :json => "if _ #{@d_report}"
+      return
+    else
+      @d_report = DReport.last
+      @d_report.object_hash << @obj_hash
+      @d_report.save!
+      render :json => "else _ #{@d_report.object_hash} _ #{@obj_hash}"
+      return
+    end
 
-    #@newa = Array.new
-    #@ma.each_with_index do |ma, index|
-    #  @newa << ma
-    #  @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @newa)
-    #  @d_report.save!
-    #end
 
-    render :json => "DReport Created"
-    return
+    #gon.json={
+    #    :object_hash =>
+    #        {
+    #            :rows =>
+    #                  @obj_hash.each_with_index do |obj_hash, index|
+    #                    {
+    #                        :"row_#{index}" => obj_hash
+    #                    }
+    #                  end
+    #        }
+    #
+    #}.to_json
+    #
+    #render :json => gon.json
+    #return
+
   end
 
 
