@@ -3,51 +3,84 @@
 en:
   forms:
     Rating:
-      name: "New Rating form"
+      name: "New Rating Form"
       object: "Rating"
       fields:
-        col1:
-          comments:
-            attribute: 'comments'
-            label: 'Comment'
-            type: 'text_field'
-          vacancy_scheduling_id:
-            attribute: 'vacancy_scheduling_id'
-            label: 'Vacancy Scheduling'
-            type: 'select'
-          field:
-            nested_field:
-              object: 'score_receiveds'
-              fields:
+        tabs:
+          tab1:
+            name: "Ratings"
+            type: "standard"
+            cols:
+              col1:
+                comments:
+                  attribute: 'comments'
+                  label: 'Comment'
+                  type: 'text_field_tag'
+              col2:
+                vacancy_scheduling_id:
+                  attribute: 'vacancy_scheduling_id'
+                  label: 'Vacancy Scheduling'
+                  type: 'select_tag'
+                  options: ["A","B","C","D"]
+          tab2:
+            name: "Scores"
+            type: 'sub-form'
+            attribute: 'ScoreReceived'
+            score_receiveds:
+              type: 'sub-form'
+    ScoreReceived:
+      name: "New Score Received Form"
+      object: "ScoreReceived"
+      fields:
+        tabs:
+          tab1:
+            name: "Score"
+            type: "standard"
+            cols:
+              col1:
                 sr_name:
                   attribute: 'sr_name'
-                  label: 'sr name'
-                  type: 'text_field'
+                  label: 'SR Name'
+                  type: 'text_field_tag'
+              col2:
                 rating_scale_id:
                   attribute: 'rating_scale_id'
                   label: 'Rating Scale'
-                  type: 'Select'
-                nested_field:
-                  object: 'RatingMeasure'
-                  fields:
-                    name:
-                      attribute: 'name'
-                      label: 'Name'
-                      type: 'text_field'
-                    priority:
-                      attribute: 'priority'
-                      label: 'Priority'
-                      type: 'text_field'
-                    range_from:
-                      attribute: 'range_from'
-                      label: 'Range From'
-                      type: 'text_field'
-                    range_to:
-                      attribute: 'range_to'
-                      label: 'Range To'
-                      type: 'text_field'
-                    score:
-                      attribute: 'score'
-                      label: 'Score'
-                      type: 'text_field'
-
+                  type: 'select_tag'
+                  options: 'model'
+          tab2:
+            name: "Rating Scale"
+            type: "sub-form"
+            attribute: 'RatingMeasure'
+            rating_measures:
+              type: 'sub-form'
+    RatingMeasure:
+      name: "New Rating Measure Form"
+      object: "RatingMeasure"
+      fields:
+        tabs:
+          tab1:
+            name: "Rating Scale"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                priority:
+                  attribute: 'priority'
+                  label: 'Priority'
+                  type: 'text_field_tag'
+                range_from:
+                  attribute: 'range_from'
+                  label: 'Range From'
+                  type: 'text_field_tag'
+                range_to:
+                  attribute: 'range_to'
+                  label: 'Range To'
+                  type: 'text_field_tag'
+                score:
+                  attribute: 'score'
+                  label: 'Score'
+                  type: 'text_field_tag'

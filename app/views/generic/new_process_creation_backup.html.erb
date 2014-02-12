@@ -5,14 +5,20 @@
             <% case r[1][:level] %>
             <% when "this" %>
                 <label for="<%= r[1][:label].to_s %>" class="control-label"><%= r[1][:label].to_s %></label>
-                <% if r[1][:type] == "select" %>
+                <% case r[1][:type] %>
+                <% when "text_field" %>
+                    <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
+                <% when "text_area" %>
+                    <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
+                <% when "select" %>
                     <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym, options_from_collection_for_select(VacancyScheduling.all, 'id','name'), {:include_blank => "Select"}) %>
-                <% else %>
+                <% when "check_box" %>
                     <%= f.send(r[1][:type].to_sym, r[1][:attribute].to_sym) %>
                 <% end %>
             <% when "nested" %>
-                <%= @nf = "#{r[1][:attribute]}" %>
-                <%= f.fields_for @nf.to_sym do |score_receiveds| %>
+                <% @nf = ":#{r[1][:attribute]}" %>
+                <%# f.fields_for @nf.to_sym do |score_receiveds| %>
+                <%= f.fields_for :score_receiveds do |score_receiveds| %>
                     <h3><%= r[1][:label] %></h3>
                     <div class="control-group">
                       <% @fi = r[1][:fields] %>

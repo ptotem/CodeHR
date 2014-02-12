@@ -20,7 +20,7 @@
                 <td><%= @id.map{|i| @class.find(i).instance_eval(@obj_name)} rescue ""%></td>
             <% elsif cls!="_id" and cls.include?("_id") %>
                 <% @class = cls.gsub("_id","").camelize %>
-                <% @class = eval(@class.singularize) %>
+                <% @class = eval(@class) %>
                 <% @obj_name = @class.fields.keys.map{|i| (i.include?('name')?i:nil) }.compact.first rescue "" %>
                 <% @id= instance_variable_get("@#{params[:model_name].underscore}").instance_eval(cls) %>
                 <th><%= t("config.#{@class_name}.form.new.fields."+cls) %></th>
@@ -49,27 +49,3 @@
 <%#= link_to 'Edit', edit_employee_master_path(@employee_master) %> |
 <%#= link_to 'Back', employee_masters_path %>
 
-<script>
-    $(function(){
-        $("#approve_btn").on('click', function(){
-
-            var emp_id = "<%#= @employee_master.id %>";
-
-            var data = {emp_id: []};
-            data["emp_id"].push(emp_id);
-            <% step_no = ApprovalMat.find(params[:approval_id]).step_no  %>
-            $.ajax({
-                url: "/approve_process/<%= params[:approval_id] %>/<%= params[:process_id] %>/<%= step_no %>/<%= current_user.employee_master._id %>",
-                type: "post",
-                async: false,
-                data: JSON.stringify(data),
-                contentType: "application/json",
-                success: function (data) {
-                    console.log(data);
-                    alert(data);
-                }
-            });
-
-        });
-    });
-</script>

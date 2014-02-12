@@ -107,12 +107,8 @@ class GenericController < ApplicationController
     end
 
     def approval
-      #@employee_master = EmployeeMaster.find(params[:id])
       @class_name = params[:model_name]
       instance_variable_set("@#{params[:model_name].underscore}",eval(@class_name).find(params[:id]))
-      #render "#{params[:model_name].underscore.pluralize}/show"
-      #render :text =>instance_variable_get("@#{params[:model_name].underscore}").class.fields.keys
-      #return
     end
 
     def approve_emp_master
@@ -211,11 +207,53 @@ class GenericController < ApplicationController
 
     def new_process_creation
       @object = t('forms.Rating.object')
-
+      #@object = t('forms.CandidateMaster.object')
       instance_variable_set("@#{@object.underscore}",eval(@object).new)
-
-      @object_fields = t('forms.Rating.fields')
-
+      @form_config = t('forms.Rating')
+      #@form_config = t('forms.CandidateMaster')
+      @form = @form_config[:fields]
+      @real_obj = eval(@object).new
+      @form_nested_obj = @real_obj.instance_eval(@form[:col1][:score_receiveds][:attribute]).build
+      #render :json => @form[:col1][:score_recieveds][:attribute]
+      #return
     end
+
+
+    def fill_from_creation_process
+      @model_name = params[:model_name]
+      @form_config = t('forms.'+@model_name)
+      @fields = @form_config[:fields]
+      @score = Rating.new.score_receiveds.build
+    end
+
+    def render_subform
+      respond_to do |format|
+        format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
+        format.json { render json: @results, :callback => params[:callback] }
+      end
+    end
+
+    def render_nested_subform
+      respond_to do |format|
+        format.html { render :partial => 'generic/nested_sub_form', :locals => {:new_fields => params[:new_fields][0], :main_form => params[:main_form][0], :fi => params[:fi][0], :form_index => params[:form_index][0], :this_sf =>params[:this_sf][0], :my_index =>(params[:my_index][0].to_i+1) } } # index.html.erb
+        format.json { render json: @results, :callback => params[:callback] }
+      end
+    end
+
+    def review_filled_form
+      render :json => params
+      return
+    end
+
+    def update_form
+      render :json => params
+      return
+    end
+
+    def update_form
+      render :json => params
+      return
+    end
+
 
 end

@@ -166,7 +166,13 @@ CodeHR::Application.routes.draw do
 
   match '/new_process_creation_from' =>'generic#new_process_creation'
 
+  match '/fillform/:model_name' => 'generic#fill_from_creation_process'
+  match '/updateform/:model_name/:id' => 'generic#update_form'
+  match '/review_form' => 'generic#review_filled_form'
 
+  #match '/render_nested_subform/:new_fields/:main_form/:fi/:form_index/:this_sf/:my_index' => 'generic#render_nested_subform'
+  match '/render_nested_subform' => 'generic#render_nested_subform', :as => :nested_subform
+  match '/subform' => 'generic#render_subform', :as => :subform
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
