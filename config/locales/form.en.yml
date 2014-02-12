@@ -84,3 +84,232 @@ en:
                   attribute: 'score'
                   label: 'Score'
                   type: 'text_field_tag'
+    CompanyMaster:
+          name: "New Company Master Form"
+          object: "CompanyMaster"
+          fields:
+            tabs:
+              tab1:
+                name: "Company Master"
+                type: "standard"
+                cols:
+                  col1:
+                    company_code:
+                      attribute: 'company_code'
+                      label: 'Company Code'
+                      type: 'text_field_tag'
+                    client_id:
+                      attribute: 'client_id'
+                      label: 'Client'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                    parent_company_ids:
+                      attribute: 'parent_company_ids'
+                      label: 'Parent Companies'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                    child_company_master_ids:
+                      attribute: 'child_company_master_ids'
+                      label: 'Child Company Master'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                    office_phone_number:
+                      attribute: 'office_phone_number'
+                      label: 'Office Phone Number'
+                      type: 'text_field_tag'
+                    office_fax_number_2:
+                      attribute: 'office_fax_number_2'
+                      label: 'Office FAX Number 2'
+                      type: 'text_field_tag'
+                    st_reg_number:
+                      attribute: 'st_reg_number'
+                      label: 'ST Registration Number'
+                      type: 'text_field_tag'
+                    pf_reg_number:
+                      attribute: 'pf_reg_number'
+                      label: 'PF Registration umber'
+                      type: 'text_field_tag'
+                    remarks_1:
+                      attribute: 'remarks_1'
+                      label: 'Remark 1'
+                      type: 'text_area_tag'
+                    remarks_3:
+                      attribute: 'remarks_3'
+                      label: 'Remark 3'
+                      type: 'text_area_tag'
+                    remarks_5:
+                      attribute: 'remarks_5'
+                      label: 'Remark 5'
+                      type: 'text_area_tag'
+                  col2:
+                    company_name:
+                      attribute: 'company_name'
+                      label: 'Company Name'
+                      type: 'text_field_tag'
+                    office_fax_number_1:
+                      attribute: 'office_fax_number_1'
+                      label: 'Office FAX Number 1'
+                      type: 'text_field_tag'
+                    vat_reg_number:
+                      attribute: 'vat_reg_number'
+                      label: 'VAT Registration Number'
+                      type: 'text_field_tag'
+                    pan_number:
+                      attribute: 'pan_number'
+                      label: 'PAN Number'
+                      type: 'text_field_tag'
+                    esic_reg_number:
+                      attribute: 'esic_reg_number'
+                      label: 'ESIC Registration Number'
+                      type: 'text_field_tag'
+                    remarks_2:
+                      attribute: 'remarks_2'
+                      label: 'Remark 2'
+                      type: 'text_area_tag'
+                    remarks_4:
+                      attribute: 'remarks_4'
+                      label: 'Remark 4'
+                      type: 'text_area_tag'
+              tab2:
+                name: "Company Address"
+                type: 'sub-form'
+                attribute: 'CompanyAddress'
+                company_addresses:
+                  type: 'sub-form'
+    CompanyAddress:
+      name: "New Company Address Form"
+      object: "CompanyAddress"
+      fields:
+        tabs:
+          tab1:
+            name: "Company Address"
+            type: "standard"
+            cols:
+              col1:
+                address1:
+                  attribute: 'address1'
+                  label: 'Address 1'
+                  type: 'text_area_tag'
+                city:
+                  attribute: 'city'
+                  label: 'City'
+                  type: 'text_field_tag'
+                district:
+                  attribute: 'district'
+                  label: 'District'
+                  type: 'text_field_tag'
+                country:
+                  attribute: 'country'
+                  label: 'Country'
+                  type: 'text_field_tag'
+              col2:
+                address:
+                  attribute: 'address'
+                  label: 'Address'
+                  type: 'text_area_tag'
+                taluka:
+                  attribute: 'taluka'
+                  label: 'Taluka'
+                  type: 'text_field_tag'
+                state:
+                  attribute: 'state'
+                  label: 'State'
+                  type: 'text_field_tag'
+                pin:
+                  attribute: 'pin'
+                  label: 'PIN Code'
+                  type: 'text_field_tag'
+    ManpowerPlanning:
+          name: "New Manpower Planning Form"
+          object: "ManpowerPlanning"
+          fields:
+            tabs:
+              tab1:
+                name: "Manpower Planning"
+                type: "standard"
+                cols:
+                  col1:
+                    mp_code:
+                      attribute: 'mp_code'
+                      label: 'Manpower Planning Code'
+                      type: 'text_field_tag'
+                    period_to:
+                      attribute: 'period_to'
+                      label: 'Period To'
+                      type: 'text_field_tag'
+                    final_approved_number:
+                      attribute: 'final_approved_number'
+                      label: 'Final Approved Number'
+                      type: 'text_field_tag'
+                    role:
+                      attribute: 'role'
+                      label: 'Role'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                    status:
+                      attribute: 'status'
+                      label: 'Status'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                  col2:
+                    period_from:
+                      attribute: 'period_from'
+                      label: 'Period From'
+                      type: 'text_field_tag'
+                    requested_by:
+                      attribute: 'requested_by'
+                      label: 'Requested By'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+                    period_from:
+                      attribute: 'period_from'
+                      label: 'Period From'
+                      type: 'text_field_tag'
+                    process_id:
+                      attribute: 'process_id'
+                      label: 'Process'
+                      type: 'select_tag'
+                      options: ["A","B","C","D"]
+              tab2:
+                name: "Approval Mats"
+                type: 'sub-form'
+                attribute: 'ApprovalMat'
+                approval_mats:
+                  type: 'sub-form'
+    ApprovalMat:
+      name: "New Approval Mat Form"
+      object: "ApprovalMat"
+      fields:
+        tabs:
+          tab1:
+            name: "Approval Mat"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                oid:
+                  attribute: 'oid'
+                  label: 'Object ID'
+                  type: 'select_tag'
+                  options: ["A","B","C","D"]
+                link:
+                  attribute: 'link'
+                  label: 'Link'
+                  type: 'text_field_tag'
+              col2:
+                ocls:
+                  attribute: 'ocls'
+                  label: 'Object Class'
+                  type: 'select_tag'
+                  options: ["A","B","C","D"]
+                description:
+                  attribute: 'description'
+                  label: 'Description'
+                  type: 'text_field_tag'
+                finished:
+                  attribute: 'finished'
+                  label: 'Finished'
+                  type: 'check_box_tag'

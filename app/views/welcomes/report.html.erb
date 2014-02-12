@@ -198,6 +198,11 @@
                             '</div>';
 
                     $('#main-tab').append(report_fields_html);
+
+                    //setTimeout(function() {
+                        //apply_dataTable('#report_table', '#report_table_wrapper','#report_table_length', '#report_table_filter');
+                    //}, 800);
+
                 }
 
 
@@ -208,8 +213,6 @@
 
     //function add_to_report(master_obj, associations, fields_selected){
     function add_to_report(){
-        console.log("--- add_to_report() ----");
-
 
         var tr = $("#report_table").find("#dis_tab tr");
         var tr_len = $(tr).length;

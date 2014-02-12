@@ -23,6 +23,8 @@
                               <% case cv[:type] %>
                                 <% when "text_field_tag" %>
                                   <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                <% when "text_area_tag" %>
+                                  <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                 <% when "select_tag" %>
                                   <% if cv[:options] == 'model' %>
                                     <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id","").camelize).all,'id','id') %>

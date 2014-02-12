@@ -14,6 +14,10 @@
                             <% case cv[:type] %>
                             <% when "text_field_tag" %>
                                 <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                            <% when "text_area_tag" %>
+                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                            <% when "check_box_tag" %>
+                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
                             <% when "select_tag" %>
                                 <% if cv[:options] == 'model' %>
                                     <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
