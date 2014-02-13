@@ -136,7 +136,7 @@
         $('#main-tab').find("#"+result_div).append('<button onclick="load_fields($(this))">OK</button>');
 
         var table_html = "<div class=table-header>Listing Selected Objects Field/Value</div>" +
-                 "<table id=report_table_"+result_div+" class=table table-striped table-bordered table-hover>" +
+                 "<table class='table table-striped table-bordered table-hover' id=report_table_"+result_div+">" +
                     "<thead>" +
                         "<tr>"+b+"</tr>" +
                     "</thead>" +
@@ -176,24 +176,16 @@
                 for(var i= 0 ;i< result.length;i++)
                 {
                     //console.log(result[i][grp_name]);
-                    //if($("#"+result[i][grp_name]).length === 0)
-                    //{
-
+                    if($("#"+result[i][grp_name]).length === 0)
+                    {
+                        $(object_field_val_table).find("#"+dis_table_tab).append("<tr id="+result[i][grp_name]+"></tr>");
                         for(var j=0;j<Object.keys(result[i]).length;j++)
                         {
-                            $(object_field_val_table).find("#"+dis_table_tab).append("<tr id="+result[i][grp_name]+"></tr>");
                             //$("#"+result[i][grp_name]).append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>");
-                            if ( result[i][Object.keys(result[i])[j]] == "" ) {
-                                $(object_field_val_table).find("#"+dis_table_tab).find('tr:eq('+i+')').append("<td>None</td>");
-                            }
-                            else{
-                                $(object_field_val_table).find("#"+dis_table_tab).find('tr:eq('+i+')').append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>");
-                            }
-
-
+                            $(object_field_val_table).find("#"+dis_table_tab).find('tr:eq('+i+')').append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>");
                         }
                         table_row = "";
-                    //}
+                    }
 
                 }
 
@@ -253,8 +245,9 @@
         });
         //console.log(newArray);
 
-        var data = {cl_name: [], newArray: [], reviewed_by: [], report_date: []};
+        var data = {cl_name: [], cl_fields: [], newArray: [], reviewed_by: [], report_date: []};
         data["cl_name"].push(class_name);
+        data["cl_fields"].push(all_fields);
         data["newArray"].push(newArray);
         data["reviewed_by"].push(reviewed_by);
         data["report_date"].push(report_date);

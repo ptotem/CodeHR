@@ -56,47 +56,25 @@ class WelcomesController < InheritedResources::Base
   def my_report
 
     @cl_name = params[:cl_name][0]
+    @cl_fields = params[:cl_fields][0].to_a
     @report_date = params[:report_date][0]
     @reviewed_by = params[:reviewed_by][0]
     @obj_hash = params[:newArray][0].to_a
 
-
-    #gon.json={
-    #    :object_hash =>
-    #        {
-    #            :classname => @cl_name,
-    #            :rows =>
-    #                @obj_hash.each_with_index do |obj_hash, index|
-    #                  {
-    #                      :"row" => obj_hash
-    #                  }
-    #                end
-    #        }
-    #
-    #}.to_json
-
-    #render :json => gon.json
-    #return
-
-
-    @newa = Array.new
     @d_report_count = DReport.count
 
     if @d_report_count == 0
-      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @obj_hash)
+      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, cl_name: @cl_name, cl_fields: @cl_fields, object_hash: @obj_hash)
       @d_report.save!
-      #@obj_hash.each_with_index do |obj_hash, index|
-      #  @d_report.object_hash << obj_hash
-      #  @d_report.save!
-      #end
-      render :json => "if _ #{@d_report.object_hash}"
+      render :json => "if _ #{@d_report.cl_name} _ #{@d_report.cl_fields} _ #{@d_report.report_date} _ #{@d_report.reviewed_by} _ #{@d_report.object_hash}"
       return
     else
-      @d_report = DReport.last
-      @d_report.object_hash << @obj_hash
-      #@d_report.object_hash << gon.json
+      @first_dreport = DReport.first
+      @first_dreport_date = @first_dreport.report_date
+      @first_dreport_reviewed_by = @first_dreport.reviewed_by
+      @d_report = DReport.create(report_date: @first_dreport_date, reviewed_by: @first_dreport_reviewed_by, cl_name: @cl_name, cl_fields: @cl_fields, object_hash: @obj_hash)
       @d_report.save!
-      render :json => "else _ #{@d_report.object_hash}"
+      render :json => "else _ #{@d_report.cl_name} _ #{@d_report.cl_fields} _ #{@d_report.report_date} _ #{@d_report.reviewed_by} _ #{@d_report.object_hash}"
       return
     end
 

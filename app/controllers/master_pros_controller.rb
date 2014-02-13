@@ -81,4 +81,13 @@ class MasterProsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def get_dropdown_data
+    #render :text => params[:action_name][0]
+    #return
+    @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
+    render :text => @models
+    return
+  end
+
 end
