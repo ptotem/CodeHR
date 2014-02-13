@@ -54,47 +54,57 @@ class WelcomesController < InheritedResources::Base
   end
 
   def my_report
+
+    #render :json => params
+    #return
+
+    @cl_name = params[:cl_name][0]
     @report_date = params[:report_date][0]
     @reviewed_by = params[:reviewed_by][0]
 
-    @obj_hash = params[:newArray][0]
-    @newa = Array.new
+    @obj_hash = params[:newArray][0].to_a
 
-    @d_report_count = DReport.count
-
-    if @d_report_count == 0
-      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @newa)
-
-      @obj_hash.each_with_index do |obj_hash, index|
-        @d_report.object_hash << obj_hash
-        @d_report.save!
-      end
-      render :json => "if _ #{@d_report}"
-      return
-    else
-      @d_report = DReport.last
-      @d_report.object_hash << @obj_hash
-      @d_report.save!
-      render :json => "else _ #{@d_report.object_hash} _ #{@obj_hash}"
-      return
-    end
-
+    #render :json => @obj_hash
+    #return
 
     #gon.json={
     #    :object_hash =>
     #        {
+    #            :classname => @cl_name,
     #            :rows =>
-    #                  @obj_hash.each_with_index do |obj_hash, index|
-    #                    {
-    #                        :"row_#{index}" => obj_hash
-    #                    }
-    #                  end
+    #                @obj_hash.each_with_index do |obj_hash, index|
+    #                  {
+    #                      :"row" => obj_hash
+    #                  }
+    #                end
     #        }
     #
     #}.to_json
-    #
+
     #render :json => gon.json
     #return
+
+
+    @newa = Array.new
+    @d_report_count = DReport.count
+
+    if @d_report_count == 0
+      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by)
+      #@d_report.save!
+      @obj_hash.each_with_index do |obj_hash, index|
+        @d_report.object_hash << obj_hash
+        @d_report.save!
+      end
+      render :json => "if _ #{gon.json}"
+      return
+    else
+      @d_report = DReport.last
+      #@d_report.object_hash << @obj_hash
+      @d_report.object_hash << gon.json
+      @d_report.save!
+      render :json => "else _ #{@d_report.object_hash} _ #{gon.json}"
+      return
+    end
 
   end
 
