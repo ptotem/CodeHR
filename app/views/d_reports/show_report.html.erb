@@ -3,10 +3,10 @@
     <div class="row-fluid">
       <div class="table-header">Report</div>
       <div class="span6">
-        Report Date :- <%= @dy_report.report_date %>
+        Report Date :- <%= @dy_report.report_date rescue "" %>
       </div>
       <div class="span6">
-        Reviewed By :- <%= @dy_report.reviewed_by %>
+        Reviewed By :- <%= @dy_report.reviewed_by rescue "" %>
       </div>
     </div>
   </div>
@@ -17,30 +17,30 @@
     <table id="report_table" class="table table-striped table-bordered table-hover">
       <thead>
       <tr>
-        <th colspan="3">Detail</th>
-        <!--<th></th>-->
-        <!--<th></th>-->
+        <th>Detail</th>
+        <th>Detail</th>
+        <th>Detail</th>
       </tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="3">
-            <%= @dy_report.object_hash %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="3">
-            <%= @dy_report.object_hash.size %>
-          </td>
-        </tr>
-        <% @dy_report.object_hash.each_with_index do |obj_hash, index| %>
+      <% if !@dy_report.nil? %>
+        <% @dy_report.object_hash.to_a.each_with_index do |obj_hash, index| %>
           <tr>
-            <td><%= obj_hash[0] %></td>
-            <td><%= obj_hash[1] %></td>
-            <td><%= obj_hash[2] %></td>
+            <td><%= obj_hash.rows rescue "" %></td>
           </tr>
         <% end %>
+      <% end %>
       </tbody>
     </table>
   </div>
 </div>
+
+<br>
+<br>
+<%= @dy_report.object_hash.to_json.to_a[0] rescue nil %>
+<!--<br>-->
+<%#= @dy_report.object_hash.size rescue "" %>
+<!--<br><br>-->
+<%# @dy_report.object_hash.to_json.to_a.each_with_index do |o, index| %>
+    <%#= o %>
+<%# end %>
