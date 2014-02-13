@@ -1,0 +1,21 @@
+<h1>Listing master_pros</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @master_pros.each do |master_pro| %>
+  <tr>
+    <td><%= link_to 'Show', master_pro %></td>
+    <td><%= link_to 'Edit', edit_master_pro_path(master_pro) %></td>
+    <td><%= link_to 'Destroy', master_pro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Master pro', new_master_pro_path %>

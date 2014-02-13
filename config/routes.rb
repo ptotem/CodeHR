@@ -82,6 +82,8 @@ CodeHR::Application.routes.draw do
 
   resources :process_masters
 
+  resources :master_pros
+
   resources :user_tasks
 
   resources :approval_mats
