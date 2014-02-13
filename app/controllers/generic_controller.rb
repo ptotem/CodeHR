@@ -224,6 +224,8 @@ class GenericController < ApplicationController
       @form_config = t('forms.'+@model_name)
       @fields = @form_config[:fields]
       @score = Rating.new.score_receiveds.build
+      @approval = true
+      @notification =true
     end
 
     def render_subform
@@ -243,6 +245,8 @@ class GenericController < ApplicationController
     def review_filled_form
       render :json => params
       return
+      #this action take care of all three form filling system notification anf approval process
+      #i.e  form filling process take care of system notification and approval process
     end
 
     def update_form
@@ -254,6 +258,4 @@ class GenericController < ApplicationController
       render :json => params
       return
     end
-
-
 end
