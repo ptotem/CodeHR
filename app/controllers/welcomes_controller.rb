@@ -55,17 +55,11 @@ class WelcomesController < InheritedResources::Base
 
   def my_report
 
-    #render :json => params
-    #return
-
     @cl_name = params[:cl_name][0]
     @report_date = params[:report_date][0]
     @reviewed_by = params[:reviewed_by][0]
-
     @obj_hash = params[:newArray][0].to_a
 
-    #render :json => @obj_hash
-    #return
 
     #gon.json={
     #    :object_hash =>
@@ -89,20 +83,20 @@ class WelcomesController < InheritedResources::Base
     @d_report_count = DReport.count
 
     if @d_report_count == 0
-      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by)
-      #@d_report.save!
-      @obj_hash.each_with_index do |obj_hash, index|
-        @d_report.object_hash << obj_hash
-        @d_report.save!
-      end
-      render :json => "if _ #{gon.json}"
+      @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, object_hash: @obj_hash)
+      @d_report.save!
+      #@obj_hash.each_with_index do |obj_hash, index|
+      #  @d_report.object_hash << obj_hash
+      #  @d_report.save!
+      #end
+      render :json => "if _ #{@d_report.object_hash}"
       return
     else
       @d_report = DReport.last
-      #@d_report.object_hash << @obj_hash
-      @d_report.object_hash << gon.json
+      @d_report.object_hash << @obj_hash
+      #@d_report.object_hash << gon.json
       @d_report.save!
-      render :json => "else _ #{@d_report.object_hash} _ #{gon.json}"
+      render :json => "else _ #{@d_report.object_hash}"
       return
     end
 

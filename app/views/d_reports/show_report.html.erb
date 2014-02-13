@@ -37,7 +37,12 @@
 
 <br>
 <br>
-<%= @dy_report.object_hash.to_json.to_a[0] rescue nil %>
+<%= @dy_report.object_hash.size %> <br>
+<%= @dy_report.object_hash.length %> <br>
+<% @dy_report.object_hash.each_with_index do |obj_hash, index| %>
+    <%= obj_hash %>
+    <br>
+<% end %>
 <!--<br>-->
 <%#= @dy_report.object_hash.size rescue "" %>
 <!--<br><br>-->
