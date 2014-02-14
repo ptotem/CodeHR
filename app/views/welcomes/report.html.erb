@@ -176,8 +176,8 @@
                 for(var i= 0 ;i< result.length;i++)
                 {
                     //console.log(result[i][grp_name]);
-                    if($("#"+result[i][grp_name]).length === 0)
-                    {
+                    //if($("#"+result[i][grp_name]).length === 0)
+                    //{
                         $(object_field_val_table).find("#"+dis_table_tab).append("<tr id="+result[i][grp_name]+"></tr>");
                         for(var j=0;j<Object.keys(result[i]).length;j++)
                         {
@@ -185,7 +185,7 @@
                             $(object_field_val_table).find("#"+dis_table_tab).find('tr:eq('+i+')').append("<td>"+result[i][Object.keys(result[i])[j]]+"</td>");
                         }
                         table_row = "";
-                    }
+                    //}
 
                 }
 
@@ -229,7 +229,7 @@
 
         var tr = $("#"+this_table).find('tbody tr');
         var tr_len = $(tr).length;
-
+        console.log(tr_len);
         var reviewed_by = $('#main-tab').find("#reviewed_by").val();
         var report_date = $('#main-tab').find("#report_date").val();
 
@@ -252,16 +252,16 @@
         data["reviewed_by"].push(reviewed_by);
         data["report_date"].push(report_date);
 
-        $.ajax({
-            type: "POST",
-            url: "/my_report",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
-            //dataType: "json",
-            success: function(result){
-                console.log(result);
-            }
-        });
+//        $.ajax({
+//            type: "POST",
+//            url: "/my_report",
+//            data: JSON.stringify(data),
+//            contentType: "application/json; charset=utf-8",
+//            //dataType: "json",
+//            success: function(result){
+//                console.log(result);
+//            }
+//        });
 
     }
 </script>
