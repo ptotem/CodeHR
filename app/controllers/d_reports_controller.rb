@@ -82,8 +82,8 @@ class DReportsController < ApplicationController
   end
 
   def show_report
-    #@d_report = DReport.find(params[:id])
-    @dy_report = DReport.last
+    @first_dreport = DReport.first
+    @d_reports = DReport.all
   end
 
 end

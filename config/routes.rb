@@ -82,6 +82,8 @@ CodeHR::Application.routes.draw do
 
   resources :process_masters
 
+  resources :master_pros
+
   resources :user_tasks
 
   resources :approval_mats
@@ -102,6 +104,8 @@ CodeHR::Application.routes.draw do
   match '/show_report' => 'd_reports#show_report', :as=> :show_report
   match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
+
+  match '/get_dropdown_data' => 'master_pros#get_dropdown_data', :as=> :get_dropdown_data
 
   match '/creation/:model_name/(:process_id)/(:seq)' => 'generic#new', :as => :creation
   match '/updation/:model_name/:id/(:process_id)/(:seq)' => 'generic#edit', :as => :updation

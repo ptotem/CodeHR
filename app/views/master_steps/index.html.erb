@@ -1,0 +1,21 @@
+<h1>Listing master_steps</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @master_steps.each do |master_step| %>
+  <tr>
+    <td><%= link_to 'Show', master_step %></td>
+    <td><%= link_to 'Edit', edit_master_step_path(master_step) %></td>
+    <td><%= link_to 'Destroy', master_step, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Master step', new_master_step_path %>
