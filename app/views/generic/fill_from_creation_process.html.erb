@@ -57,16 +57,17 @@
                     <div class="row-fluid">
                         <%= render :partial => 'generic/subform', :locals => {:fi =>tab_val[:attribute],:form_index => 0, :main_form => params[:model_name]}  %>
                     </div>
+                    <input type="hidden" class="formIndex" value="0">
+                    <input type="button" name="Add New SubForm" id="addNewSubform" value="Add New Subform" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
                   </div>
-                  <input type="hidden" class="formIndex" value="0">
-                  <input type="button" name="Add New SubForm" id="addNewSubform" value="Add New" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
+
               <% end %>
 
           <% end %>
           <!--Approval tab html-->
           <% if @approval %>
               <div id="dropdown<%= count1 %>" class="tab-pane">
-
+                <%= render :partial => 'generic/approval_form' %>
               </div>
               <% count1 = count1 +1 %>
           <% end %>
@@ -96,7 +97,7 @@
                     <div class="control-group">
                       <label for="Title" class="control-label">Select EmployeeMaster, GroupMaster, Role</label>
                       <div class="controls">
-                        <%= select_tag "notification[oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange=>"display_objects($(this));"} %>
+                        <%= select_tag "notification[oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange=>'display_objects($(this),"notification[action_arr][]");'} %>
                       </div>
                     </div>
                   </div>
@@ -175,10 +176,31 @@
             }
         });
     }
+
+    //function to add new nested subform on tab
+    function add_nestsed_approvers_tab(this_obj){
+        var data = {counter: []};
+        data["counter"].push($(this_obj).prev().val());
+        $.ajax({
+            url: "<%= approver_form_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(this_obj).prev().val(parseInt($(this_obj).prev().val())+1);
+                var a="appdropdown"+$(this_obj).prev().val();
+                $(this_obj).parent().before('<li><a data-toggle="tab" href="#'+a+'">'+$(this_obj).prev().val()+'</a></li>');
+                var newDiv = $('#myAppTab').next().append('<div id="'+a+'" class="tab-pane"></div>');
+                $("#"+a).append(data);
+            }
+        });
+    }
+
     //Code to display all the record of a particular model......
-    function display_objects(this_obj){
+    function display_objects(this_obj,oobj){
         var count = 0;
-        var parent_tab = $(this_obj).parents('.tab-pane')
+        var parent_tab = $(this_obj).parents('.row-fluid')[0];
+        console.log(parent_tab);
         var model_name = $(this_obj).val();
         var data = {model_name: []};
         data["model_name"].push(model_name);
@@ -199,7 +221,7 @@
                     {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="notification[action_arr['+count+']]" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
+                                '<td style="position: relative;"><input type="checkbox" name="'+oobj+'" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
                                 '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
@@ -242,5 +264,4 @@
             }
         });
     }
-
 </script>
