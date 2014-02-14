@@ -212,6 +212,11 @@ module ApplicationHelper
 
   end
 
+
+  def step_transact_process
+
+  end
+
   def check_state
 
   end
