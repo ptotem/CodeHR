@@ -181,6 +181,8 @@ CodeHR::Application.routes.draw do
   #match '/render_nested_subform/:new_fields/:main_form/:fi/:form_index/:this_sf/:my_index' => 'generic#render_nested_subform'
   match '/render_nested_subform' => 'generic#render_nested_subform', :as => :nested_subform
   match '/subform' => 'generic#render_subform', :as => :subform
+
+  match '/render_approver_form' => 'generic#render_approver_form', :as => :approver_form
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

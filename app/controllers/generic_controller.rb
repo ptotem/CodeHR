@@ -242,6 +242,13 @@ class GenericController < ApplicationController
       end
     end
 
+    def render_approver_form
+      respond_to do |format|
+        format.html { render :partial => 'generic/approvers', :locals => {:counter => params[:counter][0]} } # index.html.erb
+        format.json { render json: @results, :callback => params[:callback] }
+      end
+    end
+
     def review_filled_form
       render :json => params
       return
