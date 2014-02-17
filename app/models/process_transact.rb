@@ -96,7 +96,8 @@ class ProcessTransact
       if !self.dependent.nil?
         if self.dependent
           @parent_pro = ProcessTransact.find(self.parent_pro_id)
-          @parent_pro.step_transacts[self.parent_step_no.to_i].end_processsing_step
+          puts "Child Process has ended now resuming back to parent process"
+          @parent_pro.step_transacts[self.parent_step_no.to_i].end_processing_step
         end
       end
     end

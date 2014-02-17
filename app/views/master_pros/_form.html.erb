@@ -72,6 +72,7 @@
                                   <div class="controls model-select-dropdown-container">
                                     <% @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
                                     <%= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
+                                    <%= master_step.hidden_field :auto, :value=>true %>
                                   </div>
                                 </div>
                               </div>
@@ -100,11 +101,12 @@
                                   <div class="span4">
                                     <div class="control-group">
                                       <div class="row-fluid" style="margin-top: 9%;">
+                                        <%= master_step.hidden_field :auto, :value => true, :class=>"my_auto" %>
                                         <div class="span6">
-                                          <button class="btn btn-primary btn-small manual-btn" type="button" onclick="toggle_btns($(this), $(this).parent().next().children().first())">Manual</button>
+                                          <button class="btn btn-primary btn-small manual-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(false);toggle_btns($(this), $(this).parent().next().children().first())">Manual</button>
                                         </div>
                                         <div class="span6">
-                                          <button class="btn btn-success btn-small auto-btn" type="button" onclick="toggle_btns($(this), $(this).parent().prev().children().first())">Auto</button>
+                                          <button class="btn btn-success btn-small auto-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(true);toggle_btns($(this), $(this).parent().prev().children().first())">Auto</button>
                                         </div>
                                       </div>
                                     </div>

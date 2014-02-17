@@ -43,6 +43,7 @@ class ProcessTransactsController < ApplicationController
     @mp = MasterPro.find(params[:process_transact][:mp_name])
     @process_transact = ProcessTransact.create!(:name => params[:process_transact][:name], :created_by => params[:process_transact][:created_by], :facilitated_by => params[:process_transact][:faciliated_by], :user_id =>params[:process_transact][:user_id])
     @mp.master_steps.each do |sm|
+
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
     end
 

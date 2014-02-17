@@ -258,7 +258,7 @@ module ApplicationHelper
         @app.send_notification
         puts "Approval"
         puts "Inside Approval step of the current process"
-      when "Notification"
+      when "Notify"
         puts "Notifying"
         @pro = ProcessTransact.find(pid)
         @pro.notification_obj["action_arr"].each do |noti|
@@ -274,7 +274,7 @@ module ApplicationHelper
           @user.save
         end
         @pro.step_transacts[stepno].end_processing_step
-      when "Mark Complete"
+      when "MarkComplete"
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
@@ -282,20 +282,31 @@ module ApplicationHelper
         #eval(oclass).new(@pro.class_obj))
         #eval(oclass).save
         @pro.step_transacts[stepno].end_processing_step
-      when "Spawnd"
+      when "SpawnD"
         puts "Calling a new process dependently.."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
         if @step.auto
         #  TODO:
-        #  create_and_load_process(pid,step_no,objid,user_id,true)
+        #  create_and_load_process(pid,step_no,oclass,user_id,true)
         else
         #  TODO: Create a new Process and initiate it.
           #create new Process
-          #create_and_load_process(pid,step_no,objid,user_id,true)
+          create_and_load_process(pid,stepno,oclass,user_id,true)
         end
-      when "Spawni"
+      when "SpawnI"
         puts "Calling a new process independently.."
+        @pro = ProcessTransact.find(pid)
+        @step=@pro.step_transacts[stepno]
+        if @step.auto
+          #  TODO:
+          #  create_and_load_process(pid,step_no,oclass,user_id,false)
+        else
+          #  TODO: Create a new Process and initiate it.
+          #create new Process
+          create_and_load_process(pid,stepno,objid,user_id,false)
+        end
+        @pro.step_transacts[stepno].end_processing_step
     end
   end
 
