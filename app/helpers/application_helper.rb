@@ -274,8 +274,26 @@ module ApplicationHelper
           @user.save
         end
         @pro.step_transacts[stepno].end_processing_step
+      when "Mark Complete"
+        puts "Mark Complete Code goes here."
+        @pro = ProcessTransact.find(pid)
+        @step=@pro.step_transacts[stepno]
+        #todo:Creating the class object with parameter
+        #eval(oclass).new(@pro.class_obj))
+        #eval(oclass).save
+        @pro.step_transacts[stepno].end_processing_step
       when "Spawnd"
         puts "Calling a new process dependently.."
+        @pro = ProcessTransact.find(pid)
+        @step=@pro.step_transacts[stepno]
+        if @step.auto
+        #  TODO:
+        #  create_and_load_process(pid,step_no,objid,user_id,true)
+        else
+        #  TODO: Create a new Process and initiate it.
+          #create new Process
+          #create_and_load_process(pid,step_no,objid,user_id,true)
+        end
       when "Spawni"
         puts "Calling a new process independently.."
     end
@@ -283,6 +301,16 @@ module ApplicationHelper
 
   def check_state
 
+  end
+
+  def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent)
+    @mp=MasterPro.find(pid)
+    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process", :created_by => userid, :facilitated_by => userid, :user_id =>userid)
+    @mp.master_steps.each do |sm|
+      @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
+    end
+    @process_transact.load_process
+    #@new_process = ProcessTransact.create!()
   end
 
 

@@ -10,6 +10,10 @@ class ProcessTransact
   field :class_obj, type: Hash
   field :app_obj, type: Hash
   field :notification_obj, type: Hash
+  field :created_by_process, type: Boolean
+  field :dependent, type: Boolean
+  field :parent_pro_id, type: String
+  field :parent_step_no, type: Integer
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
 
@@ -88,6 +92,14 @@ class ProcessTransact
   def post_finish_process
     puts "Process is finished"
     puts "Notification Sent to everyone...."
+    if created_by_process
+      if !self.dependent.nil?
+        if self.dependent
+          @parent_pro = ProcessTransact.find(self.parent_pro_id)
+          @parent_pro.step_transacts[self.parent_step_no.to_i].end_processsing_step
+        end
+      end
+    end
   end
 
   def finish_process

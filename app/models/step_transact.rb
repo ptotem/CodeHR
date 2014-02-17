@@ -5,6 +5,7 @@ class StepTransact
   field :action_name, type: String
   field :action_object_id, type: String
   field :obj_name, type: String
+  field :auto, type: Boolean
   embedded_in :process_transact
 
   state_machine :state, initial: :created do
