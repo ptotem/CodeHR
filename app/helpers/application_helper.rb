@@ -212,9 +212,73 @@ module ApplicationHelper
 
   end
 
-
-  def step_transact_process
-
+  #todo:Building a totally new function to handle automatic processes
+  def step_transaction_processing(action_name,oclass,objid,pid,stepno,user_id,*args)
+    puts action_name
+    puts oclass
+    puts objid
+    puts args
+    case action_name
+      when "Fill"
+        puts "Inside Fill form step of the current process"
+        @user=User.find(user_id)
+        @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+        @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
+        @user.save
+      when "Update"
+        puts "Inside update form step of the current process"
+        #todo:The same function as fill shoulod br written her with passing thge object id as parameter
+        @user = User.find(user_id)
+        @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+        @user.current_redirect_url="/updaetform/#{oclass}/#{objid}/#{pid}/#{stepno}"
+        @user.save
+      when "Approve"
+        puts "In side approval"
+        @pro = ProcessTransact.find(pid)
+        @step=@pro.step_transacts[stepno]
+        @app=ApprovalMat.create!(:name=>@pro.name,ocls:oclass,oid:"",:description=>"Please approve or reject this step",:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> "",:reject_next_step=> "",:reminder=> @pro.app_obj["reminder"],:rep_reminder=> @pro.app_obj["rep_reminder"] ,:escalate=> @pro.app_obj["escalate"] ,:rep_escalate=> "",:auto_assign=> @pro.app_obj["auto_assign"])
+        #toDo: Making the link for approval page
+        #link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
+        #@app.link=link
+        @app.save
+        #index = 0
+        @pro.app_obj["approvers"].each do |k,a|
+          #puts "uuuu"
+          #puts @pro.app_obj["approvers"][k]
+          #puts a
+          if a["oClass"] == "EmployeeMaster"
+            a["action_arr"].each do |aaa|
+              @app.approvers.create!(:employee_master_id=>aaa,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+            end
+          else
+            puts "Todo"
+          end
+          #index=index+1
+        end
+        @app.send_notification
+        puts "Approval"
+        puts "Inside Approval step of the current process"
+      when "Notification"
+        puts "Notifying"
+        @pro = ProcessTransact.find(pid)
+        @pro.notification_obj["action_arr"].each do |noti|
+          puts noti
+          puts "noti"
+          @user=EmployeeMaster.find(noti).user
+          puts @user
+          unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+          unm.save
+          unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.save
+          @user.save
+        end
+        @pro.step_transacts[stepno].end_processing_step
+      when "Spawnd"
+        puts "Calling a new process dependently.."
+      when "Spawni"
+        puts "Calling a new process independently.."
+    end
   end
 
   def check_state

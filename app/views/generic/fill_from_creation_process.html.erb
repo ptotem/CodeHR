@@ -1,125 +1,134 @@
-<%= form_tag :review_form do |f|%>
+<!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
+<%= form_tag :review_form do |f| %>
     <h1><%= @form_config[:name] %></h1>
     <div class="tabbable">
-        <ul class="nav nav-tabs" id="myTab">
-          <% count = 0 %>
-          <% @fields[:tabs].map{|i,v| v[:name]}.each_with_index do |tab,index| %>
+      <% if !params[:process_id].nil? %>
+          <%= hidden_field_tag :process_id, params[:process_id] %>
+          <%= hidden_field_tag :seq, params[:seq] %>
+      <% end %>
+      <ul class="nav nav-tabs" id="myTab">
+        <% count = 0 %>
+        <% @fields[:tabs].map { |i, v| v[:name] }.each_with_index do |tab, index| %>
             <li><a data-toggle="tab" href="#dropdown<%= index %>"><%= tab %></a></li>
             <% count =count+1 %>
-          <% end %>
-          <% if @approval %>
-              <li><a data-toggle="tab" href="#dropdown<%= count %>">Approval</a></li>
-              <% count = count +1 %>
-          <% end %>
-          <% if @notification %>
-              <li><a data-toggle="tab" href="#dropdown<%= count %>">Notification</a></li>
-              <% count = count +1 %>
-          <% end %>
-        </ul>
-        <div class="tab-content">
-          <% @fields_name = @fields[:tabs].map{|i,v| v}%>
-          <% count1 = 0 %>
-          <% @fields_name.each_with_index do |tab_val,index| %>
-              <% count1 =count1+1 %>
-              <% if tab_val[:type]!="sub-form" %>
+        <% end %>
+        <% if @approval %>
+            <li><a data-toggle="tab" href="#dropdown<%= count %>">Approval</a></li>
+            <% count = count +1 %>
+        <% end %>
+        <% if @notification %>
+            <li><a data-toggle="tab" href="#dropdown<%= count %>">Notification</a></li>
+            <% count = count +1 %>
+        <% end %>
+      </ul>
+      <div class="tab-content">
+        <% @fields_name = @fields[:tabs].map { |i, v| v } %>
+        <% count1 = 0 %>
+        <% @fields_name.each_with_index do |tab_val, index| %>
+            <% count1 =count1+1 %>
+            <% if tab_val[:type]!="sub-form" %>
                 <div id="dropdown<%= index %>" class="tab-pane">
-                    <div class="row-fluid">
-                    <% @tab_val = tab_val[:cols].map{|i,v| v} %>
-                    <% @tab_val.each_with_index do |col_val,index| %>
+                  <div class="row-fluid">
+                    <% @tab_val = tab_val[:cols].map { |i, v| v } %>
+                    <% @tab_val.each_with_index do |col_val, index| %>
                         <div class="span6">
-                          <% @col_val = col_val.map{|i,v| v} %>
+                          <% @col_val = col_val.map { |i, v| v } %>
                           <% @col_val.each_with_index do |cv| %>
-                          <div class="control-group">
-                            <label for="<%= cv[:label]%>" class="control-label"><%= cv[:label] %></label>
-                            <div class="controls">
-                              <% case cv[:type] %>
-                                <% when "text_field_tag" %>
-                                  <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
-                                <% when "text_area_tag" %>
-                                  <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
-                                <% when "select_tag" %>
-                                  <% if cv[:options] == 'model' %>
-                                    <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id","").camelize).all,'id','id') %>
-                                  <% else %>
-                                      <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]) %>
+                              <div class="control-group">
+                                <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
+
+                                <div class="controls">
+                                  <% case cv[:type] %>
+                                  <% when "text_field_tag" %>
+                                      <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                  <% when "text_area_tag" %>
+                                      <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                  <% when "select_tag" %>
+                                      <% if cv[:options] == 'model' %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
+                                      <% else %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]) %>
+                                      <% end %>
                                   <% end %>
-                              <% end %>
-                            </div>
-                          </div>
+                                </div>
+                              </div>
                           <% end %>
                         </div>
                     <% end %>
-                    </div>
-                </div>
-              <% else %>
-                  <% @tba = tab_val[:attribute] %>
-                  <div id="dropdown<%= index %>" class="tab-pane">
-                    <div class="row-fluid">
-                        <%= render :partial => 'generic/subform', :locals => {:fi =>tab_val[:attribute],:form_index => 0, :main_form => params[:model_name]}  %>
-                    </div>
-                    <input type="hidden" class="formIndex" value="0">
-                    <input type="button" name="Add New SubForm" id="addNewSubform" value="Add New Subform" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
-                  </div>
-
-              <% end %>
-
-          <% end %>
-          <!--Approval tab html-->
-          <% if @approval %>
-              <div id="dropdown<%= count1 %>" class="tab-pane">
-                <%= render :partial => 'generic/approval_form' %>
-              </div>
-              <% count1 = count1 +1 %>
-          <% end %>
-          <!--Notification Tab html-->
-          <% if @notification %>
-              <div id="dropdown<%= count1 %>" class="tab-pane">
-                <div class="row-fluid">
-                  <div class="span6">
-                    <div class="control-group">
-                      <label for="Title" class="control-label">Title</label>
-                      <div class="controls">
-                        <%= text_field_tag "notification[title]" %>
-                      </div>
-                    </div>
-                    <div class="span6">
-                        <div class="control-group">
-                          <label for="description" class="control-label">Description</label>
-                          <div class="controls">
-                            <%= text_area_tag "notification[description]" %>
-                          </div>
-                        </div>
-                    </div>
                   </div>
                 </div>
-                <div class="row-fluid">
+            <% else %>
+                <% @tba = tab_val[:attribute] %>
+                <div id="dropdown<%= index %>" class="tab-pane">
+                  <div class="row-fluid">
+                    <%= render :partial => 'generic/subform', :locals => {:fi => tab_val[:attribute], :form_index => 0, :main_form => params[:model_name]} %>
+                  </div>
+                  <input type="hidden" class="formIndex" value="0">
+                  <input type="button" name="Add New SubForm" id="addNewSubform" value="Add New Subform" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
+                </div>
+
+            <% end %>
+
+        <% end %>
+        <!--Approval tab html-->
+        <% if @approval %>
+            <div id="dropdown<%= count1 %>" class="tab-pane">
+              <%= render :partial => 'generic/approval_form' %>
+            </div>
+            <% count1 = count1 +1 %>
+        <% end %>
+        <!--Notification Tab html-->
+        <% if @notification %>
+            <div id="dropdown<%= count1 %>" class="tab-pane">
+              <div class="row-fluid">
+                <div class="span6">
+                  <div class="control-group">
+                    <label for="Title" class="control-label">Title</label>
+
+                    <div class="controls">
+                      <%= text_field_tag "notification[title]" %>
+                    </div>
+                  </div>
                   <div class="span6">
                     <div class="control-group">
-                      <label for="Title" class="control-label">Select EmployeeMaster, GroupMaster, Role</label>
+                      <label for="description" class="control-label">Description</label>
+
                       <div class="controls">
-                        <%= select_tag "notification[oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange=>'display_objects($(this),"notification[action_arr][]");'} %>
+                        <%= text_area_tag "notification[description]" %>
                       </div>
                     </div>
                   </div>
-                  <div class="span6">
-                    <div class="users-list_header table-header">Listing Objects</div>
-                    <h5 class="not-available-text">No objects available.</h5>
-                    <table class="users-list indexing table table-striped table-bordered table-hover" style="display: none;">
-                      <tr>
-                        <th>Select Multiple</th>
-                        <th>Select Single</th>
-                        <th>Field 1</th>
-                        <th>Field 2</th>
-                      </tr>
-                      <tr>
-                      </tr>
-                    </table>
-                  </div>
                 </div>
               </div>
-              <% count1 = count1 +1 %>
-          <% end %>
-        </div>
+              <div class="row-fluid">
+                <div class="span6">
+                  <div class="control-group">
+                    <label for="Title" class="control-label">Select EmployeeMaster, GroupMaster, Role</label>
+
+                    <div class="controls">
+                      <%= select_tag "notification[oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification[action_arr][]");'} %>
+                    </div>
+                  </div>
+                </div>
+                <div class="span6">
+                  <div class="users-list_header table-header">Listing Objects</div>
+                  <h5 class="not-available-text">No objects available.</h5>
+                  <table class="users-list indexing table table-striped table-bordered table-hover" style="display: none;">
+                    <tr>
+                      <th>Select Multiple</th>
+                      <th>Select Single</th>
+                      <th>Field 1</th>
+                      <th>Field 2</th>
+                    </tr>
+                    <tr>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <% count1 = count1 +1 %>
+        <% end %>
+      </div>
     </div>
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
@@ -129,15 +138,15 @@
 
 <script type="text/javascript" charset="utf-8">
     var ddchildlen;
-    $(function(){
-        ddchildlen=$('#myTab').children.length;
+    $(function () {
+        ddchildlen = $('#myTab').children.length;
         $("#dropdown0").addClass("active");
     });
     //Function to add nested subform
-    function add_new_subform(this_obj,title,tba,model_name){
+    function add_new_subform(this_obj, title, tba, model_name) {
         var data = {fi: [], form_index: [], main_form: []};
         data["fi"].push(tba);
-        data["form_index"].push(parseInt($(this_obj).prev().val())+1);
+        data["form_index"].push(parseInt($(this_obj).prev().val()) + 1);
         data["main_form"].push(model_name);
         $.ajax({
             url: "<%= subform_path %>",
@@ -145,19 +154,19 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
-                $(this_obj).prev().val(parseInt($(this_obj).prev().val())+1);
-                var a="dropdown"+ddchildlen
-                $('#myTab').append('<li><a data-toggle="tab" href="#'+a+'">'+title+'</a></li>');
-                var newDiv = $(this_obj).parent().append('<div id="'+a+'" class="tab-pane"></div>');
-                $("#"+a).append(data);
+                $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
+                var a = "dropdown" + ddchildlen
+                $('#myTab').append('<li><a data-toggle="tab" href="#' + a + '">' + title + '</a></li>');
+                var newDiv = $(this_obj).parent().append('<div id="' + a + '" class="tab-pane"></div>');
+                $("#" + a).append(data);
                 ddchildlen++;
             }
         });
     }
 
     //function add nested subform on subform
-    function add_new_nested_fields(this_obj,nf,main_form,fi,form_index,this_sf){
-        var data = {new_fields: [],main_form : [], fi: [], form_index: [], this_sf: [], my_index: []};
+    function add_new_nested_fields(this_obj, nf, main_form, fi, form_index, this_sf) {
+        var data = {new_fields: [], main_form: [], fi: [], form_index: [], this_sf: [], my_index: []};
         data["new_fields"].push(nf);
         data["main_form"].push(main_form.toString());
         data["fi"].push(fi.toString());
@@ -170,7 +179,7 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
-                $(this_obj).parent().find('.my_index').val(parseInt($(this_obj).parent().find('.my_index').val())+1);
+                $(this_obj).parent().find('.my_index').val(parseInt($(this_obj).parent().find('.my_index').val()) + 1);
                 console.log(data);
                 $(this_obj).parent().find('.my_body').append(data);
             }
@@ -178,7 +187,7 @@
     }
 
     //function to add new nested subform on tab
-    function add_nestsed_approvers_tab(this_obj){
+    function add_nestsed_approvers_tab(this_obj) {
         var data = {counter: []};
         data["counter"].push($(this_obj).prev().val());
         $.ajax({
@@ -187,17 +196,17 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
-                $(this_obj).prev().val(parseInt($(this_obj).prev().val())+1);
-                var a="appdropdown"+$(this_obj).prev().val();
-                $(this_obj).parent().before('<li><a data-toggle="tab" href="#'+a+'">'+$(this_obj).prev().val()+'</a></li>');
-                var newDiv = $('#myAppTab').next().append('<div id="'+a+'" class="tab-pane"></div>');
-                $("#"+a).append(data);
+                $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
+                var a = "appdropdown" + $(this_obj).prev().val();
+                $(this_obj).parent().before('<li><a data-toggle="tab" href="#' + a + '">' + $(this_obj).prev().val() + '</a></li>');
+                var newDiv = $('#myAppTab').next().append('<div id="' + a + '" class="tab-pane"></div>');
+                $("#" + a).append(data);
             }
         });
     }
 
     //Code to display all the record of a particular model......
-    function display_objects(this_obj,oobj){
+    function display_objects(this_obj, oobj) {
         var count = 0;
         var parent_tab = $(this_obj).parents('.row-fluid')[0];
         console.log(parent_tab);
@@ -216,51 +225,47 @@
                 var $user_row;
                 $(parent_tab).find(".users-list tr:not(:first-child)").empty();
 
-                if ( model_name == "EmployeeMaster" ) {
-                    for(var i= 0 ;i< data.length;i++)
-                    {
+                if (model_name == "EmployeeMaster") {
+                    for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
-                        $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="'+oobj+'" value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td>'+data[i]["employee_name"]+'</td><td>'+data[i]["official_email"]+'</td></tr>';
+                        $user_row = '<tr>' +
+                                '<td style="position: relative;"><input type="checkbox" name="' + oobj + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td>' + data[i]["employee_name"] + '</td><td>' + data[i]["official_email"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
                     $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
                 }
-                else if ( model_name == "GroupMaster" ) {
-                    for(var i= 0 ;i< data.length;i++)
-                    {
+                else if (model_name == "GroupMaster") {
+                    for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
-                        $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td>'+data[i]["group_name"]+'</td></tr>';
+                        $user_row = '<tr>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td>' + data[i]["group_name"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
                     $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
                 }
-                else if ( model_name == "Role" ) {
-                    for(var i= 0 ;i< data.length;i++)
-                    {
+                else if (model_name == "Role") {
+                    for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
-                        $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td>'+data[i]["name"]+'</td></tr>';
+                        $user_row = '<tr>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td>' + data[i]["name"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
                     $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
                 }
-                else if ( model_name == "VendorMaster" ) {
-                    for(var i= 0 ;i< data.length;i++)
-                    {
+                else if (model_name == "VendorMaster") {
+                    for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
-                        $user_row = '<tr>'+
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr['+count+'][]" disabled value='+my_id+' class="user_select_checkbox" style="position: relative; top: 0;"></td>'+
-                                '<td>'+data[i]["vendor_name"]+'</td><td>'+data[i]["vendor_type"]+'</td></tr>';
+                        $user_row = '<tr>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td>' + data[i]["vendor_name"] + '</td><td>' + data[i]["vendor_type"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
                     $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
                 }
-                $(':checkbox, :radio').css('opacity','1');
+                $(':checkbox, :radio').css('opacity', '1');
             }
         });
     }

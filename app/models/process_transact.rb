@@ -1,8 +1,15 @@
 class ProcessTransact
   include Mongoid::Document
   field :name, type: String
+  field :mp_name, type: String
   field :parameter, type: Hash
-  field :object_id
+  field :object_id,type: String
+  field :user_id,type: String
+  field :created_by,type: String
+  field :facilitated_by,type: String
+  field :class_obj, type: Hash
+  field :app_obj, type: Hash
+  field :notification_obj, type: Hash
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
 

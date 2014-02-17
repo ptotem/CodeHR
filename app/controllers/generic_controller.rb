@@ -250,10 +250,27 @@ class GenericController < ApplicationController
     end
 
     def review_filled_form
-      render :json => params
-      return
       #this action take care of all three form filling system notification anf approval process
       #i.e  form filling process take care of system notification and approval process
+      @process_transact = ProcessTransact.find(params[:process_id])
+      @process_transact.class_obj = params[:Rating]
+      @process_transact.app_obj = params[:approval]
+      @process_transact.notification_obj = params[:notification]
+      @process_transact.save
+
+      if !params[:process_id].nil?
+        @pro=ProcessTransact.find(params[:process_id])
+        #@pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
+        @user=current_user
+        @user.current_redirect_url=''
+        @user.save
+        @pro.step_transacts[params[:seq].to_i].end_processing_step
+      end
+      @user=User.find(current_user._id)
+      if !@user.current_redirect_url.blank?
+        redirect_to @user.current_redirect_url
+        return
+      end
     end
 
     def update_form

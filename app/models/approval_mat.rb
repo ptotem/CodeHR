@@ -50,8 +50,12 @@ class ApprovalMat
       link2="http://codehr.in/reject_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
       puts link1
       puts link2
-      AdminMailer.show_mail(@approver.official_email,"Approval Request","#{self.description}",self.ocls,self.oid,link1,link2).deliver
+      #AdminMailer.show_mail(@approver.official_email,"Approval Request","#{self.description}",self.ocls,self.oid,link1,link2).deliver
       puts "Client mail delivered"
+      #########To be removed######################
+      @pro= ProcessTransact.find(self.process_tr_id)
+      @pro.step_transacts[self.step_no.to_i].end_processing_step
+      #######################################################3#
     end
   end
 

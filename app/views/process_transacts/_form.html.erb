@@ -1,0 +1,101 @@
+<%= form_for @process_transact do |f| %>
+    <% if @process_transact.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@process_transact.errors.count, "error") %> prohibited this process_tr from being saved:</h2>
+
+          <ul>
+            <% @process_transact.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row-fluid">
+      <div class="span4">
+        <div class="control-group">
+          <label class="control-label">Process Code</label>
+          <div class="controls">
+            <%= f.text_field :code, :value => @process_transact_code %>
+          </div>
+        </div>
+      </div>
+      <div class="span4">
+        <div class="control-group">
+          <label for="name" class="control-label">name</label>
+          <div class="controls">
+            <%= f.text_field :name %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="created_by" class="control-label">Created By</label>
+          <div class="controls">
+            <%#= f.select :created_by, options_from_collection_for_select(EmployeeMaster.all, 'id', "employee_name") %>
+            <%= f.text_field :created_by, :value => current_user.employee_master.employee_name, :readonly => true %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="facilitated_by" class="control-label">Facilitated By</label>
+          <div class="controls">
+            <%= f.select :facilitated_by, options_from_collection_for_select(EmployeeMaster.all, 'id', "employee_name") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4">
+        <label class="control-label">Process Group</label>
+        <div class="control-group">
+          <%= f.hidden_field :user_id, :value => current_user._id %>
+          <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
+        </div>
+      </div>
+      <div class="span4 my_class">
+        <div class="control-group">
+          <label class="control-label">Object Id</label>
+          <%= f.text_field :object_id %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit "Submit", :class=>"btn btn-info" %>
+    </div>
+<% end %>
+
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+
+        $('.chzn-select').on('change', function(){
+
+            $.get("/get_value/"+$('.chzn-select option:selected').val(),function(result){
+                console.log(result) ;
+                $("#obj_id").html('');
+                $.each(result,function(i,v){
+                    $("#obj_id").append('<option value="'+ v.id+'">'+ v.field+'</option>');
+                });
+            });
+            $('.my_class').show();
+//            if ( (this_text.indexOf("Creation") >= 0) || (this_text.toLowerCase().indexOf("Creation") >= 0) ){
+//                $('.my_class').show();
+//            }
+//            else{
+//                $('.my_class').hide();
+//            }
+        });
+    });
+</script>
+

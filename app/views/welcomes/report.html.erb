@@ -24,7 +24,7 @@
     </table>
   </div>
 
-  <div class="span4" id="mmod" style="display: none; height: 408px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="span4" id="mmod" style="display: none;">
     <div class="table-header">Listing Selected Object's Columns</div>
     <table id="object_fields_table" class="table table-striped table-bordered table-hover">
       <thead><tr><th>Object Name</th></tr></thead>
@@ -33,7 +33,7 @@
     </table>
   </div>
 
-  <div class="span4" id="main-tab" style="display: none; height: 480px; overflow-y: scroll; overflow-x: hidden; border:1px solid grey; padding: 3px;">
+  <div class="span4" id="main-tab" style="display: none;">
     <!--<div class="table-header">Listing Selected Object's Field/Value</div>-->
     <!--<table id="report_table" class="table table-striped table-bordered table-hover">-->
       <!--<thead></thead>-->
@@ -211,11 +211,13 @@
 
                     $('#main-tab').prepend(report_fields_html);
 
-                    //setTimeout(function() {
-                        //apply_dataTable('#report_table', '#report_table_wrapper','#report_table_length', '#report_table_filter');
-                    //}, 800);
-
                 }
+
+                console.log("report_table_"+result_div);
+                setTimeout(function() {
+                    var div_t = "report_table_"+result_div;
+                    apply_dataTable("#"+div_t, '#'+div_t+'_wrapper','#'+div_t+'_length', '#'+div_t+'_filter');
+                }, 800);
 
 
 
@@ -229,7 +231,7 @@
 
         var tr = $("#"+this_table).find('tbody tr');
         var tr_len = $(tr).length;
-        console.log(tr_len);
+
         var reviewed_by = $('#main-tab').find("#reviewed_by").val();
         var report_date = $('#main-tab').find("#report_date").val();
 
@@ -252,16 +254,16 @@
         data["reviewed_by"].push(reviewed_by);
         data["report_date"].push(report_date);
 
-//        $.ajax({
-//            type: "POST",
-//            url: "/my_report",
-//            data: JSON.stringify(data),
-//            contentType: "application/json; charset=utf-8",
-//            //dataType: "json",
-//            success: function(result){
-//                console.log(result);
-//            }
-//        });
+        $.ajax({
+            type: "POST",
+            url: "/my_report",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            //dataType: "json",
+            success: function(result){
+                console.log(result);
+            }
+        });
 
     }
 </script>
