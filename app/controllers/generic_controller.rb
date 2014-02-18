@@ -274,12 +274,16 @@ class GenericController < ApplicationController
     end
 
     def update_form
-      render :json => params
-      return
+      @model_name = params[:model_name]
+      @form_config = t('forms.'+@model_name)
+      @fields = @form_config[:fields]
+      @object_at_hand  = @model_name.camelize.constantize.find(params[:id])
+      #render :json=>@object_at_hand
+
     end
 
-    def update_form
-      render :json => params
-      return
-    end
+    #def update_form
+    #  render :json => params
+    #  return
+    #end
 end
