@@ -224,17 +224,17 @@ module ApplicationHelper
         puts "Inside Fill form step of the current process"
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if @pro.params_map.nil?
+        #if @pro.params_map.nil?
           @user=User.find(user_id)
           @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
           @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
           @user.save
-        else
-          @g=eval(oclass).create!(@pro.params_obj)
-          @g.save
-          @pro.step_transacts[stepno].end_processing_step
-
-        end
+        #else
+        #  @g=eval(oclass).create!(@pro.params_obj)
+        #  @g.save
+        #  @pro.step_transacts[stepno].end_processing_step
+        #
+        #end
       when "Update"
         puts "Inside update form step of the current process"
         #todo:The same function as fill shoulod br written her with passing thge object id as parameter
@@ -314,7 +314,7 @@ module ApplicationHelper
         else
           #  TODO: Create a new Process and initiate it.
           #create new Process
-          create_and_load_process(pid,stepno,objid,user_id,false)
+          create_and_load_process(pid,stepno,oclass,user_id,false)
         end
         @pro.step_transacts[stepno].end_processing_step
     end

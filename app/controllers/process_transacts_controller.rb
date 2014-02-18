@@ -90,4 +90,50 @@ class ProcessTransactsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def approve_process
+    #This action will get called whenever any approver approves any process.
+    @pro=ProcessTransact.find(params[:process_id])
+    @step_no=params[:step_no].to_i
+    @app_mat=ApprovalMat.find(params[:approval_id])
+    @approver=EmployeeMaster.find(params[:approver_id])
+    @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
+
+    if !@approval.nil?
+      @approval.approved=true
+      @approval.active=false
+      @approval.save
+      @app_mat.save
+    end
+
+    if @app_mat.approvers.where(:active => true).count<=0
+      #Approval process finished beccause all the approvers finished approving
+      @app_mat.finished=true
+      @app_mat.save
+      @pro.step_transacts[@step_no].end_processing_step
+      render :text=>"finished"
+      return
+    end
+
+    render :text=>"Process Approval is completed now next step is over.."
+    return
+  end
+
+  def reject_process
+    @pro=ProcessTransact.find(params[:process_id])
+    @step_no=params[:step_no].to_i
+    @app_mat=ApprovalMat.find(params[:approval_id])
+    @approver=EmployeeMaster.find(params[:approver_id])
+    @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
+    if !@app_mat.finished
+      @app_mat.rejected=true
+      @app_mat.save
+      @app_mat.rejected
+    else
+      render :text=>"This process is already approved"
+    end
+  end
+
+
 end
