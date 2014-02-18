@@ -273,6 +273,27 @@ class GenericController < ApplicationController
       end
     end
 
+    def new_approval
+      @pro = ProcessTransact.find(params[:process_id])
+      @step = @pro.step_transacts[params[:seq].to_i]
+      @cls=@pro.class_obj
+      #render :json => @cls
+      render :text => @pro.step_transacts[0].oclass
+      return
+    end
+
+    def params_mapping
+      @model_name = params[:model_name]
+      @form_config = t('forms.'+@model_name)
+      @fields = @form_config[:fields]
+      @aa= Array.new
+      @fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
+        @aa << i.values.map{|i| i[:attribute]}
+      end
+      render :json =>@aa.flatten
+      return
+    end
+
     def update_form
       render :json => params
       return
