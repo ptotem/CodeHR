@@ -76,4 +76,18 @@
         <% end %>
     <% end %>
 
+    <script src="/assets/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $(function(){
+            $('.date-picker').datepicker();
+
+            $('body').on('click', function(){
+                $('.date-picker').show();
+            });
+        });
+
+    </script>
+
+
 
