@@ -62,7 +62,7 @@
                                 <div class="control-group">
                                   <label class="control-label">Action</label>
                                   <div class="controls">
-                                    <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "Mark Complete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
+                                    <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
                                   </div>
                                 </div>
                               </div>
@@ -93,7 +93,7 @@
                                     <div class="control-group">
                                       <label class="control-label">Spawn Process</label>
                                       <div class="controls">
-                                        <%= select_tag "process_list", options_from_collection_for_select(MasterPro.all,"id","name"),{:class =>"my_process_list"} %>
+                                        <%= select_tag :action_class, options_from_collection_for_select(MasterPro.all,"id","name"),{:class =>"my_process_list"} %>
                                         <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
                                       </div>
                                     </div>
@@ -283,8 +283,8 @@
 
   function mapping_view(this_obj){
       var parent_div=$(this_obj).parents('.span12')[0]
+      counter = $(this_obj).parent().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
       $.get("/params_mapping/CompanyMaster",function(result1){
-          console.log();
           var a=[];
           $.get("/params_mapping/Rating",function(result){
               $.each(result,function(i,v){
@@ -292,15 +292,15 @@
               });
               $.each(result1,function(i,v){
                   $(parent_div).find('.my_params_attr').append('<div class="span6">'+
-                          '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes][0][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_0_params_mapping_'+i+'_type" value="'+v+'">' +
+                          '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
                           '</div>' +
                           '<div class="span6">' +
-                          '<select class="hhh" name="master_pro[master_steps_attributes][0][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_0_params_mapping_'+i+'_type2">' +
+                          '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
                           '<option value=""></option></select>'+
                           '</div>');
                   $.each(a,function(i1,v1){
                       console.log(v1);
-                      $('#master_pro_master_steps_attributes_0_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
+                      $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                   });
               });
           });
