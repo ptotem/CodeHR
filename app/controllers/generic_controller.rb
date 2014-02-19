@@ -205,6 +205,12 @@ class GenericController < ApplicationController
       end
     end
 
+
+    def approved_form
+      render :json =>params
+      return
+    end
+
     def new_process_creation
       @object = t('forms.Rating.object')
       #@object = t('forms.CandidateMaster.object')
@@ -250,8 +256,6 @@ class GenericController < ApplicationController
     end
 
     def review_filled_form
-      #this action take care of all three form filling system notification anf approval process
-      #i.e  form filling process take care of system notification and approval process
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[:Rating]
       @process_transact.app_obj = params[:approval]
@@ -277,9 +281,9 @@ class GenericController < ApplicationController
       @pro = ProcessTransact.find(params[:process_id])
       @step = @pro.step_transacts[params[:seq].to_i]
       @cls=@pro.class_obj
-      #render :json => @cls
-      render :text => @pro.step_transacts[0].oclass
-      return
+      @class_name=@pro.step_transacts[0].obj_name
+      @form_config = t('forms.'+@class_name)
+      @fields = @form_config[:fields]
     end
 
     def params_mapping

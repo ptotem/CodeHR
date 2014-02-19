@@ -163,8 +163,8 @@ CodeHR::Application.routes.draw do
   match '/manpowerplanning_approval/:id/:process_id/:step_no/:approval_id' =>'manpower_plannings#mp_approval', :as => :mp_approval
 
 
-  match '/approve_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#approve_process', :as => :approve_emp_master
-  match '/reject_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_trs#reject_process', :as => :approve_emp_master
+  match '/approve_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_transacts#approve_process', :as => :approved_master
+  match '/reject_process/:approval_id/:process_id/:step_no/:approver_id' =>'process_transacts#reject_process', :as => :rejected_master
 
   match '/doc_master_approval/:id' =>'document_masters#doc_master_approval', :as => :doc_master_approval
   match '/approve_doc_master' =>'document_masters#approve_doc_master', :as => :approve_doc_master
@@ -191,6 +191,10 @@ CodeHR::Application.routes.draw do
   match '/render_approver_form' => 'generic#render_approver_form', :as => :approver_form
 
   match '/new_approval/(:approval_id)/(:process_id)/(:seq)' => 'generic#new_approval'
+  #match '/approved_form/(:approval_id)/(:process_id)/(:seq)' => 'generic#approved_form',:as => "approved_form"
+  match '/approved_form' => 'generic#approved_form'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -17,9 +17,9 @@ class CompanyMaster
   field :remarks_4, type: String
   field :remarks_5, type: String
   field :client_id, type: String
-  field :parent_company_ids, type: Array, default: []
-  field :child_company_master_ids, type: String
-  recursively_embeds_many
+  #field :parent_company_ids, type: Array, default: []
+  #field :child_company_master_ids, type: String
+  #recursively_embeds_many
 
   embeds_many :company_addresses
   has_many :group_masters
@@ -37,19 +37,19 @@ class CompanyMaster
     navigation_label "Company Master"
   end
 
-  validates :company_code, :presence => true
-
-  validates :company_name,
-            :presence => true
-
-  validates :company_addresses, :presence => true
-
-  validates :office_phone_number,
-            :presence => true
-
-  validates :office_fax_number_1,
-            :presence => true
-
-  validates :pan_number, :presence => true
+  #validates :company_code, :presence => true
+  #
+  #validates :company_name,
+  #          :presence => true
+  #
+  #validates :company_addresses, :presence => true
+  #
+  #validates :office_phone_number,
+  #          :presence => true
+  #
+  #validates :office_fax_number_1,
+  #          :presence => true
+  #
+  #validates :pan_number, :presence => true
 
 end

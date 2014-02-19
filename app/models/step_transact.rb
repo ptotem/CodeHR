@@ -6,6 +6,7 @@ class StepTransact
   field :action_object_id, type: String
   field :obj_name, type: String
   field :auto, type: Boolean
+  field :params_mapping, type: Hash
   embedded_in :process_transact
 
   state_machine :state, initial: :created do
