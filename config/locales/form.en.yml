@@ -351,12 +351,12 @@ en:
                   attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
-                  options: ["A","B","C","D"]
+                  options: ["Active", "Transferred", "Resigned", "Separated"]
                 marital_status:
                   attribute: 'marital_status'
                   label: 'Marital Status'
                   type: 'select_tag'
-                  options: ["A","B","C","D"]
+                  options: ["Married", "Unmarried", "Separated", "In Relationship"]
                 date_of_joining:
                   attribute: 'date_of_joining'
                   label: 'Date of Joining'
@@ -390,10 +390,10 @@ en:
                   label: 'Current Designation'
                   type: 'text_field_tag'
                 band_id:
-                  attribute: 'band_id'
+                  attribute: 'band_master'
                   label: 'Band'
                   type: 'select_tag'
-                  options: ["A","B","C","D"]
+                  options: 'model'
                 total_work_exp_months:
                   attribute: 'total_work_exp_months'
                   label: 'Total Work Experience (in months)'
@@ -432,10 +432,10 @@ en:
                   type: 'text_area_tag'
               col2:
                 job_role_id:
-                  attribute: 'job_role_id'
+                  attribute: 'vacancy_master'
                   label: 'Job Role'
                   type: 'select_tag'
-                  options: ["A","B","C","D"]
+                  options: 'model'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'
