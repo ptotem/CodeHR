@@ -472,3 +472,127 @@ en:
                   attribute: 'remarks_4'
                   label: 'Remark 4'
                   type: 'text_area_tag'
+    PlanningManpower:
+      name: "New Planning Manpower Form"
+      object: "PlanningManpower"
+      fields:
+        tabs:
+          tab1:
+            name: "PlanningManpower"
+            type: "standard"
+            cols:
+              col1:
+                group:
+                  attribute: 'group_master'
+                  label: 'Group'
+                  type: 'select_tag'
+                  options: 'model'
+                position:
+                  attribute: 'position'
+                  label: 'Position'
+                  type: 'text_field_tag'
+                ff_source:
+                  attribute: 'ff_source'
+                  label: 'Fulfillment Source'
+                  type: 'select_tag'
+                  options: ["Hiring", "Transfer", "Promotion"]
+                supervisor:
+                  attribute: 'employee_master'
+                  label: 'Supervisor'
+                  type: 'select_tag'
+                  options: 'model'
+              col2:
+                band:
+                  attribute: 'band_master'
+                  label: 'Band'
+                  type: 'select_tag'
+                  options: 'model'
+                position_nature:
+                  attribute: 'position_nature'
+                  label: 'Nature of Position'
+                  type: 'text_field_tag'
+                location:
+                  attribute: 'location'
+                  label: 'Location'
+                  type: 'text_field_tag'
+                comments:
+                  attribute: 'comments'
+                  label: 'Comments'
+                  type: 'text_area_tag'
+    VacancyMaster:
+      name: "New Vacancy Master Form"
+      object: "VacancyMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "VacancyMaster"
+            type: "standard"
+            cols:
+              col1:
+                vacancy_code:
+                  attribute: 'vacancy_code'
+                  label: 'Vacancy Code'
+                  type: 'text_field_tag'
+                vendor_master_id:
+                  attribute: 'vendor_master_id'
+                  label: 'Vendor Master'
+                  type: 'select_tag'
+                  options: 'model'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'text_field_tag'
+                refer_doc_id:
+                  attribute: 'refer_doc_id'
+                  label: 'Refer Doc ID'
+                  type: 'text_field_tag'
+                hiring_manager:
+                  attribute: 'hiring_manager'
+                  label: 'Hiring Manager'
+                  type: 'text_field_tag'
+                ctc_range_to:
+                  attribute: 'ctc_range_to'
+                  label: 'CTC Range To'
+                  type: 'text_field_tag'
+              col2:
+                manpower_planning_id:
+                  attribute: 'manpower_planning_id'
+                  label: 'Manpower Planning'
+                  type: 'select_tag'
+                  options: 'model'
+                description:
+                  attribute: 'description'
+                  label: 'Description'
+                  type: 'text_area_tag'
+                sourcing_strategy:
+                  attribute: 'sourcing_strategy'
+                  label: 'Sourcing Strategy'
+                  type: 'text_field_tag'
+                hr_rep:
+                  attribute: 'hr_rep'
+                  label: 'HR Rep'
+                  type: 'text_field_tag'
+                ctc_range_from:
+                  attribute: 'ctc_range_from'
+                  label: 'CTC Range From'
+                  type: 'text_field_tag'
+          tab2:
+            name: "VacancyScheduling"
+            type: 'sub-form'
+            attribute: 'VacancyScheduling'
+            vacancy_schedulings:
+              type: 'sub-form'
+    VacancyScheduling:
+      name: "New Vacancy Scheduling Form"
+      object: "VacancyScheduling"
+      fields:
+        tabs:
+          tab1:
+            name: "VacancyScheduling"
+            type: "standard"
+            cols:
+              col1:
+                interview_type_id:
+                  attribute: 'interview_type_id'
+                  label: 'Interview Type'
+                  type: 'text_field_tag'
