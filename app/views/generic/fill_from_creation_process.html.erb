@@ -1,3 +1,9 @@
+<style>
+    input[type="checkbox"], input[type="radio"]{
+        opacity: 1;
+    }
+</style>
+
 <!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
 <%= form_tag :review_form do |f| %>
     <h1><%= @form_config[:name] %></h1>
@@ -43,6 +49,10 @@
                                       <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "text_area_tag" %>
                                       <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                  <% when "date_field_tag" %>
+                                      <input type="text" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
+                                  <% when "check_box_tag" %>
+                                      <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
                                           <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>

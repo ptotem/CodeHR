@@ -138,6 +138,9 @@ CodeHR::Application.routes.draw do
   match 'import_group_masters' => 'group_masters#import_group_masters', :as => :import_group_masters
   match 'importing_group_masters' => 'group_masters#importing_group_masters', :as => :importing_group_masters
 
+  match 'import_ratings' => 'ratings#import_ratings', :as => :import_ratings
+  match 'importing_ratings' => 'ratings#importing_ratings', :as => :importing_ratings
+
   match '/get_column_data' => 'process_masters#get_data', :as => :get_column_data
 
 

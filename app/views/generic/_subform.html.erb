@@ -18,6 +18,8 @@
                                 <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
                             <% when "check_box_tag" %>
                                 <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                            <% when "date_field_tag" %>
+                                <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
                             <% when "select_tag" %>
                                 <% if cv[:options] == 'model' %>
                                     <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
@@ -73,5 +75,19 @@
             </div>
         <% end %>
     <% end %>
+
+    <script src="/assets/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $(function(){
+            $('.date-picker').datepicker();
+
+            $('body').on('click', function(){
+                $('.date-picker').show();
+            });
+        });
+
+    </script>
+
 
 

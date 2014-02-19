@@ -21,7 +21,7 @@ en:
                   attribute: 'vacancy_scheduling_id'
                   label: 'Vacancy Scheduling'
                   type: 'select_tag'
-                  options: ["A","B","C","D"]
+                  options: 'model'
           tab2:
             name: "Scores"
             type: 'sub-form'
@@ -102,17 +102,7 @@ en:
                       attribute: 'client_id'
                       label: 'Client'
                       type: 'select_tag'
-                      options: ["A","B","C","D"]
-                    parent_company_ids:
-                      attribute: 'parent_company_ids'
-                      label: 'Parent Companies'
-                      type: 'select_tag'
-                      options: ["A","B","C","D"]
-                    child_company_master_ids:
-                      attribute: 'child_company_master_ids'
-                      label: 'Child Company Master'
-                      type: 'select_tag'
-                      options: ["A","B","C","D"]
+                      options: 'model'
                     office_phone_number:
                       attribute: 'office_phone_number'
                       label: 'Office Phone Number'
@@ -245,31 +235,31 @@ en:
                       attribute: 'role'
                       label: 'Role'
                       type: 'select_tag'
-                      options: ["A","B","C","D"]
+                      options: 'model'
                     status:
                       attribute: 'status'
                       label: 'Status'
                       type: 'select_tag'
-                      options: ["A","B","C","D"]
+                      options: ["Active", "Transferred", "Resigned", "Separated"]
                   col2:
                     period_from:
                       attribute: 'period_from'
                       label: 'Period From'
                       type: 'text_field_tag'
                     requested_by:
-                      attribute: 'requested_by'
+                      attribute: 'employee_master'
                       label: 'Requested By'
                       type: 'select_tag'
-                      options: ["A","B","C","D"]
+                      options: 'model'
                     period_from:
                       attribute: 'period_from'
                       label: 'Period From'
                       type: 'text_field_tag'
                     process_id:
-                      attribute: 'process_id'
+                      attribute: 'master_pro'
                       label: 'Process'
                       type: 'select_tag'
-                      options: ["A","B","C","D"]
+                      options: 'model'
               tab2:
                 name: "Approval Mats"
                 type: 'sub-form'
@@ -313,3 +303,172 @@ en:
                   attribute: 'finished'
                   label: 'Finished'
                   type: 'check_box_tag'
+    EmployeeMaster:
+      name: "New Employee Master Form"
+      object: "EmployeeMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "EmployeeMaster"
+            type: "standard"
+            cols:
+              col1:
+                employee_code:
+                  attribute: 'employee_code'
+                  label: 'Employee Code'
+                  type: 'text_field_tag'
+                employee_middle_name_name:
+                  attribute: 'employee_middle_name_name'
+                  label: 'Middle Name'
+                  type: 'text_field_tag'
+                gender:
+                  attribute: 'gender'
+                  label: 'Gender'
+                  type: 'select_tag'
+                  options: ["Male","Female"]
+                date_of_birth:
+                  attribute: 'date_of_birth'
+                  label: 'Date of Birth'
+                  type: 'date_field_tag'
+                role:
+                  attribute: 'role'
+                  label: 'Role'
+                  type: 'text_field_tag'
+                official_email:
+                  attribute: 'official_email'
+                  label: 'Official E-mail'
+                  type: 'text_field_tag'
+                approved:
+                  attribute: 'approved'
+                  label: 'Approved'
+                  type: 'check_box_tag'
+              col2:
+                comments:
+                  attribute: 'employee_name'
+                  label: 'Employee Name'
+                  type: 'text_field_tag'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Active", "Transferred", "Resigned", "Separated"]
+                marital_status:
+                  attribute: 'marital_status'
+                  label: 'Marital Status'
+                  type: 'select_tag'
+                  options: ["Married", "Unmarried", "Separated", "In Relationship"]
+                date_of_joining:
+                  attribute: 'date_of_joining'
+                  label: 'Date of Joining'
+                  type: 'date_field_tag'
+                designation_joined_at:
+                  attribute: 'designation_joined_at'
+                  label: 'Designation Joined At'
+                  type: 'text_field_tag'
+                address_for_communication:
+                  attribute: 'address_for_communication'
+                  label: 'Address For Communication'
+                  type: 'text_area_tag'
+          tab2:
+            name: "Employee Details"
+            type: 'sub-form'
+            attribute: 'EmployeeDetail'
+            company_addresses:
+              type: 'sub-form'
+    EmployeeDetail:
+      name: "New Employee Detail Form"
+      object: "EmployeeDetail"
+      fields:
+        tabs:
+          tab1:
+            name: "Employee Detail"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'current_designation'
+                  label: 'Current Designation'
+                  type: 'text_field_tag'
+                band_id:
+                  attribute: 'band_master'
+                  label: 'Band'
+                  type: 'select_tag'
+                  options: 'model'
+                total_work_exp_months:
+                  attribute: 'total_work_exp_months'
+                  label: 'Total Work Experience (in months)'
+                  type: 'text_field_tag'
+                contact_numbers:
+                  attribute: 'contact_numbers'
+                  label: 'Contact Numbers'
+                  type: 'text_field_tag'
+                bank_name:
+                  attribute: 'bank_name'
+                  label: 'Bank Name'
+                  type: 'text_field_tag'
+                rf_no:
+                  attribute: 'rf_no'
+                  label: 'RF No.'
+                  type: 'text_field_tag'
+                pan_no:
+                  attribute: 'pan_no'
+                  label: 'PAN No.'
+                  type: 'text_field_tag'
+                date_of_leaving:
+                  attribute: 'date_of_leaving'
+                  label: 'Date of Leaving'
+                  type: 'date_field_tag'
+                remarks_1:
+                  attribute: 'remarks_1'
+                  label: 'Remark 1'
+                  type: 'text_area_tag'
+                remarks_3:
+                  attribute: 'remarks_3'
+                  label: 'Remark 3'
+                  type: 'text_area_tag'
+                remarks_5:
+                  attribute: 'remarks_5'
+                  label: 'Remark 5'
+                  type: 'text_area_tag'
+              col2:
+                job_role_id:
+                  attribute: 'vacancy_master'
+                  label: 'Job Role'
+                  type: 'select_tag'
+                  options: 'model'
+                total_work_exp_years:
+                  attribute: 'total_work_exp_years'
+                  label: 'Total Work Experience (in years)'
+                  type: 'text_field_tag'
+                personal_email:
+                  attribute: 'personal_email'
+                  label: 'Personal E-mail'
+                  type: 'text_field_tag'
+                personal_address:
+                  attribute: 'personal_address'
+                  label: 'Personal Address'
+                  type: 'text_area_tag'
+                account_number:
+                  attribute: 'account_number'
+                  label: 'Account Number'
+                  type: 'text_field_tag'
+                esic_no:
+                  attribute: 'esic_no'
+                  label: 'ESIC No.'
+                  type: 'text_field_tag'
+                blood_group:
+                  attribute: 'blood_group'
+                  label: 'Blood Group'
+                  type: 'text_field_tag'
+                nature_of_separation:
+                  attribute: 'nature_of_separation'
+                  label: 'Nature of Separation'
+                  type: 'text_field_tag'
+                remarks_2:
+                  attribute: 'remarks_2'
+                  label: 'Remark 2'
+                  type: 'text_area_tag'
+                remarks_4:
+                  attribute: 'remarks_4'
+                  label: 'Remark 4'
+                  type: 'text_area_tag'
