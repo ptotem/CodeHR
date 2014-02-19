@@ -1,5 +1,82 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Process Transact Details :-
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td>
+              <%= @process_transact.name %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>MP Name</th>
+            <td>
+              <%= @process_transact.mp_name %>
+            </td>
+          </tr>
+
+          <!--<tr>-->
+            <!--<th>Parameter</th>-->
+            <!--<td>-->
+              <!--<%#= @process_transact.parameter %>-->
+            <!--</td>-->
+          <!--</tr>-->
+
+          <tr>
+            <th>Object</th>
+            <td>
+              <%= @process_transact.object_id %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Created By</th>
+            <td>
+              <%= @process_transact.created_by %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Facilitated By</th>
+            <td>
+              <%= @process_transact.facilitated_by %>
+            </td>
+          </tr>
+
+
+      <% @process_transact.step_transacts.each do |step| %>
+          <tr>
+            <th>
+              <% if step.action_name == "Fill" %>
+                <%= "#{step.action_name} #{step.action_object_id}" %>
+              <% else %>
+                  <%= step.action_name %>
+              <% end %>
+            </th>
+            <td>
+              <% if step.state == "finished" %>
+                  <span class='label label-success'><%= step.state %></span>
+              <% elsif step.state == "processing" %>
+                  <span class='label label-info arrowed-in'><%= step.state %></span>
+              <% elsif step.state == "created" %>
+                  <span class='label label-warning arrowed arrowed-right'><%= step.state %></span>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_process_transact_path(@process_transact) %> |
 <%= link_to 'Back', process_transacts_path %>

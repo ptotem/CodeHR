@@ -1,21 +1,56 @@
-<h1>Listing process_transacts</h1>
+<div class="row-fluid">
+  <div class="span4">
+    <%= link_to 'New Process transact', new_process_transact_path, :class => "btn btn-info" %>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<br>
 
-<% @process_transacts.each do |process_transact| %>
-  <tr>
-    <td><%= link_to 'Show', process_transact %></td>
-    <td><%= link_to 'Edit', edit_process_transact_path(process_transact) %></td>
-    <td><%= link_to 'Destroy', process_transact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="table-header">Listing Process Transacts</div>
+  </div>
+</div>
+
+<table id="process_transacts_table" class="table table-striped table-bordered table-hover">
+  <thead>
+      <tr>
+        <th>Name</th>
+        <th>MP Name</th>
+        <th>Parameter</th>
+        <th>Object</th>
+        <th>Created By</th>
+        <th>Facilitated By</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @process_transacts.each do |process_transact| %>
+      <tr>
+        <td><%= process_transact.name %></td>
+        <td><%= process_transact.mp_name %></td>
+        <td><%= process_transact.parameter %></td>
+        <td><%= process_transact.object_id %></td>
+        <td><%= process_transact.created_by %></td>
+        <td><%= process_transact.facilitated_by %></td>
+        <td><%= link_to 'Show', process_transact %></td>
+        <td><%= link_to 'Edit', edit_process_transact_path(process_transact) %></td>
+        <td><%= link_to 'Destroy', process_transact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
+<%= javascript_include_tag "custom_dataTable" %>
 
-<%= link_to 'New Process transact', new_process_transact_path %>
+<script>
+    $(function(){
+        apply_dataTable('#process_transacts_table', '#process_transacts_table_wrapper','#process_transacts_table_length', '#process_transacts_table_filter');
+    });
+</script>
+

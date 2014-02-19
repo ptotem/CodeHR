@@ -220,21 +220,17 @@ module ApplicationHelper
     puts args
     case action_name
       when "Fill"
-
         puts "Inside Fill form step of the current process"
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        #if @pro.params_map.nil?
+        if @pro.parameter.nil?
           @user=User.find(user_id)
           @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
           @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
           @user.save
-        #else
-        #  @g=eval(oclass).create!(@pro.params_obj)
-        #  @g.save
-        #  @pro.step_transacts[stepno].end_processing_step
-        #
-        #end
+        else
+          @pro.step_transacts[stepno].end_processing_step
+        end
       when "Update"
         puts "Inside update form step of the current process"
         #todo:The same function as fill shoulod br written her with passing thge object id as parameter
@@ -251,11 +247,7 @@ module ApplicationHelper
         #link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         #@app.link=link
         @app.save
-        #index = 0
         @pro.app_obj["approvers"].each do |k,a|
-          #puts "uuuu"
-          #puts @pro.app_obj["approvers"][k]
-          #puts a
           if a["oClass"] == "EmployeeMaster"
             a["action_arr"].each do |aaa|
               @app.approvers.create!(:employee_master_id=>aaa,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
@@ -263,7 +255,6 @@ module ApplicationHelper
           else
             puts "Todo"
           end
-          #index=index+1
         end
         @app.send_notification
         puts "Approval"
@@ -287,21 +278,26 @@ module ApplicationHelper
       when "MarkComplete"
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
+        @class_name = @pro.step_transacts[0].obj_name
         @step=@pro.step_transacts[stepno]
-        #todo:Creating the class object with parameter
-        #eval(oclass).new(@pro.class_obj))
-        #eval(oclass).save
+        @myc = eval(@class_name).create(@pro.class_obj)
         @pro.step_transacts[stepno].end_processing_step
       when "SpawnD"
         puts "Calling a new process dependently.."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if @step.auto
-        #  TODO:
-        #  create_and_load_process(pid,step_no,oclass,user_id,true)
+        if !@step.auto
+          puts @step.params_mapping
+          @a=@step.params_mapping
+          @a1=@a.values.select{|i| i["type2"]!=""}
+          @a2=@a1.map{|i| i.keys.map{|j| i[j]}}
+          @child_class_object = Hash.new
+          @a2.each do |k|
+            @child_class_object[k[0]] = @pro.class_obj[k[1]]
+          end
+          puts @child_class_object
+          create_and_load_auto_process(pid,stepno,oclass,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
         else
-        #  TODO: Create a new Process and initiate it.
-          #create new Process
           create_and_load_process(pid,stepno,oclass,user_id,true)
         end
       when "SpawnI"
@@ -320,10 +316,6 @@ module ApplicationHelper
     end
   end
 
-  def check_state
-
-  end
-
   def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent)
     @mp=MasterPro.find(pid)
     @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process", :created_by => userid, :facilitated_by => userid, :user_id =>userid)
@@ -331,7 +323,15 @@ module ApplicationHelper
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
     end
     @process_transact.load_process
-    #@new_process = ProcessTransact.create!()
+  end
+
+  def create_and_load_auto_process(parent_process_id, parent_step_no, pid,userid,dependent,child_cls_obj,child_app_obj,child_not_obj)
+    @mp=MasterPro.find(pid)
+    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process", :created_by => userid, :facilitated_by => userid, :user_id =>userid, :parameter =>child_cls_obj,:class_obj =>child_cls_obj,:app_obj => child_app_obj, :notification_obj => child_not_obj)
+    @mp.master_steps.each do |sm|
+      @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
+    end
+    @process_transact.load_process
   end
 
 
