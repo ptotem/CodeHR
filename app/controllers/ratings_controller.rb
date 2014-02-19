@@ -59,4 +59,22 @@ class RatingsController < InheritedResources::Base
     #  i.rating_measures.build(:name => j.scale_name, :range_from => j.range_from, :range_to => j.range_to)
     #end
   end
+
+  #Function to handle excel import of Rating Model
+  def import_ratings
+    render :layout => false
+  end
+
+  def importing_ratings
+    #render :text => params[:file][:original_filename]
+
+    if request.post? && params[:file].present?
+      Rating.import(params[:file])
+      #redirect_to '/employee_masters', notice: "Slides imported."
+    else
+      redirect_to '/import_ratings', notice: "Ratings couldn't be imported."
+    end
+
+  end
+
 end

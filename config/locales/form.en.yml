@@ -313,3 +313,17 @@ en:
                   attribute: 'finished'
                   label: 'Finished'
                   type: 'check_box_tag'
+    BulkRating:
+      name: "Bulk Rating Form"
+        object: "Rating"
+        fields:
+          tabs:
+            tab1:
+              name: "Ratings"
+              type: "standard"
+              cols:
+                col1:
+                  comments:
+                    attribute: 'comments'
+                    label: 'Comment'
+                    type: 'file_field_tag'
