@@ -20,4 +20,13 @@ class AdminMailer < ActionMailer::Base
     #@oid=oid
     mail(:to=>user, :subject => sub)
   end
+
+  def show_mail1(user,sub,msg,data,link1,link2)
+    @user=user
+    @message = msg
+    @data=data
+    @link1 = link1
+    @link2 = link2
+    mail(:to=>user, :subject => sub)
+  end
 end

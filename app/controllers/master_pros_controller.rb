@@ -42,7 +42,6 @@ class MasterProsController < ApplicationController
   # POST /master_pros.json
   def create
     @master_pro = MasterPro.new(params[:master_pro])
-
     respond_to do |format|
       if @master_pro.save
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully created.' }
