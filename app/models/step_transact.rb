@@ -78,7 +78,7 @@ class StepTransact
     puts "#{self.name} is preparing for finish processing"
     #self.end_processing_step
     #step_processing(self.oclass,self.oaction,self.action_to,self.content,self.process_tr._id,self.process_tr.step_trs.index(self),self.process_tr.user_id)
-    step_transaction_processing(self.action_name,self.obj_name,self.action_object_id, self.process_transact._id, self.process_transact.step_transacts.index(self),self.process_transact.user_id)
+    step_transaction_processing(self.action_name,self.obj_name,self.process_transact.cobject_id, self.process_transact._id, self.process_transact.step_transacts.index(self),self.process_transact.user_id)
   end
 
   def post_finish_step

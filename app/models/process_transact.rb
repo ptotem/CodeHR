@@ -3,7 +3,7 @@ class ProcessTransact
   field :name, type: String
   field :mp_name, type: String
   field :parameter, type: Hash
-  field :object_id,type: String
+  field :cobject_id,type: String
   field :user_id,type: String
   field :created_by,type: String
   field :facilitated_by,type: String
