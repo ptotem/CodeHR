@@ -162,6 +162,7 @@
 <script>
   var tab_count;
   var counter =0;
+
   $(function(){
 
       $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
@@ -223,9 +224,6 @@
       var models_dropdown = $(parent_field).find(".model-select-dropdown-container");
       var this_p = $(this_obj).parents().eq(6);
 
-      var data = {action_name: []};
-      data["action_name"].push(action_name);
-
       $(models_dropdown).children().first().html("");
 
       if ( (action_name == "Approve") || (action_name == "Notify") ) {
@@ -235,31 +233,43 @@
               $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
           }
       }
+      else if ( action_name == "Fill" ) {
+          get_d_data(models_dropdown, action_name);
+          var options = ["Bulk"];
+          for(var i=0; i< options.length; i++){
+              $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
+          }
+      }
       else if ( action_name == "SpawnD" ) {
         $(this_p).find(".spawn-process").show();
       }
       else{
           $(this_p).find(".spawn-process").hide();
-          $.ajax({
-              type: "POST",
-              url: "/get_dropdown_data",
-              data: JSON.stringify(data),
-              contentType: "application/json; charset=utf-8",
-              success: function(result){
-
-                  var substr = result.split(',');
-                  var v;
-                  for(var i=0; i< substr.length; i++)
-                  {
-                      v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/ /g,'');
-                      $(models_dropdown).children().first().append("<option value="+v+">"+v+"</option>");
-                  }
-
-
-
-              }
-          });
+          get_d_data(models_dropdown, action_name);
       }
+  }
+
+
+  function get_d_data(dropdown, action){
+      var data = {action_name: []};
+      data["action_name"].push(action);
+
+      $.ajax({
+          type: "POST",
+          url: "/get_dropdown_data",
+          data: JSON.stringify(data),
+          contentType: "application/json; charset=utf-8",
+          success: function(result){
+
+              var substr = result.split(',');
+              var v;
+              for(var i=0; i< substr.length; i++)
+              {
+                  v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/ /g,'');
+                  $(dropdown).children().first().append("<option value="+v+">"+v+"</option>");
+              }
+          }
+      });
   }
 
   //function to toggle manual and auto btns

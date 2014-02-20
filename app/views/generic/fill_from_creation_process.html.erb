@@ -53,6 +53,8 @@
                                       <input type="text" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
                                   <% when "check_box_tag" %>
                                       <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                  <% when "file_field_tag" %>
+                                      <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
                                           <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>

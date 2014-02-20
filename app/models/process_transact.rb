@@ -1,5 +1,6 @@
 class ProcessTransact
   include Mongoid::Document
+  include Mongoid::Paperclip
   field :name, type: String
   field :mp_name, type: String
   field :parameter, type: Hash
@@ -14,6 +15,8 @@ class ProcessTransact
   field :dependent, type: Boolean
   field :parent_pro_id, type: String
   field :parent_step_no, type: Integer
+  has_mongoid_attached_file :bulk_data
+
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
 
