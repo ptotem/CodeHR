@@ -180,7 +180,7 @@ CodeHR::Application.routes.draw do
   match '/new_process_creation_from' =>'generic#new_process_creation'
 
   match '/fillform/:model_name/(:process_id)/(:seq)' => 'generic#fill_from_creation_process'
-  match '/updateform/:model_name/:id' => 'generic#update_form'
+  match '/updateform/:model_name/:id/(:process_id)/(:seq)' => 'generic#update_form'
   match '/review_form' => 'generic#review_filled_form'
 
   match '/params_mapping/:model_name' => 'generic#params_mapping', :as => :params_mapping

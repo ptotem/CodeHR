@@ -233,10 +233,11 @@ module ApplicationHelper
         end
       when "Update"
         puts "Inside update form step of the current process"
+        puts objid
         #todo:The same function as fill shoulod br written her with passing thge object id as parameter
         @user = User.find(user_id)
         @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
-        @user.current_redirect_url="/updaetform/#{oclass}/#{objid}/#{pid}/#{stepno}"
+        @user.current_redirect_url="/updateform/#{oclass}/#{objid}/#{pid}/#{stepno}"
         @user.save
       when "Approve"
         puts "In side approval"

@@ -15,18 +15,18 @@
                           <div class="controls">
                             <% case cv[:type] %>
                             <% when "text_field_tag" %>
-                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]] %>
                             <% when "text_area_tag" %>
-                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]] %>
                             <% when "check_box_tag" %>
-                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]]  %>
                             <% when "date_field_tag" %>
                                 <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
                             <% when "select_tag" %>
                                 <% if cv[:options] == 'model' %>
                                     <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
                                 <% else %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]) %>
+                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => local_object[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]) %>
                                 <% end %>
                             <% end %>
                           </div>
@@ -51,13 +51,15 @@
                 </thead>
                 <tbody class="my_body">
                 <% @my_index=0 %>
+                <%#= local_object[fi.pluralize.underscore][form_index] %>
+                <% if !local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore].nil?   %>
+                <% local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore].map do |kl,lk| %>
                 <tr class="salary_comp_row">
                   <% @new_fields.each do |nf| %>
                       <td>
-
                         <% case nf[:type] %>
                         <% when "text_field_tag" %>
-                            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]" %>
+                            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]",local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][@my_index][nf[:attribute]] %>
                         <% when "select_tag" %>
                             <% if nf[:options] == 'model' %>
                                 <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:attribute].gsub("_id", "").underscore).all, 'id', 'id') %>
@@ -68,10 +70,12 @@
                       </td>
                   <% end %>
                 </tr>
-
+                <% @my_index = @my_index+1 %>
+                <% end %>
+                 <% end %>
                 <%#= render :partial => 'nested_sub_form', :locals => {:new_fields => @new_fields, :main_form => main_form, :fi => fi, :form_index => form_index, :this_sf =>@this_sf, :my_index =>(@my_index+1) } %>
                 </tbody>
-                <input type="hidden" class="my_index" value="0"/>
+                <input type="hidden" class="my_index" value=<%= @my_index-1 %>/>
                 <input type="button" name="Add New" id="addNew" value="Add New" class="btn btn-info" onclick='add_new_nested_fields(this,<%= raw @nf %>,"<%= main_form %>","<%= fi %>","<%= form_index %>","<%= @this_sf %>")'/>
               </table>
 
