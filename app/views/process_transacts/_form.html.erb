@@ -47,8 +47,7 @@
           <label for="created_by" class="control-label">Created By</label>
           <div class="controls">
             <%#= f.select :created_by, options_from_collection_for_select(EmployeeMaster.all, 'id', "employee_name") %>
-            <!--TODO: uncomment this-->
-            <%#= f.text_field :created_by, :value => current_user.employee_master.employee_name, :readonly => true %>
+            <%= f.text_field :created_by, :value => current_user.employee_master.employee_name, :readonly => true %>
           </div>
         </div>
       </div>

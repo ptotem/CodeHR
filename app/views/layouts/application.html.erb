@@ -325,8 +325,11 @@
             <% @master_pros = MasterPro.all %>
             <ul class="submenu">
               <% @master_pros.each do |master_pro| %>
-                  <!--<li><%#= link_to "#{master_pro.name}", "process_transacts/new" %></li>-->
-                  <li><%= link_to "#{master_pro.name}", "process_transacts/new/#{master_pro.id}" %></li>
+                  <% if params[:controller]=="process_transacts" %>
+                      <li><%= link_to "#{master_pro.name}", "#{master_pro.id}" %></li>
+                  <% else %>
+                      <li><%= link_to "#{master_pro.name}", "process_transacts/new/#{master_pro.id}" %></li>
+                  <% end %>
               <% end %>
             </ul>
           </li>
