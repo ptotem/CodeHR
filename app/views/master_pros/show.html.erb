@@ -1,5 +1,28 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Master Pro Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @master_pro.name %></td>
+          </tr>
+
+          <%# @master_pros.master_steps.each do |master_step| %>
+            <!--<tr>-->
+                <!--<th>Name</th>-->
+                <!--<td><%# master_step.step_name %></td>-->
+            <!--</tr>-->
+          <%# end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_master_pro_path(@master_pro) %> |
 <%= link_to 'Back', master_pros_path %>

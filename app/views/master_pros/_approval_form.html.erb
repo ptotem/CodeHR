@@ -1,0 +1,70 @@
+<div class="row-fluid" id="<%= "approval_#{counter}" %>">
+  <div class="span6">
+    <div class="control-group">
+      <%= label_tag :reminder %>
+      <div class="controls">
+        <%= text_field_tag "approval[#{counter}][reminder]" %>
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="control-group">
+      <%= label_tag :rep_reminder %>
+      <div class="controls">
+        <%= text_field_tag "approval[#{counter}][rep_reminder]" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="control-group">
+      <%= label_tag :escalate %>
+      <div class="controls">
+        <%= text_field_tag "approval[#{counter}][escalate]" %>
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="control-group">
+      <%= label_tag :rep_escalate %>
+      <div class="controls">
+        <%= text_field_tag "approval[#{counter}][escalate]" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="control-group">
+      <%= label_tag :auto_assign %>
+      <div class="controls">
+        <%= text_field_tag "approval[#{counter}][auto_assign]" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<h2>Approvers</h2>
+
+<%# counter = 0 %>
+<div class="row-fluid">
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="myAppTab">
+      <li><a data-toggle="tab" href="#appdropdown1">1</a></li>
+      <li>
+        <input type="hidden" class="approver_count" value="1">
+        <a id="addMe" class="btn btn-info" onclick='add_nestsed_approvers_tab(this)'>+</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="appdropdown1" class="tab-pane active">
+        <%= render :partial => 'master_pros/approvers', :locals => {:counter => "0"} %>
+      </div>
+    </div>
+
+  </div>
+</div>

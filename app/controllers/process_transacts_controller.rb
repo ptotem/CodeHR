@@ -25,6 +25,8 @@ class ProcessTransactsController < ApplicationController
   # GET /process_transacts/new.json
   def new
     @process_transact = ProcessTransact.new
+    #render :text => params
+    #return
 
     respond_to do |format|
       format.html # new.html.erb

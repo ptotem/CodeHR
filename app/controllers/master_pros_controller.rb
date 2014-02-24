@@ -41,6 +41,8 @@ class MasterProsController < ApplicationController
   # POST /master_pros
   # POST /master_pros.json
   def create
+    render :json => params
+    return
     @master_pro = MasterPro.new(params[:master_pro])
     respond_to do |format|
       if @master_pro.save
@@ -84,9 +86,28 @@ class MasterProsController < ApplicationController
   def get_dropdown_data
     #render :text => params[:action_name][0]
     #return
-    @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
+    #@models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
+    @models = Array.new()
+    @yml_models = t('forms')
+    @yml_models.each do |model|
+      @models << model[1][:name]
+    end
     render :text => @models
     return
+  end
+
+  def approval_pm_form
+    respond_to do |format|
+      format.html { render :partial => 'master_pros/approval_form', :locals => {:counter => params[:counter][0]} } # index.html.erb
+      format.json { render json: @results, :callback => params[:callback] }
+    end
+  end
+
+  def approver_pm_form
+    respond_to do |format|
+      format.html { render :partial => 'master_pros/approvers', :locals => {:counter => params[:counter][0]} } # index.html.erb
+      format.json { render json: @results, :callback => params[:callback] }
+    end
   end
 
 end

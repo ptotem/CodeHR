@@ -70,7 +70,12 @@
                                 <div class="control-group">
                                   <label class="control-label">Action Class</label>
                                   <div class="controls model-select-dropdown-container">
-                                    <% @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
+                                    <%# @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
+                                    <% @models = Array.new() %>
+                                    <% @yml_models = t('forms') %>
+                                    <% @yml_models.each do |model| %>
+                                        <% @models << model[1][:name] %>
+                                    <% end %>
                                     <%= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
                                     <%= master_step.hidden_field :auto, :value=>true %>
                                   </div>
@@ -135,6 +140,10 @@
                               </div>
                             </div>
 
+                            <div class="row-fluid pm_approval_field">
+                                <%#= render :partial => 'generic/approval_form' %>
+                            </div>
+
                             <%= master_step.link_to_remove "Remove this record", :onClick=>"remove_tab_li($(this));" %>
                             <hr>
                         <!--</div>-->
@@ -197,6 +206,109 @@
     counter++;
   }
 
+  function add_approval_pm_form(this_obj){
+      var sortable_lis = $('#sortable').find('li').length;
+      var sortable_lis_indexed = sortable_lis - 1;
+      var data = {counter: []};
+      data["counter"].push(sortable_lis_indexed);
+      $.ajax({
+          url: "<%= approval_pm_form_path %>",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: function (data) {
+              console.log(data);
+              $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+              //$(this_obj).parent().find('.my_body').append(data);
+          }
+      });
+  }
+
+
+  function add_nestsed_approvers_tab(this_obj) {
+      var data = {counter: []};
+      data["counter"].push($(this_obj).prev().val());
+      $.ajax({
+          url: "<%= approver_pm_form_path %>",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: function (data) {
+              $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
+
+              var a = "appdropdown" + $(this_obj).prev().val();
+              $(this_obj).parent().before('<li><a data-toggle="tab" href="#' + a + '">' + $(this_obj).prev().val() + '</a></li>');
+              var newDiv = $('#myAppTab').next().append('<div id="' + a + '" class="tab-pane"></div>');
+              $("#" + a).append(data);
+          }
+      });
+  }
+
+  //Code to display all the record of a particular model......
+  function display_objects(this_obj, oobj) {
+      var count = 0;
+      var parent_tab = $(this_obj).parents('.row-fluid')[0];
+      //console.log(parent_tab);
+      var model_name = $(this_obj).val();
+      var data = {model_name: []};
+      data["model_name"].push(model_name);
+      $.ajax({
+          url: "/get_column_data",
+          type: "post",
+          async: false,
+          data: JSON.stringify(data),
+          contentType: "application/json",
+          success: function (data) {
+              $(parent_tab).find('.users-list').show();
+              $(parent_tab).find('.not-available-text').hide();
+              var $user_row;
+              $(parent_tab).find(".users-list tr:not(:first-child)").empty();
+
+              if (model_name == "EmployeeMaster") {
+                  for (var i = 0; i < data.length; i++) {
+                      my_id = data[i]["_id"];
+                      $user_row = '<tr>' +
+                              '<td style="position: relative;"><input type="checkbox" name="' + oobj + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                              '<td>' + data[i]["employee_name"] + '</td><td>' + data[i]["official_email"] + '</td></tr>';
+                      $(parent_tab).find(".users-list").append($user_row);
+                  }
+                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+              }
+              else if (model_name == "GroupMaster") {
+                  for (var i = 0; i < data.length; i++) {
+                      my_id = data[i]["_id"];
+                      $user_row = '<tr>' +
+                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                              '<td>' + data[i]["group_name"] + '</td></tr>';
+                      $(parent_tab).find(".users-list").append($user_row);
+                  }
+                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+              }
+              else if (model_name == "Role") {
+                  for (var i = 0; i < data.length; i++) {
+                      my_id = data[i]["_id"];
+                      $user_row = '<tr>' +
+                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                              '<td>' + data[i]["name"] + '</td></tr>';
+                      $(parent_tab).find(".users-list").append($user_row);
+                  }
+                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+              }
+              else if (model_name == "VendorMaster") {
+                  for (var i = 0; i < data.length; i++) {
+                      my_id = data[i]["_id"];
+                      $user_row = '<tr>' +
+                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                              '<td>' + data[i]["vendor_name"] + '</td><td>' + data[i]["vendor_type"] + '</td></tr>';
+                      $(parent_tab).find(".users-list").append($user_row);
+                  }
+                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+              }
+              $(':checkbox, :radio').css('opacity', '1');
+          }
+      });
+  }
+
   function remove_tab_li(this_obj){
       var sortable_lis = $('#sortable').find('li').length;
       var tab_pane_id = $(this_obj).parent().parent().attr('id');
@@ -225,8 +337,11 @@
       var this_p = $(this_obj).parents().eq(6);
 
       $(models_dropdown).children().first().html("");
-
-      if ( (action_name == "Approve") || (action_name == "Notify") ) {
+      if(action_name == "Approve"){
+        get_d_data(models_dropdown, action_name);
+        //add_approval_pm_form(this_obj);
+      }
+      else if ( action_name == "Notify" ) {
           $(this_p).find(".spawn-process").hide();
           var options = ["True", "False"];
           for(var i=0; i< options.length; i++){
@@ -260,12 +375,12 @@
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           success: function(result){
-
+              //console.log(result);
               var substr = result.split(',');
               var v;
               for(var i=0; i< substr.length; i++)
               {
-                  v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/ /g,'');
+                  v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/:/g, '');
                   $(dropdown).children().first().append("<option value="+v+">"+v+"</option>");
               }
           }

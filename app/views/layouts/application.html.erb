@@ -313,9 +313,23 @@
           <span>Process Management</span>
           <b class="arrow icon-angle-down"></b>
         </a>
-        <ul class="submenu">
-          <li><%= link_to "Process Master", process_masters_path%></li>
-          <li><%= link_to "Process TR", process_trs_path%></li>
+        <ul class="nav nav-list">
+          <!--<li><%#= link_to "Process Master", process_masters_path%></li>-->
+          <li>
+            <%#= link_to "Process TR", process_trs_path, :class => "dropdown-toggle" %>
+            <a href="#" class="dropdown-toggle">
+              <i class="icon-group"></i>
+              <span>Process TR</span>
+              <b class="arrow icon-angle-down"></b>
+            </a>
+            <% @master_pros = MasterPro.all %>
+            <ul class="submenu">
+              <% @master_pros.each do |master_pro| %>
+                  <!--<li><%#= link_to "#{master_pro.name}", "process_transacts/new" %></li>-->
+                  <li><%= link_to "#{master_pro.name}", "process_transacts/new/#{master_pro.id}" %></li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>

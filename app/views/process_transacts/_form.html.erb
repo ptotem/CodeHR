@@ -47,7 +47,8 @@
           <label for="created_by" class="control-label">Created By</label>
           <div class="controls">
             <%#= f.select :created_by, options_from_collection_for_select(EmployeeMaster.all, 'id', "employee_name") %>
-            <%= f.text_field :created_by, :value => current_user.employee_master.employee_name, :readonly => true %>
+            <!--TODO: uncomment this-->
+            <%#= f.text_field :created_by, :value => current_user.employee_master.employee_name, :readonly => true %>
           </div>
         </div>
       </div>
@@ -66,7 +67,12 @@
         <label class="control-label">Process Group</label>
         <div class="control-group">
           <%= f.hidden_field :user_id, :value => current_user._id %>
-          <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
+          <% if params[:master_pro_id].nil? %>
+            <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
+          <% else %>
+              <%#= MasterPro.find(params[:master_pro_id]).name %>
+              <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name', :selected => params[:master_pro_id]), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+          <% end %>
         </div>
       </div>
       <div class="span4 my_class">

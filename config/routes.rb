@@ -109,6 +109,8 @@ CodeHR::Application.routes.draw do
 
   match '/get_dropdown_data' => 'master_pros#get_dropdown_data', :as=> :get_dropdown_data
 
+  match '/process_transacts/new/(:master_pro_id)' => 'process_transacts#new', :as=> :process_transacts_with_master_pro
+
   match '/creation/:model_name/(:process_id)/(:seq)' => 'generic#new', :as => :creation
   match '/updation/:model_name/:id/(:process_id)/(:seq)' => 'generic#edit', :as => :updation
   match '/deletion/:model_name/:id/(:process_id)/(:seq)' => 'generic#destroy', :as => :deletion
@@ -189,6 +191,9 @@ CodeHR::Application.routes.draw do
   match '/subform' => 'generic#render_subform', :as => :subform
 
   match '/render_approver_form' => 'generic#render_approver_form', :as => :approver_form
+
+  match '/approval_pm_form' => 'master_pros#approval_pm_form', :as => :approval_pm_form
+  match '/approver_pm_form' => 'master_pros#approver_pm_form', :as => :approver_pm_form
 
   match '/new_approval/(:approval_id)/(:process_id)/(:seq)' => 'generic#new_approval'
   #match '/approved_form/(:approval_id)/(:process_id)/(:seq)' => 'generic#approved_form',:as => "approved_form"
