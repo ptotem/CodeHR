@@ -41,8 +41,8 @@ class MasterProsController < ApplicationController
   # POST /master_pros
   # POST /master_pros.json
   def create
-    render :json => params
-    return
+    #render :json => params
+    #return
     @master_pro = MasterPro.new(params[:master_pro])
     respond_to do |format|
       if @master_pro.save
