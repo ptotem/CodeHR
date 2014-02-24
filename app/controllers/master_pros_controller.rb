@@ -41,9 +41,21 @@ class MasterProsController < ApplicationController
   # POST /master_pros
   # POST /master_pros.json
   def create
-    #render :json => params
-    #return
+
     @master_pro = MasterPro.new(params[:master_pro])
+
+    @master_steps = @master_pro.master_steps
+    render :json => params
+    return
+    index = 0
+    @master_steps.each do |master_step|
+      if master_step.action == "Approve"
+        master_step.approval_obj = params[:approval][index.to_s]
+      elsif master_step.action == "Notify"
+        master_step.notification_obj = params[:approval][index.to_s]
+      end
+    end
+
     respond_to do |format|
       if @master_pro.save
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully created.' }
@@ -84,14 +96,14 @@ class MasterProsController < ApplicationController
   end
 
   def get_dropdown_data
-    #render :text => params[:action_name][0]
-    #return
     #@models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
+
     @models = Array.new()
     @yml_models = t('forms')
     @yml_models.each do |model|
-      @models << model[1][:name]
+      @models << "#{model[0]}||#{model[1][:name]}"
     end
+
     render :text => @models
     return
   end

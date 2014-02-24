@@ -12,12 +12,12 @@
             <td><%= @master_pro.name %></td>
           </tr>
 
-          <%# @master_pros.master_steps.each do |master_step| %>
-            <!--<tr>-->
-                <!--<th>Name</th>-->
-                <!--<td><%# master_step.step_name %></td>-->
-            <!--</tr>-->
-          <%# end %>
+          <% @master_pro.master_steps.each do |master_step| %>
+            <tr>
+                <th>Action</th>
+                <td><%= master_step.action %></td>
+            </tr>
+          <% end %>
 
       </tbody>
     </table>

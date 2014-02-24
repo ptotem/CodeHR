@@ -74,9 +74,11 @@
                                     <% @models = Array.new() %>
                                     <% @yml_models = t('forms') %>
                                     <% @yml_models.each do |model| %>
-                                        <% @models << model[1][:name] %>
+                                        <% @models << "#{model[0]}||#{model[1][:name]}" %>
                                     <% end %>
-                                    <%= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
+
+                                    <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
+                                    <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]] }, :selected => master_step.object.action_class]), {:class => "models-select"}) %>
                                     <%= master_step.hidden_field :auto, :value=>true %>
                                   </div>
                                 </div>
@@ -339,7 +341,7 @@
       $(models_dropdown).children().first().html("");
       if(action_name == "Approve"){
         get_d_data(models_dropdown, action_name);
-        add_approval_pm_form(this_obj);
+        //add_approval_pm_form(this_obj);
       }
       else if ( action_name == "Notify" ) {
           $(this_p).find(".spawn-process").hide();
@@ -378,10 +380,13 @@
               //console.log(result);
               var substr = result.split(',');
               var v;
+              var val, name;
               for(var i=0; i< substr.length; i++)
               {
                   v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/:/g, '');
-                  $(dropdown).children().first().append("<option value="+v+">"+v+"</option>");
+                  val = v.split("||")[0];
+                  name = v.split("||")[1];
+                  $(dropdown).children().first().append("<option value="+val+">"+name+"</option>");
               }
           }
       });
