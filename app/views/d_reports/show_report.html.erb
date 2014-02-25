@@ -19,7 +19,7 @@
   <div class="span12">
     <% @d_reports.each_with_index do |d_report, index| %>
         <div class="table-header"><%= d_report.cl_name %></div>
-        <table id="<%= d_report.cl_name + "_table_"+ (index).to_s %>" class="dataTable table table-striped table-bordered table-hover">
+        <table id="<%= d_report.cl_name + "_table_"+ (index).to_s rescue "55"%>" class="dataTable table table-striped table-bordered table-hover">
           <thead>
           <tr>
             <% d_report.cl_fields.each_with_index do |cf, index| %>

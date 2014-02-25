@@ -172,7 +172,8 @@
 
 <script>
   var tab_count;
-  var counter =0;
+  var acounter =0;
+  var ncounter =0;
 
   $(function(){
 
@@ -212,7 +213,7 @@
       var sortable_lis = $('#sortable').find('li').length;
       var sortable_lis_indexed = sortable_lis - 1;
       var data = {counter: []};
-      data["counter"].push(sortable_lis_indexed);
+      data["counter"].push(acounter);
       $.ajax({
           url: "<%= approval_pm_form_path %>",
           type: "POST",
@@ -220,8 +221,26 @@
           data: JSON.stringify(data),
           success: function (data) {
               console.log(data);
+              acounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
-              //$(this_obj).parent().find('.my_body').append(data);
+          }
+      });
+  }
+
+  function add_notification_pm_form(this_obj){
+      var sortable_lis = $('#sortable').find('li').length;
+      var sortable_lis_indexed = sortable_lis - 1;
+      var data = {counter: []};
+      data["counter"].push(ncounter);
+      $.ajax({
+          url: "<%= notification_pm_form_path %>",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: function (data) {
+              console.log(data);
+              ncounter++;
+              $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
           }
       });
   }
@@ -344,11 +363,13 @@
         add_approval_pm_form(this_obj);
       }
       else if ( action_name == "Notify" ) {
-          $(this_p).find(".spawn-process").hide();
-          var options = ["True", "False"];
-          for(var i=0; i< options.length; i++){
-              $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
-          }
+//          $(this_p).find(".spawn-process").hide();
+//          var options = ["True", "False"];
+//          for(var i=0; i< options.length; i++){
+//              $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
+//          }
+         // get_d_data(models_dropdown, action_name);
+          add_notification_pm_form(this_obj);
       }
       else if ( action_name == "Fill" ) {
           get_d_data(models_dropdown, action_name);

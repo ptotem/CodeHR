@@ -224,7 +224,6 @@ class GenericController < ApplicationController
       #return
     end
 
-
     def fill_from_creation_process
       @model_name = params[:model_name]
       @form_config = t('forms.'+@model_name)
@@ -260,8 +259,8 @@ class GenericController < ApplicationController
       #return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[:Rating]
-      @process_transact.app_obj = params[:approval]
-      @process_transact.notification_obj = params[:notification]
+      #@process_transact.app_obj = params[:approval]
+      #@process_transact.notification_obj = params[:notification]
       @process_transact.save
 
       if !params[:process_id].nil?

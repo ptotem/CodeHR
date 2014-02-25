@@ -1,0 +1,46 @@
+<div class="notification">
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="control-group">
+        <label for="Title" class="control-label">Title</label>
+
+        <div class="controls">
+          <%= text_field_tag "notification[#{counter}][title]" %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="description" class="control-label">Description</label>
+
+          <div class="controls">
+            <%= text_area_tag "notification[#{counter}][description]" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="control-group">
+        <label for="Title" class="control-label">Select EmployeeMaster, GroupMaster, Role</label>
+        <div class="controls">
+          <%= select_tag "notification[#{counter}][oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification['+counter.to_s+'][action_arr][]");'} %>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="users-list_header table-header">Listing Objects</div>
+      <h5 class="not-available-text">No objects available.</h5>
+      <table class="users-list indexing table table-striped table-bordered table-hover" style="display: none;">
+        <tr>
+          <th>Select Multiple</th>
+          <th>Select Single</th>
+          <th>Field 1</th>
+          <th>Field 2</th>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

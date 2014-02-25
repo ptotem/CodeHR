@@ -33,7 +33,7 @@
     <div class="row-fluid">
       <div class="span4">
         <div class="control-group">
-          <label class="control-label">File</label>
+          <label class="control-label">File(If You want to bulk upload)</label>
           <div class="controls">
             <%= f.file_field :bulk_data %>
           </div>
@@ -70,7 +70,8 @@
             <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
           <% else %>
               <%#= MasterPro.find(params[:master_pro_id]).name %>
-              <%= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name', :selected => params[:master_pro_id]), {:include_blank => "Select"}, {:class => "chzn-select"} %>
+              <%#= f.select :mp_name, options_from_collection_for_select(MasterPro.all,'id','name', :selected => params[:master_pro_id]), {:include_blank => "Select", :readonly=>true}, {:class => "chzn-select", :readonly=>true} %>
+              <%= f.hidden_field :mp_name, :value => params[:master_pro_id] %>
           <% end %>
         </div>
       </div>
