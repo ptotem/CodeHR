@@ -109,10 +109,10 @@
                                     <div class="control-group">
                                       <div class="row-fluid" style="margin-top: 9%;">
                                         <%= master_step.hidden_field :auto, :value => true, :class=>"my_auto" %>
-                                        <div class="span6">
+                                        <div class="span3">
                                           <button class="btn btn-primary btn-small manual-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(false);toggle_btns($(this), $(this).parent().next().children().first());mapping_view(this);">Manual</button>
                                         </div>
-                                        <div class="span6">
+                                        <div class="span3">
                                           <button class="btn btn-success btn-small auto-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(true);toggle_btns($(this), $(this).parent().prev().children().first())">Auto</button>
                                         </div>
                                       </div>
@@ -169,12 +169,18 @@
 <script type="text/javascript" src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript" src="/assets/jquery.mjs.nestedSortable.js"></script>
 
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
+<%#= javascript_include_tag "custom_dataTable" %>
+
 
 <script>
   var tab_count;
   var counter =0;
 
   $(function(){
+
+      //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
 
       $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
 
@@ -219,7 +225,6 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              console.log(data);
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
               //$(this_obj).parent().find('.my_body').append(data);
           }
@@ -307,6 +312,8 @@
                   $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
               }
               $(':checkbox, :radio').css('opacity', '1');
+
+              //$('.users-list').dataTable();
           }
       });
   }
@@ -357,7 +364,7 @@
               $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
           }
       }
-      else if ( action_name == "SpawnD" ) {
+      else if ( (action_name == "SpawnD") || (action_name == "SpawnI") ) {
         $(this_p).find(".spawn-process").show();
       }
       else{

@@ -28,6 +28,7 @@ class User
   field :last_sign_in_ip,    :type => String
   field :current_redirect_url, :type => String
   field :superuser, :type => Boolean, :default => false
+  field :designation, :type => String
 
   has_one :employee_master
   has_many :roles
@@ -36,6 +37,7 @@ class User
 
   accepts_nested_attributes_for :roles
   accepts_nested_attributes_for :user_tasks
+
 
   ## Confirmable
   # field :confirmation_token,   :type => String

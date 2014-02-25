@@ -245,125 +245,243 @@
     </div>
     <!-- #sidebar-shortcuts -->
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-copy"></i>
-          <span>User Management</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Employee Masters", employee_masters_path%></li>
-          <li><%= link_to "Candidate Masters", candidate_masters_path%></li>
-          <li><%= link_to "Role", roles_path %></li>
-        </ul>
-      </li>
-    </ul>
+    <% @ability_matrix = AbilityMatrix.where(:user_id=> current_user.id) %>
 
     <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-dashboard"></i>
-          <span>Document Management</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Document Masters", document_masters_path%></li>
-          <li><%= link_to "Document Template Masters", document_template_masters_path%></li>
-        </ul>
-      </li>
+      <% @ability_matrix.each do |ability| %>
+          <% if MasterPro.find(ability.master_pro_id).name == "User Management" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-copy"></i>
+                  <span>User Management</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Employee Masters", employee_masters_path%></li>
+                  <li><%= link_to "Candidate Masters", candidate_masters_path%></li>
+                  <li><%= link_to "Role", roles_path %></li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Document Management" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-dashboard"></i>
+                  <span>Document Management</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Document Masters", document_masters_path%></li>
+                  <li><%= link_to "Document Template Masters", document_template_masters_path%></li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Process Management" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-group"></i>
+                  <span>Process Management</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="nav nav-list">
+                  <li>
+                    <a href="/master_pros">
+                      <i class="icon-group"></i>
+                      <span>Process Master</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-toggle">
+                      <i class="icon-group"></i>
+                      <span>Process TR</span>
+                      <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <% @master_pros = MasterPro.all %>
+                    <ul class="submenu">
+                      <%#= params %>
+                      <% @master_pros.each do |master_pro| %>
+                          <% if params[:controller]=="process_transacts" && params[:action]=="new" %>
+                              <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
+                          <% else %>
+                              <li><%= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>
+                          <% end %>
+                      <% end %>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Rule Management" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-dashboard"></i>
+                  <span>Rule Management</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Rules", ""%></li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Recruitment" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-group"></i>
+                  <span>Recruitment</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Interview Type", interview_types_path %></li>
+                  <li><%= link_to "Ratings", ratings_path %></li>
+                  <li><%= link_to "Rating Scales", rating_scales_path %></li>
+                  <li><%= link_to "Vacancy Master", vacancy_masters_path %></li>
+                  <li><%= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Company" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-certificate"></i>
+                  <span>Company</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Company Master", company_masters_path%></li>
+                  <li><%= link_to "Company Group", clients_path%></li>
+                </ul>
+              </li>
+          <% end %>
+
+          <% if MasterPro.find(ability.master_pro_id).name == "Administrative Tool" %>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <i class="icon-certificate"></i>
+                  <span>Administrative Tool</span>
+                  <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                  <li><%= link_to "Administration", "/power_admin"%></li>
+                </ul>
+              </li>
+          <% end %>
+
+      <% end %>
     </ul>
 
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-dashboard"></i>-->
+              <!--<span>Document Management</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="submenu">-->
+              <!--<li><%#= link_to "Document Masters", document_masters_path%></li>-->
+              <!--<li><%#= link_to "Document Template Masters", document_template_masters_path%></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-dashboard"></i>
-          <span>Rule Management</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Rules", ""%></li>
-        </ul>
-      </li>
-    </ul>
+
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-dashboard"></i>-->
+              <!--<span>Rule Management</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="submenu">-->
+              <!--<li><%#= link_to "Rules", ""%></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
 
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-group"></i>
-          <span>Recruitment</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Interview Type", interview_types_path %></li>
-          <li><%= link_to "Ratings", ratings_path %></li>
-          <li><%= link_to "Rating Scales", rating_scales_path %></li>
-          <li><%= link_to "Vacancy Master", vacancy_masters_path %></li>
-          <li><%= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>
-        </ul>
-      </li>
-    </ul>
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-group"></i>-->
+              <!--<span>Recruitment</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="submenu">-->
+              <!--<li><%#= link_to "Interview Type", interview_types_path %></li>-->
+              <!--<li><%#= link_to "Ratings", ratings_path %></li>-->
+              <!--<li><%#= link_to "Rating Scales", rating_scales_path %></li>-->
+              <!--<li><%#= link_to "Vacancy Master", vacancy_masters_path %></li>-->
+              <!--<li><%#= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-group"></i>
-          <span>Process Management</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="nav nav-list">
-          <!--<li><%#= link_to "Process Master", process_masters_path%></li>-->
-          <li>
-            <%#= link_to "Process TR", process_trs_path, :class => "dropdown-toggle" %>
-            <a href="#" class="dropdown-toggle">
-              <i class="icon-group"></i>
-              <span>Process TR</span>
-              <b class="arrow icon-angle-down"></b>
-            </a>
-            <% @master_pros = MasterPro.all %>
-            <ul class="submenu">
-              <%#= params %>
-              <% @master_pros.each do |master_pro| %>
-                  <% if params[:controller]=="process_transacts" && params[:action]=="new" %>
-                      <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
-                  <% else %>
-                      <li><%= link_to "#{master_pro.name}", "process_transacts/new/#{master_pro.id}" %></li>
-                  <% end %>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-group"></i>-->
+              <!--<span>Process Management</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="nav nav-list">-->
+              <!--<li>-->
+                <!--<a href="/master_pros">-->
+                  <!--<i class="icon-group"></i>-->
+                  <!--<span>Process Master</span>-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--<a href="#" class="dropdown-toggle">-->
+                  <!--<i class="icon-group"></i>-->
+                  <!--<span>Process TR</span>-->
+                  <!--<b class="arrow icon-angle-down"></b>-->
+                <!--</a>-->
+                <!--<%# @master_pros = MasterPro.all %>-->
+                <!--<ul class="submenu">-->
+                  <!--<%#= params %>-->
+                  <!--<%# @master_pros.each do |master_pro| %>-->
+                      <!--<%# if params[:controller]=="process_transacts" && params[:action]=="new" %>-->
+                          <!--<li><%#= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>-->
+                      <!--<%# else %>-->
+                          <!--<li><%#= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>-->
+                      <!--<%# end %>-->
+                  <!--<%# end %>-->
+                <!--</ul>-->
+              <!--</li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-certificate"></i>
-          <span>Company</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Company Master", company_masters_path%></li>
-          <li><%= link_to "Company Group", clients_path%></li>
-        </ul>
-      </li>
-    </ul>
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-certificate"></i>-->
+              <!--<span>Company</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="submenu">-->
+              <!--<li><%#= link_to "Company Master", company_masters_path%></li>-->
+              <!--<li><%#= link_to "Company Group", clients_path%></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
 
-    <ul class="nav nav-list">
-      <li>
-        <a href="#" class="dropdown-toggle">
-          <i class="icon-certificate"></i>
-          <span>Administrative Tool</span>
-          <b class="arrow icon-angle-down"></b>
-        </a>
-        <ul class="submenu">
-          <li><%= link_to "Administration", "/power_admin"%></li>
-        </ul>
-      </li>
-    </ul>
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<a href="#" class="dropdown-toggle">-->
+              <!--<i class="icon-certificate"></i>-->
+              <!--<span>Administrative Tool</span>-->
+              <!--<b class="arrow icon-angle-down"></b>-->
+            <!--</a>-->
+            <!--<ul class="submenu">-->
+              <!--<li><%#= link_to "Administration", "/power_admin"%></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        <!--</ul>-->
     <!--/.nav-list-->
 
     <div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>

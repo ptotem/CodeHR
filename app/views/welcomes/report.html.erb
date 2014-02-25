@@ -193,6 +193,9 @@
                                             '<div class=span6>' +
                                                 '<button class="btn btn-small btn-primary" onclick="add_to_report($(this), class_name)"> Add to Report </button>' +
                                             '</div>' +
+                                            '<div class=span6>' +
+                                                '<button class="btn btn-small btn-primary"> New Report </button>' +
+                                            '</div>' +
                                           '</div>' +
                                           '<hr>');
 
@@ -213,7 +216,7 @@
 
                 }
 
-                console.log("report_table_"+result_div);
+                //console.log("report_table_"+result_div);
                 setTimeout(function() {
                     var div_t = "report_table_"+result_div;
                     apply_dataTable("#"+div_t, '#'+div_t+'_wrapper','#'+div_t+'_length', '#'+div_t+'_filter');
@@ -261,7 +264,7 @@
             contentType: "application/json; charset=utf-8",
             //dataType: "json",
             success: function(result){
-                console.log(result);
+                //console.log(result);
             }
         });
 
