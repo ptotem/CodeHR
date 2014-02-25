@@ -267,15 +267,7 @@
 
             <% if MasterPro.find(ability.master_pro_id).name == "Document Management" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-dashboard"></i>
-                    <span>Document Management</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Document Masters", document_masters_path%></li>
-                    <li><%= link_to "Document Template Masters", document_template_masters_path%></li>
-                  </ul>
+                  <%= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
                 </li>
             <% end %>
 
@@ -317,58 +309,25 @@
 
             <% if MasterPro.find(ability.master_pro_id).name == "Rule Management" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-dashboard"></i>
-                    <span>Rule Management</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Rules", ""%></li>
-                  </ul>
+                  <%= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>
                 </li>
             <% end %>
 
             <% if MasterPro.find(ability.master_pro_id).name == "Recruitment" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-group"></i>
-                    <span>Recruitment</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Interview Type", interview_types_path %></li>
-                    <li><%= link_to "Ratings", ratings_path %></li>
-                    <li><%= link_to "Rating Scales", rating_scales_path %></li>
-                    <li><%= link_to "Vacancy Master", vacancy_masters_path %></li>
-                    <li><%= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>
-                  </ul>
+                  <%= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>
                 </li>
             <% end %>
 
             <% if MasterPro.find(ability.master_pro_id).name == "Company" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-certificate"></i>
-                    <span>Company</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Company Master", company_masters_path%></li>
-                    <li><%= link_to "Company Group", clients_path%></li>
-                  </ul>
+                  <%= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>
                 </li>
             <% end %>
 
             <% if MasterPro.find(ability.master_pro_id).name == "Administrative Tool" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-certificate"></i>
-                    <span>Administrative Tool</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Administration", "/power_admin"%></li>
-                  </ul>
+                  <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
                 </li>
             <% end %>
 
@@ -376,49 +335,22 @@
 
       </ul>
     <% elsif current_user.designation == "HR" %>
+      <h5>here</h5>
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-dashboard"></i>
-            <span>Document Management</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li><%= link_to "Document Masters", document_masters_path%></li>
-            <li><%= link_to "Document Template Masters", document_template_masters_path%></li>
-          </ul>
+          <%= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
         </li>
       </ul>
 
-
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-dashboard"></i>
-            <span>Rule Management</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li><%= link_to "Rules", ""%></li>
-          </ul>
+          <%= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>
         </li>
       </ul>
 
-
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-group"></i>
-            <span>Recruitment</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li><%= link_to "Interview Type", interview_types_path %></li>
-            <li><%= link_to "Ratings", ratings_path %></li>
-            <li><%= link_to "Rating Scales", rating_scales_path %></li>
-            <li><%= link_to "Vacancy Master", vacancy_masters_path %></li>
-            <li><%= link_to "Vacancy Scheduling", vacancy_schedulings_path %></li>
-          </ul>
+          <%= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>
         </li>
       </ul>
 
@@ -460,28 +392,13 @@
 
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-certificate"></i>
-            <span>Company</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li><%= link_to "Company Master", company_masters_path%></li>
-            <li><%= link_to "Company Group", clients_path%></li>
-          </ul>
+          <%= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>
         </li>
       </ul>
 
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-certificate"></i>
-            <span>Administrative Tool</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="submenu">
-            <li><%= link_to "Administration", "/power_admin"%></li>
-          </ul>
+          <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
         </li>
       </ul>
 
