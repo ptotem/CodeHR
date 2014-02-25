@@ -194,6 +194,7 @@ CodeHR::Application.routes.draw do
 
   match '/approval_pm_form' => 'master_pros#approval_pm_form', :as => :approval_pm_form
   match '/approver_pm_form' => 'master_pros#approver_pm_form', :as => :approver_pm_form
+  match '/notification_pm_form' => 'master_pros#notification_pm_form', :as => :notification_pm_form
 
   match '/new_approval/(:approval_id)/(:process_id)/(:seq)' => 'generic#new_approval'
   #match '/approved_form/(:approval_id)/(:process_id)/(:seq)' => 'generic#approved_form',:as => "approved_form"

@@ -43,16 +43,18 @@ class MasterProsController < ApplicationController
   def create
 
     @master_pro = MasterPro.new(params[:master_pro])
-
     @master_steps = @master_pro.master_steps
-    render :json => params
-    return
-    index = 0
+    #render :json => params
+    #return
+    index1 = 0
+    index2 = 0
     @master_steps.each do |master_step|
       if master_step.action == "Approve"
-        master_step.approval_obj = params[:approval][index.to_s]
+        master_step.approval_obj = params[:approval][index1.to_s]
+        index1 = index1+1
       elsif master_step.action == "Notify"
-        master_step.notification_obj = params[:approval][index.to_s]
+        master_step.notification_obj = params[:notification][index2.to_s]
+        index2 = index2+1
       end
     end
 
@@ -111,6 +113,13 @@ class MasterProsController < ApplicationController
   def approval_pm_form
     respond_to do |format|
       format.html { render :partial => 'master_pros/approval_form', :locals => {:counter => params[:counter][0]} } # index.html.erb
+      format.json { render json: @results, :callback => params[:callback] }
+    end
+  end
+
+  def notification_pm_form
+    respond_to do |format|
+      format.html { render :partial => 'master_pros/notification_subform', :locals => {:counter => params[:counter][0]} } # index.html.erb
       format.json { render json: @results, :callback => params[:callback] }
     end
   end
