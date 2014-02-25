@@ -77,6 +77,7 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'resque'
 gem 'resque-scheduler'
 gem "gon"
+gem 'cells'
 #gem 'resque-scheduler', :require => 'resque_scheduler'
 #gem 'best_in_place', github: 'bernat/best_in_place'
 
