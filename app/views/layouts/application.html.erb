@@ -246,22 +246,16 @@
     <!-- #sidebar-shortcuts -->
 
     <% @ability_matrix = AbilityMatrix.where(:user_id=> current_user.id) %>
+    <% @master_pros = MasterPro.all %>
+    <% @controller = params[:controller] %>
+    <% @action = params[:action] %>
 
     <% if current_user.designation != "HR" %>
       <ul class="nav nav-list">
         <% @ability_matrix.each do |ability| %>
             <% if MasterPro.find(ability.master_pro_id).name == "User Management" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-copy"></i>
-                    <span>User Management</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="submenu">
-                    <li><%= link_to "Employee Masters", employee_masters_path%></li>
-                    <li><%= link_to "Candidate Masters", candidate_masters_path%></li>
-                    <li><%= link_to "Role", roles_path %></li>
-                  </ul>
+                  <%= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
                 </li>
             <% end %>
 
@@ -273,37 +267,7 @@
 
             <% if MasterPro.find(ability.master_pro_id).name == "Process Management" %>
                 <li>
-                  <a href="#" class="dropdown-toggle">
-                    <i class="icon-group"></i>
-                    <span>Process Management</span>
-                    <b class="arrow icon-angle-down"></b>
-                  </a>
-                  <ul class="nav nav-list">
-                    <li>
-                      <a href="/master_pros">
-                        <i class="icon-group"></i>
-                        <span>Process Master</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-toggle">
-                        <i class="icon-group"></i>
-                        <span>Process TR</span>
-                        <b class="arrow icon-angle-down"></b>
-                      </a>
-                      <% @master_pros = MasterPro.all %>
-                      <ul class="submenu">
-                        <%#= params %>
-                        <% @master_pros.each do |master_pro| %>
-                            <% if params[:controller]=="process_transacts" && params[:action]=="new" %>
-                                <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
-                            <% else %>
-                                <li><%= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>
-                            <% end %>
-                        <% end %>
-                      </ul>
-                    </li>
-                  </ul>
+                  <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :contoller => @controller, :action => @action %>
                 </li>
             <% end %>
 
@@ -335,10 +299,15 @@
 
       </ul>
     <% elsif current_user.designation == "HR" %>
-      <h5>here</h5>
       <ul class="nav nav-list">
         <li>
           <%= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
+        </li>
+      </ul>
+
+      <ul class="nav nav-list">
+        <li>
+          <%= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
         </li>
       </ul>
 
@@ -356,37 +325,7 @@
 
       <ul class="nav nav-list">
         <li>
-          <a href="#" class="dropdown-toggle">
-            <i class="icon-group"></i>
-            <span>Process Management</span>
-            <b class="arrow icon-angle-down"></b>
-          </a>
-          <ul class="nav nav-list">
-            <li>
-              <a href="/master_pros">
-                <i class="icon-group"></i>
-                <span>Process Master</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-toggle">
-                <i class="icon-group"></i>
-                <span>Process TR</span>
-                <b class="arrow icon-angle-down"></b>
-              </a>
-              <% @master_pros = MasterPro.all %>
-              <ul class="submenu">
-                <%#= params %>
-                <% @master_pros.each do |master_pro| %>
-                    <% if params[:controller]=="process_transacts" && params[:action]=="new" %>
-                        <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
-                    <% else %>
-                        <li><%= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>
-                    <% end %>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
+          <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :contoller => @controller, :action => @action %>
         </li>
       </ul>
 

@@ -11,6 +11,13 @@ class LeftMenuCell < Cell::Rails
     render
   end
 
+  def user_mgmt(args)
+    @employee_masters_path = args[:employee_masters_path]
+    @candidate_masters_path = args[:candidate_masters_path]
+    @roles_path = args[:roles_path]
+    render
+  end
+
   def recruitment(args)
     @interview_types_path = args[:interview_types_path]
     @ratings_path = args[:ratings_path]
@@ -28,6 +35,13 @@ class LeftMenuCell < Cell::Rails
 
   def admin_tools(args)
     @administration = args[:administration]
+    render
+  end
+
+  def process_mgmt(args)
+    @master_pros = args[:master_pros]
+    @contoller = args[:contoller]
+    @action = args[:action]
     render
   end
 

@@ -1,0 +1,31 @@
+<a href="#" class="dropdown-toggle">
+  <i class="icon-group"></i>
+  <span>Process Management</span>
+  <b class="arrow icon-angle-down"></b>
+</a>
+<ul class="nav nav-list">
+  <li>
+    <a href="/master_pros">
+      <i class="icon-group"></i>
+      <span>Process Master</span>
+    </a>
+  </li>
+  <li>
+    <a href="#" class="dropdown-toggle">
+      <i class="icon-group"></i>
+      <span>Process TR</span>
+      <b class="arrow icon-angle-down"></b>
+    </a>
+    <%# @master_pros = MasterPro.all %>
+    <ul class="submenu">
+      <%#= params %>
+      <% @master_pros.each do |master_pro| %>
+          <% if @contoller=="process_transacts" && @action=="new" %>
+              <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
+          <% else %>
+              <li><%= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>
+          <% end %>
+      <% end %>
+    </ul>
+  </li>
+</ul>
