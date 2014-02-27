@@ -15,11 +15,11 @@
                           <div class="controls">
                             <% case cv[:type] %>
                             <% when "text_field_tag" %>
-                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]] %>
+                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(local_object[fi.pluralize.underscore][form_index][cv[:attribute]] rescue "") %>
                             <% when "text_area_tag" %>
-                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]] %>
+                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(local_object[fi.pluralize.underscore][form_index][cv[:attribute]] rescue "") %>
                             <% when "check_box_tag" %>
-                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",local_object[fi.pluralize.underscore][form_index][cv[:attribute]]  %>
+                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(local_object[fi.pluralize.underscore][form_index][cv[:attribute]] rescue "")  %>
                             <% when "date_field_tag" %>
                                 <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
                             <% when "select_tag" %>
