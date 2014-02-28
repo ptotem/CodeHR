@@ -239,6 +239,14 @@ module ApplicationHelper
         @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
         @user.current_redirect_url="/updateform/#{oclass}/#{objid}/#{pid}/#{stepno}"
         @user.save
+      when "Delete"
+        puts "Inside delete of new process structure..."
+        @pro = ProcessTransact.find(pid)
+        @step=@pro.step_transacts[stepno]
+        @myc = eval(@class_name).find(objid)
+        @myc.deleted = true
+        @myc.save
+        @pro.step_transacts[stepno].end_processing_step
       when "Approve"
         puts "In side approval"
         @pro = ProcessTransact.find(pid)

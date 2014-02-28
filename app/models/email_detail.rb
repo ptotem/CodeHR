@@ -9,6 +9,7 @@ class EmailDetail
   has_mongoid_attached_file :attachment3
   has_mongoid_attached_file :attachment4
   has_mongoid_attached_file :attachment5
+  field :deleted, type: Boolean
 
   belongs_to :notification_master
   embeds_many :mail_tos

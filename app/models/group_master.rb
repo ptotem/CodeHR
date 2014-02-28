@@ -6,6 +6,7 @@ class GroupMaster
   field :process_id, type: String
   field :company_master_id, type: String
   field :child_group_master_ids, type: Array
+  field :deleted, type: Boolean
   recursively_embeds_many
   belongs_to :company_master
   has_many :manpower_plannings

@@ -8,5 +8,6 @@ class CommunicationAddress
   field :state, type: String
   field :country, type: String
   field :zipcode, type: String
+  field :deleted, type: Boolean
   embedded_in :candidate_master
 end

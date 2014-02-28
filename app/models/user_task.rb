@@ -5,5 +5,6 @@ class UserTask
   field :description, type: String
   field :link, type: String
   field :seen, type: Boolean
+  field :deleted, type: Boolean
   belongs_to :user
 end

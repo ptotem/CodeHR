@@ -255,10 +255,16 @@ class GenericController < ApplicationController
     end
 
     def review_filled_form
+      #render :json => params
+      #return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
+      #@process_transact.bulk_data = params[:Bulk][:file_field]
       #@process_transact.notification_obj = params[:notification]
       @process_transact.save
+
+      #render :json => @process_transact
+      #return
 
       if !params[:process_id].nil?
         @pro=ProcessTransact.find(params[:process_id])

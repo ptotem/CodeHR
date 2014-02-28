@@ -29,6 +29,7 @@ class User
   field :current_redirect_url, :type => String
   field :superuser, :type => Boolean, :default => false
   field :designation, :type => String
+  field :deleted, type: Boolean
 
   has_one :employee_master
   has_many :roles

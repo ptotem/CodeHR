@@ -1,6 +1,7 @@
 class ProcessMaster
   include Mongoid::Document
   field :name, type: String
+  field :deleted, type: Boolean
   #attr_accessible :name, :step_masters_attributes
 
   embeds_many :step_masters

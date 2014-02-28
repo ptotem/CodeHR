@@ -1,5 +1,7 @@
 class VacancyScheduling
   include Mongoid::Document
+  field :deleted, type: Boolean
+
   belongs_to :candidate_master
   belongs_to :vacancy_master
   embeds_many :interviewer_lists

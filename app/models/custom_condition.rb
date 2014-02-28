@@ -3,6 +3,7 @@ class CustomCondition
   field :name, type: String
   field :is_all, type: Boolean
   field :istrue, type: Boolean
+  field :deleted, type: Boolean
   embedded_in :custom_rule
 
   embeds_many :condition_stmts

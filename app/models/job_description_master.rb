@@ -4,6 +4,7 @@ class JobDescriptionMaster
   field :job_title, type: String
   field :description, type: String
   field :min_year_of_experience, type: Integer
+  field :deleted, type: Boolean
 
   embeds_many :qualifications
   has_many :manpower_plannings

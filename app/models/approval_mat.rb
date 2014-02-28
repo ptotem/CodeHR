@@ -20,6 +20,7 @@ class ApprovalMat
   field :escalate, type: String
   field :rep_escalate, type: String
   field :auto_assign, type: String
+  field :deleted, type: Boolean
 
 
   embeds_many :approvers

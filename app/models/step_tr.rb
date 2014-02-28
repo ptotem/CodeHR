@@ -15,7 +15,7 @@ class StepTr
   field :escalate, type: String
   field :rep_escalate, type: String
   field :auto_assign, type: String
-
+  field :deleted, type: Boolean
   embeds_many :action_arrs
   accepts_nested_attributes_for :action_arrs
 

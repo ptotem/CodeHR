@@ -29,6 +29,7 @@ class CandidateMaster
   field :remarks_3, type: String
   field :remarks_4, type: String
   field :remarks_5, type: String
+  field :deleted, type: Boolean
 
   has_mongoid_attached_file :employee_cv
 

@@ -15,6 +15,7 @@ class EmployeeMaster
   field :official_email, type: String
   field :address_for_communication, type: String
   field :approved, type: Boolean
+  field :deleted, type: Boolean
 
   belongs_to :user
   #belongs_to :group_master

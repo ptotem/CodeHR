@@ -7,6 +7,7 @@ class StepTransact
   field :obj_name, type: String
   field :auto, type: Boolean
   field :params_mapping, type: Hash
+  field :deleted, type: Boolean
   embedded_in :process_transact
 
   state_machine :state, initial: :created do

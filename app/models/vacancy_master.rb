@@ -11,6 +11,7 @@ class VacancyMaster
   field :hiring_manager, type: String
   field :ctc_range_from, type: Integer
   field :ctc_range_to, type: Integer
+  field :deleted, type: Boolean
 
   belongs_to :group_master
   belongs_to :job_description_master

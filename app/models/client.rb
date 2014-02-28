@@ -3,6 +3,7 @@ class Client
   field :name, type: String
   field :address, type: String
   field :email,type: String
+  field :deleted, type: Boolean
   has_and_belongs_to_many :notification_masters
 
   has_many :company_masters
