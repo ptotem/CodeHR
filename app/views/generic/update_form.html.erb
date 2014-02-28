@@ -4,6 +4,7 @@
     <div class="tabbable">
       <% if !params[:process_id].nil? %>
           <%= hidden_field_tag :process_id, params[:process_id] %>
+          <%= hidden_field_tag :model_name, @model_name %>
           <%= hidden_field_tag :seq, params[:seq] %>
       <% end %>
       <ul class="nav nav-tabs" id="myTab">
@@ -40,6 +41,7 @@
                                 <div class="controls">
                                   <% case cv[:type] %>
                                   <% when "text_field_tag" %>
+
                                       <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]] %>
                                   <% when "text_area_tag" %>
                                       <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]] %>
@@ -62,9 +64,13 @@
                 <div id="dropdown<%= index %>" class="tab-pane">
                   <div class="row-fluid">
                     <% @form_index=0 %>
-                    <% @object_at_hand[tab_val[:attribute].pluralize.underscore].map do |app_key,approval_val| %>
-                    <%= render :partial => 'generic/update_subform', :locals => {:fi => tab_val[:attribute], :form_index => @form_index, :main_form => params[:model_name],:local_object=>@object_at_hand} %>
-                    <% @form_index=@form_index+1 %>
+                    <% if !@object_at_hand[tab_val[:attribute].pluralize.underscore].nil? %>
+                        <% @object_at_hand[tab_val[:attribute].pluralize.underscore].map do |app_key,approval_val| %>
+                            <%= render :partial => 'generic/update_subform', :locals => {:fi => tab_val[:attribute], :form_index => @form_index, :main_form => params[:model_name],:local_object=>@object_at_hand} %>
+                            <% @form_index=@form_index+1 %>
+                        <% end %>
+                    <% else %>
+                        <%= render :partial => 'generic/update_subform', :locals => {:fi => tab_val[:attribute], :form_index => @form_index, :main_form => params[:model_name],:local_object=>@object_at_hand} %>
                     <% end %>
                   </div>
                   <input type="hidden" class="formIndex" value="0">

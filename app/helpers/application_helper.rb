@@ -281,7 +281,16 @@ module ApplicationHelper
         @pro = ProcessTransact.find(pid)
         @class_name = @pro.step_transacts[0].obj_name
         @step=@pro.step_transacts[stepno]
-        @myc = eval(@class_name).create(@pro.class_obj)
+        if @pro.step_transacts[0].action_name == "Fill"
+          @myc = eval(@class_name).create(@pro.class_obj)
+        elsif @pro.step_transacts[0].action_name == "Update"
+          puts "In side update action"
+          @myc = eval(@class_name).find(objid)
+          @myc.update_attributes(@pro.class_obj)
+          @myc.save
+        else
+        end
+        puts @myc
         @pro.step_transacts[stepno].end_processing_step
       when "SpawnD"
         puts "Calling a new process dependently.."
