@@ -182,8 +182,10 @@ CodeHR::Application.routes.draw do
   match '/new_process_creation_from' =>'generic#new_process_creation'
 
   match '/fillform/:model_name/(:process_id)/(:seq)' => 'generic#fill_from_creation_process'
+  match '/fillbulkform/:model_name/(:process_id)/(:seq)' => 'generic#fill_bulk_creation_form'
   match '/updateform/:model_name/:id/(:process_id)/(:seq)' => 'generic#update_form'
   match '/review_form' => 'generic#review_filled_form'
+  match '/review_bulk_form' => 'generic#review_bulk_form'
 
   match '/params_mapping/:model_name' => 'generic#params_mapping', :as => :params_mapping
   #match '/render_nested_subform/:new_fields/:main_form/:fi/:form_index/:this_sf/:my_index' => 'generic#render_nested_subform'

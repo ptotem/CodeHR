@@ -223,14 +223,26 @@ module ApplicationHelper
         puts "Inside Fill form step of the current process"
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if @pro.parameter.nil?
-          @user=User.find(user_id)
-          @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
-          @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
-          @user.save
+        if oclass == "Bulk"
+          if @pro.parameter.nil?
+            @user=User.find(user_id)
+            @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+            @user.current_redirect_url="/fillbulkform/#{oclass}/#{pid}/#{stepno}"
+            @user.save
+          else
+            @pro.step_transacts[stepno].end_processing_step
+          end
         else
-          @pro.step_transacts[stepno].end_processing_step
+          if @pro.parameter.nil?
+            @user=User.find(user_id)
+            @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+            @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
+            @user.save
+          else
+            @pro.step_transacts[stepno].end_processing_step
+          end
         end
+
       when "Update"
         puts "Inside update form step of the current process"
         puts objid
@@ -289,14 +301,23 @@ module ApplicationHelper
         @pro = ProcessTransact.find(pid)
         @class_name = @pro.step_transacts[0].obj_name
         @step=@pro.step_transacts[stepno]
-        if @pro.step_transacts[0].action_name == "Fill"
-          @myc = eval(@class_name).create(@pro.class_obj)
-        elsif @pro.step_transacts[0].action_name == "Update"
-          puts "In side update action"
-          @myc = eval(@class_name).find(objid)
-          @myc.update_attributes(@pro.class_obj)
-          @myc.save
+        if oclass == "Bulk"
+          if @pro.step_transacts[0].action_name == "Fill"
+            puts "In bulk create."
+          elsif @pro.step_transacts[0].action_name == "Update"
+            puts "In Bulk update."
+          else
+          end
         else
+          if @pro.step_transacts[0].action_name == "Fill"
+            @myc = eval(@class_name).create(@pro.class_obj)
+          elsif @pro.step_transacts[0].action_name == "Update"
+            puts "In side update action"
+            @myc = eval(@class_name).find(objid)
+            @myc.update_attributes(@pro.class_obj)
+            @myc.save
+          else
+          end
         end
         puts @myc
         @pro.step_transacts[stepno].end_processing_step

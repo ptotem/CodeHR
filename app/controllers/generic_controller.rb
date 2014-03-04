@@ -211,6 +211,8 @@ class GenericController < ApplicationController
       return
     end
 
+
+
     def new_process_creation
       @object = t('forms.Rating.object')
       #@object = t('forms.CandidateMaster.object')
@@ -231,6 +233,14 @@ class GenericController < ApplicationController
       @score = Rating.new.score_receiveds.build
       @approval = true
       @notification =true
+    end
+
+    def fill_bulk_creation_form
+      @model_name = params[:model_name]
+      @form_config = t('forms.'+@model_name)
+      @fields = @form_config[:fileds]
+      @process_transact = ProcessTransact.find(params[:process_id])
+      #todo: To write a view code for saving the file in process transact using bulk upload only
     end
 
     def render_subform
@@ -254,18 +264,32 @@ class GenericController < ApplicationController
       end
     end
 
+    def review_bulk_form
+      #render :json => params
+      #return
+      @process_transact = ProcessTransact.find(params[:process_id])
+      @process_transact.update_attributes(params[:process_transact])
+      @process_transact.save
+      if !params[:process_id].nil?
+        @pro=ProcessTransact.find(params[:process_id])
+        @user=current_user
+        @user.current_redirect_url=''
+        @user.save
+        @pro.step_transacts[params[:seq].to_i].end_processing_step
+      end
+      @user=User.find(current_user._id)
+      if !@user.current_redirect_url.blank?
+        redirect_to @user.current_redirect_url
+        return
+      end
+    end
+
     def review_filled_form
       #render :json => params
       #return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
-      #@process_transact.bulk_data = params[:Bulk][:file_field]
-      #@process_transact.notification_obj = params[:notification]
       @process_transact.save
-
-      #render :json => @process_transact
-      #return
-
       if !params[:process_id].nil?
         @pro=ProcessTransact.find(params[:process_id])
         #@pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)

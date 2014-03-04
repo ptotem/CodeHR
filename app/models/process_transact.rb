@@ -21,6 +21,7 @@ class ProcessTransact
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
 
+
   state_machine :state, initial: :created do
 
     after_transition :dispense_soda => :complete, :do => :manage_stock

@@ -5,7 +5,7 @@
 </style>
 
 <!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
-<%= form_tag :review_form, :html => {:multipart => true} do |f| %>
+<%= form_tag :review_form, :multipart => true do |f| %>
     <h1><%= @form_config[:name] %></h1>
     <div class="tabbable">
       <% if !params[:process_id].nil? %>
@@ -55,7 +55,7 @@
                                   <% when "check_box_tag" %>
                                       <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "file_field_tag" %>
-                                      <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:html => {:multipart => true} %>
+                                      <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
                                           <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
