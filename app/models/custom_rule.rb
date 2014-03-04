@@ -1,4 +1,4 @@
-require 'wongi-engine'
+ require 'wongi-engine'
 
 class CustomRule
   include Mongoid::Document
