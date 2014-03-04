@@ -5,5 +5,6 @@ class Scale
   field :priority, type: Integer
   field :range_from, type: String
   field :range_to, type: String
+  field :deleted, type: Boolean
   embedded_in :rating_scale
 end

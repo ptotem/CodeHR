@@ -1,6 +1,8 @@
 class ProcessTransactsController < ApplicationController
   # GET /process_transacts
   # GET /process_transacts.json
+
+
   def index
     @process_transacts = ProcessTransact.all
 
@@ -76,6 +78,20 @@ class ProcessTransactsController < ApplicationController
 
     respond_to do |format|
       if @process_transact.update_attributes(params[:process_transact])
+        if !params[:process_id].nil?
+          @pro=ProcessTransact.find(params[:process_id])
+          @user=current_user
+          @user.current_redirect_url=''
+          @user.save
+          @pro.step_transacts[params[:seq].to_i].action_object_id = params[:action_model_name]
+          @p.save
+          @pro.step_transacts[params[:seq].to_i].end_processing_step
+        end
+        @user=User.find(current_user._id)
+        if !@user.current_redirect_url.blank?
+          redirect_to @user.current_redirect_url
+          return
+        end
         format.html { redirect_to @process_transact, notice: 'Process transact was successfully updated.' }
         format.json { head :no_content }
       else

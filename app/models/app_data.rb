@@ -6,6 +6,7 @@ class AppData
   field :rep_reminder, type: String
   field :escalate, type: String
   field :rem_escalate, type: String
+  field :deleted, type: Boolean
 
   #embedded_in :step_master
   #embeds_many :auto_assign_tos

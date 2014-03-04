@@ -8,4 +8,5 @@ class PlanningManpower
   field :location, type: String
   field :supervisor, type: String
   field :comments, type: String
+  field :deleted, type: Boolean
 end

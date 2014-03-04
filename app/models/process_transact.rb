@@ -16,9 +16,11 @@ class ProcessTransact
   field :parent_pro_id, type: String
   field :parent_step_no, type: Integer
   has_mongoid_attached_file :bulk_data
+  field :deleted, type: Boolean
 
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
+
 
   state_machine :state, initial: :created do
 

@@ -6,6 +6,7 @@ class CustomRule
   field :subject
   field :predicate
   field :object
+  field :deleted, type: Boolean
   embeds_one :custom_condition
   accepts_nested_attributes_for :custom_condition
 

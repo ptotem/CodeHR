@@ -5,7 +5,7 @@
 </style>
 
 <!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
-<%= form_tag :review_form do |f| %>
+<%= form_tag :review_form, :multipart => true do |f| %>
     <h1><%= @form_config[:name] %></h1>
     <div class="tabbable">
       <% if !params[:process_id].nil? %>

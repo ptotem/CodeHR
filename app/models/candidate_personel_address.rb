@@ -8,4 +8,5 @@ class CandidatePersonelAddress
   field :state, type: String
   field :country, type: String
   field :zipcode, type: String
+  field :deleted, type: Boolean
 end

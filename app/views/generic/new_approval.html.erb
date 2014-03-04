@@ -39,7 +39,7 @@
                                       <% if cv[:options] == 'model' %>
                                           <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id'),:disabled => true %>
                                       <% else %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options], :selected =>@cls[cv[:attribute]]),:disabled => true %>
+                                          <%#= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options], :selected =>@cls[cv[:attribute]]),:disabled => true %>
                                       <% end %>
                                   <% end %>
                                 </div>

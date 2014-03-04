@@ -5,6 +5,7 @@ class NotificationMaster
   field :description, type: String
   field :type, type: String
   field :read, type: Boolean, :default => false
+  field :deleted, type: Boolean
   belongs_to :document_template_master
 
   has_many :notification_details

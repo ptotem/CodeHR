@@ -6,6 +6,7 @@ class DocumentTemplateMaster
   field :related_to, type: String
   #field :file, type: Attachment
   has_mongoid_attached_file :dtfile
+  field :deleted, type: Boolean
 
   has_many :document_masters
   has_many :notification_masters

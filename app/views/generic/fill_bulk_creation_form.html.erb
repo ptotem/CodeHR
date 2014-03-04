@@ -1,0 +1,37 @@
+<style>
+    input[type="checkbox"], input[type="radio"]{
+        opacity: 1;
+    }
+</style>
+
+<!--ToDO: Making file upload work-->
+<%= form_for @process_transact , :multipart => true do |f| %>
+    <h1><%= @form_config[:name] %></h1>
+    <% if !params[:process_id].nil? %>
+        <%= hidden_field_tag :process_id, params[:process_id] %>
+        <%= hidden_field_tag :model_name, @model_name %>
+        <%= hidden_field_tag :seq, params[:seq] %>
+    <% end %>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="action_class" class="control-label">Action Class</label>
+          <div class="controls">
+            <%= text_field_tag "action_model_name" %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="bulk_data" class="control-label">Bulk Data</label>
+          <div class="controls">
+            <%= f.file_field :bulk_data %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%#= f.submit :class => "btn btn-info" %>
+      <%= submit_tag "Submit", :class => "btn btn-info" %>
+    </div>
+<% end %>
