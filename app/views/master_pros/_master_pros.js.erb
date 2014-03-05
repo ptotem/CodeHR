@@ -1,0 +1,68 @@
+var form_id = $('.form-horizontal').attr('id');
+var form_act = form_id.split("_")[0];
+
+if (form_act == "edit"){
+    var parent_tab = [];
+    $('.tab-content').find('.my_seq').each(function(index,elem){
+        parent_tab.push($(elem).parent().parent().parent().parent().parent().parent().attr('id'));
+        //$(elem).val()
+    });
+    //alert(parent_tab);
+
+    var $edit_fields, edit_fields_len;
+    $edit_fields = $(".tab-content").find('.tab-pane').find(".fields");
+    $('.tab-pane').empty().remove();
+    $('.nav-tabs#sortable').empty();
+    setTimeout(function(){
+        $edit_fields.each(function(index,elem){
+            tab_list = '<li>' +
+                    '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
+                    '</li>';
+            $('.nav-tabs#sortable').append(tab_list);
+            setTimeout(function(){
+                if(gon.step_masters[index].action_arr_masters != undefined){
+//                            console.log("index :- " + index);
+                    display_objects1($("#step"+(index+1)).find(".models-select"),index);
+                    gon.step_masters[index].action_arr_masters.each(function(i,v){
+                        $($("#step"+(index+1)).find('.user_select_checkbox[value="'+ i.a_obj_id+'"]')[0]).prop("checked", "checked")
+//                                console.log(i.a_obj_id)
+                    });
+                    $($(".users-list")[index]).show();
+                }
+            },500);
+
+            setTimeout(function(){
+                $('.tab-pane:not(:first)').hide();
+                $("#sortable").find('li').on('click', function() {
+
+                    var this_li_child_href = $(this).children().attr('href');
+                    var lastChar = this_li_child_href.substr(this_li_child_href.length - 1); // => "1"
+                    var intlastChar;
+                    intlastChar = parseInt(lastChar);
+                    $('.tab-pane').hide();
+                    $("#step"+intlastChar).show();
+                });
+            },2000)
+
+            var a="step"+(index+1);
+            $('.tab-content').append('<div id='+a+' class="tab-pane in active">'+$(elem).html()+'</div>');
+            action_arr_index++;
+            count=action_arr_index-1;
+        });
+    },500)
+
+
+
+
+    $('.tab-pane:not(:first)').hide();
+
+    $("#sortable").find('li').on('click', function() {
+
+        var this_li_child_href = $(this).children().attr('href');
+        var lastChar = this_li_child_href.substr(this_li_child_href.length - 1); // => "1"
+        var intlastChar;
+        intlastChar = parseInt(lastChar);
+        $('.tab-pane').hide();
+        $("#step"+intlastChar).show();
+    });
+}

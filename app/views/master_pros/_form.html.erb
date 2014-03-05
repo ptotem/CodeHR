@@ -16,7 +16,7 @@
 
 </style>
 
-<%= nested_form_for(@master_pro) do |f| %>
+<%= nested_form_for(@master_pro, html: {class: "form-horizontal"}) do |f| %>
   <% if @master_pro.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@master_pro.errors.count, "error") %> prohibited this master_pro from being saved:</h2>
@@ -78,19 +78,19 @@
                                     <% end %>
 
                                     <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
-                                    <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]] }, :selected => master_step.object.action_class]), {:class => "models-select"}) %>
+                                    <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]]}],:disabled=>"",:selected => master_step.object.action_class), {:class => "models-select"}) %>
                                     <%= master_step.hidden_field :auto, :value=>true %>
                                   </div>
                                 </div>
                               </div>
-                              <div class="span4">
-                                <div class="control-group">
-                                  <label class="control-label">Action Parameter</label>
-                                  <div class="controls">
-                                    <%= master_step.text_field :action_parameter %>
-                                  </div>
-                                </div>
-                              </div>
+                              <!--<div class="span4">-->
+                                <!--<div class="control-group">-->
+                                  <!--<label class="control-label">Action Parameter</label>-->
+                                  <!--<div class="controls">-->
+                                    <!--<%#= master_step.text_field :action_parameter %>-->
+                                  <!--</div>-->
+                                <!--</div>-->
+                              <!--</div>-->
                             </div>
 
                             <div class="row-fluid spawn-process" style="display: none;">
@@ -179,6 +179,10 @@
   var acounter =0;
   var ncounter =0;
 
+  var action_arr_index=0;
+  var count = 0;
+  var counter= 0;
+
   $(function(){
 
       //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
@@ -189,12 +193,12 @@
           //tab_count=tab_count+1;
           var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length
 
-          tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
 
+          tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
           var sortable_lis = $('#sortable').find('li').length + 1;
           $('#sortable').find('li').removeClass('active');
 
-          var ht = '<li class="active">' +
+          var ht = '<li class="active" onclick="tab_dis($(this));">' +
                     '<a data-toggle="tab" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
                    '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
@@ -203,13 +207,20 @@
           window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
             var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
             $('.tab-content').find('.tab-pane').removeClass('in active');
-            //console.log($(content));
             var c =  $(content).insertAfter($tr).wrap('<div id=step'+tab_content_tab_pan_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
             return c;
           }
-
       });
+
+      <%= render :partial => "master_pros.js" %>
   });
+
+
+  function tab_dis(this_obj){
+    console.log($(this_obj).children().attr('href'));
+    $('.tab-pane').hide();
+    $($(this_obj).children().attr('href')).show();
+  }
 
   function increase_counter(){
     counter++;
