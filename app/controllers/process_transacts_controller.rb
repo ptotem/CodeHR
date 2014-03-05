@@ -84,7 +84,7 @@ class ProcessTransactsController < ApplicationController
           @user.current_redirect_url=''
           @user.save
           @pro.step_transacts[params[:seq].to_i].action_object_id = params[:action_model_name]
-          @p.save
+          @pro.save
           @pro.step_transacts[params[:seq].to_i].end_processing_step
         end
         @user=User.find(current_user._id)
