@@ -51,7 +51,13 @@ class ApprovalMat
       link2="http://codehr.in/reject_process/#{self._id}/#{self.process_tr_id}/#{self.step_no}/#{@approver._id}"
       puts link1
       puts link2
-      AdminMailer.show_mail1(@approver.official_email,"Approval Request","#{self.description}",ProcessTransact.find(self.process_tr_id).class_obj,link1,link2).deliver
+      @pro = ProcessTransact.find(self.process_tr_id)
+      if @pro.bulk_data_file_name.nil?
+        AdminMailer.show_mail1(@approver.official_email,"Approval Request","#{self.description}",@pro.class_obj,link1,link2).deliver
+      else
+        AdminMailer.send_mail_with_attachment(@approver.official_email,"Approval Request","#{self.description}",@pro.bulk_data_file_name,@pro.bulk_data.path,link1,link2).deliver
+      end
+
       puts "Client mail delivered"
       #########To be removed######################
       #@pro= ProcessTransact.find(self.process_tr_id).class_obj

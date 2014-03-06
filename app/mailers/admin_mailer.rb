@@ -27,6 +27,19 @@ class AdminMailer < ActionMailer::Base
     @data=data
     @link1 = link1
     @link2 = link2
+
+    puts @data['_id']
+    mail(:to=>user, :subject => sub)
+  end
+
+  def send_mail_with_attachment(user,sub,msg,filename,filepath,link1,link2)
+    @user=user
+    @message = msg
+    @filename=filename
+    @filepath=filepath
+    @link1 = link1
+    @link2 = link2
+    attachments[filename] = File.read(filepath)
     mail(:to=>user, :subject => sub)
   end
 end

@@ -247,10 +247,18 @@ module ApplicationHelper
         puts "Inside update form step of the current process"
         puts objid
         #todo:The same function as fill shoulod br written her with passing thge object id as parameter
-        @user = User.find(user_id)
-        @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
-        @user.current_redirect_url="/updateform/#{oclass}/#{objid}/#{pid}/#{stepno}"
-        @user.save
+        if oclass == "Bulk"
+          @user=User.find(user_id)
+          @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+          @user.current_redirect_url="/fillbulkform/#{oclass}/#{pid}/#{stepno}"
+          @user.save
+        else
+          @user = User.find(user_id)
+          @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+          @user.current_redirect_url="/updateform/#{oclass}/#{objid}/#{pid}/#{stepno}"
+          @user.save
+        end
+
       when "Delete"
         puts "Inside delete of new process structure..."
         @pro = ProcessTransact.find(pid)
@@ -300,14 +308,25 @@ module ApplicationHelper
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
         @class_name = @pro.step_transacts[0].obj_name
+        puts @class_name
         @step=@pro.step_transacts[stepno]
         if oclass == "Bulk"
-          if @pro.step_transacts[0].action_name == "Fill"
-            puts "In bulk create."
-          elsif @pro.step_transacts[0].action_name == "Update"
-            puts "In Bulk update."
-          else
-          end
+          #if @pro.step_transacts[0].action_name == "Fill"
+            puts "In bulk"
+              spreadsheet = open_spreadsheet(@pro.bulk_data)
+              header = spreadsheet.row(1)
+              (2..spreadsheet.last_row).each do |i|
+                row = Hash[[header, spreadsheet.row(i)].transpose]
+                @cls_name=@pro.step_transacts[0].action_object_id
+                product =eval(@cls_name).find_by_id(row["id"]) || eval(@cls_name).new
+                product.attributes = row.to_hash
+                product.save!
+              end
+            puts "Bulk create complete."
+          #elsif @pro.step_transacts[0].action_name == "Update"
+          #  puts "In Bulk update."
+          #else
+          #end
         else
           if @pro.step_transacts[0].action_name == "Fill"
             @myc = eval(@class_name).create(@pro.class_obj)
@@ -371,6 +390,19 @@ module ApplicationHelper
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
     end
     @process_transact.load_process
+  end
+
+  def open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when '.csv' then
+        Roo::Csv.new(file.path, nil, :ignore)
+      when '.xls' then
+        Roo::Excel.new(file.path, nil, :ignore)
+      when '.xlsx' then
+        Roo::Excelx.new(file.path, nil, :ignore)
+      else
+        raise "Unknown file type: #{file.original_filename}"
+    end
   end
 
 
