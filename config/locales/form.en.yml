@@ -1806,3 +1806,40 @@ en:
                   attribute: 'office_fax_number2'
                   label: 'Office Fax Number2'
                   type: 'text_field_tag'
+    CandidateMaster:
+      name: "New Candidate Form"
+      object: "CandidateMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Candidate Master"
+            type: "Standard"
+            cols:
+              col1:
+                candidate_code:
+                  attributes: 'candidate_code'
+                  label: 'Candidate Code'
+                  type: 'text_field_tag'
+                status:
+                  attributes: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Selected","Rejected","Created","Sort-listed"]
+                official_email:
+                  attributes: 'official_email'
+                  label: 'Email1'
+                  type: 'text_field_tag'
+              col2:
+                candidate_name:
+                  attributes: 'candidate_name'
+                  label: 'Candidate Name'
+                  type: 'text_field_tag'
+                gender:
+                  attributes: 'gender'
+                  label: 'Gender'
+                  type: 'select_tag'
+                  options: ["Male","Female"]
+                personal_email:
+                  attributes: 'personal_email'
+                  label: 'Email2'
+                  type: 'text_field_tag'
