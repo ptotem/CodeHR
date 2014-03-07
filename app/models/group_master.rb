@@ -5,16 +5,16 @@ class GroupMaster
   field :created_by_process, type: Boolean
   field :process_id, type: String
   field :company_master_id, type: String
-  #field :child_group_master_ids, type: String
+  field :child_group_master_ids, type: Array
   field :deleted, type: Boolean
-  recursively_embeds_many
+  #recursively_embeds_many
   belongs_to :company_master
   has_many :manpower_plannings
   has_many :vacancy_masters
   has_many :employee_masters
 
-  #has_many :child_groups, :class_name => 'GroupMaster', :inverse_of => :parent_group
-  #belongs_to :parent_group, :class_name => 'GroupMaster', :inverse_of => :child_group
+  has_many :child_groups, :class_name => 'GroupMaster', :inverse_of => :parent_group
+  belongs_to :parent_group, :class_name => 'GroupMaster', :inverse_of => :child_group
 
 
   #accepts_nested_attributes_for :parent_group

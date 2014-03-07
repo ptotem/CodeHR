@@ -252,49 +252,11 @@
 
     <% if current_user.designation != "HR" %>
       <ul class="nav nav-list">
-        <% @ability_matrix.each do |ability| %>
-            <% if MasterPro.find(ability.master_pro_id).name == "User Management" %>
-                <li>
-                  <%= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
-                </li>
+        <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
+            <% @ab_mat = AbilityMatrix.where(:role_id => current_user.employee_master.group_master_ids[0]).first %>
+            <% @ab_mat.access_obj.each do |i| %>
+                <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
             <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Document Management" %>
-                <li>
-                  <%= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
-                </li>
-            <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Process Management" %>
-                <li>
-                  <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :contoller => @controller, :action => @action %>
-                </li>
-            <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Rule Management" %>
-                <li>
-                  <%= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>
-                </li>
-            <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Recruitment" %>
-                <li>
-                  <%= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>
-                </li>
-            <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Company" %>
-                <li>
-                  <%= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>
-                </li>
-            <% end %>
-
-            <% if MasterPro.find(ability.master_pro_id).name == "Administrative Tool" %>
-                <li>
-                  <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
-                </li>
-            <% end %>
-
         <% end %>
 
       </ul>

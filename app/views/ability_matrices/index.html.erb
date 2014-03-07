@@ -1,0 +1,21 @@
+<h1>Listing ability_matrices</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ability_matrices.each do |ability_matrix| %>
+  <tr>
+    <td><%= link_to 'Show', ability_matrix %></td>
+    <td><%= link_to 'Edit', edit_ability_matrix_path(ability_matrix) %></td>
+    <td><%= link_to 'Destroy', ability_matrix, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ability matrix', new_ability_matrix_path %>

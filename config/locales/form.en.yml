@@ -42,6 +42,9 @@ en:
                   label: 'Vacancy Scheduling'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'VacancyScheduling'
+                  select: 'id'
+                  show: 'id'
           tab2:
             name: "Scores"
             type: 'sub-form'
@@ -68,6 +71,9 @@ en:
                   label: 'Rating Scale'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'RatingScale'
+                  select: 'id'
+                  show: 'id'
           tab2:
             name: "Rating Scale"
             type: "sub-form"
@@ -123,6 +129,9 @@ en:
                       label: 'Client'
                       type: 'select_tag'
                       options: 'model'
+                      class : 'Client'
+                      select: 'id'
+                      show: 'name'
                     office_phone_number:
                       attribute: 'office_phone_number'
                       label: 'Office Phone Number'
@@ -256,6 +265,9 @@ en:
                       label: 'Role'
                       type: 'select_tag'
                       options: 'model'
+                      class : 'Role'
+                      select: 'id'
+                      show: 'name'
                     status:
                       attribute: 'status'
                       label: 'Status'
@@ -271,6 +283,9 @@ en:
                       label: 'Requested By'
                       type: 'select_tag'
                       options: 'model'
+                      class : 'EmployeeMaster'
+                      select: 'id'
+                      show: 'employee_name'
                     period_from:
                       attribute: 'period_from'
                       label: 'Period From'
@@ -346,6 +361,14 @@ en:
                   label: 'Gender'
                   type: 'select_tag'
                   options: ["Male","Female"]
+                group_master_ids:
+                  attribute: 'group_master_ids'
+                  label: 'Group Master'
+                  type: 'select_tag'
+                  options: 'model'
+                  class: 'GroupMaster'
+                  select: 'id'
+                  show: 'group_name'
                 date_of_birth:
                   attribute: 'date_of_birth'
                   label: 'Date of Birth'
@@ -414,6 +437,9 @@ en:
                   label: 'Band'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'BandMaster'
+                  select: 'id'
+                  show: 'band_name'
                 total_work_exp_months:
                   attribute: 'total_work_exp_months'
                   label: 'Total Work Experience (in months)'
@@ -456,6 +482,9 @@ en:
                   label: 'Job Role'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'Role'
+                  select: 'id'
+                  show: 'name'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'
@@ -507,6 +536,9 @@ en:
                   label: 'Group'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'GroupMaster'
+                  select: 'id'
+                  show: 'group_name'
                 position:
                   attribute: 'position'
                   label: 'Position'
@@ -521,12 +553,18 @@ en:
                   label: 'Supervisor'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
               col2:
                 band:
                   attribute: 'band_master'
                   label: 'Band'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'BandMaster'
+                  select: 'id'
+                  show: 'band_name'
                 position_nature:
                   attribute: 'position_nature'
                   label: 'Nature of Position'
@@ -558,6 +596,9 @@ en:
                   label: 'Vendor Master'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'VendorMaster'
+                  select: 'id'
+                  show: 'vendor_name'
                 status:
                   attribute: 'status'
                   label: 'Status'
@@ -580,6 +621,9 @@ en:
                   label: 'Manpower Planning'
                   type: 'select_tag'
                   options: 'model'
+                  class : 'ManpowerPlanning'
+                  select: 'id'
+                  show: 'id'
                 description:
                   attribute: 'description'
                   label: 'Description'

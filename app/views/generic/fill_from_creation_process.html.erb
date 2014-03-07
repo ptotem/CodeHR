@@ -58,7 +58,7 @@
                                       <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]) %>
                                       <% else %>
                                           <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]) %>
                                       <% end %>

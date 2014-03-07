@@ -24,9 +24,9 @@ class EmployeeMastersController < InheritedResources::Base
 
   def create
     @employee_master =EmployeeMaster.new(params[:employee_master])
-    @employee_master.date_of_joining = Date.strptime(params[:employee_master][:date_of_joining], "%m/%d/%Y")
-    @employee_master.date_of_birth =Date.strptime(params[:employee_master][:date_of_birth], "%m/%d/%Y")
-    @employee_master.user=User.create!(:email =>@employee_master.official_email, :password =>"password", :password_confirmation =>"password")
+    #@employee_master.date_of_joining = Date.strptime(params[:employee_master][:date_of_joining], "%m/%d/%Y")
+    #@employee_master.date_of_birth =Date.strptime(params[:employee_master][:date_of_birth], "%m/%d/%Y")
+    #@employee_master.user=User.create!(:email =>@employee_master.official_email, :password =>"password", :password_confirmation =>"password")
     @employee_master.save
 
     #process_redirection

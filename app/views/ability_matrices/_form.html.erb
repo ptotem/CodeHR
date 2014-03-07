@@ -1,0 +1,46 @@
+<%= form_for(@ability_matrix) do |f| %>
+  <% if @ability_matrix.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ability_matrix.errors.count, "error") %> prohibited this ability_matrix from being saved:</h2>
+
+      <ul>
+      <% @ability_matrix.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+
+
+  <% end %>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <%= f.label :role_id %>
+          <!--<div class="controls">-->
+            <%= f.select :role_id, options_from_collection_for_select(GroupMaster.all,'id','group_name'), {:include_blank => "Select"} %>
+          <!--</div>-->
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <%= f.label :access_obj %>
+          <div class="controls">
+            <%= f.select :access_obj,options_for_select(["User Management", "Document Management", "Process Management", "Rule Management", "Recruitment","Company","Administrative Tool"], disabled: ""), {}, {:class => "chzn-select", :multiple=>true} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+
+        $('.control-label').css('text-align','left');
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    });
+</script>
