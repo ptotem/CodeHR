@@ -58,6 +58,7 @@
                     <%= f.fields_for :master_steps do |master_step| %>
                         <!--<div id="step1" class="tab-content">-->
                             <div class="row-fluid">
+                              <%= master_step.hidden_field :sequence, :class=>"my_seq" %>
                               <div class="span4">
                                 <div class="control-group">
                                   <label class="control-label">Action</label>
@@ -187,7 +188,18 @@
 
       //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
 
-      $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
+      //$("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
+
+      setTimeout(function() {
+          set_step_seq();
+      }, 1000);
+
+
+      $("#sortable").sortable({stop: function(event,ui){
+          //console.log($(ui.item).index());
+          set_step_seq();
+      }
+      });  //nested form's fields (step_master -> steps) sortable
 
       $('a.add_nested_fields').on('click', function(){
           //tab_count=tab_count+1;
@@ -213,11 +225,43 @@
       });
 
       <%= render :partial => "master_pros.js" %>
+
+      //view settings for edit form
+      var form_id = $('.form-horizontal').attr('id');
+      var form_act = form_id.split("_")[0];
+
+      //execute this code in edit mode
+      if (form_act == "edit"){
+          console.log("edit mode");
+
+          var $edit_fields, edit_fields_len;
+
+          setTimeout(function() {
+              $edit_fields = $(".tab-content").find('.tab-pane');
+              $('.tab-pane').empty().remove();
+              $('.nav-tabs#sortable').empty();
+
+              $edit_fields.each(function(index,elem){
+                  tab_list = '<li>' +
+                          '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
+                          '</li>';
+                  $('.nav-tabs#sortable').append(tab_list);
+              });
+
+          }, 1000);
+
+      }
+
   });
 
+  function set_step_seq(){
+      $('#sortable').find('li').each(function(i,v){
+          var this_li = $(v).find('a').attr('href');
+          $(this_li).find('.my_seq').val($(v).index());
+      });
+  }
 
   function tab_dis(this_obj){
-    console.log($(this_obj).children().attr('href'));
     $('.tab-pane').hide();
     $($(this_obj).children().attr('href')).show();
   }
@@ -237,7 +281,7 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              console.log(data);
+              //console.log(data);
               acounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
           }
@@ -255,7 +299,7 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              console.log(data);
+              //console.log(data);
               ncounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
           }
@@ -476,7 +520,7 @@
                           '<option value=""></option></select>'+
                           '</div>');
                   $.each(a,function(i1,v1){
-                      console.log(v1);
+                      //console.log(v1);
                       $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                   });
               });

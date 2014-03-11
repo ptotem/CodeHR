@@ -42,10 +42,10 @@ class MasterProsController < ApplicationController
   # POST /master_pros
   # POST /master_pros.json
   def create
-    @master_pro = MasterPro.new(params[:master_pro])
-    @master_steps = @master_pro.master_steps
     #render :json => params
     #return
+    @master_pro = MasterPro.new(params[:master_pro])
+    @master_steps = @master_pro.master_steps
     index1 = 0
     index2 = 0
     @master_steps.each do |master_step|
