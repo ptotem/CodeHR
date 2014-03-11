@@ -183,9 +183,14 @@
   var count = 0;
   var counter= 0;
 
+  var form_id = $('.form-horizontal').attr('id');
+  var form_act = form_id.split("_")[0];
+
   $(function(){
 
       //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
+
+
 
       $("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
 
@@ -198,7 +203,7 @@
           var sortable_lis = $('#sortable').find('li').length + 1;
           $('#sortable').find('li').removeClass('active');
 
-          var ht = '<li class="active" onclick="tab_dis($(this));">' +
+          var ht = '<li class="active">' +
                     '<a data-toggle="tab" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
                    '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
@@ -207,7 +212,7 @@
           window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
             var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
             $('.tab-content').find('.tab-pane').removeClass('in active');
-            var c =  $(content).insertAfter($tr).wrap('<div id=step'+tab_content_tab_pan_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active">'); //insert new nested form in tab after last tab
             return c;
           }
       });

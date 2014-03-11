@@ -187,10 +187,10 @@
     <img alt="Jason's Photo" src="/assets/user.jpg" class="nav-user-photo"/>
 							<span id="user_info">
 								<small>Welcome,</small>
-                              <% if current_user.name.blank? %>
+                              <% if current_user.employee_master.employee_name.blank? %>
                                 User
                               <% else %>
-                                <%= current_user.name %>
+                                <%= current_user.employee_master.employee_name %>
                               <% end %>
 							</span>
     <i class="icon-caret-down"></i>
