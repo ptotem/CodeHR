@@ -78,6 +78,7 @@
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
       <%#= submit_tag "Submit", :class => "btn btn-info" %>
+      <%= text_area_tag 'comment', nil, size: "25x10" %>
       <a type="button" class="btn btn-success" href="<%= approved_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Accept</a>
       <a type="button" class="btn btn-danger" href="<%= rejected_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Reject</a>
     </div>

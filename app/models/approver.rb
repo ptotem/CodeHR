@@ -7,5 +7,6 @@ class Approver
   field :active, type: Boolean
   field :auto_assign, type: Boolean
   field :deleted, type: Boolean
+  field :comment, type: String
   embedded_in :approval_mat
 end

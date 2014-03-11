@@ -69,6 +69,28 @@
                   <span class='label label-warning arrowed arrowed-right'><%= step.state %></span>
               <% end %>
             </td>
+            <td>
+              <%= step.initiated_at %>
+            </td>
+            <td>
+              <%= step.finished_at %>
+            </td>
+            <td>
+              <% if step.initiated_at.nil? and step.finished_at.nil?  %>
+                <% @tt = 0  %>
+              <% elsif step.finished_at.nil? %>
+                <% @tt = (DateTime.now.to_f - step.initiated_at.to_f).to_i %>
+              <% else %>
+                <% @tt = (step.finished_at.to_f - step.initiated_at.to_f).to_i  %>
+              <% end %>
+
+              <% if @tt < 60 %>
+                <%= @tt %> Seconds
+              <% elsif @tt < 3600 %>
+                <%= @tt/60 %> Minutes
+              <% else %>
+              <% end %>
+            </td>
           </tr>
       <% end %>
       </tbody>

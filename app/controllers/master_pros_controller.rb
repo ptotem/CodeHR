@@ -73,7 +73,8 @@ class MasterProsController < ApplicationController
   # PUT /master_pros/1.json
   def update
     @master_pro = MasterPro.find(params[:id])
-
+    #render :json => params
+    #return
     respond_to do |format|
       if @master_pro.update_attributes(params[:master_pro])
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully updated.' }

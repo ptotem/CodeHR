@@ -8,6 +8,8 @@ class StepTransact
   field :auto, type: Boolean
   field :params_mapping, type: Hash
   field :deleted, type: Boolean
+  field :initiated_at, type: DateTime
+  field :finished_at, type: DateTime
   embedded_in :process_transact
 
   state_machine :state, initial: :created do
@@ -64,6 +66,7 @@ class StepTransact
 
   def load_step
     puts "#{self.name} is loading....."
+    self.initiated_at = DateTime.now
     self.initialise_step
   end
 
@@ -84,6 +87,8 @@ class StepTransact
 
   def post_finish_step
     puts "#{self.name} is finished"
+    self.finished_at = DateTime.now
+    self.save
     puts "Calling Next step action or ending process to be done...."
     if self==self.process_transact.step_transacts.last
       puts "Last step going to end process"

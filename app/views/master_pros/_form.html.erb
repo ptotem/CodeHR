@@ -62,7 +62,7 @@
                               <div class="span4">
                                 <div class="control-group">
                                   <label class="control-label">Action</label>
-                                  <div class="controls">
+                                  <div class="controls drpdwn">
                                     <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
                                   </div>
                                 </div>
@@ -184,16 +184,16 @@
   var count = 0;
   var counter= 0;
 
+  var form_id = $('.form-horizontal').attr('id');
+  var form_act = form_id.split("_")[0];
+
   $(function(){
 
       //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
 
-      //$("#sortable").sortable();  //nested form's fields (step_master -> steps) sortable
-
       setTimeout(function() {
           set_step_seq();
       }, 1000);
-
 
       $("#sortable").sortable({stop: function(event,ui){
           //console.log($(ui.item).index());
@@ -210,7 +210,7 @@
           var sortable_lis = $('#sortable').find('li').length + 1;
           $('#sortable').find('li').removeClass('active');
 
-          var ht = '<li class="active" onclick="tab_dis($(this));">' +
+          var ht = '<li class="active">' +
                     '<a data-toggle="tab" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
                    '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
@@ -219,7 +219,8 @@
           window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
             var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
             $('.tab-content').find('.tab-pane').removeClass('in active');
-            var c =  $(content).insertAfter($tr).wrap('<div id=step'+tab_content_tab_pan_len+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+            set_step_seq();
             return c;
           }
       });
@@ -227,26 +228,56 @@
       <%= render :partial => "master_pros.js" %>
 
       //view settings for edit form
-      var form_id = $('.form-horizontal').attr('id');
-      var form_act = form_id.split("_")[0];
 
       //execute this code in edit mode
       if (form_act == "edit"){
           console.log("edit mode");
 
           var $edit_fields, edit_fields_len;
+          //console.log(gon.step_masters);
 
           setTimeout(function() {
               $edit_fields = $(".tab-content").find('.tab-pane');
-              $('.tab-pane').empty().remove();
+              //$('.tab-pane').empty().remove();
               $('.nav-tabs#sortable').empty();
 
-              $edit_fields.each(function(index,elem){
+              //$edit_fields.each(function(index,elem){
+                  //tab_list = '<li>' +
+                  //        '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
+                  //        '</li>';
+                  //$('.nav-tabs#sortable').append(tab_list);
+              //});
+
+              $.each(gon.step_masters, function( i, elem ) {
+                  //console.log( i + ": " + elem.sequence );
                   tab_list = '<li>' +
-                          '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
-                          '</li>';
+                                '<a data-toggle="tab" href=#step'+((elem.sequence)+1)+'>' + "Step "+((elem.sequence)+1)+ '</a>' +
+                             '</li>';
                   $('.nav-tabs#sortable').append(tab_list);
               });
+
+              var action_name;
+              $edit_fields.each(function(index,elem){
+                  //console.log($(elem).find('.drpdwn').children().first());
+                  //model_select_control($(elem).find('.drpdwn').children().first());
+
+                  //$(elem).find('.pm_approval_field').append()
+
+                  action_name = $(elem).find('.drpdwn').children().first().find('option:selected').text();
+
+                  if (action_name == "Fill") {
+
+                  }
+                  else if (action_name == "Approve") {
+                      add_approval_pm_form($(elem).find('.drpdwn').children().first());
+                  }
+                  else if (action_name == "Notify") {
+                      add_notification_pm_form($(elem).find('.drpdwn').children().first());
+                  }
+
+              });
+
+
 
           }, 1000);
 
@@ -281,9 +312,13 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              //console.log(data);
+              console.log(data);
               acounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+
+              if ( form_act == "edit" ) {
+                  $(this_obj).parents().eq(4).find('.pm_approval_field').append(data);
+              }
           }
       });
   }
@@ -299,9 +334,14 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              //console.log(data);
+              console.log(data);
               ncounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+
+              if ( form_act == "edit" ) {
+                  $(this_obj).parents().eq(4).find('.pm_approval_field').append(data);
+              }
+
           }
       });
   }
@@ -461,7 +501,7 @@
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           success: function(result){
-              //console.log(result);
+              console.log(result);
               var substr = result.split(',');
               var v;
               var val, name;
@@ -520,7 +560,7 @@
                           '<option value=""></option></select>'+
                           '</div>');
                   $.each(a,function(i1,v1){
-                      //console.log(v1);
+                      console.log(v1);
                       $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                   });
               });
