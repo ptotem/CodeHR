@@ -32,9 +32,9 @@
   <div class="row-fluid">
     <div class="span6">
       <div class="control-group">
-        <label class="control-label">Name</label>
+        <label class="control-label" style="text-align: left;">Name</label>
         <div class="controls">
-              <%= f.text_field :name %>
+              <%= f.text_field :name, :style=>"width: 80%;" %>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
       <div class="span12">
           <div class="tabbable tabs-left">
             <ul class="nav nav-tabs" id="sortable">
-              <li class="active"><a data-toggle="tab" href="#step1">Step 1</a></li>
+              <li class="active"><a data-toggle="tab" onclick="show_this_attr($(this));" href="#step1">Step 1</a></li>
             </ul>
             <div class="tab-content">
               <div id="step1" class="tab-pane in active">
@@ -59,18 +59,21 @@
                         <!--<div id="step1" class="tab-content">-->
                             <div class="row-fluid">
                               <%= master_step.hidden_field :sequence, :class=>"my_seq" %>
+
                               <div class="span4">
                                 <div class="control-group">
-                                  <label class="control-label">Action</label>
-                                  <div class="controls drpdwn">
+                                  <!--<label class="control-label">Action</label>-->
+                                  <label>Action</label>
+                                  <div class="controls drpdwn" style="margin-left: 0;">
                                     <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
                                   </div>
                                 </div>
                               </div>
                               <div class="span4">
                                 <div class="control-group">
-                                  <label class="control-label">Action Class</label>
-                                  <div class="controls model-select-dropdown-container">
+                                  <!--<label class="control-label">Action Class</label>-->
+                                  <label>Action Class</label>
+                                  <div class="controls model-select-dropdown-container" style="margin-left: 0;">
                                     <%# @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
                                     <% @models = Array.new() %>
                                     <% @yml_models = t('forms') %>
@@ -211,7 +214,7 @@
           $('#sortable').find('li').removeClass('active');
 
           var ht = '<li class="active">' +
-                    '<a data-toggle="tab" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
+                        '<a data-toggle="tab" onclick="show_this_attr($(this));" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
                    '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
           $("#sortable").append(ht); //add tab in list of steps
@@ -219,19 +222,28 @@
           window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
             var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
             $('.tab-content').find('.tab-pane').removeClass('in active');
-            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active">'); //insert new nested form in tab after last tab
+            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active">'); //insert new nested form in tab after last tab
             set_step_seq();
             return c;
           }
+
+//          var li_h = $('#sortable').find('li').eq(0).height();
+//          var lis = $('#sortable').find('li').length;
+//          var factor = 0;
+//
+//          for(j=0; j<(lis-1); j++){
+//              factor = factor + li_h;
+//          }
+//
+//          $(this).parent().css('top',factor+35);
+
       });
 
       <%= render :partial => "master_pros.js" %>
 
-      //view settings for edit form
 
       //execute this code in edit mode
       if (form_act == "edit"){
-          console.log("edit mode");
 
           var $edit_fields, edit_fields_len;
           //console.log(gon.step_masters);
@@ -240,13 +252,6 @@
               $edit_fields = $(".tab-content").find('.tab-pane');
               //$('.tab-pane').empty().remove();
               $('.nav-tabs#sortable').empty();
-
-              //$edit_fields.each(function(index,elem){
-                  //tab_list = '<li>' +
-                  //        '<a data-toggle="tab" href=#step'+(index+1)+'>' + "Step "+(index+1)+ '</a>' +
-                  //        '</li>';
-                  //$('.nav-tabs#sortable').append(tab_list);
-              //});
 
               $.each(gon.step_masters, function( i, elem ) {
                   //console.log( i + ": " + elem.sequence );
@@ -285,6 +290,25 @@
 
   });
 
+  function show_this_attr(this_obj){
+      var this_href, this_href_id;
+      this_href = $(this_obj).attr('href');
+      this_href_id = this_href.replace("#","");
+
+      setTimeout(function() {
+          //console.log($(this_obj).parent().attr('class'));
+
+          $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+              $(v).removeClass('active');
+              if ( $(v).attr('id') == this_href_id ) {
+                  //console.log($(v).attr('id'));
+                  $(v).addClass('active');
+              }
+          });
+
+      }, 1000);
+  }
+
   function set_step_seq(){
       $('#sortable').find('li').each(function(i,v){
           var this_li = $(v).find('a').attr('href');
@@ -312,9 +336,10 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              console.log(data);
+              //console.log(data);
               acounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+              $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
 
               if ( form_act == "edit" ) {
                   $(this_obj).parents().eq(4).find('.pm_approval_field').append(data);
@@ -334,9 +359,10 @@
           contentType: "application/json",
           data: JSON.stringify(data),
           success: function (data) {
-              console.log(data);
+              //console.log(data);
               ncounter++;
               $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+              $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
 
               if ( form_act == "edit" ) {
                   $(this_obj).parents().eq(4).find('.pm_approval_field').append(data);
@@ -370,7 +396,8 @@
   function display_objects(this_obj, oobj) {
       var count = 0;
       var parent_tab = $(this_obj).parents('.row-fluid')[0];
-      //console.log(parent_tab);
+      $(parent_tab).find('.users-list').dataTable().fnDestroy();
+
       var model_name = $(this_obj).val();
       var data = {model_name: []};
       data["model_name"].push(model_name);
@@ -382,55 +409,79 @@
           contentType: "application/json",
           success: function (data) {
               $(parent_tab).find('.users-list').show();
-              $(parent_tab).find('.not-available-text').hide();
+              //$(parent_tab).find('.not-available-text').hide();
               var $user_row;
-              $(parent_tab).find(".users-list tr:not(:first-child)").empty();
+              var second_row_tds_len = 0;
+
+              $(parent_tab).find(".users-list").find("tr:first").find("th:gt(0)").empty().remove();
+              $(parent_tab).find(".users-list").find('tbody').empty();
 
               if (model_name == "EmployeeMaster") {
                   for (var i = 0; i < data.length; i++) {
                       my_id = data[i]["_id"];
                       $user_row = '<tr>' +
-                              '<td style="position: relative;"><input type="checkbox" name="' + oobj + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                              '<td>' + data[i]["employee_name"] + '</td><td>' + data[i]["official_email"] + '</td></tr>';
+                                    '<td><input type="checkbox" name="' + oobj + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["employee_name"] + '</td>' +
+                                    '<td>' + data[i]["official_email"] + '</td>' +
+                                  '</tr>';
                       $(parent_tab).find(".users-list").append($user_row);
                   }
-                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
               }
               else if (model_name == "GroupMaster") {
                   for (var i = 0; i < data.length; i++) {
                       my_id = data[i]["_id"];
                       $user_row = '<tr>' +
-                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                              '<td>' + data[i]["group_name"] + '</td></tr>';
+                                    '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["group_name"] + '</td>' +
+                                  '</tr>';
                       $(parent_tab).find(".users-list").append($user_row);
                   }
-                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
               }
               else if (model_name == "Role") {
                   for (var i = 0; i < data.length; i++) {
                       my_id = data[i]["_id"];
                       $user_row = '<tr>' +
-                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                              '<td>' + data[i]["name"] + '</td></tr>';
+                                    '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["name"] + '</td>' +
+                                  '</tr>';
                       $(parent_tab).find(".users-list").append($user_row);
                   }
-                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
               }
               else if (model_name == "VendorMaster") {
                   for (var i = 0; i < data.length; i++) {
                       my_id = data[i]["_id"];
                       $user_row = '<tr>' +
-                              '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                              '<td>' + data[i]["vendor_name"] + '</td><td>' + data[i]["vendor_type"] + '</td></tr>';
+                                    '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["vendor_name"] + '</td>' +
+                                    '<td>' + data[i]["vendor_type"] + '</td>' +
+                                  '</tr>';
                       $(parent_tab).find(".users-list").append($user_row);
                   }
-                  $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
               }
               $(':checkbox, :radio').css('opacity', '1');
 
-              //$('.users-list').dataTable();
+
+              for (var i = 0; i < (second_row_tds_len-1); i++) {
+                  $(parent_tab).find(".users-list").find("tr:first").append('<th>Field '+(i+1)+'</th>');
+              }
+
+              initDataTables();
           }
       });
+  }
+
+  function initDataTables(){
+      var oTable = $('.users-list').dataTable();
+      //oTable.fnClearTable();
+      oTable.fnDraw();
   }
 
   function remove_tab_li(this_obj){
@@ -458,21 +509,27 @@
       var action_name = $(this_obj).val();
       var parent_field = $(this_obj).parent().parent().parent().parent().parent().parent();
       var models_dropdown = $(parent_field).find(".model-select-dropdown-container");
-      var this_p = $(this_obj).parents().eq(6);
+      var this_p = $(this_obj).parents().eq(5);
+
 
       $(models_dropdown).children().first().html("");
       if(action_name == "Approve"){
         get_d_data(models_dropdown, action_name);
-        add_approval_pm_form(this_obj);
+        //console.log("present :- " + $(this_p).find(".pm_approval_field").find('.approval').length)
+        if ( $(this_p).find(".pm_approval_field").find('.approval').length < 1) {
+            add_approval_pm_form(this_obj);
+        }
+        $(this_p).find(".spawn-process").hide();
+        $(this_p).find(".pm_approval_field").find('.notification').hide();
+        $(this_p).find(".pm_approval_field").find('.approval').show();
       }
       else if ( action_name == "Notify" ) {
-//          $(this_p).find(".spawn-process").hide();
-//          var options = ["True", "False"];
-//          for(var i=0; i< options.length; i++){
-//              $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
-//          }
-         // get_d_data(models_dropdown, action_name);
-          add_notification_pm_form(this_obj);
+          if ( $(this_p).find(".pm_approval_field").find('.notification').length < 1) {
+              add_notification_pm_form(this_obj);
+          }
+          $(this_p).find(".spawn-process").hide();
+          $(this_p).find(".pm_approval_field").find('.approval').hide();
+          $(this_p).find(".pm_approval_field").find('.notification').show();
       }
       else if ( action_name == "Fill" ) {
           get_d_data(models_dropdown, action_name);
@@ -483,6 +540,7 @@
       }
       else if ( (action_name == "SpawnD") || (action_name == "SpawnI") ) {
         $(this_p).find(".spawn-process").show();
+        $(this_p).find(".pm_approval_field").hide();
       }
       else{
           $(this_p).find(".spawn-process").hide();
@@ -501,7 +559,7 @@
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           success: function(result){
-              console.log(result);
+              //console.log(result);
               var substr = result.split(',');
               var v;
               var val, name;
@@ -560,7 +618,7 @@
                           '<option value=""></option></select>'+
                           '</div>');
                   $.each(a,function(i1,v1){
-                      console.log(v1);
+                      //console.log(v1);
                       $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                   });
               });
