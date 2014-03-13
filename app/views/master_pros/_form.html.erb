@@ -252,7 +252,7 @@
               $edit_fields = $(".tab-content").find('.tab-pane');
               //$('.tab-pane').empty().remove();
               $('.nav-tabs#sortable').empty();
-
+              //console.log(gon.step_masters);
               $.each(gon.step_masters, function( i, elem ) {
                   //console.log( i + ": " + elem.sequence );
                   tab_list = '<li>' +
@@ -274,6 +274,7 @@
 
                   }
                   else if (action_name == "Approve") {
+                      //console.log(gon.step_masters);
                       add_approval_pm_form($(elem).find('.drpdwn').children().first());
                   }
                   else if (action_name == "Notify") {
@@ -289,6 +290,16 @@
       }
 
   });
+
+  function get_step_seq(){
+      $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+          console.log($(v).find('.my_seq').val());
+      });
+      console.log("-----");
+      $('.tabbable').find('.tab-content').find('.my_seq').each(function(i,v){
+          console.log($(v).val());
+      });
+  }
 
   function show_this_attr(this_obj){
       var this_href, this_href_id;
@@ -343,10 +354,12 @@
 
               if ( form_act == "edit" ) {
                   $(this_obj).parents().eq(4).find('.pm_approval_field').append(data);
+                  $(this_obj).parents().eq(4).find('.pm_approval_field').find('.controls').css('margin-left','0');
               }
           }
       });
   }
+
 
   function add_notification_pm_form(this_obj){
       var sortable_lis = $('#sortable').find('li').length;

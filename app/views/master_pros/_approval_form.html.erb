@@ -72,3 +72,40 @@
     </div>
 
 </div>
+
+<script>
+
+  if ( form_id.split("_")[0] == "edit" ){
+
+      var reg_name, split_reg_name;
+
+      $.each(gon.step_masters, function( i, elem ) {
+
+          if ( elem["approval_obj"] != null ) {
+              $(".approval").find($("input:text")).each(function(){
+                  reg_name = $(this).attr("name").match(/[^[]+(?=\])/g);
+                  split_reg_name = reg_name[1];
+
+                  //auto_assign, escalate, reminder, rep_reminder
+                  if (split_reg_name == "reminder") {
+                      $(this).val(elem["approval_obj"]["reminder"]);
+                  }
+                  else if (split_reg_name == "rep_reminder") {
+                      $(this).val(elem["approval_obj"]["rep_reminder"]);
+                  }
+                  else if (split_reg_name == "escalate") {
+                      $(this).val(elem["approval_obj"]["escalate"]);
+                  }
+                  else if (split_reg_name == "auto_assign") {
+                      $(this).val(elem["approval_obj"]["auto_assign"]);
+                  }
+              });
+          }
+
+
+
+
+      });
+  }
+
+</script>
