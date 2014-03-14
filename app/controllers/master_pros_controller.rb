@@ -37,6 +37,7 @@ class MasterProsController < ApplicationController
   def edit
     @master_pro = MasterPro.find(params[:id])
     gon.step_masters = @master_pro.master_steps
+    gon.step_masters_seq = @master_pro.master_steps.asc(:sequence)
   end
 
   # POST /master_pros
