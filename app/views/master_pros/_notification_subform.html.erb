@@ -22,7 +22,7 @@
       <div class="control-group">
         <label for="Title" class="control-label">Select EmployeeMaster, GroupMaster, Role</label>
         <div class="controls">
-          <%= select_tag "notification[#{counter}][oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification['+counter.to_s+'][action_arr][]");'} %>
+          <%= select_tag "notification[#{counter}][oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification['+counter.to_s+'][action_arr][]", "notification");'} %>
         </div>
       </div>
     </div>
