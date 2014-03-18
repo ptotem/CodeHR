@@ -362,11 +362,19 @@ module ApplicationHelper
         puts "Calling a new process independently.."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if @step.auto
-          #  TODO:
+        if !@step.auto
           #  create_and_load_process(pid,step_no,oclass,user_id,false)
+          puts @step.params_mapping
+          @a=@step.params_mapping
+          @a1=@a.values.select{|i| i["type2"]!=""}
+          @a2=@a1.map{|i| i.keys.map{|j| i[j]}}
+          @child_class_object = Hash.new
+          @a2.each do |k|
+            @child_class_object[k[0]] = @pro.class_obj[k[1]]
+          end
+          puts @child_class_object
+          create_and_load_auto_process(pid,stepno,oclass,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
         else
-          #  TODO: Create a new Process and initiate it.
           #create new Process
           create_and_load_process(pid,stepno,oclass,user_id,false)
         end
