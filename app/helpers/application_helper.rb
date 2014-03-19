@@ -279,7 +279,19 @@ module ApplicationHelper
         @pro.app_obj["approvers"].each do |k,a|
           if a["oClass"] == "EmployeeMaster"
             a["action_arr"].each do |aaa|
-              @app.approvers.create!(:employee_master_id=>aaa,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
+              (0...(aaa.length)).each do |i|
+                puts aaa[i]["id"]
+                if !aaa[i]["approver"].nil?
+                  @app.approvers.create!(:employee_master_id=>aaa, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                elsif !aaa[i]["escalated"].nil?
+                  @app.approvers.create!(:employee_master_id=>aaa, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                elsif !aaa[i]["auto_assign"].nil?
+                  @app.approvers.create!(:employee_master_id=>aaa, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                else
+
+                end
+              end
+              #@app.approvers.create!(:employee_master_id=>aaa,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
             end
           else
             puts "Todo"
