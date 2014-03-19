@@ -1,5 +1,6 @@
 class MasterStep
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :step_name, type: String
   field :sequence, type: Integer
   field :action, type: String

@@ -1,5 +1,6 @@
 class MailCc
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :is_group, type: Boolean
   field :obj_id, type: String
   field :deleted, type: Boolean

@@ -1,5 +1,6 @@
 class CandidateFamilyDetail
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :relaationship, type: String
   field :fname, type: String
   field :mname, type: String

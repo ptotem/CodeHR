@@ -1,5 +1,6 @@
 class StepTr
   include Mongoid::Document
+  include Mongoid::Timestamps
   include ApplicationHelper
 
   field :name, type: String

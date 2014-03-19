@@ -1,5 +1,6 @@
 class CustomCondition
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :is_all, type: Boolean
   field :istrue, type: Boolean

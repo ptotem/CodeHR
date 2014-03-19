@@ -1,5 +1,6 @@
 class MasterPro
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :deleted, type: Boolean
   has_many :master_steps

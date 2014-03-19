@@ -1,5 +1,6 @@
 class DocumentMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
 
   field :doc_code, type: String

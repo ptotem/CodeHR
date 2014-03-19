@@ -1,5 +1,6 @@
 class ScoreReceived
   include Mongoid::Document
+  include Mongoid::Timestamps
   #field :score, type: Integer
   field :rating_scale_id, type: String
   field :sr_name, type: String

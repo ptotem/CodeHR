@@ -1,5 +1,6 @@
 class ProcessTransact
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
   field :name, type: String
   field :mp_name, type: String

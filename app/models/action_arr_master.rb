@@ -1,5 +1,6 @@
 class ActionArrMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :a_class_name, type: String
   field :dep_class_name, type: String
   field :a_obj_id, type: String

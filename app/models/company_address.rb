@@ -1,5 +1,6 @@
 class CompanyAddress
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :address1, type: String
   field :address, type: String
   field :city, type: String

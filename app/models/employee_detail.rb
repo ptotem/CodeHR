@@ -1,7 +1,6 @@
 class EmployeeDetail
   include Mongoid::Document
-
-  include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
 
 

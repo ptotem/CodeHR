@@ -1,5 +1,6 @@
 class StepMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :oclass, type: String
   field :oaction, type: String

@@ -1,5 +1,6 @@
 class FamilyDetail
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :relationship, type: String
   field :fname, type: String
   field :mname, type: String

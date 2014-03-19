@@ -1,5 +1,6 @@
 class EmploymentHist
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :joined_from, type: Date
   field :leaved, type: Date
   field :organisation, type: String

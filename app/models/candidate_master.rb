@@ -1,5 +1,6 @@
 class CandidateMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
 
   field :candidate_code, type: String

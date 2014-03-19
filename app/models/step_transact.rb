@@ -1,5 +1,6 @@
 class StepTransact
   include Mongoid::Document
+  include Mongoid::Timestamps
   include ApplicationHelper
   field :name, type: String
   field :action_name, type: String

@@ -1,5 +1,6 @@
 class VacancyScheduling
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :deleted, type: Boolean
 
   belongs_to :candidate_master

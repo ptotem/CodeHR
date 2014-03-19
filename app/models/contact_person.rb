@@ -1,5 +1,6 @@
 class ContactPerson
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :designation, type: String
   field :phone1, type: String

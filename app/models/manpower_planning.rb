@@ -1,5 +1,6 @@
 class ManpowerPlanning
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :mp_code, type: String
   field :period_from, type: Date
   field :period_to, type: Date

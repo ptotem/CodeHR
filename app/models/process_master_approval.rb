@@ -1,5 +1,6 @@
 class ProcessMasterApproval
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :action_day, type: String
   field :action_hour, type: String

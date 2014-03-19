@@ -1,5 +1,6 @@
 class CompanyMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   #include CanCan::ModelAdditions::ClassMethods
   field :company_code, type: String
   field :company_name, type: String

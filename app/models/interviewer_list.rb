@@ -1,5 +1,6 @@
 class InterviewerList
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :interview_type_id, type: String
   field :interviewer, type: String
   field :fromdate, type: Date

@@ -1,5 +1,6 @@
 class CommunicationAddress
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :address1, type: String
   field :address2, type: String
   field :city, type: String

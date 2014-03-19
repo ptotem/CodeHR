@@ -1,5 +1,6 @@
 class AutoAssignToTr
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :aclass, type: String
   field :dclass, type: String
   field :objid, type: String

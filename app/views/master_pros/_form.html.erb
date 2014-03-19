@@ -206,7 +206,7 @@
 
       $('a.add_nested_fields').on('click', function(){
           //tab_count=tab_count+1;
-          var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length
+          var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length;
 
 
           tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
@@ -221,8 +221,9 @@
 
           window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
             var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
-            $('.tab-content').find('.tab-pane').removeClass('in active');
-            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active">'); //insert new nested form in tab after last tab
+            $('.tab-content').find('.tab-pane').removeClass('active');
+            $('.tab-content').find('.tab-pane').css('display','none');
+            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active" style="display: block;">'); //insert new nested form in tab after last tab
             set_step_seq();
             return c;
           }
@@ -406,11 +407,14 @@
       setTimeout(function() {
           //console.log($(this_obj).parent().attr('class'));
 
-          $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+          $('.tabbable').find('.tab-content').find('.tab-pane.active').each(function(i,v){
               $(v).removeClass('active');
+              $(v).css('display','none');
+              console.log("$(v).attr('id') :- " + $(v).attr('id'));
+              console.log("this_href_id :- " + this_href_id);
               if ( $(v).attr('id') == this_href_id ) {
-                  //console.log($(v).attr('id'));
                   $(v).addClass('active');
+                  $(v).css('display','block');
               }
           });
 

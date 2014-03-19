@@ -1,5 +1,6 @@
 class EmailDetail
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
   field :notification_master_id, type: String
   field :event, type: String

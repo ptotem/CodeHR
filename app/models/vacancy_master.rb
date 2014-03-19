@@ -1,5 +1,6 @@
 class VacancyMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :vacancy_code, type: String
   field :manpower_planning_id, type: Integer
   field :vendor_master_id, type: String

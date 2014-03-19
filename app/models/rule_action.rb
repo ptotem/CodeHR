@@ -1,5 +1,6 @@
 class RuleAction
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :obje
   field :funct
   field :deleted, type: Boolean

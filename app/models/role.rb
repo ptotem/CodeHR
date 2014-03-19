@@ -1,5 +1,6 @@
 class Role
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :created_by_process, type: Boolean
   field :process_id, type: String

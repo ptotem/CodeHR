@@ -1,5 +1,6 @@
 class Approver
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :employee_master_id, type: String
   field :approved, type: Boolean
   field :escalated, type: Boolean

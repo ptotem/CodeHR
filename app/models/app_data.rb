@@ -1,5 +1,6 @@
 class AppData
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :approve_step, type: String
   field :reject_step, type: String
   field :reminder, type: String

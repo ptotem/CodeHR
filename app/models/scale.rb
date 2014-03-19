@@ -1,5 +1,6 @@
 class Scale
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :scale_name, type: String
   field :scale_description, type: String
   field :priority, type: Integer

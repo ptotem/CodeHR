@@ -1,5 +1,6 @@
 class JobDescriptionMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :job_code, type: String
   field :job_title, type: String
   field :description, type: String

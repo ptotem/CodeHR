@@ -1,5 +1,6 @@
 class VendorMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :vendor_code, type: String
   field :vendor_name, type: String
   field :vendor_type, type: String

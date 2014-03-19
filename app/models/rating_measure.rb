@@ -1,5 +1,6 @@
 class RatingMeasure
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :priority, type: Integer
   field :range_from, type: String

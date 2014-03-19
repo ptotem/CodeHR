@@ -1,5 +1,6 @@
 class RatingConf
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :col_name, type: String
   field :col_lable, type: String
   field :col_validation, type: Boolean

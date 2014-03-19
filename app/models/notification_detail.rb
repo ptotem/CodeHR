@@ -1,5 +1,6 @@
 class NotificationDetail
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :notification_master_id, type: Integer
   field :event, type: String
   field :sender, type: Integer

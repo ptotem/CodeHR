@@ -1,5 +1,6 @@
 class EmployeeMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
 
   field :employee_code, type: String

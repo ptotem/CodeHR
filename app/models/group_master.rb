@@ -1,5 +1,6 @@
 class GroupMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :group_code, type: String
   field :group_name, type: String
   field :created_by_process, type: Boolean

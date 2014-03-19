@@ -1,5 +1,6 @@
 class ProcessMaster
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
   field :deleted, type: Boolean
   #attr_accessible :name, :step_masters_attributes
