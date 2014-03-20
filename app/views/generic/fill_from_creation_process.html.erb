@@ -4,6 +4,9 @@
     }
 </style>
 
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
+
 <!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
 <%= form_tag :review_form, :multipart => true do |f| %>
     <h1><%= @form_config[:name] %></h1>
@@ -222,7 +225,8 @@
     function display_objects(this_obj, oobj) {
         var count = 0;
         var parent_tab = $(this_obj).parents('.row-fluid')[0];
-        console.log(parent_tab);
+        $(parent_tab).find('.users-list').dataTable().fnDestroy();
+        //console.log(parent_tab);
         var model_name = $(this_obj).val();
         var data = {model_name: []};
         data["model_name"].push(model_name);
@@ -236,7 +240,9 @@
                 $(parent_tab).find('.users-list').show();
                 $(parent_tab).find('.not-available-text').hide();
                 var $user_row;
-                $(parent_tab).find(".users-list tr:not(:first-child)").empty();
+                var second_row_tds_len = 0;
+                $(parent_tab).find(".users-list").find("tr:first").find("th:gt(0)").empty().remove();
+                $(parent_tab).find(".users-list").find('tbody').empty();
 
                 if (model_name == "EmployeeMaster") {
                     for (var i = 0; i < data.length; i++) {
@@ -246,40 +252,72 @@
                                 '<td>' + data[i]["employee_name"] + '</td><td>' + data[i]["official_email"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
                 }
                 else if (model_name == "GroupMaster") {
                     for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>' +
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                 '<td>' + data[i]["group_name"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
                 }
                 else if (model_name == "Role") {
                     for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>' +
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                 '<td>' + data[i]["name"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
                 }
                 else if (model_name == "VendorMaster") {
                     for (var i = 0; i < data.length; i++) {
                         my_id = data[i]["_id"];
                         $user_row = '<tr>' +
-                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" disabled value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                '<td style="position: relative;"><input type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                 '<td>' + data[i]["vendor_name"] + '</td><td>' + data[i]["vendor_type"] + '</td></tr>';
                         $(parent_tab).find(".users-list").append($user_row);
                     }
-                    $(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
                 }
                 $(':checkbox, :radio').css('opacity', '1');
+
+                var EmpMasterCols = ["Name", "Email"];
+                var GrpMasterCols = ["Group Name"];
+                var RoleMasterCols = ["Role Name"];
+                var VendorMasterCols = ["Vendor Name"];
+
+                for (var i = 0; i < (second_row_tds_len-1); i++) {
+                    if (model_name == "EmployeeMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+EmpMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "GroupMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+GrpMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "Role") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+RoleMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "VendorMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+VendorMasterCols[i]+'</th>');
+                    }
+                }
+
+                initDataTables();
             }
         });
+    }
+
+    function initDataTables(){
+        var oTable = $('.users-list').dataTable();
+        //oTable.fnClearTable();
+        oTable.fnDraw();
     }
 </script>
