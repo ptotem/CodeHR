@@ -343,24 +343,19 @@ module ApplicationHelper
             end
           elsif a["oClass"] == "VendorMaster"
             a["action_arr"].each do |aaa|
-              @employees = EmployeeMaster.where(:vendor_id=>aaa["id"])
+              @emp = EmployeeMaster.find(aaa["id"])
+              @employee = VendorMaster.where(:email => @emp.official_email).first
               if !aaa["approver"].nil?
-                if @employees.nil?
-                  @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
-                  end
+                if @employee.nil?
+                  @app.approvers.create!(:employee_master_id=>@employee, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                 end
               elsif !aaa["escalated"].nil?
-                if @employees.nil?
-                  @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
-                  end
+                if @employee.nil?
+                  @app.approvers.create!(:employee_master_id=>@employee, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                 end
               elsif !aaa["auto_assign"].nil?
-                if @employees.nil?
-                  @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
-                  end
+                if @employee.nil?
+                  @app.approvers.create!(:employee_master_id=>@employee, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
                 end
               else
 
