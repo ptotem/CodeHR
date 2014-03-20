@@ -61,6 +61,8 @@ class WelcomesController < InheritedResources::Base
     @reviewed_by = params[:reviewed_by][0]
     @obj_hash = params[:newArray][0].to_a
 
+    #render :json => @obj_hash
+    #return
     @d_report_count = DReport.count
 
     if @d_report_count == 0

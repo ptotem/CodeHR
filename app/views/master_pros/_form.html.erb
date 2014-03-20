@@ -400,18 +400,19 @@
   }
 
   function show_this_attr(this_obj){
-      var this_href, this_href_id;
-      this_href = $(this_obj).attr('href');
-      this_href_id = this_href.replace("#","");
 
       setTimeout(function() {
+          var this_href, this_href_id;
+          this_href = $(this_obj).attr('href');
+          this_href_id = this_href.replace("#","");
+
           //console.log($(this_obj).parent().attr('class'));
 
-          $('.tabbable').find('.tab-content').find('.tab-pane.active').each(function(i,v){
+          $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+              console.log("this tab id :- " + $(v).attr('id'));
+              //console.log("this tab class " + $(v).attr('class'));
               $(v).removeClass('active');
-              $(v).css('display','none');
-              console.log("$(v).attr('id') :- " + $(v).attr('id'));
-              console.log("this_href_id :- " + this_href_id);
+              //$(v).css('display','none');
               if ( $(v).attr('id') == this_href_id ) {
                   $(v).addClass('active');
                   $(v).css('display','block');
@@ -561,7 +562,7 @@
                       my_id = data[i]["_id"];
                       if (app=="approval"){
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["group_name"] + '</td>' +
                                           '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
                                           '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
@@ -585,7 +586,7 @@
                       my_id = data[i]["_id"];
                       if (app=="approval"){
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["name"] + '</td>' +
                                           '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
                                           '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
@@ -608,7 +609,7 @@
                       my_id = data[i]["_id"];
                       if (app=="approval"){
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["vendor_name"] + '</td>' +
                                           '<td>' + data[i]["vendor_type"] + '</td>' +
                                           '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
