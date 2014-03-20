@@ -293,36 +293,75 @@ module ApplicationHelper
             end
           elsif a["oClass"] == "GroupMaster"
             a["action_arr"].each do |aaa|
+              @employees = EmployeeMaster.where(:group_master_id=>aaa["id"])
               if !aaa["approver"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["escalated"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["auto_assign"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                  end
+                end
               else
 
               end
             end
           elsif a["oClass"] == "Role"
             a["action_arr"].each do |aaa|
+              @employees = EmployeeMaster.where(:role_id=>aaa["id"])
               if !aaa["approver"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["escalated"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["auto_assign"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                  end
+                end
               else
 
               end
             end
           elsif a["oClass"] == "VendorMaster"
             a["action_arr"].each do |aaa|
+              @employees = EmployeeMaster.where(:vendor_id=>aaa["id"])
               if !aaa["approver"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["escalated"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
               elsif !aaa["auto_assign"].nil?
-                @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                if @employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                  end
+                end
               else
 
               end

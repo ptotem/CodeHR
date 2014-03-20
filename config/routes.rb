@@ -1,5 +1,8 @@
 CodeHR::Application.routes.draw do
 
+  resources :container_lists
+
+
   resources :rating_measures
 
 
@@ -95,6 +98,8 @@ CodeHR::Application.routes.draw do
   resources :process_transacts
 
   resources :ability_matrices
+
+  resources :container_lists
 
   #
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config

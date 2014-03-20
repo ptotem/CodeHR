@@ -1,0 +1,41 @@
+<%= form_for(@container_list) do |f| %>
+  <% if @container_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@container_list.errors.count, "error") %> prohibited this container_list from being saved:</h2>
+
+      <ul>
+      <% @container_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label">Action Type</label>
+          <div class="controls">
+            <% @actions = Array.new() %>
+            <% @actions = ["New", "Edit", "Update"] %>
+            <%= f.select(:action_type, options_for_select(Array[*@actions.collect {|v| [v]}], :disabled=>"",:selected => f.object.action_type), {:class => "actions-select"}) %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label">Link</label>
+          <div class="controls">
+            <% @models = Array.new() %>
+            <% @models = ["AbilityMatrix", "ApprovalMat"] %>
+            <%= f.select(:link, options_for_select(Array[*@models.collect {|v| [v]}], :disabled=>"",:selected => f.object.link), {:class => "models-select"}) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="form-actions">
+    <%= f.submit :class => "btn btn-info" %>
+  </div>
+
+<% end %>

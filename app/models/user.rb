@@ -33,6 +33,7 @@ class User
   field :deleted, type: Boolean
 
   has_one :employee_master
+  has_one :vendor_master
   has_many :roles
   has_many :user_tasks
   has_and_belongs_to_many :notification_masters

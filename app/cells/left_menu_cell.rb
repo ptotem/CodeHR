@@ -45,4 +45,10 @@ class LeftMenuCell < Cell::Rails
     render
   end
 
+  def container_list(args)
+    @ability_mat_path = args[:ability_mat_path]
+    @approval_mat_path = args[:approval_mat_path]
+    render
+  end
+
 end

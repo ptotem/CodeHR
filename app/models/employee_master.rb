@@ -12,6 +12,8 @@ class EmployeeMaster
   field :date_of_birth, type: Date
   field :date_of_joining, type: Date
   #field :role_ids, type: Array
+  field :role_id, type: String
+  field :vendor_id, type: String
   field :designation_joined_at, type: String
   field :official_email, type: String
   field :address_for_communication, type: String

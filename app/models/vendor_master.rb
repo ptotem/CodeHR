@@ -8,6 +8,9 @@ class VendorMaster
   field :office_fax_number1, type: String
   field :office_fax_number2, type: String
   field :deleted, type: Boolean
+  field :email, type: String
+
+  belongs_to :user
 
   embeds_many :vaddresses
   embeds_many :contact_persons
