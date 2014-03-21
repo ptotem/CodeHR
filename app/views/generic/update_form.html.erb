@@ -31,29 +31,33 @@
                 <div id="dropdown<%= index %>" class="tab-pane">
                   <div class="row-fluid">
                     <% @tab_val = tab_val[:cols].map { |i, v| v } %>
+                    <% ti = 0 %>
                     <% @tab_val.each_with_index do |col_val, index| %>
                         <div class="span6">
                           <% @col_val = col_val.map { |i, v| v } %>
-                          <% @col_val.each_with_index do |cv| %>
+                          <% ti = index+1 %>
+                          <% @col_val.each_with_index do |cv,indi| %>
                               <div class="control-group">
                                 <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
 
                                 <div class="controls">
                                   <% case cv[:type] %>
                                   <% when "text_field_tag" %>
-
-                                      <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]] %>
+                                      <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]],:tabindex => ti.to_s %>
                                   <% when "text_area_tag" %>
-                                      <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]] %>
+                                      <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]],:tabindex => ti.to_s %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id',@object_at_hand[cv[:attribute]]) %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").singularize.camelize).all, 'id', 'id',@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s} %>
                                       <% else %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options],@object_at_hand[cv[:attribute]]) %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options],@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s} %>
                                       <% end %>
+                                  <% when "date_field_tag" %>
+                                      <input type="text" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" tabindex = <%=ti.to_s %> >
                                   <% end %>
                                 </div>
                               </div>
+                              <% ti = ti +2 %>
                           <% end %>
                         </div>
                     <% end %>
