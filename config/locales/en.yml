@@ -13,7 +13,7 @@ en:
   config:
     AutoCode:
       EmployeeMaster:
-        text: "PTOE"
+        text: "EMP"
         digit: "8"
       ProcessTr:
         text: "ProcessTxn"
@@ -23,6 +23,9 @@ en:
         digit: "3"
       ProcessTransact:
         text: "ProcessTransact"
+        digit: "3"
+      BandMaster:
+        text: "BM"
         digit: "3"
     Rating:
       form:

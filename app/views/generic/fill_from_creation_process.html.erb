@@ -43,7 +43,7 @@
                     <% @tab_val.each_with_index do |col_val, index| %>
                         <div class="span6">
                           <% @col_val = col_val.map { |i, v| v } %>
-                          <% @col_val.each_with_index do |cv| %>
+                          <% @col_val.each_with_index do |cv, indi| %>
                               <div class="control-group">
                                 <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
 

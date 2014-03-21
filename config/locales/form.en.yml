@@ -926,7 +926,25 @@ en:
                   attribute: 'dclass'
                   label: 'dclass'
                   type: 'text_field_tag'
-
+    BandMaster:
+      name: "New Band Master Form"
+      object: "BandMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "BandMaster"
+            type: "standard"
+            cols:
+              col1:
+                band_code:
+                  attribute: 'band_code'
+                  label: 'Band Code'
+                  type: 'text_field_tag'
+              col2:
+                band_name:
+                  attribute: 'band_name'
+                  label: 'Band Name'
+                  type: 'text_field_tag'
     CandEducation:
       name: "New CandEducation Form"
       object: "CandEducation"
