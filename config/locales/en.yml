@@ -21,6 +21,33 @@ en:
       CandidateMaster:
         text: "CAND"
         digit: "3"
+      CompanyMaster:
+        text: "CMPNY"
+        digit: "3"
+      DocumentMaster:
+        text: "DOC"
+        digit: "3"
+      DocumentTemplateMaster:
+        text: "DOC"
+        digit: "3"
+      GroupMaster:
+        text: "GRP"
+        digit: "3"
+      JobDescriptionMaster:
+        text: "JD"
+        digit: "3"
+      ManpowerPlanning:
+        text: "MP"
+        digit: "3"
+      NotificationMaster:
+        text: "Notification"
+        digit: "3"
+      VacancyMaster:
+        text: "Vac"
+        digit: "3"
+      VendorMaster:
+        text: "Vendor"
+        digit: "3"
       ProcessTransact:
         text: "ProcessTransact"
         digit: "3"

@@ -690,8 +690,8 @@ en:
             type: "standard"
             cols:
               col1:
-                Code:
-                  attribute: 'Code'
+                code:
+                  attribute: 'code'
                   label: 'Code'
                   type: 'text_field_tag'
                 user_id:
@@ -699,8 +699,8 @@ en:
                   label: 'User id'
                   type: 'text_field_tag'
               col2:
-                Name:
-                  attribute: 'Name'
+                name:
+                  attribute: 'name'
                   label: 'Name'
                   type: 'text_field_tag'
                 loop_step:
@@ -1374,7 +1374,7 @@ en:
               col1:
                 dt_code:
                   attribute: 'dt_code'
-                  label: 'dt_code'
+                  label: 'Document Template Master Code'
                   type: 'text_field_tag'
                 related_to:
                   attribute: 'related_to'
@@ -1874,29 +1874,75 @@ en:
             cols:
               col1:
                 candidate_code:
-                  attributes: 'candidate_code'
+                  attribute: 'candidate_code'
                   label: 'Candidate Code'
                   type: 'text_field_tag'
                 status:
-                  attributes: 'status'
+                  attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
                   options: ["Selected","Rejected","Created","Sort-listed"]
                 official_email:
-                  attributes: 'official_email'
+                  attribute: 'official_email'
                   label: 'Email1'
                   type: 'text_field_tag'
               col2:
                 candidate_name:
-                  attributes: 'candidate_name'
+                  attribute: 'candidate_name'
                   label: 'Candidate Name'
                   type: 'text_field_tag'
                 gender:
-                  attributes: 'gender'
+                  attribute: 'gender'
                   label: 'Gender'
                   type: 'select_tag'
                   options: ["Male","Female"]
                 personal_email:
-                  attributes: 'personal_email'
+                  attribute: 'personal_email'
                   label: 'Email2'
                   type: 'text_field_tag'
+    NotificationMaster:
+      name: "New Notification Master Form"
+      object: "NotificationMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Notification Master"
+            type: "Standard"
+            cols:
+              col1:
+                code:
+                  attribute: 'code'
+                  label: 'Code'
+                  type: 'text_field_tag'
+                description:
+                  attribute: 'description'
+                  label: 'Description'
+                  type: 'text_area_tag'
+              col2:
+                title:
+                  attribute: 'title'
+                  label: 'Title'
+                  type: 'text_field_tag'
+                type:
+                  attribute: 'type'
+                  label: 'Type'
+                  type: 'text_field_tag'
+    RatingScale:
+      name: "New Rating Scale Form"
+      object: "RatingScale"
+      fields:
+        tabs:
+          tab1:
+            name: "Rating Scale"
+            type: "Standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+              col2:
+                description:
+                  attribute: 'description'
+                  label: 'Description'
+                  type: 'text_area_tag'
