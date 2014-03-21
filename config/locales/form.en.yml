@@ -295,12 +295,6 @@ en:
                       label: 'Process'
                       type: 'select_tag'
                       options: 'model'
-              tab2:
-                name: "Approval Mats"
-                type: 'sub-form'
-                attribute: 'ApprovalMat'
-                approval_mats:
-                  type: 'sub-form'
     ApprovalMat:
       name: "New Approval Mat Form"
       object: "ApprovalMat"
@@ -577,6 +571,12 @@ en:
                   attribute: 'comments'
                   label: 'Comments'
                   type: 'text_area_tag'
+          tab2:
+            name: "MpPlan"
+            type: 'sub-form'
+            attribute: 'ManpowerPlanning'
+            score_receiveds:
+              type: 'sub-form'
     VacancyMaster:
       name: "New Vacancy Master Form"
       object: "VacancyMaster"
