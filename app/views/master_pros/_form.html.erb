@@ -571,7 +571,7 @@
                       }
                       else{
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["group_name"] + '</td>' +
                                       '</tr>';
                       }
@@ -595,7 +595,7 @@
                       }
                       else{
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["name"] + '</td>' +
                                       '</tr>';
                       }
@@ -619,7 +619,7 @@
                       }
                       else{
                           $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="action_arr[' + count + '][]" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                           '<td>' + data[i]["vendor_name"] + '</td>' +
                                           '<td>' + data[i]["vendor_type"] + '</td>' +
                                       '</tr>';

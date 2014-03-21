@@ -292,24 +292,29 @@ module ApplicationHelper
                 #@app.approvers.create!(:employee_master_id=>aaa,:approved=>false,:escalated=>false,:escalated_from=>nil,:active=>true)
             end
           elsif a["oClass"] == "GroupMaster"
+            puts "sunny"
             a["action_arr"].each do |aaa|
-              @employees = EmployeeMaster.where(:group_master_id=>aaa["id"])
+              puts "here"
+              @employees = EmployeeMaster.where(:group_master_ids=>aaa["id"])
+              puts @employees
               if !aaa["approver"].nil?
-                if @employees.nil?
+                puts "www"
+                if !@employees.nil?
+                    puts "www2"
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                   end
                 end
               elsif !aaa["escalated"].nil?
-                if @employees.nil?
+                if !@employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                   end
                 end
               elsif !aaa["auto_assign"].nil?
-                if @employees.nil?
+                if !@employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
                   end
                 end
               else
@@ -322,19 +327,19 @@ module ApplicationHelper
               if !aaa["approver"].nil?
                 if @employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                   end
                 end
               elsif !aaa["escalated"].nil?
                 if @employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                   end
                 end
               elsif !aaa["auto_assign"].nil?
                 if @employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
                   end
                 end
               else
@@ -369,17 +374,54 @@ module ApplicationHelper
       when "Notify"
         puts "Notifying"
         @pro = ProcessTransact.find(pid)
-        @pro.notification_obj["action_arr"].each do |noti|
-          puts noti
-          puts "noti"
-          @user=EmployeeMaster.find(noti).user
-          puts @user
-          unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
-          unm.save
-          unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-          unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-          unm.save
-          @user.save
+        if @pro.notification_obj["oClass"] == "EmployeeMaster"
+          @pro.notification_obj["action_arr"].each do |noti|
+            @user=EmployeeMaster.find(noti["id"]).user
+            puts @user
+            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+            unm.save
+            unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+            unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+            unm.save
+            @user.save
+          end
+        elsif @pro.notification_obj["oClass"] == "GroupMaster"
+          @pro.notification_obj["action_arr"].each do |noti|
+            @users=EmployeeMaster.where(:group_master_id => noti["id"])
+            @users.each do |user|
+              @user = user.user
+              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              unm.save
+              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.save
+              @user.save
+            end
+          end
+        elsif @pro.notification_obj["oClass"] == "Role"
+          @pro.notification_obj["action_arr"].each do |noti|
+            @users=EmployeeMaster.where(:role_id => noti["id"])
+            @users.each do |user|
+              @user = user.user
+              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              unm.save
+              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.save
+              @user.save
+            end
+          end
+        elsif @pro.notification_obj["oClass"] == "VendorMaster"
+          @pro.notification_obj["action_arr"].each do |noti|
+            @user= VendorMaster.find(noti["id"]).user
+            puts @user
+            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+            unm.save
+            unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+            unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+            unm.save
+            @user.save
+          end
         end
         @pro.step_transacts[stepno].end_processing_step
       when "MarkComplete"
