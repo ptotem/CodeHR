@@ -290,11 +290,6 @@ en:
                       attribute: 'period_from'
                       label: 'Period From'
                       type: 'text_field_tag'
-                    process_id:
-                      attribute: 'master_pro'
-                      label: 'Process'
-                      type: 'select_tag'
-                      options: 'model'
     ApprovalMat:
       name: "New Approval Mat Form"
       object: "ApprovalMat"

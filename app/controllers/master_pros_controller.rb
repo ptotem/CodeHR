@@ -61,6 +61,8 @@ class MasterProsController < ApplicationController
 
     respond_to do |format|
       if @master_pro.save
+        #render :json => @master_pro.master_steps[1].approval_obj
+        #return
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully created.' }
         format.json { render json: @master_pro, status: :created, location: @master_pro }
       else

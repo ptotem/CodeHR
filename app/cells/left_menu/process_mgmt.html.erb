@@ -21,7 +21,7 @@
       <%#= params %>
       <% @master_pros.each do |master_pro| %>
           <% if @contoller=="process_transacts" && @action=="new" %>
-              <li><%= link_to "#{master_pro.name}", "new/#{master_pro.id}" %></li>
+              <li><%= link_to "#{master_pro.name}", "#{master_pro.id}" %></li>
           <% else %>
               <li><%= link_to "#{master_pro.name}", "/process_transacts/new/#{master_pro.id}" %></li>
           <% end %>
