@@ -29,6 +29,8 @@ class ProcessTransactsController < ApplicationController
     @process_transact = ProcessTransact.new
     #render :text => params
     #return
+    @num = ProcessTransact.last.code.gsub(t('config.AutoCode.ProcessTransact.text'),'').to_i  rescue 1
+    @process_transact_code = t('config.AutoCode.ProcessTransact.text')+sprintf('%0'+t('config.AutoCode.ProcessTransact.digit')+'d',(@num+1))
 
     respond_to do |format|
       format.html # new.html.erb

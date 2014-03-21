@@ -231,6 +231,10 @@ class GenericController < ApplicationController
       @form_config = t('forms.'+@model_name)
       @fields = @form_config[:fields]
       @score = Rating.new.score_receiveds.build
+
+      @num = eval(@model_name).all.length rescue 1
+      @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1))
+
       @approval = true
       @notification =true
     end

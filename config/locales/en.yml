@@ -21,6 +21,9 @@ en:
       CandidateMaster:
         text: "CAND"
         digit: "3"
+      ProcessTransact:
+        text: "ProcessTransact"
+        digit: "3"
     Rating:
       form:
         new:

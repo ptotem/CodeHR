@@ -50,7 +50,12 @@
                                 <div class="controls">
                                   <% case cv[:type] %>
                                   <% when "text_field_tag" %>
-                                      <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                      <% if cv[:attribute].include?('code') %>
+                                          <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true %>
+                                      <% else %>
+                                          <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
+                                      <% end %>
+
                                   <% when "text_area_tag" %>
                                       <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
                                   <% when "date_field_tag" %>
