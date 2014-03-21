@@ -19,7 +19,11 @@
       <ul class="nav nav-tabs" id="myTab">
         <% count = 0 %>
         <% @fields[:tabs].map { |i, v| v[:name] }.each_with_index do |tab, index| %>
-            <li><a data-toggle="tab" href="#dropdown<%= index %>"><%= tab %></a></li>
+            <% if index == 0 %>
+                <li class="active"><a data-toggle="tab" href="#dropdown<%= index %>"><%= tab %></a></li>
+            <% else %>
+                <li><a data-toggle="tab" href="#dropdown<%= index %>"><%= tab %></a></li>
+            <% end %>
             <% count =count+1 %>
         <% end %>
         <% if @approval %>
