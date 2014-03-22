@@ -36,9 +36,10 @@ class MasterProsController < ApplicationController
   # GET /master_pros/1/edit
   def edit
     @master_pro = MasterPro.find(params[:id])
-    @master_steps = @master_pro.master_steps
+    @master_steps = @master_pro.master_steps.order_by(['sequence'])
     gon.step_masters = @master_pro.master_steps
     gon.step_masters_seq = @master_pro.master_steps.asc(:sequence)
+    @edit = true
   end
 
   # POST /master_pros

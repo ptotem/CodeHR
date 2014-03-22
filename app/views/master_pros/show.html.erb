@@ -12,7 +12,7 @@
             <td><%= @master_pro.name %></td>
           </tr>
 
-          <% @master_pro.master_steps.each do |master_step| %>
+          <% @master_pro.master_steps.order_by(['sequence']).each do |master_step| %>
             <tr>
                 <th>Action</th>
                 <td><%= master_step.action %></td>

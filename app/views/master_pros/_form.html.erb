@@ -55,7 +55,7 @@
             <div class="tab-content">
               <div id="step1" class="tab-pane in active">
 
-                    <%= f.fields_for :master_steps do |master_step| %>
+                    <%= f.fields_for :master_steps, (@edit? @master_pro.master_steps.order_by(['sequence']):'') do |master_step| %>
                         <!--<div id="step1" class="tab-content">-->
                             <div class="row-fluid">
                               <%= master_step.hidden_field :sequence, :class=>"my_seq" %>
