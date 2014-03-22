@@ -1,5 +1,5 @@
 
-
+//ToDo: Adding approvers list and notifir list in edit page.
 if (form_act == "edit"){
     var parent_tab = [];
     $('.tab-content').find('.my_seq').each(function(index,elem){
@@ -46,7 +46,9 @@ if (form_act == "edit"){
                     var intlastChar;
                     intlastChar = parseInt(lastChar);
                     $('.tab-pane').hide();
+                    $('.approval').find('.tab-pan').show();
                     $("#step"+intlastChar).show();
+                    $('.approval').find('.tab-pan').show();
                 });
             },2000)
 
@@ -66,54 +68,64 @@ if (form_act == "edit"){
                       $("#"+a).find(".approval").find($("input:text, textarea")).each(function(i, v){
                           reg_name = $(v).attr("name").match(/[^[]+(?=\])/g); //Extracting field name from each text-box, textarea name
                           split_reg_name = reg_name[1];
-                          //console.log(reg_name, split_reg_name);
-
-                          //auto_assign, escalate, reminder, rep_reminder
                           if (split_reg_name == "reminder") {
-                              //$(v).val(gon.step_masters[(approval_tab_id-1)]["approval_obj"]["reminder"]);
                               $(v).val(gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["reminder"]);
                           }
                           else if (split_reg_name == "rep_reminder") {
-                              //$(v).val(gon.step_masters[(approval_tab_id-1)]["approval_obj"]["rep_reminder"]);
                               $(v).val(gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["rep_reminder"]);
                           }
                           else if (split_reg_name == "escalate") {
-                              //$(v).val(gon.step_masters[(approval_tab_id-1)]["approval_obj"]["escalate"]);
                               $(v).val(gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["escalate"]);
                           }
                           else if (split_reg_name == "auto_assign") {
-                              //$(v).val(gon.step_masters[(approval_tab_id-1)]["approval_obj"]["auto_assign"]);
                               $(v).val(gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["auto_assign"]);
                           }
-
+                          setTimeout(function(){
+                              $('.approval').find('.tab-pane').show();
+                              console.log(gon.step_masters_seq[(approval_tab_id-1)]);
+                              console.log($("#"+a).find(".approval").find('.auto_assign_tos'))
+                              $("#"+a).find(".approval").find('.auto_assign_tos').val(gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["approvers"][0]["oClass"]);
+                              display_objects($("#"+a).find(".approval").find('.auto_assign_tos'),"approval[0][approvers][0]action_arr[]","approval");
+                              gon.step_masters_seq[(approval_tab_id-1)]["approval_obj"]["approvers"][0]["action_arr"].each(function(i,v){
+                                //alert(i["id"]);
+                                $($('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).prop("checked", "checked")
+                                if(i["approver"]){
+                                    $($('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).parent().parent().find('.app_ck_bx').prop("checked", "checked")
+                                }
+                              });
+                              $('.approval').find('.tab-pane').show();
+                          },4000);
                       });
                   },3000);
 
 
+
+
               }
               else if (action_name == "Notify") {
-                  //console.log("if Notify a is :- " + $("#"+a).attr('id'));
                   add_notification_pm_form($("#"+a).find('.drpdwn').children().first());
                   notify_tab = $("#"+a).attr("id"); //tab-content->tab-pane#step1, step2 etc...
                   notify_tab_id = notify_tab.replace(/[^\d.,]+/,''); // 1, 2 etc...
-                  //console.log("notify_tab :- " + notify_tab);
-                  //console.log("notify_tab_id :- " + notify_tab_id);
-
                   setTimeout(function() {
                       $("#"+a).find(".notification").find($("input:text, textarea")).each(function(i, v){
                           reg_name = $(v).attr("name").match(/[^[]+(?=\])/g); //Extracting field name from each text-box, textarea name
                           split_reg_name = reg_name[1];
-                          //console.log(reg_name, split_reg_name);
-
-                          //title, description
                           if (split_reg_name == "title") {
-                              //$(v).val(gon.step_masters[(notify_tab_id-1)]["notification_obj"]["title"]);
                               $(v).val(gon.step_masters_seq[(notify_tab_id-1)]["notification_obj"]["title"]);
                           }
                           else if (split_reg_name == "description") {
-                              //$(v).val(gon.step_masters[(notify_tab_id-1)]["notification_obj"]["description"]);
                               $(v).val(gon.step_masters_seq[(notify_tab_id-1)]["notification_obj"]["description"]);
                           }
+                          setTimeout(function(){
+                              $('.approval').find('.tab-pane').show();
+                              console.log($("#"+a).find('.auto_assign_tos'))
+                              $("#"+a).find('.auto_assign_tos').val(gon.step_masters_seq[(notify_tab_id-1)]["notification_obj"]["oClass"]);
+                              display_objects($("#"+a).find('.auto_assign_tos'),"notification[0][action_arr][]", "notification");
+                              gon.step_masters_seq[(notify_tab_id-1)]["notification_obj"]["action_arr"].each(function(i,v){
+                                  $($("#"+a).find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).prop("checked", "checked")
+                              });
+                              $('.approval').find('.tab-pane').show();
+                          },4000);
 
                       });
                   },3000);
@@ -125,7 +137,6 @@ if (form_act == "edit"){
             count=action_arr_index-1;
         });
     },500)
-
 
 
 //    setTimeout(function(){

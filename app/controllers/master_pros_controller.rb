@@ -36,6 +36,7 @@ class MasterProsController < ApplicationController
   # GET /master_pros/1/edit
   def edit
     @master_pro = MasterPro.find(params[:id])
+    @master_steps = @master_pro.master_steps
     gon.step_masters = @master_pro.master_steps
     gon.step_masters_seq = @master_pro.master_steps.asc(:sequence)
   end
@@ -76,10 +77,24 @@ class MasterProsController < ApplicationController
   # PUT /master_pros/1.json
   def update
     @master_pro = MasterPro.find(params[:id])
-    #render :json => params
-    #return
+
     respond_to do |format|
       if @master_pro.update_attributes(params[:master_pro])
+        @master_steps = @master_pro.master_steps
+        index1 = 0
+        index2 = 0
+        @master_steps.each do |master_step|
+          if master_step.action == "Approve"
+            master_step.approval_obj = params[:approval][index1.to_s]
+            index1 = index1+1
+          elsif master_step.action == "Notify"
+            master_step.notification_obj = params[:notification][index2.to_s]
+            index2 = index2+1
+          end
+        end
+        #render :json => @master_pro.master_steps
+        #return
+        @master_pro.save
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully updated.' }
         format.json { head :no_content }
       else

@@ -530,6 +530,10 @@
                             gon.step_masters[index].action_arr_masters.each(function(i,v){
                                 $($("#step"+(index+1)).find('.user_select_checkbox[value="'+ i.a_obj_id+'"]')[0]).prop("checked", "checked")
 //                                console.log(i.a_obj_id)
+//                                gon.step_masters_seq[1]["approval_obj"]["approvers"][0]["action_arr"].each(function(i,v){
+//                                    alert(i["id"]);
+//                                    $('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).prop("checked", "checked")
+//                                });
                             });
                             $($(".users-list")[index]).show();
                         }
