@@ -65,7 +65,7 @@
                         <!--<label class="control-label">Action</label>-->
                         <label>Action</label>
                         <div class="controls drpdwn" style="margin-left: 0;">
-                          <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
+                          <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {},{:class=>"my_cls", :onchange=>"model_select_control($(this));"} %>
                         </div>
                       </div>
                     </div>
@@ -78,11 +78,11 @@
                           <% @models = Array.new() %>
                           <% @yml_models = t('forms') %>
                           <% @yml_models.each do |model| %>
-                              <% @models << "#{model[0]}||#{model[1][:name]}" %>
+                              <% @models << "#{model[0]}||#{model[1][:name]}".gsub!("New ","") %>
                           <% end %>
 
                           <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
-                          <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]]}],:disabled=>"",:selected => master_step.object.action_class), {:class => "models-select"}) %>
+                          <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]]}],:disabled=>"",:selected => master_step.object.action_class),{} ,{:class => "models-select"}) %>
                           <%= master_step.hidden_field :auto, :value=>true %>
                         </div>
                       </div>
@@ -104,7 +104,7 @@
                           <div class="control-group">
                             <label class="control-label">Spawn Process</label>
                             <div class="controls">
-                              <%= master_step.select :action_obj, options_from_collection_for_select(MasterPro.all,"id","name"),{:class =>"my_process_list"} %>
+                              <%= master_step.select :action_obj, options_from_collection_for_select(MasterPro.all,"id","name"),{},{:class =>"my_process_list"} %>
                               <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
                             </div>
                           </div>
@@ -681,11 +681,12 @@
 
 //      For Auto mapping view button
         counter = $(this_obj).parent().prev().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
+        var data1=$(this_obj).parents('.spawn-process').find('.my_process_list').val();
+        var data2=$("#step1").find('.models-select').val();
 
-
-        $.get("/params_mapping/CompanyMaster",function(result1){
+        $.get("/params_mapping1/"+data1,function(result1){
             var a=[];
-            $.get("/params_mapping/Rating",function(result){
+            $.get("/params_mapping/"+data2,function(result){
                 $.each(result,function(i,v){
                     a.push(v);
                 });

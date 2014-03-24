@@ -254,8 +254,10 @@
       <ul class="nav nav-list">
         <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
             <% @ab_mat = AbilityMatrix.where(:role_id => current_user.employee_master.group_master_ids[0]).first %>
-            <% @ab_mat.access_obj.each do |i| %>
-                <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
+            <% if !@ab_mat.nil? %>
+                <% @ab_mat.access_obj.each do |i| %>
+                    <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
+                <% end %>
             <% end %>
         <% end %>
 

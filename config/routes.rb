@@ -195,6 +195,7 @@ CodeHR::Application.routes.draw do
   match '/review_bulk_form' => 'generic#review_bulk_form'
 
   match '/params_mapping/:model_name' => 'generic#params_mapping', :as => :params_mapping
+  match '/params_mapping1/:model_name' => 'generic#params_mapping1', :as => :params_mapping1
   #match '/render_nested_subform/:new_fields/:main_form/:fi/:form_index/:this_sf/:my_index' => 'generic#render_nested_subform'
   match '/render_nested_subform' => 'generic#render_nested_subform', :as => :nested_subform
   match '/subform' => 'generic#render_subform', :as => :subform

@@ -289,14 +289,11 @@ class GenericController < ApplicationController
     end
 
     def review_filled_form
-      #render :json => params
-      #return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
       @process_transact.save
       if !params[:process_id].nil?
         @pro=ProcessTransact.find(params[:process_id])
-        #@pro.chits.create!(name:params[:model_name],ocname:params[:model_name],oid:instance_variable_get("@#{params[:model_name].underscore}")._id)
         @user=current_user
         @user.current_redirect_url=''
         @user.save
@@ -332,6 +329,18 @@ class GenericController < ApplicationController
       return
     end
 
+    def params_mapping1
+      @model_name = MasterPro.find(params[:model_name]).master_steps[0].action_class
+      @form_config = t('forms.'+@model_name)
+      @fields = @form_config[:fields]
+      @aa= Array.new
+      @fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
+        @aa << i.values.map{|i| i[:attribute]}
+      end
+      render :json =>@aa.flatten
+      return
+    end
+
     def update_form
       @model_name = params[:model_name]
       @form_config = t('forms.'+@model_name)
@@ -339,9 +348,6 @@ class GenericController < ApplicationController
       @object_at_hand  = @model_name.camelize.constantize.find(params[:id])
       @approval = true
       @notification =true
-      #render :json=>@object_at_hand
-      #return
-
     end
 
     #def update_form
