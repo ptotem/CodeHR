@@ -5,6 +5,7 @@ class MasterStep
   field :sequence, type: Integer
   field :action, type: String
   field :action_class, type: String
+  field :action_obj, type: String
   field :auto, type: Boolean
   field :action_parameter, type: Array
   field :params_mapping, type: Hash

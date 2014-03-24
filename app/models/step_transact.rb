@@ -6,6 +6,7 @@ class StepTransact
   field :action_name, type: String
   field :action_object_id, type: String
   field :obj_name, type: String
+  field :action_obj, type: String
   field :auto, type: Boolean
   field :params_mapping, type: Hash
   field :deleted, type: Boolean
@@ -83,7 +84,7 @@ class StepTransact
     puts "#{self.name} is preparing for finish processing"
     #self.end_processing_step
     #step_processing(self.oclass,self.oaction,self.action_to,self.content,self.process_tr._id,self.process_tr.step_trs.index(self),self.process_tr.user_id)
-    step_transaction_processing(self.action_name,self.obj_name,self.process_transact.cobject_id, self.process_transact._id, self.process_transact.step_transacts.index(self),self.process_transact.user_id)
+    step_transaction_processing(self.action_name,self.obj_name,self.process_transact.cobject_id, self.action_obj,self.process_transact._id, self.process_transact.step_transacts.index(self),self.process_transact.user_id)
   end
 
   def post_finish_step

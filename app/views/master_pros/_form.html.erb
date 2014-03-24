@@ -17,28 +17,28 @@
 </style>
 
 <%= nested_form_for(@master_pro, html: {class: "form-horizontal"}) do |f| %>
-  <% if @master_pro.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@master_pro.errors.count, "error") %> prohibited this master_pro from being saved:</h2>
+    <% if @master_pro.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@master_pro.errors.count, "error") %> prohibited this master_pro from being saved:</h2>
 
-      <ul>
-      <% @master_pro.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @master_pro.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class="row-fluid">
-    <div class="span6">
-      <div class="control-group">
-        <label class="control-label" style="text-align: left;">Name</label>
-        <div class="controls">
-              <%= f.text_field :name, :style=>"width: 80%;" %>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label class="control-label" style="text-align: left;">Name</label>
+          <div class="controls">
+            <%= f.text_field :name, :style=>"width: 80%;" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
     <hr>
     <div class="page-header position-relative">
@@ -48,126 +48,126 @@
 
     <div class="row-fluid tabs-row">
       <div class="span12">
-          <div class="tabbable tabs-left">
-            <ul class="nav nav-tabs" id="sortable">
-              <li class="active"><a data-toggle="tab" onclick="show_this_attr($(this));" href="#step1">Step 1</a></li>
-            </ul>
-            <div class="tab-content">
-              <div id="step1" class="tab-pane in active">
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs" id="sortable">
+            <li class="active"><a data-toggle="tab" onclick="show_this_attr($(this));" href="#step1">Step 1</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="step1" class="tab-pane in active">
 
-                    <%= f.fields_for :master_steps, (@edit? @master_pro.master_steps.order_by(['sequence']):'') do |master_step| %>
-                        <!--<div id="step1" class="tab-content">-->
-                            <div class="row-fluid">
-                              <%= master_step.hidden_field :sequence, :class=>"my_seq" %>
+              <%= f.fields_for :master_steps, (@edit? @master_pro.master_steps.order_by(['sequence']):'') do |master_step| %>
+                  <!--<div id="step1" class="tab-content">-->
+                  <div class="row-fluid">
+                    <%= master_step.hidden_field :sequence, :class=>"my_seq" %>
 
-                              <div class="span4">
-                                <div class="control-group">
-                                  <!--<label class="control-label">Action</label>-->
-                                  <label>Action</label>
-                                  <div class="controls drpdwn" style="margin-left: 0;">
-                                    <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="span4">
-                                <div class="control-group">
-                                  <!--<label class="control-label">Action Class</label>-->
-                                  <label>Action Class</label>
-                                  <div class="controls model-select-dropdown-container" style="margin-left: 0;">
-                                    <%# @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
-                                    <% @models = Array.new() %>
-                                    <% @yml_models = t('forms') %>
-                                    <% @yml_models.each do |model| %>
-                                        <% @models << "#{model[0]}||#{model[1][:name]}" %>
-                                    <% end %>
+                    <div class="span4">
+                      <div class="control-group">
+                        <!--<label class="control-label">Action</label>-->
+                        <label>Action</label>
+                        <div class="controls drpdwn" style="margin-left: 0;">
+                          <%= master_step.select :action, options_for_select(["Fill", "Update", "Approve", "Notify", "MarkComplete", "SpawnD", "SpawnI"], disabled: "", :selected => master_step.object.action), {:class=>"my_cls"}, :onchange=>"model_select_control($(this));" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="span4">
+                      <div class="control-group">
+                        <!--<label class="control-label">Action Class</label>-->
+                        <label>Action Class</label>
+                        <div class="controls model-select-dropdown-container" style="margin-left: 0;">
+                          <%# @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize} %>
+                          <% @models = Array.new() %>
+                          <% @yml_models = t('forms') %>
+                          <% @yml_models.each do |model| %>
+                              <% @models << "#{model[0]}||#{model[1][:name]}" %>
+                          <% end %>
 
-                                    <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
-                                    <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]]}],:disabled=>"",:selected => master_step.object.action_class), {:class => "models-select"}) %>
-                                    <%= master_step.hidden_field :auto, :value=>true %>
-                                  </div>
-                                </div>
-                              </div>
-                              <!--<div class="span4">-->
-                                <!--<div class="control-group">-->
-                                  <!--<label class="control-label">Action Parameter</label>-->
-                                  <!--<div class="controls">-->
-                                    <!--<%#= master_step.text_field :action_parameter %>-->
-                                  <!--</div>-->
-                                <!--</div>-->
-                              <!--</div>-->
+                          <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
+                          <%= master_step.select(:action_class, options_for_select(Array[*@models.collect {|v,i| [v.split("||")[1],v.split("||")[0]]}],:disabled=>"",:selected => master_step.object.action_class), {:class => "models-select"}) %>
+                          <%= master_step.hidden_field :auto, :value=>true %>
+                        </div>
+                      </div>
+                    </div>
+                    <!--<div class="span4">-->
+                    <!--<div class="control-group">-->
+                    <!--<label class="control-label">Action Parameter</label>-->
+                    <!--<div class="controls">-->
+                    <!--<%#= master_step.text_field :action_parameter %>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                  </div>
+
+                  <div class="row-fluid spawn-process" style="display: none;">
+                    <div class="span12">
+                      <div class="row-fluid">
+                        <div class="span4">
+                          <div class="control-group">
+                            <label class="control-label">Spawn Process</label>
+                            <div class="controls">
+                              <%= master_step.select :action_obj, options_from_collection_for_select(MasterPro.all,"id","name"),{:class =>"my_process_list"} %>
+                              <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
                             </div>
-
-                            <div class="row-fluid spawn-process" style="display: none;">
-                              <div class="span12">
-                                <div class="row-fluid">
-                                  <div class="span4">
-                                    <div class="control-group">
-                                      <label class="control-label">Spawn Process</label>
-                                      <div class="controls">
-                                        <%= select_tag :action_class, options_from_collection_for_select(MasterPro.all,"id","name"),{:class =>"my_process_list"} %>
-                                        <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="span4">
-                                    <div class="control-group">
-                                      <div class="row-fluid" style="margin-top: 9%;">
-                                        <%= master_step.hidden_field :auto, :value => true, :class=>"my_auto" %>
-                                        <div class="span3">
-                                          <button class="btn btn-primary btn-small manual-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(false);toggle_btns($(this), $(this).parent().next().children().first());">Manual</button>
-                                        </div>
-                                        <div class="span3">
-                                          <button class="btn btn-success btn-small auto-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(true);toggle_btns($(this), $(this).parent().prev().children().first());mapping_view(this);">Auto</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="span4">
-                                    <div class="control-group">
-                                      <label class="control-label">For</label>
-                                      <div class="controls">
-                                        <%= text_field_tag :arr %>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row-fluid manual-action" style="display: none;">
-                                  <div class="control-group">
-                                    <label class="control-label">Assign To</label>
-                                    <div class="controls">
-                                      <%= select_tag "assign_to", options_from_collection_for_select(EmployeeMaster.all,"id","employee_name") %>
-                                      <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
-                                    </div>
-                                  </div>
-                                  <div class="row-fluid my_params_attr">
-
-                                  </div>
-                                </div>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-group">
+                            <div class="row-fluid" style="margin-top: 9%;">
+                              <%= master_step.hidden_field :auto, :value => true, :class=>"my_auto" %>
+                              <div class="span3">
+                                <button class="btn btn-primary btn-small manual-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(false);toggle_btns($(this), $(this).parent().next().children().first());">Manual</button>
+                              </div>
+                              <div class="span3">
+                                <button class="btn btn-success btn-small auto-btn" type="button" onclick="$(this).parent().parent().find('.my_auto').val(true);toggle_btns($(this), $(this).parent().prev().children().first());mapping_view(this);">Auto</button>
                               </div>
                             </div>
-
-                            <div class="row-fluid pm_approval_field">
-                                <%#= render :partial => 'generic/approval_form' %>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-group">
+                            <label class="control-label">For</label>
+                            <div class="controls">
+                              <%= text_field_tag :arr %>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row-fluid manual-action" style="display: none;">
+                        <div class="control-group">
+                          <label class="control-label">Assign To</label>
+                          <div class="controls">
+                            <%= select_tag "assign_to", options_from_collection_for_select(EmployeeMaster.all,"id","employee_name") %>
+                            <%#= f.select :role, options_from_collection_for_select(Role.all,'id','name'), {:include_blank => "Select"} %>
+                          </div>
+                        </div>
+                        <div class="row-fluid my_params_attr">
 
-                            <%= master_step.link_to_remove "Remove this record", :onClick=>"remove_tab_li($(this));" %>
-                            <hr>
-                        <!--</div>-->
-                    <% end %>
-                    <!--<p><%#= f.link_to_add "Add a task", :master_steps %></p>-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-              </div>
+                  <div class="row-fluid pm_approval_field">
+                    <%#= render :partial => 'generic/approval_form' %>
+                  </div>
+
+                  <%= master_step.link_to_remove "Remove this record", :onClick=>"remove_tab_li($(this));" %>
+                  <hr>
+                  <!--</div>-->
+              <% end %>
+              <!--<p><%#= f.link_to_add "Add a task", :master_steps %></p>-->
+
             </div>
-            <p><%= f.link_to_add "Add a task", :master_steps, :onClick=>"increase_counter();" %></p>
           </div>
+          <p><%= f.link_to_add "Add a task", :master_steps, :onClick=>"increase_counter();" %></p>
+        </div>
       </div>
     </div>
 
 
-  <br>
-  <div class="actions">
-    <%= f.submit :class=>"btn btn-info" %>
-  </div>
+    <br>
+    <div class="actions">
+      <%= f.submit :class=>"btn btn-info" %>
+    </div>
 <% end %>
 
 <script type="text/javascript" src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -179,537 +179,532 @@
 
 
 <script>
-  var tab_count;
-  var acounter =0;
-  var ncounter =0;
+    var tab_count;
+    var acounter =0;
+    var ncounter =0;
 
-  var action_arr_index=0;
-  var count = 0;
-  var counter= 0;
+    var action_arr_index=0;
+    var count = 0;
+    var counter= 0;
 
-  var form_id = $('.form-horizontal').attr('id');
-  var form_act = form_id.split("_")[0];
+    var form_id = $('.form-horizontal').attr('id');
+    var form_act = form_id.split("_")[0];
 
-  $(function(){
+    $(function(){
 
-      //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
+        //apply_dataTable('#manpower_planning_table', '#manpower_planning_table_wrapper','#manpower_planning_table_length', '#manpower_planning_table_filter');
 
-      setTimeout(function() {
-          set_step_seq();
-      }, 1000);
-
-      $("#sortable").sortable({stop: function(event,ui){
-          //console.log($(ui.item).index());
-          set_step_seq();
-      }
-      });  //nested form's fields (step_master -> steps) sortable
-
-      $('a.add_nested_fields').on('click', function(){
-          //tab_count=tab_count+1;
-          var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length;
-
-
-          tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
-          var sortable_lis = $('#sortable').find('li').length + 1;
-          $('#sortable').find('li').removeClass('active');
-
-          var ht = '<li class="active">' +
-                        '<a data-toggle="tab" onclick="show_this_attr($(this));" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
-                   '</li>'; //html for tab list (Step 1, Step 2, etc...).
-
-          $("#sortable").append(ht); //add tab in list of steps
-
-          window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-            var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
-            $('.tab-content').find('.tab-pane').removeClass('active');
-            $('.tab-content').find('.tab-pane').css('display','none');
-            var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active" style="display: block;">'); //insert new nested form in tab after last tab
+        setTimeout(function() {
             set_step_seq();
-            return c;
-          }
+        }, 1000);
 
-
-      });
-
-      <%= render :partial => "master_pros.js" %>
-
-  });
-
-  function get_step_seq(){
-      $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
-          console.log($(v).find('.my_seq').val());
-      });
-      console.log("-----");
-      $('.tabbable').find('.tab-content').find('.my_seq').each(function(i,v){
-          console.log($(v).val());
-      });
-  }
-
-  function show_this_attr(this_obj){
-
-      setTimeout(function() {
-          var this_href, this_href_id;
-          this_href = $(this_obj).attr('href');
-          this_href_id = this_href.replace("#","");
-
-          //console.log($(this_obj).parent().attr('class'));
-
-          $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
-              console.log("this tab id :- " + $(v).attr('id'));
-              //console.log("this tab class " + $(v).attr('class'));
-              $(v).removeClass('active');
-              //$(v).css('display','none');
-              if ( $(v).attr('id') == this_href_id ) {
-                  $(v).addClass('active');
-                  $(v).css('display','block');
-              }
-          });
-
-      }, 1000);
-  }
-
-  function set_step_seq(){
-      $('#sortable').find('li').each(function(i,v){
-          var this_li = $(v).find('a').attr('href');
-          $(this_li).find('.my_seq').val($(v).index());
-      });
-  }
-
-  function tab_dis(this_obj){
-    $('.tab-pane').hide();
-    $($(this_obj).children().attr('href')).show();
-  }
-
-  function increase_counter(){
-    counter++;
-  }
-
-  function add_approval_pm_form(this_obj){
-      var sortable_lis = $('#sortable').find('li').length;
-      var sortable_lis_indexed = sortable_lis - 1;
-      var data = {counter: []};
-      data["counter"].push(acounter);
-      $.ajax({
-          url: "<%= approval_pm_form_path %>",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify(data),
-          success: function (data) {
-              //console.log(data);
-              acounter++;
-              $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
-              $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
-          }
-      });
-  }
-
-
-  function add_notification_pm_form(this_obj){
-      var sortable_lis = $('#sortable').find('li').length;
-      var sortable_lis_indexed = sortable_lis - 1;
-      var data = {counter: []};
-      data["counter"].push(ncounter);
-      $.ajax({
-          url: "<%= notification_pm_form_path %>",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify(data),
-          success: function (data) {
-              //console.log(data);
-              ncounter++;
-              $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
-              $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
-
-          }
-      });
-  }
-
-
-  function add_nestsed_approvers_tab(this_obj) {
-      var data = {counter: []};
-      data["counter"].push($(this_obj).prev().val());
-      $.ajax({
-          url: "<%= approver_pm_form_path %>",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify(data),
-          success: function (data) {
-              $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
-
-              var a = "appdropdown" + $(this_obj).prev().val();
-              $(this_obj).parent().before('<li><a data-toggle="tab" href="#' + a + '">' + $(this_obj).prev().val() + '</a></li>');
-              var newDiv = $('#myAppTab').next().append('<div id="' + a + '" class="tab-pane"></div>');
-              $("#" + a).append(data);
-          }
-      });
-  }
-
-  //Code to display all the record of a particular model......
-  function display_objects(this_obj, oobj, app) {
-      var count = 0;
-      var parent_tab = $(this_obj).parents('.row-fluid')[0];
-      $(parent_tab).find('.users-list').dataTable().fnDestroy();
-
-      var model_name = $(this_obj).val();
-      var data = {model_name: []};
-      data["model_name"].push(model_name);
-      $.ajax({
-          url: "/get_column_data",
-          type: "post",
-          async: false,
-          data: JSON.stringify(data),
-          contentType: "application/json",
-          success: function (data) {
-              $(parent_tab).find('.users-list').show();
-              //$(parent_tab).find('.not-available-text').hide();
-              var $user_row;
-              var second_row_tds_len = 0;
-
-              $(parent_tab).find(".users-list").find("tr:first").find("th:gt(0)").empty().remove();
-              $(parent_tab).find(".users-list").find('tbody').empty();
-
-              if (model_name == "EmployeeMaster") {
-                  for (var i = 0; i < data.length; i++) {
-                      my_id = data[i]["_id"];
-                      if (app=="approval"){
-                          $user_row = '<tr>' +
-                                          '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["employee_name"] + '</td>' +
-                                          '<td>' + data[i]["official_email"] + '</td>' +
-                                          '<td><input type="checkbox" class="app_ck_bx" name="'+oobj +"approver" +'"></td>' +
-                                          '<td><input type="checkbox" class="esc_ck_bx" name="'+oobj +"escalated" +'"></td>' +
-                                          '<td><input type="checkbox" class="aa_ck_bx" name="'+oobj +"auto_assign" +'"></td>' +
-                                      '</tr>';
-                      }
-                      else{
-                          $user_row = '<tr>' +
-                                          '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["employee_name"] + '</td>' +
-                                          '<td>' + data[i]["official_email"] + '</td>' +
-                                      '</tr>';
-                      }
-                      $(parent_tab).find(".users-list").append($user_row);
-                  }
-                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
-                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
-              }
-              else if (model_name == "GroupMaster") {
-                  for (var i = 0; i < data.length; i++) {
-                      my_id = data[i]["_id"];
-                      if (app=="approval"){
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["group_name"] + '</td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
-                                      '</tr>';
-                      }
-                      else{
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["group_name"] + '</td>' +
-                                      '</tr>';
-                      }
-
-                      $(parent_tab).find(".users-list").append($user_row);
-                  }
-                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
-                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
-              }
-              else if (model_name == "Role") {
-                  for (var i = 0; i < data.length; i++) {
-                      my_id = data[i]["_id"];
-                      if (app=="approval"){
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["name"] + '</td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
-                                      '</tr>';
-                      }
-                      else{
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["name"] + '</td>' +
-                                      '</tr>';
-                      }
-                      $(parent_tab).find(".users-list").append($user_row);
-                  }
-                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
-                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
-              }
-              else if (model_name == "VendorMaster") {
-                  for (var i = 0; i < data.length; i++) {
-                      my_id = data[i]["_id"];
-                      if (app=="approval"){
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["vendor_name"] + '</td>' +
-                                          '<td>' + data[i]["vendor_type"] + '</td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
-                                          '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
-                                      '</tr>';
-                      }
-                      else{
-                          $user_row = '<tr>' +
-                                          '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
-                                          '<td>' + data[i]["vendor_name"] + '</td>' +
-                                          '<td>' + data[i]["vendor_type"] + '</td>' +
-                                      '</tr>';
-                      }
-
-                      $(parent_tab).find(".users-list").append($user_row);
-                  }
-                  //$(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
-                  second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
-              }
-              $(':checkbox, :radio').css('opacity', '1');
-
-              var EmpMasterCols = ["Name", "Email", "Approve", "Escalate", "Auto Assign"];
-              var GrpMasterCols = ["Group Name", "Approve", "Escalate", "Auto Assign"];
-              var RoleMasterCols = ["Role Name", "Approve", "Escalate", "Auto Assign"];
-              var VendorMasterCols = ["Vendor Name", "Approve", "Escalate", "Auto Assign"];
-
-              for (var i = 0; i < (second_row_tds_len-1); i++) {
-                  if (model_name == "EmployeeMaster") {
-                      $(parent_tab).find(".users-list").find("tr:first").append('<th>'+EmpMasterCols[i]+'</th>');
-                  }
-                  else if (model_name == "GroupMaster") {
-                      $(parent_tab).find(".users-list").find("tr:first").append('<th>'+GrpMasterCols[i]+'</th>');
-                  }
-                  else if (model_name == "Role") {
-                      $(parent_tab).find(".users-list").find("tr:first").append('<th>'+RoleMasterCols[i]+'</th>');
-                  }
-                  else if (model_name == "VendorMaster") {
-                      $(parent_tab).find(".users-list").find("tr:first").append('<th>'+VendorMasterCols[i]+'</th>');
-                  }
-              }
-
-              initDataTables();
-          }
-      });
-  }
-
-  function select_this_approver_em(this_obj){
-      if($(this_obj).is(':checked')){
-          $(this_obj).parent().next().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().next().next().children().first().prop('checked', true);
-      }
-      else{
-          $(this_obj).parent().next().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().next().next().children().first().prop('checked', false);
-      }
-  }
-
-  function select_this_approver_gm(this_obj){
-      if($(this_obj).is(':checked')){
-          $(this_obj).parent().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
-      }
-      else{
-          $(this_obj).parent().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
-      }
-  }
-
-  function select_this_approver_role(this_obj){
-      if($(this_obj).is(':checked')){
-          $(this_obj).parent().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
-      }
-      else{
-          $(this_obj).parent().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
-      }
-  }
-
-  function select_this_approver_vm(this_obj){
-      if($(this_obj).is(':checked')){
-          $(this_obj).parent().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
-      }
-      else{
-          $(this_obj).parent().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
-          //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
-      }
-  }
-
-  function initDataTables(){
-      var oTable = $('.users-list').dataTable();
-      //oTable.fnClearTable();
-      oTable.fnDraw();
-  }
-
-  function remove_tab_li(this_obj){
-      var sortable_lis = $('#sortable').find('li').length;
-      var tab_pane_id = $(this_obj).parent().parent().attr('id');
-
-      $('#sortable').children().find('a').each(function () {
-          if ( $(this).attr('href') == "#"+tab_pane_id) {
-              $(this).parent().prev().addClass('active');
-              $('.tab-content').find("#"+tab_pane_id).prev().addClass('active');
-              $(this).parent().empty().remove();
-              $(this_obj).parent().parent().empty().remove();
-          }
-      });
-
-      $('#sortable').find("li").each(function(index,ele){
-          $(ele).children("a").text("Step "+parseInt(index+1))
-      });
-
-      if (form_act == "edit"){
-          console.log("It is working.....")
-          var data = {master_pro_id: [], master_step_id: []};
-          data["master_pro_id"].push("<%= @master_pro.id %>")
-          data["master_step_id"].push($(this_obj).parent().find('.my_seq').val());
-          $.ajax({
-              url: "<%= remove_master_step_path %>",
-              type: "POST",
-              contentType: "application/json",
-              data: JSON.stringify(data),
-              success: function (data) {
-                console.log(data);
-              }
-          });
-      }
-  }
-
-  function model_select_control(this_obj){
-      var action_name = $(this_obj).val();
-      var parent_field = $(this_obj).parent().parent().parent().parent().parent().parent();
-      var models_dropdown = $(parent_field).find(".model-select-dropdown-container");
-      var this_p = $(this_obj).parents().eq(5);
-
-
-      $(models_dropdown).children().first().html("");
-      if(action_name == "Approve"){
-        get_d_data(models_dropdown, action_name);
-        //console.log("present :- " + $(this_p).find(".pm_approval_field").find('.approval').length)
-        if ( $(this_p).find(".pm_approval_field").find('.approval').length < 1) {
-            add_approval_pm_form(this_obj);
+        $("#sortable").sortable({stop: function(event,ui){
+            //console.log($(ui.item).index());
+            set_step_seq();
         }
-        $(this_p).find(".spawn-process").hide();
-        $(this_p).find(".pm_approval_field").find('.notification').hide();
-        $(this_p).find(".pm_approval_field").find('.approval').show();
-      }
-      else if ( action_name == "Notify" ) {
-          if ( $(this_p).find(".pm_approval_field").find('.notification').length < 1) {
-              add_notification_pm_form(this_obj);
-          }
-          $(this_p).find(".spawn-process").hide();
-          $(this_p).find(".pm_approval_field").find('.approval').hide();
-          $(this_p).find(".pm_approval_field").find('.notification').show();
-      }
-      else if ( action_name == "Fill" ) {
-          get_d_data(models_dropdown, action_name);
-          var options = ["Bulk"];
-          for(var i=0; i< options.length; i++){
-              $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
-          }
-          $(this_p).find(".spawn-process").hide();
+        });  //nested form's fields (step_master -> steps) sortable
+
+        $('a.add_nested_fields').on('click', function(){
+            //tab_count=tab_count+1;
+            var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length;
+
+
+            tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
+            var sortable_lis = $('#sortable').find('li').length + 1;
+            $('#sortable').find('li').removeClass('active');
+
+            var ht = '<li class="active">' +
+                    '<a data-toggle="tab" onclick="show_this_attr($(this));" href=#step'+ sortable_lis +'>' + "Step "+ sortable_lis + '</a>' +
+                    '</li>'; //html for tab list (Step 1, Step 2, etc...).
+
+            $("#sortable").append(ht); //add tab in list of steps
+
+            window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
+                var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
+                $('.tab-content').find('.tab-pane').removeClass('active');
+                $('.tab-content').find('.tab-pane').css('display','none');
+                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active" style="display: block;">'); //insert new nested form in tab after last tab
+                set_step_seq();
+                return c;
+            }
+
+
+        });
+
+        <%= render :partial => "master_pros.js" %>
+
+    });
+
+    function get_step_seq(){
+        $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+            console.log($(v).find('.my_seq').val());
+        });
+        console.log("-----");
+        $('.tabbable').find('.tab-content').find('.my_seq').each(function(i,v){
+            console.log($(v).val());
+        });
+    }
+
+    function show_this_attr(this_obj){
+        setTimeout(function() {
+            var this_href, this_href_id;
+            this_href = $(this_obj).attr('href');
+            this_href_id = this_href.replace("#","");
+
+            $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
+                console.log("this tab id :- " + $(v).attr('id'));
+                $(v).removeClass('active');
+                $(v).css('display','none');
+                if ( $(v).attr('id') == this_href_id ) {
+                    $(v).addClass('active');
+                    $(v).css('display','block');
+                }
+            });
+        }, 1000);
+    }
+
+    function set_step_seq(){
+        $('#sortable').find('li').each(function(i,v){
+            var this_li = $(v).find('a').attr('href');
+            $(this_li).find('.my_seq').val($(v).index());
+        });
+    }
+
+    function tab_dis(this_obj){
+        $('.tab-pane').hide();
+        $($(this_obj).children().attr('href')).show();
+    }
+
+    function increase_counter(){
+        counter++;
+    }
+
+    function add_approval_pm_form(this_obj){
+        var sortable_lis = $('#sortable').find('li').length;
+        var sortable_lis_indexed = sortable_lis - 1;
+        var data = {counter: []};
+        data["counter"].push(acounter);
+        $.ajax({
+            url: "<%= approval_pm_form_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                //console.log(data);
+                acounter++;
+                $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+                $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
+            }
+        });
+    }
+
+
+    function add_notification_pm_form(this_obj){
+        var sortable_lis = $('#sortable').find('li').length;
+        var sortable_lis_indexed = sortable_lis - 1;
+        var data = {counter: []};
+        data["counter"].push(ncounter);
+        $.ajax({
+            url: "<%= notification_pm_form_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                //console.log(data);
+                ncounter++;
+                $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
+                $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
+
+            }
+        });
+    }
+
+
+    function add_nestsed_approvers_tab(this_obj) {
+        var data = {counter: []};
+        data["counter"].push($(this_obj).prev().val());
+        $.ajax({
+            url: "<%= approver_pm_form_path %>",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+                $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
+
+                var a = "appdropdown" + $(this_obj).prev().val();
+                $(this_obj).parent().before('<li><a data-toggle="tab" href="#' + a + '">' + $(this_obj).prev().val() + '</a></li>');
+                var newDiv = $('#myAppTab').next().append('<div id="' + a + '" class="tab-pane"></div>');
+                $("#" + a).append(data);
+            }
+        });
+    }
+
+    //Code to display all the record of a particular model......
+    function display_objects(this_obj, oobj, app) {
+        var count = 0;
+        var parent_tab = $(this_obj).parents('.row-fluid')[0];
+        $(parent_tab).find('.users-list').dataTable().fnDestroy();
+
+        var model_name = $(this_obj).val();
+        var data = {model_name: []};
+        data["model_name"].push(model_name);
+        $.ajax({
+            url: "/get_column_data",
+            type: "post",
+            async: false,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (data) {
+                $(parent_tab).find('.users-list').show();
+                //$(parent_tab).find('.not-available-text').hide();
+                var $user_row;
+                var second_row_tds_len = 0;
+
+                $(parent_tab).find(".users-list").find("tr:first").find("th:gt(0)").empty().remove();
+                $(parent_tab).find(".users-list").find('tbody').empty();
+
+                if (model_name == "EmployeeMaster") {
+                    for (var i = 0; i < data.length; i++) {
+                        my_id = data[i]["_id"];
+                        if (app=="approval"){
+                            $user_row = '<tr>' +
+                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["employee_name"] + '</td>' +
+                                    '<td>' + data[i]["official_email"] + '</td>' +
+                                    '<td><input type="checkbox" class="app_ck_bx" name="'+oobj +"approver" +'"></td>' +
+                                    '<td><input type="checkbox" class="esc_ck_bx" name="'+oobj +"escalated" +'"></td>' +
+                                    '<td><input type="checkbox" class="aa_ck_bx" name="'+oobj +"auto_assign" +'"></td>' +
+                                    '</tr>';
+                        }
+                        else{
+                            $user_row = '<tr>' +
+                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["employee_name"] + '</td>' +
+                                    '<td>' + data[i]["official_email"] + '</td>' +
+                                    '</tr>';
+                        }
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
+                }
+                else if (model_name == "GroupMaster") {
+                    for (var i = 0; i < data.length; i++) {
+                        my_id = data[i]["_id"];
+                        if (app=="approval"){
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["group_name"] + '</td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
+                                    '</tr>';
+                        }
+                        else{
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["group_name"] + '</td>' +
+                                    '</tr>';
+                        }
+
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
+                }
+                else if (model_name == "Role") {
+                    for (var i = 0; i < data.length; i++) {
+                        my_id = data[i]["_id"];
+                        if (app=="approval"){
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["name"] + '</td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
+                                    '</tr>';
+                        }
+                        else{
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["name"] + '</td>' +
+                                    '</tr>';
+                        }
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
+                }
+                else if (model_name == "VendorMaster") {
+                    for (var i = 0; i < data.length; i++) {
+                        my_id = data[i]["_id"];
+                        if (app=="approval"){
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["vendor_name"] + '</td>' +
+                                    '<td>' + data[i]["vendor_type"] + '</td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
+                                    '</tr>';
+                        }
+                        else{
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["vendor_name"] + '</td>' +
+                                    '<td>' + data[i]["vendor_type"] + '</td>' +
+                                    '</tr>';
+                        }
+
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").show();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
+                }
+                $(':checkbox, :radio').css('opacity', '1');
+
+                var EmpMasterCols = ["Name", "Email", "Approve", "Escalate", "Auto Assign"];
+                var GrpMasterCols = ["Group Name", "Approve", "Escalate", "Auto Assign"];
+                var RoleMasterCols = ["Role Name", "Approve", "Escalate", "Auto Assign"];
+                var VendorMasterCols = ["Vendor Name", "Approve", "Escalate", "Auto Assign"];
+
+                for (var i = 0; i < (second_row_tds_len-1); i++) {
+                    if (model_name == "EmployeeMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+EmpMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "GroupMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+GrpMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "Role") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+RoleMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "VendorMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+VendorMasterCols[i]+'</th>');
+                    }
+                }
+
+                initDataTables();
+            }
+        });
+    }
+
+    function select_this_approver_em(this_obj){
+        if($(this_obj).is(':checked')){
+            $(this_obj).parent().next().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().next().next().children().first().prop('checked', true);
+        }
+        else{
+            $(this_obj).parent().next().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().next().next().children().first().prop('checked', false);
+        }
+    }
+
+    function select_this_approver_gm(this_obj){
+        if($(this_obj).is(':checked')){
+            $(this_obj).parent().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
+        }
+        else{
+            $(this_obj).parent().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
+        }
+    }
+
+    function select_this_approver_role(this_obj){
+        if($(this_obj).is(':checked')){
+            $(this_obj).parent().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
+        }
+        else{
+            $(this_obj).parent().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
+        }
+    }
+
+    function select_this_approver_vm(this_obj){
+        if($(this_obj).is(':checked')){
+            $(this_obj).parent().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', true);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', true);
+        }
+        else{
+            $(this_obj).parent().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().children().first().prop('checked', false);
+            //$(this_obj).parent().next().next().next().next().children().first().prop('checked', false);
+        }
+    }
+
+    function initDataTables(){
+        var oTable = $('.users-list').dataTable();
+        //oTable.fnClearTable();
+        oTable.fnDraw();
+    }
+
+    function remove_tab_li(this_obj){
+        var sortable_lis = $('#sortable').find('li').length;
+        var tab_pane_id = $(this_obj).parent().parent().attr('id');
+
+        $('#sortable').children().find('a').each(function () {
+            if ( $(this).attr('href') == "#"+tab_pane_id) {
+                $(this).parent().prev().addClass('active');
+                $('.tab-content').find("#"+tab_pane_id).prev().addClass('active');
+                $(this).parent().empty().remove();
+                $(this_obj).parent().parent().empty().remove();
+            }
+        });
+
+        $('#sortable').find("li").each(function(index,ele){
+            $(ele).children("a").text("Step "+parseInt(index+1))
+        });
+
+        if (form_act == "edit"){
+            console.log("It is working.....")
+            var data = {master_pro_id: [], master_step_id: []};
+            data["master_pro_id"].push("<%= @master_pro.id %>")
+            data["master_step_id"].push($(this_obj).parent().find('.my_seq').val());
+            $.ajax({
+                url: "<%= remove_master_step_path %>",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    }
+
+    function model_select_control(this_obj){
+        var action_name = $(this_obj).val();
+        var parent_field = $(this_obj).parent().parent().parent().parent().parent().parent();
+        var models_dropdown = $(parent_field).find(".model-select-dropdown-container");
+        var this_p = $(this_obj).parents().eq(5);
+
+
+        $(models_dropdown).children().first().html("");
+        if(action_name == "Approve"){
+            get_d_data(models_dropdown, action_name);
+            //console.log("present :- " + $(this_p).find(".pm_approval_field").find('.approval').length)
+            if ( $(this_p).find(".pm_approval_field").find('.approval').length < 1) {
+                add_approval_pm_form(this_obj);
+            }
+            $(this_p).find(".spawn-process").hide();
+            $(this_p).find(".pm_approval_field").find('.notification').hide();
+            $(this_p).find(".pm_approval_field").find('.approval').show();
+        }
+        else if ( action_name == "Notify" ) {
+            if ( $(this_p).find(".pm_approval_field").find('.notification').length < 1) {
+                add_notification_pm_form(this_obj);
+            }
+            $(this_p).find(".spawn-process").hide();
+            $(this_p).find(".pm_approval_field").find('.approval').hide();
+            $(this_p).find(".pm_approval_field").find('.notification').show();
+        }
+        else if ( action_name == "Fill" ) {
+            get_d_data(models_dropdown, action_name);
+            var options = ["Bulk"];
+            for(var i=0; i< options.length; i++){
+                $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
+            }
+            $(this_p).find(".spawn-process").hide();
 //          alert('in');
-          console.log($(this_p).find(".pm_approval_field").find('.approval'));
-          $(this_p).find(".pm_approval_field").find('.approval').hide();
-          $(this_p).find(".pm_approval_field").find('.notification').hide();
-      }
-      else if ( (action_name == "SpawnD") || (action_name == "SpawnI") ) {
-        $(this_p).find(".spawn-process").show();
-        $(this_p).find(".pm_approval_field").hide();
-      }
-      else{
-          $(this_p).find(".spawn-process").hide();
-          get_d_data(models_dropdown, action_name);
-      }
-  }
+            console.log($(this_p).find(".pm_approval_field").find('.approval'));
+            $(this_p).find(".pm_approval_field").find('.approval').hide();
+            $(this_p).find(".pm_approval_field").find('.notification').hide();
+        }
+        else if ( (action_name == "SpawnD") || (action_name == "SpawnI") ) {
+            $(this_p).find(".spawn-process").show();
+            $(this_p).find(".pm_approval_field").hide();
+        }
+        else{
+            $(this_p).find(".spawn-process").hide();
+            get_d_data(models_dropdown, action_name);
+        }
+    }
 
 
-  function get_d_data(dropdown, action){
-      var data = {action_name: []};
-      data["action_name"].push(action);
+    function get_d_data(dropdown, action){
+        var data = {action_name: []};
+        data["action_name"].push(action);
 
-      $.ajax({
-          type: "POST",
-          url: "/get_dropdown_data",
-          data: JSON.stringify(data),
-          contentType: "application/json; charset=utf-8",
-          success: function(result){
-              //console.log(result);
-              var substr = result.split(',');
-              var v;
-              var val, name;
-              for(var i=0; i< substr.length; i++)
-              {
-                  v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/:/g, '');
-                  val = v.split("||")[0];
-                  name = v.split("||")[1];
-                  $(dropdown).children().first().append("<option value="+val+">"+name+"</option>");
-              }
-          }
-      });
-  }
+        $.ajax({
+            type: "POST",
+            url: "/get_dropdown_data",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            success: function(result){
+                //console.log(result);
+                var substr = result.split(',');
+                var v;
+                var val, name;
+                for(var i=0; i< substr.length; i++)
+                {
+                    v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/:/g, '');
+                    val = v.split("||")[0];
+                    name = v.split("||")[1];
+                    $(dropdown).children().first().append("<option value="+val+">"+name+"</option>");
+                }
+            }
+        });
+    }
 
-  //function to toggle manual and auto btns
-  function toggle_btns(this_btn, other_btn){
-    //console.log($(this_btn).attr('class'));
-    //console.log($(other_btn).attr('class'));
+    //function to toggle manual and auto btns
+    function toggle_btns(this_btn, other_btn){
+        //console.log($(this_btn).attr('class'));
+        //console.log($(other_btn).attr('class'));
 //   for manual btn pass the parameter this_btn and for auto other_btn
 
-    var parent_row = $(other_btn).parents().eq(6);
-    var manual_action_row = $(parent_row).find('.manual-action');
+        var parent_row = $(other_btn).parents().eq(6);
+        var manual_action_row = $(parent_row).find('.manual-action');
 
-    if ( $(other_btn).attr('class').indexOf("manual-btn") >= 0 ) {
-        $(manual_action_row).show();
+        if ( $(other_btn).attr('class').indexOf("manual-btn") >= 0 ) {
+            $(manual_action_row).show();
+        }
+        else
+        {
+            $(manual_action_row).hide();
+        }
+
+
     }
-    else
-    {
-        $(manual_action_row).hide();
-    }
 
-
-  }
-
-  function mapping_view(this_obj){
-      var parent_div=$(this_obj).parents('.span12')[0]
+    function mapping_view(this_obj){
+        var parent_div=$(this_obj).parents('.span12')[0]
 //      For manual mapping view button
 //      counter = $(this_obj).parent().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
 
 //      For Auto mapping view button
-      counter = $(this_obj).parent().prev().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
+        counter = $(this_obj).parent().prev().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
 
 
-      $.get("/params_mapping/CompanyMaster",function(result1){
-          var a=[];
-          $.get("/params_mapping/Rating",function(result){
-              $.each(result,function(i,v){
-                  a.push(v);
-              });
-              $.each(result1,function(i,v){
-                  $(parent_div).find('.my_params_attr').append('<div class="span6">'+
-                          '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
-                          '</div>' +
-                          '<div class="span6">' +
-                          '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
-                          '<option value=""></option></select>'+
-                          '</div>');
-                  $.each(a,function(i1,v1){
-                      //console.log(v1);
-                      $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
-                  });
-              });
-          });
-      });
-  }
+        $.get("/params_mapping/CompanyMaster",function(result1){
+            var a=[];
+            $.get("/params_mapping/Rating",function(result){
+                $.each(result,function(i,v){
+                    a.push(v);
+                });
+                $.each(result1,function(i,v){
+                    $(parent_div).find('.my_params_attr').append('<div class="span6">'+
+                            '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
+                            '</div>' +
+                            '<div class="span6">' +
+                            '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
+                            '<option value=""></option></select>'+
+                            '</div>');
+                    $.each(a,function(i1,v1){
+                        //console.log(v1);
+                        $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
+                    });
+                });
+            });
+        });
+    }
 
 
 </script>

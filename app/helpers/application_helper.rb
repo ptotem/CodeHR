@@ -213,7 +213,7 @@ module ApplicationHelper
   end
 
   #todo:Building a totally new function to handle automatic processes
-  def step_transaction_processing(action_name,oclass,objid,pid,stepno,user_id,*args)
+  def step_transaction_processing(action_name,oclass,objid,ao,pid,stepno,user_id,*args)
     puts action_name
     puts oclass
     puts objid
@@ -375,15 +375,17 @@ module ApplicationHelper
         puts "Notifying"
         @pro = ProcessTransact.find(pid)
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
-          @pro.notification_obj["action_arr"].each do |noti|
-            @user=EmployeeMaster.find(noti["id"]).user
-            puts @user
-            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
-            unm.save
-            unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-            unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-            unm.save
-            @user.save
+          if !@pro.notification_obj["action_arr"].nil?
+            @pro.notification_obj["action_arr"].each do |noti|
+              @user=EmployeeMaster.find(noti["id"]).user
+              puts @user
+              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              unm.save
+              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+              unm.save
+              @user.save
+            end
           end
         elsif @pro.notification_obj["oClass"] == "GroupMaster"
           @pro.notification_obj["action_arr"].each do |noti|
@@ -464,7 +466,7 @@ module ApplicationHelper
         puts "Calling a new process dependently.."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if !@step.auto
+        if @step.auto
           puts @step.params_mapping
           @a=@step.params_mapping
           @a1=@a.values.select{|i| i["type2"]!=""}
@@ -474,15 +476,15 @@ module ApplicationHelper
             @child_class_object[k[0]] = @pro.class_obj[k[1]]
           end
           puts @child_class_object
-          create_and_load_auto_process(pid,stepno,oclass,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
         else
-          create_and_load_process(pid,stepno,oclass,user_id,true)
+          create_and_load_process(pid,stepno,ao,user_id,true)
         end
       when "SpawnI"
         puts "Calling a new process independently.."
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
-        if !@step.auto
+        if @step.auto
           #  create_and_load_process(pid,step_no,oclass,user_id,false)
           puts @step.params_mapping
           @a=@step.params_mapping
@@ -493,10 +495,10 @@ module ApplicationHelper
             @child_class_object[k[0]] = @pro.class_obj[k[1]]
           end
           puts @child_class_object
-          create_and_load_auto_process(pid,stepno,oclass,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          create_and_load_auto_process(pid,stepno,ao,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
         else
           #create new Process
-          create_and_load_process(pid,stepno,oclass,user_id,false)
+          create_and_load_process(pid,stepno,ao,user_id,false)
         end
         @pro.step_transacts[stepno].end_processing_step
     end
