@@ -87,6 +87,12 @@ if (form_act == "edit"){
                                 if(i["approver"]){
                                     $($('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).parent().parent().find('.app_ck_bx').prop("checked", "checked")
                                 }
+                                if(i["escalated"]){
+                                    $($('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).parent().parent().find('.esc_ck_bx').prop("checked", "checked")
+                                }
+                                if(i["auto_assign"]){
+                                    $($('#appdropdown1').find('.user_select_checkbox[value="'+ i["id"]+'"]')[0]).parent().parent().find('.aa_ck_bx').prop("checked", "checked")
+                                }
                               });
                           },4000);
                       });

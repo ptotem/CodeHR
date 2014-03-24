@@ -166,7 +166,7 @@
 
     <br>
     <div class="actions">
-      <%= f.submit :class=>"btn btn-info" %>
+      <%= f.submit :class=>"btn btn-info", :onclick =>"set_step_seq();" %>
     </div>
 <% end %>
 
@@ -227,6 +227,9 @@
                 set_step_seq();
                 return c;
             }
+            setTimeout(function(){
+                set_step_seq();
+            },1500);
 
 
         });
@@ -266,7 +269,9 @@
     function set_step_seq(){
         $('#sortable').find('li').each(function(i,v){
             var this_li = $(v).find('a').attr('href');
+            console.log(this_li);
             $(this_li).find('.my_seq').val($(v).index());
+            console.log($(this_li).find('.my_seq').val())
         });
     }
 
