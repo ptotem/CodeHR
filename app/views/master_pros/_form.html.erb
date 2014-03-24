@@ -52,7 +52,7 @@
           <ul class="nav nav-tabs" id="sortable">
             <li class="active"><a data-toggle="tab" onclick="show_this_attr($(this));" href="#step1">Step 1</a></li>
           </ul>
-          <div class="tab-content">
+          <div class="tab-content pro-tc">
             <div id="step1" class="tab-pane in active">
 
               <%= f.fields_for :master_steps, (@edit? @master_pro.master_steps.order_by(['sequence']):'') do |master_step| %>
@@ -220,10 +220,11 @@
             $("#sortable").append(ht); //add tab in list of steps
 
             window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-                var $tr = $(link).parents().eq(4).find(".tab-pane:last-child"); //get last added tab
+                var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".in:last-child"); //get last added tab
+                console.log($tr);
                 $('.tab-content').find('.tab-pane').removeClass('active');
                 $('.tab-content').find('.tab-pane').css('display','none');
-                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane active" style="display: block;">'); //insert new nested form in tab after last tab
+                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active" style="display: block;">'); //insert new nested form in tab after last tab
                 set_step_seq();
                 return c;
             }
