@@ -208,7 +208,7 @@ CodeHR::Application.routes.draw do
   match '/new_approval/(:approval_id)/(:process_id)/(:seq)' => 'generic#new_approval'
   #match '/approved_form/(:approval_id)/(:process_id)/(:seq)' => 'generic#approved_form',:as => "approved_form"
   match '/approved_form' => 'generic#approved_form'
-
+  match '/remove_master_step' => 'master_pros#remove_master_step', :as => :remove_master_step
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

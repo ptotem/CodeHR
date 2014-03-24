@@ -5,7 +5,7 @@
         <div class="control-group">
           <%= label_tag :reminder %>
           <div class="controls">
-            <%= text_field_tag "approval[#{counter}][reminder]" %>
+            <%= text_field_tag "approval[#{counter}][reminder]" ,"",:placeholder => "Send reminder after..." %>
           </div>
         </div>
       </div>
@@ -13,7 +13,7 @@
         <div class="control-group">
           <%= label_tag :rep_reminder %>
           <div class="controls">
-            <%= text_field_tag "approval[#{counter}][rep_reminder]" %>
+            <%= text_field_tag "approval[#{counter}][rep_reminder]","",:placeholder => "Repeat reminder every..." %>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="control-group">
           <%= label_tag :escalate %>
           <div class="controls">
-            <%= text_field_tag "approval[#{counter}][escalate]" %>
+            <%= text_field_tag "approval[#{counter}][escalate]","",:placeholder => "Escalate after..." %>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="control-group">
           <%= label_tag :rep_escalate %>
           <div class="controls">
-            <%= text_field_tag "approval[#{counter}][escalate]" %>
+            <%= text_field_tag "approval[#{counter}][escalate]","",:placeholder => "Repeat Escalation Every..." %>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <div class="control-group">
           <%= label_tag :auto_assign %>
           <div class="controls">
-            <%= text_field_tag "approval[#{counter}][auto_assign]" %>
+            <%= text_field_tag "approval[#{counter}][auto_assign]","",:placeholder => "Auto assign after..." %>
           </div>
         </div>
       </div>

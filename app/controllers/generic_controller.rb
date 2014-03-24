@@ -233,7 +233,7 @@ class GenericController < ApplicationController
       @score = Rating.new.score_receiveds.build
 
       @num = eval(@model_name).all.length rescue 1
-      @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1))
+      @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1)) rescue 1
 
       @approval = true
       @notification =true
@@ -307,6 +307,8 @@ class GenericController < ApplicationController
         redirect_to @user.current_redirect_url
         return
       end
+
+      redirect_to '/', notice: "Form is Filled"
     end
 
     def new_approval

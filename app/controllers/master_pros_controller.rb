@@ -151,4 +151,13 @@ class MasterProsController < ApplicationController
     end
   end
 
+  def remove_master_step
+    #render :text => params
+    #return
+    @master_step = MasterPro.find(params[:master_pro_id][0]).master_steps.where(:sequence => params[:master_step_id][0]).first#find(params[:master_step_id])
+    @master_step.destroy
+    render :text => true
+    return
+  end
+
 end
