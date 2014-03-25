@@ -698,5 +698,13 @@
         });
     }
 
+    function add_spawn_data_edit(b){
+        console.log(gon.step_masters_seq[b].params_mapping)
+        sel = $("#step"+(b+1)).find('.my_params_attr').find('.hhh');
+        $.each(sel, function(i,v){
+            $(v).val(gon.step_masters_seq[b].params_mapping[i].type2)
+        });
+    }
+
 
 </script>

@@ -14,7 +14,7 @@ if (form_act == "edit"){
     var selected_action, reg_name, split_reg_name;
     var notify_tab, notify_tab_id;
     var approval_tab, approval_tab_id;
-
+    var arr1 =[];
 
     setTimeout(function(){
         $edit_fields.each(function(index,elem){
@@ -127,33 +127,16 @@ if (form_act == "edit"){
 
               }
               else if (action_name == "SpawnD" || action_name == "SpawnI") {
-                  arr1 = [];
                   spawn_tab = $("#"+a).attr("id"); //tab-content->tab-pane#step1, step2 etc...
                   spawn_tab_id = spawn_tab.replace(/[^\d.,]+/,''); // 1, 2 etc...
                   arr1.push((parseInt(spawn_tab_id)-1));
                   $("#"+a).find(".spawn-process").show();
                   k = gon.step_masters_seq[(parseInt(spawn_tab_id)-1)]["action_obj"];
-                  console.log(parseInt(spawn_tab_id));
-                  setTimeout(function(){
-                      $("#"+a).find(".spawn-process").find('.my_process_list option[value="' + k + '"]').prop('selected',true);
-                      if(gon.step_masters_seq[(parseInt(spawn_tab_id)-1)]["auto"]){
-                          console.log($("#"+a).find(".auto-btn"));
-                          $("#"+a).find(".auto-btn").trigger("click");
-
-                      }
-                  },2000);
-
-                  setTimeout(function(){
-                      spawn_tab = $("#"+a).attr("id"); //tab-content->tab-pane#step1, step2 etc...
-                      spawn_tab_id = spawn_tab.replace(/[^\d.,]+/,''); // 1, 2 etc...
-                      sel = $("#"+a).find('.my_params_attr').find('.hhh');
-                      console.log($("#"+a));
-                      $.each(sel, function(i,v){
-                          $(v).val(gon.step_masters_seq[index].params_mapping[i].type2)
-                      });
-                  },1000);
-
-
+                  $("#"+a).find(".spawn-process").find('.my_process_list option[value="' + k + '"]').prop('selected',true);
+                  add_spawn_data_edit((parseInt(spawn_tab_id)-1))
+                  if(gon.step_masters_seq[(parseInt(spawn_tab_id)-1)]["auto"]){
+                      $("#"+a).find(".auto-btn").trigger("click");
+                  }
               }
             action_arr_index++;
             count=action_arr_index-1;
