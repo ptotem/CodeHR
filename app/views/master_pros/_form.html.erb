@@ -675,27 +675,51 @@
         counter = $(this_obj).parent().prev().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
         var data1=$(this_obj).parents('.spawn-process').find('.my_process_list').val();
         var data2=$("#step1").find('.models-select').val();
-
-        $.get("/params_mapping1/"+data1,function(result1){
-            var a=[];
-            $.get("/params_mapping/"+data2,function(result){
-                $.each(result,function(i,v){
-                    a.push(v);
-                });
-                $.each(result1,function(i,v){
-                    $(parent_div).find('.my_params_attr').append('<div class="span6">'+
-                            '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
-                            '</div>' +
-                            '<div class="span6">' +
-                            '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
-                            '<option value=""></option></select>'+
-                            '</div>');
-                    $.each(a,function(i1,v1){
-                        $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
+        $.ajax({
+            url: "/params_mapping1/"+data1,
+            type: "get",
+//            async: false,
+            success: function (result1) {
+                var a=[];
+                $.get("/params_mapping/"+data2,function(result){
+                    $.each(result,function(i,v){
+                        a.push(v);
+                    });
+                    $.each(result1,function(i,v){
+                        $(parent_div).find('.my_params_attr').append('<div class="span6">'+
+                                '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
+                                '</div>' +
+                                '<div class="span6">' +
+                                '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
+                                '<option value=""></option></select>'+
+                                '</div>');
+                        $.each(a,function(i1,v1){
+                            $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
+                        });
                     });
                 });
-            });
+            }
         });
+//        $.get("/params_mapping1/"+data1,function(result1){
+//            var a=[];
+//            $.get("/params_mapping/"+data2,function(result){
+//                $.each(result,function(i,v){
+//                    a.push(v);
+//                });
+//                $.each(result1,function(i,v){
+//                    $(parent_div).find('.my_params_attr').append('<div class="span6">'+
+//                            '<input type="text" size="30" readonly="true" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type" value="'+v+'">' +
+//                            '</div>' +
+//                            '<div class="span6">' +
+//                            '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][params_mapping]['+i+'][type2]" id="master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2">' +
+//                            '<option value=""></option></select>'+
+//                            '</div>');
+//                    $.each(a,function(i1,v1){
+//                        $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
+//                    });
+//                });
+//            });
+//        });
     }
 
     function add_spawn_data_edit(b){
