@@ -126,6 +126,27 @@ if (form_act == "edit"){
                   },3000);
 
               }
+              else if (action_name == "SpawnD" || action_name == "SpawnI") {
+                  spawn_tab = $("#"+a).attr("id"); //tab-content->tab-pane#step1, step2 etc...
+                  spawn_tab_id = spawn_tab.replace(/[^\d.,]+/,''); // 1, 2 etc...
+                  $("#"+a).find(".spawn-process").show();
+                  k = gon.step_masters_seq[(parseInt(spawn_tab_id)-1)]["action_obj"];
+                  setTimeout(function(){
+                      $("#"+a).find(".spawn-process").find('.my_process_list option[value="' + k + '"]').prop('selected',true);
+                      if(gon.step_masters_seq[(parseInt(spawn_tab_id)-1)]["auto"]){
+                          console.log($("#"+a).find(".auto-btn"));
+                          $("#"+a).find(".auto-btn").trigger("click");
+                          setTimeout(function(){
+                            sel = $("#"+a).find('.my_params_attr').find('.hhh');
+                              console.log($("#"+a));
+                              $.each(sel, function(i,v){
+                                  $(v).val(gon.step_masters_seq[(parseInt(spawn_tab_id)-1)].params_mapping[i].type2)
+                              });
+                          },1000);
+                      }
+                  },2000);
+
+              }
             action_arr_index++;
             count=action_arr_index-1;
         });

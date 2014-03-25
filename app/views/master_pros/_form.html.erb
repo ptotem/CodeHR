@@ -199,7 +199,6 @@
         }, 1000);
 
         $("#sortable").sortable({stop: function(event,ui){
-            //console.log($(ui.item).index());
             set_step_seq();
         }
         });  //nested form's fields (step_master -> steps) sortable
@@ -221,7 +220,6 @@
 
             window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
                 var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".in:last-child"); //get last added tab
-                console.log($tr);
                 $('.tab-content').find('.tab-pane').removeClass('active');
                 $('.tab-content').find('.tab-pane').css('display','none');
                 var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active" style="display: block;">'); //insert new nested form in tab after last tab
@@ -256,7 +254,6 @@
             this_href_id = this_href.replace("#","");
 
             $('.tabbable').find('.tab-content').find('.tab-pane').each(function(i,v){
-                console.log("this tab id :- " + $(v).attr('id'));
                 $(v).removeClass('active');
                 $(v).css('display','none');
                 if ( $(v).attr('id') == this_href_id ) {
@@ -270,9 +267,7 @@
     function set_step_seq(){
         $('#sortable').find('li').each(function(i,v){
             var this_li = $(v).find('a').attr('href');
-            console.log(this_li);
             $(this_li).find('.my_seq').val($(v).index());
-            console.log($(this_li).find('.my_seq').val())
         });
     }
 
@@ -296,7 +291,6 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
-                //console.log(data);
                 acounter++;
                 $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
                 $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
@@ -316,7 +310,6 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
-                //console.log(data);
                 ncounter++;
                 $(this_obj).parents('.fields').find('.pm_approval_field').append(data);
                 $(this_obj).parents('.fields').find('.pm_approval_field').find('.controls').css('margin-left','0');
@@ -570,7 +563,6 @@
         });
 
         if (form_act == "edit"){
-            console.log("It is working.....")
             var data = {master_pro_id: [], master_step_id: []};
             data["master_pro_id"].push("<%= @master_pro.id %>")
             data["master_step_id"].push($(this_obj).parent().find('.my_seq').val());
@@ -580,7 +572,6 @@
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function (data) {
-                    console.log(data);
                 }
             });
         }
@@ -596,7 +587,6 @@
         $(models_dropdown).children().first().html("");
         if(action_name == "Approve"){
             get_d_data(models_dropdown, action_name);
-            //console.log("present :- " + $(this_p).find(".pm_approval_field").find('.approval').length)
             if ( $(this_p).find(".pm_approval_field").find('.approval').length < 1) {
                 add_approval_pm_form(this_obj);
             }
@@ -619,8 +609,6 @@
                 $(models_dropdown).children().first().append("<option value="+options[i]+">"+options[i]+"</option>");
             }
             $(this_p).find(".spawn-process").hide();
-//          alert('in');
-            console.log($(this_p).find(".pm_approval_field").find('.approval'));
             $(this_p).find(".pm_approval_field").find('.approval').hide();
             $(this_p).find(".pm_approval_field").find('.notification').hide();
         }
@@ -645,7 +633,7 @@
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             success: function(result){
-                //console.log(result);
+                //.log(result);
                 var substr = result.split(',');
                 var v;
                 var val, name;
@@ -662,8 +650,6 @@
 
     //function to toggle manual and auto btns
     function toggle_btns(this_btn, other_btn){
-        //console.log($(this_btn).attr('class'));
-        //console.log($(other_btn).attr('class'));
 //   for manual btn pass the parameter this_btn and for auto other_btn
 
         var parent_row = $(other_btn).parents().eq(6);
@@ -681,7 +667,7 @@
     }
 
     function mapping_view(this_obj){
-        var parent_div=$(this_obj).parents('.span12')[0]
+        var parent_div=$(this_obj).parents('.fields')
 //      For manual mapping view button
 //      counter = $(this_obj).parent().prev().attr("id").replace(/master_pro_master_steps_attributes_/g,'').replace(/_auto/g,'');
 
@@ -705,7 +691,6 @@
                             '<option value=""></option></select>'+
                             '</div>');
                     $.each(a,function(i1,v1){
-                        //console.log(v1);
                         $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                     });
                 });
