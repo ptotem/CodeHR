@@ -211,6 +211,8 @@ CodeHR::Application.routes.draw do
   match '/approved_form' => 'generic#approved_form'
   match '/remove_master_step' => 'master_pros#remove_master_step', :as => :remove_master_step
 
+  match '/approval_tracker/:process_id/:index' => 'approval_mats#track_approval', :as => :approval_tracker
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

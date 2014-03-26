@@ -1,0 +1,97 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Approval Tracker
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+      <tr>
+        <th>Process Name</th>
+        <td>
+          <%= @process_transact.name %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Approval Sent At:</th>
+        <td>
+          <%= @approval.created_at %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Approval State</th>
+        <td>
+          <%= @approval.complete ? "Complete" : "Processing" %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Approvers</th>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <th> Employee Code</th>
+        <th> Employee Name</th>
+        <th> Approval State</th>
+        <th> Sent At </th>
+        <th> Total Time </th>
+        <th> Comment </th>
+      </tr>
+
+      <% @approvers.each do |approver| %>
+          <tr>
+            <td>
+              <%= EmployeeMaster.find(approver.employee_master_id).employee_code %>
+            </td>
+            <td>
+              <%= EmployeeMaster.find(approver.employee_master_id).employee_name %>
+            </td>
+            <td>
+              <% if approver.approved %>
+                  <span class='label label-info arrowed-in'>Approved</span>
+              <% elsif approver.rejected %>
+                  <span class='label label-info arrowed-in'>Rejected</span>
+              <% else %>
+                  <span class='label label-warning arrowed arrowed-right'>Action Not taken</span>
+              <% end %>
+            </td>
+            <td>
+              <%= approver.created_at %>
+            </td>
+            <td>
+            <td>
+              <% if approver.created_at.nil? and approver.finished_at.nil?  %>
+                  <% @tt = 0  %>
+              <% elsif approver.finished_at.nil? %>
+                  <% @tt = (DateTime.now.to_f - approver.created_at.to_f).to_i %>
+              <% else %>
+                  <% @tt = (approver.finished_at.to_f - approver.created_at.to_f).to_i  %>
+              <% end %>
+
+              <% if @tt < 60 %>
+                  <%= @tt %> Seconds
+              <% elsif @tt < 3600 %>
+                  <%= @tt/60 %> Minutes
+              <% else %>
+              <% end %>
+            </td>
+            </td>
+            <td>
+              <%= approver.comment %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_process_transact_path(@process_transact) %> |
+<%= link_to 'Back', process_transacts_path %>

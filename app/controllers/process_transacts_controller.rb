@@ -126,6 +126,7 @@ class ProcessTransactsController < ApplicationController
 
     if !@approval.nil?
       @approval.approved=true
+      @approval.finished_at = Time.now
       @approval.active=false
       @approval.save
       @app_mat.save
@@ -150,6 +151,14 @@ class ProcessTransactsController < ApplicationController
     @app_mat=ApprovalMat.find(params[:approval_id])
     @approver=EmployeeMaster.find(params[:approver_id])
     @approval=@app_mat.approvers.where(:active=>true,:employee_master_id=>current_user.employee_master._id).first
+    if !@approval.nil?
+      @approval.rejected = true
+      @approval.finished_at = Time.now
+      @approval.active=false
+      @approval.save
+      @app_mat.save
+    end
+
     if !@app_mat.finished
       @app_mat.rejected=true
       @app_mat.save
