@@ -1,21 +1,60 @@
-<h1>Listing d_reports</h1>
+<div class="row-fluid">
+  <div class="offset4 span4">
+    <h1>All Reports</h1>
+  </div>
+</div>
+<hr>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @d_reports.each do |d_report| %>
-  <tr>
-    <td><%= link_to 'Show', d_report %></td>
-    <td><%= link_to 'Edit', edit_d_report_path(d_report) %></td>
-    <td><%= link_to 'Destroy', d_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+<div class="row-fluid">
+  <div class="span12">
+    <% @d_reports.each_with_index do |d_report, index| %>
+        <div class="table-header"><%= link_to d_report.report_name ,d_report ,:style => "color:white" %></div>
+        <table id="<%= d_report.cl_name + "_table_"+ (index).to_s rescue "55"%>" class="dataTable table table-striped table-bordered table-hover">
+          <thead>
+          <tr>
+            <th></th>
+            <% d_report.cl_fields.each_with_index do |cf, index| %>
+                <th><%= cf %><script type="application/javascript">$("#<%= d_report.cl_name %>").column(<%= index %>).data().sum().DataTable()</script></th>
+            <% end %>
+          </tr>
+          </thead>
 
-<%= link_to 'New D report', new_d_report_path %>
+          <tbody>
+
+          <% d_report.object_hash.each_with_index do |oh, index| %>
+              <tr>
+                <% @col_count = oh.count %>
+                <td></td>
+                <% oh.each_with_index do |h, index| %>
+                    <td><%= h %></td>
+                <% end %>
+              </tr>
+          <% end %>
+          <!--this is for the mathematical functions-->
+          <!--<tr>-->
+
+            <!--<td>Average</td>-->
+            <!--<%#@col_count.times do |i| %>-->
+            <!--<td>Val</td>-->
+            <!--<%# end %>-->
+          <!--</tr>-->
+          </tbody>
+        </table>
+        <br><br>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
+
+
+<script>
+    $(function(){
+
+        $('.dataTable').dataTable();
+    });
+</script>
+

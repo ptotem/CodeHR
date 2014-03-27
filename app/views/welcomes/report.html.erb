@@ -210,6 +210,10 @@
                                                 '<input type="text" id="report_date" placeholder="Report Date" data-date-format="dd-mm-yyyy" class="span6 date-picker">' +
                                                 '<span class="add-on"><i class="icon-calendar"></i></span>' +
                                              '</div>' +
+                                             '<hr>'+'<div class="row-fluid input-append name">' +
+                                                '<input type="text" id="report_name" placeholder="Report Name" class="span6">' +
+
+                                             '</div>' +
                                              '<hr>';
 
 
@@ -244,6 +248,7 @@
 
         var reviewed_by = $('#main-tab').find("#reviewed_by").val();
         var report_date = $('#main-tab').find("#report_date").val();
+        var report_name = $('#main-tab').find("#report_name").val();
 
         var newArray=[];
 
@@ -257,12 +262,13 @@
         });
         //console.log(newArray);
 
-        var data = {cl_name: [], cl_fields: [], newArray: [], reviewed_by: [], report_date: []};
+        var data = {cl_name: [], cl_fields: [], newArray: [], reviewed_by: [], report_date: [],report_name:[]};
         data["cl_name"].push(class_name);
         data["cl_fields"].push(all_fields);
         data["newArray"].push(newArray);
         data["reviewed_by"].push(reviewed_by);
         data["report_date"].push(report_date);
+        data["report_name"].push(report_name);
 
         $.ajax({
             type: "POST",

@@ -65,7 +65,6 @@
               <%= approver.created_at %>
             </td>
             <td>
-            <td>
               <% if approver.created_at.nil? and approver.finished_at.nil?  %>
                   <% @tt = 0  %>
               <% elsif approver.finished_at.nil? %>
@@ -78,9 +77,9 @@
                   <%= @tt %> Seconds
               <% elsif @tt < 3600 %>
                   <%= @tt/60 %> Minutes
-              <% else %>
+              <% elsif @tt < 86400 %>
+                  <%= @tt/3600 %> Hours
               <% end %>
-            </td>
             </td>
             <td>
               <%= approver.comment %>

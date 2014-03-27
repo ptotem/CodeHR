@@ -7,4 +7,6 @@ class DReport
   field :cl_fields, type: Array
   field :object_hash, type: Array
   field :deleted, type: Boolean
+  field :report_name, type: String
+
 end

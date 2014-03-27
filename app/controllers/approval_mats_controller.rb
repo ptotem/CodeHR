@@ -91,7 +91,7 @@ class ApprovalMatsController < ApplicationController
   def track_approval
     @process_transact = ProcessTransact.find(params[:process_id])
     @approval = ApprovalMat.where(:process_tr_id => @process_transact.id).to_a[params[:index].to_i]
-    @approvers = @approval.approvers.where(:active => true)
+    @approvers = @approval.approvers
 
   end
 end

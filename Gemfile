@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 gem 'nested_form'
 gem 'execjs'
 gem 'therubyracer'
-
+#gem "rails_admin_import", :git => "git://github.com/stephskardal/rails_admin_import.git"
 #gem 'sqlite3'
 
 

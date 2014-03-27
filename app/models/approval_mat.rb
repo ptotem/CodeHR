@@ -73,7 +73,8 @@ class ApprovalMat
     config = {}
     config[:class] = 'SendEmailJob'
     config[:args] = id
-    config[:every] = self.reminder
+    #config[:every] = self.reminder
+    config[:every] = "2m"
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end

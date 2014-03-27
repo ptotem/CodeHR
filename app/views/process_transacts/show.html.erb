@@ -50,12 +50,15 @@
             </td>
           </tr>
 
-
+      <% app_in = 0 %>
       <% @process_transact.step_transacts.each do |step| %>
           <tr>
             <th>
               <% if step.action_name == "Fill" %>
                 <%= "#{step.action_name} #{step.action_object_id}" %>
+              <% elsif step.action_name == "Approve" %>
+                  <a href="/approval_tracker/<%= @process_transact.id %>/<%= app_in %>"><%= step.action_name %></a>
+                  <% app_in = app_in +1  %>
               <% else %>
                   <%= step.action_name %>
               <% end %>
