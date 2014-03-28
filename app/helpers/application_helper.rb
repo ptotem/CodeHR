@@ -440,7 +440,7 @@ module ApplicationHelper
               (2..spreadsheet.last_row).each do |i|
                 row = Hash[[header, spreadsheet.row(i)].transpose]
                 @cls_name=@pro.step_transacts[0].action_object_id
-                product =eval(@cls_name).find_by_id(row["id"]) || eval(@cls_name).new
+                product = eval(@cls_name).new
                 product.attributes = row.to_hash
                 product.save!
               end
