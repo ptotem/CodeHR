@@ -3,6 +3,7 @@ class ProcessTransact
   include Mongoid::Timestamps
   include Mongoid::Paperclip
   field :name, type: String
+  field :code, type: String
   field :mp_name, type: String
   field :parameter, type: Hash
   field :cobject_id,type: String
