@@ -231,10 +231,10 @@
 
     <div id="sidebar-shortcuts">
       <div id="sidebar-shortcuts-large">
-        <button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
-        <a href="<%= vacancy_masters_path %>" class="btn btn-small btn-info"><i class="icon-pencil"></i></a>
-        <a href="<%= manpower_plannings_path %>" class="btn btn-small btn-warning"><i class="icon-group"></i></a>
-        <a href="<%= notification_masters_path %>" class="btn btn-small btn-danger"><i class="icon-cogs"></i></a>
+        <a href = "/reports" class="btn btn-small btn-success"><i class="icon-signal"></i></a>
+        <a href="<%= left_panels_path %>" class="btn btn-small btn-info"><i class="icon-pencil"></i></a>
+        <a href="<%= ability_matrices_path %>" class="btn btn-small btn-warning"><i class="icon-group"></i></a>
+        <a href="/power_admin" class="btn btn-small btn-danger"><i class="icon-cogs"></i></a>
       </div>
       <div id="sidebar-shortcuts-mini">
         <span class="btn btn-success"></span>
@@ -255,12 +255,11 @@
         <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
             <% @ab_mat = AbilityMatrix.where(:role_id => current_user.employee_master.group_master_ids[0]).first %>
             <% if !@ab_mat.nil? %>
-                <% @ab_mat.access_obj.each do |i| %>
+                <% (@ab_mat.access_obj - [""]).each do |i| %>
                     <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
                 <% end %>
             <% end %>
         <% end %>
-
       </ul>
     <% elsif current_user.designation == "HR" %>
       <ul class="nav nav-list">

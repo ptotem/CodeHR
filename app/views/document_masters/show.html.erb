@@ -23,6 +23,10 @@
             <th>Owner</th>
             <td><%= @document_master.owner %></td>
           </tr>
+          <tr>
+            <th>File</th>
+            <td><%=link_to "Click Here to Download", @document_master.dfile.url %></td>
+          </tr>
       </tbody>
     </table>
   </div>

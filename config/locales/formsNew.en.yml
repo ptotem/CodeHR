@@ -1,0 +1,22 @@
+en:
+  forms:
+    BulkNew:
+      name: "New Bulk Form"
+      object: "Bulk"
+      fields:
+        tabs:
+          tab1:
+            name: "Bulk"
+            type: "standard"
+            cols:
+              col1:
+                obj_name:
+                  attribute: 'obj_name'
+                  label: 'Model Name'
+                  type: 'select_tag'
+                  options: ["DReport", "MasterStep", "RatingMeasure", "ScoreReceived", "EmailDetail", "RatingScale", "TestDynState", "ContactPerson", "RuleBook", "Qualification", "LocationPreference", "CandidateFamilyDetail", "AutoAssignToTr", "EmployeeDetail", "Vaddress", "ActionArr", "BandMaster", "MailCc", "EmployeeMaster", "InterviewType", "JobPreference", "ApprovalMat", "InterviewerList", "RuleAction", "ReportingTo", "CommunicationAddress", "ManpowerPlanning", "ProcessTransact", "ActionArrMaster", "PfNomination", "SalaryStrucuture", "RatingConf", "VendorMaster", "User", "DocumentMaster", "ProcessTr", "AppData", "StepMaster", "UserObserver", "DynamicField", "CompanyMaster", "Rating", "CompensationComponent", "StepTransact", "PlanningManpower", "Step", "ConditionStmt", "Chit", "FormulaList", "CandEducation", "ProcessMaster", "EsisNomination", "CandidateMaster", "NotificationMaster", "MasterPro", "VacancyScheduling", "MailBcc", "Client", "AdminUser", "CandidatePersonelAddress", "Ability", "Role", "SalaryComponentMaster", "FamilyDetail", "NotificationDetail", "JobDescriptionMaster", "CandidateContactNumber", "MailTo", "GroupMaster", "DocumentTemplateMaster", "CompanyAddress", "StepTr", "Receiver", "CandidateEmploymentHistory", "AutoAssignTo", "Welcome", "Education", "AbilityMatrix", "VacancyMaster", "UserTask", "CustomRule", "ProcessMasterApproval", "CustomCondition", "Scale", "EmploymentHist", "Approver"]
+              col2:
+                file_field:
+                  attribute: 'file_field'
+                  label: 'File'
+                  type: 'file_field_tag'

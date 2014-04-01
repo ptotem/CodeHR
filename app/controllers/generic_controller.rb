@@ -228,6 +228,7 @@ class GenericController < ApplicationController
 
     def fill_from_creation_process
       @model_name = params[:model_name]
+
       @form_config = t('forms.'+@model_name)
       @fields = @form_config[:fields]
       @score = Rating.new.score_receiveds.build
@@ -235,8 +236,8 @@ class GenericController < ApplicationController
       @num = eval(@model_name).all.length rescue 1
       @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1)) rescue 1
 
-      @approval = true
-      @notification =true
+      #@approval = true
+      #@notification =true
     end
 
     def fill_bulk_creation_form

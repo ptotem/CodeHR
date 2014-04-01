@@ -1,0 +1,96 @@
+en:
+  forms:
+    EnterManpowerPlan:
+      name: "New Manpower Planning Form"
+      object: "PlanningManpower"
+      fields:
+        tabs:
+          tab1:
+            name: "Manpower Plan"
+            type: "standard"
+            cols:
+              type: 'table'
+              col1:
+                mp_code:
+                  attribute: 'mp_code'
+                  label: 'Manpower Planning Code'
+                  type: 'text_field_tag'
+                role:
+                  attribute: 'role'
+                  label: 'Role'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'Role'
+                  select: 'id'
+                  show: 'name'
+                group:
+                  attribute: 'group_master'
+                  label: 'Group'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'GroupMaster'
+                  select: 'id'
+                  show: 'group_name'
+                position:
+                  attribute: 'position'
+                  label: 'Position'
+                  type: 'text_field_tag'
+                ff_source:
+                  attribute: 'ff_source'
+                  label: 'Fulfillment Source'
+                  type: 'select_tag'
+                  options: ["Hiring", "Transfer", "Promotion"]
+                supervisor:
+                  attribute: 'employee_master'
+                  label: 'Supervisor'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
+                band:
+                  attribute: 'band_master'
+                  label: 'Band'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'BandMaster'
+                  select: 'id'
+                  show: 'band_name'
+                position_nature:
+                  attribute: 'position_nature'
+                  label: 'Nature of Position'
+                  type: 'select_tag'
+                  options: ["Full Time- Permanent", "Part Time- Parmanent", "Full Time- Temp", "Part Time- Temp", "Project Trainee"]
+                location:
+                  attribute: 'location'
+                  label: 'Location'
+                  type: 'text_field_tag'
+                comments:
+                  attribute: 'comments'
+                  label: 'Comments'
+                  type: 'text_area_tag'
+                requested_by:
+                  attribute: 'employee_master'
+                  label: 'Requested By'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
+                period_from:
+                  attribute: 'period_from'
+                  label: 'Period From'
+                  type: 'text_field_tag'
+                period_to:
+                  attribute: 'period_to'
+                  label: 'Period To'
+                  type: 'text_field_tag'
+                final_approved_number:
+                  attribute: 'final_approved_number'
+                  label: 'Final Approved Number'
+                  type: 'text_field_tag'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Active", "Transferred", "Resigned", "Separated"]

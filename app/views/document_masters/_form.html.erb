@@ -1,5 +1,6 @@
 <div class="row-fluid">
-  <%= form_for @document_master,:url => (@new ? generic_create_path(@document_master.class) : generic_update_path(@document_master.class,@document_master.id)) do |f| %>
+  <%#= form_for @document_master,:url => (@new ? generic_create_path(@document_master.class) : generic_update_path(@document_master.class,@document_master.id)) do |f| %>
+  <%= form_for @document_master do |f| %>
       <% if @document_master.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@document_master.errors.count, "error") %> prohibited this document_master from being saved:</h2>

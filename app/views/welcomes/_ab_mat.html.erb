@@ -4,39 +4,30 @@
     </li>
 <% end %>
 
-<% if access_name == "Document Management" %>
-    <li>
-      <%= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
-    </li>
-<% end %>
+<% @left_panel = LeftPanel.find(access_name) %>
+<li>
+  <a href="#" class="dropdown-toggle">
+    <i class="icon-dashboard"></i>
+    <span><%= @left_panel.label_processs_name %></span>
+    <b class="arrow icon-angle-down"></b>
+  </a>
+  <ul class="submenu">
+    <% if !(@left_panel.process_obj - [""]).blank? %>
+            <% (@left_panel.process_obj - [""]).each do |i| %>
+                <li><%= link_to @left_panel.label_process_obj+" "+MasterPro.find(i).name, "/process_transacts/new/"+i %></li>
+            <% end %>
+    <% end %>
 
-<% if access_name == "Process Management" %>
-    <li>
-      <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :contoller => @controller, :action => @action %>
-    </li>
-<% end %>
+    <% if !(@left_panel.report_obj - [""]).blank? %>
+        <% (@left_panel.report_obj - [""]).each do |i| %>
+            <li><%= link_to @left_panel.label_report_obj+" "+DReport.find(i).report_name, "/d_reports/"+i %></li>
+        <% end %>
+    <% end %>
 
-<% if access_name == "Rule Management" %>
-    <li>
-      <%= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>
-    </li>
-<% end %>
-
-<% if access_name == "Recruitment" %>
-    <li>
-      <%= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>
-    </li>
-<% end %>
-
-<% if access_name == "Company" %>
-    <li>
-      <%= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>
-    </li>
-<% end %>
-
-<% if access_name == "Administrative Tool" %>
-    <li>
-      <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
-    </li>
-<% end %>
-
+    <% if !(@left_panel.doc_obj - [""]).blank? %>
+          <% (@left_panel.doc_obj - [""]).each do |i| %>
+              <li><%= link_to @left_panel.label_doc_obj+" "+DocumentMaster.find(i).name, "/document_masters/"+i %></li>
+          <% end %>
+    <% end %>
+  </ul>
+</li>
