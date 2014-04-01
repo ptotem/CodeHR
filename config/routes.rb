@@ -1,5 +1,8 @@
 CodeHR::Application.routes.draw do
 
+  resources :left_panels
+
+
   resources :container_lists
 
 

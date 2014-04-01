@@ -1,0 +1,113 @@
+<%= form_for(@left_panel, html: {class: "form-horizontal"}) do |f| %>
+    <% if @left_panel.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@left_panel.errors.count, "error") %> prohibited this left_panel from being saved:</h2>
+
+          <ul>
+            <% @left_panel.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">Name</label>
+
+          <div class="controls">
+            <%= f.text_field :name %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">Name</label>
+
+          <div class="controls">
+            <%= f.text_field :label_processs_name %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">List of Processes</label>
+          <div class="controls">
+            <%= f.select :process_obj, options_from_collection_for_select(MasterPro.all, 'id', 'name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">Label For Process</label>
+          <div class="controls">
+            <%= f.text_field :label_process_obj %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">List of Documents</label>
+          <div class="controls">
+            <%= f.select :doc_obj, options_from_collection_for_select(DocumentMaster.all, 'id', 'name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">Label of Document</label>
+          <div class="controls">
+            <%= f.text_field :label_doc_obj %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">List of Reports</label>
+
+          <div class="controls">
+            <%= f.select :report_obj, options_from_collection_for_select(DReport.all, 'id', 'report_name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <label for="Name" class="control-label">Label For Report</label>
+          <div class="controls">
+            <%= f.text_field :label_report_obj %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('.control-label').css('text-align', 'left');
+
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect: true});
+    });
+</script>

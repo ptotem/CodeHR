@@ -25,7 +25,9 @@
         <div class="control-group">
           <%= f.label :access_obj %>
           <div class="controls">
-            <%= f.select :access_obj,options_for_select(["User Management", "Document Management", "Process Management", "Rule Management", "Recruitment","Company","Administrative Tool"], disabled: ""), {}, {:class => "chzn-select", :multiple=>true} %>
+            <%#= f.select :access_obj,options_for_select(["User Management", "Document Management", "Process Management", "Rule Management", "Recruitment","Company","Administrative Tool"], disabled: ""), {}, {:class => "chzn-select", :multiple=>true} %>
+            <%#= f.select :access_obj, options_from_collection_for_select(LeftPanel.all 'id', 'name'), {:class => "chzn-select", :multiple=>true} %>
+            <%= f.select :access_obj, options_from_collection_for_select(LeftPanel.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple=>true} %>
           </div>
         </div>
       </div>
