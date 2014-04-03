@@ -1874,29 +1874,29 @@ en:
             cols:
               col1:
                 candidate_code:
-                  attributes: 'candidate_code'
+                  attribute: 'candidate_code'
                   label: 'Candidate Code'
                   type: 'text_field_tag'
                 status:
-                  attributes: 'status'
+                  attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
                   options: ["Selected","Rejected","Created","Sort-listed"]
                 official_email:
-                  attributes: 'official_email'
+                  attribute: 'official_email'
                   label: 'Email1'
                   type: 'text_field_tag'
               col2:
                 candidate_name:
-                  attributes: 'candidate_name'
+                  attribute: 'candidate_name'
                   label: 'Candidate Name'
                   type: 'text_field_tag'
                 gender:
-                  attributes: 'gender'
+                  attribute: 'gender'
                   label: 'Gender'
                   type: 'select_tag'
                   options: ["Male","Female"]
                 personal_email:
-                  attributes: 'personal_email'
+                  attribute: 'personal_email'
                   label: 'Email2'
                   type: 'text_field_tag'
