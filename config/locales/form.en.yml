@@ -473,7 +473,7 @@ en:
                   options: 'model'
                   class : 'Role'
                   select: 'id'
-                  show: 'name'
+                  show: 'vacancy_code'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'
