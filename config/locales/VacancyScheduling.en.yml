@@ -1,0 +1,121 @@
+en:
+  forms:
+    VacancySchedulingN:
+      name: "Schedule Candidate Interview"
+      object: "VacancyScheduling"
+      fields:
+        tabs:
+          tab1:
+            name: "Interview Instructions"
+            type: "standard"
+            cols:
+              col1:
+                vacancy_scheduling_id:
+                  attribute: 'vacancy_master_id'
+                  label: 'Vacancy ID'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'VacancyMaster'
+                  select: 'id'
+                  show: 'description'
+              col2:
+                comments:
+                  attribute: 'comments'
+                  label: 'Intructions'
+                  type: 'text_field_tag'
+          tab2:
+            name: "Interview Schedule"
+            type: 'sub-form'
+            attribute: 'InterviewerList'
+            InterviewerList:
+              type: 'sub-form'
+    InterviewerList:
+      name: "Interview Schedule"
+      object: "interviewer_lists"
+      fields:
+        tabs:
+          tab1:
+            name: "Interview Type"
+            type: "standard"
+            cols:
+              col1:
+                interview_type_id:
+                  attribute: 'interview_type_id'
+                  label: 'Interview Type'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'InterviewType'
+                  select: 'id'
+                  show: 'name'
+          tab2:
+            name: "Interview Type"
+            type: "standard"
+            cols:
+              type: "table"
+              col1:
+                interview_type_id:
+                  attribute: 'interview_type_id'
+                  label: 'Interview Type'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'InterviewType'
+                  select: 'id'
+                  show: 'name'
+                interviewer:
+                  attribute: 'interviewer'
+                  label: 'Select Interviewer(s)'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
+                fromdate:
+                  attribute: 'fromdate'
+                  label: 'Date'
+                  type: 'date_field_tag'
+                fromtime:
+                  attribute: 'fromtime'
+                  label: 'From Time'
+                  type: 'date_field_tag'
+                totime:
+                  attribute: 'to_time'
+                  label: 'To Time'
+                  type: 'date_field_tag'
+#    InterviewerList1:
+#      name: "Interview Schedule"
+#      object: "interviewer_lists"
+#      fields:
+#        tabs:
+#          tab1:
+#            name: "Interview Schedule"
+#            type: "standard"
+#            cols:
+#              col1:
+#                interview_type_id:
+#                  attribute: 'interview_type_id'
+#                  label: 'Interview Type'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'InterviewType'
+#                  select: 'id'
+#                  show: 'name'
+#                interviewer:
+#                  attribute: 'interviewer'
+#                  label: 'Select Interviewer(s)'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'EmployeeMaster'
+#                  select: 'id'
+#                  show: 'employee_name'
+#                fromdate:
+#                  attribute: 'fromdate'
+#                  label: 'Date'
+#                  type: 'date_field_tag'
+#                fromtime:
+#                  attribute: 'fromtime'
+#                  label: 'From Time'
+#                  type: 'date_field_tag'
+#                totime:
+#                  attribute: 'to_time'
+#                  label: 'To Time'
+#                  type: 'date_field_tag'

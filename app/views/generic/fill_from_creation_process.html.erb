@@ -5,7 +5,7 @@
 </style>
 
 <%= javascript_include_tag "jquery.dataTables.min" %>
-<%= javascript_include_tag "jquery.dataTables.zbootstrap" %>
+<%= javascript_include_tag "jquery.dataTables.bootstrap" %>
 
 <!--ToDO: Making it more agile so that it can hanlde excel import and update form also.-->
 <%= form_tag :review_form, :multipart => true do |f| %>
@@ -42,7 +42,10 @@
                     <% @tab_val = tab_val[:cols].map { |i, v| v } %>
                     <% ti = 0 %>
                     <% if tab_val[:cols].has_key?(:type) %>
-                        <%tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+                        <%#= tab_val[:cols].has_key?(:type) %>
+                        <%#= tab_val[:cols].is_a?(Hash) %>
+                        <%=tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+                        <%= @col_val = tab_val %>
                         <table class="table table-striped table-bordered table-hover">
                           <thead>
                           <tr>

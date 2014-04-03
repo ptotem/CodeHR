@@ -1,12 +1,12 @@
 en:
   forms:
-    VacancyMasterNew:
+    VacancyMaster:
       name: "Create New Vacancy"
       object: "VacancyMaster"
       fields:
         tabs:
           tab1:
-            name: "VacancyMaster"
+            name: "New Vacancy"
             type: "standard"
             cols:
               col1:
@@ -34,10 +34,13 @@ en:
                   attribute: 'ctc_range_from'
                   label: 'CTC Range From'
                   type: 'text_field_tag'
-#                refer_doc_id:
-#                  attribute: 'refer_doc_id'
-#                  label: 'Attach CVs'
-#                  type: 'text_field_tag'
+                align1:
+                  label: '  '
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Active", "Hiring in Progress", "Hired", "Closed"]
               col2:
                 description:
                   attribute: 'description'
@@ -51,13 +54,20 @@ en:
                 hiring_manager:
                   attribute: 'hiring_manager'
                   label: 'Hiring Manager'
-                  type: 'text_field_tag'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
                 ctc_range_to:
                   attribute: 'ctc_range_to'
                   label: 'CTC Range To'
                   type: 'text_field_tag'
-                status:
-                  attribute: 'status'
-                  label: 'Status'
+                refer_doc_id:
+                  attribute: 'refer_doc_id'
+                  label: 'Related Document Reference'
                   type: 'select_tag'
-                  options: ["Active", "Hiring in Progress", "Hired", "Closed"]
+                  options: 'model'
+                  class : 'DocumentMaster'
+                  select: 'id'
+                  show: 'name'

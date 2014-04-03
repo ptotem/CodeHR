@@ -1,0 +1,230 @@
+en:
+  forms:
+    CandidateMasterN:
+      name: "New Candidate Form"
+      object: "CandidateMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Personal Details"
+            type: "Standard"
+            cols:
+              col1:
+                candidate_code:
+                  attribute: 'candidate_code'
+                  label: 'Candidate ID'
+                  type: 'text_field_tag'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Selected","Rejected","Created","Short-listed"]
+                date_of_birth:
+                  attribute: 'date_of_birth'
+                  label: 'Date of Birth'
+                  type: 'date_field_tag'
+                workex1:
+                  label: 'Total Work Experience'
+                total_work_exp_years:
+                  attribute: 'total_work_exp_years'
+                  label: 'Total Work Experience in Years'
+                  type: 'text_field_tag'
+                official_email:
+                  attribute: 'official_email'
+                  label: 'Official Email ID'
+                  type: 'text_field_tag'
+                bank_name:
+                  attribute: 'bank_name'
+                  label: 'Bank Name'
+                  type: 'text_field_tag'
+                pan_no:
+                  attribute: 'pan_no'
+                  label: 'PAN No'
+                  type: 'text_field_tag'
+                esic_no:
+                  attribute: 'esic_no'
+                  label: 'ESIC No'
+                  type: 'text_field_tag'
+                salary_expectation:
+                  label: 'Fixed'
+                salary_expectation_fixed:
+                  attribute: 'salary_expectation_fixed'
+                  label: 'Fixed'
+                  type: 'text_field_tag'
+                notice_period:
+                  attribute: 'notice_period'
+                  label: 'Notice Period in Months'
+                  type: 'text_field_tag'
+#                notice_period_buyback?:
+#                  attribute: 'notice_period_buyback?'
+#                  label: 'Notice Period Buy Back?'
+#                  type: 'select_tag'
+#                  options: ["Y","N"]
+                Remarks_1:
+                  attribute: 'remarks_1'
+                  label: 'Remarks'
+                  type: 'text_field_tag'
+              col2:
+                candidate_name:
+                  attribute: 'candidate_name'
+                  label: 'Candidate Name'
+                  type: 'text_field_tag'
+                gender:
+                  attribute: 'gender'
+                  label: 'Gender'
+                  type: 'select_tag'
+                  options: ["Male","Female"]
+                marital_status:
+                  attribute: 'marital_status'
+                  label: 'Marital Status'
+                  type: 'select_tag'
+                  options: ["Married","Single","Separated","Other"]
+                workex1:
+                  label: ' '
+                total_work_exp_months:
+                  attribute: 'total_work_exp_months'
+                  label: 'Total Work Experience in Months'
+                  type: 'text_field_tag'
+                personal_email:
+                  attribute: 'personal_email'
+                  label: 'Personal Email ID'
+                  type: 'text_field_tag'
+                account_number:
+                  attribute: 'account_number'
+                  label: 'A/C No'
+                  type: 'text_field_tag'
+                pf_no:
+                  attribute: 'pf_no'
+                  label: 'EPF No'
+                  type: 'text_field_tag'
+                current_location:
+                  attribute: 'current_location'
+                  label: 'Current Location'
+                  type: 'text_field_tag'
+                salary_expectation:
+                  label: '  '
+                salary_expectation_variable:
+                  attribute: 'salary_expectation_variable'
+                  label: 'Variable'
+                  type: 'text_field_tag'
+                notice_period_buyback_amount:
+                  attribute: 'notice_period_buyback_amount'
+                  label: 'Buy Back Amount'
+                  type: 'text_field_tag'
+          tab2:
+            name: "Address"
+            type: 'sub-form'
+            attribute: 'CandidatePersonelAddress'
+            CandidatePersonelAddresss:
+              type: 'sub-form'
+          tab3:
+            name: "Employment History"
+            type: 'sub-form'
+            attribute: 'CandidateEmploymentHistory'
+            CandidateEmploymentHistorys:
+              type: 'sub-form'
+          tab4:
+            name: "Family Details"
+            type: 'sub-form'
+            attribute: 'CandidateFamilyDetail'
+            CandidateFamilyDetails:
+              type: 'sub-form'
+    CandidatePersonelAddress:
+      name: "New CandidatePersonelAddress Form"
+      object: "CandidatePersonelAddress"
+      fields:
+        tabs:
+          tab1:
+            name: "CandidatePersonelAddress"
+            type: "standard"
+            cols:
+              col1:
+                address1:
+                  attribute: 'address1'
+                  label: 'Address1'
+                  type: 'text_field_tag'
+                city:
+                  attribute: 'city'
+                  label: 'City'
+                  type: 'text_field_tag'
+                district:
+                  attribute: 'district'
+                  label: 'District'
+                  type: 'text_field_tag'
+                country:
+                  attribute: 'country'
+                  label: 'Country'
+                  type: 'text_field_tag'
+              col2:
+                address2:
+                  attribute: 'address2'
+                  label: 'Address2'
+                  type: 'text_field_tag'
+                taluka:
+                  attribute: 'taluka'
+                  label: 'Taluka'
+                  type: 'text_field_tag'
+                state:
+                  attribute: 'state'
+                  label: 'State'
+                  type: 'text_field_tag'
+                zipcode:
+                  attribute: 'zipcode'
+                  label: 'Zipcode'
+                  type: 'text_field_tag'
+
+    CandidateEmploymentHistory:
+      name: "New CandidateEmploymentHistory Form"
+      object: "CandidateEmploymentHistory"
+      fields:
+        tabs:
+          tab1:
+            name: "CandidateEmploymentHistory"
+            type: "standard"
+            cols:
+              col1:
+                joined_from:
+                  attribute: 'joined_from'
+                  label: 'Joined From'
+                  type: 'date_field_tag'
+                organisation:
+                  attribute: 'organisation'
+                  label: 'organisation'
+                  type: 'text_field_tag'
+              col2:
+                leaved:
+                  attribute: 'leaved'
+                  label: 'leaved'
+                  type: 'date_field_tag'
+                designation:
+                  attribute: 'designation'
+                  label: 'designation'
+                  type: 'text_field_tag'
+
+    CandidateFamilyDetail:
+      name: "New CandidateFamilyDetail Form"
+      object: "CandidateFamilyDetail"
+      fields:
+        tabs:
+          tab1:
+            name: "CandidateFamilyDetail"
+            type: "standard"
+            cols:
+              col1:
+                relaationship:
+                  attribute: 'relaationship'
+                  label: 'Relationship'
+                  type: 'date_field_tag'
+                mname:
+                  attribute: 'mname'
+                  label: 'mname'
+                  type: 'text_field_tag'
+              col2:
+                fname:
+                  attribute: 'fname'
+                  label: 'First Name'
+                  type: 'date_field_tag'
+                lname:
+                  attribute: 'lname'
+                  label: 'Last Name'
+                  type: 'text_field_tag'

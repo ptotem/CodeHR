@@ -6,34 +6,77 @@
         <% if tab_val[:type]!="sub-form" %>
             <div class="row-fluid">
               <% @tab_val = tab_val[:cols].map { |i, v| v } %>
-              <% @tab_val.each_with_index do |col_val, index| %>
-                  <div class="span6">
-                    <% @col_val = col_val.map { |i, v| v } %>
-                    <% @col_val.each_with_index do |cv| %>
-                        <div class="control-group">
-                          <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
-                          <div class="controls">
-                            <% case cv[:type] %>
-                            <% when "text_field_tag" %>
-                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
-                            <% when "text_area_tag" %>
-                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
-                            <% when "check_box_tag" %>
-                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
-                            <% when "date_field_tag" %>
-                                <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
-                            <% when "select_tag" %>
-                                <% if cv[:options] == 'model' %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, cv[:select], cv[:show]) %>
-                                <% else %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]) %>
-                                <% end %>
-                            <% end %>
-                          </div>
-                        </div>
+              <% if tab_val[:cols].has_key?(:type) %>
+                  <% tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+                  <% @col_val = tab_val %>
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <% tab_val.each_with_index do |col_val, index| %>
+                          <% @col_val = col_val.map { |i, v| v } %>
+                          <% @col_val.each_with_index do |cv, indi| %>
+                              <th><label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label></th>
+                          <% end %>
+                      <% end %>
+                    </tr>
+                    </thead>
+                    <tbody class="my_body">
+                    <% tab_val.each_with_index do |col_val, index| %>
+                        <% @col_val = col_val.map { |i, v| v } %>
+                        <% @col_val.each_with_index do |cv, indi| %>
+                            <td>
+                              <% case cv[:type] %>
+                              <% when "text_field_tag" %>
+                                  <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                              <% when "text_area_tag" %>
+                                  <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                              <% when "check_box_tag" %>
+                                  <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+                              <% when "date_field_tag" %>
+                                  <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
+                              <% when "select_tag" %>
+                                  <% if cv[:options] == 'model' %>
+                                      <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]) %>
+                                  <% else %>
+                                      <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]) %>
+                                  <% end %>
+                              <% end %>
+                            </td>
+                        <% end %>
                     <% end %>
-                  </div>
+                    </tbody>
+                  </table>
+              <% else %>
+                  <% @tab_val.each_with_index do |col_val, index| %>
+                      <div class="span6">
+                        <% @col_val = col_val.map { |i, v| v } %>
+                        <% @col_val.each_with_index do |cv| %>
+                            <div class="control-group">
+                              <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
+                              <div class="controls">
+                                <% case cv[:type] %>
+                                <% when "text_field_tag" %>
+                                    <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                                <% when "text_area_tag" %>
+                                    <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                                <% when "check_box_tag" %>
+                                    <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+                                <% when "date_field_tag" %>
+                                    <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
+                                <% when "select_tag" %>
+                                    <% if cv[:options] == 'model' %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
+                                    <% else %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]) %>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+                  <% end %>
               <% end %>
+
             </div>
         <% else %>
             <div class="row-fluid">

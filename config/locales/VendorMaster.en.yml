@@ -1,0 +1,128 @@
+en:
+  forms:
+    VendorMasterN:
+      name: "New VendorMaster Form"
+      object: "VendorMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Vendor Details"
+            type: "standard"
+          tab2:
+            name: "Vendor Address"
+            type: 'sub-form'
+            attribute: 'Vaddress'
+            VendorAddress:
+              type: 'sub-form'
+#          tab3:
+#            name: "Vendor Contacts"
+#            type: 'sub-form'
+#            attribute: 'ContactPerson'
+#            ContactPerson:
+#              type: 'sub-form'
+#            cols:
+#              col1:
+#                vendor_code:
+#                  attribute: 'vendor_code'
+#                  label: 'Vendor Code'
+#                  type: 'text_field_tag'
+#                vendor_type:
+#                  job_title:
+#                  attribute: 'vendor_type'
+#                  label: 'Vendor Type'
+#                  type: 'select_tag'
+#                  options: ["Recruiter", "Consultant", "Trainer"]
+#                email:
+#                  job_title:
+#                  attribute: 'email'
+#                  label: 'Email ID'
+#                  type: 'text_field_tag'
+#              col2:
+#                vendor_name:
+#                  attribute: 'vendor_name'
+#                  label: 'Vendor Name'
+#                  type: 'text_field_tag'
+#                office_phone_number:
+#                  attribute: 'office_phone_number'
+#                  label: 'Office Phone Number'
+#                  type: 'text_field_tag'
+#                office_fax_number2:
+#                  attribute: 'office_fax_number2'
+#                  label: 'Office Fax Number2'
+#                  type: 'text_field_tag'
+##todo please add vendor address details like Address1, Address2 etc. to Vaddress table
+#    VendorAddress:
+#      name: "Vendor Address"
+#      object: "Vaddress"
+#      fields:
+#        tabs:
+#          tab1:
+#            name: "Vendor Address"
+#            type: "standard"
+#            cols:
+#              col1:
+#                address1:
+#                  attribute: 'address1'
+#                  label: 'Address1'
+#                  type: 'text_field_tag'
+#                city:
+#                  attribute: 'city'
+#                  label: 'City'
+#                  type: 'text_field_tag'
+#                district:
+#                  attribute: 'district'
+#                  label: 'District'
+#                  type: 'text_field_tag'
+#                country:
+#                  attribute: 'country'
+#                  label: 'Country'
+#                  type: 'text_field_tag'
+#              col2:
+#                address2:
+#                  attribute: 'address2'
+#                  label: 'Address2'
+#                  type: 'text_field_tag'
+#                taluka:
+#                  attribute: 'taluka'
+#                  label: 'Taluka'
+#                  type: 'text_field_tag'
+#                state:
+#                  attribute: 'state'
+#                  label: 'State'
+#                  type: 'text_field_tag'
+#                zipcode:
+#                  attribute: 'zipcode'
+#                  label: 'Zipcode'
+#                  type: 'text_field_tag'
+#    ContactPerson:
+#      name: "Vendor Contacts"
+#      object: "contact_person"
+#      fields:
+#        tabs:
+#          tab1:
+#            name: "Vendor Address"
+#            type: "standard"
+#            cols:
+#              col1:
+#                name:
+#                  attribute: 'name'
+#                  label: 'Contact Person Name'
+#                  type: 'text_field_tag'
+#                phone1:
+#                  attribute: 'phone1'
+#                  label: 'Phone #1'
+#                  type: 'text_field_tag'
+##todo add email to contact_person
+#                email:
+#                  attribute: 'email'
+#                  label: 'Email'
+#                  type: 'text_field_tag'
+#             col2:
+#                designation:
+#                  attribute: 'designation'
+#                  label: 'Designation'
+#                  type: 'text_field_tag'
+#                phone2:
+#                  attribute: 'phone2'
+#                  label: 'Phone #2'
+#                  type: 'text_field_tag'

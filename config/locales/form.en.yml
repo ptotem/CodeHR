@@ -1896,7 +1896,7 @@ en:
                   label: 'Gender'
                   type: 'select_tag'
                   options: ["Male","Female"]
-                personal_email:
-                  attribute: 'personal_email'
+                hhh:
+#                  attribute: 'personal_email'
                   label: 'Email2'
-                  type: 'text_field_tag'
+#                  type: 'text_field_tag'
