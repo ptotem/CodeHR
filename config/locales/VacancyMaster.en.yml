@@ -1,0 +1,63 @@
+en:
+  forms:
+    VacancyMasterNew:
+      name: "Create New Vacancy"
+      object: "VacancyMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "VacancyMaster"
+            type: "standard"
+            cols:
+              col1:
+                vacancy_code:
+                  attribute: 'vacancy_code'
+                  label: 'Vacancy ID'
+                  type: 'text_field_tag'
+                manpower_planning_id:
+                  attribute: 'manpower_planning_id'
+                  label: 'Asscoiated Manpower Planning ID'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'ManpowerPlanning'
+                  select: 'id'
+                  show: 'id'
+                vendor_master_id:
+                  attribute: 'vendor_master_id'
+                  label: 'Assign to Vendor'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'VendorMaster'
+                  select: 'id'
+                  show: 'vendor_name'
+                ctc_range_from:
+                  attribute: 'ctc_range_from'
+                  label: 'CTC Range From'
+                  type: 'text_field_tag'
+#                refer_doc_id:
+#                  attribute: 'refer_doc_id'
+#                  label: 'Attach CVs'
+#                  type: 'text_field_tag'
+              col2:
+                description:
+                  attribute: 'description'
+                  label: 'Vacancy Description'
+                  type: 'text_area_tag'
+                sourcing_strategy:
+                  attribute: 'sourcing_strategy'
+                  label: 'Sourcing Strategy'
+                  type: 'select_tag'
+                  options: ["New Hire", "Internal Transfer", "Promotion", "Intranet Portal", "Company Website", "Job Portals", "Recruiters/Vendors"]
+                hiring_manager:
+                  attribute: 'hiring_manager'
+                  label: 'Hiring Manager'
+                  type: 'text_field_tag'
+                ctc_range_to:
+                  attribute: 'ctc_range_to'
+                  label: 'CTC Range To'
+                  type: 'text_field_tag'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Active", "Hiring in Progress", "Hired", "Closed"]

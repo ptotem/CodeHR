@@ -17,7 +17,11 @@ en:
                 location:
                   attribute: 'location'
                   label: 'Location'
-                  type: 'text_field_tag'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'CompanyAddress'
+                  select: 'city'
+                  show: 'city'
                 requested_by:
                   attribute: 'employee_master'
                   label: 'Requested By'
@@ -26,15 +30,12 @@ en:
                   class : 'EmployeeMaster'
                   select: 'id'
                   show: 'employee_name'
+                comments:
+                  attribute: 'comments'
+                  label: 'Comments'
+                  type: 'text_area_tag'
               col2:
-                supervisor:
-                  attribute: 'employee_master'
-                  label: 'Supervisor'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'EmployeeMaster'
-                  select: 'id'
-                  show: 'employee_name'
+#check if supervisor can be picked up from employee's reporting tos 
                 group:
                   attribute: 'group_master'
                   label: 'Group'
@@ -47,15 +48,19 @@ en:
                   attribute: 'position'
                   label: 'Position'
                   type: 'text_field_tag'
-                comments:
-                  attribute: 'comments'
-                  label: 'Comments'
-                  type: 'text_area_tag'
+                supervisor:
+                  attribute: 'employee_master'
+                  label: 'Supervisor'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
           tab2:
             name: "Enter Manpower Plan"
             type: 'sub-form'
             attribute: 'ManpowerPlan'
-            score_receiveds:
+            Manpowerplans:
               type: 'sub-form'
     ManpowerPlan:
       name: "New Manpower Plan Form"
@@ -88,29 +93,6 @@ en:
                   class : 'BandMaster'
                   select: 'id'
                   show: 'band_name'
-                position_nature:
-                  attribute: 'position_nature'
-                  label: 'Nature of Position'
-                  type: 'select_tag'
-                  options: ["Full Time- Permanent", "Part Time- Parmanent", "Full Time- Temp", "Part Time- Temp", "Project Trainee"]
-                period_from:
-                  attribute: 'period_from'
-                  label: 'Period From'
-                  type: 'text_field_tag'
-                period_to:
-                  attribute: 'period_to'
-                  label: 'Period To'
-                  type: 'text_field_tag'
-                final_approved_number:
-                  attribute: 'final_approved_number'
-                  label: 'Final Approved Number'
-                  type: 'text_field_tag'
-                status:
-                  attribute: 'status'
-                  label: 'Status'
-                  type: 'select_tag'
-                  options: ["Active", "Transferred", "Resigned", "Separated"]
-
           tab2:
             name: "Enter Manpower Plan"
             type: 'sub-form'
@@ -127,11 +109,25 @@ en:
             type: "standard"
             cols:
               col1:
-                mp_code:
-                  attribute: 'mp_code'
-                  label: 'Manpower Planning ID'
+                period_from:
+                  attribute: 'period_from'
+                  label: 'Period From'
                   type: 'text_field_tag'
-                location:
-                  attribute: 'location'
-                  label: 'Location'
+                period_to:
+                  attribute: 'period_to'
+                  label: 'Period To'
                   type: 'text_field_tag'
+                position_nature:
+                  attribute: 'position_nature'
+                  label: 'Nature of Position'
+                  type: 'select_tag'
+                  options: ["Full Time- Permanent", "Part Time- Parmanent", "Full Time- Temp", "Part Time- Temp", "Project Trainee"]
+                final_approved_number:
+                  attribute: 'final_approved_number'
+                  label: 'Number of Vacancies'
+                  type: 'text_field_tag'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
+                  type: 'select_tag'
+                  options: ["Initiated", "Updated", "Approved", "Rejected" ]
