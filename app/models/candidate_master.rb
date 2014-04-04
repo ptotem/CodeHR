@@ -55,8 +55,8 @@ class CandidateMaster
   validates :candidate_code, :presence => true
 
   validates :candidate_name,
-            :presence   => true,
-            :format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
+            :presence   => true#,
+            #:format     => { :with => /^[A-Za-z.&]*\z/ } #validation for no-special characters
 
   #validates :official_email,
   #          :presence => true,

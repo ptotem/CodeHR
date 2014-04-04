@@ -8,49 +8,49 @@ en:
           tab1:
             name: "Vendor Details"
             type: "standard"
-          tab2:
-            name: "Vendor Address"
-            type: 'sub-form'
-            attribute: 'Vaddress'
-            VendorAddress:
-              type: 'sub-form'
+            cols:
+              col1:
+                vendor_code:
+                  attribute: 'vendor_code'
+                  label: 'Vendor Code'
+                  type: 'text_field_tag'
+                vendor_type:
+                  job_title:
+                  attribute: 'vendor_type'
+                  label: 'Vendor Type'
+                  type: 'select_tag'
+                  options: ["Recruiter", "Consultant", "Trainer"]
+                email:
+                  job_title:
+                  attribute: 'email'
+                  label: 'Email ID'
+                  type: 'text_field_tag'
+              col2:
+                vendor_name:
+                  attribute: 'vendor_name'
+                  label: 'Vendor Name'
+                  type: 'text_field_tag'
+                office_phone_number:
+                  attribute: 'office_phone_number'
+                  label: 'Office Phone Number'
+                  type: 'text_field_tag'
+                office_fax_number2:
+                  attribute: 'office_fax_number2'
+                  label: 'Office Fax Number2'
+                  type: 'text_field_tag'
+#          tab2:
+#            name: "Vendor Address"
+#            type: 'sub-form'
+#            attribute: 'Vaddress'
+#            VendorAddress:
+#              type: 'sub-form'
 #          tab3:
 #            name: "Vendor Contacts"
 #            type: 'sub-form'
 #            attribute: 'ContactPerson'
 #            ContactPerson:
 #              type: 'sub-form'
-#            cols:
-#              col1:
-#                vendor_code:
-#                  attribute: 'vendor_code'
-#                  label: 'Vendor Code'
-#                  type: 'text_field_tag'
-#                vendor_type:
-#                  job_title:
-#                  attribute: 'vendor_type'
-#                  label: 'Vendor Type'
-#                  type: 'select_tag'
-#                  options: ["Recruiter", "Consultant", "Trainer"]
-#                email:
-#                  job_title:
-#                  attribute: 'email'
-#                  label: 'Email ID'
-#                  type: 'text_field_tag'
-#              col2:
-#                vendor_name:
-#                  attribute: 'vendor_name'
-#                  label: 'Vendor Name'
-#                  type: 'text_field_tag'
-#                office_phone_number:
-#                  attribute: 'office_phone_number'
-#                  label: 'Office Phone Number'
-#                  type: 'text_field_tag'
-#                office_fax_number2:
-#                  attribute: 'office_fax_number2'
-#                  label: 'Office Fax Number2'
-#                  type: 'text_field_tag'
-##todo please add vendor address details like Address1, Address2 etc. to Vaddress table
+#
 #    VendorAddress:
 #      name: "Vendor Address"
 #      object: "Vaddress"
