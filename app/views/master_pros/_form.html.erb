@@ -78,7 +78,7 @@
                           <% @models = Array.new() %>
                           <% @yml_models = t('forms') %>
                           <% @yml_models.each do |model| %>
-                              <% @models << "#{model[0]}||#{model[1][:name]}".gsub!("New ","") %>
+                              <% @models << "#{model[0]}||#{model[1][:name]}" %>
                           <% end %>
 
                           <%#= master_step.select :action_class, options_for_select(["","System"]+@models.collect{ |u| [u] }, :include_blank => "Select", :selected => master_step.object.action_class), {:class => "models-select"}  %>
