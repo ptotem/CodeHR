@@ -1,7 +1,7 @@
 en:
   forms:
     VendorMasterN:
-      name: "New VendorMaster Form"
+      name: VendorMaster Form"
       object: "VendorMaster"
       fields:
         tabs:

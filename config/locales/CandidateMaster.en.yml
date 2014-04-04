@@ -1,7 +1,7 @@
 en:
   forms:
     CandidateMasterN:
-      name: "New Candidate Form"
+      name: "Candidate Form"
       object: "CandidateMaster"
       fields:
         tabs:
@@ -130,7 +130,7 @@ en:
             CandidateFamilyDetails:
               type: 'sub-form'
     CandidatePersonelAddress:
-      name: "New CandidatePersonelAddress Form"
+      name: "CandidatePersonelAddress Form"
       object: "CandidatePersonelAddress"
       fields:
         tabs:
@@ -174,7 +174,7 @@ en:
                   type: 'text_field_tag'
 
     CandidateEmploymentHistory:
-      name: "New CandidateEmploymentHistory Form"
+      name: "CandidateEmploymentHistory Form"
       object: "CandidateEmploymentHistory"
       fields:
         tabs:
@@ -202,7 +202,7 @@ en:
                   type: 'text_field_tag'
 
     CandidateFamilyDetail:
-      name: "New CandidateFamilyDetail Form"
+      name: "CandidateFamilyDetail Form"
       object: "CandidateFamilyDetail"
       fields:
         tabs:

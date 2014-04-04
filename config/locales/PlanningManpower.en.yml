@@ -1,7 +1,7 @@
 en:
   forms:
     EnterManpowerPlan:
-      name: "New Manpower Planning Form"
+      name: "Manpower Planning Form"
       object: "PlanningManpower"
       fields:
         tabs:
@@ -63,7 +63,7 @@ en:
             Manpowerplans:
               type: 'sub-form'
     ManpowerPlan:
-      name: "New Manpower Plan Form"
+      name: "Manpower Plan Form"
       object: "PlanningManpower"
       fields:
         tabs:
@@ -100,7 +100,7 @@ en:
             score_receiveds:
               type: 'sub-form'
     Nmp:
-      name: "New Manpower Planning Form"
+      name: "Manpower Planning Form"
       object: "PlanningManpower"
       fields:
         tabs:

@@ -1,6 +1,6 @@
 en:
   forms:
-    VacancyMaster:
+    VacancyMasterN:
       name: "Create New Vacancy"
       object: "VacancyMaster"
       fields:
