@@ -127,7 +127,7 @@
     function show_fields(){
         a='';
         b='';
-        all_fields.each(function(i,v){
+        $.each(all_fields,function(i,v){
             a=a+'<option value='+i+'>'+i+'</option>';
             b=b+'<th>'+i+'</th>';
         });
