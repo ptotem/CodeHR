@@ -1,0 +1,37 @@
+en:
+  forms:
+    DocumentMaster:
+      name: "New Document Master Form"
+      object: "DocumentMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Document Master"
+            type: "standard"
+            cols:
+              col1:
+                doc_code:
+                  attribute: 'doc_code'
+                  label: 'Document Code'
+                  type: 'text_field_tag'
+                dfile:
+                  attribute: 'dfile'
+                  label: 'Attach Document'
+                  type: 'file_field_tag'
+                vc_needed:
+                  attribute: 'vc_needed'
+                  label: 'Version Control Needed?'
+                  type: 'check_box_tag'
+              col2:
+                Name:
+                  attribute: 'Name'
+                  label: 'Document Name'
+                  type: 'text_field_tag'
+                Owner:
+                  attribute: 'Owner'
+                  label: 'Owner'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'EmployeeMaster'
+                  select: 'id'
+                  show: 'employee_name'
