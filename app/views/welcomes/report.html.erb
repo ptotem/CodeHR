@@ -127,9 +127,9 @@
     function show_fields(){
         a='';
         b='';
-        all_fields.each(function(i,v){
-            a=a+'<option value='+i+'>'+i+'</option>';
-            b=b+'<th>'+i+'</th>';
+        $.each(all_fields,function(i,v){
+            a=a+'<option value='+v+'>'+v+'</option>';
+            b=b+'<th>'+v+'</th>';
         });
         result_div = class_name+"_result_"+my_count;
         $('#main-tab').append("<div id="+result_div+"></div>");
