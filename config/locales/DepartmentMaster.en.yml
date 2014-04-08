@@ -1,0 +1,31 @@
+en:
+  forms:
+    GroupMaster:
+      name: "Department Form"
+      object: "GroupMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Departments"
+            type: "standard"
+            cols:
+              col1:
+                group_code:
+                  attribute: 'group_code'
+                  label: 'Department Code'
+                  type: 'text_field_tag'
+              col2:
+                group_name:
+                  attribute: 'group_name'
+                  label: 'Department Name'
+                  type: 'text_field_tag'
+                child_group_master_ids:
+                  attribute: 'child_group_master_ids'
+                  label: 'Sub-Departments'
+                  type: 'select_tag'
+                  options: 'model'
+                  class: 'GroupMaster'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'group_name'
+

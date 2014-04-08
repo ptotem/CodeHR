@@ -1,0 +1,57 @@
+en:
+  forms:
+    CandidateRating:
+      name: "Define Rating Scales"
+      object: "RatingScale"
+      fields:
+        tabs:
+          tab1:
+            name: "Rating Scales"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Rating Category Name'
+                  type: 'text_field_tag'
+              col2:
+                description:
+                  attribute: 'Description'
+                  label: 'Rating Category Description'
+                  type: 'text_field_tag'
+          tab2:
+            name: "Scales"
+            type: 'sub-form'
+            attribute: 'Scales'
+            score_receiveds:
+              type: 'sub-form'
+    Scales:
+      name: "Rating Scales"
+      object: "Scale"
+      fields:
+        tabs:
+          tab1:
+            name: "Scales"
+            type: "table"
+            cols:
+              col1:
+                scale_name:
+                  attribute: 'scale_name'
+                  label: 'Scale Name'
+                  type: 'text_field_tag'
+                scale_description:
+                  attribute: 'scale_description'
+                  label: 'Scale Description'
+                  type: 'text_field_tag'
+                priority:
+                  attribute: 'priority'
+                  label: 'Rating Priority'
+                  type: 'text_field_tag'
+                range_from:
+                  attribute: 'range_from'
+                  label: 'Range-From'
+                  type: 'text_field_tag'
+                range_to:
+                  attribute: 'range_to'
+                  label: 'Range-To'
+                  type: 'text_field_tag'

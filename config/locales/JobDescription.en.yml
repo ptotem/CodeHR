@@ -1,0 +1,29 @@
+en:
+  forms:
+    JobDescriptionMaster:
+      name: "Job Description Master Form"
+      object: "JobDescriptionMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Job Description"
+            type: "standard"
+            cols:
+              col1:
+                job_code:
+                  attribute: 'job_code'
+                  label: 'Job Code'
+                  type: 'text_field_tag'
+                description:
+                  attribute: 'description'
+                  label: 'Description'
+                  type: 'text_field_tag'
+              col2:
+                job_title:
+                  attribute: 'job_title'
+                  label: 'Job Title'
+                  type: 'text_field_tag'
+                min_year_of_experience:
+                  attribute: 'min_year_of_experience'
+                  label: 'Min. Years of Required Experience'
+                  type: 'text_field_tag'

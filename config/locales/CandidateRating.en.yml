@@ -1,0 +1,94 @@
+en:
+  forms:
+    CandidateRating:
+      name: "Enter Candidate Assessment Score Form"
+      object: "Rating"
+      fields:
+        tabs:
+          tab1:
+            name: "Candidate Details"
+            type: "standard"
+            cols:
+              col1:
+                candidate_master_id:
+                  attribute: 'candidate_master_id'
+                  label: 'Select Candidate'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'CandidateMaster'
+                  select: 'candidate_code'
+                  show: 'candidate_name'
+              col2:
+                vacancy_scheduling_id:
+                  attribute: 'vacancy_scheduling_id'
+                  label: 'Interview ID'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'VacancyScheduling'
+                  select: 'id'
+                  show: 'id'
+          tab2:
+            name: "Scores"
+            type: 'sub-form'
+            attribute: 'ScoreReceived'
+            score_receiveds:
+              type: 'sub-form'
+    ScoreReceived:
+      name: "Score Received Form"
+      object: "ScoreReceived"
+      fields:
+        tabs:
+          tab1:
+            name: "Score"
+            type: "standard"
+            cols:
+              col1:
+                comments:
+                  attribute: 'comments'
+                  label: 'Interviewer Feedback'
+                  type: 'text_field_tag'
+              col2:
+                rating_scale_id:
+                  attribute: 'rating_scale_id'
+                  label: 'Select Rating Scale'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'RatingScale'
+                  select: 'id'
+                  show: 'id'
+          tab2:
+            name: "Rating Scale"
+            type: "sub-form"
+            attribute: 'RatingMeasure'
+            rating_measures:
+              type: 'sub-form'
+    RatingMeasure:
+      name: "Rating Measure"
+      object: "RatingMeasure"
+      fields:
+        tabs:
+          tab1:
+            name: "Scores Received"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                priority:
+                  attribute: 'priority'
+                  label: 'Priority'
+                  type: 'text_field_tag'
+                range_from:
+                  attribute: 'range_from'
+                  label: 'Range From'
+                  type: 'text_field_tag'
+                range_to:
+                  attribute: 'range_to'
+                  label: 'Range To'
+                  type: 'text_field_tag'
+                score:
+                  attribute: 'score'
+                  label: 'Score Received'
+                  type: 'text_field_tag'

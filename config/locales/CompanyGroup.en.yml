@@ -1,0 +1,25 @@
+en:
+  forms:
+    Client:
+      name: "Company Group Form"
+      object: "Client"
+      fields:
+        tabs:
+          tab1:
+            name: "Company Group"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Group Name'
+                  type: 'text_field_tag'
+                E-mail:
+                  attribute: 'E-mail'
+                  label: 'E-mail'
+                  type: 'text_area_tag'
+              col2:
+                address:
+                  attribute: 'address'
+                  label: 'Address'
+                  type: 'text_area_tag'

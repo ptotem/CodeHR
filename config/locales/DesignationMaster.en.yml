@@ -1,0 +1,22 @@
+en:
+  forms:
+    GroupMaster:
+      name: "Designation Form"
+      object: "GroupMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Designations"
+            type: "standard"
+            cols:
+              col1:
+                group_code:
+                  attribute: 'group_code'
+                  label: 'Designation Code'
+                  type: 'text_field_tag'
+              col2:
+                group_name:
+                  attribute: 'group_name'
+                  label: 'Designation Name'
+                  type: 'text_field_tag'
+

@@ -1,0 +1,31 @@
+en:
+  forms:
+    GroupMaster:
+      name: "Group Master Form"
+      object: "GroupMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Group Master"
+            type: "standard"
+            cols:
+              col1:
+                group_code:
+                  attribute: 'group_code'
+                  label: 'Group Code'
+                  type: 'text_field_tag'
+              col2:
+                group_name:
+                  attribute: 'group_name'
+                  label: 'Group Name'
+                  type: 'text_field_tag'
+                child_group_master_ids:
+                  attribute: 'child_group_master_ids'
+                  label: 'Child Groups'
+                  type: 'select_tag'
+                  options: 'model'
+                  class: 'GroupMaster'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'group_name'
+

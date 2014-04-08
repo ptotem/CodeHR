@@ -48,7 +48,7 @@ en:
                   select: 'id'
                   show: 'name'
           tab2:
-            name: "Interview Type"
+            name: "Schedule"
             type: "standard"
             cols:
               type: "table"
@@ -65,6 +65,7 @@ en:
                   attribute: 'interviewer'
                   label: 'Select Interviewer(s)'
                   type: 'select_tag'
+                  multiple: 'true'
                   options: 'model'
                   class : 'EmployeeMaster'
                   select: 'id'
@@ -73,49 +74,12 @@ en:
                   attribute: 'fromdate'
                   label: 'Date'
                   type: 'date_field_tag'
+#todo: put time field for fromtime and totime
                 fromtime:
                   attribute: 'fromtime'
                   label: 'From Time'
-                  type: 'date_field_tag'
+                  type: 'text_field_tag'
                 totime:
                   attribute: 'to_time'
                   label: 'To Time'
-                  type: 'date_field_tag'
-#    InterviewerList1:
-#      name: "Interview Schedule"
-#      object: "interviewer_lists"
-#      fields:
-#        tabs:
-#          tab1:
-#            name: "Interview Schedule"
-#            type: "standard"
-#            cols:
-#              col1:
-#                interview_type_id:
-#                  attribute: 'interview_type_id'
-#                  label: 'Interview Type'
-#                  type: 'select_tag'
-#                  options: 'model'
-#                  class : 'InterviewType'
-#                  select: 'id'
-#                  show: 'name'
-#                interviewer:
-#                  attribute: 'interviewer'
-#                  label: 'Select Interviewer(s)'
-#                  type: 'select_tag'
-#                  options: 'model'
-#                  class : 'EmployeeMaster'
-#                  select: 'id'
-#                  show: 'employee_name'
-#                fromdate:
-#                  attribute: 'fromdate'
-#                  label: 'Date'
-#                  type: 'date_field_tag'
-#                fromtime:
-#                  attribute: 'fromtime'
-#                  label: 'From Time'
-#                  type: 'date_field_tag'
-#                totime:
-#                  attribute: 'to_time'
-#                  label: 'To Time'
-#                  type: 'date_field_tag'
+                  type: 'text_field_tag'

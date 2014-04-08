@@ -1,0 +1,26 @@
+en:
+  forms:
+    DocumentTemplateMaster:
+      name: "Document Template Master Form"
+      object: "DocumentTemplateMaster"
+      fields:
+        tabs:
+          tab1:
+            name: "Document Template Master"
+            type: "standard"
+            cols:
+              col1:
+                dt_code:
+                  attribute: 'dt_code'
+                  label: 'Template Code'
+                  type: 'text_field_tag'
+#todo: file field needs to be added to attach the template file
+                file:
+                  attribute: 'file'
+                  label: 'Attach Template File'
+                  type: 'file_field_tag'
+              col2:
+                Description:
+                  attribute: 'Description'
+                  label: 'Description'
+                  type: 'text_field_tag'

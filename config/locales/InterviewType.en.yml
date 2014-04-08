@@ -1,0 +1,21 @@
+en:
+  forms:
+    InterviewType:
+      name: "Interview Type Form"
+      object: "InterviewType"
+      fields:
+        tabs:
+          tab1:
+            name: "Interview Type"
+            type: "standard"
+            cols:
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Type Name'
+                  type: 'text_field_tag'
+              col2:
+                description:
+                  attribute: 'description'
+                  label: 'Type Description'
+                  type: 'text_field_tag'

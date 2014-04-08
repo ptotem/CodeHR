@@ -1,7 +1,7 @@
 en:
   forms:
     VacancyMasterN:
-      name: "Create New Vacancy"
+      name: "Create New Vacancy Form"
       object: "VacancyMaster"
       fields:
         tabs:
@@ -20,8 +20,8 @@ en:
                   type: 'select_tag'
                   options: 'model'
                   class : 'ManpowerPlanning'
-                  select: 'id'
-                  show: 'id'
+                  select: 'mp_code'
+                  show: 'mp_code'
                 vendor_master_id:
                   attribute: 'vendor_master_id'
                   label: 'Assign to Vendor'
@@ -49,8 +49,10 @@ en:
                 sourcing_strategy:
                   attribute: 'sourcing_strategy'
                   label: 'Sourcing Strategy'
+                  multiple: 'true'
                   type: 'select_tag'
                   options: ["New Hire", "Internal Transfer", "Promotion", "Intranet Portal", "Company Website", "Job Portals", "Recruiters/Vendors"]
+#todo; link hiring manager to employee master
                 hiring_manager:
                   attribute: 'hiring_manager'
                   label: 'Hiring Manager'

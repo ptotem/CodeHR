@@ -6,7 +6,7 @@ en:
       fields:
         tabs:
           tab1:
-            name: "Manpower Plan"
+            name: "Requisition Details"
             type: "standard"
             cols:
               col1:
@@ -44,10 +44,15 @@ en:
                   class : 'GroupMaster'
                   select: 'id'
                   show: 'group_name'
+#todo: link position to job_description_master
                 position:
                   attribute: 'position'
                   label: 'Position'
-                  type: 'text_field_tag'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'JobDescriptionMaster'
+                  select: 'id'
+                  show: 'job_title'
                 supervisor:
                   attribute: 'employee_master'
                   label: 'Supervisor'
@@ -63,7 +68,7 @@ en:
             Manpowerplans:
               type: 'sub-form'
     ManpowerPlan:
-      name: "Manpower Plan Form"
+      name: "Manpower Plan"
       object: "PlanningManpower"
       fields:
         tabs:
@@ -84,7 +89,8 @@ en:
                   attribute: 'ff_source'
                   label: 'Fulfillment Source'
                   type: 'select_tag'
-                  options: ["Hiring", "Transfer", "Promotion"]
+                  multiple: 'true'
+                  options: ["Hiring", "Internal Transfer", "Promotion", "Job Portal", "Recruiters", "Intranet"]
                 band:
                   attribute: 'band_master'
                   label: 'Band'
@@ -94,13 +100,13 @@ en:
                   select: 'id'
                   show: 'band_name'
           tab2:
-            name: "Enter Manpower Plan"
+            name: "Details"
             type: 'sub-form'
             attribute: 'Nmp'
             score_receiveds:
               type: 'sub-form'
     Nmp:
-      name: "Manpower Planning Form"
+      name: "Manpower Details"
       object: "PlanningManpower"
       fields:
         tabs:

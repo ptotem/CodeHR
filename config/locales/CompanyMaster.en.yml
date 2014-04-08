@@ -1,0 +1,114 @@
+en:
+  forms:
+    CompanyMaster:
+          name: "Company Master Form"
+          object: "CompanyMaster"
+          fields:
+            tabs:
+              tab1:
+                name: "Company Master"
+                type: "standard"
+                cols:
+                  col1:
+                    company_code:
+                      attribute: 'company_code'
+                      label: 'Company Code'
+                      type: 'text_field_tag'
+                    client_id:
+                      attribute: 'client_id'
+                      label: 'Company Group'
+                      type: 'select_tag'
+                      options: 'model'
+                      class : 'Client'
+                      select: 'id'
+                      show: 'name'
+                    office_phone_number:
+                      attribute: 'office_phone_number'
+                      label: 'Office Phone Number'
+                      type: 'text_field_tag'
+                    office_fax_number_2:
+                      attribute: 'office_fax_number_2'
+                      label: 'Office Fax Number-2'
+                      type: 'text_field_tag'
+                    st_reg_number:
+                      attribute: 'st_reg_number'
+                      label: 'ST Reg. Number'
+                      type: 'text_field_tag'
+                    pf_reg_number:
+                      attribute: 'pf_reg_number'
+                      label: 'PF Reg. Number'
+                      type: 'text_field_tag'
+                    remarks_1:
+                      attribute: 'remarks_1'
+                      label: 'Remarks'
+                      type: 'text_area_tag'
+                  col2:
+                    company_name:
+                      attribute: 'company_name'
+                      label: 'Company Name'
+                      type: 'text_field_tag'
+                    office_fax_number_1:
+                      attribute: 'office_fax_number_1'
+                      label: 'Office Fax Number 1'
+                      type: 'text_field_tag'
+                    vat_reg_number:
+                      attribute: 'vat_reg_number'
+                      label: 'VAT Reg. Number'
+                      type: 'text_field_tag'
+                    pan_number:
+                      attribute: 'pan_number'
+                      label: 'PAN Number'
+                      type: 'text_field_tag'
+                    esic_reg_number:
+                      attribute: 'esic_reg_number'
+                      label: 'ESIC Reg. Number'
+                      type: 'text_field_tag'
+              tab2:
+                name: "Company Address"
+                type: 'sub-form'
+                attribute: 'CompanyAddress'
+                company_addresses:
+                  type: 'sub-form'
+    CompanyAddress:
+      name: "New Company Address Form"
+      object: "CompanyAddress"
+      fields:
+        tabs:
+          tab1:
+            name: "Company Address"
+            type: "standard"
+            cols:
+              col1:
+                address1:
+                  attribute: 'address1'
+                  label: 'Address 1'
+                  type: 'text_area_tag'
+                city:
+                  attribute: 'city'
+                  label: 'City'
+                  type: 'text_field_tag'
+                district:
+                  attribute: 'district'
+                  label: 'District'
+                  type: 'text_field_tag'
+                country:
+                  attribute: 'country'
+                  label: 'Country'
+                  type: 'text_field_tag'
+              col2:
+                address:
+                  attribute: 'address'
+                  label: 'Address'
+                  type: 'text_area_tag'
+                taluka:
+                  attribute: 'taluka'
+                  label: 'Taluka/Province/County'
+                  type: 'text_field_tag'
+                state:
+                  attribute: 'state'
+                  label: 'State'
+                  type: 'text_field_tag'
+                pin:
+                  attribute: 'pin'
+                  label: 'PIN Code'
+                  type: 'text_field_tag'
