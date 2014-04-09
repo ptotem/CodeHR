@@ -1,7 +1,7 @@
 en:
   forms:
     GroupMaster:
-      name: "Group Master Form"
+      name: "Main Form-Group Creation"
       object: "GroupMaster"
       fields:
         tabs:

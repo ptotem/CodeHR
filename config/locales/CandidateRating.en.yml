@@ -1,7 +1,7 @@
 en:
   forms:
     CandidateRating:
-      name: "Enter Candidate Assessment Score Form"
+      name: "Main Form-Candidate Assessment Score Entry"
       object: "Rating"
       fields:
         tabs:
@@ -28,42 +28,33 @@ en:
                   select: 'id'
                   show: 'id'
           tab2:
-            name: "Scores"
+            name: "Scores Received"
             type: 'sub-form'
             attribute: 'ScoreReceived'
             score_receiveds:
               type: 'sub-form'
     ScoreReceived:
-      name: "Score Received Form"
+      name: "Sub Form-Interview Type-wise Candidate Scores"
       object: "ScoreReceived"
       fields:
         tabs:
           tab1:
-            name: "Score"
+            name: "Score Received"
             type: "standard"
             cols:
               col1:
                 comments:
                   attribute: 'comments'
                   label: 'Interviewer Feedback'
-                  type: 'text_field_tag'
-              col2:
-                rating_scale_id:
-                  attribute: 'rating_scale_id'
-                  label: 'Select Rating Scale'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'RatingScale'
-                  select: 'id'
-                  show: 'id'
+                  type: 'text_area_tag'
           tab2:
-            name: "Rating Scale"
+            name: "Rating Scores"
             type: "sub-form"
             attribute: 'RatingMeasure'
             rating_measures:
               type: 'sub-form'
     RatingMeasure:
-      name: "Rating Measure"
+      name: "Sub Form-Candidate Rating Measure"
       object: "RatingMeasure"
       fields:
         tabs:
@@ -74,8 +65,13 @@ en:
               col1:
                 name:
                   attribute: 'name'
-                  label: 'Name'
-                  type: 'text_field_tag'
+                  label: 'Evaluation Parameter'
+#                  type: 'text_field_tag'
+                  type: 'select_tag'
+                  options: 'model'
+                  class: 'Scale'
+                  select: 'id'
+                  show: 'scale_name'
                 priority:
                   attribute: 'priority'
                   label: 'Priority'

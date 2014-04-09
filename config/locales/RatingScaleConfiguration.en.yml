@@ -1,23 +1,24 @@
 en:
   forms:
-    CandidateRating:
-      name: "Define Rating Scales"
+    RatingScaleConfiguration:
+      name: "Main Form-Rating Scale Creation"
       object: "RatingScale"
       fields:
         tabs:
           tab1:
-            name: "Rating Scales"
+            name: "Define Interview Type"
             type: "standard"
             cols:
               col1:
                 name:
                   attribute: 'name'
-                  label: 'Rating Category Name'
+                  label: 'Interview Type'
                   type: 'text_field_tag'
+                  width: '50'
               col2:
                 description:
-                  attribute: 'Description'
-                  label: 'Rating Category Description'
+                  attribute: 'description'
+                  label: 'Description'
                   type: 'text_field_tag'
           tab2:
             name: "Scales"
@@ -26,18 +27,18 @@ en:
             score_receiveds:
               type: 'sub-form'
     Scales:
-      name: "Rating Scales"
+      name: "Sub Form-Enter Rating Scales"
       object: "Scale"
       fields:
         tabs:
           tab1:
-            name: "Scales"
-            type: "table"
+            name: "Rating Scales"
             cols:
+              type: "table"
               col1:
                 scale_name:
                   attribute: 'scale_name'
-                  label: 'Scale Name'
+                  label: 'S.'
                   type: 'text_field_tag'
                 scale_description:
                   attribute: 'scale_description'

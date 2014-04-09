@@ -1,7 +1,7 @@
 en:
   forms:
-    Client:
-      name: "Company Group Form"
+    CompanyGroup:
+      name: "Main Form-Company Group Creation"
       object: "Client"
       fields:
         tabs:
@@ -17,7 +17,7 @@ en:
                 E-mail:
                   attribute: 'E-mail'
                   label: 'E-mail'
-                  type: 'text_area_tag'
+                  type: 'text_field_tag'
               col2:
                 address:
                   attribute: 'address'

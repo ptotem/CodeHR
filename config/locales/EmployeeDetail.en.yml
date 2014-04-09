@@ -1,7 +1,7 @@
 en:
   forms:
-    EmployeeMaster:
-      name: "Employee Master Form"
+    EmployeeDetail:
+      name: "Main Form-Employee Creation-All Details"
       object: "EmployeeMaster"
       fields:
         tabs:
@@ -75,8 +75,8 @@ en:
           tab2:
             name: "Employee Details"
             type: 'sub-form'
-            attribute: 'EmployeeDetail'
-            EmployeeDetail:
+            attribute: 'EmployeeOtherDetails'
+            EmployeeOtherDetails:
               type: 'sub-form'
           tab3:
             name: "Employment History"
@@ -102,8 +102,8 @@ en:
             attribute: 'EsisNomination'
             EsisNomination:
               type: 'sub-form'
-    EmployeeDetail:
-      name: "New Employee Detail Form"
+    EmployeeOtherDetails:
+      name: "Sub Form-Enter Employee Other Details"
       object: "EmployeeDetail"
       fields:
         tabs:
@@ -112,14 +112,15 @@ en:
             type: "standard"
             cols:
               col1:
-                name:
+                current_designation:
                   attribute: 'current_designation'
                   label: 'Current Designation'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'GroupMaster'
-                  select: 'id'
-                  show: 'group_name'
+                  type: 'text_field_tag'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'GroupMaster'
+#                  select: 'id'
+#                  show: 'group_name'
                 band_id:
                   attribute: 'band_master'
                   label: 'Band'
@@ -160,11 +161,12 @@ en:
                 job_role_id:
                   attribute: 'job_role_id'
                   label: 'Job Role'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'Role'
-                  select: 'id'
-                  show: 'name'
+                  type: 'text_field_tag'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'Role'
+#                  select: 'id'
+#                  show: 'name'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'
@@ -194,14 +196,14 @@ en:
                   label: 'Nature of Separation (If Separated)'
                   type: 'text_field_tag'
     EmploymentHist:
-      name: "Employee History Form"
+      name: "Sub Form-Enter Employee Employment History"
       object: "EmploymentHist"
       fields:
         tabs:
           tab1:
             name: "Employment History"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 organisation:
                   attribute: 'organisation'
@@ -220,14 +222,14 @@ en:
                   label: 'To Date'
                   type: 'date_field_tag'
     FamilyDetail:
-      name: "Employee Family Details Form"
+      name: "Sub Form-Enter Employee Family Details"
       object: "FamilyDetail"
       fields:
         tabs:
           tab1:
             name: "Family Details"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 relationship:
                   attribute: 'relationship'
@@ -246,14 +248,14 @@ en:
                   label: 'Last Name'
                   type: 'text_field_tag'
     PFNomination:
-      name: "Employee ESIC Nomination Form"
+      name: "Sub Form-Enter Employee PF Nomination"
       object: "PFNomination"
       fields:
         tabs:
           tab1:
             name: "PF Nomination"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 relationship:
                   attribute: 'relationship'
@@ -272,14 +274,14 @@ en:
                   label: 'Last Name'
                   type: 'text_field_tag'
     EsisNomination:
-      name: "Employee ESIC Nomination Form"
+      name: "Sub Form-Enter Employee ESIC Nomination"
       object: "EsisNomination"
       fields:
         tabs:
           tab1:
             name: "ESIC Nomination"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 relationship:
                   attribute: 'relationship'

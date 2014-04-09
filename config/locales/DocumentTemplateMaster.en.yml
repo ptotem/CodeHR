@@ -1,7 +1,7 @@
 en:
   forms:
     DocumentTemplateMaster:
-      name: "Document Template Master Form"
+      name: "Main Form-Document Template Creation"
       object: "DocumentTemplateMaster"
       fields:
         tabs:

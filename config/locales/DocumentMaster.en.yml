@@ -1,7 +1,7 @@
 en:
   forms:
     DocumentMaster:
-      name: "Document Master Form"
+      name: "Main Form-Document Creation"
       object: "DocumentMaster"
       fields:
         tabs:

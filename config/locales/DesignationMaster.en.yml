@@ -1,7 +1,7 @@
 en:
   forms:
-    GroupMaster:
-      name: "Designation Form"
+    DesignationMaster:
+      name: "Main Form-Designation Creation"
       object: "GroupMaster"
       fields:
         tabs:

@@ -1,12 +1,12 @@
 en:
   forms:
     EmployeeMaster:
-      name: "Employee Master Form"
+      name: "Main Form- Employee Creation-Short"
       object: "EmployeeMaster"
       fields:
         tabs:
           tab1:
-            name: "EmployeeMaster"
+            name: "Employee Master"
             type: "standard"
             cols:
               col1:
@@ -75,29 +75,30 @@ en:
           tab2:
             name: "Employee Details"
             type: 'sub-form'
-            attribute: 'EmployeeDetail'
-            company_addresses:
+            attribute: 'EmployeeDetails'
+            EmployeeDetails:
               type: 'sub-form'
-    EmployeeDetail:
-      name: "New Employee Detail Form"
+    EmployeeDetails:
+      name: "Sub Form-Employee Details-Short"
       object: "EmployeeDetail"
       fields:
         tabs:
           tab1:
-            name: "Employee Detail"
+            name: "Employee Details"
             type: "standard"
             cols:
               col1:
-                name:
+                current_designation:
                   attribute: 'current_designation'
                   label: 'Current Designation'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'GroupMaster'
-                  select: 'id'
-                  show: 'group_name'
+                  type: 'text_field_tag'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'GroupMaster'
+#                  select: 'id'
+#                  show: 'group_name'
                 band_id:
-                  attribute: 'band_master'
+                  attribute: 'band_id'
                   label: 'Band'
                   type: 'select_tag'
                   options: 'model'
@@ -136,11 +137,12 @@ en:
                 job_role_id:
                   attribute: 'job_role_id'
                   label: 'Job Role'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'Role'
-                  select: 'id'
-                  show: 'name'
+                  type: 'text_field_tag'
+#                  type: 'select_tag'
+#                  options: 'model'
+#                  class : 'Role'
+#                  select: 'id'
+#                  show: 'name'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'

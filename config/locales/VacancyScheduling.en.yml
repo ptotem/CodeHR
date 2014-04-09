@@ -1,7 +1,7 @@
 en:
   forms:
-    VacancySchedulingN:
-      name: "Schedule Candidate Interview"
+    VacancyScheduling:
+      name: "Main Form-Schedule Candidate Interview"
       object: "VacancyScheduling"
       fields:
         tabs:
@@ -21,8 +21,8 @@ en:
               col2:
                 comments:
                   attribute: 'comments'
-                  label: 'Intructions'
-                  type: 'text_field_tag'
+                  label: 'Interview Instructions'
+                  type: 'text_area_tag'
           tab2:
             name: "Interview Schedule"
             type: 'sub-form'
@@ -30,25 +30,12 @@ en:
             InterviewerList:
               type: 'sub-form'
     InterviewerList:
-      name: "Interview Schedule"
+      name: "Sub Form-Enter Interview Schedule"
       object: "interviewer_lists"
       fields:
         tabs:
           tab1:
             name: "Interview Type"
-            type: "standard"
-            cols:
-              col1:
-                interview_type_id:
-                  attribute: 'interview_type_id'
-                  label: 'Interview Type'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'InterviewType'
-                  select: 'id'
-                  show: 'name'
-          tab2:
-            name: "Schedule"
             type: "standard"
             cols:
               type: "table"
@@ -58,9 +45,17 @@ en:
                   label: 'Interview Type'
                   type: 'select_tag'
                   options: 'model'
-                  class : 'InterviewType'
-                  select: 'id'
+                  class : 'Scale'
+                  select: 'name'
                   show: 'name'
+                candidate_id:
+                  attribute: 'candidate_id'
+                  label: 'Candidate'
+                  type: 'select_tag'
+                  options: 'model'
+                  class : 'CandidateMaster'
+                  select: 'id'
+                  show: 'candidate_name'
                 interviewer:
                   attribute: 'interviewer'
                   label: 'Select Interviewer(s)'

@@ -1,7 +1,7 @@
 en:
   forms:
     VendorMasterN:
-      name: "Vendor Master Form"
+      name: "Main Form-Vendor Creation"
       object: "VendorMaster"
       fields:
         tabs:
@@ -51,7 +51,7 @@ en:
             ContactPerson:
               type: 'sub-form'
     VendorAddress:
-      name: "Vendor Address"
+      name: "Sub Form-Enter Vendor Address"
       object: "Vaddress"
       fields:
         tabs:
@@ -94,7 +94,7 @@ en:
                   label: 'Zipcode'
                   type: 'text_field_tag'
     ContactPerson:
-      name: "Vendor Contacts"
+      name: "Sub Form-Enter Vendor Contact Person Details"
       object: "contact_person"
       fields:
         tabs:

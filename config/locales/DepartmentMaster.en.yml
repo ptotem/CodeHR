@@ -1,7 +1,7 @@
 en:
   forms:
-    GroupMaster:
-      name: "Department Form"
+    DepartmentMaster:
+      name: "Main Form-Department Creation"
       object: "GroupMaster"
       fields:
         tabs:

@@ -1,7 +1,7 @@
 en:
   forms:
     InterviewType:
-      name: "Interview Type Form"
+      name: "Main Form-Interview Type Creation"
       object: "InterviewType"
       fields:
         tabs:

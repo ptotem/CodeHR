@@ -1,7 +1,7 @@
 en:
   forms:
-    EnterManpowerPlan:
-      name: "Manpower Planning Form"
+    ManpowerPlan:
+      name: "Main Form-Manpower Plan Creation"
       object: "PlanningManpower"
       fields:
         tabs:
@@ -62,20 +62,20 @@ en:
                   select: 'id'
                   show: 'employee_name'
           tab2:
-            name: "Enter Manpower Plan"
+            name: "Manpower Plan Details"
             type: 'sub-form'
-            attribute: 'ManpowerPlan'
-            Manpowerplans:
+            attribute: 'ManpowerPlanDet'
+            ManpowerPlanDet:
               type: 'sub-form'
-    ManpowerPlan:
-      name: "Manpower Plan"
+    ManpowerPlanDet:
+      name: "Sub Form-Enter Manpower Plan Requester Details"
       object: "PlanningManpower"
       fields:
         tabs:
           tab1:
             name: "ManpowerPlan"
             cols:
-              #type: 'table'
+              type: 'table'
               col1:
                 role:
                   attribute: 'role'
@@ -99,30 +99,30 @@ en:
                   class : 'BandMaster'
                   select: 'id'
                   show: 'band_name'
-          tab2:
-            name: "Details"
-            type: 'sub-form'
-            attribute: 'Nmp'
-            score_receiveds:
-              type: 'sub-form'
-    Nmp:
-      name: "Manpower Details"
-      object: "PlanningManpower"
-      fields:
-        tabs:
-          tab1:
-            name: "Manpower Plan"
-            type: "standard"
-            cols:
-              col1:
+#          tab2:
+#            name: "Details"
+#            type: 'sub-form'
+#            attribute: 'Nmp'
+#            score_receiveds:
+#              type: 'sub-form'
+#    Nmp:
+#      name: "Sub Form-Enter Period-wise Manpower Details"
+#      object: "PlanningManpower"
+#      fields:
+#        tabs:
+#          tab1:
+#            name: "Manpower Plan"
+#            type: "standard"
+#            cols:
+#              col1:
                 period_from:
                   attribute: 'period_from'
                   label: 'Period From'
-                  type: 'text_field_tag'
+                  type: 'date_field_tag'
                 period_to:
                   attribute: 'period_to'
                   label: 'Period To'
-                  type: 'text_field_tag'
+                  type: 'date_field_tag'
                 position_nature:
                   attribute: 'position_nature'
                   label: 'Nature of Position'

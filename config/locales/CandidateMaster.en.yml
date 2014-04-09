@@ -1,7 +1,7 @@
 en:
   forms:
-    CandidateMasterN:
-      name: "Candidate Form"
+    CandidateMaster:
+      name: "Main Form-Candidate Creation"
       object: "CandidateMaster"
       fields:
         tabs:
@@ -112,38 +112,39 @@ en:
                   label: 'Buy Back Amount'
                   type: 'text_field_tag'
           tab2:
-            name: "Candidate Job Preference"
+            name: "Sub Form-Candidate Job Preference"
             type: 'sub-form'
-            attribute: 'JobPreference'
-            JobPreference:
+            attribute: 'JobPreferences'
+            JobPreferences:
               type: 'sub-form'
           tab3:
-            name: "Address"
+            name: "Sub Form-Candidate Address"
             type: 'sub-form'
             attribute: 'CandidatePersonelAddress'
             CandidatePersonelAddresss:
               type: 'sub-form'
           tab4:
-            name: "Employment History"
+            name: "Sub Form-Candidate Employment History"
             type: 'sub-form'
             attribute: 'CandidateEmploymentHistory'
             CandidateEmploymentHistorys:
               type: 'sub-form'
           tab5:
-            name: "Family Details"
+            name: "Sub Form-Candidate Family Details"
             type: 'sub-form'
             attribute: 'CandidateFamilyDetail'
             CandidateFamilyDetails:
               type: 'sub-form'
-    JobPreference:
-      name: "Job Preference"
+    JobPreferences:
+      name: "Sub Form-Enter Candidate Job Preference"
       object: "JobPreference"
       fields:
         tabs:
           tab1:
             name: "Job Preference"
-            type: "table"
+            type: "standard"
             cols:
+              type: "table"
               col1:
 #todo; add Sequence number to job-preference table
                 sequence_no:
@@ -159,7 +160,7 @@ en:
                   select: 'id'
                   show: 'vacancy_code'
     CandidatePersonelAddress:
-      name: "Personel Address"
+      name: "Sub Form-Enter Candidate Personal Address"
       object: "CandidatePersonelAddress"
       fields:
         tabs:
@@ -203,14 +204,14 @@ en:
                   type: 'text_field_tag'
 
     CandidateEmploymentHistory:
-      name: "Employment History Form"
+      name: "Sub Form-Enter Candidate Employment History"
       object: "CandidateEmploymentHistory"
       fields:
         tabs:
           tab1:
             name: "Employment History"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 organisation:
                   attribute: 'organisation'
@@ -229,14 +230,14 @@ en:
                   label: 'Date of Leaving'
                   type: 'date_field_tag'
     CandidateFamilyDetail:
-      name: "Family Detail"
+      name: "Sub Form-Enter Candidate Family Details"
       object: "CandidateFamilyDetail"
       fields:
         tabs:
           tab1:
             name: "Family Details"
-            type: "table"
             cols:
+              type: "table"
               col1:
                 relaationship:
                   attribute: 'relaationship'

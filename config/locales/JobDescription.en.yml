@@ -1,7 +1,7 @@
 en:
   forms:
-    JobDescriptionMaster:
-      name: "Job Description Master Form"
+    JobDescription:
+      name: "Main Form-Job Description Creation"
       object: "JobDescriptionMaster"
       fields:
         tabs:

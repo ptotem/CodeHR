@@ -1,7 +1,7 @@
 en:
   forms:
     CompanyMaster:
-          name: "Company Master Form"
+          name: "Main Form-Company Creation"
           object: "CompanyMaster"
           fields:
             tabs:
@@ -22,13 +22,9 @@ en:
                       class : 'Client'
                       select: 'id'
                       show: 'name'
-                    office_phone_number:
-                      attribute: 'office_phone_number'
-                      label: 'Office Phone Number'
-                      type: 'text_field_tag'
-                    office_fax_number_2:
-                      attribute: 'office_fax_number_2'
-                      label: 'Office Fax Number-2'
+                    office_fax_number_1:
+                      attribute: 'office_fax_number_1'
+                      label: 'Office Phone Number -2'
                       type: 'text_field_tag'
                     st_reg_number:
                       attribute: 'st_reg_number'
@@ -38,18 +34,22 @@ en:
                       attribute: 'pf_reg_number'
                       label: 'PF Reg. Number'
                       type: 'text_field_tag'
-                    remarks_1:
-                      attribute: 'remarks_1'
-                      label: 'Remarks'
-                      type: 'text_area_tag'
+                    esic_reg_number:
+                      attribute: 'esic_reg_number'
+                      label: 'ESIC Reg. Number'
+                      type: 'text_field_tag'
                   col2:
                     company_name:
                       attribute: 'company_name'
                       label: 'Company Name'
                       type: 'text_field_tag'
-                    office_fax_number_1:
-                      attribute: 'office_fax_number_1'
-                      label: 'Office Fax Number 1'
+                    office_phone_number:
+                      attribute: 'office_phone_number'
+                      label: 'Office Phone Number'
+                      type: 'text_field_tag'
+                    office_fax_number_2:
+                      attribute: 'office_fax_number'
+                      label: 'Office Fax Number'
                       type: 'text_field_tag'
                     vat_reg_number:
                       attribute: 'vat_reg_number'
@@ -59,18 +59,18 @@ en:
                       attribute: 'pan_number'
                       label: 'PAN Number'
                       type: 'text_field_tag'
-                    esic_reg_number:
-                      attribute: 'esic_reg_number'
-                      label: 'ESIC Reg. Number'
-                      type: 'text_field_tag'
+                    remarks_1:
+                      attribute: 'remarks_1'
+                      label: 'Remarks'
+                      type: 'text_area_tag'
               tab2:
-                name: "Company Address"
+                name: "Company Addresses"
                 type: 'sub-form'
                 attribute: 'CompanyAddress'
                 company_addresses:
                   type: 'sub-form'
     CompanyAddress:
-      name: "New Company Address Form"
+      name: "Sub Form-Company Address"
       object: "CompanyAddress"
       fields:
         tabs:

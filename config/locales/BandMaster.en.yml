@@ -1,7 +1,7 @@
 en:
   forms:
     BandMaster:
-      name: "Band Master Form"
+      name: "Main Form-Band Creation"
       object: "BandMaster"
       fields:
         tabs:
