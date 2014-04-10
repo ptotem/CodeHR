@@ -14,9 +14,10 @@ en:
                   attribute: 'group_code'
                   label: 'Designation Code'
                   type: 'text_field_tag'
+                  width: '100'
               col2:
                 group_name:
                   attribute: 'group_name'
                   label: 'Designation Name'
                   type: 'text_field_tag'
-
+                  width: '500'

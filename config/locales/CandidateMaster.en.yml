@@ -14,122 +14,145 @@ en:
                   attribute: 'candidate_code'
                   label: 'Candidate ID'
                   type: 'text_field_tag'
+                  width: '100'
                 status:
                   attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Selected","Rejected","Created","Short-listed"]
                 date_of_birth:
                   attribute: 'date_of_birth'
                   label: 'Date of Birth'
                   type: 'date_field_tag'
-                workex1:
-                  label: 'Total Work Experience'
+                  width: '100'
+#                workex1:
+#                  label: 'Total Work Experience'
                 total_work_exp_years:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience in Years'
                   type: 'text_field_tag'
+                  width: '50'
                 official_email:
                   attribute: 'official_email'
                   label: 'Official Email ID'
                   type: 'text_field_tag'
+                  width: '300'
                 bank_name:
                   attribute: 'bank_name'
                   label: 'Bank Name'
                   type: 'text_field_tag'
+                  width: '500'
                 pan_no:
                   attribute: 'pan_no'
                   label: 'PAN No'
                   type: 'text_field_tag'
+                  width: '200'
                 esic_no:
                   attribute: 'esic_no'
                   label: 'ESIC No'
                   type: 'text_field_tag'
-                salary_expectation:
-                  label: 'Salary Expectation'
+                  width: '200'
                 salary_expectation_fixed:
                   attribute: 'salary_expectation_fixed'
                   label: 'Fixed'
                   type: 'text_field_tag'
+                  width: '100'
                 notice_period:
                   attribute: 'notice_period'
                   label: 'Notice Period in Months'
                   type: 'text_field_tag'
+                  width: '100'
                 notice_period_buyback?:
                   attribute: 'notice_period_buyback?'
                   label: 'Notice Period Buy Back?'
                   type: 'select_tag'
                   options: ["Y","N"]
+                  width: '80'
                 Remarks_1:
                   attribute: 'remarks_1'
                   label: 'Remarks'
-                  type: 'text_field_tag'
+                  type: 'text_area_tag'
               col2:
                 candidate_name:
                   attribute: 'candidate_name'
                   label: 'Candidate Name'
                   type: 'text_field_tag'
+                  width: '500'
                 gender:
                   attribute: 'gender'
                   label: 'Gender'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Male","Female","Other"]
                 marital_status:
                   attribute: 'marital_status'
                   label: 'Marital Status'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Married","Single","Separated","Other"]
-                workex1:
-                  label: ' '
                 total_work_exp_months:
                   attribute: 'total_work_exp_months'
                   label: 'Total Work Experience in Months'
                   type: 'text_field_tag'
+                  width: '50'
                 personal_email:
                   attribute: 'personal_email'
                   label: 'Personal Email ID'
                   type: 'text_field_tag'
+                  width: '300'
                 account_number:
                   attribute: 'account_number'
                   label: 'A/C No'
                   type: 'text_field_tag'
+                  width: '200'
                 pf_no:
                   attribute: 'pf_no'
                   label: 'EPF No'
                   type: 'text_field_tag'
+                  width: '200'
                 current_location:
                   attribute: 'current_location'
                   label: 'Current Location'
                   type: 'text_field_tag'
+                  width: '200'
                 salary_expectation:
                   label: '  '
                 salary_expectation_variable:
                   attribute: 'salary_expectation_variable'
                   label: 'Variable'
                   type: 'text_field_tag'
+                  width: '100'
                 notice_period_buyback_amount:
                   attribute: 'notice_period_buyback_amount'
                   label: 'Buy Back Amount'
                   type: 'text_field_tag'
+                  width: '100'
           tab2:
+            name: "Sub Form-Candidate Qualifications"
+            type: 'sub-form'
+            attribute: 'CandidateQualification'
+            CandidateQualification:
+              type: 'sub-form'
+          tab3:
             name: "Sub Form-Candidate Job Preference"
             type: 'sub-form'
             attribute: 'JobPreferences'
             JobPreferences:
               type: 'sub-form'
-          tab3:
+          tab4:
             name: "Sub Form-Candidate Address"
             type: 'sub-form'
             attribute: 'CandidatePersonelAddress'
             CandidatePersonelAddresss:
               type: 'sub-form'
-          tab4:
+          tab5:
             name: "Sub Form-Candidate Employment History"
             type: 'sub-form'
             attribute: 'CandidateEmploymentHistory'
             CandidateEmploymentHistorys:
               type: 'sub-form'
-          tab5:
+          tab6:
             name: "Sub Form-Candidate Family Details"
             type: 'sub-form'
             attribute: 'CandidateFamilyDetail'
@@ -149,12 +172,14 @@ en:
 #todo; add Sequence number to job-preference table
                 sequence_no:
                   attribute: 'sequence_no'
-                  label: 'Sequence Number'
+                  label: 'Order of Preference'
                   type: 'text_field_tag'
+                  width: '80'
                 vacancy_id:
                   attribute: 'vacancy_id'
                   label: 'Vacancy ID'
                   type: 'select_tag'
+                  width: '100'
                   options: 'model'
                   class: 'VacancyMaster'
                   select: 'id'
@@ -173,35 +198,43 @@ en:
                   attribute: 'address1'
                   label: 'Address-1'
                   type: 'text_field_tag'
+                  width: '300'
                 city:
                   attribute: 'city'
                   label: 'City'
                   type: 'text_field_tag'
+                  width: '200'
                 district:
                   attribute: 'district'
                   label: 'District'
                   type: 'text_field_tag'
+                  width: '200'
                 country:
                   attribute: 'country'
                   label: 'Country'
                   type: 'text_field_tag'
+                  width: '200'
               col2:
                 address2:
                   attribute: 'address2'
                   label: 'Address-2'
                   type: 'text_field_tag'
+                  width: '300'
                 taluka:
                   attribute: 'taluka'
                   label: 'Taluka/Province/County'
                   type: 'text_field_tag'
+                  width: '200'
                 state:
                   attribute: 'state'
                   label: 'State'
                   type: 'text_field_tag'
+                  width: '200'
                 zipcode:
                   attribute: 'zipcode'
                   label: 'PIN Code'
                   type: 'text_field_tag'
+                  width: '100'
 
     CandidateEmploymentHistory:
       name: "Sub Form-Enter Candidate Employment History"
@@ -215,20 +248,24 @@ en:
               col1:
                 organisation:
                   attribute: 'organisation'
-                  label: 'Organisation'
+                  label: 'Name of the Organisation'
                   type: 'text_field_tag'
+                  width: '400'
                 designation:
                   attribute: 'designation'
-                  label: 'Designation at the time of leaving'
+                  label: 'Last Designation'
                   type: 'text_field_tag'
+                  width: '300'
                 joined_from:
                   attribute: 'joined_from'
                   label: 'Date of Joining'
                   type: 'date_field_tag'
+                  width: '100'
                 leaved:
                   attribute: 'leaved'
                   label: 'Date of Leaving'
                   type: 'date_field_tag'
+                  width: '100'
     CandidateFamilyDetail:
       name: "Sub Form-Enter Candidate Family Details"
       object: "CandidateFamilyDetail"
@@ -242,16 +279,82 @@ en:
                 relaationship:
                   attribute: 'relaationship'
                   label: 'Relationship'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Wife","Husband","Father","Mother","Son","Daughter","Brother","Sister"]
+                sex:
+                  attribute: 'sex'
+                  label: 'Sex'
+                  type: 'select_tag'
+                  width: '80'
+                  options: ["Male","Female","Other"]
+                dateofbirth:
+                  attribute: 'dateofbirth'
+                  label: 'DoB'
                   type: 'date_field_tag'
+                  width: '100'
                 fname:
                   attribute: 'fname'
                   label: 'First Name'
                   type: 'text_field_tag'
+                  width: '200'
                 mname:
                   attribute: 'mname'
                   label: 'Middle Name'
                   type: 'text_field_tag'
+                  width: '100'
                 lname:
                   attribute: 'lname'
                   label: 'Last Name'
                   type: 'text_field_tag'
+                  width: '200'
+    CandidateQualification:
+      name: "Sub Form-Enter Candidate Qualifications"
+      object: "CandidateQualification"
+      fields:
+        tabs:
+          tab1:
+            name: "Qualifications"
+            cols:
+              type: "table"
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                  width: '80'
+                description:
+                  attribute: 'description'
+                  label: 'Details of Degree/Diploma/Course'
+                  type: 'text_field_tag'
+                  width: '200'
+                institute:
+                  attribute: 'institute'
+                  label: 'Institute/Collage/School'
+                  type: 'text_field_tag'
+                  width: '200'
+                university:
+                  attribute: 'university'
+                  label: 'University'
+                  type: 'text_field_tag'
+                  width: '200'
+                datefrom:
+                  attribute: 'datefrom'
+                  label: 'From'
+                  type: 'date_field_tag'
+                  width: '100'
+                dateto:
+                  attribute: 'dateto'
+                  label: 'To'
+                  type: 'date_field_tag'
+                  width: '100'
+                marks:
+                  attribute: 'marks'
+                  label: 'Aggregate %age Obtained'
+                  type: 'text_field_tag'
+                  width: '50'
+                grade:
+                  attribute: 'grade'
+                  label: 'Aggregate Grade/Class Obtained'
+                  type: 'text_field_tag'
+                  width: '100'

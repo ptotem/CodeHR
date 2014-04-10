@@ -12,6 +12,9 @@ en:
         long: "%B %d, %Y"
   config:
     AutoCode:
+      CompanyGroup:
+        text: "CG-"
+        digit: "3"
       EmployeeMaster:
         text: "E-"
         digit: "8"
@@ -20,7 +23,7 @@ en:
         digit: "8"
       CandidateMaster:
         text: "C-"
-        digit: "3"
+        digit: "8"
       ProcessTransact:
         text: "TR-"
         digit: "8"
@@ -50,4 +53,13 @@ en:
         digit: "8"
       ManpowerPlan:
         text: "MP-"
+        digit: "8"
+      VacancyMaster:
+        text: "VC-"
+        digit: "8"
+      VendorMaster:
+        text: "V-"
+        digit: "5"
+      ScheduleInterview:
+        text: "IN-"
         digit: "8"

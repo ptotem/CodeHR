@@ -14,16 +14,78 @@ en:
                   attribute: 'job_code'
                   label: 'Job Code'
                   type: 'text_field_tag'
+                  width: '100'
                 description:
                   attribute: 'description'
-                  label: 'Description'
+                  label: 'Job Description'
+                  type: 'text_area_tag'
+                  width: '500'
+                min_year_of_experience:
+                  attribute: 'min_year_of_experience'
+                  label: 'Min. Years of Relevant Experience'
                   type: 'text_field_tag'
+                  width: '50'
               col2:
                 job_title:
                   attribute: 'job_title'
                   label: 'Job Title'
                   type: 'text_field_tag'
-                min_year_of_experience:
-                  attribute: 'min_year_of_experience'
-                  label: 'Min. Years of Required Experience'
+                  width: '300'
+                jdfile:
+                  attribute: 'jdfile'
+                  label: 'Attach JD File'
+                  type: 'file_field_tag'
+                  width: '100'
+          tab2:
+            name: "Sub Form-JD Qualifications"
+            type: 'sub-form'
+            attribute: 'JDQualification'
+            CandidateQualification:
+              type: 'sub-form'
+    JDQualification:
+      name: "Sub Form-Enter JD Qualifications/Skills"
+      object: "Qualification"
+      fields:
+        tabs:
+          tab1:
+            name: "Associated Qualifications"
+            cols:
+              type: "table"
+              col1:
+                priority:
+                  attribute: 'priority'
+                  label: 'Order of Priority'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Must Have","Nice To Have"]
+                name:
+                  attribute: 'name'
+                  label: 'Skill Name'
                   type: 'text_field_tag'
+                  width: '100'
+                description:
+                  attribute: 'description'
+                  label: 'Skill Description'
+                  type: 'text_area_tag'
+                  width: '300'
+                level:
+                  attribute: 'level'
+                  label: 'Level of Competence'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Basic","Intermediate","Advance","Expert"]
+                degree:
+                  attribute: 'degree'
+                  label: 'Associated Degree/Diploma/Course'
+                  type: 'text_field_tag'
+                  width: '200'
+                marks:
+                  attribute: 'marks'
+                  label: 'Min. Aggregate %age'
+                  type: 'text_field_tag'
+                  width: '50'
+                grade:
+                  attribute: 'grade'
+                  label: 'Min. Aggregate Grade'
+                  type: 'text_field_tag'
+                  width: '100'

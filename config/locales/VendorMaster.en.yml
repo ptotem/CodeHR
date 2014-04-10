@@ -1,6 +1,6 @@
 en:
   forms:
-    VendorMasterN:
+    VendorMaster:
       name: "Main Form-Vendor Creation"
       object: "VendorMaster"
       fields:
@@ -14,30 +14,36 @@ en:
                   attribute: 'vendor_code'
                   label: 'Vendor Code'
                   type: 'text_field_tag'
+                  width: '100'
                 vendor_type:
                   job_title:
                   attribute: 'vendor_type'
                   label: 'Vendor Type'
                   type: 'select_tag'
+                  width: '200'
                   options: ["Recruiter", "Consultant", "Trainer"]
                 email:
                   job_title:
                   attribute: 'email'
                   label: 'Email ID'
+                  width: '300'
                   type: 'text_field_tag'
               col2:
                 vendor_name:
                   attribute: 'vendor_name'
                   label: 'Vendor Name'
                   type: 'text_field_tag'
+                  width: '500'
                 office_phone_number:
                   attribute: 'office_phone_number'
                   label: 'Office Phone Number'
                   type: 'text_field_tag'
+                  width: '200'
                 office_fax_number2:
                   attribute: 'office_fax_number2'
-                  label: 'Office Fax Number2'
+                  label: 'Office Fax Number'
                   type: 'text_field_tag'
+                  width: '200'
           tab2:
             name: "Vendor Address"
             type: 'sub-form'
@@ -62,37 +68,45 @@ en:
               col1:
                 address1:
                   attribute: 'address1'
-                  label: 'Address1'
+                  label: 'Address 1'
                   type: 'text_field_tag'
+                  width: '300'
                 city:
                   attribute: 'city'
                   label: 'City'
                   type: 'text_field_tag'
+                  width: '200'
                 district:
                   attribute: 'district'
                   label: 'District'
                   type: 'text_field_tag'
+                  width: '200'
                 country:
                   attribute: 'country'
                   label: 'Country'
                   type: 'text_field_tag'
+                  width: '200'
               col2:
                 address2:
                   attribute: 'address2'
-                  label: 'Address2'
+                  label: 'Address 2'
                   type: 'text_field_tag'
+                  width: '300'
                 taluka:
                   attribute: 'taluka'
                   label: 'Taluka'
                   type: 'text_field_tag'
+                  width: '200'
                 state:
                   attribute: 'state'
                   label: 'State'
                   type: 'text_field_tag'
+                  width: '200'
                 zipcode:
                   attribute: 'zipcode'
                   label: 'Zipcode'
                   type: 'text_field_tag'
+                  width: '100'
     ContactPerson:
       name: "Sub Form-Enter Vendor Contact Person Details"
       object: "contact_person"
@@ -107,20 +121,25 @@ en:
                   attribute: 'name'
                   label: 'Contact Person Name'
                   type: 'text_field_tag'
+                  width: '300'
                 phone1:
                   attribute: 'phone1'
                   label: 'Phone #1'
                   type: 'text_field_tag'
+                  width: '200'
                 email:
                   attribute: 'email'
                   label: 'Email'
                   type: 'text_field_tag'
+                  width: '300'
               col2:
                 designation:
                   attribute: 'designation'
                   label: 'Designation'
                   type: 'text_field_tag'
+                  width: '300'
                 phone2:
                   attribute: 'phone2'
                   label: 'Phone #2'
                   type: 'text_field_tag'
+                  width: '200'

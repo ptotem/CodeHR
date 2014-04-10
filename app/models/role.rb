@@ -9,6 +9,7 @@ class Role
 
   belongs_to :employee_master
   has_many :employee_masters
+  has_many :job_description_masters
   #accepts_nested_attributes_for :employee_masters
 
   belongs_to :user

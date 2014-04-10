@@ -14,8 +14,10 @@ en:
                   attribute: 'name'
                   label: 'Type Name'
                   type: 'text_field_tag'
+                  width: '100'
               col2:
                 description:
                   attribute: 'description'
                   label: 'Type Description'
                   type: 'text_field_tag'
+                  width: '300'

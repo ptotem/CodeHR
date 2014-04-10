@@ -14,8 +14,10 @@ en:
                   attribute: 'band_code'
                   label: 'Band Code'
                   type: 'text_field_tag'
+                  width: '80'
               col2:
                 band_name:
                   attribute: 'band_name'
                   label: 'Band Name'
                   type: 'text_field_tag'
+                  width: '400'

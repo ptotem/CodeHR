@@ -14,6 +14,7 @@ en:
                   attribute: 'candidate_master_id'
                   label: 'Select Candidate'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'CandidateMaster'
                   select: 'candidate_code'
@@ -23,10 +24,11 @@ en:
                   attribute: 'vacancy_scheduling_id'
                   label: 'Interview ID'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'VacancyScheduling'
                   select: 'id'
-                  show: 'id'
+                  show: 'interview_code'
           tab2:
             name: "Scores Received"
             type: 'sub-form'
@@ -68,6 +70,7 @@ en:
                   label: 'Evaluation Parameter'
 #                  type: 'text_field_tag'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class: 'Scale'
                   select: 'id'
@@ -76,15 +79,19 @@ en:
                   attribute: 'priority'
                   label: 'Priority'
                   type: 'text_field_tag'
+                  width: '50'
                 range_from:
                   attribute: 'range_from'
                   label: 'Range From'
                   type: 'text_field_tag'
+                  width: '50'
                 range_to:
                   attribute: 'range_to'
                   label: 'Range To'
                   type: 'text_field_tag'
+                  width: '50'
                 score:
                   attribute: 'score'
                   label: 'Score Received'
                   type: 'text_field_tag'
+                  width: '50'

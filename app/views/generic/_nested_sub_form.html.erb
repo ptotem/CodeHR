@@ -3,12 +3,12 @@
       <td>
         <% case nf[:type] %>
         <% when "text_field_tag" %>
-            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]" %>
+            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]","",:style=>"width:#{nf[:width]}" %>
         <% when "select_tag" %>
             <% if nf[:options] == 'model' %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:attribute].gsub("_id", "").underscore).all, 'id', 'id') %>
+                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show]),{:style => "width:#{nf[:width]}px;"} %>
             <% else %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]) %>
+                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),{:style=>"width:#{nf[:width]}"} %>
             <% end %>
         <% end %>
       </td>

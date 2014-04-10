@@ -14,15 +14,18 @@ en:
                   attribute: 'group_code'
                   label: 'Department Code'
                   type: 'text_field_tag'
+                  width: '100'
               col2:
                 group_name:
                   attribute: 'group_name'
                   label: 'Department Name'
                   type: 'text_field_tag'
+                  width: '500'
                 child_group_master_ids:
                   attribute: 'child_group_master_ids'
                   label: 'Sub-Departments'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class: 'GroupMaster'
                   multiple: 'true'

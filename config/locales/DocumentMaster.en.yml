@@ -14,24 +14,38 @@ en:
                   attribute: 'doc_code'
                   label: 'Document Code'
                   type: 'text_field_tag'
+                  width: '100'
                 dfile:
                   attribute: 'dfile'
                   label: 'Attach Document'
                   type: 'file_field_tag'
-                vc_needed:
-                  attribute: 'vc_needed'
-                  label: 'Version Control Needed?'
-                  type: 'check_box_tag'
+                  width: '100'
+                template_id:
+                  attribute: 'template_id'
+                  label: 'Associated Template'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class : 'DocumentTemplateMaster'
+                  select: 'id'
+                  show: 'description'
+
               col2:
                 Name:
                   attribute: 'Name'
                   label: 'Document Name'
                   type: 'text_field_tag'
+                  width: '500'
                 Owner:
                   attribute: 'Owner'
                   label: 'Owner'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'EmployeeMaster'
                   select: 'id'
                   show: 'employee_name'
+                vc_needed:
+                  attribute: 'vc_needed'
+                  label: 'Version Control Needed?'
+                  type: 'check_box_tag'

@@ -3,6 +3,9 @@ class Qualification
   include Mongoid::Timestamps
   field :name, type: String
   field :description, type: String
+  field :priority, type: String
+  field :level, type: String
+  field :degree, type: String
   field :marks, type: String
   field :grade, type: String
   field :deleted, type: Boolean

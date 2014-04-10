@@ -1,6 +1,6 @@
 en:
   forms:
-    VacancyMasterN:
+    VacancyMaster:
       name: "Main Form-Vacancy Creation"
       object: "VacancyMaster"
       fields:
@@ -14,6 +14,7 @@ en:
                   attribute: 'vacancy_code'
                   label: 'Vacancy ID'
                   type: 'text_field_tag'
+                  width: '100'
                 manpower_planning_id:
                   attribute: 'manpower_planning_id'
                   label: 'Asscoiated Manpower Planning ID'
@@ -22,6 +23,7 @@ en:
                   class : 'ManpowerPlanning'
                   select: 'mp_code'
                   show: 'mp_code'
+                  width: '200'
                 vendor_master_id:
                   attribute: 'vendor_master_id'
                   label: 'Assign to Vendor'
@@ -30,33 +32,37 @@ en:
                   class : 'VendorMaster'
                   select: 'id'
                   show: 'vendor_name'
+                  width: '200'
                 ctc_range_from:
                   attribute: 'ctc_range_from'
                   label: 'CTC Range From'
                   type: 'text_field_tag'
-                align1:
-                  label: '  '
+                  width: '200'
                 status:
                   attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
+                  width: '200'
                   options: ["Active", "Hiring in Progress", "Hired", "Closed"]
               col2:
                 description:
                   attribute: 'description'
                   label: 'Vacancy Description'
-                  type: 'text_area_tag'
+                  type: 'text_field_tag'
+                  width: '500'
                 sourcing_strategy:
                   attribute: 'sourcing_strategy'
                   label: 'Sourcing Strategy'
                   multiple: 'true'
                   type: 'select_tag'
+                  width: '200'
                   options: ["New Hire", "Internal Transfer", "Promotion", "Intranet Portal", "Company Website", "Job Portals", "Recruiters/Vendors"]
 #todo; link hiring manager to employee master
                 hiring_manager:
                   attribute: 'hiring_manager'
                   label: 'Hiring Manager'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'EmployeeMaster'
                   select: 'id'
@@ -65,10 +71,12 @@ en:
                   attribute: 'ctc_range_to'
                   label: 'CTC Range To'
                   type: 'text_field_tag'
+                  width: '200'
                 refer_doc_id:
                   attribute: 'refer_doc_id'
                   label: 'Related Document Reference'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'DocumentMaster'
                   select: 'id'

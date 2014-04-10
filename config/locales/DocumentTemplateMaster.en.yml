@@ -14,7 +14,7 @@ en:
                   attribute: 'dt_code'
                   label: 'Template Code'
                   type: 'text_field_tag'
-#todo: file field needs to be added to attach the template file
+                  width: '100'
                 file:
                   attribute: 'dtfile'
                   label: 'Attach Template File'
@@ -24,3 +24,4 @@ en:
                   attribute: 'Description'
                   label: 'Description'
                   type: 'text_field_tag'
+                  width: '500'

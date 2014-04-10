@@ -66,7 +66,7 @@
                                       <% case cv[:type] %>
                                       <% when "text_field_tag" %>
                                           <% if cv[:attribute].include?('code') %>
-                                              <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s%>
+                                              <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;"%>
                                           <% else %>
                                               <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", "", :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;" %>
                                           <% end %>
@@ -105,7 +105,7 @@
                                       <% case cv[:type] %>
                                       <% when "text_field_tag" %>
                                           <% if cv[:attribute].include?('code') %>
-                                              <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s%>
+                                              <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;"%>
                                           <% else %>
                                               <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", "", :tabindex => ti.to_s, :style => "width:#{cv[:width]}px" %>
                                           <% end %>

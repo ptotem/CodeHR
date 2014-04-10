@@ -10,4 +10,14 @@ class PlanningManpower
   field :supervisor, type: String
   field :comments, type: String
   field :deleted, type: Boolean
+  belongs_to :group_master
+  belongs_to :job_description_master
+
+  has_many :vacancy_masters
+  has_many :job_description_masters
+
+  accepts_nested_attributes_for :vacancy_masters
+
+  validates :mp_code, :presence => true
+
 end

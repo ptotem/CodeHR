@@ -14,10 +14,12 @@ en:
                   attribute: 'mp_code'
                   label: 'Manpower Planning ID'
                   type: 'text_field_tag'
+                  width: '100'
                 location:
                   attribute: 'location'
                   label: 'Location'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'CompanyAddress'
                   select: 'city'
@@ -26,6 +28,7 @@ en:
                   attribute: 'employee_master'
                   label: 'Requested By'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'EmployeeMaster'
                   select: 'id'
@@ -40,15 +43,16 @@ en:
                   attribute: 'group_master'
                   label: 'Group'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'GroupMaster'
                   select: 'id'
                   show: 'group_name'
-#todo: link position to job_description_master
                 position:
                   attribute: 'position'
                   label: 'Position'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'JobDescriptionMaster'
                   select: 'id'
@@ -57,6 +61,7 @@ en:
                   attribute: 'employee_master'
                   label: 'Supervisor'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'EmployeeMaster'
                   select: 'id'
@@ -81,6 +86,7 @@ en:
                   attribute: 'role'
                   label: 'Role'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'Role'
                   select: 'id'
@@ -89,51 +95,42 @@ en:
                   attribute: 'ff_source'
                   label: 'Fulfillment Source'
                   type: 'select_tag'
+                  width: '100'
                   multiple: 'true'
                   options: ["Hiring", "Internal Transfer", "Promotion", "Job Portal", "Recruiters", "Intranet"]
                 band:
                   attribute: 'band_master'
                   label: 'Band'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'BandMaster'
                   select: 'id'
                   show: 'band_name'
-#          tab2:
-#            name: "Details"
-#            type: 'sub-form'
-#            attribute: 'Nmp'
-#            score_receiveds:
-#              type: 'sub-form'
-#    Nmp:
-#      name: "Sub Form-Enter Period-wise Manpower Details"
-#      object: "PlanningManpower"
-#      fields:
-#        tabs:
-#          tab1:
-#            name: "Manpower Plan"
-#            type: "standard"
-#            cols:
-#              col1:
                 period_from:
                   attribute: 'period_from'
                   label: 'Period From'
                   type: 'date_field_tag'
+                  width: '100'
                 period_to:
                   attribute: 'period_to'
                   label: 'Period To'
                   type: 'date_field_tag'
+                  width: '100'
                 position_nature:
                   attribute: 'position_nature'
                   label: 'Nature of Position'
                   type: 'select_tag'
+                  width: '200'
                   options: ["Full Time- Permanent", "Part Time- Parmanent", "Full Time- Temp", "Part Time- Temp", "Project Trainee"]
                 final_approved_number:
                   attribute: 'final_approved_number'
                   label: 'Number of Vacancies'
                   type: 'text_field_tag'
+                  width: '50'
                 status:
                   attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Initiated", "Updated", "Approved", "Rejected" ]

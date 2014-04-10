@@ -14,45 +14,51 @@ en:
                   attribute: 'name'
                   label: 'Interview Type'
                   type: 'text_field_tag'
-                  width: '50'
+                  width: '200'
               col2:
                 description:
                   attribute: 'description'
                   label: 'Description'
                   type: 'text_field_tag'
+                  width: '500'
           tab2:
-            name: "Scales"
+            name: "Define Rating Parameters"
             type: 'sub-form'
             attribute: 'Scales'
             score_receiveds:
               type: 'sub-form'
     Scales:
-      name: "Sub Form-Enter Rating Scales"
+      name: "Sub Form-Configure Rating Parameters"
       object: "Scale"
       fields:
         tabs:
           tab1:
-            name: "Rating Scales"
+            name: "Rating Parameters"
             cols:
               type: "table"
               col1:
                 scale_name:
                   attribute: 'scale_name'
-                  label: 'S.'
+                  label: 'Parameter Name'
                   type: 'text_field_tag'
+                  width: '200'
                 scale_description:
                   attribute: 'scale_description'
-                  label: 'Scale Description'
+                  label: 'Description'
                   type: 'text_field_tag'
+                  width: '500'
                 priority:
                   attribute: 'priority'
                   label: 'Rating Priority'
                   type: 'text_field_tag'
+                  width: '50'
                 range_from:
                   attribute: 'range_from'
                   label: 'Range-From'
                   type: 'text_field_tag'
+                  width: '50'
                 range_to:
                   attribute: 'range_to'
                   label: 'Range-To'
                   type: 'text_field_tag'
+                  width: '50'

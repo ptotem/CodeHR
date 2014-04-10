@@ -14,20 +14,24 @@ en:
                   attribute: 'employee_code'
                   label: 'Employee Code'
                   type: 'text_field_tag'
+                  width: '100'
                 employee_middle_name_name:
                   attribute: 'employee_middle_name_name'
                   label: 'Middle Name'
                   type: 'text_field_tag'
+                  width: '200'
                 gender:
                   attribute: 'gender'
                   label: 'Gender'
                   type: 'select_tag'
+                  width: '80'
                   options: ["Male","Female", "Other"]
 #todo: Need multiple group selection option
                 group_master_ids:
                   attribute: 'group_master_ids'
                   label: 'Group Master'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class: 'GroupMaster'
                   multiple: 'true'
@@ -37,37 +41,45 @@ en:
                   attribute: 'date_of_birth'
                   label: 'Date of Birth'
                   type: 'date_field_tag'
+                  width: '100'
                 role:
                   attribute: 'role'
                   label: 'Current Role'
                   type: 'text_field_tag'
+                  width: '200'
                 official_email:
                   attribute: 'official_email'
                   label: 'Official E-mail ID'
                   type: 'text_field_tag'
+                  width: '300'
               col2:
-                comments:
+                employee_name:
                   attribute: 'employee_name'
                   label: 'Employee Name'
                   type: 'text_field_tag'
+                  width: '300'
                 status:
                   attribute: 'status'
                   label: 'Status'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Active", "Transferred", "Resigned", "Separated"]
                 marital_status:
                   attribute: 'marital_status'
                   label: 'Marital Status'
                   type: 'select_tag'
+                  width: '100'
                   options: ["Married", "Unmarried", "Separated", "Other"]
                 date_of_joining:
                   attribute: 'date_of_joining'
                   label: 'Date of Joining'
                   type: 'date_field_tag'
+                  width: '100'
                 designation_joined_at:
                   attribute: 'designation_joined_at'
                   label: 'Designation Joined At'
                   type: 'text_field_tag'
+                  width: '300'
                 address_for_communication:
                   attribute: 'address_for_communication'
                   label: 'Address For Communication'
@@ -79,24 +91,30 @@ en:
             EmployeeOtherDetails:
               type: 'sub-form'
           tab3:
+            name: "Qualifications"
+            type: 'sub-form'
+            attribute: 'EmployeeQualification'
+            EmployeeQualification:
+              type: 'sub-form'
+          tab4:
             name: "Employment History"
             type: 'sub-form'
             attribute: 'EmploymentHist'
             EmploymentHist:
               type: 'sub-form'
-          tab4:
+          tab5:
             name: "Family Details"
             type: 'sub-form'
             attribute: 'FamilyDetail'
             FamilyDetail:
               type: 'sub-form'
-          tab5:
+          tab6:
             name: "PF Nominations"
             type: 'sub-form'
             attribute: 'PFNomination'
             EsisNomination:
               type: 'sub-form'
-          tab6:
+          tab7:
             name: "ESIC Nominations"
             type: 'sub-form'
             attribute: 'EsisNomination'
@@ -116,6 +134,7 @@ en:
                   attribute: 'current_designation'
                   label: 'Current Designation'
                   type: 'text_field_tag'
+                  width: '300'
 #                  type: 'select_tag'
 #                  options: 'model'
 #                  class : 'GroupMaster'
@@ -125,6 +144,7 @@ en:
                   attribute: 'band_master'
                   label: 'Band'
                   type: 'select_tag'
+                  width: '100'
                   options: 'model'
                   class : 'BandMaster'
                   select: 'id'
@@ -133,26 +153,32 @@ en:
                   attribute: 'total_work_exp_months'
                   label: 'Total Work Experience (in months)'
                   type: 'text_field_tag'
+                  width: '50'
                 contact_numbers:
                   attribute: 'contact_numbers'
                   label: 'Contact Number'
                   type: 'text_field_tag'
+                  width: '200'
                 bank_name:
                   attribute: 'bank_name'
                   label: 'Bank Name'
                   type: 'text_field_tag'
+                  width: '500'
                 rf_no:
                   attribute: 'rf_no'
                   label: 'PF No.'
                   type: 'text_field_tag'
+                  width: '100'
                 pan_no:
                   attribute: 'pan_no'
                   label: 'PAN No.'
                   type: 'text_field_tag'
+                  width: '100'
                 date_of_leaving:
                   attribute: 'date_of_leaving'
                   label: 'Date of Leaving'
                   type: 'date_field_tag'
+                  width: '100'
                 remarks_1:
                   attribute: 'remarks_1'
                   label: 'Remarks'
@@ -162,6 +188,7 @@ en:
                   attribute: 'job_role_id'
                   label: 'Job Role'
                   type: 'text_field_tag'
+                  width: '300'
 #                  type: 'select_tag'
 #                  options: 'model'
 #                  class : 'Role'
@@ -171,10 +198,12 @@ en:
                   attribute: 'total_work_exp_years'
                   label: 'Total Work Experience (in years)'
                   type: 'text_field_tag'
+                  width: '50'
                 personal_email:
                   attribute: 'personal_email'
                   label: 'Personal E-mail'
                   type: 'text_field_tag'
+                  width: '300'
                 personal_address:
                   attribute: 'personal_address'
                   label: 'Personal Address'
@@ -183,18 +212,22 @@ en:
                   attribute: 'account_number'
                   label: 'Account Number'
                   type: 'text_field_tag'
+                  width: '100'
                 esic_no:
                   attribute: 'esic_no'
                   label: 'ESIC No.'
                   type: 'text_field_tag'
+                  width: '100'
                 blood_group:
                   attribute: 'blood_group'
                   label: 'Blood Group'
                   type: 'text_field_tag'
+                  width: '50'
                 nature_of_separation:
                   attribute: 'nature_of_separation'
                   label: 'Nature of Separation (If Separated)'
                   type: 'text_field_tag'
+                  width: '300'
     EmploymentHist:
       name: "Sub Form-Enter Employee Employment History"
       object: "EmploymentHist"
@@ -209,18 +242,22 @@ en:
                   attribute: 'organisation'
                   label: 'Organisation'
                   type: 'text_field_tag'
+                  width: '400'
                 designation:
                   attribute: 'designation'
                   label: 'Last Designation'
                   type: 'text_field_tag'
+                  width: '300'
                 joined_from:
                   attribute: 'joined_from'
                   label: 'From Date'
                   type: 'date_field_tag'
+                  width: '100'
                 leaved:
                   attribute: 'leaved'
                   label: 'To Date'
                   type: 'date_field_tag'
+                  width: '100'
     FamilyDetail:
       name: "Sub Form-Enter Employee Family Details"
       object: "FamilyDetail"
@@ -234,19 +271,35 @@ en:
                 relationship:
                   attribute: 'relationship'
                   label: 'Relationship'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Wife","Husband","Father","Mother","Son","Daughter","Brother","Sister"]
+                sex:
+                  attribute: 'sex'
+                  label: 'Sex'
+                  type: 'select_tag'
+                  width: '80'
+                  options: ["Male","Female","Other"]
+                dateofbirth:
+                  attribute: 'dateofbirth'
+                  label: 'DoB'
                   type: 'date_field_tag'
+                  width: '100'
                 fname:
                   attribute: 'fname'
                   label: 'First Name'
                   type: 'text_field_tag'
+                  width: '200'
                 mname:
                   attribute: 'mname'
                   label: 'Middle Name'
                   type: 'text_field_tag'
+                  width: '100'
                 lname:
                   attribute: 'lname'
                   label: 'Last Name'
                   type: 'text_field_tag'
+                  width: '200'
     PFNomination:
       name: "Sub Form-Enter Employee PF Nomination"
       object: "PFNomination"
@@ -260,19 +313,35 @@ en:
                 relationship:
                   attribute: 'relationship'
                   label: 'Relationship'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Wife","Husband","Father","Mother","Son","Daughter","Brother","Sister"]
+                sex:
+                  attribute: 'sex'
+                  label: 'Sex'
+                  type: 'select_tag'
+                  width: '80'
+                  options: ["Male","Female","Other"]
+                dateofbirth:
+                  attribute: 'dateofbirth'
+                  label: 'DoB'
                   type: 'date_field_tag'
+                  width: '100'
                 fname:
                   attribute: 'fname'
                   label: 'First Name'
                   type: 'text_field_tag'
+                  width: '200'
                 mname:
                   attribute: 'mname'
                   label: 'Middle Name'
                   type: 'text_field_tag'
+                  width: '100'
                 lname:
                   attribute: 'lname'
                   label: 'Last Name'
                   type: 'text_field_tag'
+                  width: '200'
     EsisNomination:
       name: "Sub Form-Enter Employee ESIC Nomination"
       object: "EsisNomination"
@@ -286,16 +355,82 @@ en:
                 relationship:
                   attribute: 'relationship'
                   label: 'Relationship'
+                  type: 'select_tag'
+                  width: '100'
+                  options: ["Wife","Husband","Father","Mother","Son","Daughter","Brother","Sister"]
+                sex:
+                  attribute: 'sex'
+                  label: 'Sex'
+                  type: 'select_tag'
+                  width: '80'
+                  options: ["Male","Female","Other"]
+                dateofbirth:
+                  attribute: 'dateofbirth'
+                  label: 'DoB'
                   type: 'date_field_tag'
+                  width: '100'
                 fname:
                   attribute: 'fname'
                   label: 'First Name'
                   type: 'text_field_tag'
+                  width: '200'
                 mname:
                   attribute: 'mname'
                   label: 'Middle Name'
                   type: 'text_field_tag'
+                  width: '100'
                 lname:
                   attribute: 'lname'
                   label: 'Last Name'
                   type: 'text_field_tag'
+                  width: '200'
+    EmployeeQualification:
+      name: "Sub Form-Enter Employee Qualifications"
+      object: "EmployeeQualification"
+      fields:
+        tabs:
+          tab1:
+            name: "Qualifications"
+            cols:
+              type: "table"
+              col1:
+                name:
+                  attribute: 'name'
+                  label: 'Name'
+                  type: 'text_field_tag'
+                  width: '80'
+                description:
+                  attribute: 'description'
+                  label: 'Details of Degree/Diploma/Course'
+                  type: 'text_field_tag'
+                  width: '200'
+                institute:
+                  attribute: 'institute'
+                  label: 'Institute/Collage/School'
+                  type: 'text_field_tag'
+                  width: '200'
+                university:
+                  attribute: 'university'
+                  label: 'University'
+                  type: 'text_field_tag'
+                  width: '200'
+                datefrom:
+                  attribute: 'datefrom'
+                  label: 'From'
+                  type: 'date_field_tag'
+                  width: '100'
+                dateto:
+                  attribute: 'dateto'
+                  label: 'To'
+                  type: 'date_field_tag'
+                  width: '100'
+                marks:
+                  attribute: 'marks'
+                  label: 'Aggregate %age Obtained'
+                  type: 'text_field_tag'
+                  width: '50'
+                grade:
+                  attribute: 'grade'
+                  label: 'Aggregate Grade/Class Obtained'
+                  type: 'text_field_tag'
+                  width: '100'

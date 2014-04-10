@@ -1,6 +1,6 @@
 en:
   forms:
-    VacancyScheduling:
+    ScheduleInterview:
       name: "Main Form-Schedule Candidate Interview"
       object: "VacancyScheduling"
       fields:
@@ -10,19 +10,25 @@ en:
             type: "standard"
             cols:
               col1:
-                vacancy_scheduling_id:
-                  attribute: 'vacancy_master_id'
-                  label: 'Vacancy ID'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'VacancyMaster'
-                  select: 'id'
-                  show: 'description'
-              col2:
+                interview_code:
+                  attribute: 'interview_code'
+                  label: 'Interview ID'
+                  type: 'text_field_tag'
+                  width: '100'
                 comments:
                   attribute: 'comments'
                   label: 'Interview Instructions'
                   type: 'text_area_tag'
+              col2:
+                vacancy_code:
+                  attribute: 'vacancy_code'
+                  label: 'Vacancy'
+                  type: 'select_tag'
+                  width: '300'
+                  options: 'model'
+                  class : 'VacancyMaster'
+                  select: 'id'
+                  show: 'description'
           tab2:
             name: "Interview Schedule"
             type: 'sub-form'
@@ -44,14 +50,16 @@ en:
                   attribute: 'interview_type_id'
                   label: 'Interview Type'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
-                  class : 'Scale'
+                  class : 'RatingScale'
                   select: 'name'
                   show: 'name'
                 candidate_id:
                   attribute: 'candidate_id'
                   label: 'Candidate'
                   type: 'select_tag'
+                  width: '200'
                   options: 'model'
                   class : 'CandidateMaster'
                   select: 'id'
@@ -60,6 +68,7 @@ en:
                   attribute: 'interviewer'
                   label: 'Select Interviewer(s)'
                   type: 'select_tag'
+                  width: '200'
                   multiple: 'true'
                   options: 'model'
                   class : 'EmployeeMaster'
@@ -69,12 +78,15 @@ en:
                   attribute: 'fromdate'
                   label: 'Date'
                   type: 'date_field_tag'
+                  width: '100'
 #todo: put time field for fromtime and totime
                 fromtime:
                   attribute: 'fromtime'
                   label: 'From Time'
                   type: 'text_field_tag'
+                  width: '50'
                 totime:
                   attribute: 'to_time'
                   label: 'To Time'
                   type: 'text_field_tag'
+                  width: '50'

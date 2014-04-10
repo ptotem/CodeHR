@@ -10,16 +10,74 @@ en:
             type: "standard"
             cols:
               col1:
+                company_group_code:
+                  attribute: 'company_group_code'
+                  label: 'Company Group Code'
+                  type: 'text_field_tag'
+                  width: '80'
+                address1:
+                  attribute: 'address1'
+                  label: 'Address 1'
+                  type: 'text_field_tag'
+                  width: '300'
+                city:
+                  attribute: 'city'
+                  label: 'City'
+                  type: 'text_field_tag'
+                  width: '200'
+                district:
+                  attribute: 'district'
+                  label: 'District'
+                  type: 'text_field_tag'
+                  width: '200'
+                country:
+                  attribute: 'country'
+                  label: 'Country'
+                  type: 'text_field_tag'
+                  width: '200'
+                phone1:
+                  attribute: 'phone1'
+                  label: 'Phone-1'
+                  type: 'text_field_tag'
+                  width: '200'
+                fax:
+                  attribute: 'fax'
+                  label: 'Fax'
+                  type: 'text_field_tag'
+                  width: '200'
+              col2:
                 name:
                   attribute: 'name'
                   label: 'Group Name'
                   type: 'text_field_tag'
+                  width: '500'
+                address2:
+                  attribute: 'address2'
+                  label: 'Address 2'
+                  type: 'text_field_tag'
+                  width: '300'
+                taluka:
+                  attribute: 'taluka'
+                  label: 'Taluka/Province/County'
+                  type: 'text_field_tag'
+                  width: '200'
+                state:
+                  attribute: 'state'
+                  label: 'State'
+                  type: 'text_field_tag'
+                  width: '200'
+                pin:
+                  attribute: 'pin'
+                  label: 'PIN Code'
+                  type: 'text_field_tag'
+                  width: '100'
+                phone2:
+                  attribute: 'phone2'
+                  label: 'Phone-2'
+                  type: 'text_field_tag'
+                  width: '200'
                 E-mail:
                   attribute: 'E-mail'
                   label: 'E-mail'
                   type: 'text_field_tag'
-              col2:
-                address:
-                  attribute: 'address'
-                  label: 'Address'
-                  type: 'text_area_tag'
+                  width: '300'
