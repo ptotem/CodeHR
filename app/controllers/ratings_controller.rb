@@ -15,8 +15,8 @@ class RatingsController < InheritedResources::Base
   #end
 
   def new
-    #@form_config= t('config.Rating.form.new')
-    #@form=@form_config[:fields]
+    @form_config= t('config.Rating.form.new')
+    @form=@form_config[:fields]
     @rating = Rating.new
     RatingScale.all.each do |rating|
       i=@rating.score_receiveds.build(rating_scale_id:rating._id,sr_name:rating.name)
