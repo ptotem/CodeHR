@@ -251,9 +251,11 @@ class GenericController < ApplicationController
     def render_subform
       @fields1 = t('forms.'+params[:fi][0]+'.fields.tabs')
 
-      if (@fields1.length < 2)
-        render :json =>  @fields1[:tab1][:cols][:type]
-        return
+      if (@fields1.length < 2 and @fields1[:tab1][:cols].has_key?(:type))
+        respond_to do |format|
+          format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
+          format.json { render json: @results, :callback => params[:callback] }
+        end
       else
         respond_to do |format|
           format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb

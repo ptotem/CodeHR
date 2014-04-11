@@ -1,5 +1,7 @@
 module ApplicationHelper
-
+  def test1
+    puts I18n.translate('forms')
+  end
   def custom_lable(object, attribute)
     if object.class.validators_on(attribute).map(&:class).include? Mongoid::Validations::PresenceValidator
       "<lable class='control-label'>"+attribute.to_s.gsub!('_',' ').titleize+" <span style='color:red;'>*</span></lable>"
@@ -429,7 +431,7 @@ module ApplicationHelper
       when "MarkComplete"
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
-        @class_name = @pro.step_transacts[0].obj_name
+        @class_name = I18n.translate('forms.'+@pro.step_transacts[0].obj_name+'.object')
         puts @class_name
         @step=@pro.step_transacts[stepno]
         if oclass == "Bulk"
