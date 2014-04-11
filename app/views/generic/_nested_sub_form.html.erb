@@ -1,14 +1,25 @@
 <tr class="salary_comp_row">
   <% new_fields.to_a.each do |nf| %>
       <td>
-        <% case nf[:type] %>
+        <% case cv[:type] %>
         <% when "text_field_tag" %>
-            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]","",:style=>"width:#{nf[:width]}" %>
+            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]","",:style => "width:#{cv[:width]}px;" %>
+        <% when "text_area_tag" %>
+            <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+        <% when "check_box_tag" %>
+            <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+        <% when "date_field_tag" %>
+            <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
+        <% when "time_field_tag" %>
+            <div class="input-append bootstrap-timepicker">
+              <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker">
+              <span class="add-on"><i class="icon-time"></i></span>
+            </div>
         <% when "select_tag" %>
-            <% if nf[:options] == 'model' %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show]),{:style => "width:#{nf[:width]}px;", :class => "chzn-select", :multiple => nf[:multiple]} %>
+            <% if cv[:options] == 'model' %>
+                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),{:style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple]} %>
             <% else %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),{:style=>"width:#{nf[:width]}",:class => "chzn-select", :multiple => nf[:multiple]} %>
+                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]),{:style => "width:#{cv[:width]}px;",:class => "chzn-select", :multiple => cv[:multiple]} %>
             <% end %>
         <% end %>
       </td>

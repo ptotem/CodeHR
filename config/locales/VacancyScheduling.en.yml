@@ -44,7 +44,7 @@ en:
             name: "Interview Type"
             type: "standard"
             cols:
-              type: "table"
+              #type: "table"
               col1:
                 interview_type_id:
                   attribute: 'interview_type_id'
@@ -83,10 +83,10 @@ en:
                 fromtime:
                   attribute: 'fromtime'
                   label: 'From Time'
-                  type: 'text_field_tag'
+                  type: 'time_field_tag'
                   width: '50'
                 totime:
                   attribute: 'to_time'
                   label: 'To Time'
-                  type: 'text_field_tag'
+                  type: 'time_field_tag'
                   width: '50'

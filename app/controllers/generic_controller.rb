@@ -249,10 +249,18 @@ class GenericController < ApplicationController
     end
 
     def render_subform
-      respond_to do |format|
-        format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
-        format.json { render json: @results, :callback => params[:callback] }
+      @fields1 = t('forms.'+params[:fi][0]+'.fields.tabs')
+
+      if (@fields1.length < 2)
+        render :json =>  @fields1[:tab1][:cols][:type]
+        return
+      else
+        respond_to do |format|
+          format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
+          format.json { render json: @results, :callback => params[:callback] }
+        end
       end
+
     end
 
     def render_nested_subform
@@ -320,23 +328,30 @@ class GenericController < ApplicationController
 
     def params_mapping
       @model_name = params[:model_name]
-      @form_config = t('forms.'+@model_name)
-      @fields = @form_config[:fields]
+      #@form_config = t('forms.'+@model_name)
+      #@fields = @form_config[:fields]
       @aa= Array.new
-      @fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
-        @aa << i.values.map{|i| i[:attribute]}
+      eval(@model_name).fields.keys.each do |i|
+        @aa << i
       end
+      #@fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
+      #  @aa << i.values.map{|i| i[:attribute]}
+      #end
       render :json =>@aa.flatten
       return
     end
 
     def params_mapping1
       @model_name = MasterPro.find(params[:model_name]).master_steps[0].action_class
-      @form_config = t('forms.'+@model_name)
-      @fields = @form_config[:fields]
+      #@form_config = t('forms.'+@model_name)
+      #@fields = @form_config[:fields]
+      #@aa= Array.new
+      #@fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
+      #  @aa << i.values.map{|i| i[:attribute]}
+      #end
       @aa= Array.new
-      @fields[:tabs].map{|i,v| v[:cols].values rescue nil}.flatten.compact.each do |i|
-        @aa << i.values.map{|i| i[:attribute]}
+      eval(@model_name).fields.keys.each do |i|
+        @aa << i
       end
       render :json =>@aa.flatten
       return
