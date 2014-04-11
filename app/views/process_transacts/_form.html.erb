@@ -80,7 +80,8 @@
           <% @pm = MasterPro.find(params[:master_pro_id]) %>
           <% if @pm.master_steps.first.action == "Update" %>
             <label class="control-label">Object Id</label>
-            <% @pname = @pm.master_steps.first.action_class %>
+            <% pname = @pm.master_steps.first.action_class %>
+            <%= @pname = t('forms.'+pname+'.object') %>
             <% col = eval(@pname).fields.keys.select{|i| i.include?("name")}.length > 0 ? eval(@pname).fields.keys.select{|i| i.include?("name")}.first  :  (eval(@pname).fields.keys.select{|i| i.include?("code")}.length > 0 ? eval(@pname).fields.keys.select{|i| i.include?("code")}.first : "id") %>
             <%= f.select :cobject_id, options_from_collection_for_select(eval(@pname).all,'id', col), {:include_blank => "Select"}, {:class => "chzn-select"}  %>
           <% end %>
