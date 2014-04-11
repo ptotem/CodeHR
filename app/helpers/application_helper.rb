@@ -283,9 +283,9 @@ module ApplicationHelper
                 if !aaa["approver"].nil?
                   @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                 elsif !aaa["escalated"].nil?
-                  @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>false)
                 elsif !aaa["auto_assign"].nil?
-                  @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                  @app.approvers.create!(:employee_master_id=>aaa["id"], :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>false)
                 else
 
                 end
@@ -308,13 +308,13 @@ module ApplicationHelper
               elsif !aaa["escalated"].nil?
                 if !@employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>false)
                   end
                 end
               elsif !aaa["auto_assign"].nil?
                 if !@employees.nil?
                   @employees.each do |e|
-                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>true)
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>false)
                   end
                 end
               else
