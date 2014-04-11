@@ -48,7 +48,7 @@ class ProcessTransactsController < ApplicationController
   def create
     @mp = MasterPro.find(params[:process_transact][:mp_name])
     @process_transact = ProcessTransact.create!(:code => params[:process_transact][:code],:name => params[:process_transact][:name], :created_by => params[:process_transact][:created_by], :facilitated_by => params[:process_transact][:faciliated_by], :user_id =>params[:process_transact][:user_id],:cobject_id=>params[:process_transact][:cobject_id])
-    @mp.master_steps.each do |sm|
+    @mp.master_steps.order_by(['sequence']).each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class,:auto => sm.auto, :params_mapping=>sm.params_mapping, :action_obj => sm.action_obj)
       if !sm.approval_obj.nil?
         @process_transact.app_obj = sm.approval_obj
