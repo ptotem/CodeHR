@@ -1,6 +1,7 @@
 class PlanningManpower
   include Mongoid::Document
   include Mongoid::Timestamps
+  field :mp_code, type: String
   field :group, type: String
   field :band, type: String
   field :position, type: String
