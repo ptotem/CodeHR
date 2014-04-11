@@ -26,6 +26,7 @@ en:
                   type: 'select_tag'
                   width: '80'
                   options: ["Male","Female", "Other"]
+                  multiple: true
 #todo: Need multiple group selection option
                 group_master_ids:
                   attribute: 'group_master_ids'
