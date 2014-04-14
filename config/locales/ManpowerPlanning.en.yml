@@ -74,7 +74,7 @@ en:
               type: 'sub-form'
     ManpowerPlanDet:
       name: "Sub Form-Enter Manpower Plan Requester Details"
-      object: "PlanningManpower"
+      object: "ManpowerPlanning"
       fields:
         tabs:
           tab1:

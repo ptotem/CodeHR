@@ -12,5 +12,6 @@ class MasterStep
   field :approval_obj, type: Hash
   field :notification_obj, type: Hash
   field :deleted, type: Boolean
+  field :repeat_on, type: String
   belongs_to :master_pro
 end

@@ -20,8 +20,9 @@ class VacancyMaster
   has_many :vacancy_schedulings
   accepts_nested_attributes_for :vacancy_schedulings
 
-  validates :vacancy_code, :presence => true
-  validates :description, :presence => true
+  before_create :check_and_create_code
+  #validates :vacancy_code, :presence => true
+  #validates :description, :presence => true
 
   #validates :status, :presence => true
 
@@ -29,5 +30,12 @@ class VacancyMaster
   #validates :hr_rep, :presence => true
   #validates :ctc_range_from, :presence => true
   #validates :ctc_range_to, :presence => true
+
+  def check_and_create_code
+    if self.vacancy_code.nil?
+      num = VacancyMaster.all.length rescue 1
+      self.vacancy_code = @dynamic_code = I18n.translate('config.AutoCode.VacancyMaster.text')+sprintf('%0'+I18n.translate('config.AutoCode.VacancyMaster.digit')+'d',(num+1))
+    end
+  end
 
 end

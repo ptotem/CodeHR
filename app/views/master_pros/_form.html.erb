@@ -697,6 +697,16 @@
                             $('#master_pro_master_steps_attributes_'+counter+'_params_mapping_'+i+'_type2').append('<option value="' +v1+ '">' + v1 + '</option>');
                         });
                     });
+                    $(parent_div).find('.my_params_attr').prepend('<div class="span6">'+
+                            '<label name="master_pro[master_steps_attributes]['+counter+'][repeat_on]">Repeat On:(Array)</label>'+
+                            '</div>'+
+                            '<div class="span6">'+
+                            '<select class="hhh" name="master_pro[master_steps_attributes]['+counter+'][repeat_on]" id="master_pro_master_steps_attributes_'+counter+'_repeat_on">' +
+                            '<option value=""></option></select>'+
+                            '</div>');
+                    $.each(a,function(i1,v1){
+                        $('#master_pro_master_steps_attributes_'+counter+'_repeat_on').append('<option value="' +v1+ '">' + v1 + '</option>');
+                    });
                 });
             }
         });

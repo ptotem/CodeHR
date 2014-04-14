@@ -476,16 +476,21 @@ module ApplicationHelper
         if @step.auto
           puts @step.params_mapping
           @a=@step.params_mapping
-          @a1=@a.values.select{|i| i["type2"]!=""}
+          @a1=@a.values.select{|i| i["type2"]!="" and i["type"]=="repeat_on"}
           @a2=@a1.map{|i| i.keys.map{|j| i[j]}}
           @child_class_object = Hash.new
           @a2.each do |k|
             @child_class_object[k[0]] = @pro.class_obj[k[1]]
           end
-          puts @child_class_object
-          create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          if !@step.repeat_on.blank? or !@step.repeat_on.nil?
+            @pro.class_obj[@step.repeat_on].to_i.times do |i|
+              create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
+            end
+          else
+            create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          end
         else
-          create_and_load_process(pid,stepno,ao,user_id,true)
+          create_and_load_process(pid,stepno,ao,user_id,true,@pro.app_obj,@pro.notification_obj)
         end
       when "SpawnI"
         puts "Calling a new process independently.."
@@ -502,18 +507,24 @@ module ApplicationHelper
             @child_class_object[k[0]] = @pro.class_obj[k[1]]
           end
           puts @child_class_object
-          create_and_load_auto_process(pid,stepno,ao,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          if !@step.repeat_on.blank? or !@step.repeat_on.nil?
+            @pro.class_obj[@step.repeat_on].to_i.times do |i|
+              create_and_load_auto_process(pid,stepno,ao,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
+            end
+          else
+            create_and_load_auto_process(pid,stepno,ao,user_id,false,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          end
         else
           #create new Process
-          create_and_load_process(pid,stepno,ao,user_id,false)
+          create_and_load_process(pid,stepno,ao,user_id,false,@pro.app_obj,@pro.notification_obj)
         end
         @pro.step_transacts[stepno].end_processing_step
     end
   end
 
-  def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent)
+  def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent,child_app_obj,child_not_obj)
     @mp=MasterPro.find(pid)
-    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process", :created_by => userid, :facilitated_by => userid, :user_id =>userid)
+    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process"+@mp.name, :created_by => userid, :facilitated_by => userid, :user_id =>userid,:app_obj => child_app_obj, :notification_obj => child_not_obj)
     @mp.master_steps.each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
     end
@@ -522,7 +533,7 @@ module ApplicationHelper
 
   def create_and_load_auto_process(parent_process_id, parent_step_no, pid,userid,dependent,child_cls_obj,child_app_obj,child_not_obj)
     @mp=MasterPro.find(pid)
-    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process", :created_by => userid, :facilitated_by => userid, :user_id =>userid, :parameter =>child_cls_obj,:class_obj =>child_cls_obj,:app_obj => child_app_obj, :notification_obj => child_not_obj)
+    @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process"+@mp.name, :created_by => userid, :facilitated_by => userid, :user_id =>userid, :parameter =>child_cls_obj,:class_obj =>child_cls_obj,:app_obj => child_app_obj, :notification_obj => child_not_obj)
     @mp.master_steps.each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
     end

@@ -5,7 +5,7 @@ class ManpowerPlanning
   field :period_from, type: Date
   field :period_to, type: Date
   field :requested_by, type: String
-  field :final_approved_number, type: String
+  field :final_approved_number, type: Integer
   field :role, type: String
   field :process_id, type:String
   field :status, type: String

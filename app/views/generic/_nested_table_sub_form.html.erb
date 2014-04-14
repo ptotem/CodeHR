@@ -1,16 +1,57 @@
-<tr class="salary_comp_row">
-  <% new_fields.to_a.each do |nf| %>
-      <td>
-        <% case nf[:type] %>
-        <% when "text_field_tag" %>
-            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]","",:style=>"width:#{nf[:width]}" %>
-        <% when "select_tag" %>
-            <% if nf[:options] == 'model' %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show]),{:style => "width:#{nf[:width]}px;", :class => "chzn-select", :multiple => nf[:multiple]} %>
-            <% else %>
-                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),{:style=>"width:#{nf[:width]}",:class => "chzn-select", :multiple => nf[:multiple]} %>
-            <% end %>
-        <% end %>
-      </td>
-  <% end %>
-</tr>
+<% @fields1 = t('forms.'+fi+'.fields') %>
+
+
+<% @fields_name = @fields1[:tabs].map { |i, v| v } %>
+<% @fields_name.each_with_index do |tab_val, index| %>
+      <% @tab_val = tab_val[:cols].map { |i, v| v } %>
+      <% if tab_val[:cols].has_key?(:type) %>
+          <% tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+          <% @col_val = tab_val %>
+            <tr>
+              <% tab_val.each_with_index do |col_val, index| %>
+                  <% @col_val = col_val.map { |i, v| v } %>
+                  <% @col_val.each_with_index do |cv, indi| %>
+                      <td>
+                        <% case cv[:type] %>
+                        <% when "text_field_tag" %>
+                            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", "", :style => "width:#{cv[:width]}px;" %>
+                        <% when "text_area_tag" %>
+                            <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                        <% when "check_box_tag" %>
+                            <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
+                        <% when "date_field_tag" %>
+                            <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
+                        <% when "time_field_tag" %>
+                            <div class="input-append bootstrap-timepicker">
+                              <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker">
+                              <span class="add-on"><i class="icon-time"></i></span>
+                            </div>
+                        <% when "select_tag" %>
+                            <% if cv[:options] == 'model' %>
+                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]), {:style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple]} %>
+                            <% else %>
+                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options]), {:style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple]} %>
+                            <% end %>
+                        <% end %>
+                      </td>
+                  <% end %>
+              <% end %>
+            </tr>
+      <% end %>
+<% end %>
+
+<script src="/assets/bootstrap-datepicker.min.js"></script>
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker();
+
+        $('body').on('click', function () {
+            $('.date-picker').show();
+        });
+    });
+
+</script>
+
+
+

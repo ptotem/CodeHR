@@ -43,8 +43,6 @@
                     <% @tab_val = tab_val[:cols].map { |i, v| v } %>
                     <% ti = 0 %>
                     <% if tab_val[:cols].has_key?(:type) %>
-                        <%#= tab_val[:cols].has_key?(:type) %>
-                        <%#= tab_val[:cols].is_a?(Hash) %>
                         <%tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
                         <% @col_val = tab_val %>
                         <table class="table table-striped table-bordered table-hover">
@@ -249,14 +247,23 @@
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (data) {
+                console.log($(data.trim())[0].localName)
                 $(this_obj).prev().val(parseInt($(this_obj).prev().val()) + 1);
-                var a = "dropdown" + ddchildlen
-                $('#myTab').append('<li><a data-toggle="tab" href="#' + a + '">' + title + '</a></li>');
-                var newDiv = $(this_obj).parents('.tab-content').append('<div id="' + a + '" class="tab-pane"></div>');
-                $("#" + a).append(data);
-                ddchildlen++;
-                $(".chzn-select").chosen();
-                $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+                if($(data.trim())[0].localName == "tr"){
+                    $("#my_body_subform").append(data);
+                    ddchildlen++;
+                    $(".chzn-select").chosen();
+                    $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+                }
+                else {
+                    var a = "dropdown" + ddchildlen
+                    $('#myTab').append('<li><a data-toggle="tab" href="#' + a + '">' + title + '</a></li>');
+                    var newDiv = $(this_obj).parents('.tab-content').append('<div id="' + a + '" class="tab-pane"></div>');
+                    $("#" + a).append(data);
+                    ddchildlen++;
+                    $(".chzn-select").chosen();
+                    $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+                }
             }
         });
     }

@@ -12,6 +12,7 @@ class StepTransact
   field :deleted, type: Boolean
   field :initiated_at, type: DateTime
   field :finished_at, type: DateTime
+  field :repeat_on, type: String
   embedded_in :process_transact
 
   state_machine :state, initial: :created do

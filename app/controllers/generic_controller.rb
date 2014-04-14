@@ -253,7 +253,7 @@ class GenericController < ApplicationController
 
       if (@fields1.length < 2 and @fields1[:tab1][:cols].has_key?(:type))
         respond_to do |format|
-          format.html { render :partial => 'generic/subform', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
+          format.html { render :partial => 'generic/nested_table_sub_form', :locals => {:fi =>params[:fi][0],:form_index => params[:form_index][0], :main_form => params[:main_form][0] } } # index.html.erb
           format.json { render json: @results, :callback => params[:callback] }
         end
       else
@@ -329,7 +329,8 @@ class GenericController < ApplicationController
     end
 
     def params_mapping
-      @model_name = params[:model_name]
+      @model_name1 = params[:model_name]
+      @model_name = t('forms.'+@model_name1+'.object')
       #@form_config = t('forms.'+@model_name)
       #@fields = @form_config[:fields]
       @aa= Array.new
