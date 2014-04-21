@@ -65,5 +65,7 @@ module CodeHR
 
     #Observer for mongoid classes, you can more classes in this list
     config.mongoid.observers = :user_observer
+
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/reports)
   end
 end

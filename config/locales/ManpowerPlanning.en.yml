@@ -58,7 +58,7 @@ en:
                   select: 'id'
                   show: 'job_title'
                 supervisor:
-                  attribute: 'employee_master'
+                  attribute: 'supervisor'
                   label: 'Supervisor'
                   type: 'select_tag'
                   width: '200'

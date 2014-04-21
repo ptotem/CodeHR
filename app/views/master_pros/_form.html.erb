@@ -217,9 +217,8 @@
                     '</li>'; //html for tab list (Step 1, Step 2, etc...).
 
             $("#sortable").append(ht); //add tab in list of steps
-
             window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-                var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".in:last-child"); //get last added tab
+                var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".tab-pane:last-child"); //get last added tab
                 $('.tab-content').find('.tab-pane').removeClass('active');
                 $('.tab-content').find('.tab-pane').css('display','none');
                 var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active" style="display: block;">'); //insert new nested form in tab after last tab

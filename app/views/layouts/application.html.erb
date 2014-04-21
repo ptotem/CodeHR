@@ -9,10 +9,11 @@
 
   <title>CodeHR</title>
   <%#= stylesheet_link_tag "application", :media => "all" %>
-  <%= include_gon %>
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript" src="/assets/jquery.js"></script>
+  <%= include_gon %>
+  <!--<script type="text/javascript" src="/assets/jquery.js"></script>-->
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
   <!-- basic styles -->
   <link href="/assets/bootstrap.min.css" rel="stylesheet"/>
@@ -203,7 +204,7 @@
       </a>
     </li>
     <li>
-      <a href="/employee_details/<%= current_user.employee_master.employee_detail.id rescue nil %>/edit">
+      <a href="/employee_details/<%= current_user.employee_master.id rescue nil %>/edit">
         <i class="icon-user"></i>
         Profile
       </a>

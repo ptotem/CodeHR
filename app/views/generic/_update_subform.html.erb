@@ -24,9 +24,9 @@
                                 <input type="text" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker">
                             <% when "select_tag" %>
                                 <% if cv[:options] == 'model' %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id') %>
+                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show],(local_object[fi.pluralize.underscore][form_index][cv[:attribute]] rescue "")), {:class =>"chzn-select"} %>
                                 <% else %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => local_object[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]) %>
+                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => local_object[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]), {:class => "chzn-select"} %>
                                 <% end %>
                             <% end %>
                           </div>
@@ -62,9 +62,9 @@
                             <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]",local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][@my_index][nf[:attribute]] %>
                         <% when "select_tag" %>
                             <% if nf[:options] == 'model' %>
-                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:attribute].gsub("_id", "").underscore).all, 'id', 'id') %>
+                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show],(local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][@my_index][nf[:attribute]] rescue "")),{:class =>"chzn-select"} %>
                             <% else %>
-                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]) %>
+                                <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),{:class => "chzn-select"} %>
                             <% end %>
                         <% end %>
                       </td>

@@ -48,12 +48,12 @@
                                       <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@object_at_hand[cv[:attribute]],:tabindex => ti.to_s %>
                                   <% when "select_tag" %>
                                       <% if cv[:options] == 'model' %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").singularize.camelize).all, 'id', 'id',@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s} %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show],@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s,:class => "chzn-select"} %>
                                       <% else %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options],@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s} %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options],@object_at_hand[cv[:attribute]]),{:tabindex => ti.to_s, :class =>"chzn-select"} %>
                                       <% end %>
                                   <% when "date_field_tag" %>
-                                      <input type="text" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" tabindex = <%=ti.to_s %> >
+                                      <input type="text" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" value="<%= @object_at_hand[cv[:attribute]] %>" tabindex = <%=ti.to_s %> >
                                   <% end %>
                                 </div>
                               </div>
@@ -149,12 +149,14 @@
       <%= submit_tag "Submit", :class => "btn btn-info" %>
     </div>
 <% end %>
-
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8">
     var ddchildlen;
     $(function () {
         ddchildlen = $('#myTab').children.length;
         $("#dropdown0").addClass("active");
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
     });
     //Function to add nested subform
     function add_new_subform(this_obj, title, tba, model_name) {

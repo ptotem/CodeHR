@@ -216,6 +216,7 @@ CodeHR::Application.routes.draw do
 
   match '/approval_tracker/:process_id/:index' => 'approval_mats#track_approval', :as => :approval_tracker
 
+  match '/letters' => "letter_report#letter"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

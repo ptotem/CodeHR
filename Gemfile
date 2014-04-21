@@ -78,6 +78,9 @@ gem 'resque'
 gem 'resque-scheduler'
 gem "gon"
 gem 'cells'
+gem 'ruport'#, :git => 'https://github.com/ruport/ruport.git'#, :branch => 'ruby19-compat'
+gem 'acts_as_reportable'
+#gem 'pdf-writer', :git => 'git://github.com/mwlang/pdf-writer.git'
 #gem 'resque-scheduler', :require => 'resque_scheduler'
 #gem 'best_in_place', github: 'bernat/best_in_place'
 

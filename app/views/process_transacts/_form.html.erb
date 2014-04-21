@@ -24,7 +24,7 @@
         <div class="control-group">
           <label for="name" class="control-label">name</label>
           <div class="controls">
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :value => MasterPro.find(params[:master_pro_id]).name rescue "" %>
           </div>
         </div>
       </div>

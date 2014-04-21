@@ -44,7 +44,7 @@ en:
             name: "Interview Type"
             type: "standard"
             cols:
-#              type: "table"
+              type: "table"
               col1:
                 interview_type_id:
                   attribute: 'interview_type_id'

@@ -25,7 +25,7 @@ en:
                   label: 'Gender'
                   type: 'select_tag'
                   width: '80'
-                  options: ["Male","Female", "Other"]
+                  options: [["Male", "M"],["Female", "F"], ["Other","0"]]
                   multiple: true
 #todo: Need multiple group selection option
                 group_master_ids:

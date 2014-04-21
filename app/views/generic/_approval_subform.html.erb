@@ -21,7 +21,7 @@
                                 <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
                             <% when "select_tag" %>
                                 <% if cv[:options] == 'model' %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:attribute].gsub("_id", "").camelize).all, 'id', 'id'),:disabled => true %>
+                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),:disabled => true %>
                                 <% else %>
                                     <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => cls[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]),:disabled => true %>
                                 <% end %>
