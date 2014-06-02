@@ -1,6 +1,6 @@
 class WelcomesController < InheritedResources::Base
 
-  layout "reporting_layout", only: [:show_my_report]
+  #layout "reporting_layout", only: [:show_my_report]
 
   def report
     @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
@@ -246,13 +246,27 @@ class WelcomesController < InheritedResources::Base
 
 
   def get_report_of
-    @users = User.all
-    @employee_masters = EmployeeMaster.all
+    #@users = User.all
+    #@employee_masters = EmployeeMaster.all
+    #
+    #render :pdf => 'show_my_report',
+    #       :user_style_sheet               => "#{Rails.root}/app/assets/stylesheets/pdf.css",
+    #       :header => { :right => '[0] of [1]' }
 
-    render :pdf => 'show_my_report',
-           :user_style_sheet               => "#{Rails.root}/app/assets/stylesheets/pdf.css",
-           :header => { :right => '[0] of [1]' }
+  end
 
+  def display_report_of
+
+  end
+
+  def generate_pdf_report
+    @emp_master_name = params[:employee_master]
+    @message = params[:message]
+
+    #render :text => "#{@emp_master_name}, #{@message}"
+    #return
+
+    render :pdf => 'show_report', :user_style_sheet => "#{Rails.root}/app/assets/stylesheets/pdf.css"
   end
 
 
