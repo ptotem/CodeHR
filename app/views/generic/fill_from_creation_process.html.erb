@@ -151,6 +151,7 @@
                 <input type="hidden" class="formIndex" value="0">
                 <input type="button" name="Add New <%= @tba %>" id="addNewSubform" value="Add New <%= @tba %>" class="btn btn-info" onclick='add_new_subform(this,"<%= tab_val[:name] %>","<%= @tba %>","<%= params[:model_name] %>")'/>
                 <div id="dropdown<%= index %>" class="tab-pane">
+
                   <div class="row-fluid">
                     <%= render :partial => 'generic/subform', :locals => {:fi => tab_val[:attribute], :form_index => 0, :main_form => params[:model_name]} %>
                   </div>
@@ -290,6 +291,8 @@
                 $(this_obj).parent().find('.my_index').val(parseInt($(this_obj).parent().find('.my_index').val()) + 1);
                 console.log(data);
                 $(this_obj).parent().find('.my_body').append(data);
+                $(".chzn-select").chosen();
+                $(".chzn-select-deselect").chosen({allow_single_deselect:true});
             }
         });
     }
@@ -309,6 +312,8 @@
                 $(this_obj).parent().before('<li><a data-toggle="tab" href="#' + a + '">' + $(this_obj).prev().val() + '</a></li>');
                 var newDiv = $('#myAppTab').next().append('<div id="' + a + '" class="tab-pane"></div>');
                 $("#" + a).append(data);
+                $(".chzn-select").chosen();
+                $(".chzn-select-deselect").chosen({allow_single_deselect:true});
             }
         });
     }
@@ -405,6 +410,17 @@
                 initDataTables();
             }
         });
+    }
+
+    function remove_elem(this_obj){
+        $(this_obj).parent().empty().remove();
+    }
+
+    function remove_elem_sf(this_obj){
+        $($(this_obj).parents('.tab-pane')[0])
+        a = "#"+$($(this_obj).parents('.tab-pane')[0]).attr('id');
+        $('#myTab').find("a[href="+a+"]").remove();
+        $($(this_obj).parents('.tab-pane')[0]).empty().remove();
     }
 
     function initDataTables(){

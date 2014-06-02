@@ -1,4 +1,5 @@
 <tr class="salary_comp_row">
+  <td><a href="#" onclick="remove_elem($(this).parent())" style="text-align: center"><i class="icon-remove-circle"></i></a></td>
   <% new_fields.to_a.each do |nf| %>
       <td>
         <% case nf[:type] %>
@@ -26,3 +27,7 @@
       </td>
   <% end %>
 </tr>
+<script>
+
+</script>
+

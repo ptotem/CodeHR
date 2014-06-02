@@ -26,11 +26,9 @@ en:
                   type: 'select_tag'
                   width: '80'
                   options: [["Male", "M"],["Female", "F"], ["Other","0"]]
-                  multiple: true
-#todo: Need multiple group selection option
                 group_master_ids:
                   attribute: 'group_master_ids'
-                  label: 'Group Master'
+                  label: 'Departments/Groups'
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
@@ -44,10 +42,15 @@ en:
                   type: 'date_field_tag'
                   width: '100'
                 role:
-                  attribute: 'role'
+                  attribute: 'role_ids'
                   label: 'Current Role'
-                  type: 'text_field_tag'
+                  type: 'select_tag'
                   width: '200'
+                  options: 'model'
+                  class: 'Role'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'name'
                 official_email:
                   attribute: 'official_email'
                   label: 'Official E-mail ID'
@@ -91,97 +94,3 @@ en:
             attribute: 'EmployeeOtherDetails'
             EmployeeOtherDetails:
               type: 'sub-form'
-
-#    EmployeeDetails:
-#      name: "Sub Form-Employee Details-Short"
-#      object: "EmployeeDetail"
-#      fields:
-#        tabs:
-#          tab1:
-#            name: "Employee Details"
-#            type: "standard"
-#            cols:
-#              col1:
-#                current_designation:
-#                  attribute: 'current_designation'
-#                  label: 'Current Designation'
-#                  type: 'text_field_tag'
-##                  type: 'select_tag'
-##                  options: 'model'
-##                  class : 'GroupMaster'
-##                  select: 'id'
-##                  show: 'group_name'
-#                band_id:
-#                  attribute: 'band_id'
-#                  label: 'Band'
-#                  type: 'select_tag'
-#                  options: 'model'
-#                  class : 'BandMaster'
-#                  select: 'id'
-#                  show: 'band_name'
-#                total_work_exp_months:
-#                  attribute: 'total_work_exp_months'
-#                  label: 'Total Work Experience (in months)'
-#                  type: 'text_field_tag'
-#                contact_numbers:
-#                  attribute: 'contact_numbers'
-#                  label: 'Contact Number'
-#                  type: 'text_field_tag'
-#                bank_name:
-#                  attribute: 'bank_name'
-#                  label: 'Bank Name'
-#                  type: 'text_field_tag'
-#                rf_no:
-#                  attribute: 'rf_no'
-#                  label: 'PF No.'
-#                  type: 'text_field_tag'
-#                pan_no:
-#                  attribute: 'pan_no'
-#                  label: 'PAN No.'
-#                  type: 'text_field_tag'
-#                date_of_leaving:
-#                  attribute: 'date_of_leaving'
-#                  label: 'Date of Leaving'
-#                  type: 'date_field_tag'
-#                remarks_1:
-#                  attribute: 'remarks_1'
-#                  label: 'Remarks'
-#                  type: 'text_area_tag'
-#              col2:
-#                job_role_id:
-#                  attribute: 'job_role_id'
-#                  label: 'Job Role'
-#                  type: 'text_field_tag'
-##                  type: 'select_tag'
-##                  options: 'model'
-##                  class : 'Role'
-##                  select: 'id'
-##                  show: 'name'
-#                total_work_exp_years:
-#                  attribute: 'total_work_exp_years'
-#                  label: 'Total Work Experience (in years)'
-#                  type: 'text_field_tag'
-#                personal_email:
-#                  attribute: 'personal_email'
-#                  label: 'Personal E-mail'
-#                  type: 'text_field_tag'
-#                personal_address:
-#                  attribute: 'personal_address'
-#                  label: 'Personal Address'
-#                  type: 'text_area_tag'
-#                account_number:
-#                  attribute: 'account_number'
-#                  label: 'Account Number'
-#                  type: 'text_field_tag'
-#                esic_no:
-#                  attribute: 'esic_no'
-#                  label: 'ESIC No.'
-#                  type: 'text_field_tag'
-#                blood_group:
-#                  attribute: 'blood_group'
-#                  label: 'Blood Group'
-#                  type: 'text_field_tag'
-#                nature_of_separation:
-#                  attribute: 'nature_of_separation'
-#                  label: 'Nature of Separation (If Separated)'
-#                  type: 'text_field_tag'

@@ -392,6 +392,8 @@ class GenericController < ApplicationController
       @tabs = t('forms.'+@model_name+'.fields.tabs.tab2')
       @fields = @form_config[:fields]
       @object_at_hand  = @model_name.camelize.constantize.find(params[:id])
+      # render :json => @object_at_hand
+      # return
       if @model_name == "Goal"
         @l = []
         @model_name.camelize.constantize.find(params[:id]).kras.each do |f|
