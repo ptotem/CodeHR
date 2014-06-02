@@ -1,0 +1,2 @@
+module PmsKraKpiTabsHelper
+end

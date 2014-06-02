@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+<div style="width:60%;">
+  <h1>Welcome to Star Track,
+    your performance appraisal platform</h1>
+  <br/>
+  <table id="sap"></table>
+  <div id="sap_pager"></div>
+  <br/>
+  <table id="employee_assessment"></table>
+  <div id="employee_assessment_pager"></div>
+</div>
+<br/>
+<script type="text/javascript" src="/assets/jquery.jqGrid.min.js"></script>
+
+<script>
+
+    //    Grid for Self Assessment
+    //    ==============================================================================================================
+    jQuery("#sap").jqGrid({
+        url: "/self_assessment",
+        datatype: "json",
+        colNames: ['ID', 'Name', 'KRA', 'COMPETENCIES', 'Final Rating : (KRA*70% + COMPETENCIES*30%)', 'Status'],
+        colModel: [
+            {name: 'ID', index: 'id', width: 50, hidden: true, key: true, align: "center"},
+            {name: 'Name', index: 'name', width: 155, key: true, editable: true, align: "center"},
+            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
+            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
+            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', width: 390, key: true, editable: true, align: "center"},
+            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
+        ],
+        rowNum: 4,
+        caption: "Self Assessment",
+        pager: "#sap_pager",
+        sortname: 'id',
+        sortorder: "asc",
+        height: '100%',
+        pginput: false,
+        pgbuttons: false,
+        onSelectRow: function (ids) {
+            window.location = "/employee_index/" + ids;
+        }
+    });
+    jQuery("#sap").jqGrid('navGrid', "#sap_pager", {edit: false, add: false, del: false})
+    //jQuery("#sap").jqGrid('inlineNav',"#sap_pager");
+    //    ==============================================================================================================
+
+    //    Grid for Employee Assessment
+    //    ==============================================================================================================
+    jQuery("#employee_assessment").jqGrid({
+        url: "/employee_assessment",
+        datatype: "json",
+        ccolNames: ['ID', 'Name', 'KRA', 'COMPETENCIES', 'Final Rating : (KRA*70% + COMPETENCIES*30%)', 'Status'],
+        colModel: [
+            {name: 'ID', index: 'id', width: 50, hidden: true, key: true, align: "center"},
+            {name: 'Name', index: 'name', width: 155, key: true, editable: true, align: "center"},
+            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
+            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
+            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', align: "center", width: 390, key: true, editable: true},
+            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
+        ],
+        rowNum: 4,
+        caption: "Employee Assessment",
+        pager: "#employee_assessment_pager",
+        sortname: 'id',
+        sortorder: "asc",
+        height: '100%',
+        pginput: false,
+        pgbuttons: false,
+        onSelectRow: function (ids) {
+            window.location = "/manager_index/" + ids;
+        }
+    });
+    jQuery("#employee_assessment").jqGrid('navGrid', "#employee_assessment_pager", {edit: false, add: false, del: false})
+    //jQuery("#employee_assessment").jqGrid('inlineNav',"#employee_assessment_pager");
+    //    ==============================================================================================================
+</script>

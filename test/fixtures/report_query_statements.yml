@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  association: 
+  classname: 
+  field: 
+  group_by: 
+
+two:
+  association: 
+  classname: 
+  field: 
+  group_by: 

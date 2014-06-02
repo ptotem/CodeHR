@@ -1,5 +1,17 @@
 CodeHR::Application.routes.draw do
 
+  resources :goals
+
+
+  resources :pms_kra_kpi_tabs
+
+
+  resources :pms_subgroups
+
+
+  resources :pms_group_categories
+
+
   resources :left_panels
 
 
@@ -194,7 +206,7 @@ CodeHR::Application.routes.draw do
   match '/fillform/:model_name/(:process_id)/(:seq)' => 'generic#fill_from_creation_process'
   match '/fillbulkform/:model_name/(:process_id)/(:seq)' => 'generic#fill_bulk_creation_form'
   match '/updateform/:model_name/:id/(:process_id)/(:seq)' => 'generic#update_form'
-  match '/review_form' => 'generic#review_filled_form'
+  match '/review_form' => 'generic#review_filled_form', :as => :review_form
   match '/review_bulk_form' => 'generic#review_bulk_form'
 
   match '/params_mapping/:model_name' => 'generic#params_mapping', :as => :params_mapping
@@ -217,6 +229,18 @@ CodeHR::Application.routes.draw do
   match '/approval_tracker/:process_id/:index' => 'approval_mats#track_approval', :as => :approval_tracker
 
   match '/letters' => "letter_report#letter"
+
+  match '/get_report_data/:stmt_id' => 'welcomes#get_data1'
+
+  ####################################### Employee Assessment #####################################################
+  match '/assessment_tracker/(:employee_id)' => 'welcomes#assessment_tracker', :as => :assessment_tracker
+  match '/employee_assessment/(:employee_id)' => 'welcomes#employee_assessment', :as => :assessment_tracker
+  match '/goal_index/(:employee_id)' => 'welcomes#goal_index'#, :as => :assessment_tracker
+  match '/subgoal_index/(:kra_id)/(:employee_id)' => 'welcomes#subgoal_index'#, :as => :assessment_tracker
+  match '/subgoals/(:employee_id)/(:kra_id)' => 'welcomes#subgoals'#, :as => :assessment_tracker
+  #################################################################################################################
+  match '/pms_eval' => 'welcomes#pms_normalization'
+  #################################################################################################################
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

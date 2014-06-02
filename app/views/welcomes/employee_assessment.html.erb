@@ -1,0 +1,533 @@
+<%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<link href="/assets/ui.jqgrid.css" rel="stylesheet"/>
+
+<link href="/assets/ui-lightness/jquery-ui-1.8.6.custom.css" rel="stylesheet"/>
+<link href="/assets/zgoalsheet.css" rel="stylesheet"/>
+<h2>GOAL SHEET FOR FY 10-11
+  <br/>
+  <%#= link_to "Home", "/", :class => "btn btn-warning" %>
+  <%#= link_to "Competency Evaluation", "/competency_eval/"+params[:employee_id], :class => "btn btn-warning" %>
+  <%#= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "btn btn-danger" %>
+</h2>
+<br/>
+<table id="header-table">
+  <!--<tr>-->
+    <!--<td class="heads">Name:</td>-->
+    <!--<td><%#= Employee.find(params[:employee_id]).name %></td>-->
+    <!--<td class="heads">Department:</td>-->
+    <!--<td><%#= Employee.find(params[:employee_id]).department %></td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td class="heads">ECN:</td>-->
+    <!--<td><%#= Employee.find(params[:employee_id]).ecn %></td>-->
+    <!--<td class="heads">Designation:</td>-->
+    <!--<td><%#= Employee.find(params[:employee_id]).designation.title %></td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td class="heads">Evaluation period from:</td>-->
+    <!--<td>1 July 2010 To 30 June 2011</td>-->
+    <!--<td class="heads">Location:</td>-->
+    <!--<td><%#= Employee.find(params[:employee_id]).location %></td>-->
+  <!--</tr>-->
+  <tr>
+    <td colspan="4">
+      Note :For KRAs appraise on a scale of 1-6
+      <br/>
+      ( 1-2 = Needs Improvement , 3= Partially meets Objectives, 4= Meets Objectives, 5= Exceeds objectives, 6=
+      Exceptional Performance)
+    </td>
+  </tr>
+</table>
+<br/>
+<div class="row">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <table id="goals_list"></table>
+      <div id="goals_pager"></div>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=job_profile></table>
+      <div id=jp_pager></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=aaba></table>
+      <div id=aaba_pager></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=customer_feedback></table>
+      <div id=customer_feedback_pager></div>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <table id=saad></table>
+      <div id=saad_pager></div>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=strength></table>
+      <div id=strength_pager></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=aod></table>
+      <div id=aod_pager></div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <table id=sap></table>
+      <div id=sap_pager></div>
+    </div>
+  </div>
+  <br/>
+</div>
+<script type="text/javascript" src="/assets/grid.locale-en.js"></script>
+<script type="text/javascript" src="/assets/jquery.jqGrid.min.js"></script>
+<script>
+    //    var data =
+    //  This formatter function that is called when we set formatter attribute of any column in jqgrid
+    function myFormatter(cellvalue, options, rowObject) {
+        if (Array.isArray(rowObject)) {
+            return 'Total is: ' + rowObject[4];
+        } else {
+            return 'Total is: ' + rowObject.total;
+        }
+    }
+
+    function final_rating(cellvalue, options, rowObject) {
+        if (gon.avpnabove) {
+            return rowObject[1]
+        }
+        else{
+            return "NA"
+        }
+    }
+    var emp_id = "<%= current_user.employee_master.id.to_s %>";
+    var weightage_option = "";
+    for (var i = 10; i <= 100; i = i + 5) {
+        weightage_option = weightage_option + i.toString() + ":" + i.toString() + ";";
+    }
+    weightage_option = weightage_option.substring(0, weightage_option.length - 1);
+    var rating_option = "";
+    for (var i = 1; i <= 6; i++) {
+        rating_option = rating_option + i.toString() + ":" + i.toString() + ";";
+    }
+    rating_option = rating_option.substring(0, rating_option.length - 1);
+
+    var lastsel;
+    var lastsel1;
+    var lastsel2;
+    var lastsel3;
+    var lastsel4;
+    var lastsel5;
+    //    Grid for Goals and subgoals
+    //    ==============================================================================================================
+    jQuery("#goals_list").jqGrid({
+        url: '/goal_index/' + emp_id,
+        datatype: "json",
+        colNames: ['id', 'Goal'],
+        colModel: [
+            {name: 'id', index: 'id', width: 50, hidden: true, editable: false,key :true},
+            {name: 'Name', index: 'name', width: 980, editable: false}
+        ],
+        footerrow: true,
+        userDataOnFooter: true,
+        pager: '#goals_pager',
+        sortname: 'id',
+        viewrecords: true,
+        sortorder: "desc",
+        multiselect: false,
+        subGrid: true,
+        height: '100%',
+        subGridRowExpanded: function (subgrid_id, row_id) {
+            console.log(subgrid_id)
+            var subgrid_table_id, pager_id;
+            subgrid_table_id = subgrid_id + "_t";
+            pager_id = "p_" + subgrid_table_id;
+            $("#" + subgrid_id).html("<table id='" + subgrid_table_id + "' class='scroll'></table><div id='" + pager_id + "' class='scroll'></div>");
+            jQuery("#" + subgrid_table_id).jqGrid({
+                url: "/subgoal_index/" + row_id + "/" + emp_id,
+                datatype: "json",
+                colNames: ['ID', 'KRA', 'Expected','Achieved', '%', 'FEEDBACK', 'Calculated','Self', 'Manager', 'Final'],
+                colModel: [
+                    {name: 'ID', index: 'id', width: 50, key: true, hidden: true},
+                    {name: 'KRA', index: 'KRA', width: 270, key: true, editable: false,"edittype":"textarea","wrap":"on"},
+                    {name: "Expected", index: "Expected", width: 70, align: "left", editable: false,"edittype":"textarea","wrap":"on"},
+                    {name: 'Achieved', index: 'Achieved', width: 70, align: "center", editable: true},//, edittype: "select", editoptions: {value: weightage_option}},
+                    {name: 'Weightage', index: 'Weightage', width: 40, align: "center", editable: false},//, edittype: "select", editoptions: {value: weightage_option}},
+                    {name: 'FEEDBACK', index: 'FEEDBACK', width: 270, align: "left", editable: true,"edittype":"textarea","wrap":"on"},
+                    {name: "Calculated", index: "Calculated", width: 40, align: "center", sortable: false, editable: false},//, edittype: "select", editoptions: {value: rating_option}},
+                    {name: "Self", index: "Self", width: 40, align: "center", sortable: false, editable: true},//, edittype: "select", editoptions: {value: rating_option}},
+                    {name: "Manager", index: "Manager", width: 75, align: "center", sortable: false, editable: false},//, edittype: "select", editoptions: {value: rating_option}},
+                    {name: "Final", index: "Final", width: 50, align: "center", sortable: false, editable: false}
+                ],
+                rowNum: 20,
+                editurl: "/subgoals/" + emp_id + "/" + row_id,
+                pager: pager_id,
+                sortname: 'id',
+                width: '100%',
+                sortorder: "asc",
+                height: '100%',
+                pginput: false,
+                pgbuttons: false,
+                ondblClickRow: function(id)
+                {
+                    if (id && id !== lastsel) {
+                        jQuery("#" + subgrid_table_id).jqGrid('restoreRow', lastsel);
+                        jQuery("#" + subgrid_table_id).jqGrid('editRow', id, true, false, false, false, false,
+                                function (xhr, res) {
+                                    jQuery("#goals_list").jqGrid('setGridParam', {url: '/goal_index/' + emp_id, page: 1});
+                                    jQuery("#goals_list").jqGrid('setCaption', "Job Profile").trigger('reloadGrid');
+                                });
+                        lastsel = id;
+                    }
+                }
+            });
+            jQuery("#" + subgrid_table_id).jqGrid('setGroupHeaders', {
+                useColSpanStyle: true,
+                groupHeaders: [
+                    {startColumnName: 'Calculated', numberOfColumns: 4, titleText: 'Rating'},
+                    {startColumnName: 'Expected', numberOfColumns: 2, titleText: 'Measure Of Achievement'}
+                ]
+            });
+            jQuery("#" + subgrid_table_id).jqGrid('navGrid', "#" + pager_id, {edit: false, add: false, del: true})
+            jQuery("#" + subgrid_table_id).jqGrid('inlineNav', "#" + pager_id, {
+                addParams: {
+                    addRowParams: {
+                        aftersavefunc: function (rowid, response, options) {
+                            jQuery("#goals_list").jqGrid('setGridParam', {url: '/goals/' + emp_id, page: 1});
+                            jQuery("#goals_list").jqGrid('setCaption', "Job Profile").trigger('reloadGrid');
+                        }
+                    }
+                },
+                editParams: {
+                    aftersavefunc: function (rowid, response, options) {
+                        jQuery("#goals_list").jqGrid('setGridParam', {url: '/goals/' + emp_id, page: 1});
+                        jQuery("#goals_list").jqGrid('setCaption', "Job Profile").trigger('reloadGrid');
+                    }
+                }
+            });
+        },
+        subGridRowColapsed: function (subgrid_id, row_id) {
+        },
+        subGridOptions: {
+            expandOnLoad: true
+        },
+//        editurl: '/goalsheet_containers/update',
+        pginput: false,
+        pgbuttons: false,
+        caption: "Goals"
+    });
+//    jQuery("#goals_list").jqGrid('navGrid', "#goals_pager", {edit: false, add: false, del: false});
+    //    ==============================================================================================================
+
+    //    Grid for Job Profile
+    //    ==============================================================================================================
+//    jQuery("#job_profile").jqGrid({
+//        url: "/job_profiles/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Detail'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, key: true, hidden: true},
+//            {name: 'Detail', index: 'detail', width: 300, key: true, editable: true,"edittype":"textarea","wrap":"on"}
+//        ],
+//        rowNum: 4,
+//        editurl: editURL_jp(),
+//        caption: "Job Profile",
+//        pager: "#jp_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel1) {
+//                jQuery("#job_profile").jqGrid('restoreRow', lastsel1);
+//                jQuery("#job_profile").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#job_profile").jqGrid('setGridParam', {url: "/job_profiles/" + emp_id, page: 1});
+//                            jQuery("#job_profile").jqGrid('setCaption', "Job Profile").trigger('reloadGrid');
+//                        });
+//                lastsel1 = id;
+//            }
+//        }
+//    });
+//    jQuery("#job_profile").jqGrid('navGrid', "#jp_pager", {edit: false, add: false, del: false, reload: true})
+//    jQuery("#job_profile").jqGrid('inlineNav', "#jp_pager", {
+//        addParams: {
+//            url: "/update_jp",
+//            mtype: "POST",
+//            extraparam: {
+//                employee_id: function () {
+//                    return emp_id;
+//                }
+//            },
+//            addRowParams: {
+//                aftersavefunc: function (rowid, response, options) {
+//                    jQuery("#job_profile").jqGrid('setGridParam', {url: "/job_profiles/" + emp_id, page: 1});
+//                    jQuery("#job_profile").jqGrid('setCaption', "Job Profile").trigger('reloadGrid');
+//                }
+//            }
+//        },
+//        editParams: {
+//            url: "/update_jp",
+//            mtype: "POST",
+//            extraparam: {
+//                employee_id: function () {
+//                    return emp_id;
+//                }
+//            }
+//        }
+//    });
+    //    ==============================================================================================================
+
+
+    //    Grid for Achievement Analysis by appraisee
+    //    ==============================================================================================================
+//    jQuery("#aaba").jqGrid({
+//        url: "/achievement_analysis/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Detail'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, hidden: true, key: true},
+//            {name: 'Detail', index: 'detail', width: 300, key: true, editable: true,"edittype":"textarea","wrap":"on"}
+//        ],
+//        rowNum: 4,
+//        editurl: "/update_aabappraisee/" + emp_id,
+//        caption: "Achievement Analysis by Appraisee",
+//        pager: "#aaba_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel2) {
+//                jQuery("#aaba").jqGrid('restoreRow', lastsel2);
+//                jQuery("#aaba").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#aaba").jqGrid('setGridParam', {url: "/achievement_analysis/" + emp_id, page: 1});
+//                            jQuery("#aaba").jqGrid('setCaption', "Achievement Analysis by Appraisee").trigger('reloadGrid');
+//                        });
+//                lastsel2 = id;
+//            }
+//        }
+//    });
+//    jQuery("#aaba").jqGrid('navGrid', "#aaba_pager", {edit: false, add: false, del: false})
+//    jQuery("#aaba").jqGrid('inlineNav', "#aaba_pager", {
+//        addParams: {
+//            addRowParams: {
+//                aftersavefunc: function (rowid, response, options) {
+//                    jQuery("#aaba").jqGrid('setGridParam', {url: "/achievement_analysis/" + emp_id, page: 1});
+//                    jQuery("#aaba").jqGrid('setCaption', "Achievement Analysis by Appraisee").trigger('reloadGrid');
+//                }
+//            }
+//        },
+//        editParams: {
+//            url: "/update_aabappraisee",
+//            mtype: "POST",
+//            extraparam: {
+//                employee_id: function () {
+//                    return emp_id;
+//                }
+//            }
+//        }
+//    });
+    //    ==============================================================================================================
+
+
+    //    Grid for customer_feedback
+    //    ==============================================================================================================
+//    jQuery("#customer_feedback").jqGrid({
+//        url: "/customer_feedback/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Score'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, hidden: true, key: true},
+//            {name: 'Score', index: 'score', width: 290, align: "center", sortable: false, editable: (gon.avpnabove?true:false), edittype: "select", editoptions: {value: rating_option}, formatter:final_rating}
+//        ],
+//        rowNum: 4,
+//        editurl: "/cf_create_update_manager/" + emp_id,
+//        caption: "Customer Feedback",
+//        pager: "#customer_feedback_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel2) {
+//                jQuery("#customer_feedback").jqGrid('restoreRow', lastsel2);
+//                jQuery("#customer_feedback").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#customer_feedback").jqGrid('setGridParam', {url: "/customer_feedback/" + emp_id, page: 1});
+//                            jQuery("#customer_feedback").jqGrid('setCaption', "Customer Feedback").trigger('reloadGrid');
+//                        });
+//                lastsel2 = id;
+//            }
+//        }
+//    });
+//    jQuery("#customer_feedback").jqGrid('navGrid', "#aaba_pager", {edit: false, add: false, del: false})
+    //    ==============================================================================================================
+
+    //    Grid for Strength
+    //    ==============================================================================================================
+//    jQuery("#strength").jqGrid({
+//        url: "/strength/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Detail'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, hidden: true, key: true},
+//            {name: 'Detail', index: 'detail', width: 300, key: true, editable: true,"edittype":"textarea","wrap":"on"}
+//        ],
+//        rowNum: 4,
+//        editurl: "/strength_action/" + emp_id + "/" + false,
+//        caption: "Strength",
+//        pager: "#strength_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel3) {
+//                jQuery("#strength").jqGrid('restoreRow', lastsel3);
+//                jQuery("#strength").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#strength").jqGrid('setGridParam', {url: "/strength/" + emp_id, page: 1});
+//                            jQuery("#strength").jqGrid('setCaption', "Strength").trigger('reloadGrid');
+//                        });
+//                lastsel3 = id;
+//            }
+//        }
+//    });
+//    jQuery("#strength").jqGrid('navGrid', "#strength_pager", {edit: false, add: false, del: false})
+//    jQuery("#strength").jqGrid('inlineNav', "#strength_pager", {
+//        addParams: {
+//            addRowParams: {
+//                aftersavefunc: function (rowid, response, options) {
+//                    jQuery("#strength").jqGrid('setGridParam', {url: "/strength/" + emp_id, page: 1});
+//                    jQuery("#strength").jqGrid('setCaption', "Strength").trigger('reloadGrid');
+//                }
+//            }
+//        },
+//        editParams: {
+//            url: "/strength_action/" + emp_id + "/" + false,
+//            mtype: "POST"//,
+//        }
+//    });
+    //    ==============================================================================================================
+
+    //    Grid for Area Of Development
+    //    ==============================================================================================================
+//    jQuery("#aod").jqGrid({
+//        url: "/aod/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Detail'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, hidden: true, key: true},
+//            {name: 'Detail', index: 'detail', width: 300, key: true, editable: true,"edittype":"textarea","wrap":"on"}
+//        ],
+//        rowNum: 4,
+//        editurl: "/aod_action/" + emp_id + "/" + false,
+//        caption: "Area Of Development",
+//        pager: "#aod_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel4) {
+//                jQuery("#aod").jqGrid('restoreRow', lastsel4);
+//                jQuery("#aod").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#aod").jqGrid('setGridParam', {url: "/aod/" + emp_id, page: 1});
+//                            jQuery("#aod").jqGrid('setCaption', "Area of Development").trigger('reloadGrid');
+//                        });
+//                lastsel4 = id;
+//            }
+//        }
+//    });
+//    jQuery("#aod").jqGrid('navGrid', "#aod_pager", {edit: false, add: false, del: false})
+//    jQuery("#aod").jqGrid('inlineNav', "#aod_pager", {
+//        addParams: {
+//            addRowParams: {
+//                aftersavefunc: function (rowid, response, options) {
+//                    jQuery("#aod").jqGrid('setGridParam', {url: "/aod/" + emp_id, page: 1});
+//                    jQuery("#aod").jqGrid('setCaption', "Area of Development").trigger('reloadGrid');
+//                }
+//            }
+//        },
+//        editParams: {
+//            url: "/aod_action/" + emp_id + "/" + false,
+//            mtype: "POST"//,
+//        }
+//    });
+    //    ==============================================================================================================
+
+    //    Grid for Area Of Development
+    //    ==============================================================================================================
+//    jQuery("#sap").jqGrid({
+//        url: "/sap/" + emp_id,
+//        datatype: "json",
+//        colNames: ['ID', 'Detail'],
+//        colModel: [
+//            {name: 'ID', index: 'id', width: 50, hidden: true, key: true},
+//            {name: 'Detail', index: 'detail', width: 290, key: true, editable: true,"edittype":"textarea","wrap":"on"}
+//        ],
+//        rowNum: 4,
+//        editurl: "/sap_action/" + emp_id + "/" + false,
+//        caption: "Specific Action Plan",
+//        pager: "#sap_pager",
+//        sortname: 'id',
+//        sortorder: "asc",
+//        height: '100%',
+//        pginput: false,
+//        pgbuttons: false,
+//        ondblClickRow: function(id)
+//        {
+//            if (id && id !== lastsel5) {
+//                jQuery("#sap").jqGrid('restoreRow', lastsel5);
+//                jQuery("#sap").jqGrid('editRow', id, true, false, false, false, false,
+//                        function (xhr, res) {
+//                            jQuery("#sap").jqGrid('setGridParam', {url: "/sap/" + emp_id, page: 1});
+//                            jQuery("#sap").jqGrid('setCaption', "Specific Action Plan").trigger('reloadGrid');
+//                        });
+//                lastsel5 = id;
+//            }
+//        }
+//    });
+//    jQuery("#sap").jqGrid('navGrid', "#sap_pager", {edit: false, add: false, del: false})
+//    jQuery("#sap").jqGrid('inlineNav', "#sap_pager", {
+//        addParams: {
+//            addRowParams: {
+//                aftersavefunc: function (rowid, response, options) {
+//                    jQuery("#sap").jqGrid('setGridParam', {url: "/sap/" + emp_id, page: 1});
+//                    jQuery("#sap").jqGrid('setCaption', "Specific Action Plan").trigger('reloadGrid');
+//                }
+//            }
+//        },
+//        editParams: {
+//            url: "/sap_action/" + emp_id + "/" + false,
+//            mtype: "POST"//,
+//        }
+//    });
+    //    ==============================================================================================================
+    function editURL_jp() {
+        return "/update_jp/" + emp_id;
+    }
+
+</script>

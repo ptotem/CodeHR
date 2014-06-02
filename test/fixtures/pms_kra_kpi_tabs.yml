@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kra: MyString
+  objorsub: 1
+  unit: MyString
+  : MyString
+  kpi_range1: MyString
+  kpi_range2: MyString
+  kpi_range3: MyString
+  kpi_range4: MyString
+  kpi_range5: MyString
+  percentage: 1
+  linked_to: MyString
+
+two:
+  kra: MyString
+  objorsub: 1
+  unit: MyString
+  : MyString
+  kpi_range1: MyString
+  kpi_range2: MyString
+  kpi_range3: MyString
+  kpi_range4: MyString
+  kpi_range5: MyString
+  percentage: 1
+  linked_to: MyString

@@ -1,0 +1,29 @@
+<%= form_for(@pms_subgroup) do |f| %>
+  <% if @pms_subgroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pms_subgroup.errors.count, "error") %> prohibited this pms_subgroup from being saved:</h2>
+
+      <ul>
+      <% @pms_subgroup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br />
+    <%= f.number_field :percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :linked_to %><br />
+    <%= f.text_field :linked_to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+function weightage_validation(){
+    $('form').validate({
+        submitHandler: function(form){
+           if (!$('.weightage').validateValuesSum(100)) {
+               alert("Sum of all weightag not 100")
+           }
+           else
+               form.submit();
+        }
+    });
+}
+
+$.fn.validateValuesSum=function(value){
+    var sumOfValues=0;
+    this.each(function(){
+        sumOfValues+=parseInt($(this).val());
+    });
+    if(sumOfValues==value){
+        return true;
+    }
+    return false;
+}

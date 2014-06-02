@@ -24,6 +24,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+# gem 'jqgrid_for_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -80,6 +81,16 @@ gem "gon"
 gem 'cells'
 gem 'ruport'#, :git => 'https://github.com/ruport/ruport.git'#, :branch => 'ruby19-compat'
 gem 'acts_as_reportable'
+
+gem 'jqgrid_for_rails', git: 'git://github.com/Juanmcuello/jqgrid_for_rails.git'
+# gem 'will_paginate', '~> 3.0.5'
+gem "will_paginate_mongoid"
+gem 'kaminari'
+gem 'lazy_high_charts'
+group :development do
+  # gem "better_errors"
+end
+# gem "binding_of_caller"
 #gem 'pdf-writer', :git => 'git://github.com/mwlang/pdf-writer.git'
 #gem 'resque-scheduler', :require => 'resque_scheduler'
 #gem 'best_in_place', github: 'bernat/best_in_place'

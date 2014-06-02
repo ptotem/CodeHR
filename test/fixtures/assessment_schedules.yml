@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_master_id: MyString
+  from_date: 
+  from_time: 
+
+two:
+  employee_master_id: MyString
+  from_date: 
+  from_time: 

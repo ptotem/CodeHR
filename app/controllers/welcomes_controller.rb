@@ -20,12 +20,22 @@ class WelcomesController < InheritedResources::Base
   end
 
   def get_data
+    # render :json => params[:classname][0]
+    # return
+    @rqs = ReportQueryStatement.create!(:association => params[:association][0],:classname => params[:classname][0], :field => params[:field][0], :grp_by =>params[:group_by])
+    render :text => @rqs.id
+  end
+
+  def get_data1
+    # render :json => params
+    # return
     @a={}
+    @rqs = ReportQueryStatement.find(params[:stmt_id])
     @final_array = Array.new
-    @class=eval(params[:classname][0])
-    grp_by=params[:group_by][0]
-    @fields=params[:field][0]
-    @association=params[:association][0]
+    @class=eval(@rqs.classname)
+    grp_by=@rqs.grp_by
+    @fields=@rqs.field
+    @association=@rqs.association
     @arr=@class.group_by(grp_by)
     @arr.each do |arr|
       @fields.each do |i|
@@ -34,13 +44,45 @@ class WelcomesController < InheritedResources::Base
         @temp[:cvalue] = arr.instance_eval(i)
         @a = @a.merge({@temp[:cname]=>@temp[:cvalue]})
       end
-      @association.map do |i|
-        key = @class.reflections.select{|j,v| v.class_name ==i[:classname]}.keys.first
-        @temp=Hash.new
-        @str=i[:myfield]
-        @temp[:cname] = @str
-        @temp[:cvalue] = arr.instance_eval(key).instance_eval(@str) rescue nil
-        @a = @a.merge({@temp[:cname]=>@temp[:cvalue]})
+      @association = @rqs.association.group_by { |d| d["classname"] }
+      @assarr = []
+      @association.keys.map do |i|
+        key = @class.reflections.select{|j,v| v.class_name ==i}.keys.first
+        @assarr << key
+        c= Hash.new {|h,k| h[k]=[]}
+        if(@class.reflections.select{|v,i| i.relation.to_s.include?('Many')}.map{|i| i[0]}.include?(key))
+          c1 = Hash.new
+          if !arr.instance_eval(key).nil?
+            arr.instance_eval(key).each do |rec|
+              @association[i].each do |d|
+                @temp=Hash.new
+                @str=d["myfield"]
+                @temp[@str] = rec.instance_eval(@str)
+                c1 = c1.merge(@temp)
+              end
+              c[key.to_sym] << c1
+              @a = @a.merge(c)
+            end
+          end
+
+          # c= Hash.new {|h,k| h[k]=[]}
+          # @temp=Hash.new
+          # @str=i["myfield"]
+          # if !arr.instance_eval(key).nil?
+          #   arr.instance_eval(key).each do |rec|
+          #     @temp[:cname] = @str
+          #     @temp[:cvalue]=rec.instance_eval(@str)
+          #     c[key.to_sym] << {@temp[:cname]=>@temp[:cvalue]}
+          #     @a = @a.merge(c)
+          #   end
+          # end
+        else
+          @temp=Hash.new
+          @str=i["myfield"]
+          @temp[:cname] = @str
+          @temp[:cvalue] = arr.instance_eval(key).instance_eval(@str) rescue nil
+          @a = @a.merge({@temp[:cname]=>@temp[:cvalue]})
+        end
       end
       @final_array << @a
       @a = {}
@@ -49,8 +91,8 @@ class WelcomesController < InheritedResources::Base
 
 
 
-    render :json => @final_array
-    return
+    # render :json => @final_array
+    # return
   end
 
   def my_report
@@ -87,5 +129,101 @@ class WelcomesController < InheritedResources::Base
   #
   end
 
+  def assessment_tracker
+    # render :text => "Sunny"
+    # return
+  end
 
+  def employee_assessment
+    @p = PmsAssessment.where(:employee_id => current_user.employee_master.id).first
+
+    if @p.nil?
+      Goal.last.kras.each do |g|
+        g.subkras.each do |gs|
+          PmsAssessment.create!(:goal_id => Goal.last.id, :kra_id => gs.id, :employee_id => current_user.employee_master.id,:kra_name =>gs.kra_name,:moae =>gs.kpi_value,:moaa =>0,:weightage =>gs.weightage,:feedback=>'',:cr=>0,:sr =>0,:mr=>0,:fr=>0)
+        end
+      end
+    end
+  end
+
+  def manager_assessment
+    @p = PmsAssessment.where(:employee_id => params[:employee_id],:goal_id => params[:goal_id])
+  end
+
+  def goal_index
+    @columns = ['id','kra_name']
+    # @goals = Goal.first.kras.order_by([params['sidx'], :asc]).paginate(
+    #     :page => params[:page],
+    #     :per_page => params[:per_page]
+    # )
+    row =[]
+
+    Goal.last.kras.order_by([params['sidx'], :asc]).each do |t|
+      cell =[]
+      @columns.each do |c|
+        cell << t.instance_eval(c)
+      end
+      row << {:id => t.id, :cell =>cell}
+    end
+    a={:page => 1,:total => 1,:records => 1, :rows => row}
+    if request.xhr?
+      render :json => a
+    end
+  end
+
+  def subgoal_index
+    u = current_user.employee_master.id
+    @columns = ['id','kra_name','moae','moaa','weightage','feedback','cr','sr','mr','fr']
+    # @goals = Kra.find(params[:kra_id]).subkras.order_by([params['sidx'], :asc]).paginate(
+    #     :page => params[:page],
+    #     :per_page => params[:per_page]
+    # )
+    row =[]
+    Kra.find(params[:kra_id]).subkras.order_by([params['sidx'], :asc]).each do |t|
+      cell =[]
+      @ea = PmsAssessment.where(:employee_id => u,:kra_id => t.id).first
+      @columns.each do |c|
+        cell << @ea.instance_eval(c)
+      end
+      row << {:id => t.id, :cell =>cell}
+    end
+    a={:page => 1,:total => 1,:records => 1, :rows => row}
+    if request.xhr?
+      render :json => a
+    end
+    # if request.xhr?
+    #   a={:page => 1,:total => 1,:records => 1,:rows => [{:id =>"5385d6d2d6ca3f1093000001",:cell => ["5385d6d2d6ca3f1093000001","K1"]}]}
+    #   render :json => a
+    # end
+  end
+
+  def subgoals
+    @p = PmsAssessment.find(params["ID"].to_s)
+    cr = (((params[:Achieved].to_f/@p.moae.to_f)*@p.weightage)/100).round(2)
+    @p.update_attributes(:feedback => params["FEEDBACK"],:moaa => params[:Achieved],:cr=>cr,:sr => params["Self"].to_f)
+    render :json => @p
+    return
+  end
+
+  def pms_normalization
+    a = EmployeeMaster.all.map{|i| i.final_rating(Goal.last.id).floor}
+    b = (1..5).map{|i| a.count(i)}
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title({ :text=>"PMS chart"})
+      f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
+      # f.labels(:items=>[:html=>"Total fruit consumption", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+      # f.series(:type=> 'column',:name=> 'Jane',:data=> [3, 2, 1, 3, 4])
+      # f.series(:type=> 'column',:name=> 'John',:data=> [2, 3, 5, 7, 6])
+      # f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
+      # f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
+      f.series(:type=> 'spline',:name=> 'Average', :data=> b)
+      # f.series(:type=> 'pie',:name=> 'Total consumption',
+      #          :data=> [
+      #              {:name=> 'Jane', :y=> 13, :color=> 'red'},
+      #              {:name=> 'John', :y=> 23,:color=> 'green'},
+      #              {:name=> 'Joe', :y=> 19,:color=> 'blue'}
+      #          ],
+      #          :center=> [100, 80], :size=> 100, :showInLegend=> false)
+    end
+  end
 end

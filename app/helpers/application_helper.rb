@@ -236,10 +236,10 @@ module ApplicationHelper
           end
         else
           if @pro.parameter.nil?
-            @user=User.find(user_id)
-            @user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
-            @user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
-            @user.save
+            user=User.find(user_id)
+            user.user_tasks.create!(:user_id=>user_id,title:"Fill #{oclass} form",description:"Visit this link to fill #{oclass} form",link:"/fillform/#{oclass}/#{pid}/#{stepno}",seen:false)
+            user.current_redirect_url="/fillform/#{oclass}/#{pid}/#{stepno}"
+            user.save
           else
             @pro.step_transacts[stepno].end_processing_step
           end
@@ -374,19 +374,23 @@ module ApplicationHelper
         puts "Approval"
         puts "Inside Approval step of the current process"
       when "Notify"
-        puts "Notifying"
+
         @pro = ProcessTransact.find(pid)
+        puts "Notifying"+"ddddd"+@pro.notification_obj["oClass"]
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
+          puts "------------------Employee----------------------------"
           if !@pro.notification_obj["action_arr"].nil?
+            puts @pro.notification_obj["action_arr"]
             @pro.notification_obj["action_arr"].each do |noti|
-              @user=EmployeeMaster.find(noti["id"]).user
-              puts @user
-              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              # puts "000000000000000000000000000000000000000000000---"+noti["id"]+"---000000000000000000000000000000000000000000000"
+              user=EmployeeMaster.find(noti["id"]).user
+              puts user
+              unm=user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.save
-              @user.save
+              user.save
             end
           end
         elsif @pro.notification_obj["oClass"] == "GroupMaster"
@@ -462,6 +466,9 @@ module ApplicationHelper
           elsif @pro.step_transacts[0].action_name == "Update"
             puts "In side update action"
             @myc = eval(@class_name).find(objid)
+            eval(@class_name).nested_attributes_options.keys.each do |i|
+              @myc.instance_eval(i.to_s).destroy
+            end
             @myc.update_attributes(@pro.class_obj)
             @myc.save
           else

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kra_code: MyString
+  kra_name: MyString
+  kpi_value: 1
+  incremental: false
+  unit: MyString
+  weighage: MyString
+  linked_to_group: MyString
+  link_to_kra: MyString
+
+two:
+  kra_code: MyString
+  kra_name: MyString
+  kpi_value: 1
+  incremental: false
+  unit: MyString
+  weighage: MyString
+  linked_to_group: MyString
+  link_to_kra: MyString

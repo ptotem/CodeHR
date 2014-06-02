@@ -1,0 +1,27 @@
+<h1>Listing pms_subgroups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Percentage</th>
+    <th>Linked to</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pms_subgroups.each do |pms_subgroup| %>
+  <tr>
+    <td><%= pms_subgroup.name %></td>
+    <td><%= pms_subgroup.percentage %></td>
+    <td><%= pms_subgroup.linked_to %></td>
+    <td><%= link_to 'Show', pms_subgroup %></td>
+    <td><%= link_to 'Edit', edit_pms_subgroup_path(pms_subgroup) %></td>
+    <td><%= link_to 'Destroy', pms_subgroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pms subgroup', new_pms_subgroup_path %>

@@ -1,0 +1,171 @@
+en:
+  forms:
+    Goal:
+      name: "Main Form- Goal Setting For Roles"
+      object: "Goal"
+      notification :
+        group: "kras"
+        subgroup: "linked_to_group"
+      validation: "weightage_validation()"
+      fields:
+        tabs:
+          tab1:
+            name: "Goal- Main Sheet"
+            type: "standard"
+            cols:
+              type: "table"
+              col1:
+                code:
+                  attribute: 'code'
+                  label: 'Goal ID'
+                  type: 'text_field_tag'
+                  width: '100'
+                name:
+                  attribute: 'name'
+                  label: 'Goal Name'
+                  type: 'text_field_tag'
+                  width: '100'
+                period_from:
+                  attribute: 'period_from'
+                  label: 'Period From'
+                  type: 'date_field_tag'
+                  width: '100'
+                period_to:
+                  attribute: 'period_to'
+                  label: 'Period To'
+                  type: 'date_field_tag'
+                  width: '100'
+                parent_ids:
+                  attribute: 'parent_ids'
+                  label: 'Parent Goal'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'Goal'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'name'
+                obj_class:
+                  attribute: 'obj_class'
+                  type: 'hidden_field_tag'
+                  val: "RoleMaster"
+                obj_id:
+                  attribute: 'obj_id'
+                  label: 'Select Roles for the Goal'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'RoleMaster'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'name'
+          tab2:
+            name: "KRA"
+            type: 'sub-form'
+            attribute: 'Kra'
+            Kras:
+              type: 'sub-form'
+    Kra:
+      name: "KRA"
+      object: "Kra"
+      fields:
+        tabs:
+          tab1:
+            name: "KRA"
+            type: "standard"
+            cols:
+              type: "table"
+              col1:
+                kra:
+                  attribute: 'kra_name'
+                  label: 'Main KRA Description'
+                  type: 'text_area_tag'
+                  width: '100'
+                weightage:
+                  attribute: 'weightage'
+                  label: 'KRA Weightage'
+                  type: 'text_field_tag'
+                  width: '100'
+                linked_to_group:
+                  attribute: 'linked_to_group'
+                  label: 'Linked To Role?'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'RoleMaster'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'name'
+                linked_to_kra:
+                  attribute: 'linked_to_kra'
+                  label: 'Linked To KRA?'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'Kra'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'kra_name'
+          tab2:
+            name: "Sub KRA"
+            type: 'sub-form'
+            attribute: 'Subkra'
+            Kras:
+              type: 'sub-form'
+    Subkra:
+      name: "Sub KRA"
+      object: "Subkra"
+      fields:
+        tabs:
+          tab1:
+            name: "Sub KRA"
+            type: "standard"
+            cols:
+              type: "table"
+              col1:
+                kra:
+                  attribute: 'kra_name'
+                  label: 'Sub KRA Desciption'
+                  type: 'text_area_tag'
+                  width: '100'
+                kpi_description:
+                  attribute: 'kpi_description'
+                  label: 'KPI Description'
+                  type: 'text_area_tag'
+                  width: '100'
+                kpi_value:
+                  attribute: 'kpi_value'
+                  label: 'KPI Value'
+                  type: 'text_field_tag'
+                  width: '100'
+                unit:
+                  attribute: 'unit'
+                  label: 'Unit'
+                  type: 'text_field_tag'
+                  width: '100'
+                weightage:
+                  attribute: 'weightage'
+                  label: 'Weightage'
+                  type: 'text_field_tag'
+                  width: '100'
+                  class: 'weightage'
+                incremental:
+                  attribute: 'incremental'
+                  label: 'Is KPI Assessment Incremental?'
+                  type: 'text_field_tag'
+                  width: '100'
+                average_rating:
+                  attribute: 'average_rating'
+                  label: 'Average Rating'
+                  type: 'text_field_tag'
+                  width: '100'
+                linked_to_kra:
+                  attribute: 'linked_to_kra'
+                  label: 'Linked To KRA?'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'Kra'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'kra_name'

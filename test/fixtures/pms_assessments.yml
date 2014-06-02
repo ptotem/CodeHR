@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kra: 
+  moae: 1
+  moaa: 1
+  weightage: 1
+  cr: 1
+  sr: 1
+  mr: 1
+  fr: 1
+
+two:
+  kra: 
+  moae: 1
+  moaa: 1
+  weightage: 1
+  cr: 1
+  sr: 1
+  mr: 1
+  fr: 1

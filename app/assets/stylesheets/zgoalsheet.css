@@ -1,0 +1,96 @@
+/*html{*/
+    /*height: 100%;*/
+    /*background: #aaa;*/
+/*}*/
+/*body{*/
+    /*color:#ffffff;*/
+    /*width: 980px;*/
+    /*padding-left: 40px;*/
+    /*height: 100%;*/
+    /*background: url('/assets/background.jpg');*/
+    /*background-size: 100% auto;*/
+    /*font-size: 14px;*/
+    /*margin: 0 auto;*/
+/*}*/
+.ui-jqgrid-titlebar{
+    background: #438EB9;
+}
+
+.ui-jqgrid{
+    border: 1px solid #494949;
+
+}
+.ui-jqgrid-htable{
+    background-color: #000000 ;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: #DDDDDD;
+    color: #000000;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background-color: #DDDDDD;
+    color: #000000;
+}
+
+.ui-widget-content td{
+    cursor: pointer;
+    text-align: left;
+}
+
+.ui-th-column-header
+{
+    text-align: center;
+}
+
+
+
+.ui-pg-div{
+    /*margin-top:-10px;*/
+    background: black;
+    border-radius: 5px;
+}
+
+#goals_list .ui-pg-div{
+    margin-top:-10px;
+}
+
+.ui-jqgrid{
+    margin-left: 5%;
+}
+
+.ui-jqgrid .ui-jqgrid-pager .ui-pg-div span.ui-icon {
+    float: left;
+    margin: 0 2px;
+}
+
+.ui-jqgrid tr.jqgrow td
+{
+    word-wrap: break-word; /* IE 5.5+ and CSS3 */
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: normal !important;
+    height: auto;
+    vertical-align: text-top;
+    padding-top: 2px;
+    padding-bottom: 3px;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background-color: #ffffff;
+}
+
+.ui-jqgrid-htable thead{
+    background-color: #DDDDDD;
+}
+
+.ui-subgrid .ui-jqgrid.ui-widget.ui-widget-content.ui-corner-all{
+    margin-left: 0;
+}
+
+.loading{
+    display: none;
+}
+

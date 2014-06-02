@@ -2,7 +2,8 @@
   <% SalaryComponentMaster.all.each do |sc| %>
     <% @compensation_component.formula_lists.build(:salary_component_id=>sc.name) %>
   <% end %>
-  <%= nested_form_for(@compensation_component, :url => (@new ? generic_create_path(@compensation_component.class) : generic_update_path(@compensation_component.class,@compensation_component.id)), html: {class: "form-horizontal"}) do |f| %>
+
+  <%= nested_form_for(@compensation_component, :url => (review_form_path), html: {class: "form-horizontal"}) do |f| %>
       <% if @compensation_component.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@compensation_component.errors.count, "error") %> prohibited this compensation_component from being saved:</h2>
@@ -41,7 +42,7 @@
         <div class="span4">
           <div class="control-group">
             <%#= raw custom_lable(@compensation_component, :final_ctc_fixed) %>
-            <label for="<%= @form[:final_ctc_fixed].to_s %>" class="control-label"><%= @form[:final_ctc_fixed].to_s %></label>
+            <label for="Final Fixed CTC" class="control-label">Final Fixed CTC</label>
             <div class="controls">
               <%= text_field_tag :cf %>
             </div>
@@ -50,7 +51,7 @@
         <div class="span3">
           <div class="control-group">
             <%#= raw custom_lable(@compensation_component, :final_ctc_fixed) %>
-            <label for="<%= @form[:final_ctc_varriable].to_s %>" class="control-label"><%= @form[:final_ctc_varriable].to_s %></label>
+            <label for="Final Varriable CTC" class="control-label">Final Varriable CTC</label>
             <div class="controls">
               <%= text_field_tag :cv %>
             </div>
@@ -124,17 +125,6 @@
           </table>
         </div>
       </div>
-
-      <% @fields = DynamicField.where(:oclass=>"CompensationComponent") %>
-      <h3 class="header lighter blue">Dynamic Field</h3>
-      <% @fields.each do |field| %>
-          <div class="control-group">
-            <%= f.label field.name.to_sym,:class => "control-label" %>
-            <div class="controls">
-              <%= f.send(field.type.to_sym, field.name.to_sym )%>
-            </div>
-          </div>
-      <% end %>
 
       <% if !params[:process_id].nil? %>
           <%= hidden_field_tag :process_id, params[:process_id] %>

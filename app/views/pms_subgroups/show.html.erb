@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @pms_subgroup.name %>
+</p>
+
+<p>
+  <b>Percentage:</b>
+  <%= @pms_subgroup.percentage %>
+</p>
+
+<p>
+  <b>Linked to:</b>
+  <%= @pms_subgroup.linked_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_pms_subgroup_path(@pms_subgroup) %> |
+<%= link_to 'Back', pms_subgroups_path %>

@@ -228,13 +228,23 @@ class GenericController < ApplicationController
 
     def fill_from_creation_process
       @model_name = params[:model_name]
-
       @form_config = t('forms.'+@model_name)
-      @fields = @form_config[:fields]
-      @score = Rating.new.score_receiveds.build
-
-      @num = eval(@model_name).all.length rescue 1
-      @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1)) rescue 1
+      if @form_config.has_key?(:type) and @form_config[:type] == "specific"
+        instance_variable_set("@#{params[:model_name].underscore}",eval(@model_name).new)
+        @form_config[:extra_params].keys.sort.each do |key|
+          instance_variable_set("@#{key}",@form_config[:extra_params][key])
+        end
+        new =true
+        @notification =true
+        render :file => @form_config[:link_location]
+        return
+      else
+        @form_config = t('forms.'+@model_name)
+        @fields = @form_config[:fields]
+        @score = Rating.new.score_receiveds.build
+        @num = eval(@model_name).all.length rescue 1
+        @dynamic_code = t('config.AutoCode.'+@model_name+'.text')+sprintf('%0'+t('config.AutoCode.'+@model_name+'.digit')+'d',(@num+1)) rescue 1
+      end
 
       #@approval = true
       #@notification =true
@@ -302,12 +312,29 @@ class GenericController < ApplicationController
     def review_filled_form
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
+      ################################################################
+      # Block to override notification object of current process
+      # It works only when form yaml contains notification object
+      if t('forms.'+params[:model_name]).has_key?(:notification)
+        @form_config = t('forms.'+params[:model_name])
+        action_arr = []
+        arr_list = params[params[:model_name].to_sym][@form_config[:notification][:group]].keys.map{|i| params[params[:model_name].to_sym][@form_config[:notification][:group]][i][@form_config[:notification][:subgroup]]}.flatten - [""]
+        arr_list.each  do |al|
+          if !al.nil?
+            action_arr << {:id => al}
+          end
+        end
+        @notification = Hash.new
+        @notification = {:title => "Kra Added", :description => "You Kra is updated", :oClass =>"EmployeeMaster", :action_arr =>action_arr}
+        @process_transact.notification_obj = @notification
+      end
+      ################################################################
       @process_transact.save
       if !params[:process_id].nil?
         @pro=ProcessTransact.find(params[:process_id])
-        @user=current_user
-        @user.current_redirect_url=''
-        @user.save
+        user=User.find(current_user.id)
+        user.current_redirect_url=''
+        user.save
         @pro.step_transacts[params[:seq].to_i].end_processing_step
       end
       @user=User.find(current_user._id)
@@ -315,7 +342,6 @@ class GenericController < ApplicationController
         redirect_to @user.current_redirect_url
         return
       end
-
       redirect_to '/', notice: "Form is Filled"
     end
 
@@ -363,10 +389,20 @@ class GenericController < ApplicationController
     def update_form
       @model_name = params[:model_name]
       @form_config = t('forms.'+@model_name)
+      @tabs = t('forms.'+@model_name+'.fields.tabs.tab2')
       @fields = @form_config[:fields]
       @object_at_hand  = @model_name.camelize.constantize.find(params[:id])
-      @approval = true
-      @notification =true
+      if @model_name == "Goal"
+        @l = []
+        @model_name.camelize.constantize.find(params[:id]).kras.each do |f|
+          f[:subkras] = f.subkras
+          @l << f
+        end
+        @object_at_hand[:kras] = @l
+      end
+      # @model_name.camelize.constantize.find(params[:id]).kras.destroy_all
+      # render :json => @object_at_hand[:kras][0][:subkras][0]
+      # return
     end
 
     #def update_form

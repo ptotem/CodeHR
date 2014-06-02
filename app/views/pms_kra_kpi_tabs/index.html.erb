@@ -1,0 +1,41 @@
+<h1>Listing pms_kra_kpi_tabs</h1>
+
+<table>
+  <tr>
+    <th>Kra</th>
+    <th>Objorsub</th>
+    <th>Unit</th>
+    <th>Kpi range1</th>
+    <th>Kpi range2</th>
+    <th>Kpi range3</th>
+    <th>Kpi range4</th>
+    <th>Kpi range5</th>
+    <th>Percentage</th>
+    <th>Linked to</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pms_kra_kpi_tabs.each do |pms_kra_kpi_tab| %>
+  <tr>
+    <td><%= pms_kra_kpi_tab.kra %></td>
+    <td><%= pms_kra_kpi_tab.objorsub %></td>
+    <td><%= pms_kra_kpi_tab.unit %></td>
+    <td><%= pms_kra_kpi_tab.kpi_range1 %></td>
+    <td><%= pms_kra_kpi_tab.kpi_range2 %></td>
+    <td><%= pms_kra_kpi_tab.kpi_range3 %></td>
+    <td><%= pms_kra_kpi_tab.kpi_range4 %></td>
+    <td><%= pms_kra_kpi_tab.kpi_range5 %></td>
+    <td><%= pms_kra_kpi_tab.percentage %></td>
+    <td><%= pms_kra_kpi_tab.linked_to %></td>
+    <td><%= link_to 'Show', pms_kra_kpi_tab %></td>
+    <td><%= link_to 'Edit', edit_pms_kra_kpi_tab_path(pms_kra_kpi_tab) %></td>
+    <td><%= link_to 'Destroy', pms_kra_kpi_tab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pms kra kpi tab', new_pms_kra_kpi_tab_path %>

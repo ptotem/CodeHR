@@ -1,0 +1,2 @@
+module PmsGroupCategoriesHelper
+end

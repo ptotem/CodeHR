@@ -91,6 +91,7 @@ en:
             attribute: 'EmployeeOtherDetails'
             EmployeeOtherDetails:
               type: 'sub-form'
+
 #    EmployeeDetails:
 #      name: "Sub Form-Employee Details-Short"
 #      object: "EmployeeDetail"

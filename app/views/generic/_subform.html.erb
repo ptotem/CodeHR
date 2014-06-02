@@ -112,7 +112,9 @@
 
                         <% case nf[:type] %>
                         <% when "text_field_tag" %>
-                            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]","",:style => "width:#{nf[:width]}px;" %>
+                            <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]","",{:class=>(nf[:class] rescue ""),:style => "width:#{nf[:width]}px;"} %>
+                        <% when "text_area_tag" %>
+                            <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]" %>
                         <% when "select_tag" %>
                             <% if nf[:options] == 'model' %>
                                 <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show]),{:style => "width:#{nf[:width]}px;",:class => "chzn-select", :multiple => nf[:multiple]} %>
@@ -126,9 +128,10 @@
 
                 <%#= render :partial => 'nested_sub_form', :locals => {:new_fields => @new_fields, :main_form => main_form, :fi => fi, :form_index => form_index, :this_sf =>@this_sf, :my_index =>(@my_index+1) } %>
                 </tbody>
-                <input type="hidden" class="my_index" value="0"/>
-                <input type="button" name="Add New" id="addNew" value="Add New" class="btn btn-info" onclick='add_new_nested_fields(this,<%= raw @nf %>,"<%= main_form %>","<%= fi %>","<%= form_index %>","<%= @this_sf %>")'/>
+
               </table>
+              <input type="hidden" class="my_index" value="0"/>
+              <input type="button" name="Add New <%= @this_sf %>" id="addNew" value="Add New <%= @this_sf %>" class="btn btn-info" onclick='add_new_nested_fields(this,<%= raw @nf %>,"<%= main_form %>","<%= fi %>","<%= form_index %>","<%= @this_sf %>")'/>
 
             </div>
         <% end %>

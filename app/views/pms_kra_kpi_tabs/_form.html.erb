@@ -1,0 +1,57 @@
+<%= form_for(@pms_kra_kpi_tab) do |f| %>
+  <% if @pms_kra_kpi_tab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pms_kra_kpi_tab.errors.count, "error") %> prohibited this pms_kra_kpi_tab from being saved:</h2>
+
+      <ul>
+      <% @pms_kra_kpi_tab.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kra %><br />
+    <%= f.text_field :kra %>
+  </div>
+  <div class="field">
+    <%= f.label :objorsub %><br />
+    <%= f.number_field :objorsub %>
+  </div>
+  <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.text_field :unit %>
+  </div>
+  <div class="field">
+    <%= f.label :kpi_range1 %><br />
+    <%= f.text_field :kpi_range1 %>
+  </div>
+  <div class="field">
+    <%= f.label :kpi_range2 %><br />
+    <%= f.text_field :kpi_range2 %>
+  </div>
+  <div class="field">
+    <%= f.label :kpi_range3 %><br />
+    <%= f.text_field :kpi_range3 %>
+  </div>
+  <div class="field">
+    <%= f.label :kpi_range4 %><br />
+    <%= f.text_field :kpi_range4 %>
+  </div>
+  <div class="field">
+    <%= f.label :kpi_range5 %><br />
+    <%= f.text_field :kpi_range5 %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br />
+    <%= f.number_field :percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :linked_to %><br />
+    <%= f.text_field :linked_to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
