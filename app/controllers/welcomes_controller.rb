@@ -218,9 +218,9 @@ class WelcomesController < InheritedResources::Base
 
     b = (1..5).map{|i| a.count(i)}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title({ :text=>"PMS chart"})
+      f.title({ :text=>"Performance Management - Bell Curve"})
       f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
-      f.labels(:items=>[:html=>"Rating Wise Classification", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+      f.labels(:items=>[:html=>"Company Overall Rating", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
       # f.series(:type=> 'column',:name=> 'Jane',:data=> [3, 2, 1, 3, 4])
       # f.series(:type=> 'column',:name=> 'John',:data=> [2, 3, 5, 7, 6])
       # f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
@@ -246,9 +246,9 @@ class WelcomesController < InheritedResources::Base
     a = @group_master.employee_masters.all.map{|i| i.final_rating(Goal.last.id).floor}
     b = (1..5).map{|i| a.count(i)}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title({ :text=>"PMS chart"})
+      f.title({ :text=>"Performance Management - Bell Curve"})
       f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
-      f.labels(:items=>[:html=>"Group Wise Classification", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+      f.labels(:items=>[:html=> @group_master.group_name+"- Rating", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
       f.series(:type=> 'spline',:name=> 'Average', :data=> b)
     end
   end
