@@ -82,6 +82,9 @@ gem 'cells'
 gem 'ruport'#, :git => 'https://github.com/ruport/ruport.git'#, :branch => 'ruby19-compat'
 gem 'acts_as_reportable'
 
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 gem 'jqgrid_for_rails', git: 'git://github.com/Juanmcuello/jqgrid_for_rails.git'
 # gem 'will_paginate', '~> 3.0.5'
 gem "will_paginate_mongoid"

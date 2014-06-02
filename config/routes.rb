@@ -129,6 +129,8 @@ CodeHR::Application.routes.draw do
   match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
 
+  match '/get_report_of' => 'welcomes#get_report_of', :as=> :get_report_of
+
   match '/get_dropdown_data' => 'master_pros#get_dropdown_data', :as=> :get_dropdown_data
 
   match '/process_transacts/new/(:master_pro_id)' => 'process_transacts#new', :as=> :process_transacts_with_master_pro

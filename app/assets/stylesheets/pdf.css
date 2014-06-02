@@ -1,0 +1,39 @@
+@media print {
+    body { background-color: #FFF; }
+    #container {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #line_items {
+        page-break-before: always;
+    }
+
+    #content{
+        color: green;
+        background-color: red;
+    }
+
+    #report_header {
+        text-align: center;
+        color: #ff0000;
+    }
+
+    #list_container{
+        text-align: center;
+    }
+
+    ul#users_list, ul#employee_masters_list {
+        color: green;
+        list-style: none;
+        text-align: left;
+    }
+
+    #header_logo{
+        /*height: 120px;*/
+        width: 145px;
+        clear: both;
+    }
+}

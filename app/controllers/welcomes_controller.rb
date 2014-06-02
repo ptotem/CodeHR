@@ -1,4 +1,7 @@
 class WelcomesController < InheritedResources::Base
+
+  layout "reporting_layout", only: [:show_my_report]
+
   def report
     @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
   end
@@ -241,6 +244,18 @@ class WelcomesController < InheritedResources::Base
     end
   end
 
+
+  def get_report_of
+    @users = User.all
+    @employee_masters = EmployeeMaster.all
+
+    render :pdf => 'show_my_report',
+           :user_style_sheet               => "#{Rails.root}/app/assets/stylesheets/pdf.css",
+           :header => { :right => '[0] of [1]' }
+
+  end
+
+
   def pms_normalization_grp_wise
     @group_master = GroupMaster.find(params[:group_master_id])
     a = @group_master.employee_masters.all.map{|i| i.final_rating(Goal.last.id).floor}
@@ -262,4 +277,5 @@ class WelcomesController < InheritedResources::Base
     render :json =>@a
     return
   end
+
 end
