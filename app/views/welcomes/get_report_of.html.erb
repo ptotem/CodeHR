@@ -1,0 +1,48 @@
+
+<header>
+  Header :- Page 1 of 1
+</header>
+<%= wicked_pdf_image_tag 'codeHR2.jpg', :id=>"header_logo" %>
+
+<div id="report_header">
+  <h1>Report</h1>
+</div>
+
+
+<div id="list_container">
+  <p>Users list</p>
+  <ul id="users_list">
+    <span><b>User Name</b></span>
+    <% @users.each do |user| %>
+        <li><%= user.name %></li>
+    <% end %>
+  </ul>
+
+  <p>Employee Master list</p>
+
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+    </tr>
+    <% @employee_masters.each do |employee_master| %>
+        <tr>
+          <td><%= employee_master.employee_code %></td>
+          <td><%= employee_master.employee_name %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+
+
+
+<!--<footer>-->
+<!--Footer :- Page 1 of 1-->
+<!--</footer>-->
+
+<script>
+    $(function(){
+        $("#report_header").append("Added by js");
+    });
+</script>

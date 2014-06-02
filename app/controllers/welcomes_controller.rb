@@ -1,4 +1,7 @@
 class WelcomesController < InheritedResources::Base
+
+  layout "reporting_layout", only: [:show_my_report]
+
   def report
     @models = Dir["#{Rails.root}/app/models/*.rb"].map{|i| i.sub('.rb','').sub("#{Rails.root}/app/models/","").underscore.camelize}
   end
@@ -226,4 +229,15 @@ class WelcomesController < InheritedResources::Base
       #          :center=> [100, 80], :size=> 100, :showInLegend=> false)
     end
   end
+
+  def get_report_of
+    @users = User.all
+    @employee_masters = EmployeeMaster.all
+
+    render :pdf => 'show_my_report',
+           :user_style_sheet               => "#{Rails.root}/app/assets/stylesheets/pdf.css",
+           :header => { :right => '[0] of [1]' }
+
+  end
+
 end
