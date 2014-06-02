@@ -26,10 +26,9 @@ en:
                   type: 'select_tag'
                   width: '80'
                   options: ["Male","Female", "Other"]
-#todo: Need multiple group selection option
                 group_master_ids:
                   attribute: 'group_master_ids'
-                  label: 'Group Master'
+                  label: 'Departments/Groups'
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
@@ -45,8 +44,13 @@ en:
                 role:
                   attribute: 'role'
                   label: 'Current Role'
-                  type: 'text_field_tag'
+                  type: 'select_tag'
                   width: '200'
+                  options: 'model'
+                  class: 'Role'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'name'
                 official_email:
                   attribute: 'official_email'
                   label: 'Official E-mail ID'

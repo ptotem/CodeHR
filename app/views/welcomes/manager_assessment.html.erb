@@ -153,7 +153,7 @@
             pager_id = "p_" + subgrid_table_id;
             $("#" + subgrid_id).html("<table id='" + subgrid_table_id + "' class='scroll'></table><div id='" + pager_id + "' class='scroll'></div>");
             jQuery("#" + subgrid_table_id).jqGrid({
-                url: "/subgoal_index/" + row_id + "/" + emp_id,
+                url: "/subgoal_index/" + row_id + "/" + emp_id +"/true",
                 datatype: "json",
                 colNames: ['ID', 'KRA', 'Expected','Achieved', '%', 'FEEDBACK', 'Calc','Self', 'Manager', 'Final'],
                 colModel: [
@@ -169,7 +169,7 @@
                     {name: "Final", index: "Final", width: 50, align: "center", sortable: false, editable: false}
                 ],
                 rowNum: 20,
-                editurl: "/subgoals/" + emp_id + "/" + row_id,
+                editurl: "/subgoals/" + emp_id + "/" + row_id+"/true",
                 pager: pager_id,
                 sortname: 'id',
                 width: '100%',

@@ -41,10 +41,11 @@ class EmployeeMaster
   has_and_belongs_to_many :reps, :inverse_of => :parents,  :class_name => 'EmployeeMaster', :autosave => true
   has_and_belongs_to_many :parents,  :inverse_of => :reps, :class_name => 'EmployeeMaster', :autosave => true
   accepts_nested_attributes_for :reps
+  accepts_nested_attributes_for :group_masters
 
   after_create :create_user
 
-  has_many :assessments
+  # has_many :assessments
 
   rails_admin do
     navigation_label "Emp Masters"

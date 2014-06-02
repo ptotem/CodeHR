@@ -12,7 +12,8 @@ class GroupMaster
   belongs_to :company_master
   has_many :manpower_plannings
   has_many :vacancy_masters
-  has_many :employee_masters
+
+  has_and_belongs_to_many :employee_masters
 
   has_many :child_groups, :class_name => 'GroupMaster', :inverse_of => :parent_group
   belongs_to :parent_group, :class_name => 'GroupMaster', :inverse_of => :child_group

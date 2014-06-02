@@ -19,12 +19,12 @@ en:
                   attribute: 'code'
                   label: 'Goal ID'
                   type: 'text_field_tag'
-                  width: '100'
+                  width: '50'
                 name:
                   attribute: 'name'
-                  label: 'Goal Name'
-                  type: 'text_field_tag'
-                  width: '100'
+                  label: 'Goal Description'
+                  type: 'text_area_tag'
+                  width: '300'
                 period_from:
                   attribute: 'period_from'
                   label: 'Period From'
@@ -58,7 +58,7 @@ en:
                   class: 'EmployeeMaster'
                   multiple: 'true'
                   select: 'id'
-                  show: 'employee_name'
+                  show: 'group_name'
           tab2:
             name: "KRA"
             type: 'sub-form'
@@ -80,22 +80,17 @@ en:
                   attribute: 'kra_name'
                   label: 'Main KRA Description'
                   type: 'text_area_tag'
-                  width: '100'
-                weightage:
-                  attribute: 'weightage'
-                  label: 'KRA Weightage'
-                  type: 'text_field_tag'
-                  width: '100'
+                  width: '200'
                 linked_to_group:
                   attribute: 'linked_to_group'
-                  label: 'Linked To Other Employees?'
+                  label: 'Linked To Group?'
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
-                  class: 'EmployeeMaster'
+                  class: 'GroupMaster'
                   multiple: 'true'
                   select: 'id'
-                  show: 'name'
+                  show: 'group_name'
                 linked_to_kra:
                   attribute: 'linked_to_kra'
                   label: 'Linked To KRA?'
@@ -137,7 +132,7 @@ en:
                   attribute: 'kpi_value'
                   label: 'KPI Value'
                   type: 'text_field_tag'
-                  width: '100'
+                  width: '50'
                 unit:
                   attribute: 'unit'
                   label: 'Unit'
@@ -145,20 +140,20 @@ en:
                   width: '100'
                 weightage:
                   attribute: 'weightage'
-                  label: 'Weightage'
+                  label: 'Weightage in %age'
                   type: 'text_field_tag'
-                  width: '100'
+                  width: '50'
                   class: 'weightage'
                 incremental:
                   attribute: 'incremental'
                   label: 'Is KPI Assessment Incremental?'
-                  type: 'text_field_tag'
-                  width: '100'
+                  type: 'check_box_tag'
+                  width: '10'
                 average_rating:
                   attribute: 'average_rating'
                   label: 'Average Rating'
                   type: 'text_field_tag'
-                  width: '100'
+                  width: '50'
                 linked_to_kra:
                   attribute: 'linked_to_kra'
                   label: 'Linked To KRA?'

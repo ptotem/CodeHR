@@ -1,5 +1,5 @@
     <% @fields1 = t('forms.'+fi+'.fields') %>
-
+    <a href="#" onclick="remove_elem_sf($(this))" style="text-align: center;float: right;"><i class="icon-remove-circle"></i></a>
 
     <% @fields_name = @fields1[:tabs].map { |i, v| v } %>
     <% @fields_name.each_with_index do |tab_val, index| %>
@@ -99,6 +99,7 @@
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
+                  <th></th>
                   <% @new_fields.each do |nf| %>
                       <th><label for="<%= nf[:label] %>" class="control-label"><%= nf[:label] %></label></th>
                   <% end %>
@@ -107,6 +108,7 @@
                 <tbody class="my_body">
                 <% @my_index=0 %>
                 <tr class="salary_comp_row">
+                  <td><a href="#" onclick="remove_elem($(this).parent())" style="text-align: center"><i class="icon-remove-circle"></i></a></td>
                   <% @new_fields.each do |nf| %>
                       <td>
 

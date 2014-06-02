@@ -172,7 +172,11 @@ class WelcomesController < InheritedResources::Base
   end
 
   def subgoal_index
-    u = current_user.employee_master.id
+    if !params[:manager]
+      u = current_user.employee_master.id
+    else
+      u = params[:employee_id]
+    end
     @columns = ['id','kra_name','moae','moaa','weightage','feedback','cr','sr','mr','fr']
     # @goals = Kra.find(params[:kra_id]).subkras.order_by([params['sidx'], :asc]).paginate(
     #     :page => params[:page],
@@ -200,22 +204,32 @@ class WelcomesController < InheritedResources::Base
   def subgoals
     @p = PmsAssessment.find(params["ID"].to_s)
     cr = (((params[:Achieved].to_f/@p.moae.to_f)*@p.weightage)/100).round(2)
-    @p.update_attributes(:feedback => params["FEEDBACK"],:moaa => params[:Achieved],:cr=>cr,:sr => params["Self"].to_f)
+    if !params[:manager]
+      @p.update_attributes(:feedback => params["FEEDBACK"],:moaa => params[:Achieved],:cr=>cr,:sr => params["Self"].to_f)
+    else
+      @p.update_attributes(:feedback => params["FEEDBACK"],:moaa => params[:Achieved],:mr => params["Manager"].to_f,:fr =>params["Manager"].to_f)
+    end
     render :json => @p
     return
   end
 
   def pms_normalization
     a = EmployeeMaster.all.map{|i| i.final_rating(Goal.last.id).floor}
+
     b = (1..5).map{|i| a.count(i)}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({ :text=>"PMS chart"})
       f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
-      # f.labels(:items=>[:html=>"Total fruit consumption", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+      f.labels(:items=>[:html=>"Rating Wise Classification", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
       # f.series(:type=> 'column',:name=> 'Jane',:data=> [3, 2, 1, 3, 4])
       # f.series(:type=> 'column',:name=> 'John',:data=> [2, 3, 5, 7, 6])
       # f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
       # f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
+      # GroupMaster.all.each do |e|
+      #   a1 = e.employee_masters.map{|i| i.final_rating(Goal.last.id).floor}
+      #   b1 = (1..5).map{|i| a1.count(i)}
+      #   f.series(:type=> 'spline',:name=> e.group_name, :data=> b1)
+      # end
       f.series(:type=> 'spline',:name=> 'Average', :data=> b)
       # f.series(:type=> 'pie',:name=> 'Total consumption',
       #          :data=> [
@@ -225,5 +239,27 @@ class WelcomesController < InheritedResources::Base
       #          ],
       #          :center=> [100, 80], :size=> 100, :showInLegend=> false)
     end
+  end
+
+  def pms_normalization_grp_wise
+    @group_master = GroupMaster.find(params[:group_master_id])
+    a = @group_master.employee_masters.all.map{|i| i.final_rating(Goal.last.id).floor}
+    b = (1..5).map{|i| a.count(i)}
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title({ :text=>"PMS chart"})
+      f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
+      f.labels(:items=>[:html=>"Group Wise Classification", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+      f.series(:type=> 'spline',:name=> 'Average', :data=> b)
+    end
+  end
+
+  def send_employee_data
+    @group_master = GroupMaster.find(params[:group_master_id][0])
+    @a = []
+    @group_master.employee_masters.each do |e|
+      @a << { id:e.id,name:e.employee_name }
+    end
+    render :json =>@a
+    return
   end
 end

@@ -235,9 +235,12 @@ CodeHR::Application.routes.draw do
   ####################################### Employee Assessment #####################################################
   match '/assessment_tracker/(:employee_id)' => 'welcomes#assessment_tracker', :as => :assessment_tracker
   match '/employee_assessment/(:employee_id)' => 'welcomes#employee_assessment', :as => :assessment_tracker
+  match '/manager_assessment/:employee_id' => 'welcomes#manager_assessment', :as => :manager_assessment
   match '/goal_index/(:employee_id)' => 'welcomes#goal_index'#, :as => :assessment_tracker
-  match '/subgoal_index/(:kra_id)/(:employee_id)' => 'welcomes#subgoal_index'#, :as => :assessment_tracker
-  match '/subgoals/(:employee_id)/(:kra_id)' => 'welcomes#subgoals'#, :as => :assessment_tracker
+  match '/subgoal_index/(:kra_id)/(:employee_id)/(:manager)' => 'welcomes#subgoal_index'#, :as => :assessment_tracker
+  match '/subgoals/(:employee_id)/(:kra_id)/(:manager)' => 'welcomes#subgoals'#, :as => :assessment_tracker
+  match '/send_employee_data' => 'welcomes#send_employee_data'
+  match '/pms_normalization_grp_wise/:group_master_id' => 'welcomes#pms_normalization_grp_wise'
   #################################################################################################################
   match '/pms_eval' => 'welcomes#pms_normalization'
   #################################################################################################################
