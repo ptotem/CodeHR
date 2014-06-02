@@ -255,12 +255,18 @@ class WelcomesController < InheritedResources::Base
 
   end
 
+  def display_report_of
+
+  end
+
   def generate_pdf_report
     @emp_master_name = params[:employee_master]
     @message = params[:message]
 
-    render :text => "#{@emp_master_name}, #{@message}"
-    return
+    #render :text => "#{@emp_master_name}, #{@message}"
+    #return
+
+    render :pdf => 'show_report', :user_style_sheet => "#{Rails.root}/app/assets/stylesheets/pdf.css"
   end
 
 

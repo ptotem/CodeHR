@@ -130,6 +130,7 @@ CodeHR::Application.routes.draw do
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
 
   match '/get_report_of' => 'welcomes#get_report_of', :as=> :get_report_of
+  match '/display_report_of' => 'welcomes#display_report_of', :as=> :display_report_of
   match '/generate_pdf_report' => 'welcomes#generate_pdf_report', :as=> :generate_pdf_report
 
   match '/get_dropdown_data' => 'master_pros#get_dropdown_data', :as=> :get_dropdown_data

@@ -1,0 +1,61 @@
+<style>
+    .margin-top-2per{
+        margin-top: 2%;
+    }
+    #company_logo{
+        width: 50%;
+    }
+
+    #pdf_logo{
+        width: 20%;
+    }
+</style>
+
+<div class="row">
+  <div class="span11">
+
+
+        <div class="row">
+          <div class="span3">
+            <%#= image_tag "codeHR2.jpg", :id=>"company_logo" %>
+            <%= wicked_pdf_image_tag 'codeHR2.jpg', :id=>"pdf_logo" %>
+            <%= wicked_pdf_javascript_include_tag "pdf_test.js" %>
+          </div>
+          <div class="span2 offset5">
+            Date :- <%= Date.today.strftime("%d %B %Y") %>
+          </div>
+        </div>
+
+        <div class="row margin-top-2per">
+          <div class="span6">
+            <p style="display: inline-block">Dear, </p>
+            <%= @emp_master_name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset1 span8">
+            <%= @message %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset8 span2">
+            Regards
+          </div>
+        </div>
+
+        <div class="row">
+          <table id="goals_list"></table>
+          <div id="goals_pager"></div>
+        </div>
+
+
+
+  </div>
+</div>
+
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+</script>
