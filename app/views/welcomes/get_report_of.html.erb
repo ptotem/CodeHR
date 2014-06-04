@@ -23,7 +23,7 @@
         <div class="row margin-top-2per">
           <div class="span6">
             <p style="display: inline-block">Dear, &nbsp;</p>
-            <%= select_tag "employee_master", options_for_select(EmployeeMaster.all.collect{ |u| [u.employee_name, u.employee_name]}), {:class =>"chzn-select", :multiple=>false} %>
+            <%= select_tag "employee_master", options_from_collection_for_select(EmployeeMaster.all, 'id', 'employee_name',params[:employee_master_id]), {:class =>"chzn-select", :multiple=>false} %>
           </div>
         </div>
 
@@ -45,8 +45,6 @@
           </div>
         </div>
 
-
-
     <% end %>
 
   </div>
@@ -60,3 +58,4 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
     });
 </script>
+es

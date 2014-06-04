@@ -160,7 +160,9 @@ class WelcomesController < InheritedResources::Base
     #     :per_page => params[:per_page]
     # )
     row =[]
-
+    if Goal.where(:obj_class => "EmployeeMaster", :obj_id => current_user.employee_master.id).length <=0
+      @goal = Goal.where(:obj_class => "GroupMaster", :obj_id => current_user.employee_master.id).length <=0
+    end
     Goal.last.kras.order_by([params['sidx'], :asc]).each do |t|
       cell =[]
       @columns.each do |c|
@@ -266,6 +268,7 @@ class WelcomesController < InheritedResources::Base
     #render :text => "#{@emp_master_name}, #{@message}"
     #return
 
+
     render :pdf => 'show_report', :user_style_sheet => "#{Rails.root}/app/assets/stylesheets/pdf.css"
   end
 
@@ -275,11 +278,16 @@ class WelcomesController < InheritedResources::Base
     a = @group_master.employee_masters.all.map{|i| i.final_rating(Goal.last.id).floor}
     b = (1..5).map{|i| a.count(i)}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.plotOptions({ series: { enableMouseTracking: false, shadow: false, animation: false }})
       f.title({ :text=>"Performance Management - Bell Curve"})
       f.options[:xAxis][:categories] = ['1', '2', '3', '4', '5']
       f.labels(:items=>[:html=> @group_master.group_name+"- Rating", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
       f.series(:type=> 'spline',:name=> 'Average', :data=> b)
     end
+    # render :pdf => 'show_my_report',
+    #        :user_style_sheet               => "#{Rails.root}/app/assets/stylesheets/pdf.css",
+    #        :header => { :right => '[0] of [1]' }
+
   end
 
   def send_employee_data

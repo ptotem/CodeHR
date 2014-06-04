@@ -6,13 +6,17 @@
         width: 50%;
     }
 
-    #pdf_logo{
-        width: 20%;
-    }
+    /*#pdf_logo{*/
+        /*width: 20%;*/
+    /*}*/
 </style>
-
+<%= wicked_pdf_stylesheet_link_tag 'application' %>
+<%= wicked_pdf_javascript_include_tag 'application' %>
+<%#= wicked_pdf_javascript_include_tag "grid.locale-en.js" %>
+<%#= wicked_pdf_javascript_include_tag "jquery.jqGrid.min.js" %>
+<%#= wicked_pdf_javascript_include_tag "pdf_test" %>
 <div class="row">
-  <div class="span11">
+  <div class="span12">
 
 
         <div class="row">
@@ -28,20 +32,21 @@
 
         <div class="row margin-top-2per">
           <div class="span6">
-            <p style="display: inline-block">Dear, </p>
-            <%= @emp_master_name %>
+            <p style="display: inline-block">Dear </p>
+            <%= @emp_master_name %>,
           </div>
         </div>
 
         <div class="row">
-          <div class="offset1 span8">
+          <div class="offset1 span11">
             <%= @message %>
           </div>
         </div>
 
         <div class="row">
           <div class="offset8 span2">
-            Regards
+            Regards,
+            Sunny
           </div>
         </div>
 
@@ -54,8 +59,49 @@
 
   </div>
 </div>
+<div class="row">
+  <div class="span12">
+    <div class="table-header">Here is you evaluation sheet.</div>
+    <table id="group_master_table" class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <!--<th>KRA Code</th>-->
+        <th>KRA Name</th>
+      </tr>
+      </thead>
 
-<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-
-</script>
+      <tbody>
+      <% Goal.last.kras.each do |group_master| %>
+          <tr>
+            <!--<td><%#= group_master.id %></td>-->
+            <td><%= group_master.kra_name %></td>
+          </tr>
+          <tr>
+            <th>KRA </th>
+            <th>MOA Expected</th>
+            <th>MOA Achieved</th>
+            <th>%</th>
+            <th>Feedback</th>
+            <th>Calc Rating</th>
+            <th>Self Rating</th>
+            <th>Mgr. Rating</th>
+            <th>Final Rating</th>
+          </tr>
+          <% group_master.subkras.each do |j| %>
+          <tr>
+              <td><%= j.kra_name %></td>
+              <td><%= j.kpi_value %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.moae %></td>
+              <td><%= j.weightage %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.feedback %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.cr %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.sr %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.mr %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.fr %></td>
+          </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -80,4 +80,21 @@ class BandMastersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def import_band_masters
+    render :layout => false
+  end
+
+  def importing_band_masters
+    #render :text => params[:file][:original_filename]
+
+    if request.post? && params[:file].present?
+      BandMaster.import(params[:file])
+      #redirect_to '/employee_masters', notice: "Slides imported."
+    else
+      redirect_to '/import_band_masters', notice: "Group Masters couldn't be imported."
+    end
+
+  end
+
 end

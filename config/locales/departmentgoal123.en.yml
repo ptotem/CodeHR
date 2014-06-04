@@ -1,19 +1,15 @@
 en:
   forms:
-    Goal14:
-      name: "Main Form- Goal Setting For Individual Employees"
+    Goal999:
+      name: "Goal- Main Sheet Form"
       object: "Goal"
-      notification :
-        group: "kras"
-        subgroup: "linked_to_group"
-      validation: "weightage_validation()"
       fields:
         tabs:
           tab1:
             name: "Goal- Main Sheet"
             type: "standard"
-            cols:
-              type: "table"
+            cols: 
+              type: 'table'
               col1:
                 code:
                   attribute: 'code'
@@ -42,41 +38,39 @@ en:
                   width: '200'
                   options: 'model'
                   class: 'Goal'
-                  multiple: 'true'
                   select: 'id'
                   show: 'name'
                 obj_class:
                   attribute: 'obj_class'
                   type: 'hidden_field_tag'
-                  val: "EmployeeMaster"
+                  val: 'GroupMaster'
                 obj_id:
                   attribute: 'obj_id'
-                  label: 'Select Employees for the Goal'
+                  label: 'Select Departments for the Goal'
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
-                  class: 'EmployeeMaster'
-                  multiple: 'true'
+                  class: 'GroupMaster'
                   select: 'id'
                   show: 'group_name'
           tab2:
             name: "KRA"
             type: 'sub-form'
-            attribute: 'Kra'
-            Kras:
-              type: 'sub-form'
-    Kra:
-      name: "KRA"
+            attribute: "Kra999"
+            Kra:
+              type:'sub-form'
+    Kra999:
+      name: "KRA Form"
       object: "Kra"
       fields:
         tabs:
           tab1:
             name: "KRA"
             type: "standard"
-            cols:
-              type: "table"
+            cols: 
+              type: 'table'
               col1:
-                kra:
+                kra_name:
                   attribute: 'kra_name'
                   label: 'Main KRA Description'
                   type: 'text_area_tag'
@@ -88,7 +82,6 @@ en:
                   width: '200'
                   options: 'model'
                   class: 'GroupMaster'
-                  multiple: 'true'
                   select: 'id'
                   show: 'group_name'
                 linked_to_kra:
@@ -98,27 +91,26 @@ en:
                   width: '200'
                   options: 'model'
                   class: 'Kra'
-                  multiple: 'true'
                   select: 'id'
                   show: 'kra_name'
           tab2:
             name: "Sub KRA"
             type: 'sub-form'
-            attribute: 'Subkra'
-            Kras:
-              type: 'sub-form'
-    Subkra:
-      name: "Sub KRA"
+            attribute: "Subkra999"
+            Subkra:
+              type:'sub-form'
+    Subkra999:
+      name: "Sub KRA Form"
       object: "Subkra"
       fields:
         tabs:
           tab1:
             name: "Sub KRA"
             type: "standard"
-            cols:
-              type: "table"
+            cols: 
+              type: 'table'
               col1:
-                kra:
+                kra_name:
                   attribute: 'kra_name'
                   label: 'Sub KRA Desciption'
                   type: 'text_area_tag'
@@ -143,7 +135,6 @@ en:
                   label: 'Weightage in %age'
                   type: 'text_field_tag'
                   width: '50'
-                  class: 'weightage'
                 incremental:
                   attribute: 'incremental'
                   label: 'Is KPI Assessment Incremental?'
@@ -161,6 +152,5 @@ en:
                   width: '200'
                   options: 'model'
                   class: 'Kra'
-                  multiple: 'true'
                   select: 'id'
                   show: 'kra_name'

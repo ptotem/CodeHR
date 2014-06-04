@@ -466,9 +466,12 @@ module ApplicationHelper
           elsif @pro.step_transacts[0].action_name == "Update"
             puts "In side update action"
             @myc = eval(@class_name).find(objid)
-            eval(@class_name).nested_attributes_options.keys.each do |i|
-              @myc.instance_eval(i.to_s).destroy
+            if @class_name == "Goal"
+              eval(@class_name).nested_attributes_options.keys.each do |i|
+                @myc.instance_eval(i.to_s).destroy
+              end
             end
+
             @myc.update_attributes(@pro.class_obj)
             @myc.save
           else

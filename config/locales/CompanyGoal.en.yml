@@ -1,6 +1,6 @@
 en:
   forms:
-    Goal:
+    Goal13:
       name: "Main Form- Goal Setting For Company"
       object: "Goal"
       notification :

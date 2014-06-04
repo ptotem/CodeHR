@@ -117,6 +117,8 @@
                             <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]","",{:class=>(nf[:class] rescue ""),:style => "width:#{nf[:width]}px;"} %>
                         <% when "text_area_tag" %>
                             <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]" %>
+                        <% when "check_box_tag" %>
+                            <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]"  %>
                         <% when "select_tag" %>
                             <% if nf[:options] == 'model' %>
                                 <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show]),{:style => "width:#{nf[:width]}px;",:class => "chzn-select", :multiple => nf[:multiple]} %>

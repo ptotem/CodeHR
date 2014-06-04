@@ -1,6 +1,6 @@
 en:
   forms:
-    Goal:
+    Goal12:
       name: "Main Form- Goal Setting For Roles"
       object: "Goal"
       notification :

@@ -129,7 +129,7 @@ CodeHR::Application.routes.draw do
   match '/get_fields/:class_name' => 'welcomes#get_fields', :as=> :get_fields
   match '/get_data' => 'welcomes#get_data', :as=> :get_data
 
-  match '/get_report_of' => 'welcomes#get_report_of', :as=> :get_report_of
+  match '/get_report_of/:employee_master_id' => 'welcomes#get_report_of', :as=> :get_report_of
   match '/display_report_of' => 'welcomes#display_report_of', :as=> :display_report_of
   match '/generate_pdf_report' => 'welcomes#generate_pdf_report', :as=> :generate_pdf_report
 
@@ -159,6 +159,12 @@ CodeHR::Application.routes.draw do
 
   match 'import_employee_masters' => 'employee_masters#import_employee_masters', :as => :import_employee_masters
   match 'importing_employee_masters' => 'employee_masters#importing_employee_masters', :as => :importing_employee_masters
+
+  match 'import_roles' => 'roles#import_roles', :as => :import_roles
+  match 'importing_roles' => 'roles#importing_roles', :as => :importing_roles
+
+  match 'import_band_masters' => 'band_masters#import_band_masters', :as => :import_band_masters
+  match 'importing_band_masters' => 'band_masters#importing_band_masters', :as => :importing_band_masters
 
   #match 'import_candidate_masters' => 'employee_masters#import_employee_masters', :as => :import_employee_masters
   #match 'importing_employee_masters' => 'employee_masters#importing_employee_masters', :as => :importing_employee_masters

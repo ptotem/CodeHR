@@ -1,6 +1,6 @@
 en:
   forms:
-    Goal:
+    Goal11:
       name: "Main Form- Goal Setting For Department"
       object: "Goal"
       notification :

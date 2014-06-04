@@ -5,7 +5,7 @@ class Goal
   field :period_from,  type: String
   field :period_to,  type: String
   field :obj_class, type: String
-  field :obj_id, type: String
+  field :obj_id, type: Array
   field :calculated_rating, type: Integer
   # recursively_embeds_many
   has_many :kras

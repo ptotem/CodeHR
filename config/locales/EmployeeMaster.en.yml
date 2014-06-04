@@ -41,7 +41,7 @@ en:
                   label: 'Date of Birth'
                   type: 'date_field_tag'
                   width: '100'
-                role:
+                role_ids:
                   attribute: 'role_ids'
                   label: 'Current Role'
                   type: 'select_tag'
@@ -84,6 +84,16 @@ en:
                   label: 'Designation Joined At'
                   type: 'text_field_tag'
                   width: '300'
+                parents:
+                  attribute: 'parent_ids'
+                  label: 'Reporting Manager(s)'
+                  type: 'select_tag'
+                  width: '200'
+                  options: 'model'
+                  class: 'EmployeeMaster'
+                  multiple: 'true'
+                  select: 'id'
+                  show: 'employee_name'
                 address_for_communication:
                   attribute: 'address_for_communication'
                   label: 'Address For Communication'

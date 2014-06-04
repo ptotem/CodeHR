@@ -28,6 +28,7 @@
         <thead>
         <tr>
           <th>Name</th>
+          <th></th>
         </tr>
         </thead>
 
@@ -35,6 +36,7 @@
         <% GroupMaster.first.employee_masters.each do |group_master| %>
             <tr>
               <td style="cursor: pointer"><a href="/manager_assessment/<%= group_master.id %>" target = "_blank"><%= group_master.employee_name %></a></td>
+              <td><a href="/get_report_of/<%= group_master.id %>"><i class="icon-list-alt"></i></a></td>
             </tr>
         <% end %>
         </tbody>
@@ -57,7 +59,7 @@
           success: function (result) {
               $('#employee_master_table').find('tbody').empty();
               $.each(result,function(i,v){
-                  $('#employee_master_table').find('tbody').append('<tr><td style="cursor: pointer"><a href="/manager_assessment/'+ v.id+'" target = "_blank">'+ v.name+'</a></td></tr>')
+                  $('#employee_master_table').find('tbody').append('<tr><td style="cursor: pointer"><a href="/manager_assessment/'+ v.id+'" target = "_blank">'+ v.name+'</a></td><td><a href="/get_report_of/'+ v.id+'"><i class="icon-list-alt"></i></a></td></tr>')
               });
           }
       });
