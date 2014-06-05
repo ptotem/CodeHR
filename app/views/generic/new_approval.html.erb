@@ -16,40 +16,124 @@
       <div class="tab-content">
         <% @fields_name = @fields[:tabs].map { |i, v| v } %>
         <% count1 = 0 %>
-        <% @fields_name.each_with_index do |tab_val, index| %>
-            <% count1 =count1+1 %>
-            <% if tab_val[:type]!="sub-form" %>
-                <div id="dropdown<%= index %>" class="tab-pane">
-                  <div class="row-fluid">
-                    <% @tab_val = tab_val[:cols].map { |i, v| v } %>
-                    <% @tab_val.each_with_index do |col_val, index| %>
-                        <div class="span6">
-                          <% @col_val = col_val.map { |i, v| v } %>
-                          <% @col_val.each_with_index do |cv| %>
-                              <div class="control-group">
-                                <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
 
-                                <div class="controls">
+        <% @fields_name.each_with_index do |tab_val, index| %>
+          <% count1 =count1+1 %>
+          <% if tab_val[:type]!="sub-form" %>
+              <div id="dropdown<%= index %>" class="tab-pane">
+                <div class="row-fluid">
+                  <% @tab_val = tab_val[:cols].map { |i, v| v } %>
+                  <% ti = 0 %>
+                  <% if tab_val[:cols].has_key?(:type) %>
+                      <%tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+                      <% @col_val = tab_val %>
+                      <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                          <% tab_val.each_with_index do |col_val, index| %>
+                              <% @col_val = col_val.map { |i, v| v } %>
+                              <% @col_val.each_with_index do |cv, indi| %>
+                                  <th><label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label></th>
+                              <% end %>
+                          <% end %>
+                        </tr>
+                        </thead>
+                        <tbody class="my_body">
+                        <% tab_val.each_with_index do |col_val, index| %>
+                            <% @col_val = col_val.map { |i, v| v } %>
+                            <% @col_val.each_with_index do |cv, indi| %>
+                                <td>
                                   <% case cv[:type] %>
                                   <% when "text_field_tag" %>
-                                      <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",@cls[cv[:attribute]],:disabled => true %>
-                                  <% when "text_area_tag" %>
-                                      <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]" %>
-                                  <% when "select_tag" %>
-                                      <% if cv[:options] == 'model' %>
-                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),:disabled => true %>
+
+                                      <% if cv[:attribute].include?('code') %>
+                                          <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @cls[cv[:attribute]] ,:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :disabled => true%>
                                       <% else %>
-                                          <%#= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options], :selected =>@cls[cv[:attribute]]),:disabled => true %>
+                                          <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @cls[cv[:attribute]], :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :disabled => true %>
                                       <% end %>
+
+                                  <% when "text_area_tag" %>
+                                      <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@cls[cv[:attribute]], :tabindex => ti.to_s, :disabled => true %>
+                                  <% when "date_field_tag" %>
+                                      <input type="text" style="width:<%= cv[:width] %>px;" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" disabled="disabled" data-date-format="dd-mm-yyyy" class="span6 date-picker" tabindex = <%=ti.to_s %> >
+                                  <% when "time_field_tag" %>
+                                      <div class="input-append bootstrap-timepicker">
+                                        <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker">
+                                        <span class="add-on"><i class="icon-time"></i></span>
+                                      </div>
+                                  <% when "check_box_tag" %>
+                                      <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]",nil, :tabindex => ti.to_s %>
+                                  <% when "file_field_tag" %>
+                                      <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
+                                  <% when "select_tag" %>
+                                      <!--<h1>sss</h1>-->
+                                      <%= %>
+                                      <% if cv[:options] == 'model' %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show], @cls[cv[:attribute]]),{:tabindex => ti.to_s,:style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple=>true,:disabled => true}%>
+                                      <% else %>
+                                          <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]), { :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;",:class => "chzn-select",:disabled => true } %>
+                                      <% end %>
+                                  <% when "hidden_field_tag" %>
+                                      <%= hidden_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", cv[:val] %>
                                   <% end %>
+                                </td>
+                            <% end %>
+                        <% end %>
+                        </tbody>
+                      </table>
+                  <% else %>
+                      <% @tab_val.each_with_index do |col_val, index| %>
+                          <div class="span6">
+                            <% @col_val = col_val.map { |i, v| v } %>
+                            <% ti = index+1 %>
+                            <% @col_val.each_with_index do |cv, indi| %>
+                                <%# ti = ti + indi +index %>
+                                <div class="control-group">
+                                  <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
+
+                                  <div class="controls">
+                                    <% case cv[:type] %>
+                                    <% when "text_field_tag" %>
+                                        <% if cv[:attribute].include?('code') %>
+                                            <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;",:disabled => true%>
+                                        <% else %>
+                                            <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @cls[cv[:attribute]], :tabindex => ti.to_s, :style => "width:#{cv[:width]}px",:disabled => true %>
+                                        <% end %>
+
+                                    <% when "text_area_tag" %>
+                                        <%= text_area_tag "#{params[:model_name]}[#{cv[:attribute]}]",@cls[cv[:attribute]], :tabindex => ti.to_s,:disabled => true %>
+                                    <% when "date_field_tag" %>
+                                        <input type="text" style="width:<%=  cv[:width]%>px;" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" value="<%= @cls[cv[:attribute]] %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" disabled ="disabled" tabindex = <%=ti.to_s %> >
+                                    <% when "time_field_tag" %>
+                                        <div class="input-append bootstrap-timepicker">
+                                          <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" id="<%= "#{params[:model_name]}[#{cv[:attribute]}]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker">
+                                          <span class="add-on"><i class="icon-time"></i></span>
+                                        </div>
+                                    <% when "check_box_tag" %>
+                                        <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]",@cls[cv[:attribute]], :tabindex => ti.to_s %>
+                                    <% when "file_field_tag" %>
+                                        <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
+                                    <% when "select_tag" %>
+
+                                        <% if cv[:options] == 'model' %>
+
+                                            <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show],@cls[cv[:attribute]]),{:tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple],:disabled => true  }%>
+                                        <% else %>
+                                            <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options],@cls[cv[:attribute]]), { :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple],:disabled => true} %>
+                                        <% end %>
+                                    <% end %>
+                                  </div>
                                 </div>
-                              </div>
-                          <% end %>
-                        </div>
-                    <% end %>
-                  </div>
+                                <% ti = ti +2 %>
+                            <% end %>
+                            <%#end %>
+
+                          </div>
+                      <% end %>
+                  <%end %>
                 </div>
-            <% else %>
+              </div>
+          <% else %>
                 <% @tba = tab_val[:attribute] %>
                 <div id="dropdown<%= index %>" class="tab-pane">
                   <div class="row-fluid">
@@ -66,9 +150,11 @@
                   <!--<input type="button" name="Add New SubForm" id="addNewSubform" value="Add New Subform" class="btn btn-info" onclick='add_new_subform(this,"<%#= tab_val[:name] %>","<%#= @tba %>","<%#= params[:model_name] %>")'/>-->
                 </div>
 
-            <% end %>
 
-        <% end %>
+
+      <% end %>
+
+      <% end %>
         <!--Approval tab html-->
 
         <!--Notification Tab html-->
@@ -84,11 +170,14 @@
     </div>
 <% end %>
 
+<script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8">
     var ddchildlen;
     $(function () {
         ddchildlen = $('#myTab').children.length;
         $("#dropdown0").addClass("active");
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
     });
     //Function to add nested subform
     function add_new_subform(this_obj, title, tba, model_name) {

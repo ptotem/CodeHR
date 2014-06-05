@@ -25,6 +25,7 @@ en:
                   label: 'Name'
                   type: 'text_field_tag'
                   width: '100'
+#                  options: [["Male", "M"],["Female", "F"], ["Other","0"]]
                 period_from:
                   attribute: 'period_from'
                   label: 'Period from'

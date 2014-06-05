@@ -324,22 +324,28 @@ module ApplicationHelper
               end
             end
           elsif a["oClass"] == "Role"
+            # puts "Inside role"
             a["action_arr"].each do |aaa|
-              @employees = EmployeeMaster.where(:role_id=>aaa["id"])
+              @role = Role.find(aaa["id"])
+              @employees = @role.employee_masters
+
+              # @employees = EmployeeMaster.where(:role_id=>aaa["id"])
               if !aaa["approver"].nil?
-                if @employees.nil?
+                # puts "Inside role"+ @employees.first.id
+                if !@employees.nil?
                   @employees.each do |e|
+                    puts "Inside role"+ e.id
                     @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
                   end
                 end
               elsif !aaa["escalated"].nil?
-                if @employees.nil?
+                if !@employees.nil?
                   @employees.each do |e|
                     @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>false)
                   end
                 end
               elsif !aaa["auto_assign"].nil?
-                if @employees.nil?
+                if !@employees.nil?
                   @employees.each do |e|
                     @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>false)
                   end
@@ -407,11 +413,16 @@ module ApplicationHelper
             end
           end
         elsif @pro.notification_obj["oClass"] == "Role"
+          puts "hhhhhhhhh"
           @pro.notification_obj["action_arr"].each do |noti|
-            @users=EmployeeMaster.where(:role_id => noti["id"])
+            @role = Role.find(noti["id"])
+            puts @role.id
+            @users = @role.employee_masters
+            # @users=@employees.map{|i| i.user}
+            puts @users
             @users.each do |user|
               @user = user.user
-              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")

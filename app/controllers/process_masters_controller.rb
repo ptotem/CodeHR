@@ -190,12 +190,11 @@ class ProcessMastersController < ApplicationController
     elsif @class_name == "Role"
         @b = ["name", "_id"]
         Role.all.each do |em|
+          @temp=Hash.new
           @b.each do |i|
-            @temp=Hash.new
-            #@temp[:cname] = i
             @temp[i] = em.instance_eval(i)
-            @a<<@temp
           end
+          @a<<@temp
         end
     elsif @class_name == "VendorMaster"
       @b = ["vendor_name", "vendor_type", "_id"]

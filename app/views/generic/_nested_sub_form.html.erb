@@ -2,7 +2,7 @@
   <td><a href="#" onclick="remove_elem($(this).parent())" style="text-align: center"><i class="icon-remove-circle"></i></a></td>
   <% new_fields.to_a.each do |nf| %>
       <td>
-        <%= nf[:type] %>
+        <%#= nf[:type] %>
         <% case nf[:type] %>
         <% when "text_field_tag" %>
             <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{this_sf.pluralize.underscore}[#{my_index}][#{nf[:attribute]}]","",{:class=>(nf[:class] rescue ""),:style=>"width:#{nf[:width]}px;"} %>

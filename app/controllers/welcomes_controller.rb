@@ -192,7 +192,7 @@ class WelcomesController < InheritedResources::Base
       cell =[]
       @ea = PmsAssessment.where(:employee_id => u,:kra_id => t.id).first
       @columns.each do |c|
-        cell << @ea.instance_eval(c)
+        cell << @ea.instance_eval(c) rescue ""
       end
       row << {:id => t.id, :cell =>cell}
     end

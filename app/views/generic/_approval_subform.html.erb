@@ -1,40 +1,99 @@
     <% @fields1 = t('forms.'+fi+'.fields') %>
     <% @fields_name = @fields1[:tabs].map { |i, v| v } %>
+
+
+
     <% @fields_name.each_with_index do |tab_val, index| %>
         <% if tab_val[:type]!="sub-form" %>
             <div class="row-fluid">
               <% @tab_val = tab_val[:cols].map { |i, v| v } %>
-              <% @tab_val.each_with_index do |col_val, index| %>
-                  <div class="span6">
-                    <% @col_val = col_val.map { |i, v| v } %>
-                    <% @col_val.each_with_index do |cv| %>
-                        <div class="control-group">
-                          <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
-                          <div class="controls">
-                            <%=  %>
-                            <% case cv[:type] %>
-                            <% when "text_field_tag" %>
-                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", cls[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]],:disabled => true %>
-                            <% when "text_area_tag" %>
-                                <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
-                            <% when "check_box_tag" %>
-                                <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>
-                            <% when "select_tag" %>
-                                <% if cv[:options] == 'model' %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),:disabled => true %>
-                                <% else %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => cls[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]),:disabled => true %>
+              <% if tab_val[:cols].has_key?(:type) %>
+                  <% tab_val = tab_val[:cols].except(:type).map { |i, v| v } %>
+                  <% @col_val = tab_val %>
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <% tab_val.each_with_index do |col_val, index| %>
+                          <% @col_val = col_val.map { |i, v| v } %>
+                          <% @col_val.each_with_index do |cv, indi| %>
+                              <th><label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label></th>
+                          <% end %>
+                      <% end %>
+                    </tr>
+                    </thead>
+                    <tbody class="my_body" id ="my_body_subform">
+                    <tr>
+                      <% tab_val.each_with_index do |col_val, index| %>
+                          <% @col_val = col_val.map { |i, v| v } %>
+                          <% @col_val.each_with_index do |cv, indi| %>
+                              <td>
+                                <% case cv[:type] %>
+                                <% when "text_field_tag" %>
+                                    <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue ""),:style => "width:#{cv[:width]}px;",:disabled => true %>
+                                <% when "text_area_tag" %>
+                                    <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue ""),:disabled => true %>
+                                <% when "check_box_tag" %>
+                                    <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+                                <% when "date_field_tag" %>
+                                    <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" disabled ="disabled" value = <%= (@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue "") %>>
+                                <% when "time_field_tag" %>
+                                    <div class="input-append bootstrap-timepicker">
+                                      <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker" disabled ="disabled" value = <%= (@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue "") %>>
+                                      <span class="add-on"><i class="icon-time"></i></span>
+                                    </div>
+                                <% when "select_tag" %>
+                                    <% if cv[:options] == 'model' %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show],(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue "")) ,{:style => "width:#{cv[:width]}px;",:class => "chzn-select", :multiple => cv[:multiple], :disabled => true }  %>
+                                    <% else %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => @cls[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]),{:style => "width:#{cv[:width]}px;",:class => "chzn-select", :multiple => cv[:multiple], :disabled => true }  %>
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-                          </div>
-                        </div>
-                    <% end %>
-                  </div>
+
+                              </td>
+                          <% end %>
+                      <% end %>
+                    </tr>
+                    </tbody>
+                  </table>
+              <% else %>
+                  <% @tab_val.each_with_index do |col_val, index| %>
+                      <div class="span6">
+                        <% @col_val = col_val.map { |i, v| v } %>
+                        <% @col_val.each_with_index do |cv| %>
+                            <div class="control-group">
+                              <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
+                              <div class="controls">
+                                <% case cv[:type] %>
+                                <% when "text_field_tag" %>
+                                    <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue ""),:style => "width:#{cv[:width]}px;", :disabled => true %>
+                                <% when "text_area_tag" %>
+                                    <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]",(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue ""), :disabled => true %>
+                                <% when "check_box_tag" %>
+                                    <%= check_box_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]"  %>
+                                <% when "date_field_tag" %>
+                                    <input type="text" style="width:<%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 date-picker" disabled="disabled">
+                                <% when "time_field_tag" %>
+                                    <div class="input-append bootstrap-timepicker">
+                                      <input type="text" style="width: <%= cv[:width] %>px;" size="30" name="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" id="<%= "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]" %>" data-date-format="dd-mm-yyyy" class="span6 dateselect-time time-picker" disabled="disabled">
+                                      <span class="add-on"><i class="icon-time"></i></span>
+                                    </div>
+                                <% when "select_tag" %>
+                                    <% if cv[:options] == 'model' %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show],(@cls[fi.pluralize.underscore][form_index.to_s][cv[:attribute]] rescue "")) ,{:style => "width:#{cv[:width]}px;",:class => "chzn-select", :multiple => cv[:multiple], :disabled => true }  %>
+                                    <% else %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{cv[:attribute]}]]", options_for_select([""]+ cv[:options], :selected => @cls[fi.pluralize.underscore]["#{form_index}"][cv[:attribute]]),{:style => "width:#{cv[:width]}px;",:class => "chzn-select", :multiple => cv[:multiple], :disabled => true }  %>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+                  <% end %>
               <% end %>
+
             </div>
         <% else %>
             <div class="row-fluid">
-
               <% @this_sf = tab_val[:attribute] %>
               <% @new_fields = t('forms.'+@this_sf+'.fields.tabs.tab1.cols.col1') %>
               <% @new_fields = @new_fields.map { |i, v| v } %>
@@ -42,6 +101,7 @@
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
+                  <th></th>
                   <% @new_fields.each do |nf| %>
                       <th><label for="<%= nf[:label] %>" class="control-label"><%= nf[:label] %></label></th>
                   <% end %>
@@ -49,35 +109,38 @@
                 </thead>
                 <tbody class="my_body">
                 <% @my_index=0 %>
-                <% @cls[fi.pluralize.underscore]["#{form_index}"][@this_sf.pluralize.underscore].map do |kl,lk| %>
-                    <tr class="salary_comp_row">
-                      <% @new_fields.each do |nf| %>
-
-                          <td>
-                            <% case nf[:type] %>
-                            <% when "text_field_tag" %>
-                                <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", @cls[fi.pluralize.underscore]["#{form_index}"][@this_sf.pluralize.underscore]["#{@my_index}"][nf[:attribute]],:disabled => true %>
-                            <% when "select_tag" %>
-                                <% if nf[:options] == 'model' %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:attribute].gsub("_id", "").underscore).all, 'id', 'id'),:disabled => true %>
-                                <% else %>
-                                    <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),:disabled => true %>
+                <%#= @cls[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][0] %>
+                <% if !@cls[fi.pluralize.underscore][form_index.to_s][@this_sf.pluralize.underscore].nil?   %>
+                    <% @cls[fi.pluralize.underscore][form_index.to_s][@this_sf.pluralize.underscore].map do |kl,lk| %>
+                        <tr class="salary_comp_row">
+                          <% @new_fields.each do |nf| %>
+                              <td>
+                                <% case nf[:type] %>
+                                <% when "text_field_tag" %>
+                                    <%#= @cls[fi.pluralize.underscore][form_index.to_s][@this_sf.pluralize.underscore][@my_index.to_s][nf[:attribute]] %>
+                                    <%= text_field_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]",(@cls[fi.pluralize.underscore][form_index.to_s][@this_sf.pluralize.underscore][(@my_index.to_s)][nf[:attribute]] rescue ""), :disabled => true %>
+                                <% when "text_area_tag" %>
+                                    <%= text_area_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]",(@cls[fi.pluralize.underscore][form_index.to_s][@this_sf.pluralize.underscore][(@my_index.to_s)][nf[:attribute]] rescue ""), :disabled => true%>
+                                <% when "select_tag" %>
+                                    <% if nf[:options] == 'model' %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_from_collection_for_select(eval(nf[:class]).all, nf[:select], nf[:show],(@cls[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][(@my_index rescue @my_index.to_s)][nf[:attribute]] rescue "")),{:style => "width:#{nf[:width]}px;",:class => "chzn-select", :multiple => nf[:multiple], :disabled => true} %>
+                                    <% else %>
+                                        <%= select_tag "#{main_form}[#{fi.pluralize.underscore}[#{form_index}][#{@this_sf.pluralize.underscore}[#{@my_index}][#{nf[:attribute]}]", options_for_select([""]+ nf[:options]),{:style => "width:#{nf[:width]}px;",:class => "chzn-select", :multiple => nf[:multiple], :disabled => true} %>
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-                          </td>
-                      <% end %>
-                    </tr>
-                    <% @my_index = @my_index+1 %>
+                              </td>
+                          <% end %>
+                        </tr>
+                        <% @my_index = @my_index+1 %>
+                    <% end %>
                 <% end %>
-
                 <%#= render :partial => 'nested_sub_form', :locals => {:new_fields => @new_fields, :main_form => main_form, :fi => fi, :form_index => form_index, :this_sf =>@this_sf, :my_index =>(@my_index+1) } %>
                 </tbody>
-                <input type="hidden" class="my_index" value="0"/>
-                <!--<input type="button" name="Add New" id="addNew" value="Add New" class="btn btn-info" onclick='add_new_nested_fields(this,<%#= raw @nf %>,"<%#= main_form %>","<%#= fi %>","<%#= form_index %>","<%#= @this_sf %>")'/>-->
+                <input type="hidden" class="my_index" value=<%= @my_index-1 %>/>
+                <input type="button" name="Add New" id="addNew" value="Add New" class="btn btn-info" onclick='add_new_nested_fields(this,<%= raw @nf %>,"<%= main_form %>","<%= fi %>","<%= form_index %>","<%= @this_sf %>")'/>
               </table>
 
             </div>
         <% end %>
     <% end %>
-
 

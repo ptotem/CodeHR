@@ -251,7 +251,7 @@
     <% @controller = params[:controller] %>
     <% @action = params[:action] %>
 
-    <% if current_user.designation != "HR" %>
+    <% if current_user.email != "hradmin@comp1.com" %>
       <ul class="nav nav-list">
         <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
             <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?(current_user.employee_master.group_master_ids[0])} %>
@@ -266,7 +266,7 @@
 
         <% end %>
       </ul>
-    <% elsif current_user.designation == "HR" %>
+    <% elsif current_user.email == "hradmin@comp1.com" %>
       <ul class="nav nav-list">
         <li>
           <%= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>

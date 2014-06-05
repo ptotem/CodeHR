@@ -315,19 +315,19 @@ class GenericController < ApplicationController
       ################################################################
       # Block to override notification object of current process
       # It works only when form yaml contains notification object
-      if t('forms.'+params[:model_name]).has_key?(:notification)
-        @form_config = t('forms.'+params[:model_name])
-        action_arr = []
-        arr_list = params[params[:model_name].to_sym][@form_config[:notification][:group]].keys.map{|i| params[params[:model_name].to_sym][@form_config[:notification][:group]][i][@form_config[:notification][:subgroup]]}.flatten - [""]
-        arr_list.each  do |al|
-          if !al.nil?
-            action_arr << {:id => al}
-          end
-        end
-        @notification = Hash.new
-        @notification = {:title => "Kra Added", :description => "You Kra is updated", :oClass =>"EmployeeMaster", :action_arr =>action_arr}
-        @process_transact.notification_obj = @notification
-      end
+      # if t('forms.'+params[:model_name]).has_key?(:notification)
+      #   @form_config = t('forms.'+params[:model_name])
+      #   action_arr = []
+      #   arr_list = params[params[:model_name].to_sym][@form_config[:notification][:group]].keys.map{|i| params[params[:model_name].to_sym][@form_config[:notification][:group]][i][@form_config[:notification][:subgroup]]}.flatten - [""]
+      #   arr_list.each  do |al|
+      #     if !al.nil?
+      #       action_arr << {:id => al}
+      #     end
+      #   end
+      #   @notification = Hash.new
+      #   @notification = {:title => "Kra Added", :description => "You Kra is updated", :oClass =>"EmployeeMaster", :action_arr =>action_arr}
+      #   @process_transact.notification_obj = @notification
+      # end
       ################################################################
       @process_transact.save
       if !params[:process_id].nil?

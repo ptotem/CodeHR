@@ -22,47 +22,47 @@ class Kra
 
   def notify_related_kra
     puts "happening.."
-    # if !self.linked_to_kra.nil?
-    # self.linked_to_kra.each do |i|
-    #   puts "-------"
-    #   puts Kra.find(i).goal.obj_id
-    #   puts Kra.find(i).goal.obj_class
-    #   if Kra.find(i).goal.obj_class == "EmployeeMaster"
-    #     user=EmployeeMaster.find(Kra.find(i).goal.obj_id).user
-    #     unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
-    #     unm.save
-    #     unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #     unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #     unm.save
-    #     user.save
-    #   elsif Kra.find(i).goal.obj_class == "GroupMaster"
-    #     # @users=EmployeeMaster.where(:group_master_id => Kra.find(i).goal.obj_id)
-    #
-    #     @users=EmployeeMaster.all.select{ |i| i.group_master_ids.include?(GroupMaster.find(Kra.find(i).goal.obj_id).id)}
-    #     @users.each do |user|
-    #       @user = user.user
-    #       unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
-    #       unm.save
-    #       unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #       unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #       unm.save
-    #       @user.save
-    #     end
-    #   elsif Kra.find(i).goal.obj_class == "Role"
-    #     @users=EmployeeMaster.where(:role_id => Kra.find(i).goal.obj_id)
-    #     @users.each do |user|
-    #       @user = user.user
-    #       unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
-    #       unm.save
-    #       unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #       unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-    #       unm.save
-    #       @user.save
-    #     end
-    #   end
-    #
-    # end
-    # end
+    if !self.linked_to_kra.nil?
+    self.linked_to_kra.each do |i|
+      puts "-------"
+      puts Kra.find(i).goal.obj_id
+      puts Kra.find(i).goal.obj_class
+      if Kra.find(i).goal.obj_class == "EmployeeMaster"
+        user=EmployeeMaster.find(Kra.find(i).goal.obj_id).user
+        unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
+        unm.save
+        unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+        unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+        unm.save
+        user.save
+      elsif Kra.find(i).goal.obj_class == "GroupMaster"
+        # @users=EmployeeMaster.where(:group_master_id => Kra.find(i).goal.obj_id)
+
+        @users=EmployeeMaster.all.select{ |i| i.group_master_ids.include?(GroupMaster.find(Kra.find(i).goal.obj_id).id)}
+        @users.each do |user|
+          @user = user.user
+          unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
+          unm.save
+          unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.save
+          @user.save
+        end
+      elsif Kra.find(i).goal.obj_class == "Role"
+        @users=EmployeeMaster.where(:role_id => Kra.find(i).goal.obj_id)
+        @users.each do |user|
+          @user = user.user
+          unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
+          unm.save
+          unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+          unm.save
+          @user.save
+        end
+      end
+
+    end
+    end
   end
 
   def avg_rat(user_id)
