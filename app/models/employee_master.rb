@@ -158,7 +158,7 @@ class EmployeeMaster
     @p.each do |p|
       @final_rating = @final_rating + (p.cr rescue 0)
     end
-    return @final_rating
+    return @final_rating.round
   end
 
 end

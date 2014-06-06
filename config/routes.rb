@@ -253,6 +253,8 @@ CodeHR::Application.routes.draw do
   match '/pms_normalization_grp_wise/:group_master_id' => 'welcomes#pms_normalization_grp_wise'
   #################################################################################################################
   match '/pms_eval' => 'welcomes#pms_normalization'
+  match '/self_assessment_list' => 'welcomes#self_assessment'
+  match '/reportee_assessment_list' => 'welcomes#reportee_assessment'
   #################################################################################################################
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -15,7 +15,7 @@
         <tr>
         <td style="cursor: pointer" class="gm" id = "<%= group_master.id %>" onclick="load_data($(this))"><%= group_master.group_name %></td>
         <% a = group_master.employee_masters.all.map{|i| i.final_rating(Goal.last.id).floor} %>
-        <td><%#= a.instance_eval{reduce(:+)/size.to_f}.round %></td>
+        <td><%= a.instance_eval{(reduce(:+)/size.to_f rescue "")}.round rescue ""%></td>
         <td><a href="/pms_normalization_grp_wise/<%= group_master.id %>" target="_blank"><i class="icon-arrow-right"></i></a></td>
         </tr>
     <% end %>

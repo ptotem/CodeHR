@@ -219,7 +219,7 @@ class WelcomesController < InheritedResources::Base
   end
 
   def pms_normalization
-    a = EmployeeMaster.all.map{|i| i.final_rating(Goal.last.id).floor}
+    a = EmployeeMaster.all.map{|i| i.final_rating(Goal.last.id).round}
 
     b = (1..5).map{|i| a.count(i)}
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
@@ -298,6 +298,49 @@ class WelcomesController < InheritedResources::Base
     end
     render :json =>@a
     return
+  end
+
+  def self_assessment
+    # render :text => "8989"
+    # return
+    goal_id = Goal.last.id
+    @columns = ["id", "employee_name", 'final_rating("'+goal_id+'")']
+
+    row =[]
+    # Kra.find(params[:kra_id]).subkras.order_by([params['sidx'], :asc]).each do |t|
+      cell =[]
+      @ea = current_user.employee_master
+      @columns.each do |c|
+        cell << @ea.instance_eval(c) rescue ""
+      end
+      row << {:id => @ea.id, :cell =>cell}
+    # end
+    a={:page => 1,:total => 1,:records => 1, :rows => row}
+    if request.xhr?
+      render :json => a
+    end
+
+  end
+
+  def reportee_assessment
+    # render :text => "params"
+    # return
+    goal_id = Goal.last.id
+    @columns = ["id", "employee_name", 'final_rating("'+goal_id+'")']
+
+    row =[]
+    current_user.employee_master.reps.order_by([params['sidx'], :asc]).each do |t|
+      cell =[]
+      @ea = t
+      @columns.each do |c|
+        cell << @ea.instance_eval(c) rescue ""
+      end
+      row << {:id => t.id, :cell =>cell}
+    end
+    a={:page => 1,:total => 1,:records => 1, :rows => row}
+    if request.xhr?
+      render :json => a
+    end
   end
 
 end

@@ -55,17 +55,17 @@ en:
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
-                  class: 'COmpanyMaster'
+                  class: 'CompanyMaster'
                   multiple: 'true'
                   select: 'id'
                   show: 'company_name'
           tab2:
             name: "KRA"
             type: 'sub-form'
-            attribute: 'Kra'
+            attribute: 'Kra13'
             Kras:
               type: 'sub-form'
-    Kra:
+    Kra13:
       name: "KRA"
       object: "Kra"
       fields:
@@ -104,10 +104,10 @@ en:
           tab2:
             name: "Sub KRA"
             type: 'sub-form'
-            attribute: 'Subkra'
+            attribute: 'Subkra13'
             Kras:
               type: 'sub-form'
-    Subkra:
+    Subkra13:
       name: "Sub KRA"
       object: "Subkra"
       fields:
@@ -121,7 +121,7 @@ en:
                 kra:
                   attribute: 'kra_name'
                   label: 'Sub KRA Desciption'
-                  type: 'text_area_tag'
+                  type: 'text_field_tag'
                   width: '100'
                 kpi_description:
                   attribute: 'kpi_description'

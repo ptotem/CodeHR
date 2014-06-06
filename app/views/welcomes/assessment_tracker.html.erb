@@ -1,8 +1,10 @@
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<link href="/assets/ui.jqgrid.css" rel="stylesheet"/>
 
+<link href="/assets/ui-lightness/jquery-ui-1.8.6.custom.css" rel="stylesheet"/>
+<link href="/assets/zgoalsheet.css" rel="stylesheet"/>
 <div style="width:60%;">
-  <h1>Welcome to Star Track,
-    your performance appraisal platform</h1>
+  <h1>Welcome To CodeHr PMS</h1>
   <br/>
   <table id="sap"></table>
   <div id="sap_pager"></div>
@@ -11,6 +13,7 @@
   <div id="employee_assessment_pager"></div>
 </div>
 <br/>
+<script type="text/javascript" src="/assets/grid.locale-en.js"></script>
 <script type="text/javascript" src="/assets/jquery.jqGrid.min.js"></script>
 
 <script>
@@ -18,16 +21,16 @@
     //    Grid for Self Assessment
     //    ==============================================================================================================
     jQuery("#sap").jqGrid({
-        url: "/self_assessment",
+        url: "/self_assessment_list",
         datatype: "json",
-        colNames: ['ID', 'Name', 'KRA', 'COMPETENCIES', 'Final Rating : (KRA*70% + COMPETENCIES*30%)', 'Status'],
+        colNames: ['ID', 'Name', 'Final Rating : (KRA*70% + COMPETENCIES*30%)'],
         colModel: [
             {name: 'ID', index: 'id', width: 50, hidden: true, key: true, align: "center"},
             {name: 'Name', index: 'name', width: 155, key: true, editable: true, align: "center"},
-            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
-            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
-            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', width: 390, key: true, editable: true, align: "center"},
-            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
+//            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
+//            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
+            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', width: 390, key: true, editable: true, align: "center"}
+//            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
         ],
         rowNum: 4,
         caption: "Self Assessment",
@@ -38,7 +41,7 @@
         pginput: false,
         pgbuttons: false,
         onSelectRow: function (ids) {
-            window.location = "/employee_index/" + ids;
+            window.location = "/employee_assessment/<%= current_user.employee_master.id %>";
         }
     });
     jQuery("#sap").jqGrid('navGrid', "#sap_pager", {edit: false, add: false, del: false})
@@ -48,16 +51,16 @@
     //    Grid for Employee Assessment
     //    ==============================================================================================================
     jQuery("#employee_assessment").jqGrid({
-        url: "/employee_assessment",
+        url: "/reportee_assessment_list",
         datatype: "json",
-        ccolNames: ['ID', 'Name', 'KRA', 'COMPETENCIES', 'Final Rating : (KRA*70% + COMPETENCIES*30%)', 'Status'],
+        ccolNames: ['ID', 'Name', 'Final Rating : (KRA*70% + COMPETENCIES*30%)'],
         colModel: [
             {name: 'ID', index: 'id', width: 50, hidden: true, key: true, align: "center"},
             {name: 'Name', index: 'name', width: 155, key: true, editable: true, align: "center"},
-            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
-            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
-            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', align: "center", width: 390, key: true, editable: true},
-            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
+//            {name: 'KRA', index: 'kwa_score', width: 100, key: true, editable: true, align: "center"},
+//            {name: 'COMPETENCIES', index: 'performance_rating', width: 130, key: true, editable: true, align: "center"},
+            {name: 'Final Rating : (KRA*70% + COMPETENCIES*30%)', index: 'performance_rating', align: "center", width: 390, key: true, editable: true}
+//            {name: 'Status', index: 'status', width:100, key: true, editable: true, align: "center"}
         ],
         rowNum: 4,
         caption: "Employee Assessment",

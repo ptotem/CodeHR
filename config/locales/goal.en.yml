@@ -25,7 +25,6 @@ en:
                   label: 'Name'
                   type: 'text_field_tag'
                   width: '100'
-#                  options: [["Male", "M"],["Female", "F"], ["Other","0"]]
                 period_from:
                   attribute: 'period_from'
                   label: 'Period from'
@@ -60,8 +59,6 @@ en:
                   multiple: 'true'
                   select: 'id'
                   show: 'group_name'
-
-
           tab2:
             name: "Kra"
             type: 'sub-form'
@@ -82,7 +79,7 @@ en:
                 kra:
                   attribute: 'kra_name'
                   label: 'Main KRA Description'
-                  type: 'text_area_tag'
+                  type: 'text_field_tag'
                   width: '100'
                 weightage:
                   attribute: 'weightage'
