@@ -57,6 +57,8 @@ class ProcessTransactsController < ApplicationController
         @process_transact.notification_obj = sm.notification_obj
       end
     end
+    # render :json => @process_transact
+    # return
     @process_transact.load_process
     @user  = User.find(current_user._id)
     if !@user.current_redirect_url.blank?
@@ -65,7 +67,7 @@ class ProcessTransactsController < ApplicationController
     end
 
     respond_to do |format|
-      if @process_tr.save
+      if @process_transact.save
         format.html { redirect_to @process_transact, notice: 'process_tr was successfully created.' }
         format.json { render json: @process_transact, status: :created, location: @process_transact }
       else
