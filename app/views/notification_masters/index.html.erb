@@ -36,7 +36,7 @@
                 </td>
                 <!--<td><%#= notification_master.code %></td>-->
                 <td><%= notification_master.title %></td>
-                <td><%= notification_master.description %></td>
+                <td><%= raw notification_master.description %></td>
                 <td><%= notification_master.type %></td>
                 <td><%= link_to 'Show', notification_master %></td>
                 <!--<td><%#= link_to 'Edit', edit_notification_master_path(notification_master) %></td>-->
