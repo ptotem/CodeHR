@@ -254,7 +254,8 @@
     <% if current_user.email != "hradmin@comp1.com" %>
       <ul class="nav nav-list">
         <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
-            <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?(current_user.employee_master.group_master_ids[0])} %>
+            <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?("#{current_user.employee_master.role_ids[0]}")} %>
+            <%#= current_user.employee_master.role_ids[0].to_s %>
             <% @ab_mats.each do |ab| %>
                 <% @ab_mat = ab %>
                 <% if !@ab_mat.nil? %>

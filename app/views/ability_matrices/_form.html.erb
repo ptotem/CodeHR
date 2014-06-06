@@ -27,7 +27,7 @@
         <div class="control-group">
           <%= f.label :role_id %>
           <div class="controls">
-            <%= f.select :role_id, options_from_collection_for_select(GroupMaster.all,'id','group_name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+            <%= f.select :role_id, options_from_collection_for_select(Role.all,'id','name',@ability_matrix.role_id), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <div class="control-group">
           <%= f.label :access_obj %>
           <div class="controls">
-            <%= f.select :access_obj, options_from_collection_for_select(LeftPanel.all,'id','name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple=>true} %>
+            <%= f.select :access_obj, options_from_collection_for_select(LeftPanel.all,'id','name',@ability_matrix.access_obj), {:include_blank => "Select"}, {:class => "chzn-select", :multiple=>true} %>
           </div>
         </div>
       </div>

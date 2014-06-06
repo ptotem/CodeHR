@@ -38,7 +38,7 @@
         <div class="control-group">
           <label for="Name" class="control-label">List of Processes</label>
           <div class="controls">
-            <%= f.select :process_obj, options_from_collection_for_select(MasterPro.all, 'id', 'name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+            <%= f.select :process_obj, options_from_collection_for_select(MasterPro.all, 'id', 'name',@left_panel.process_obj), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="control-group">
           <label for="Name" class="control-label">List of Documents</label>
           <div class="controls">
-            <%= f.select :doc_obj, options_from_collection_for_select(DocumentMaster.all, 'id', 'name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+            <%= f.select :doc_obj, options_from_collection_for_select(DocumentMaster.all, 'id', 'name',@left_panel.doc_obj), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
           <label for="Name" class="control-label">List of Reports</label>
 
           <div class="controls">
-            <%= f.select :report_obj, options_from_collection_for_select(DReport.all, 'id', 'report_name'), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
+            <%= f.select :report_obj, options_from_collection_for_select(DReport.all, 'id', 'report_name',@left_panel.report_obj), {:include_blank => "Select"}, {:class => "chzn-select", :multiple => true} %>
           </div>
         </div>
       </div>
