@@ -5,6 +5,7 @@
   </div>
   <div class=span6>
     <button class="btn btn-small btn-primary"> New Report </button>
+    <!--<button class="btn btn-small" id="btnExport">Export Report </button>-->
   </div>
 </div>
 <hr>
@@ -33,5 +34,36 @@
 </table>
 <script src ="/assets/jquery.dataTables.min.js"></script>
 <script>
+//    $("#report_table").dataTable({
+//        "bStateSave": true,
+//        "bJQueryUI": true,
+//        "sPaginationType": "full_numbers",
+//        "bProcessing": true,
+//        "bServerSide": true,
+////        "sAjaxSource": $('#report_table').data('source'),
+//        "bScrollInfinite": true,
+//        "bScrollCollapse": true,
+//        "iDisplayLength": 100,
+//        "sScrollY": "500px",
+//        "sScrollX": "100%",
+//        "sDom": '<"H"TCfr>t<"F"ip>',
+//        "oTableTools": {
+//            "aButtons": [
+//                "copy",
+//                "csv",
+//                "xls",
+//                {
+//                    "sExtends": "pdf",
+//                    "sPdfOrientation": "landscape",
+//                    "sPdfMessage": "Your custom message would go here."
+//                },
+//                "print"
+//            ]
+//        }
+//    });
 
+    $("#btnExport").click(function(e) {
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+        e.preventDefault();
+   	});
 </script>

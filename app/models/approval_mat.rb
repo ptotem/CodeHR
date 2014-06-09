@@ -1,4 +1,4 @@
-require 'resque_scheduler'
+# require 'resque_scheduler'
 class ApprovalMat
   include Mongoid::Document
   include Mongoid::Timestamps

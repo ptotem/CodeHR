@@ -49,7 +49,7 @@ class Kra
           @user.save
         end
       elsif Kra.find(i).goal.obj_class == "Role"
-        @users=EmployeeMaster.where(:role_id => Kra.find(i).goal.obj_id)
+        @users=Role.find(Kra.find(i).goal.obj_id).employee_masters
         @users.each do |user|
           @user = user.user
           unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
