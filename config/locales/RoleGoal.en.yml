@@ -48,14 +48,14 @@ en:
                 obj_class:
                   attribute: 'obj_class'
                   type: 'hidden_field_tag'
-                  val: "RoleMaster"
+                  val: "Role"
                 obj_id:
                   attribute: 'obj_id'
                   label: 'Select Roles for the Goal'
                   type: 'select_tag'
                   width: '200'
                   options: 'model'
-                  class: 'RoleMaster'
+                  class: 'Role'
                   multiple: 'true'
                   select: 'id'
                   show: 'name'
