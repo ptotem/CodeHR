@@ -24,8 +24,11 @@ class Kra
     puts "happening.."
     if !self.linked_to_kra.nil?
     self.linked_to_kra.to_a.each do |i|
-      puts "-------"
-      puts Kra.find(i).goal.obj_id
+      puts "-------"+i
+      if Kra.find(i).goal.nil?
+        i = Kra.find(i).parents.first.id
+      end
+      a =  Kra.find(i).goal.obj_id
       puts Kra.find(i).goal.obj_class
       if Kra.find(i).goal.obj_class == "EmployeeMaster"
         user=EmployeeMaster.find(Kra.find(i).goal.obj_id).user
@@ -49,15 +52,14 @@ class Kra
           @user.save
         end
       elsif Kra.find(i).goal.obj_class == "Role"
-        @users=Role.find(Kra.find(i).goal.obj_id).employee_masters
-        @users.each do |user|
-          @user = user.user
+        Role.find(a).first.employee_masters.each do |user|
+          user = user.user
           unm=user.notification_masters.build title:"Kra #{self.kra_name} updated" , description:"Kra #{self.kra_name} updated. Please make corresponding changes",  type:"test1", read: false
           unm.save
           unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
           unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
           unm.save
-          @user.save
+          user.save
         end
       end
 
