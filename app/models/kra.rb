@@ -23,7 +23,7 @@ class Kra
   def notify_related_kra
     puts "happening.."
     if !self.linked_to_kra.nil?
-    self.linked_to_kra.each do |i|
+    self.linked_to_kra.to_a.each do |i|
       puts "-------"
       puts Kra.find(i).goal.obj_id
       puts Kra.find(i).goal.obj_class
