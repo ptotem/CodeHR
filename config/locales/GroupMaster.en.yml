@@ -31,4 +31,13 @@ en:
                   multiple: 'true'
                   select: 'id'
                   show: 'group_name'
-
+    CompensationComponent:
+      name: "Compensation Component"
+      object: "CompensationComponent"
+      type: "specific"
+      link_location: "compensation_components/new"
+    Rating:
+      name: "Rating"
+      object: "Rating"
+      type: "specific"
+      link_location: "ratings/new"
