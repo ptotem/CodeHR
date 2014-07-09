@@ -231,7 +231,7 @@ class GenericController < ApplicationController
       @form_config = t('forms.'+@model_name)
       if @form_config.has_key?(:type) and @form_config[:type] == "specific"
         instance_variable_set("@#{params[:model_name].underscore}",eval(@model_name).new)
-        #todo:Uncomment this after finding out what it exaclty does
+        #todo: Uncomment this after finding out what it does?
         # @form_config[:extra_params].keys.sort.each do |key|
         #   instance_variable_set("@#{key}",@form_config[:extra_params][key])
         # end
