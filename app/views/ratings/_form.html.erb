@@ -1,5 +1,10 @@
 <div class="row-fluid">
-
+  <%  RatingScale.all.each do |rating|%>
+      <%i=@rating.score_receiveds.build(rating_scale_id:rating._id,sr_name:rating.name)%>
+      <%rating.scales.each do |j|%>
+          <%i.rating_measures.build(:name => j.scale_name, :range_from => j.range_from, :range_to => j.range_to)%>
+      <%end%>
+  <%end%>
   <%#= nested_form_for(@rating, html: {class: "form-horizontal"}) do |f| %>
   <%= nested_form_for(@rating, :url => (@new ? generic_create_path(@rating.class) : generic_update_path(@rating.class,@rating.id)), html: {class: "form-horizontal"}) do |f| %>
       <% if @rating.errors.any? %>
