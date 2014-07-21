@@ -41,10 +41,14 @@ class DReportsController < ApplicationController
   # POST /d_reports.json
   def create
     # render :text => params[:query_statement_id]
-    render :text => params[:d_report]
-    return
-    # @rqs = ReportQueryStatement.find(params[:query_statement_id])
+    #render :text => params[:d_report]
+    #return
+    @rqs = ReportQueryStatement.find(params[:query_statement_id])
     @d_report = DReport.new(params[:d_report])
+    @d_report.save!
+    @rqs.d_report = @d_report
+    @rqs.save!
+
 
     respond_to do |format|
       if @d_report.save
