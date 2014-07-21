@@ -32,6 +32,7 @@ class WelcomesController < InheritedResources::Base
   def get_data1
     # render :json => params
     # return
+    @d_report = DReport.new
     @a={}
     @rqs = ReportQueryStatement.find(params[:stmt_id])
     @final_array = Array.new

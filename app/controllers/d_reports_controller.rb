@@ -40,6 +40,10 @@ class DReportsController < ApplicationController
   # POST /d_reports
   # POST /d_reports.json
   def create
+    # render :text => params[:query_statement_id]
+    render :text => params[:d_report]
+    return
+    # @rqs = ReportQueryStatement.find(params[:query_statement_id])
     @d_report = DReport.new(params[:d_report])
 
     respond_to do |format|

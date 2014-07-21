@@ -4,7 +4,9 @@
     <button class="btn btn-small btn-primary" onclick="add_to_report($(this), class_name)"> Add to Report </button>
   </div>
   <div class=span6>
-    <button class="btn btn-small btn-primary"> New Report </button>
+    <button class="btn btn-small btn-primary" data-toggle="modal" data-target="#new_report_modal">
+      New Report
+    </button>
     <!--<button class="btn btn-small" id="btnExport">Export Report </button>-->
   </div>
 </div>
@@ -44,38 +46,70 @@
     <% end %>
 </tbody>
 </table>
+
+
+
 <script src ="/assets/jquery.dataTables.min.js"></script>
 <script>
-//    $("#report_table").dataTable({
-//        "bStateSave": true,
-//        "bJQueryUI": true,
-//        "sPaginationType": "full_numbers",
-//        "bProcessing": true,
-//        "bServerSide": true,
-////        "sAjaxSource": $('#report_table').data('source'),
-//        "bScrollInfinite": true,
-//        "bScrollCollapse": true,
-//        "iDisplayLength": 100,
-//        "sScrollY": "500px",
-//        "sScrollX": "100%",
-//        "sDom": '<"H"TCfr>t<"F"ip>',
-//        "oTableTools": {
-//            "aButtons": [
-//                "copy",
-//                "csv",
-//                "xls",
-//                {
-//                    "sExtends": "pdf",
-//                    "sPdfOrientation": "landscape",
-//                    "sPdfMessage": "Your custom message would go here."
-//                },
-//                "print"
-//            ]
-//        }
-//    });
 
     $("#btnExport").click(function(e) {
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
         e.preventDefault();
    	});
 </script>
+
+<div class="modal fade" style="margin-left: -451px;" id="new_report_modal" tabindex="-1" role="dialog" aria-labelledby="new_report_modal_Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">New Report</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_for(@d_report) do |f| %>
+            <% if @d_report.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@d_report.errors.count, "error") %> prohibited this d_report from being saved:</h2>
+
+                  <ul>
+                    <% @d_report.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <%= hidden_field_tag 'query_statement_id', @rqs.id %>
+            <%= f.text_field :report_date %>
+            <%= f.text_field :reviewed_by %>
+            <%= f.text_field :cl_name %>
+            <%= f.text_field :cl_fields %>
+            <%= f.text_field :object_hash %>
+            <%= f.text_field :report_name %>
+
+            <!--field :report_date, type: Date-->
+            <!--field :reviewed_by, type: String-->
+            <!--field :cl_name, type: String-->
+            <!--field :cl_fields, type: Array-->
+            <!--field :object_hash, type: Array-->
+            <!--field :deleted, type: Boolean-->
+            <!--field :report_name, type: String-->
+
+
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
