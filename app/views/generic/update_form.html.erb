@@ -18,7 +18,7 @@
       <% if !@object_at_hand[:kras].nil? %>
 
           <% @object_at_hand[:kras].map do |app_key,approval_val| %>
-              <li><a data-toggle="tab" href="#dropdown<%= count %>"><%= "kras".singularize %></a></li>
+              <li><a data-toggle="tab" href="#dropdown<%= count %>"><%= "kras".singularize.capitalize %></a></li>
               <% count =count+1 %>
           <% end %>
       <% end %>

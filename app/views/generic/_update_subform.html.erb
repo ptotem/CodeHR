@@ -108,11 +108,12 @@
                 </thead>
                 <tbody class="my_body">
                 <% @my_index=0 %>
-                <%#= local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore][0] %>
                 <% if !local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore].nil?   %>
                     <% local_object[fi.pluralize.underscore][form_index][@this_sf.pluralize.underscore].map do |kl,lk| %>
                         <tr class="salary_comp_row">
+                          <td><a href="#" onclick="remove_elem($(this).parent())" style="text-align: center"><i class="icon-remove-circle"></i></a></td>
                           <% @new_fields.each do |nf| %>
+                              <%#= nf %>
                               <td>
                                 <% case nf[:type] %>
                                 <% when "text_field_tag" %>

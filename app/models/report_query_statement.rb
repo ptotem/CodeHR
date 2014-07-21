@@ -4,4 +4,6 @@ class ReportQueryStatement
   field :classname, type: String
   field :field, type: Array
   field :grp_by, type: Array
+
+  belongs_to :d_report
 end

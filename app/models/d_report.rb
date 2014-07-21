@@ -9,4 +9,5 @@ class DReport
   field :deleted, type: Boolean
   field :report_name, type: String
 
+  has_many :report_query_statements
 end
