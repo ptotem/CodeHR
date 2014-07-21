@@ -84,25 +84,29 @@
             <% end %>
 
             <%= hidden_field_tag 'query_statement_id', @rqs.id %>
-            <%= f.text_field :report_date %>
-            <%= f.text_field :reviewed_by %>
-            <%= f.text_field :cl_name %>
-            <%= f.text_field :cl_fields %>
-            <%= f.text_field :object_hash %>
+
+            <%= f.label :report_date %>:
+            <%= f.text_field :report_date %><br />
+
+            <%= f.label :reviewed_by %>:
+            <%= f.text_field :reviewed_by %><br />
+
+            <%= f.label :cl_name %>:
+            <%= f.text_field :cl_name %><br />
+
+            <%= f.label :cl_fields %>:
+            <%= f.text_field :cl_fields %><br />
+
+            <%= f.label :object_hash %>:
+            <%= f.text_field :object_hash %><br />
+
+            <%= f.label :report_name %>:
             <%= f.text_field :report_name %>
-
-            <!--field :report_date, type: Date-->
-            <!--field :reviewed_by, type: String-->
-            <!--field :cl_name, type: String-->
-            <!--field :cl_fields, type: Array-->
-            <!--field :object_hash, type: Array-->
-            <!--field :deleted, type: Boolean-->
-            <!--field :report_name, type: String-->
-
 
             <div class="actions">
               <%= f.submit %>
             </div>
+            
         <% end %>
 
       </div>
