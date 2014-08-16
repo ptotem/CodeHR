@@ -2,9 +2,10 @@
 <div class=row-fluid>
   <div class=span6>
     <button class="btn btn-small btn-primary" onclick="add_to_report($(this), class_name)"> Add to Report </button>
+    <%= select_tag "d_report", options_from_collection_for_select(@d_reports, "id", "report_name") %>
   </div>
   <div class=span6>
-    <button class="btn btn-small btn-primary" data-toggle="modal" data-target="#new_report_modal">
+    <button id="new_report_btn" onclick="check_modal_visibility()" style="z-index: 1052" class="btn btn-small btn-primary" data-toggle="modal" data-target="#new_report_modal">
       New Report
     </button>
     <!--<button class="btn btn-small" id="btnExport">Export Report </button>-->
@@ -51,14 +52,25 @@
 
 <script src ="/assets/jquery.dataTables.min.js"></script>
 <script>
+    $(function(){
+        $("#btnExport").click(function(e) {
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+            e.preventDefault();
+        });
 
-    $("#btnExport").click(function(e) {
-        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
-   	});
+
+
+    });
+
+    function check_modal_visibility(){
+        if ($('#new_report_modal').is(':visible') == true){
+            $('#new_report_btn').css('z-index','1000');
+        }
+    }
+
 </script>
 
-<div class="modal fade" style="margin-left: -451px;" id="new_report_modal" tabindex="-1" role="dialog" aria-labelledby="new_report_modal_Label" aria-hidden="true">
+<div class="modal fade" id="new_report_modal" tabindex="-1" role="dialog" aria-labelledby="new_report_modal_Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -85,23 +97,59 @@
 
             <%= hidden_field_tag 'query_statement_id', @rqs.id %>
 
-            <%= f.label :report_date %>:
-            <%= f.text_field :report_date %><br />
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :report_date, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :report_date %>
+              </div>
+            </div>
 
-            <%= f.label :reviewed_by %>:
-            <%= f.text_field :reviewed_by %><br />
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :reviewed_by, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :reviewed_by %>
+              </div>
+            </div>
 
-            <%= f.label :cl_name %>:
-            <%= f.text_field :cl_name %><br />
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :cl_name, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :cl_name %>
+              </div>
+            </div>
 
-            <%= f.label :cl_fields %>:
-            <%= f.text_field :cl_fields %><br />
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :cl_fields, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :cl_fields %>
+              </div>
+            </div>
 
-            <%= f.label :object_hash %>:
-            <%= f.text_field :object_hash %><br />
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :object_hash, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :object_hash %>
+              </div>
+            </div>
 
-            <%= f.label :report_name %>:
-            <%= f.text_field :report_name %>
+            <div class="row-fluid">
+              <div class="span3">
+                <%= f.label :report_name, :style=>"display: inline;" %>:
+              </div>
+              <div class="span6">
+                <%= f.text_field :report_name %>
+              </div>
+            </div>
 
             <div class="actions">
               <%= f.submit %>

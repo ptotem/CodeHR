@@ -139,12 +139,13 @@ class ProcessTransactsController < ApplicationController
       @app_mat.finished=true
       @app_mat.save
       @pro.step_transacts[@step_no].end_processing_step
-      render :text=>"finished"
-      return
+      #render :text=>"finished"
+      #return
+      @status = "finished"
     end
 
-    render :text=>"Process Approval is completed now next step is over.."
-    return
+    @status ="Process Approval is completed now next step is over.."
+    #return
   end
 
   def reject_process

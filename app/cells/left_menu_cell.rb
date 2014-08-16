@@ -41,6 +41,7 @@ class LeftMenuCell < Cell::Rails
   def process_mgmt(args)
     @master_pros = args[:master_pros]
     @contoller = args[:contoller]
+    @user = args[:current_user]
     @action = args[:action]
     render
   end

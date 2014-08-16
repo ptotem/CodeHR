@@ -400,11 +400,16 @@ module ApplicationHelper
             end
           end
         elsif @pro.notification_obj["oClass"] == "GroupMaster"
+          puts "In Side Group Master"
           @pro.notification_obj["action_arr"].each do |noti|
-            @users=EmployeeMaster.where(:group_master_id => noti["id"])
+            @role = GroupMaster.find(noti["id"])
+            puts @role.id
+            @users = @role.employee_masters
+            # @users=@employees.map{|i| i.user}
+            puts @users
             @users.each do |user|
               @user = user.user
-              unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")

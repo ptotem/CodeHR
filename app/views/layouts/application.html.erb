@@ -188,11 +188,11 @@
     <img alt="Jason's Photo" src="/assets/user.jpg" class="nav-user-photo"/>
 							<span id="user_info">
 								<small>Welcome,</small>
-                              <% if current_user.employee_master.employee_name.blank? %>
+                              <%# if current_user.employee_master.employee_name.blank? %>
                                 User
-                              <% else %>
-                                <%= current_user.employee_master.employee_name %>
-                              <% end %>
+                              <%# else %>
+                                <%#= current_user.employee_master.employee_name %>
+                              <%# end %>
 							</span>
     <i class="icon-caret-down"></i>
   </a>
@@ -251,26 +251,12 @@
     <% @controller = params[:controller] %>
     <% @action = params[:action] %>
 
-    <% if current_user.email != "hradmin@comp1.com" %>
-      <ul class="nav nav-list">
-        <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
-            <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?("#{current_user.employee_master.role_ids[0]}")} %>
-            <%#= current_user.employee_master.role_ids[0].to_s %>
-            <% @ab_mats.each do |ab| %>
-                <% @ab_mat = ab %>
-                <% if !@ab_mat.nil? %>
-                    <% (@ab_mat.access_obj - [""]).each do |i| %>
-                        <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
-                    <% end %>
-                <% end %>
-            <% end %>
+    <%# if current_user.email != "hradmin@comp1.com" %>
 
-        <% end %>
-      </ul>
-    <% elsif current_user.email == "hradmin@comp1.com" %>
+    <% if current_user.email == "hradmin@comp1.com" %>
       <ul class="nav nav-list">
         <li>
-          <%= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
+          <%#= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
 
           <%#= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
         </li>
@@ -278,7 +264,7 @@
 
       <ul class="nav nav-list">
         <li>
-          <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :contoller => @controller, :action => @action %>
+          <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user,:contoller => @controller, :action => @action %>
         </li>
       </ul>
 
@@ -317,7 +303,28 @@
             <%#= render_cell :left_menu, :container_list, :ability_mat_path => ability_matrices_path, :approval_mat_path => approval_mats_path %>
         </li>
       </ul>
+    <% elsif current_user.email == "processadmin@comp1.com" or current_user.email == "processmanager@comp1.com"%>
+        <ul class="nav nav-list">
+          <li>
+            <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user, :contoller => @controller, :action => @action %>
+          </li>
+        </ul>
+    <% else %>
+        <ul class="nav nav-list">
+          <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
+              <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?("#{current_user.employee_master.role_ids[0]}")} %>
+              <%#= current_user.employee_master.role_ids[0].to_s %>
+              <% @ab_mats.each do |ab| %>
+                  <% @ab_mat = ab %>
+                  <% if !@ab_mat.nil? %>
+                      <% (@ab_mat.access_obj - [""]).each do |i| %>
+                          <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
+                      <% end %>
+                  <% end %>
+              <% end %>
 
+          <% end %>
+        </ul>
     <% end %>
 
     <div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>

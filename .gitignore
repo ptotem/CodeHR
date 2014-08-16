@@ -21,3 +21,5 @@
 /log/*.log
 /tmp
 /.idea
+/public/system
+

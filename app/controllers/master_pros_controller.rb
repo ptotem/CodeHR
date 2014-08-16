@@ -45,8 +45,8 @@ class MasterProsController < ApplicationController
   # POST /master_pros
   # POST /master_pros.json
   def create
-    #render :json => params
-    #return
+    # render :json => params
+    # return
     @master_pro = MasterPro.new(params[:master_pro])
     @master_steps = @master_pro.master_steps
     index1 = 0
@@ -72,6 +72,7 @@ class MasterProsController < ApplicationController
         format.json { render json: @master_pro.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PUT /master_pros/1

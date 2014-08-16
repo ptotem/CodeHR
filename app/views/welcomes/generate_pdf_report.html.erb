@@ -45,8 +45,8 @@
 
         <div class="row">
           <div class="offset8 span2">
-            Regards,
-            Sunny
+            <!--Regards,-->
+            <%#= @emp_mgr_name %>
           </div>
         </div>
 
@@ -93,15 +93,21 @@
               <td><%= j.kpi_value %></td>
               <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.moae %></td>
               <td><%= j.weightage %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.feedback %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.cr %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.sr %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.mr %></td>
+              <td>"<%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.feedback %>"</td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.cr.to_s %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.sr.to_s %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.mr.to_s %></td>
               <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.fr %></td>
           </tr>
           <% end %>
       <% end %>
       </tbody>
     </table>
+  </div>
+</div>
+<div class="row">
+  <div class="offset8 span2">
+    Regards,
+    <%= @emp_mgr_name %>
   </div>
 </div>

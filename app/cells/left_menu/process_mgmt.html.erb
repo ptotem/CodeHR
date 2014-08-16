@@ -4,12 +4,14 @@
   <b class="arrow icon-angle-down"></b>
 </a>
 <ul class="nav nav-list">
+  <% if @user.email == "processadmin@comp1.com" or @user.email == "hradmin@comp1.com" %>
   <li>
     <a href="/master_pros">
       <i class="icon-group"></i>
       <span>Process Master</span>
     </a>
   </li>
+  <% end %>
   <li>
     <a href="#" class="dropdown-toggle">
       <i class="icon-group"></i>

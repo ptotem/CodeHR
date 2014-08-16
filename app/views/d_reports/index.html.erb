@@ -6,32 +6,41 @@
 <hr>
 
 
+<!-- ToDo: Dynamic reporting page....  -->
 
 <div class="row-fluid">
   <div class="span12">
-    <% @d_reports.each_with_index do |d_report, index| %>
-        <div class="table-header"><%= link_to d_report.report_name ,d_report ,:style => "color:white" %></div>
-        <table id="<%= d_report.cl_name + "_table_"+ (index).to_s rescue "55"%>" class="dataTable table table-striped table-bordered table-hover">
-          <thead>
-          <tr>
-            <th></th>
-            <% d_report.cl_fields.each_with_index do |cf, index| %>
-                <th><%= cf %><script type="application/javascript">$("#<%= d_report.cl_name %>").column(<%= index %>).data().sum().DataTable()</script></th>
-            <% end %>
-          </tr>
-          </thead>
+    <table id="<%#= d_report.cl_name + "_table_"+ (index).to_s rescue "55"%>" class="dataTable table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Reviewed By</th>
+        <th>Show</th>
+        <%# d_report.cl_fields.each_with_index do |cf, index| %>
+        <!--<th><%#= cf %><script type="application/javascript">$("#<%#= d_report.cl_name %>").column(<%#= index %>).data().sum().DataTable()</script></th>-->
+        <%# end %>
+      </tr>
+      </thead>
+      <tbody>
+      <% @d_reports.each_with_index do |d_report, index| %>
+        <!--<div class="table-header"><%#= link_to d_report.report_name ,d_report ,:style => "color:white" %></div>-->
 
-          <tbody>
 
-          <% d_report.object_hash.each_with_index do |oh, index| %>
+
+
+          <%# d_report.object_hash.each_with_index do |oh, index| %>
               <tr>
-                <% @col_count = oh.count %>
-                <td></td>
-                <% oh.each_with_index do |h, index| %>
-                    <td><%= h %></td>
-                <% end %>
+                <%# @col_count = oh.count %>
+                <td><%= d_report.id %></td>
+                <td><%= d_report.report_name %></td>
+                <td><%= d_report.reviewed_by %></td>
+                <td><%= link_to "Show", d_report_path(d_report) %></td>
+                <%# oh.each_with_index do |h, index| %>
+                    <!--<td><%#= h %></td>-->
+                <%# end %>
               </tr>
-          <% end %>
+          <%# end %>
           <!--this is for the mathematical functions-->
           <!--<tr>-->
 
@@ -40,10 +49,12 @@
             <!--<td>Val</td>-->
             <!--<%# end %>-->
           <!--</tr>-->
-          </tbody>
-        </table>
-        <br><br>
+
+
+
     <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 

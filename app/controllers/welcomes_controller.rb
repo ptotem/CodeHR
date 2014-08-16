@@ -33,6 +33,10 @@ class WelcomesController < InheritedResources::Base
     # render :json => params
     # return
     @d_report = DReport.new
+    @d_reports = DReport.all
+    # render :json => @d_reports
+    # return
+
     @a={}
     @rqs = ReportQueryStatement.find(params[:stmt_id])
     @final_array = Array.new
@@ -263,7 +267,8 @@ class WelcomesController < InheritedResources::Base
   end
 
   def generate_pdf_report
-    @emp_master_name = params[:employee_master]
+    @emp_master_name = EmployeeMaster.find("#{params[:employee_master]}").employee_name
+    @emp_mgr_name =EmployeeMaster.find("#{params[:employee_master]}").parents.first.employee_name
     @message = params[:message]
 
     #render :text => "#{@emp_master_name}, #{@message}"
