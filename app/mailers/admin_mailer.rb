@@ -1,12 +1,12 @@
 class AdminMailer < ActionMailer::Base
-  default from: "from@example.com"
+   default from: "Code HR"
 
   def admin_mail(user,sub,msg)
     @user = user
     @message=msg
     @employee_master= EmployeeMaster.last
-    #puts @employee_master
-    mail(:to => user, :subject => sub,)
+    puts @employee_master
+    mail(:to => "sunny@ptotem.com", :subject => "sub")
   end
 
   def show_mail(user,sub,msg,oclass,oid,link1,link2)

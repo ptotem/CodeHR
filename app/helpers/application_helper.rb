@@ -551,8 +551,14 @@ module ApplicationHelper
   def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent,child_app_obj,child_not_obj)
     @mp=MasterPro.find(pid)
     @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process"+@mp.name, :created_by => userid, :facilitated_by => userid, :user_id =>userid,:app_obj => child_app_obj, :notification_obj => child_not_obj)
-    @mp.master_steps.each do |sm|
+    @mp.master_steps.order_by(['sequence']).each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
+      if !sm.approval_obj.nil?
+        @process_transact.app_obj = sm.approval_obj
+      end
+      if !sm.notification_obj.nil?
+        @process_transact.notification_obj = sm.notification_obj
+      end
     end
     @process_transact.load_process
   end

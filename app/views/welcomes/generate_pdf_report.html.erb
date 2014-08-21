@@ -91,13 +91,13 @@
           <tr>
               <td><%= j.kra_name %></td>
               <td><%= j.kpi_value %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.moae %></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.moae rescue ""%></td>
               <td><%= j.weightage %></td>
-              <td>"<%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.feedback %>"</td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.cr.to_s %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.sr.to_s %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.mr.to_s %></td>
-              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.fr %></td>
+              <td>"<%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.feedback rescue ""%>"</td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.cr.to_s rescue ""%></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.sr.to_s rescue ""%></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.mr.to_s rescue ""%></td>
+              <td><%= PmsAssessment.where(:employee_id => current_user.employee_master.id,:kra_id => j.id).first.fr rescue ""%></td>
           </tr>
           <% end %>
       <% end %>
