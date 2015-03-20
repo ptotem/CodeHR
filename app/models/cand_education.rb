@@ -5,6 +5,6 @@ class CandEducation
   field :description, type: String
   field :marks, type: String
   field :grade, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :candidate_master
 end

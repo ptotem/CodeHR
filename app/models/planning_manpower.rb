@@ -10,7 +10,7 @@ class PlanningManpower
   field :location, type: String
   field :supervisor, type: String
   field :comments, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   belongs_to :group_master
   belongs_to :job_description_master
 

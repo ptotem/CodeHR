@@ -5,7 +5,7 @@ class ProcessTr
   field :name, type: String
   field :user_id, type: String
   field :loop_step, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   embeds_many :step_trs
   embeds_many :chits

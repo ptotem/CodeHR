@@ -7,7 +7,7 @@ class VendorMaster
   field :office_phone_number, type: String
   field :office_fax_number1, type: String
   field :office_fax_number2, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :email, type: String
 
   belongs_to :user

@@ -1,5 +1,6 @@
 class ProcessTransact
   include Mongoid::Document
+  include AASM
   include Mongoid::Timestamps
   include Mongoid::Paperclip
   field :name, type: String
@@ -18,40 +19,78 @@ class ProcessTransact
   field :parent_pro_id, type: String
   field :parent_step_no, type: Integer
   has_mongoid_attached_file :bulk_data
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   embeds_many :step_transacts
   accepts_nested_attributes_for :step_transacts
 
 
-  state_machine :state, initial: :created do
+  # This is newly added code handle state machine functionality in rails 4 beacuse statemachine gem
+  # suddenly stop working.
+  aasm do
+    state :created, :initial => true
+    state :initiate
+    state :processing
+    state :finished
 
-    after_transition :dispense_soda => :complete, :do => :manage_stock
-
-    after_transition :created => :initiate, :do => :init_process
-
-    after_transition :initiate => :processing, :do => :post_operating_process
-
-    after_transition :processing => :finished, :do => :post_finish_process
-
-    event :button_press do
-      transition :awaiting_selection => :dispense_soda, if: :in_stock?
+    event :initialise_process, :after => :init_process do
+      # after do
+        # :init_process
+      # end
+      transitions :from => :created, :to => :initiate
     end
 
-    event :initialise_process do
-      transition :created => :initiate
 
+    event :start_processing, :after => :post_operating_process do
+      # after do
+      #   :post_operating_process
+      # end
+      transitions :from => :initiate, :to => :processing
     end
 
-    event :start_processing do
-      transition :initiate => :processing
+    event :end_processing, :after => :post_finish_process  do
+      # after do
+      #   :post_finish_process
+      # end
+      transitions :from => :processing, :to => :finished
     end
 
-    event :end_processing do
 
-      transition :processing => :finished
-    end
+  end
 
+  #TODO: To be removed later deprecated
+  # state_machine :state, initial: :created do
+  #
+  #   after_transition :dispense_soda => :complete, :do => :manage_stock
+  #
+  #   after_transition :created => :initiate, :do => :init_process
+  #
+  #   after_transition :initiate => :processing, :do => :post_operating_process
+  #
+  #   after_transition :processing => :finished, :do => :post_finish_process
+  #
+  #   event :button_press do
+  #     transition :awaiting_selection => :dispense_soda, if: :in_stock?
+  #   end
+  #
+  #   event :initialise_process do
+  #     transition :created => :initiate
+  #
+  #   end
+  #
+  #   event :start_processing do
+  #     transition :initiate => :processing
+  #   end
+  #
+  #   event :end_processing do
+  #
+  #     transition :processing => :finished
+  #   end
+  #
+  # end
+
+  def aasm_state
+    self[:aasm_state] || "created"
   end
 
   def button_press(selection)

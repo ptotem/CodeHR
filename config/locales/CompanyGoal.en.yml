@@ -62,10 +62,10 @@ en:
           tab2:
             name: "KRA"
             type: 'sub-form'
-            attribute: 'Kra13'
+            attribute: 'Kra'
             Kras:
               type: 'sub-form'
-    Kra13:
+    Kra:
       name: "KRA"
       object: "Kra"
       fields:
@@ -104,10 +104,10 @@ en:
           tab2:
             name: "Sub KRA"
             type: 'sub-form'
-            attribute: 'Subkra13'
+            attribute: 'Subkra'
             Kras:
               type: 'sub-form'
-    Subkra13:
+    Subkra:
       name: "Sub KRA"
       object: "Subkra"
       fields:

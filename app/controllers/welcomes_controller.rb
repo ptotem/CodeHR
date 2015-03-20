@@ -168,7 +168,9 @@ class WelcomesController < InheritedResources::Base
     if Goal.where(:obj_class => "EmployeeMaster", :obj_id => current_user.employee_master.id).length <=0
       @goal = Goal.where(:obj_class => "GroupMaster", :obj_id => current_user.employee_master.id).length <=0
     end
-    Goal.last.kras.order_by([params['sidx'], :asc]).each do |t|
+    # render :text => params['sidx']
+    # return
+    Goal.last.kras.each do |t|
       cell =[]
       @columns.each do |c|
         cell << t.instance_eval(c)
@@ -179,6 +181,7 @@ class WelcomesController < InheritedResources::Base
     if request.xhr?
       render :json => a
     end
+
   end
 
   def subgoal_index
@@ -193,7 +196,7 @@ class WelcomesController < InheritedResources::Base
     #     :per_page => params[:per_page]
     # )
     row =[]
-    Kra.find(params[:kra_id]).subkras.order_by([params['sidx'], :asc]).each do |t|
+    Kra.find(params[:kra_id]).subkras.each do |t|
       cell =[]
       @ea = PmsAssessment.where(:employee_id => u,:kra_id => t.id).first
       @columns.each do |c|
@@ -205,6 +208,8 @@ class WelcomesController < InheritedResources::Base
     if request.xhr?
       render :json => a
     end
+    render :json => a
+    return
     # if request.xhr?
     #   a={:page => 1,:total => 1,:records => 1,:rows => [{:id =>"5385d6d2d6ca3f1093000001",:cell => ["5385d6d2d6ca3f1093000001","K1"]}]}
     #   render :json => a

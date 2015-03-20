@@ -3,7 +3,7 @@ class Rating
   include Mongoid::Timestamps
   field :comments, type: String
   field :candidate_master_id, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embeds_many :score_receiveds
   has_many :dynamic_fields
   accepts_nested_attributes_for :score_receiveds

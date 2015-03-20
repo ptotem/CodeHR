@@ -18,7 +18,7 @@ class CompanyMaster
   field :remarks_4, type: String
   field :remarks_5, type: String
   field :client_id, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   #field :parent_company_ids, type: Array, default: []
   #field :child_company_master_ids, type: String
   #recursively_embeds_many

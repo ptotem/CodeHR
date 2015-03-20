@@ -2,7 +2,7 @@ class VacancyScheduling
   include Mongoid::Document
   include Mongoid::Timestamps
   field :interview_code, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   belongs_to :candidate_master
   belongs_to :vacancy_master

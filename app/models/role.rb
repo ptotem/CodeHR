@@ -4,7 +4,7 @@ class Role
   field :name, type: String
   field :created_by_process, type: Boolean
   field :process_id, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   #field :employee_master_ids, type: Array
   has_and_belongs_to_many :employee_masters
   # belongs_to :employee_master

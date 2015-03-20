@@ -59,6 +59,7 @@ class ProcessTransactsController < ApplicationController
     end
     # render :json => @process_transact
     # return
+    @process_transact.save
     @process_transact.load_process
     @user  = User.find(current_user._id)
     if !@user.current_redirect_url.blank?

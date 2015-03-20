@@ -8,6 +8,6 @@ class Qualification
   field :degree, type: String
   field :marks, type: String
   field :grade, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :job_description_master
 end

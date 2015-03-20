@@ -4,7 +4,7 @@ class ScoreReceived
   #field :score, type: Integer
   field :rating_scale_id, type: String
   field :sr_name, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :total_score, type: Integer
   embedded_in :rating
   embeds_many :rating_measures

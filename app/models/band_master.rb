@@ -3,7 +3,7 @@ class BandMaster
   include Mongoid::Timestamps
   field :band_code, type: String
   field :band_name, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   belongs_to :company_master
 

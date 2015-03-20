@@ -3,7 +3,7 @@ class RuleAction
   include Mongoid::Timestamps
   field :obje
   field :funct
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :custom_rule
 
 

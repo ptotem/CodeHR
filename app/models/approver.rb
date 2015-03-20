@@ -9,7 +9,7 @@ class Approver
   field :active, type: Boolean
   field :auto_assign, type: Boolean
   field :is_approver, type: Boolean
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :comment, type: String
   field :finished_at , type: DateTime
   embedded_in :approval_mat

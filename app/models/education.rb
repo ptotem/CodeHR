@@ -5,6 +5,6 @@ class Education
   field :description, type: String
   field :marks, type: Float
   field :grade, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :employee_detail
 end

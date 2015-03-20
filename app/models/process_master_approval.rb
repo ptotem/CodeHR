@@ -9,7 +9,7 @@ class ProcessMasterApproval
   field :repeat_day, type: String
   field :repeat_hour, type: String
   field :repeat_min, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   #embedded_in :process_master
   embedded_in :step_master

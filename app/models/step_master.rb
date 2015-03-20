@@ -15,7 +15,7 @@ class StepMaster
   field :rep_escalate, type: String
   field :auto_assign, type: String
   field :configurable, type: Boolean , :default => false
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
 
   embeds_many :action_arr_masters

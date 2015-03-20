@@ -31,7 +31,6 @@ class GenericController < ApplicationController
 
     def create
       instance_variable_set("@#{params[:model_name].underscore}",instance_eval(params[:model_name]).new(params[params[:model_name].underscore.to_sym]))
-
       respond_to do |format|
         if instance_variable_get("@#{params[:model_name].underscore}").save
           instance_variable_get("@#{params[:model_name].underscore}").save
@@ -333,12 +332,14 @@ class GenericController < ApplicationController
       # end
       ################################################################
       @process_transact.save
+      # render :json => @process_transact
+      # return
       if !params[:process_id].nil?
         @pro=ProcessTransact.find(params[:process_id])
         user=User.find(current_user.id)
         user.current_redirect_url=''
         user.save
-        @pro.step_transacts[params[:seq].to_i].end_processing_step
+        @process_transact.step_transacts[params[:seq].to_i].end_processing_step
       end
       @user=User.find(current_user._id)
       if !@user.current_redirect_url.blank?

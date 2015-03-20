@@ -4,7 +4,7 @@ class DynamicField
   field :name, type: String
   field :type, type: String
   field :oclass, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   belongs_to :rating
 end

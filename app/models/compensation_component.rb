@@ -7,7 +7,7 @@ class CompensationComponent
 
   field :final_ctc_fixed, type: Integer
   field :final_ctc_varriable, type: Integer
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   belongs_to :vacancy_master
 
   embeds_many :formula_lists

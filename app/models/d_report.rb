@@ -6,7 +6,7 @@ class DReport
   field :cl_name, type: String
   field :cl_fields, type: Array
   field :object_hash, type: Array
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :report_name, type: String
 
   has_many :report_query_statements

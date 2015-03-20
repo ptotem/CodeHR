@@ -4,7 +4,7 @@ class NotificationDetail
   field :notification_master_id, type: Integer
   field :event, type: String
   field :sender, type: Integer
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   belongs_to :notification_master
 
   embeds_many :receivers

@@ -9,7 +9,7 @@ class ManpowerPlanning
   field :role, type: String
   field :process_id, type:String
   field :status, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   belongs_to :group_master
   belongs_to :job_description_master
 

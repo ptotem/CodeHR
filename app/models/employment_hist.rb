@@ -5,7 +5,7 @@ class EmploymentHist
   field :leaved, type: Date
   field :organisation, type: String
   field :designation, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   embedded_in :employee_detail
 end

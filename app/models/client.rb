@@ -15,7 +15,7 @@ class Client
   field :Phone2, type: String
   field :Fax, type: String
   field :email,type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   has_and_belongs_to_many :notification_masters
 
   has_many :company_masters

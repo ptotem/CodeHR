@@ -6,6 +6,6 @@ class FormulaList
   field :internal_formula, type: String
   field :related_to, type: String
   field :associated_to, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :compensation_component
 end

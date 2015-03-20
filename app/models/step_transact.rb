@@ -1,5 +1,6 @@
 class StepTransact
   include Mongoid::Document
+  include AASM
   include Mongoid::Timestamps
   include ApplicationHelper
   field :name, type: String
@@ -9,41 +10,66 @@ class StepTransact
   field :action_obj, type: String
   field :auto, type: Boolean
   field :params_mapping, type: Hash
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :initiated_at, type: DateTime
   field :finished_at, type: DateTime
   field :repeat_on, type: String
   embedded_in :process_transact
 
-  state_machine :state, initial: :created do
+  #--------------------------------------------------------------
+  #Added on: 19/02/2015
+  #Statemachine gem stop working in rails 4.1
+  #--------------------------------------------------------------
 
-    after_transition :dispense_soda => :complete, :do => :manage_stock
+  aasm do
+    state :created, :initial => true
+    state :initiate
+    state :processing
+    state :finished
 
-    after_transition :created => :initiate, :do => :init_step
-
-    after_transition :initiate => :processing, :do => :post_process_step
-
-    after_transition :processing => :finished, :do => :post_finish_step
-
-    event :button_press do
-      transition :awaiting_selection => :dispense_soda, if: :in_stock?
+    event :initialise_step, :after => :init_step do
+      transitions :from => :created, :to => :initiate
     end
 
-    event :initialise_step do
-      transition :created => :initiate
-
+    event :start_processing_step, :after => :post_process_step do
+      transitions :from =>:initiate, :to => :processing
     end
 
-    event :start_processing_step do
-      transition :initiate => :processing
+    event :end_processing_step, :after => :post_finish_step do
+      transitions :from => :processing, :to => :finished
     end
-
-    event :end_processing_step do
-
-      transition :processing => :finished
-    end
-
   end
+
+  # TODO: To be removed later.
+  # state_machine :state, initial: :created do
+  #
+  #   after_transition :dispense_soda => :complete, :do => :manage_stock
+  #
+  #   after_transition :created => :initiate, :do => :init_step
+  #
+  #   after_transition :initiate => :processing, :do => :post_process_step
+  #
+  #   after_transition :processing => :finished, :do => :post_finish_step
+  #
+  #   event :button_press do
+  #     transition :awaiting_selection => :dispense_soda, if: :in_stock?
+  #   end
+  #
+  #   event :initialise_step do
+  #     transition :created => :initiate
+  #
+  #   end
+  #
+  #   event :start_processing_step do
+  #     transition :initiate => :processing
+  #   end
+  #
+  #   event :end_processing_step do
+  #
+  #     transition :processing => :finished
+  #   end
+  #
+  # end
 
   def button_press(selection)
     @selection = selection
@@ -56,6 +82,10 @@ class StepTransact
 
   def in_stock?
     stock_levels[@selection] > 0
+  end
+
+  def aasm_state
+    self[:aasm_state] || "created"
   end
 
   def stock_levels
@@ -83,6 +113,10 @@ class StepTransact
   def post_process_step
     puts "#{self.name} is processing.."
     puts "#{self.name} is preparing for finish processing"
+    self.process_transact.save
+    puts "----------------------------------------------"
+    puts "Current Step State : "+self.aasm_state
+    puts "----------------------------------------------"
     #self.end_processing_step
     #step_processing(self.oclass,self.oaction,self.action_to,self.content,self.process_tr._id,self.process_tr.step_trs.index(self),self.process_tr.user_id)
     step_transaction_processing(self.action_name,self.obj_name,self.process_transact.cobject_id, self.action_obj,self.process_transact._id, self.process_transact.step_transacts.index(self),self.process_transact.user_id)

@@ -4,6 +4,6 @@ class AutoAssignToTr
   field :aclass, type: String
   field :dclass, type: String
   field :objid, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :step_tr
 end

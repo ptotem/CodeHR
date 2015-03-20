@@ -3,7 +3,7 @@ class Vaddress
   include Mongoid::Timestamps
   field :city, type: String
   field :state, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   embedded_in :vendor_master
 end

@@ -4,6 +4,6 @@ class ConditionStmt
   field :varr, type: String
   field :expression, type: String
   field :val, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :custom_condition
 end

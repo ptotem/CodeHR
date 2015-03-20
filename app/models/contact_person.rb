@@ -6,6 +6,6 @@ class ContactPerson
   field :phone1, type: String
   field :phone2, type: String
   field :email, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :vendor_master
 end

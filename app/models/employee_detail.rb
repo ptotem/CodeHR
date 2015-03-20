@@ -26,7 +26,7 @@ class EmployeeDetail
   field :remarks_4, type: String
   field :remarks_5, type: String
   has_mongoid_attached_file :employee_cv
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   belongs_to :employee_master
 

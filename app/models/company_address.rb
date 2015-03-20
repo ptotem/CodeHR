@@ -9,6 +9,6 @@ class CompanyAddress
   field :state, type: String
   field :country, type: String
   field :pin, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :company_master
 end

@@ -7,7 +7,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :superuser, :designation
+  # attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :superuser, :designation
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -30,7 +30,7 @@ class User
   field :current_redirect_url, :type => String
   field :superuser, :type => Boolean, :default => false
   field :designation, :type => String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 
   has_one :employee_master
   has_one :vendor_master
@@ -53,5 +53,3 @@ class User
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
 end
-
-

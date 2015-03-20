@@ -7,6 +7,6 @@ class EsisNomination
   field :fname, type: String
   field :mname, type: String
   field :lname, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :employee_detail
 end

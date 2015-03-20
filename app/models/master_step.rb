@@ -11,7 +11,7 @@ class MasterStep
   field :params_mapping, type: Hash
   field :approval_obj, type: Hash
   field :notification_obj, type: Hash
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   field :repeat_on, type: String
   belongs_to :master_pro
 end

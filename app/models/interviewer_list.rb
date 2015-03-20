@@ -7,7 +7,7 @@ class InterviewerList
   field :fromtime, type: Time
   field :to_date, type: Date
   field :to_time, type: Time
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
   embedded_in :vacancy_scheduling
 
 

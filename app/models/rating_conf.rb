@@ -11,5 +11,5 @@ class RatingConf
   field :is_nested , type: Boolean
   field :type, type: String
   field :parent, type: String
-  field :deleted, type: Boolean
+  field :erased, type: Boolean
 end
