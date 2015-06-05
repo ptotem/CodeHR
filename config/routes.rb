@@ -1,5 +1,7 @@
 CodeHR::Application.routes.draw do
 
+  get 'temporary_file_storage/new'
+
   resources :goals
 
 

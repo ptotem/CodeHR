@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-create_and_load_auto_process">#create_and_load_auto_process</a>
+    
+    <li ><a href="#method-i-create_and_load_process">#create_and_load_process</a>
+    
+    <li ><a href="#method-i-custom_lable">#custom_lable</a>
+    
+    <li ><a href="#method-i-open_spreadsheet">#open_spreadsheet</a>
+    
+    <li ><a href="#method-i-step_processing">#step_processing</a>
+    
+    <li ><a href="#method-i-step_transaction_processing">#step_transaction_processing</a>
+    
+    <li ><a href="#method-i-test1">#test1</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AbilityMatricesController.html">AbilityMatricesController</a>
+  
+    <li><a href="./AbilityMatricesHelper.html">AbilityMatricesHelper</a>
+  
+    <li><a href="./AbilityMatrix.html">AbilityMatrix</a>
+  
+    <li><a href="./ActionArr.html">ActionArr</a>
+  
+    <li><a href="./ActionArrMaster.html">ActionArrMaster</a>
+  
+    <li><a href="./ActionToTake.html">ActionToTake</a>
+  
+    <li><a href="./AdminMailer.html">AdminMailer</a>
+  
+    <li><a href="./AdminUser.html">AdminUser</a>
+  
+    <li><a href="./AppData.html">AppData</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./ApprovalMat.html">ApprovalMat</a>
+  
+    <li><a href="./ApprovalMatsController.html">ApprovalMatsController</a>
+  
+    <li><a href="./ApprovalMatsHelper.html">ApprovalMatsHelper</a>
+  
+    <li><a href="./Approver.html">Approver</a>
+  
+    <li><a href="./AssessmentSchedule.html">AssessmentSchedule</a>
+  
+    <li><a href="./AutoAssignTo.html">AutoAssignTo</a>
+  
+    <li><a href="./AutoAssignToTr.html">AutoAssignToTr</a>
+  
+    <li><a href="./BandMaster.html">BandMaster</a>
+  
+    <li><a href="./BandMastersController.html">BandMastersController</a>
+  
+    <li><a href="./BandMastersHelper.html">BandMastersHelper</a>
+  
+    <li><a href="./CandEducation.html">CandEducation</a>
+  
+    <li><a href="./CandidateContactNumber.html">CandidateContactNumber</a>
+  
+    <li><a href="./CandidateEmploymentHistory.html">CandidateEmploymentHistory</a>
+  
+    <li><a href="./CandidateFamilyDetail.html">CandidateFamilyDetail</a>
+  
+    <li><a href="./CandidateMaster.html">CandidateMaster</a>
+  
+    <li><a href="./CandidateMastersController.html">CandidateMastersController</a>
+  
+    <li><a href="./CandidateMastersHelper.html">CandidateMastersHelper</a>
+  
+    <li><a href="./CandidatePersonelAddress.html">CandidatePersonelAddress</a>
+  
+    <li><a href="./CandidateQualification.html">CandidateQualification</a>
+  
+    <li><a href="./Chit.html">Chit</a>
+  
+    <li><a href="./Client.html">Client</a>
+  
+    <li><a href="./ClientsController.html">ClientsController</a>
+  
+    <li><a href="./ClientsHelper.html">ClientsHelper</a>
+  
+    <li><a href="./CommunicationAddress.html">CommunicationAddress</a>
+  
+    <li><a href="./CompanyAddress.html">CompanyAddress</a>
+  
+    <li><a href="./CompanyMaster.html">CompanyMaster</a>
+  
+    <li><a href="./CompanyMastersController.html">CompanyMastersController</a>
+  
+    <li><a href="./CompanyMastersHelper.html">CompanyMastersHelper</a>
+  
+    <li><a href="./CompensationComponent.html">CompensationComponent</a>
+  
+    <li><a href="./CompensationComponentsController.html">CompensationComponentsController</a>
+  
+    <li><a href="./CompensationComponentsHelper.html">CompensationComponentsHelper</a>
+  
+    <li><a href="./ConditionStmt.html">ConditionStmt</a>
+  
+    <li><a href="./ContactPerson.html">ContactPerson</a>
+  
+    <li><a href="./ContainerList.html">ContainerList</a>
+  
+    <li><a href="./ContainerListsController.html">ContainerListsController</a>
+  
+    <li><a href="./ContainerListsHelper.html">ContainerListsHelper</a>
+  
+    <li><a href="./CustomCondition.html">CustomCondition</a>
+  
+    <li><a href="./CustomRule.html">CustomRule</a>
+  
+    <li><a href="./DReport.html">DReport</a>
+  
+    <li><a href="./DReportsController.html">DReportsController</a>
+  
+    <li><a href="./DReportsHelper.html">DReportsHelper</a>
+  
+    <li><a href="./DevelopmentMailInterceptor.html">DevelopmentMailInterceptor</a>
+  
+    <li><a href="./DocumentMaster.html">DocumentMaster</a>
+  
+    <li><a href="./DocumentMastersController.html">DocumentMastersController</a>
+  
+    <li><a href="./DocumentMastersHelper.html">DocumentMastersHelper</a>
+  
+    <li><a href="./DocumentTemplateMaster.html">DocumentTemplateMaster</a>
+  
+    <li><a href="./DocumentTemplateMastersController.html">DocumentTemplateMastersController</a>
+  
+    <li><a href="./DocumentTemplateMastersHelper.html">DocumentTemplateMastersHelper</a>
+  
+    <li><a href="./DynamicField.html">DynamicField</a>
+  
+    <li><a href="./DynamicRuleBook.html">DynamicRuleBook</a>
+  
+    <li><a href="./Education.html">Education</a>
+  
+    <li><a href="./EmailDetail.html">EmailDetail</a>
+  
+    <li><a href="./EmployeeDetail.html">EmployeeDetail</a>
+  
+    <li><a href="./EmployeeDetailsController.html">EmployeeDetailsController</a>
+  
+    <li><a href="./EmployeeDetailsHelper.html">EmployeeDetailsHelper</a>
+  
+    <li><a href="./EmployeeMaster.html">EmployeeMaster</a>
+  
+    <li><a href="./EmployeeMastersController.html">EmployeeMastersController</a>
+  
+    <li><a href="./EmployeeMastersHelper.html">EmployeeMastersHelper</a>
+  
+    <li><a href="./EmployeeQualification.html">EmployeeQualification</a>
+  
+    <li><a href="./EmploymentHist.html">EmploymentHist</a>
+  
+    <li><a href="./EsisNomination.html">EsisNomination</a>
+  
+    <li><a href="./FamilyDetail.html">FamilyDetail</a>
+  
+    <li><a href="./FixSchedulesJob.html">FixSchedulesJob</a>
+  
+    <li><a href="./FormulaList.html">FormulaList</a>
+  
+    <li><a href="./GenericController.html">GenericController</a>
+  
+    <li><a href="./GenericHelper.html">GenericHelper</a>
+  
+    <li><a href="./Goal.html">Goal</a>
+  
+    <li><a href="./GoalsController.html">GoalsController</a>
+  
+    <li><a href="./GoalsHelper.html">GoalsHelper</a>
+  
+    <li><a href="./GroupMaster.html">GroupMaster</a>
+  
+    <li><a href="./GroupMastersController.html">GroupMastersController</a>
+  
+    <li><a href="./GroupMastersHelper.html">GroupMastersHelper</a>
+  
+    <li><a href="./GroupsHelper.html">GroupsHelper</a>
+  
+    <li><a href="./InterviewType.html">InterviewType</a>
+  
+    <li><a href="./InterviewTypesController.html">InterviewTypesController</a>
+  
+    <li><a href="./InterviewTypesHelper.html">InterviewTypesHelper</a>
+  
+    <li><a href="./InterviewerList.html">InterviewerList</a>
+  
+    <li><a href="./JobDescriptionMaster.html">JobDescriptionMaster</a>
+  
+    <li><a href="./JobDescriptionMastersController.html">JobDescriptionMastersController</a>
+  
+    <li><a href="./JobDescriptionMastersHelper.html">JobDescriptionMastersHelper</a>
+  
+    <li><a href="./JobPreference.html">JobPreference</a>
+  
+    <li><a href="./Kra.html">Kra</a>
+  
+    <li><a href="./LeftMenuCell.html">LeftMenuCell</a>
+  
+    <li><a href="./LeftPanel.html">LeftPanel</a>
+  
+    <li><a href="./LeftPanelsController.html">LeftPanelsController</a>
+  
+    <li><a href="./LeftPanelsHelper.html">LeftPanelsHelper</a>
+  
+    <li><a href="./LetterReport.html">LetterReport</a>
+  
+    <li><a href="./LetterReport/Html.html">LetterReport::Html</a>
+  
+    <li><a href="./LetterReportController.html">LetterReportController</a>
+  
+    <li><a href="./LetterReportHelper.html">LetterReportHelper</a>
+  
+    <li><a href="./LocationPreference.html">LocationPreference</a>
+  
+    <li><a href="./Machine.html">Machine</a>
+  
+    <li><a href="./MailBcc.html">MailBcc</a>
+  
+    <li><a href="./MailCc.html">MailCc</a>
+  
+    <li><a href="./MailTo.html">MailTo</a>
+  
+    <li><a href="./ManpowerPlanning.html">ManpowerPlanning</a>
+  
+    <li><a href="./ManpowerPlanningsController.html">ManpowerPlanningsController</a>
+  
+    <li><a href="./ManpowerPlanningsHelper.html">ManpowerPlanningsHelper</a>
+  
+    <li><a href="./MasterPro.html">MasterPro</a>
+  
+    <li><a href="./MasterProsController.html">MasterProsController</a>
+  
+    <li><a href="./MasterProsHelper.html">MasterProsHelper</a>
+  
+    <li><a href="./MasterStep.html">MasterStep</a>
+  
+    <li><a href="./MasterStepsController.html">MasterStepsController</a>
+  
+    <li><a href="./MasterStepsHelper.html">MasterStepsHelper</a>
+  
+    <li><a href="./MyJob.html">MyJob</a>
+  
+    <li><a href="./NotificationDetail.html">NotificationDetail</a>
+  
+    <li><a href="./NotificationMaster.html">NotificationMaster</a>
+  
+    <li><a href="./NotificationMastersController.html">NotificationMastersController</a>
+  
+    <li><a href="./NotificationMastersHelper.html">NotificationMastersHelper</a>
+  
+    <li><a href="./PfNomination.html">PfNomination</a>
+  
+    <li><a href="./PlanningManpower.html">PlanningManpower</a>
+  
+    <li><a href="./PlanningManpowersController.html">PlanningManpowersController</a>
+  
+    <li><a href="./PlanningManpowersHelper.html">PlanningManpowersHelper</a>
+  
+    <li><a href="./PmsAssessment.html">PmsAssessment</a>
+  
+    <li><a href="./PmsGroupCategoriesController.html">PmsGroupCategoriesController</a>
+  
+    <li><a href="./PmsGroupCategoriesHelper.html">PmsGroupCategoriesHelper</a>
+  
+    <li><a href="./PmsGroupCategory.html">PmsGroupCategory</a>
+  
+    <li><a href="./PmsGroupCategoryMaster.html">PmsGroupCategoryMaster</a>
+  
+    <li><a href="./PmsKraKpiTab.html">PmsKraKpiTab</a>
+  
+    <li><a href="./PmsKraKpiTabsController.html">PmsKraKpiTabsController</a>
+  
+    <li><a href="./PmsKraKpiTabsHelper.html">PmsKraKpiTabsHelper</a>
+  
+    <li><a href="./PmsSubgroup.html">PmsSubgroup</a>
+  
+    <li><a href="./PmsSubgroupsController.html">PmsSubgroupsController</a>
+  
+    <li><a href="./PmsSubgroupsHelper.html">PmsSubgroupsHelper</a>
+  
+    <li><a href="./ProcessMaster.html">ProcessMaster</a>
+  
+    <li><a href="./ProcessMasterApproval.html">ProcessMasterApproval</a>
+  
+    <li><a href="./ProcessMastersController.html">ProcessMastersController</a>
+  
+    <li><a href="./ProcessMastersHelper.html">ProcessMastersHelper</a>
+  
+    <li><a href="./ProcessTr.html">ProcessTr</a>
+  
+    <li><a href="./ProcessTransact.html">ProcessTransact</a>
+  
+    <li><a href="./ProcessTransactsController.html">ProcessTransactsController</a>
+  
+    <li><a href="./ProcessTransactsHelper.html">ProcessTransactsHelper</a>
+  
+    <li><a href="./ProcessTrsController.html">ProcessTrsController</a>
+  
+    <li><a href="./ProcessTrsHelper.html">ProcessTrsHelper</a>
+  
+    <li><a href="./Qualification.html">Qualification</a>
+  
+    <li><a href="./Rating.html">Rating</a>
+  
+    <li><a href="./RatingConf.html">RatingConf</a>
+  
+    <li><a href="./RatingConfsController.html">RatingConfsController</a>
+  
+    <li><a href="./RatingConfsHelper.html">RatingConfsHelper</a>
+  
+    <li><a href="./RatingMeasure.html">RatingMeasure</a>
+  
+    <li><a href="./RatingMeasuresController.html">RatingMeasuresController</a>
+  
+    <li><a href="./RatingMeasuresHelper.html">RatingMeasuresHelper</a>
+  
+    <li><a href="./RatingScale.html">RatingScale</a>
+  
+    <li><a href="./RatingScalesController.html">RatingScalesController</a>
+  
+    <li><a href="./RatingScalesHelper.html">RatingScalesHelper</a>
+  
+    <li><a href="./RatingsController.html">RatingsController</a>
+  
+    <li><a href="./RatingsHelper.html">RatingsHelper</a>
+  
+    <li><a href="./Receiver.html">Receiver</a>
+  
+    <li><a href="./RepeatEscalationJob.html">RepeatEscalationJob</a>
+  
+    <li><a href="./RepeatReminderJob.html">RepeatReminderJob</a>
+  
+    <li><a href="./ReportQueryStatement.html">ReportQueryStatement</a>
+  
+    <li><a href="./ReportingTo.html">ReportingTo</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesHelper.html">RolesHelper</a>
+  
+    <li><a href="./RuleAction.html">RuleAction</a>
+  
+    <li><a href="./RuleActions.html">RuleActions</a>
+  
+    <li><a href="./RuleBook.html">RuleBook</a>
+  
+    <li><a href="./SalaryComponentMaster.html">SalaryComponentMaster</a>
+  
+    <li><a href="./SalaryComponentMastersController.html">SalaryComponentMastersController</a>
+  
+    <li><a href="./SalaryComponentMastersHelper.html">SalaryComponentMastersHelper</a>
+  
+    <li><a href="./SalaryStrucuture.html">SalaryStrucuture</a>
+  
+    <li><a href="./SalaryStrucuturesController.html">SalaryStrucuturesController</a>
+  
+    <li><a href="./SalaryStrucuturesHelper.html">SalaryStrucuturesHelper</a>
+  
+    <li><a href="./Scale.html">Scale</a>
+  
+    <li><a href="./ScoreReceived.html">ScoreReceived</a>
+  
+    <li><a href="./SendEmailJob.html">SendEmailJob</a>
+  
+    <li><a href="./SetEscalationJob.html">SetEscalationJob</a>
+  
+    <li><a href="./StandardPDFReport.html">StandardPDFReport</a>
+  
+    <li><a href="./Step.html">Step</a>
+  
+    <li><a href="./StepMaster.html">StepMaster</a>
+  
+    <li><a href="./StepTr.html">StepTr</a>
+  
+    <li><a href="./StepTransact.html">StepTransact</a>
+  
+    <li><a href="./SubgroupsController.html">SubgroupsController</a>
+  
+    <li><a href="./SubgroupsHelper.html">SubgroupsHelper</a>
+  
+    <li><a href="./TestDynState.html">TestDynState</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UserTask.html">UserTask</a>
+  
+    <li><a href="./UserTasksController.html">UserTasksController</a>
+  
+    <li><a href="./UserTasksHelper.html">UserTasksHelper</a>
+  
+    <li><a href="./VacancyMaster.html">VacancyMaster</a>
+  
+    <li><a href="./VacancyMastersController.html">VacancyMastersController</a>
+  
+    <li><a href="./VacancyMastersHelper.html">VacancyMastersHelper</a>
+  
+    <li><a href="./VacancyScheduling.html">VacancyScheduling</a>
+  
+    <li><a href="./VacancySchedulingsController.html">VacancySchedulingsController</a>
+  
+    <li><a href="./VacancySchedulingsHelper.html">VacancySchedulingsHelper</a>
+  
+    <li><a href="./Vaddress.html">Vaddress</a>
+  
+    <li><a href="./VendorMaster.html">VendorMaster</a>
+  
+    <li><a href="./VendorMastersController.html">VendorMastersController</a>
+  
+    <li><a href="./VendorMastersHelper.html">VendorMastersHelper</a>
+  
+    <li><a href="./Welcome.html">Welcome</a>
+  
+    <li><a href="./WelcomesController.html">WelcomesController</a>
+  
+    <li><a href="./WelcomesHelper.html">WelcomesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create_and_load_auto_process" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_and_load_auto_process</span><span
+            class="method-args">(parent_process_id, parent_step_no, pid,userid,dependent,child_cls_obj,child_app_obj,child_not_obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_and_load_auto_process-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 566</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_and_load_auto_process</span>(<span class="ruby-identifier">parent_process_id</span>, <span class="ruby-identifier">parent_step_no</span>, <span class="ruby-identifier">pid</span>,<span class="ruby-identifier">userid</span>,<span class="ruby-identifier">dependent</span>,<span class="ruby-identifier">child_cls_obj</span>,<span class="ruby-identifier">child_app_obj</span>,<span class="ruby-identifier">child_not_obj</span>)
+  <span class="ruby-ivar">@mp</span>=<span class="ruby-constant">MasterPro</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+  <span class="ruby-ivar">@process_transact</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:dependent=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">dependent</span>,<span class="ruby-value">:created_by_process=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,<span class="ruby-value">:parent_pro_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">parent_process_id</span>,<span class="ruby-value">:parent_step_no=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">parent_step_no</span>,<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Child process&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@mp</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:created_by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">userid</span>, <span class="ruby-value">:facilitated_by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">userid</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">userid</span>, <span class="ruby-value">:parameter</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">child_cls_obj</span>,<span class="ruby-value">:class_obj</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">child_cls_obj</span>,<span class="ruby-value">:app_obj</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">child_app_obj</span>, <span class="ruby-value">:notification_obj</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">child_not_obj</span>)
+  <span class="ruby-ivar">@mp</span>.<span class="ruby-identifier">master_steps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sm</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@step_transact</span> = <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">step_transacts</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">step_name</span>,<span class="ruby-value">:action_name=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">action</span>,<span class="ruby-value">:action_object_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">:obj_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">action_class</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">load_process</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_and_load_auto_process-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_and_load_auto_process-method -->
+
+    
+      <div id="method-i-create_and_load_process" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_and_load_process</span><span
+            class="method-args">(parent_process_id, parent_step_no, pid,userid,dependent,child_app_obj,child_not_obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_and_load_process-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 551</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_and_load_process</span>(<span class="ruby-identifier">parent_process_id</span>, <span class="ruby-identifier">parent_step_no</span>, <span class="ruby-identifier">pid</span>,<span class="ruby-identifier">userid</span>,<span class="ruby-identifier">dependent</span>,<span class="ruby-identifier">child_app_obj</span>,<span class="ruby-identifier">child_not_obj</span>)
+  <span class="ruby-ivar">@mp</span>=<span class="ruby-constant">MasterPro</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+  <span class="ruby-ivar">@process_transact</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:dependent=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">dependent</span>,<span class="ruby-value">:created_by_process=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,<span class="ruby-value">:parent_pro_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">parent_process_id</span>,<span class="ruby-value">:parent_step_no=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">parent_step_no</span>,<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Child process&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@mp</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:created_by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">userid</span>, <span class="ruby-value">:facilitated_by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">userid</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">userid</span>,<span class="ruby-value">:app_obj</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">child_app_obj</span>, <span class="ruby-value">:notification_obj</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">child_not_obj</span>)
+  <span class="ruby-ivar">@mp</span>.<span class="ruby-identifier">master_steps</span>.<span class="ruby-identifier">order_by</span>([<span class="ruby-string">&#39;sequence&#39;</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sm</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@step_transact</span> = <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">step_transacts</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">step_name</span>,<span class="ruby-value">:action_name=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">action</span>,<span class="ruby-value">:action_object_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">:obj_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">action_class</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sm</span>.<span class="ruby-identifier">approval_obj</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">app_obj</span> = <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">approval_obj</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">sm</span>.<span class="ruby-identifier">notification_obj</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">notification_obj</span> = <span class="ruby-identifier">sm</span>.<span class="ruby-identifier">notification_obj</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@process_transact</span>.<span class="ruby-identifier">load_process</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_and_load_process-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_and_load_process-method -->
+
+    
+      <div id="method-i-custom_lable" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_lable</span><span
+            class="method-args">(object, attribute)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_lable-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">custom_lable</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">attribute</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">validators_on</span>(<span class="ruby-identifier">attribute</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:class</span>).<span class="ruby-identifier">include?</span> <span class="ruby-constant">Mongoid</span><span class="ruby-operator">::</span><span class="ruby-constant">Validations</span><span class="ruby-operator">::</span><span class="ruby-constant">PresenceValidator</span>
+    <span class="ruby-string">&quot;&lt;lable class=&#39;control-label&#39;&gt;&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-string">&#39;_&#39;</span>,<span class="ruby-string">&#39; &#39;</span>).<span class="ruby-identifier">titleize</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &lt;span style=&#39;color:red;&#39;&gt;*&lt;/span&gt;&lt;/lable&gt;&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;&lt;lable class=&#39;control-label&#39;&gt;&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">titleize</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;&lt;/lable&gt;&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- custom_lable-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- custom_lable-method -->
+
+    
+      <div id="method-i-open_spreadsheet" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_spreadsheet</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="open_spreadsheet-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 575</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">open_spreadsheet</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">original_filename</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.csv&#39;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-constant">Roo</span><span class="ruby-operator">::</span><span class="ruby-constant">Csv</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">path</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">:ignore</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.xls&#39;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-constant">Roo</span><span class="ruby-operator">::</span><span class="ruby-constant">Excel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">path</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">:ignore</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;.xlsx&#39;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-constant">Roo</span><span class="ruby-operator">::</span><span class="ruby-constant">Excelx</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">path</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-value">:ignore</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknown file type: #{file.original_filename}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- open_spreadsheet-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- open_spreadsheet-method -->
+
+    
+      <div id="method-i-step_processing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">step_processing</span><span
+            class="method-args">(oclass,oaction,action_to,content,pid,stepno,user_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="step_processing-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">step_processing</span>(<span class="ruby-identifier">oclass</span>,<span class="ruby-identifier">oaction</span>,<span class="ruby-identifier">action_to</span>,<span class="ruby-identifier">content</span>,<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-comment">#todo: Making it more generic making a function for for the actions which are repeating itself in different controller</span>
+  <span class="ruby-comment">#todo: Making routing dynamic and generic</span>
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">oaction</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Creation&quot;</span>
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/creation/#{oclass}/#{pid}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Updation&quot;</span>
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/updation/#{oclass}/#{action_to}/#{pid}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Deletion&quot;</span>
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/deletion/#{oclass}/#{action_to}/#{pid}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In deletion&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Notify&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;To see whether it is coming or not.....&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">action_to</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">action_to</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Admin&quot;</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In admin&quot;</span>
+          <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Admin Found..&quot;</span>
+          <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mail to admin is delivered&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Client&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_to</span>.<span class="ruby-identifier">blank?</span>
+            <span class="ruby-ivar">@group</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">oclass</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:process_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">pid</span>).<span class="ruby-identifier">first</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-ivar">@group</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">oclass</span>).<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_to</span>)
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-ivar">@client</span>=<span class="ruby-ivar">@group</span>.<span class="ruby-identifier">company_master</span>.<span class="ruby-identifier">client</span>
+          <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@client</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-ivar">@client</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Client mail delivered&quot;</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;PowerUser&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_to</span>.<span class="ruby-identifier">blank?</span>
+            <span class="ruby-ivar">@group</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">oclass</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:process_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">pid</span>).<span class="ruby-identifier">first</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-ivar">@group</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">oclass</span>).<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_to</span>)
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-ivar">@client</span>=<span class="ruby-ivar">@group</span>.<span class="ruby-identifier">company_master</span>.<span class="ruby-identifier">client</span>
+          <span class="ruby-ivar">@power_users</span>=<span class="ruby-ivar">@client</span>.<span class="ruby-identifier">admin_users</span>
+          <span class="ruby-ivar">@power_users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">client</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">unm</span>=<span class="ruby-identifier">client</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-identifier">client</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mail to power user delivered&quot;</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Manager&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-ivar">@a</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">chits</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Manager&quot;</span>).<span class="ruby-identifier">first</span>
+          <span class="ruby-ivar">@manager</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@a</span>.<span class="ruby-identifier">ocname</span>).<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@a</span>.<span class="ruby-identifier">oid</span>).<span class="ruby-identifier">user</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@manager</span>
+          <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mail to admin is delivered&quot;</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Array&quot;</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;To be done&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-ivar">@action_arrs</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">action_arrs</span>
+          <span class="ruby-comment">#to get the array data and send them notification</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Got the data&quot;</span>
+          <span class="ruby-ivar">@action_arrs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aarr</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@user</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">aarr</span>.<span class="ruby-identifier">a_cls_name</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">aarr</span>.<span class="ruby-identifier">obj_id</span>).<span class="ruby-identifier">user</span>
+            <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mail to admin is delivered&quot;</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;User&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-ivar">@user</span>=<span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">chits</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;User&quot;</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">oid</span>).<span class="ruby-identifier">user</span>
+          <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:content</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-constant">AdminMailer</span>.<span class="ruby-identifier">admin_mail</span>(<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">email</span>,<span class="ruby-node">&quot;#{oclass} #{oaction}&quot;</span>,<span class="ruby-node">&quot;#{content}&quot;</span>).<span class="ruby-identifier">deliver</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mail to User is delivered&quot;</span>
+          <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;This was the last step of the process...&quot;</span>
+
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Tagging&quot;</span>
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@chit</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">chits</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/#{oclass.downcase}_#{oaction.downcase}_#{action_to.downcase}/#{@chit.oid}/#{pid}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Process is in Tagging.....&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Approval&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Current Process is in approval stage&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Sending approval request to People.&quot;</span>
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-ivar">@app</span>=<span class="ruby-constant">ApprovalMat</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">name</span>,<span class="ruby-identifier">ocls</span><span class="ruby-value">:oclass</span>,<span class="ruby-identifier">oid</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">chits</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">oid</span>,<span class="ruby-value">:description=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">content</span>,<span class="ruby-value">:link=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;&#39;</span>,<span class="ruby-value">:complete=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:process_tr_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:step_no=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">stepno</span>,<span class="ruby-value">:approved_next_step=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">approved_next_step</span>,<span class="ruby-value">:reject_next_step=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">reject_next_step</span>,<span class="ruby-value">:reminder=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">reminder</span>,<span class="ruby-value">:rep_reminder=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">rep_reminder</span> ,<span class="ruby-value">:escalate=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">escalate</span> ,<span class="ruby-value">:rep_escalate=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">rep_escalate</span>,<span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">auto_assign</span>)
+      <span class="ruby-identifier">link</span>=<span class="ruby-node">&quot;http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}&quot;</span>
+      <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">link</span>=<span class="ruby-identifier">link</span>
+      <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">action_arrs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aa</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">aa</span>.<span class="ruby-identifier">dep_clas_name</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aa</span>.<span class="ruby-identifier">obj_id</span>,<span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@grps</span>=<span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">aa</span>.<span class="ruby-identifier">dep_clas_name</span>.<span class="ruby-identifier">to_sym</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">aa</span>.<span class="ruby-identifier">obj_id</span>)
+          <span class="ruby-ivar">@grps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">grp</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">grp</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">auto_assign_to_trs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aa</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">aa</span>.<span class="ruby-identifier">dclass</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aa</span>.<span class="ruby-identifier">objid</span>,<span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,<span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@grps</span>=<span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">aa</span>.<span class="ruby-identifier">dclass</span>.<span class="ruby-identifier">to_sym</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">aa</span>.<span class="ruby-identifier">objid</span>)
+          <span class="ruby-ivar">@grps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">grp</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">grp</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>,<span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>,<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment">#todo: Add redirection url and task</span>
+
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Confirm or change approval request&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to send approval&quot;</span>,<span class="ruby-identifier">link</span><span class="ruby-value">:&quot;/updation/ApprovalMat/#{@app._id}/#{@pro._id}/#{stepno}&quot;</span>,<span class="ruby-identifier">seen</span><span class="ruby-value">:false</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/approval_updation/#{@app._id}/#{@pro._id}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Approval&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Release&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Process in release stage...&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+      <span class="ruby-identifier">a</span>=<span class="ruby-node">&quot;/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{pid}/#{stepno}&quot;</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Release #{oclass}&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to release &lt;a href=&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">a</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;&gt;&lt;/a&gt;&quot;</span>)
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-identifier">a</span>
+      <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Completed&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Process in system completetion stage&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Process is completed.&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;CheckState&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;System in check state&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+      <span class="ruby-comment">#@obj=@pro.chits</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Loop&quot;</span>
+      <span class="ruby-comment">#System in the loop&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Loop Started&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">loop_step</span>= <span class="ruby-identifier">stepno</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;EndLoop&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Reached Loop End&quot;</span>
+      <span class="ruby-ivar">@pro</span>=<span class="ruby-constant">ProcessTr</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-comment">#if false</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">loop_step</span>).<span class="ruby-identifier">index</span><span class="ruby-operator">..</span><span class="ruby-identifier">step_no</span>].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">state</span>=<span class="ruby-string">&quot;created&quot;</span>}
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">loop_step</span>).<span class="ruby-identifier">index</span>].<span class="ruby-identifier">initialise_step</span>
+      <span class="ruby-comment">#else</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_trs</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+      <span class="ruby-comment">#end</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- step_processing-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- step_processing-method -->
+
+    
+      <div id="method-i-step_transaction_processing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">step_transaction_processing</span><span
+            class="method-args">(action_name,oclass,objid,ao,pid,stepno,user_id,*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>todo:Building a totally new function to handle automatic processes</p>
+          
+          
+
+          
+          <div class="method-source-code" id="step_transaction_processing-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 218</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">step_transaction_processing</span>(<span class="ruby-identifier">action_name</span>,<span class="ruby-identifier">oclass</span>,<span class="ruby-identifier">objid</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">action_name</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">oclass</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">objid</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">args</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">action_name</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Fill&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inside Fill form step of the current process&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">oclass</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Bulk&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">parameter</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Fill #{oclass} form&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to fill #{oclass} form&quot;</span>,<span class="ruby-identifier">link</span><span class="ruby-value">:&quot;/fillform/#{oclass}/#{pid}/#{stepno}&quot;</span>,<span class="ruby-identifier">seen</span><span class="ruby-value">:false</span>)
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/fillbulkform/#{oclass}/#{pid}/#{stepno}&quot;</span>
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">parameter</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+          <span class="ruby-identifier">user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Fill #{oclass} form&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to fill #{oclass} form&quot;</span>,<span class="ruby-identifier">link</span><span class="ruby-value">:&quot;/fillform/#{oclass}/#{pid}/#{stepno}&quot;</span>,<span class="ruby-identifier">seen</span><span class="ruby-value">:false</span>)
+          <span class="ruby-identifier">user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/fillform/#{oclass}/#{pid}/#{stepno}&quot;</span>
+          <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Update&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inside update form step of the current process&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">objid</span>
+      <span class="ruby-comment">#todo:The same function as fill shoulod br written her with passing thge object id as parameter</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">oclass</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Bulk&quot;</span>
+        <span class="ruby-ivar">@user</span>=<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Fill #{oclass} form&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to fill #{oclass} form&quot;</span>,<span class="ruby-identifier">link</span><span class="ruby-value">:&quot;/fillform/#{oclass}/#{pid}/#{stepno}&quot;</span>,<span class="ruby-identifier">seen</span><span class="ruby-value">:false</span>)
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/fillbulkform/#{oclass}/#{pid}/#{stepno}&quot;</span>
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">user_tasks</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:user_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:&quot;Fill #{oclass} form&quot;</span>,<span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Visit this link to fill #{oclass} form&quot;</span>,<span class="ruby-identifier">link</span><span class="ruby-value">:&quot;/fillform/#{oclass}/#{pid}/#{stepno}&quot;</span>,<span class="ruby-identifier">seen</span><span class="ruby-value">:false</span>)
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">current_redirect_url</span>=<span class="ruby-node">&quot;/updateform/#{oclass}/#{objid}/#{pid}/#{stepno}&quot;</span>
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Delete&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inside delete of new process structure...&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-ivar">@myc</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">objid</span>)
+      <span class="ruby-ivar">@myc</span>.<span class="ruby-identifier">deleted</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-ivar">@myc</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Approve&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In side approval&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-ivar">@app</span>=<span class="ruby-constant">ApprovalMat</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">name</span>,<span class="ruby-identifier">ocls</span><span class="ruby-value">:oclass</span>,<span class="ruby-identifier">oid</span><span class="ruby-value">:&quot;&quot;</span>,<span class="ruby-value">:description=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Please approve or reject this step&quot;</span>,<span class="ruby-value">:link=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;&#39;</span>,<span class="ruby-value">:complete=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>,<span class="ruby-value">:process_tr_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:step_no=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">stepno</span>,<span class="ruby-value">:approved_next_step=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">:reject_next_step=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">:reminder=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>[<span class="ruby-string">&quot;reminder&quot;</span>],<span class="ruby-value">:rep_reminder=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>[<span class="ruby-string">&quot;rep_reminder&quot;</span>] ,<span class="ruby-value">:escalate=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>[<span class="ruby-string">&quot;escalate&quot;</span>] ,<span class="ruby-value">:rep_escalate=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>[<span class="ruby-string">&quot;auto_assign&quot;</span>])
+      <span class="ruby-comment">#toDo: Making the link for approval page</span>
+      <span class="ruby-comment">#link=&quot;http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}&quot;</span>
+      <span class="ruby-comment">#@app.link=link</span>
+      <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>[<span class="ruby-string">&quot;approvers&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;EmployeeMaster&quot;</span>
+          <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aaa</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">puts</span> <span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>]
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;approver&quot;</span>].<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>], <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+              <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;escalated&quot;</span>].<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>], <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+              <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;auto_assign&quot;</span>].<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>], <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+              <span class="ruby-keyword">else</span>
+
+              <span class="ruby-keyword">end</span>
+              <span class="ruby-comment">#@app.approvers.create!(:employee_master_id=&gt;aaa,:approved=&gt;false,:escalated=&gt;false,:escalated_from=&gt;nil,:active=&gt;true)</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;GroupMaster&quot;</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;sunny&quot;</span>
+          <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aaa</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;here&quot;</span>
+            <span class="ruby-ivar">@employees</span> = <span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:group_master_ids=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>])
+            <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@employees</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;approver&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www&quot;</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www2&quot;</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;escalated&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;auto_assign&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Role&quot;</span>
+          <span class="ruby-comment"># puts &quot;Inside role&quot;</span>
+          <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aaa</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@role</span> = <span class="ruby-constant">Role</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>])
+            <span class="ruby-ivar">@employees</span> = <span class="ruby-ivar">@role</span>.<span class="ruby-identifier">employee_masters</span>
+
+            <span class="ruby-comment"># @employees = EmployeeMaster.where(:role_id=&gt;aaa[&quot;id&quot;])</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;approver&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-comment"># puts &quot;Inside role&quot;+ @employees.first.id</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inside role&quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;escalated&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;auto_assign&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@employees</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                  <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;VendorMaster&quot;</span>
+          <span class="ruby-identifier">a</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">aaa</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@emp</span> = <span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;id&quot;</span>])
+            <span class="ruby-ivar">@employee</span> = <span class="ruby-constant">VendorMaster</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@emp</span>.<span class="ruby-identifier">official_email</span>).<span class="ruby-identifier">first</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;approver&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@employee</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@employee</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;escalated&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@employee</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@employee</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">aaa</span>[<span class="ruby-string">&quot;auto_assign&quot;</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@employee</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">approvers</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:employee_master_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@employee</span>, <span class="ruby-value">:approved=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:is_approver=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>, <span class="ruby-value">:escalated_from=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>, <span class="ruby-value">:auto_assign=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>, <span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">send_notification</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Approval&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inside Approval step of the current process&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Notify&quot;</span>
+
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Notifying&quot;</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;ddddd&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;oClass&quot;</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;EmployeeMaster&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------Employee----------------------------&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>]
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">noti</span><span class="ruby-operator">|</span>
+            <span class="ruby-comment"># puts &quot;000000000000000000000000000000000000000000000---&quot;+noti[&quot;id&quot;]+&quot;---000000000000000000000000000000000000000000000&quot;</span>
+            <span class="ruby-identifier">user</span>=<span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">noti</span>[<span class="ruby-string">&quot;id&quot;</span>]).<span class="ruby-identifier">user</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-identifier">user</span>
+            <span class="ruby-identifier">unm</span>=<span class="ruby-identifier">user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;title&quot;</span>] , <span class="ruby-identifier">description</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;description&quot;</span>],  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>, <span class="ruby-identifier">read</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;GroupMaster&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In Side Group Master&quot;</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">noti</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@role</span> = <span class="ruby-constant">GroupMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">noti</span>[<span class="ruby-string">&quot;id&quot;</span>])
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@role</span>.<span class="ruby-identifier">id</span>
+          <span class="ruby-ivar">@users</span> = <span class="ruby-ivar">@role</span>.<span class="ruby-identifier">employee_masters</span>
+          <span class="ruby-comment"># @users=@employees.map{|i| i.user}</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@users</span>
+          <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">user</span>
+            <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;title&quot;</span>] , <span class="ruby-identifier">description</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;description&quot;</span>],  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>, <span class="ruby-identifier">read</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Role&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;hhhhhhhhh&quot;</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">noti</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@role</span> = <span class="ruby-constant">Role</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">noti</span>[<span class="ruby-string">&quot;id&quot;</span>])
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@role</span>.<span class="ruby-identifier">id</span>
+          <span class="ruby-ivar">@users</span> = <span class="ruby-ivar">@role</span>.<span class="ruby-identifier">employee_masters</span>
+          <span class="ruby-comment"># @users=@employees.map{|i| i.user}</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@users</span>
+          <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">user</span>
+            <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;title&quot;</span>] , <span class="ruby-identifier">description</span><span class="ruby-value">:@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;description&quot;</span>],  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>, <span class="ruby-identifier">read</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+            <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+            <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;oClass&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;VendorMaster&quot;</span>
+        <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>[<span class="ruby-string">&quot;action_arr&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">noti</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@user</span>= <span class="ruby-constant">VendorMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">noti</span>[<span class="ruby-string">&quot;id&quot;</span>]).<span class="ruby-identifier">user</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@user</span>
+          <span class="ruby-identifier">unm</span>=<span class="ruby-ivar">@user</span>.<span class="ruby-identifier">notification_masters</span>.<span class="ruby-identifier">build</span> <span class="ruby-identifier">title</span><span class="ruby-value">:&quot;System Notification&quot;</span> , <span class="ruby-identifier">description</span><span class="ruby-value">:&quot;Notification Description&quot;</span>,  <span class="ruby-identifier">type</span><span class="ruby-value">:&quot;test1&quot;</span>, <span class="ruby-identifier">read</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">notification_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">email_details</span>.<span class="ruby-identifier">build</span>(<span class="ruby-value">:notification_master_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">_id</span>,<span class="ruby-value">:event=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Info&quot;</span>)
+          <span class="ruby-identifier">unm</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;MarkComplete&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mark Complete Code goes here.&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@class_name</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-string">&#39;forms.&#39;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">obj_name</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;.object&#39;</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@class_name</span>
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">oclass</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Bulk&quot;</span>
+        <span class="ruby-comment">#if @pro.step_transacts[0].action_name == &quot;Fill&quot;</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In bulk&quot;</span>
+            <span class="ruby-identifier">spreadsheet</span> = <span class="ruby-identifier">open_spreadsheet</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">bulk_data</span>)
+            <span class="ruby-identifier">header</span> = <span class="ruby-identifier">spreadsheet</span>.<span class="ruby-identifier">row</span>(<span class="ruby-value">1</span>)
+            (<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">spreadsheet</span>.<span class="ruby-identifier">last_row</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">row</span> = <span class="ruby-constant">Hash</span>[[<span class="ruby-identifier">header</span>, <span class="ruby-identifier">spreadsheet</span>.<span class="ruby-identifier">row</span>(<span class="ruby-identifier">i</span>)].<span class="ruby-identifier">transpose</span>]
+              <span class="ruby-ivar">@cls_name</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_object_id</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;id&quot;</span>]
+                <span class="ruby-identifier">product</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@cls_name</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;id&quot;</span>]) <span class="ruby-operator">||</span> <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@cls_name</span>).<span class="ruby-identifier">new</span>
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">product</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@cls_name</span>).<span class="ruby-identifier">new</span>
+              <span class="ruby-keyword">end</span>
+              <span class="ruby-identifier">product</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">row</span>.<span class="ruby-identifier">to_hash</span>
+              <span class="ruby-identifier">product</span>.<span class="ruby-identifier">save!</span>
+
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Bulk create complete.&quot;</span>
+        <span class="ruby-comment">#elsif @pro.step_transacts[0].action_name == &quot;Update&quot;</span>
+        <span class="ruby-comment">#  puts &quot;In Bulk update.&quot;</span>
+        <span class="ruby-comment">#else</span>
+        <span class="ruby-comment">#end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Fill&quot;</span>
+          <span class="ruby-ivar">@myc</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">create</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>)
+        <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">action_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Update&quot;</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;In side update action&quot;</span>
+          <span class="ruby-ivar">@myc</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">objid</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-ivar">@class_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Goal&quot;</span>
+            <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">nested_attributes_options</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+              <span class="ruby-ivar">@myc</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">destroy</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-ivar">@myc</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>)
+          <span class="ruby-ivar">@myc</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@myc</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SpawnD&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Calling a new process dependently..&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">auto</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">params_mapping</span>
+        <span class="ruby-ivar">@a</span>=<span class="ruby-ivar">@step</span>.<span class="ruby-identifier">params_mapping</span>
+        <span class="ruby-ivar">@a1</span>=<span class="ruby-ivar">@a</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-string">&quot;type2&quot;</span>]<span class="ruby-operator">!=</span><span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">i</span>[<span class="ruby-string">&quot;type&quot;</span>]<span class="ruby-operator">==</span><span class="ruby-string">&quot;repeat_on&quot;</span>}
+        <span class="ruby-ivar">@a2</span>=<span class="ruby-ivar">@a1</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-identifier">j</span>]}}
+        <span class="ruby-ivar">@child_class_object</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@a2</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@child_class_object</span>[<span class="ruby-identifier">k</span>[<span class="ruby-value">0</span>]] = <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>[<span class="ruby-identifier">k</span>[<span class="ruby-value">1</span>]]
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">or</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>[<span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>].<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">create_and_load_auto_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">true</span>,<span class="ruby-ivar">@child_class_object</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">create_and_load_auto_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">true</span>,<span class="ruby-ivar">@child_class_object</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">create_and_load_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">true</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SpawnI&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Calling a new process independently..&quot;</span>
+      <span class="ruby-ivar">@pro</span> = <span class="ruby-constant">ProcessTransact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pid</span>)
+      <span class="ruby-ivar">@step</span>=<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">auto</span>
+        <span class="ruby-comment">#  create_and_load_process(pid,step_no,oclass,user_id,false)</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@step</span>.<span class="ruby-identifier">params_mapping</span>
+        <span class="ruby-ivar">@a</span>=<span class="ruby-ivar">@step</span>.<span class="ruby-identifier">params_mapping</span>
+        <span class="ruby-ivar">@a1</span>=<span class="ruby-ivar">@a</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-string">&quot;type2&quot;</span>]<span class="ruby-operator">!=</span><span class="ruby-string">&quot;&quot;</span>}
+        <span class="ruby-ivar">@a2</span>=<span class="ruby-ivar">@a1</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-identifier">j</span>]}}
+        <span class="ruby-ivar">@child_class_object</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@a2</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@child_class_object</span>[<span class="ruby-identifier">k</span>[<span class="ruby-value">0</span>]] = <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>[<span class="ruby-identifier">k</span>[<span class="ruby-value">1</span>]]
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@child_class_object</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">or</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">class_obj</span>[<span class="ruby-ivar">@step</span>.<span class="ruby-identifier">repeat_on</span>].<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">create_and_load_auto_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>,<span class="ruby-ivar">@child_class_object</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">create_and_load_auto_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>,<span class="ruby-ivar">@child_class_object</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-comment">#create new Process</span>
+        <span class="ruby-identifier">create_and_load_process</span>(<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">stepno</span>,<span class="ruby-identifier">ao</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">app_obj</span>,<span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">notification_obj</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@pro</span>.<span class="ruby-identifier">step_transacts</span>[<span class="ruby-identifier">stepno</span>].<span class="ruby-identifier">end_processing_step</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- step_transaction_processing-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- step_transaction_processing-method -->
+
+    
+      <div id="method-i-test1" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test1</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test1-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test1</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-string">&#39;forms&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test1-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test1-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

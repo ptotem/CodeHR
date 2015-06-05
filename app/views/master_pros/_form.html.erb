@@ -53,7 +53,7 @@
             <li class="active"><a data-toggle="tab" onclick="show_this_attr($(this));" href="#step1">Step 1</a></li>
           </ul>
           <div class="tab-content pro-tc">
-            <div id="step1" class="tab-pane in active">
+            <div id="step1" class="tab-pane in active action-tab-pane">
 
               <%= f.fields_for :master_steps, (@edit? @master_pro.master_steps.order_by(['sequence']):'') do |master_step| %>
                   <!--<div id="step1" class="tab-content">-->
@@ -198,14 +198,14 @@
             set_step_seq();
         }, 1000);
 
-        $("#sortable").sortable({stop: function(event,ui){
-            set_step_seq();
-        }
-        });  //nested form's fields (step_master -> steps) sortable
+        // $("#sortable").sortable({stop: function(event,ui){
+        //     set_step_seq();
+        // }
+        // });  //nested form's fields (step_master -> steps) sortable
 
         $('a.add_nested_fields').on('click', function(){
             //tab_count=tab_count+1;
-            var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.tab-pane').length;
+            var tab_content_tab_pan_len = $('.tabs-row').find('.tab-content').find('.action-tab-pane').length;
 
 
             tab_content_tab_pan_len = tab_content_tab_pan_len + 1;
@@ -218,11 +218,11 @@
 
             $("#sortable").append(ht); //add tab in list of steps
             window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-                var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".tab-pane:last-child"); //get last added tab
-                $('.tab-content').find('.tab-pane').removeClass('active');
-                $('.tab-content').find('.tab-pane').css('display','none');
-                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active" style="display: block;">'); //insert new nested form in tab after last tab
-                set_step_seq();
+                var $tr = $(link).parents('.tabbable').find('.pro-tc').find(".action-tab-pane:last-child"); //get last added tab
+                $('.tab-content').find('.action-tab-pane').removeClass('active');
+                $('.tab-content').find('.action-tab-pane').css('display','none');
+                var c =  $(content).insertAfter($tr).wrap('<div id=step'+sortable_lis+' class="tab-pane in active action-tab-pane" style="display: block;">'); //insert new nested form in tab after last tab
+                // set_step_seq();
                 return c;
             }
             setTimeout(function(){
@@ -264,9 +264,12 @@
     }
 
     function set_step_seq(){
+      alert('in set seq');
         $('#sortable').find('li').each(function(i,v){
             var this_li = $(v).find('a').attr('href');
             $(this_li).find('.my_seq').val($(v).index());
+            console.log($(this_li).find('.my_seq'));
+            console.log($(v).index());
         });
     }
 
@@ -280,6 +283,7 @@
     }
 
     function add_approval_pm_form(this_obj){
+      alert('in approval form');
         var sortable_lis = $('#sortable').find('li').length;
         var sortable_lis_indexed = sortable_lis - 1;
         var data = {counter: []};
@@ -319,6 +323,7 @@
 
 
     function add_nestsed_approvers_tab(this_obj) {
+      console.log(this_obj);
         var data = {counter: []};
         data["counter"].push($(this_obj).prev().val());
         $.ajax({

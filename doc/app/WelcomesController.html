@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class WelcomesController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/welcomes_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">InheritedResources::Base
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-assessment_tracker">#assessment_tracker</a>
+    
+    <li ><a href="#method-i-display_report_of">#display_report_of</a>
+    
+    <li ><a href="#method-i-employee_assessment">#employee_assessment</a>
+    
+    <li ><a href="#method-i-generate_pdf_report">#generate_pdf_report</a>
+    
+    <li ><a href="#method-i-get_data">#get_data</a>
+    
+    <li ><a href="#method-i-get_data1">#get_data1</a>
+    
+    <li ><a href="#method-i-get_fields">#get_fields</a>
+    
+    <li ><a href="#method-i-get_report_of">#get_report_of</a>
+    
+    <li ><a href="#method-i-goal_index">#goal_index</a>
+    
+    <li ><a href="#method-i-manager_assessment">#manager_assessment</a>
+    
+    <li ><a href="#method-i-my_report">#my_report</a>
+    
+    <li ><a href="#method-i-pms_normalization">#pms_normalization</a>
+    
+    <li ><a href="#method-i-pms_normalization_grp_wise">#pms_normalization_grp_wise</a>
+    
+    <li ><a href="#method-i-report">#report</a>
+    
+    <li ><a href="#method-i-reportee_assessment">#reportee_assessment</a>
+    
+    <li ><a href="#method-i-self_assessment">#self_assessment</a>
+    
+    <li ><a href="#method-i-send_employee_data">#send_employee_data</a>
+    
+    <li ><a href="#method-i-subgoal_index">#subgoal_index</a>
+    
+    <li ><a href="#method-i-subgoals">#subgoals</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AbilityMatricesController.html">AbilityMatricesController</a>
+  
+    <li><a href="./AbilityMatricesHelper.html">AbilityMatricesHelper</a>
+  
+    <li><a href="./AbilityMatrix.html">AbilityMatrix</a>
+  
+    <li><a href="./ActionArr.html">ActionArr</a>
+  
+    <li><a href="./ActionArrMaster.html">ActionArrMaster</a>
+  
+    <li><a href="./ActionToTake.html">ActionToTake</a>
+  
+    <li><a href="./AdminMailer.html">AdminMailer</a>
+  
+    <li><a href="./AdminUser.html">AdminUser</a>
+  
+    <li><a href="./AppData.html">AppData</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./ApprovalMat.html">ApprovalMat</a>
+  
+    <li><a href="./ApprovalMatsController.html">ApprovalMatsController</a>
+  
+    <li><a href="./ApprovalMatsHelper.html">ApprovalMatsHelper</a>
+  
+    <li><a href="./Approver.html">Approver</a>
+  
+    <li><a href="./AssessmentSchedule.html">AssessmentSchedule</a>
+  
+    <li><a href="./AutoAssignTo.html">AutoAssignTo</a>
+  
+    <li><a href="./AutoAssignToTr.html">AutoAssignToTr</a>
+  
+    <li><a href="./BandMaster.html">BandMaster</a>
+  
+    <li><a href="./BandMastersController.html">BandMastersController</a>
+  
+    <li><a href="./BandMastersHelper.html">BandMastersHelper</a>
+  
+    <li><a href="./CandEducation.html">CandEducation</a>
+  
+    <li><a href="./CandidateContactNumber.html">CandidateContactNumber</a>
+  
+    <li><a href="./CandidateEmploymentHistory.html">CandidateEmploymentHistory</a>
+  
+    <li><a href="./CandidateFamilyDetail.html">CandidateFamilyDetail</a>
+  
+    <li><a href="./CandidateMaster.html">CandidateMaster</a>
+  
+    <li><a href="./CandidateMastersController.html">CandidateMastersController</a>
+  
+    <li><a href="./CandidateMastersHelper.html">CandidateMastersHelper</a>
+  
+    <li><a href="./CandidatePersonelAddress.html">CandidatePersonelAddress</a>
+  
+    <li><a href="./CandidateQualification.html">CandidateQualification</a>
+  
+    <li><a href="./Chit.html">Chit</a>
+  
+    <li><a href="./Client.html">Client</a>
+  
+    <li><a href="./ClientsController.html">ClientsController</a>
+  
+    <li><a href="./ClientsHelper.html">ClientsHelper</a>
+  
+    <li><a href="./CommunicationAddress.html">CommunicationAddress</a>
+  
+    <li><a href="./CompanyAddress.html">CompanyAddress</a>
+  
+    <li><a href="./CompanyMaster.html">CompanyMaster</a>
+  
+    <li><a href="./CompanyMastersController.html">CompanyMastersController</a>
+  
+    <li><a href="./CompanyMastersHelper.html">CompanyMastersHelper</a>
+  
+    <li><a href="./CompensationComponent.html">CompensationComponent</a>
+  
+    <li><a href="./CompensationComponentsController.html">CompensationComponentsController</a>
+  
+    <li><a href="./CompensationComponentsHelper.html">CompensationComponentsHelper</a>
+  
+    <li><a href="./ConditionStmt.html">ConditionStmt</a>
+  
+    <li><a href="./ContactPerson.html">ContactPerson</a>
+  
+    <li><a href="./ContainerList.html">ContainerList</a>
+  
+    <li><a href="./ContainerListsController.html">ContainerListsController</a>
+  
+    <li><a href="./ContainerListsHelper.html">ContainerListsHelper</a>
+  
+    <li><a href="./CustomCondition.html">CustomCondition</a>
+  
+    <li><a href="./CustomRule.html">CustomRule</a>
+  
+    <li><a href="./DReport.html">DReport</a>
+  
+    <li><a href="./DReportsController.html">DReportsController</a>
+  
+    <li><a href="./DReportsHelper.html">DReportsHelper</a>
+  
+    <li><a href="./DevelopmentMailInterceptor.html">DevelopmentMailInterceptor</a>
+  
+    <li><a href="./DocumentMaster.html">DocumentMaster</a>
+  
+    <li><a href="./DocumentMastersController.html">DocumentMastersController</a>
+  
+    <li><a href="./DocumentMastersHelper.html">DocumentMastersHelper</a>
+  
+    <li><a href="./DocumentTemplateMaster.html">DocumentTemplateMaster</a>
+  
+    <li><a href="./DocumentTemplateMastersController.html">DocumentTemplateMastersController</a>
+  
+    <li><a href="./DocumentTemplateMastersHelper.html">DocumentTemplateMastersHelper</a>
+  
+    <li><a href="./DynamicField.html">DynamicField</a>
+  
+    <li><a href="./DynamicRuleBook.html">DynamicRuleBook</a>
+  
+    <li><a href="./Education.html">Education</a>
+  
+    <li><a href="./EmailDetail.html">EmailDetail</a>
+  
+    <li><a href="./EmployeeDetail.html">EmployeeDetail</a>
+  
+    <li><a href="./EmployeeDetailsController.html">EmployeeDetailsController</a>
+  
+    <li><a href="./EmployeeDetailsHelper.html">EmployeeDetailsHelper</a>
+  
+    <li><a href="./EmployeeMaster.html">EmployeeMaster</a>
+  
+    <li><a href="./EmployeeMastersController.html">EmployeeMastersController</a>
+  
+    <li><a href="./EmployeeMastersHelper.html">EmployeeMastersHelper</a>
+  
+    <li><a href="./EmployeeQualification.html">EmployeeQualification</a>
+  
+    <li><a href="./EmploymentHist.html">EmploymentHist</a>
+  
+    <li><a href="./EsisNomination.html">EsisNomination</a>
+  
+    <li><a href="./FamilyDetail.html">FamilyDetail</a>
+  
+    <li><a href="./FixSchedulesJob.html">FixSchedulesJob</a>
+  
+    <li><a href="./FormulaList.html">FormulaList</a>
+  
+    <li><a href="./GenericController.html">GenericController</a>
+  
+    <li><a href="./GenericHelper.html">GenericHelper</a>
+  
+    <li><a href="./Goal.html">Goal</a>
+  
+    <li><a href="./GoalsController.html">GoalsController</a>
+  
+    <li><a href="./GoalsHelper.html">GoalsHelper</a>
+  
+    <li><a href="./GroupMaster.html">GroupMaster</a>
+  
+    <li><a href="./GroupMastersController.html">GroupMastersController</a>
+  
+    <li><a href="./GroupMastersHelper.html">GroupMastersHelper</a>
+  
+    <li><a href="./GroupsHelper.html">GroupsHelper</a>
+  
+    <li><a href="./InterviewType.html">InterviewType</a>
+  
+    <li><a href="./InterviewTypesController.html">InterviewTypesController</a>
+  
+    <li><a href="./InterviewTypesHelper.html">InterviewTypesHelper</a>
+  
+    <li><a href="./InterviewerList.html">InterviewerList</a>
+  
+    <li><a href="./JobDescriptionMaster.html">JobDescriptionMaster</a>
+  
+    <li><a href="./JobDescriptionMastersController.html">JobDescriptionMastersController</a>
+  
+    <li><a href="./JobDescriptionMastersHelper.html">JobDescriptionMastersHelper</a>
+  
+    <li><a href="./JobPreference.html">JobPreference</a>
+  
+    <li><a href="./Kra.html">Kra</a>
+  
+    <li><a href="./LeftMenuCell.html">LeftMenuCell</a>
+  
+    <li><a href="./LeftPanel.html">LeftPanel</a>
+  
+    <li><a href="./LeftPanelsController.html">LeftPanelsController</a>
+  
+    <li><a href="./LeftPanelsHelper.html">LeftPanelsHelper</a>
+  
+    <li><a href="./LetterReport.html">LetterReport</a>
+  
+    <li><a href="./LetterReport/Html.html">LetterReport::Html</a>
+  
+    <li><a href="./LetterReportController.html">LetterReportController</a>
+  
+    <li><a href="./LetterReportHelper.html">LetterReportHelper</a>
+  
+    <li><a href="./LocationPreference.html">LocationPreference</a>
+  
+    <li><a href="./Machine.html">Machine</a>
+  
+    <li><a href="./MailBcc.html">MailBcc</a>
+  
+    <li><a href="./MailCc.html">MailCc</a>
+  
+    <li><a href="./MailTo.html">MailTo</a>
+  
+    <li><a href="./ManpowerPlanning.html">ManpowerPlanning</a>
+  
+    <li><a href="./ManpowerPlanningsController.html">ManpowerPlanningsController</a>
+  
+    <li><a href="./ManpowerPlanningsHelper.html">ManpowerPlanningsHelper</a>
+  
+    <li><a href="./MasterPro.html">MasterPro</a>
+  
+    <li><a href="./MasterProsController.html">MasterProsController</a>
+  
+    <li><a href="./MasterProsHelper.html">MasterProsHelper</a>
+  
+    <li><a href="./MasterStep.html">MasterStep</a>
+  
+    <li><a href="./MasterStepsController.html">MasterStepsController</a>
+  
+    <li><a href="./MasterStepsHelper.html">MasterStepsHelper</a>
+  
+    <li><a href="./MyJob.html">MyJob</a>
+  
+    <li><a href="./NotificationDetail.html">NotificationDetail</a>
+  
+    <li><a href="./NotificationMaster.html">NotificationMaster</a>
+  
+    <li><a href="./NotificationMastersController.html">NotificationMastersController</a>
+  
+    <li><a href="./NotificationMastersHelper.html">NotificationMastersHelper</a>
+  
+    <li><a href="./PfNomination.html">PfNomination</a>
+  
+    <li><a href="./PlanningManpower.html">PlanningManpower</a>
+  
+    <li><a href="./PlanningManpowersController.html">PlanningManpowersController</a>
+  
+    <li><a href="./PlanningManpowersHelper.html">PlanningManpowersHelper</a>
+  
+    <li><a href="./PmsAssessment.html">PmsAssessment</a>
+  
+    <li><a href="./PmsGroupCategoriesController.html">PmsGroupCategoriesController</a>
+  
+    <li><a href="./PmsGroupCategoriesHelper.html">PmsGroupCategoriesHelper</a>
+  
+    <li><a href="./PmsGroupCategory.html">PmsGroupCategory</a>
+  
+    <li><a href="./PmsGroupCategoryMaster.html">PmsGroupCategoryMaster</a>
+  
+    <li><a href="./PmsKraKpiTab.html">PmsKraKpiTab</a>
+  
+    <li><a href="./PmsKraKpiTabsController.html">PmsKraKpiTabsController</a>
+  
+    <li><a href="./PmsKraKpiTabsHelper.html">PmsKraKpiTabsHelper</a>
+  
+    <li><a href="./PmsSubgroup.html">PmsSubgroup</a>
+  
+    <li><a href="./PmsSubgroupsController.html">PmsSubgroupsController</a>
+  
+    <li><a href="./PmsSubgroupsHelper.html">PmsSubgroupsHelper</a>
+  
+    <li><a href="./ProcessMaster.html">ProcessMaster</a>
+  
+    <li><a href="./ProcessMasterApproval.html">ProcessMasterApproval</a>
+  
+    <li><a href="./ProcessMastersController.html">ProcessMastersController</a>
+  
+    <li><a href="./ProcessMastersHelper.html">ProcessMastersHelper</a>
+  
+    <li><a href="./ProcessTr.html">ProcessTr</a>
+  
+    <li><a href="./ProcessTransact.html">ProcessTransact</a>
+  
+    <li><a href="./ProcessTransactsController.html">ProcessTransactsController</a>
+  
+    <li><a href="./ProcessTransactsHelper.html">ProcessTransactsHelper</a>
+  
+    <li><a href="./ProcessTrsController.html">ProcessTrsController</a>
+  
+    <li><a href="./ProcessTrsHelper.html">ProcessTrsHelper</a>
+  
+    <li><a href="./Qualification.html">Qualification</a>
+  
+    <li><a href="./Rating.html">Rating</a>
+  
+    <li><a href="./RatingConf.html">RatingConf</a>
+  
+    <li><a href="./RatingConfsController.html">RatingConfsController</a>
+  
+    <li><a href="./RatingConfsHelper.html">RatingConfsHelper</a>
+  
+    <li><a href="./RatingMeasure.html">RatingMeasure</a>
+  
+    <li><a href="./RatingMeasuresController.html">RatingMeasuresController</a>
+  
+    <li><a href="./RatingMeasuresHelper.html">RatingMeasuresHelper</a>
+  
+    <li><a href="./RatingScale.html">RatingScale</a>
+  
+    <li><a href="./RatingScalesController.html">RatingScalesController</a>
+  
+    <li><a href="./RatingScalesHelper.html">RatingScalesHelper</a>
+  
+    <li><a href="./RatingsController.html">RatingsController</a>
+  
+    <li><a href="./RatingsHelper.html">RatingsHelper</a>
+  
+    <li><a href="./Receiver.html">Receiver</a>
+  
+    <li><a href="./RepeatEscalationJob.html">RepeatEscalationJob</a>
+  
+    <li><a href="./RepeatReminderJob.html">RepeatReminderJob</a>
+  
+    <li><a href="./ReportQueryStatement.html">ReportQueryStatement</a>
+  
+    <li><a href="./ReportingTo.html">ReportingTo</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesHelper.html">RolesHelper</a>
+  
+    <li><a href="./RuleAction.html">RuleAction</a>
+  
+    <li><a href="./RuleActions.html">RuleActions</a>
+  
+    <li><a href="./RuleBook.html">RuleBook</a>
+  
+    <li><a href="./SalaryComponentMaster.html">SalaryComponentMaster</a>
+  
+    <li><a href="./SalaryComponentMastersController.html">SalaryComponentMastersController</a>
+  
+    <li><a href="./SalaryComponentMastersHelper.html">SalaryComponentMastersHelper</a>
+  
+    <li><a href="./SalaryStrucuture.html">SalaryStrucuture</a>
+  
+    <li><a href="./SalaryStrucuturesController.html">SalaryStrucuturesController</a>
+  
+    <li><a href="./SalaryStrucuturesHelper.html">SalaryStrucuturesHelper</a>
+  
+    <li><a href="./Scale.html">Scale</a>
+  
+    <li><a href="./ScoreReceived.html">ScoreReceived</a>
+  
+    <li><a href="./SendEmailJob.html">SendEmailJob</a>
+  
+    <li><a href="./SetEscalationJob.html">SetEscalationJob</a>
+  
+    <li><a href="./StandardPDFReport.html">StandardPDFReport</a>
+  
+    <li><a href="./Step.html">Step</a>
+  
+    <li><a href="./StepMaster.html">StepMaster</a>
+  
+    <li><a href="./StepTr.html">StepTr</a>
+  
+    <li><a href="./StepTransact.html">StepTransact</a>
+  
+    <li><a href="./SubgroupsController.html">SubgroupsController</a>
+  
+    <li><a href="./SubgroupsHelper.html">SubgroupsHelper</a>
+  
+    <li><a href="./TestDynState.html">TestDynState</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UserTask.html">UserTask</a>
+  
+    <li><a href="./UserTasksController.html">UserTasksController</a>
+  
+    <li><a href="./UserTasksHelper.html">UserTasksHelper</a>
+  
+    <li><a href="./VacancyMaster.html">VacancyMaster</a>
+  
+    <li><a href="./VacancyMastersController.html">VacancyMastersController</a>
+  
+    <li><a href="./VacancyMastersHelper.html">VacancyMastersHelper</a>
+  
+    <li><a href="./VacancyScheduling.html">VacancyScheduling</a>
+  
+    <li><a href="./VacancySchedulingsController.html">VacancySchedulingsController</a>
+  
+    <li><a href="./VacancySchedulingsHelper.html">VacancySchedulingsHelper</a>
+  
+    <li><a href="./Vaddress.html">Vaddress</a>
+  
+    <li><a href="./VendorMaster.html">VendorMaster</a>
+  
+    <li><a href="./VendorMastersController.html">VendorMastersController</a>
+  
+    <li><a href="./VendorMastersHelper.html">VendorMastersHelper</a>
+  
+    <li><a href="./Welcome.html">Welcome</a>
+  
+    <li><a href="./WelcomesController.html">WelcomesController</a>
+  
+    <li><a href="./WelcomesHelper.html">WelcomesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class WelcomesController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-assessment_tracker" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assessment_tracker</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="assessment_tracker-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assessment_tracker</span>
+  <span class="ruby-comment"># render :text =&gt; &quot;Sunny&quot;</span>
+  <span class="ruby-comment"># return</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assessment_tracker-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assessment_tracker-method -->
+
+    
+      <div id="method-i-display_report_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_report_of</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_report_of-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 270</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_report_of</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_report_of-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_report_of-method -->
+
+    
+      <div id="method-i-employee_assessment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">employee_assessment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="employee_assessment-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">employee_assessment</span>
+  <span class="ruby-ivar">@p</span> = <span class="ruby-constant">PmsAssessment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:employee_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@p</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">kras</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">g</span>.<span class="ruby-identifier">subkras</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gs</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">PmsAssessment</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:goal_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:kra_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gs</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:employee_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">id</span>,<span class="ruby-value">:kra_name</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">gs</span>.<span class="ruby-identifier">kra_name</span>,<span class="ruby-value">:moae</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">gs</span>.<span class="ruby-identifier">kpi_value</span>,<span class="ruby-value">:moaa</span> =<span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>,<span class="ruby-value">:weightage</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">gs</span>.<span class="ruby-identifier">weightage</span>,<span class="ruby-value">:feedback=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;&#39;</span>,<span class="ruby-value">:cr=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>,<span class="ruby-value">:sr</span> =<span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>,<span class="ruby-value">:mr=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>,<span class="ruby-value">:fr=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- employee_assessment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- employee_assessment-method -->
+
+    
+      <div id="method-i-generate_pdf_report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_pdf_report</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="generate_pdf_report-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_pdf_report</span>
+  <span class="ruby-ivar">@emp_master_name</span> = <span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-node">&quot;#{params[:employee_master]}&quot;</span>).<span class="ruby-identifier">employee_name</span>
+  <span class="ruby-ivar">@emp_mgr_name</span> =<span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-node">&quot;#{params[:employee_master]}&quot;</span>).<span class="ruby-identifier">parents</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">employee_name</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+
+  <span class="ruby-comment">#render :text =&gt; &quot;#{@emp_master_name}, #{@message}&quot;</span>
+  <span class="ruby-comment">#return</span>
+
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:pdf</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;show_report&#39;</span>, <span class="ruby-value">:user_style_sheet</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Rails.root}/app/assets/stylesheets/pdf.css&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- generate_pdf_report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- generate_pdf_report-method -->
+
+    
+      <div id="method-i-get_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_data</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_data-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_data</span>
+  <span class="ruby-comment"># render :json =&gt; params[:classname][0]</span>
+  <span class="ruby-comment"># return</span>
+  <span class="ruby-ivar">@rqs</span> = <span class="ruby-constant">ReportQueryStatement</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-value">:association</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:association</span>][<span class="ruby-value">0</span>],<span class="ruby-value">:classname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:classname</span>][<span class="ruby-value">0</span>], <span class="ruby-value">:field</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:field</span>][<span class="ruby-value">0</span>], <span class="ruby-value">:grp_by</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:group_by</span>])
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_data-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_data-method -->
+
+    
+      <div id="method-i-get_data1" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_data1</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_data1-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_data1</span>
+  <span class="ruby-comment"># render :json =&gt; params</span>
+  <span class="ruby-comment"># return</span>
+  <span class="ruby-ivar">@d_report</span> = <span class="ruby-constant">DReport</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@d_reports</span> = <span class="ruby-constant">DReport</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-comment"># render :json =&gt; @d_reports</span>
+  <span class="ruby-comment"># return</span>
+
+  <span class="ruby-ivar">@a</span>={}
+  <span class="ruby-ivar">@rqs</span> = <span class="ruby-constant">ReportQueryStatement</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:stmt_id</span>])
+  <span class="ruby-ivar">@final_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@class</span>=<span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">classname</span>)
+  <span class="ruby-identifier">grp_by</span>=<span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">grp_by</span>
+  <span class="ruby-ivar">@fields</span>=<span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">field</span>
+  <span class="ruby-ivar">@association</span>=<span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">association</span>
+  <span class="ruby-ivar">@arr</span>=<span class="ruby-ivar">@class</span>.<span class="ruby-identifier">group_by</span>(<span class="ruby-identifier">grp_by</span>)
+  <span class="ruby-ivar">@arr</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arr</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@temp</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cname</span>] = <span class="ruby-identifier">i</span>
+      <span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cvalue</span>] = <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">i</span>)
+      <span class="ruby-ivar">@a</span> = <span class="ruby-ivar">@a</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cname</span>]=<span class="ruby-operator">&gt;</span><span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cvalue</span>]})
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@association</span> = <span class="ruby-ivar">@rqs</span>.<span class="ruby-identifier">association</span>.<span class="ruby-identifier">group_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">d</span>[<span class="ruby-string">&quot;classname&quot;</span>] }
+    <span class="ruby-ivar">@assarr</span> = []
+    <span class="ruby-ivar">@association</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">key</span> = <span class="ruby-ivar">@class</span>.<span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">j</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">class_name</span> <span class="ruby-operator">==</span><span class="ruby-identifier">i</span>}.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@assarr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>
+      <span class="ruby-identifier">c</span>= <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>]=[]}
+      <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@class</span>.<span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;Many&#39;</span>)}.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>[<span class="ruby-value">0</span>]}.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>))
+        <span class="ruby-identifier">c1</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">arr</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rec</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@association</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+              <span class="ruby-ivar">@temp</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+              <span class="ruby-ivar">@str</span>=<span class="ruby-identifier">d</span>[<span class="ruby-string">&quot;myfield&quot;</span>]
+              <span class="ruby-ivar">@temp</span>[<span class="ruby-ivar">@str</span>] = <span class="ruby-identifier">rec</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-ivar">@str</span>)
+              <span class="ruby-identifier">c1</span> = <span class="ruby-identifier">c1</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@temp</span>)
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-identifier">c</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c1</span>
+            <span class="ruby-ivar">@a</span> = <span class="ruby-ivar">@a</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">c</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># c= Hash.new {|h,k| h[k]=[]}</span>
+        <span class="ruby-comment"># @temp=Hash.new</span>
+        <span class="ruby-comment"># @str=i[&quot;myfield&quot;]</span>
+        <span class="ruby-comment"># if !arr.instance_eval(key).nil?</span>
+        <span class="ruby-comment">#   arr.instance_eval(key).each do |rec|</span>
+        <span class="ruby-comment">#     @temp[:cname] = @str</span>
+        <span class="ruby-comment">#     @temp[:cvalue]=rec.instance_eval(@str)</span>
+        <span class="ruby-comment">#     c[key.to_sym] &lt;&lt; {@temp[:cname]=&gt;@temp[:cvalue]}</span>
+        <span class="ruby-comment">#     @a = @a.merge(c)</span>
+        <span class="ruby-comment">#   end</span>
+        <span class="ruby-comment"># end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@temp</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@str</span>=<span class="ruby-identifier">i</span>[<span class="ruby-string">&quot;myfield&quot;</span>]
+        <span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cname</span>] = <span class="ruby-ivar">@str</span>
+        <span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cvalue</span>] = <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">instance_eval</span>(<span class="ruby-ivar">@str</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-ivar">@a</span> = <span class="ruby-ivar">@a</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cname</span>]=<span class="ruby-operator">&gt;</span><span class="ruby-ivar">@temp</span>[<span class="ruby-value">:cvalue</span>]})
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@final_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@a</span>
+    <span class="ruby-ivar">@a</span> = {}
+  <span class="ruby-keyword">end</span>
+
+
+
+
+  <span class="ruby-comment"># render :json =&gt; @final_array</span>
+  <span class="ruby-comment"># return</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_data1-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_data1-method -->
+
+    
+      <div id="method-i-get_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_fields</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_fields-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_fields</span>
+  <span class="ruby-ivar">@class_name</span>=<span class="ruby-identifier">params</span>[<span class="ruby-value">:class_name</span>]
+  <span class="ruby-ivar">@fields</span>= <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@association_arr</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@fields</span>[<span class="ruby-value">:col_name</span>]=<span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">fields</span>.<span class="ruby-identifier">keys</span>
+  <span class="ruby-ivar">@fields</span>[<span class="ruby-value">:associations</span>]<span class="ruby-comment">#[:cname]=</span>
+  <span class="ruby-identifier">eval</span>(<span class="ruby-ivar">@class_name</span>).<span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">class_name</span>}.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@association</span>=<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@association</span>[<span class="ruby-value">:class_name</span>]=<span class="ruby-identifier">i</span>
+    <span class="ruby-ivar">@association</span>[<span class="ruby-value">:fields</span>] = <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">i</span>).<span class="ruby-identifier">fields</span>.<span class="ruby-identifier">keys</span>
+    <span class="ruby-ivar">@association_arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@association</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@fields</span>[<span class="ruby-value">:association</span>]=<span class="ruby-ivar">@association_arr</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@fields</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_fields-method -->
+
+    
+      <div id="method-i-get_report_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_report_of</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_report_of-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 260</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_report_of</span>
+  <span class="ruby-comment">#@users = User.all</span>
+  <span class="ruby-comment">#@employee_masters = EmployeeMaster.all</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#render :pdf =&gt; &#39;show_my_report&#39;,</span>
+  <span class="ruby-comment">#       :user_style_sheet               =&gt; &quot;#{Rails.root}/app/assets/stylesheets/pdf.css&quot;,</span>
+  <span class="ruby-comment">#       :header =&gt; { :right =&gt; &#39;[0] of [1]&#39; }</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_report_of-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_report_of-method -->
+
+    
+      <div id="method-i-goal_index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">goal_index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="goal_index-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">goal_index</span>
+  <span class="ruby-ivar">@columns</span> = [<span class="ruby-string">&#39;id&#39;</span>,<span class="ruby-string">&#39;kra_name&#39;</span>]
+  <span class="ruby-comment"># @goals = Goal.first.kras.order_by([params[&#39;sidx&#39;], :asc]).paginate(</span>
+  <span class="ruby-comment">#     :page =&gt; params[:page],</span>
+  <span class="ruby-comment">#     :per_page =&gt; params[:per_page]</span>
+  <span class="ruby-comment"># )</span>
+  <span class="ruby-identifier">row</span> =[]
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:obj_class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;EmployeeMaster&quot;</span>, <span class="ruby-value">:obj_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span><span class="ruby-value">0</span>
+    <span class="ruby-ivar">@goal</span> = <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:obj_class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;GroupMaster&quot;</span>, <span class="ruby-value">:obj_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span><span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># render :text =&gt; params[&#39;sidx&#39;]</span>
+  <span class="ruby-comment"># return</span>
+  <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">kras</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">cell</span> =[]
+    <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cell</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">c</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:cell</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">cell</span>}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">a</span>={<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">:rows</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- goal_index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- goal_index-method -->
+
+    
+      <div id="method-i-manager_assessment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">manager_assessment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="manager_assessment-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">manager_assessment</span>
+  <span class="ruby-ivar">@p</span> = <span class="ruby-constant">PmsAssessment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:employee_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:employee_id</span>],<span class="ruby-value">:goal_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:goal_id</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- manager_assessment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- manager_assessment-method -->
+
+    
+      <div id="method-i-my_report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_report</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="my_report-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_report</span>
+
+
+  <span class="ruby-ivar">@cl_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:cl_name</span>][<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@cl_fields</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:cl_fields</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">to_a</span>
+  <span class="ruby-ivar">@report_date</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:report_date</span>][<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@reviewed_by</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reviewed_by</span>][<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@report_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:report_name</span>][<span class="ruby-value">0</span>]
+  <span class="ruby-ivar">@obj_hash</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:newArray</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">to_a</span>
+  <span class="ruby-ivar">@d_report</span> = <span class="ruby-constant">DReport</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">report_name</span><span class="ruby-value">:@report_name</span>,<span class="ruby-identifier">report_date</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@report_date</span>, <span class="ruby-identifier">reviewed_by</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@reviewed_by</span>, <span class="ruby-identifier">cl_name</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cl_name</span>, <span class="ruby-identifier">cl_fields</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cl_fields</span>, <span class="ruby-identifier">object_hash</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@obj_hash</span>)
+  <span class="ruby-ivar">@d_report</span>.<span class="ruby-identifier">save!</span>
+
+
+  <span class="ruby-comment">#render :json =&gt; @obj_hash</span>
+<span class="ruby-comment">#  #return</span>
+<span class="ruby-comment">#  @d_report_count = DReport.count</span>
+<span class="ruby-comment">#</span>
+<span class="ruby-comment">#  if @d_report_count == 0</span>
+<span class="ruby-comment">#    @d_report = DReport.create(report_date: @report_date, reviewed_by: @reviewed_by, cl_name: @cl_name, cl_fields: @cl_fields, object_hash: @obj_hash)</span>
+<span class="ruby-comment">#    @d_report.save!</span>
+<span class="ruby-comment">#    render :json =&gt; &quot;if _ #{@d_report.cl_name} _ #{@d_report.cl_fields} _ #{@d_report.report_date} _ #{@d_report.reviewed_by} _ #{@d_report.object_hash}&quot;</span>
+<span class="ruby-comment">#    return</span>
+<span class="ruby-comment">#  else</span>
+<span class="ruby-comment">#    @first_dreport = DReport.first</span>
+<span class="ruby-comment">#    @first_dreport_date = @first_dreport.report_date</span>
+<span class="ruby-comment">#    @first_dreport_reviewed_by = @first_dreport.reviewed_by</span>
+<span class="ruby-comment">#    @d_report = DReport.create(report_date: @first_dreport_date, reviewed_by: @first_dreport_reviewed_by, cl_name: @cl_name, cl_fields: @cl_fields, object_hash: @obj_hash)</span>
+<span class="ruby-comment">#    @d_report.save!</span>
+<span class="ruby-comment">#    render :json =&gt; &quot;else _ #{@d_report.cl_name} _ #{@d_report.cl_fields} _ #{@d_report.report_date} _ #{@d_report.reviewed_by} _ #{@d_report.object_hash}&quot;</span>
+<span class="ruby-comment">#    return</span>
+<span class="ruby-comment">#  end</span>
+<span class="ruby-comment">#</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_report-method -->
+
+    
+      <div id="method-i-pms_normalization" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pms_normalization</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pms_normalization-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pms_normalization</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">EmployeeMaster</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">final_rating</span>(<span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">round</span>}
+
+  <span class="ruby-identifier">b</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">i</span>)}
+  <span class="ruby-ivar">@chart</span> = <span class="ruby-constant">LazyHighCharts</span><span class="ruby-operator">::</span><span class="ruby-constant">HighChart</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;graph&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">title</span>({ <span class="ruby-value">:text=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Performance Management - Bell Curve&quot;</span>})
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value">:xAxis</span>][<span class="ruby-value">:categories</span>] = [<span class="ruby-string">&#39;1&#39;</span>, <span class="ruby-string">&#39;2&#39;</span>, <span class="ruby-string">&#39;3&#39;</span>, <span class="ruby-string">&#39;4&#39;</span>, <span class="ruby-string">&#39;5&#39;</span>]
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">labels</span>(<span class="ruby-value">:items=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value">:html=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Company Overall Rating&quot;</span>, <span class="ruby-value">:style=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-value">:left=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;40px&quot;</span>, <span class="ruby-value">:top=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;8px&quot;</span>, <span class="ruby-value">:color=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;black&quot;</span>} ])
+    <span class="ruby-comment"># f.series(:type=&gt; &#39;column&#39;,:name=&gt; &#39;Jane&#39;,:data=&gt; [3, 2, 1, 3, 4])</span>
+    <span class="ruby-comment"># f.series(:type=&gt; &#39;column&#39;,:name=&gt; &#39;John&#39;,:data=&gt; [2, 3, 5, 7, 6])</span>
+    <span class="ruby-comment"># f.series(:type=&gt; &#39;column&#39;, :name=&gt; &#39;Joe&#39;,:data=&gt; [4, 3, 3, 9, 0])</span>
+    <span class="ruby-comment"># f.series(:type=&gt; &#39;column&#39;, :name=&gt; &#39;Joe&#39;,:data=&gt; [4, 3, 3, 9, 0])</span>
+    <span class="ruby-comment"># GroupMaster.all.each do |e|</span>
+    <span class="ruby-comment">#   a1 = e.employee_masters.map{|i| i.final_rating(Goal.last.id).floor}</span>
+    <span class="ruby-comment">#   b1 = (1..5).map{|i| a1.count(i)}</span>
+    <span class="ruby-comment">#   f.series(:type=&gt; &#39;spline&#39;,:name=&gt; e.group_name, :data=&gt; b1)</span>
+    <span class="ruby-comment"># end</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">series</span>(<span class="ruby-value">:type=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;spline&#39;</span>,<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Average&#39;</span>, <span class="ruby-value">:data=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>)
+    <span class="ruby-comment"># f.series(:type=&gt; &#39;pie&#39;,:name=&gt; &#39;Total consumption&#39;,</span>
+    <span class="ruby-comment">#          :data=&gt; [</span>
+    <span class="ruby-comment">#              {:name=&gt; &#39;Jane&#39;, :y=&gt; 13, :color=&gt; &#39;red&#39;},</span>
+    <span class="ruby-comment">#              {:name=&gt; &#39;John&#39;, :y=&gt; 23,:color=&gt; &#39;green&#39;},</span>
+    <span class="ruby-comment">#              {:name=&gt; &#39;Joe&#39;, :y=&gt; 19,:color=&gt; &#39;blue&#39;}</span>
+    <span class="ruby-comment">#          ],</span>
+    <span class="ruby-comment">#          :center=&gt; [100, 80], :size=&gt; 100, :showInLegend=&gt; false)</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pms_normalization-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pms_normalization-method -->
+
+    
+      <div id="method-i-pms_normalization_grp_wise" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pms_normalization_grp_wise</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pms_normalization_grp_wise-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pms_normalization_grp_wise</span>
+  <span class="ruby-ivar">@group_master</span> = <span class="ruby-constant">GroupMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:group_master_id</span>])
+  <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@group_master</span>.<span class="ruby-identifier">employee_masters</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">final_rating</span>(<span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">floor</span>}
+  <span class="ruby-identifier">b</span> = (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>).<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">i</span>)}
+  <span class="ruby-ivar">@chart</span> = <span class="ruby-constant">LazyHighCharts</span><span class="ruby-operator">::</span><span class="ruby-constant">HighChart</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;graph&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">plotOptions</span>({ <span class="ruby-identifier">series</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">enableMouseTracking</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">shadow</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">animation</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span> }})
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">title</span>({ <span class="ruby-value">:text=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Performance Management - Bell Curve&quot;</span>})
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value">:xAxis</span>][<span class="ruby-value">:categories</span>] = [<span class="ruby-string">&#39;1&#39;</span>, <span class="ruby-string">&#39;2&#39;</span>, <span class="ruby-string">&#39;3&#39;</span>, <span class="ruby-string">&#39;4&#39;</span>, <span class="ruby-string">&#39;5&#39;</span>]
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">labels</span>(<span class="ruby-value">:items=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value">:html=</span><span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@group_master</span>.<span class="ruby-identifier">group_name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;- Rating&quot;</span>, <span class="ruby-value">:style=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-value">:left=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;40px&quot;</span>, <span class="ruby-value">:top=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;8px&quot;</span>, <span class="ruby-value">:color=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;black&quot;</span>} ])
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">series</span>(<span class="ruby-value">:type=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;spline&#39;</span>,<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Average&#39;</span>, <span class="ruby-value">:data=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># render :pdf =&gt; &#39;show_my_report&#39;,</span>
+  <span class="ruby-comment">#        :user_style_sheet               =&gt; &quot;#{Rails.root}/app/assets/stylesheets/pdf.css&quot;,</span>
+  <span class="ruby-comment">#        :header =&gt; { :right =&gt; &#39;[0] of [1]&#39; }</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pms_normalization_grp_wise-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pms_normalization_grp_wise-method -->
+
+    
+      <div id="method-i-report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">report</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>layout “reporting_layout”, only: [:show_my_report]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="report-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">report</span>
+  <span class="ruby-ivar">@models</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{Rails.root}/app/models/*.rb&quot;</span>].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-string">&#39;.rb&#39;</span>,<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-node">&quot;#{Rails.root}/app/models/&quot;</span>,<span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">camelize</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- report-method -->
+
+    
+      <div id="method-i-reportee_assessment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reportee_assessment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reportee_assessment-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 336</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reportee_assessment</span>
+  <span class="ruby-comment"># render :text =&gt; &quot;params&quot;</span>
+  <span class="ruby-comment"># return</span>
+  <span class="ruby-identifier">goal_id</span> = <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@columns</span> = [<span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-string">&quot;employee_name&quot;</span>, <span class="ruby-string">&#39;final_rating(&quot;&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">goal_id</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;&quot;)&#39;</span>]
+
+  <span class="ruby-identifier">row</span> =[]
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">reps</span>.<span class="ruby-identifier">order_by</span>([<span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;sidx&#39;</span>], <span class="ruby-value">:asc</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">cell</span> =[]
+    <span class="ruby-ivar">@ea</span> = <span class="ruby-identifier">t</span>
+    <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cell</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@ea</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:cell</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">cell</span>}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">a</span>={<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">:rows</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reportee_assessment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reportee_assessment-method -->
+
+    
+      <div id="method-i-self_assessment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self_assessment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="self_assessment-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 314</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">self_assessment</span>
+  <span class="ruby-comment"># render :text =&gt; &quot;8989&quot;</span>
+  <span class="ruby-comment"># return</span>
+  <span class="ruby-identifier">goal_id</span> = <span class="ruby-constant">Goal</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@columns</span> = [<span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-string">&quot;employee_name&quot;</span>, <span class="ruby-string">&#39;final_rating(&quot;&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">goal_id</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;&quot;)&#39;</span>]
+
+  <span class="ruby-identifier">row</span> =[]
+  <span class="ruby-comment"># Kra.find(params[:kra_id]).subkras.order_by([params[&#39;sidx&#39;], :asc]).each do |t|</span>
+    <span class="ruby-identifier">cell</span> =[]
+    <span class="ruby-ivar">@ea</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>
+    <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cell</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@ea</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@ea</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:cell</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">cell</span>}
+  <span class="ruby-comment"># end</span>
+  <span class="ruby-identifier">a</span>={<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">:rows</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- self_assessment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- self_assessment-method -->
+
+    
+      <div id="method-i-send_employee_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">send_employee_data</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="send_employee_data-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">send_employee_data</span>
+  <span class="ruby-ivar">@group_master</span> = <span class="ruby-constant">GroupMaster</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:group_master_id</span>][<span class="ruby-value">0</span>])
+  <span class="ruby-ivar">@a</span> = []
+  <span class="ruby-ivar">@group_master</span>.<span class="ruby-identifier">employee_masters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@a</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-identifier">id</span><span class="ruby-value">:e</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">name</span><span class="ruby-value">:e</span>.<span class="ruby-identifier">employee_name</span> }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span><span class="ruby-ivar">@a</span>
+  <span class="ruby-keyword">return</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- send_employee_data-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- send_employee_data-method -->
+
+    
+      <div id="method-i-subgoal_index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subgoal_index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subgoal_index-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">subgoal_index</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:manager</span>]
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">employee_master</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:employee_id</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@columns</span> = [<span class="ruby-string">&#39;id&#39;</span>,<span class="ruby-string">&#39;kra_name&#39;</span>,<span class="ruby-string">&#39;moae&#39;</span>,<span class="ruby-string">&#39;moaa&#39;</span>,<span class="ruby-string">&#39;weightage&#39;</span>,<span class="ruby-string">&#39;feedback&#39;</span>,<span class="ruby-string">&#39;cr&#39;</span>,<span class="ruby-string">&#39;sr&#39;</span>,<span class="ruby-string">&#39;mr&#39;</span>,<span class="ruby-string">&#39;fr&#39;</span>]
+  <span class="ruby-comment"># @goals = Kra.find(params[:kra_id]).subkras.order_by([params[&#39;sidx&#39;], :asc]).paginate(</span>
+  <span class="ruby-comment">#     :page =&gt; params[:page],</span>
+  <span class="ruby-comment">#     :per_page =&gt; params[:per_page]</span>
+  <span class="ruby-comment"># )</span>
+  <span class="ruby-identifier">row</span> =[]
+  <span class="ruby-constant">Kra</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:kra_id</span>]).<span class="ruby-identifier">subkras</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">cell</span> =[]
+    <span class="ruby-ivar">@ea</span> = <span class="ruby-constant">PmsAssessment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:employee_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">u</span>,<span class="ruby-value">:kra_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cell</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@ea</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">c</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:cell</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">cell</span>}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">a</span>={<span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:total</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,<span class="ruby-value">:records</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">:rows</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword">return</span>
+  <span class="ruby-comment"># if request.xhr?</span>
+  <span class="ruby-comment">#   a={:page =&gt; 1,:total =&gt; 1,:records =&gt; 1,:rows =&gt; [{:id =&gt;&quot;5385d6d2d6ca3f1093000001&quot;,:cell =&gt; [&quot;5385d6d2d6ca3f1093000001&quot;,&quot;K1&quot;]}]}</span>
+  <span class="ruby-comment">#   render :json =&gt; a</span>
+  <span class="ruby-comment"># end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- subgoal_index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- subgoal_index-method -->
+
+    
+      <div id="method-i-subgoals" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subgoals</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subgoals-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcomes_controller.rb, line 219</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">subgoals</span>
+  <span class="ruby-ivar">@p</span> = <span class="ruby-constant">PmsAssessment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;ID&quot;</span>].<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-identifier">cr</span> = (((<span class="ruby-identifier">params</span>[<span class="ruby-value">:Achieved</span>].<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-ivar">@p</span>.<span class="ruby-identifier">moae</span>.<span class="ruby-identifier">to_f</span>)<span class="ruby-operator">*</span><span class="ruby-ivar">@p</span>.<span class="ruby-identifier">weightage</span>)<span class="ruby-operator">/</span><span class="ruby-value">100</span>).<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:manager</span>]
+    <span class="ruby-ivar">@p</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:feedback</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;FEEDBACK&quot;</span>],<span class="ruby-value">:moaa</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:Achieved</span>],<span class="ruby-value">:cr=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">cr</span>,<span class="ruby-value">:sr</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;Self&quot;</span>].<span class="ruby-identifier">to_f</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@p</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:feedback</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;FEEDBACK&quot;</span>],<span class="ruby-value">:moaa</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:Achieved</span>],<span class="ruby-value">:mr</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;Manager&quot;</span>].<span class="ruby-identifier">to_f</span>,<span class="ruby-value">:fr</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;Manager&quot;</span>].<span class="ruby-identifier">to_f</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@p</span>
+  <span class="ruby-keyword">return</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- subgoals-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- subgoals-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

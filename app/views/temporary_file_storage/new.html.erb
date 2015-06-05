@@ -1,0 +1,9 @@
+<h1>TemporaryFileStorage#new</h1>
+<p>Find me in app/views/temporary_file_storage/new.html.erb</p>
+<%= form_for(@tempfile, :multipart => true) do |f| %>
+
+  <%= f.file_field :file %>
+
+  <%= f.submit %>
+
+<% end %>

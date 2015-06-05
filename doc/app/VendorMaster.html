@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class VendorMaster - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/vendor_master.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Mongoid::Document</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Timestamps</span>
+  
+  
+  </ul>
+</nav>
+
+    
+    
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AbilityMatricesController.html">AbilityMatricesController</a>
+  
+    <li><a href="./AbilityMatricesHelper.html">AbilityMatricesHelper</a>
+  
+    <li><a href="./AbilityMatrix.html">AbilityMatrix</a>
+  
+    <li><a href="./ActionArr.html">ActionArr</a>
+  
+    <li><a href="./ActionArrMaster.html">ActionArrMaster</a>
+  
+    <li><a href="./ActionToTake.html">ActionToTake</a>
+  
+    <li><a href="./AdminMailer.html">AdminMailer</a>
+  
+    <li><a href="./AdminUser.html">AdminUser</a>
+  
+    <li><a href="./AppData.html">AppData</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./ApprovalMat.html">ApprovalMat</a>
+  
+    <li><a href="./ApprovalMatsController.html">ApprovalMatsController</a>
+  
+    <li><a href="./ApprovalMatsHelper.html">ApprovalMatsHelper</a>
+  
+    <li><a href="./Approver.html">Approver</a>
+  
+    <li><a href="./AssessmentSchedule.html">AssessmentSchedule</a>
+  
+    <li><a href="./AutoAssignTo.html">AutoAssignTo</a>
+  
+    <li><a href="./AutoAssignToTr.html">AutoAssignToTr</a>
+  
+    <li><a href="./BandMaster.html">BandMaster</a>
+  
+    <li><a href="./BandMastersController.html">BandMastersController</a>
+  
+    <li><a href="./BandMastersHelper.html">BandMastersHelper</a>
+  
+    <li><a href="./CandEducation.html">CandEducation</a>
+  
+    <li><a href="./CandidateContactNumber.html">CandidateContactNumber</a>
+  
+    <li><a href="./CandidateEmploymentHistory.html">CandidateEmploymentHistory</a>
+  
+    <li><a href="./CandidateFamilyDetail.html">CandidateFamilyDetail</a>
+  
+    <li><a href="./CandidateMaster.html">CandidateMaster</a>
+  
+    <li><a href="./CandidateMastersController.html">CandidateMastersController</a>
+  
+    <li><a href="./CandidateMastersHelper.html">CandidateMastersHelper</a>
+  
+    <li><a href="./CandidatePersonelAddress.html">CandidatePersonelAddress</a>
+  
+    <li><a href="./CandidateQualification.html">CandidateQualification</a>
+  
+    <li><a href="./Chit.html">Chit</a>
+  
+    <li><a href="./Client.html">Client</a>
+  
+    <li><a href="./ClientsController.html">ClientsController</a>
+  
+    <li><a href="./ClientsHelper.html">ClientsHelper</a>
+  
+    <li><a href="./CommunicationAddress.html">CommunicationAddress</a>
+  
+    <li><a href="./CompanyAddress.html">CompanyAddress</a>
+  
+    <li><a href="./CompanyMaster.html">CompanyMaster</a>
+  
+    <li><a href="./CompanyMastersController.html">CompanyMastersController</a>
+  
+    <li><a href="./CompanyMastersHelper.html">CompanyMastersHelper</a>
+  
+    <li><a href="./CompensationComponent.html">CompensationComponent</a>
+  
+    <li><a href="./CompensationComponentsController.html">CompensationComponentsController</a>
+  
+    <li><a href="./CompensationComponentsHelper.html">CompensationComponentsHelper</a>
+  
+    <li><a href="./ConditionStmt.html">ConditionStmt</a>
+  
+    <li><a href="./ContactPerson.html">ContactPerson</a>
+  
+    <li><a href="./ContainerList.html">ContainerList</a>
+  
+    <li><a href="./ContainerListsController.html">ContainerListsController</a>
+  
+    <li><a href="./ContainerListsHelper.html">ContainerListsHelper</a>
+  
+    <li><a href="./CustomCondition.html">CustomCondition</a>
+  
+    <li><a href="./CustomRule.html">CustomRule</a>
+  
+    <li><a href="./DReport.html">DReport</a>
+  
+    <li><a href="./DReportsController.html">DReportsController</a>
+  
+    <li><a href="./DReportsHelper.html">DReportsHelper</a>
+  
+    <li><a href="./DevelopmentMailInterceptor.html">DevelopmentMailInterceptor</a>
+  
+    <li><a href="./DocumentMaster.html">DocumentMaster</a>
+  
+    <li><a href="./DocumentMastersController.html">DocumentMastersController</a>
+  
+    <li><a href="./DocumentMastersHelper.html">DocumentMastersHelper</a>
+  
+    <li><a href="./DocumentTemplateMaster.html">DocumentTemplateMaster</a>
+  
+    <li><a href="./DocumentTemplateMastersController.html">DocumentTemplateMastersController</a>
+  
+    <li><a href="./DocumentTemplateMastersHelper.html">DocumentTemplateMastersHelper</a>
+  
+    <li><a href="./DynamicField.html">DynamicField</a>
+  
+    <li><a href="./DynamicRuleBook.html">DynamicRuleBook</a>
+  
+    <li><a href="./Education.html">Education</a>
+  
+    <li><a href="./EmailDetail.html">EmailDetail</a>
+  
+    <li><a href="./EmployeeDetail.html">EmployeeDetail</a>
+  
+    <li><a href="./EmployeeDetailsController.html">EmployeeDetailsController</a>
+  
+    <li><a href="./EmployeeDetailsHelper.html">EmployeeDetailsHelper</a>
+  
+    <li><a href="./EmployeeMaster.html">EmployeeMaster</a>
+  
+    <li><a href="./EmployeeMastersController.html">EmployeeMastersController</a>
+  
+    <li><a href="./EmployeeMastersHelper.html">EmployeeMastersHelper</a>
+  
+    <li><a href="./EmployeeQualification.html">EmployeeQualification</a>
+  
+    <li><a href="./EmploymentHist.html">EmploymentHist</a>
+  
+    <li><a href="./EsisNomination.html">EsisNomination</a>
+  
+    <li><a href="./FamilyDetail.html">FamilyDetail</a>
+  
+    <li><a href="./FixSchedulesJob.html">FixSchedulesJob</a>
+  
+    <li><a href="./FormulaList.html">FormulaList</a>
+  
+    <li><a href="./GenericController.html">GenericController</a>
+  
+    <li><a href="./GenericHelper.html">GenericHelper</a>
+  
+    <li><a href="./Goal.html">Goal</a>
+  
+    <li><a href="./GoalsController.html">GoalsController</a>
+  
+    <li><a href="./GoalsHelper.html">GoalsHelper</a>
+  
+    <li><a href="./GroupMaster.html">GroupMaster</a>
+  
+    <li><a href="./GroupMastersController.html">GroupMastersController</a>
+  
+    <li><a href="./GroupMastersHelper.html">GroupMastersHelper</a>
+  
+    <li><a href="./GroupsHelper.html">GroupsHelper</a>
+  
+    <li><a href="./InterviewType.html">InterviewType</a>
+  
+    <li><a href="./InterviewTypesController.html">InterviewTypesController</a>
+  
+    <li><a href="./InterviewTypesHelper.html">InterviewTypesHelper</a>
+  
+    <li><a href="./InterviewerList.html">InterviewerList</a>
+  
+    <li><a href="./JobDescriptionMaster.html">JobDescriptionMaster</a>
+  
+    <li><a href="./JobDescriptionMastersController.html">JobDescriptionMastersController</a>
+  
+    <li><a href="./JobDescriptionMastersHelper.html">JobDescriptionMastersHelper</a>
+  
+    <li><a href="./JobPreference.html">JobPreference</a>
+  
+    <li><a href="./Kra.html">Kra</a>
+  
+    <li><a href="./LeftMenuCell.html">LeftMenuCell</a>
+  
+    <li><a href="./LeftPanel.html">LeftPanel</a>
+  
+    <li><a href="./LeftPanelsController.html">LeftPanelsController</a>
+  
+    <li><a href="./LeftPanelsHelper.html">LeftPanelsHelper</a>
+  
+    <li><a href="./LetterReport.html">LetterReport</a>
+  
+    <li><a href="./LetterReport/Html.html">LetterReport::Html</a>
+  
+    <li><a href="./LetterReportController.html">LetterReportController</a>
+  
+    <li><a href="./LetterReportHelper.html">LetterReportHelper</a>
+  
+    <li><a href="./LocationPreference.html">LocationPreference</a>
+  
+    <li><a href="./Machine.html">Machine</a>
+  
+    <li><a href="./MailBcc.html">MailBcc</a>
+  
+    <li><a href="./MailCc.html">MailCc</a>
+  
+    <li><a href="./MailTo.html">MailTo</a>
+  
+    <li><a href="./ManpowerPlanning.html">ManpowerPlanning</a>
+  
+    <li><a href="./ManpowerPlanningsController.html">ManpowerPlanningsController</a>
+  
+    <li><a href="./ManpowerPlanningsHelper.html">ManpowerPlanningsHelper</a>
+  
+    <li><a href="./MasterPro.html">MasterPro</a>
+  
+    <li><a href="./MasterProsController.html">MasterProsController</a>
+  
+    <li><a href="./MasterProsHelper.html">MasterProsHelper</a>
+  
+    <li><a href="./MasterStep.html">MasterStep</a>
+  
+    <li><a href="./MasterStepsController.html">MasterStepsController</a>
+  
+    <li><a href="./MasterStepsHelper.html">MasterStepsHelper</a>
+  
+    <li><a href="./MyJob.html">MyJob</a>
+  
+    <li><a href="./NotificationDetail.html">NotificationDetail</a>
+  
+    <li><a href="./NotificationMaster.html">NotificationMaster</a>
+  
+    <li><a href="./NotificationMastersController.html">NotificationMastersController</a>
+  
+    <li><a href="./NotificationMastersHelper.html">NotificationMastersHelper</a>
+  
+    <li><a href="./PfNomination.html">PfNomination</a>
+  
+    <li><a href="./PlanningManpower.html">PlanningManpower</a>
+  
+    <li><a href="./PlanningManpowersController.html">PlanningManpowersController</a>
+  
+    <li><a href="./PlanningManpowersHelper.html">PlanningManpowersHelper</a>
+  
+    <li><a href="./PmsAssessment.html">PmsAssessment</a>
+  
+    <li><a href="./PmsGroupCategoriesController.html">PmsGroupCategoriesController</a>
+  
+    <li><a href="./PmsGroupCategoriesHelper.html">PmsGroupCategoriesHelper</a>
+  
+    <li><a href="./PmsGroupCategory.html">PmsGroupCategory</a>
+  
+    <li><a href="./PmsGroupCategoryMaster.html">PmsGroupCategoryMaster</a>
+  
+    <li><a href="./PmsKraKpiTab.html">PmsKraKpiTab</a>
+  
+    <li><a href="./PmsKraKpiTabsController.html">PmsKraKpiTabsController</a>
+  
+    <li><a href="./PmsKraKpiTabsHelper.html">PmsKraKpiTabsHelper</a>
+  
+    <li><a href="./PmsSubgroup.html">PmsSubgroup</a>
+  
+    <li><a href="./PmsSubgroupsController.html">PmsSubgroupsController</a>
+  
+    <li><a href="./PmsSubgroupsHelper.html">PmsSubgroupsHelper</a>
+  
+    <li><a href="./ProcessMaster.html">ProcessMaster</a>
+  
+    <li><a href="./ProcessMasterApproval.html">ProcessMasterApproval</a>
+  
+    <li><a href="./ProcessMastersController.html">ProcessMastersController</a>
+  
+    <li><a href="./ProcessMastersHelper.html">ProcessMastersHelper</a>
+  
+    <li><a href="./ProcessTr.html">ProcessTr</a>
+  
+    <li><a href="./ProcessTransact.html">ProcessTransact</a>
+  
+    <li><a href="./ProcessTransactsController.html">ProcessTransactsController</a>
+  
+    <li><a href="./ProcessTransactsHelper.html">ProcessTransactsHelper</a>
+  
+    <li><a href="./ProcessTrsController.html">ProcessTrsController</a>
+  
+    <li><a href="./ProcessTrsHelper.html">ProcessTrsHelper</a>
+  
+    <li><a href="./Qualification.html">Qualification</a>
+  
+    <li><a href="./Rating.html">Rating</a>
+  
+    <li><a href="./RatingConf.html">RatingConf</a>
+  
+    <li><a href="./RatingConfsController.html">RatingConfsController</a>
+  
+    <li><a href="./RatingConfsHelper.html">RatingConfsHelper</a>
+  
+    <li><a href="./RatingMeasure.html">RatingMeasure</a>
+  
+    <li><a href="./RatingMeasuresController.html">RatingMeasuresController</a>
+  
+    <li><a href="./RatingMeasuresHelper.html">RatingMeasuresHelper</a>
+  
+    <li><a href="./RatingScale.html">RatingScale</a>
+  
+    <li><a href="./RatingScalesController.html">RatingScalesController</a>
+  
+    <li><a href="./RatingScalesHelper.html">RatingScalesHelper</a>
+  
+    <li><a href="./RatingsController.html">RatingsController</a>
+  
+    <li><a href="./RatingsHelper.html">RatingsHelper</a>
+  
+    <li><a href="./Receiver.html">Receiver</a>
+  
+    <li><a href="./RepeatEscalationJob.html">RepeatEscalationJob</a>
+  
+    <li><a href="./RepeatReminderJob.html">RepeatReminderJob</a>
+  
+    <li><a href="./ReportQueryStatement.html">ReportQueryStatement</a>
+  
+    <li><a href="./ReportingTo.html">ReportingTo</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RolesController.html">RolesController</a>
+  
+    <li><a href="./RolesHelper.html">RolesHelper</a>
+  
+    <li><a href="./RuleAction.html">RuleAction</a>
+  
+    <li><a href="./RuleActions.html">RuleActions</a>
+  
+    <li><a href="./RuleBook.html">RuleBook</a>
+  
+    <li><a href="./SalaryComponentMaster.html">SalaryComponentMaster</a>
+  
+    <li><a href="./SalaryComponentMastersController.html">SalaryComponentMastersController</a>
+  
+    <li><a href="./SalaryComponentMastersHelper.html">SalaryComponentMastersHelper</a>
+  
+    <li><a href="./SalaryStrucuture.html">SalaryStrucuture</a>
+  
+    <li><a href="./SalaryStrucuturesController.html">SalaryStrucuturesController</a>
+  
+    <li><a href="./SalaryStrucuturesHelper.html">SalaryStrucuturesHelper</a>
+  
+    <li><a href="./Scale.html">Scale</a>
+  
+    <li><a href="./ScoreReceived.html">ScoreReceived</a>
+  
+    <li><a href="./SendEmailJob.html">SendEmailJob</a>
+  
+    <li><a href="./SetEscalationJob.html">SetEscalationJob</a>
+  
+    <li><a href="./StandardPDFReport.html">StandardPDFReport</a>
+  
+    <li><a href="./Step.html">Step</a>
+  
+    <li><a href="./StepMaster.html">StepMaster</a>
+  
+    <li><a href="./StepTr.html">StepTr</a>
+  
+    <li><a href="./StepTransact.html">StepTransact</a>
+  
+    <li><a href="./SubgroupsController.html">SubgroupsController</a>
+  
+    <li><a href="./SubgroupsHelper.html">SubgroupsHelper</a>
+  
+    <li><a href="./TestDynState.html">TestDynState</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UserTask.html">UserTask</a>
+  
+    <li><a href="./UserTasksController.html">UserTasksController</a>
+  
+    <li><a href="./UserTasksHelper.html">UserTasksHelper</a>
+  
+    <li><a href="./VacancyMaster.html">VacancyMaster</a>
+  
+    <li><a href="./VacancyMastersController.html">VacancyMastersController</a>
+  
+    <li><a href="./VacancyMastersHelper.html">VacancyMastersHelper</a>
+  
+    <li><a href="./VacancyScheduling.html">VacancyScheduling</a>
+  
+    <li><a href="./VacancySchedulingsController.html">VacancySchedulingsController</a>
+  
+    <li><a href="./VacancySchedulingsHelper.html">VacancySchedulingsHelper</a>
+  
+    <li><a href="./Vaddress.html">Vaddress</a>
+  
+    <li><a href="./VendorMaster.html">VendorMaster</a>
+  
+    <li><a href="./VendorMastersController.html">VendorMastersController</a>
+  
+    <li><a href="./VendorMastersHelper.html">VendorMastersHelper</a>
+  
+    <li><a href="./Welcome.html">Welcome</a>
+  
+    <li><a href="./WelcomesController.html">WelcomesController</a>
+  
+    <li><a href="./WelcomesHelper.html">WelcomesHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class VendorMaster</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

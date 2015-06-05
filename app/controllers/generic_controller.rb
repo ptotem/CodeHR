@@ -310,10 +310,30 @@ class GenericController < ApplicationController
     end
 
     def review_filled_form
-      # render :json => params
+      # render :json => params[params[:model_name].to_sym][:dfile].content_type
       # return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
+      # render :json => @process_transact
+      # return
+      # file present or not checking
+      if @process_transact.class_obj[:dfile]
+        @name = params[params[:model_name].to_sym][:dfile].original_filename.gsub(' ','_')
+        @path = "public/files/upload" + "/" +@process_transact._id+ "/" +@name
+        @file = TemporaryFileStorage.create(:dfile_content_type =>params[params[:model_name].to_sym][:dfile].content_type,:dfile_file_name => params[params[:model_name].to_sym][:dfile].original_filename)
+        # @file[:tempfile] = params[params[:model_name].to_sym][:dfile].tempfile
+        # @file.save
+        render :json => @file
+        return
+        # file save and url addition to process_transact object of that file 
+        # @temp = params[params[:model_name].to_sym]
+        # @temp[:url] = @url
+        @process_transact.class_obj[:path] = @path
+
+        # render :json => @process_transact.class_obj
+        # return
+      end
+
       ################################################################
       # Block to override notification object of current process
       # It works only when form yaml contains notification object
