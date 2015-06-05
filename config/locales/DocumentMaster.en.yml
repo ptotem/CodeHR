@@ -32,12 +32,12 @@ en:
 
               col2:
                 Name:
-                  attribute: 'Name'
+                  attribute: 'name'
                   label: 'Document Name'
                   type: 'text_field_tag'
                   width: '500'
                 Owner:
-                  attribute: 'Owner'
+                  attribute: 'owner'
                   label: 'Owner'
                   type: 'select_tag'
                   width: '200'

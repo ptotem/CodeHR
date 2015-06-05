@@ -7,5 +7,6 @@ class UserTask
   field :link, type: String
   field :seen, type: Boolean
   field :erased, type: Boolean
+  field :type, type: String
   belongs_to :user
 end

@@ -344,6 +344,9 @@
 
     //Code to display all the record of a particular model......
     function display_objects(this_obj, oobj, app) {
+        console.log(this_obj)
+        console.log(oobj)
+        console.log(app)
         var count = 0;
         var parent_tab = $(this_obj).parents('.row-fluid')[0];
         $(parent_tab).find('.users-list').dataTable().fnDestroy();
@@ -368,10 +371,10 @@
 
                 if (model_name == "EmployeeMaster") {
                     for (var i = 0; i < data.length; i++) {
-                        my_id = data[i]["_id"];
+                        my_id = data[i]["_id"].$oid;
                         if (app=="approval"){
                             $user_row = '<tr>' +
-                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id.$oid + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                     '<td>' + data[i]["employee_name"] + '</td>' +
                                     '<td>' + data[i]["official_email"] + '</td>' +
                                     '<td><input type="checkbox" class="app_ck_bx" name="'+oobj +"approver" +'"></td>' +
