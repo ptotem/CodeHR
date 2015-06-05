@@ -280,6 +280,8 @@ module ApplicationHelper
         @app.save
         @pro.app_obj["approvers"].each do |k,a|
           if a["oClass"] == "EmployeeMaster"
+            puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+            puts @pro.app_obj["approvers"]
             a["action_arr"].each do |aaa|
                 puts aaa["id"]
                 if !aaa["approver"].nil?

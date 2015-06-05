@@ -40,6 +40,8 @@ class ApprovalMat
   def send_notification
     puts "Inside Send Notification"
     self.approvers.where(:active => true,:is_approver => true).each do |aa|
+      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<"
+      puts aa.employee_master_id
       @approver=EmployeeMaster.find(aa.employee_master_id)
       unm=@approver.user.notification_masters.build title:self.name , description:self.description,  type:"Approval"
       unm.save
