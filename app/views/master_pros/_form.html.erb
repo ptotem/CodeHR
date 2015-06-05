@@ -264,7 +264,7 @@
     }
 
     function set_step_seq(){
-      alert('in set seq');
+      // alert('in set seq');
         $('#sortable').find('li').each(function(i,v){
             var this_li = $(v).find('a').attr('href');
             $(this_li).find('.my_seq').val($(v).index());
@@ -283,7 +283,7 @@
     }
 
     function add_approval_pm_form(this_obj){
-      alert('in approval form');
+      // alert('in approval form');
         var sortable_lis = $('#sortable').find('li').length;
         var sortable_lis_indexed = sortable_lis - 1;
         var data = {counter: []};
@@ -371,7 +371,7 @@
                         my_id = data[i]["_id"];
                         if (app=="approval"){
                             $user_row = '<tr>' +
-                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td><input onclick="select_this_approver_em($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id.$oid + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                     '<td>' + data[i]["employee_name"] + '</td>' +
                                     '<td>' + data[i]["official_email"] + '</td>' +
                                     '<td><input type="checkbox" class="app_ck_bx" name="'+oobj +"approver" +'"></td>' +
