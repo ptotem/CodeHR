@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<p>_id: <%= @temporary_file_storage._id %></p>
+<p>file_file_name: <%= @temporary_file_storage.file_file_name %></p>
+<p>file_content_type: <%= @temporary_file_storage.file_content_type %></p>
+<p>file_file_size: <%= @temporary_file_storage.file_file_size %></p>
+<p>file_fingerprint: <%= @temporary_file_storage.file_fingerprint %></p>
+<p>file_updated_at: <%= @temporary_file_storage.file_updated_at %></p>
+<p>file.path: <%= @temporary_file_storage.file.path %></p>
+<p>file.url: <%= @temporary_file_storage.file.url %></p>
+
+<%= link_to 'Edit', edit_temporary_file_storage_path(@temporary_file_storage) %> |
+<%= link_to 'Back', temporary_file_storages_path %>

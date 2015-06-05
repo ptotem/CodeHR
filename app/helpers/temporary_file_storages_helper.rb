@@ -1,0 +1,2 @@
+module TemporaryFileStoragesHelper
+end

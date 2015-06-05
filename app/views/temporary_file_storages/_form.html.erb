@@ -1,0 +1,19 @@
+<%= form_for(@temporary_file_storage, :multipart => true) do |f| %>
+  <% if @temporary_file_storage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@temporary_file_storage.errors.count, "error") %> prohibited this temporary_file_storage from being saved:</h2>
+
+      <ul>
+      <% @temporary_file_storage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.file_field :file %>
+    <br /><br />
+    <%= f.submit %>
+  </div>
+<% end %>

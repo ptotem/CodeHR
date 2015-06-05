@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Temporary File Storages</h1>
+
+<table style="border-spacing: 20px; border-collapse: separate">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temporary_file_storages.each do |temporary_file_storage| %>
+      <tr>
+        <!-- <td><%= temporary_file_storage._id %></td> -->
+        <td><%= link_to temporary_file_storage.file_file_name, temporary_file_storage.file.url %></td>
+        <td><%= link_to 'Show', temporary_file_storage %></td>
+        <td><%= link_to 'Edit', edit_temporary_file_storage_path(temporary_file_storage) %></td>
+        <td><%= link_to 'Destroy', temporary_file_storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Temporary file storage', new_temporary_file_storage_path %>

@@ -3,5 +3,5 @@ class TemporaryFileStorage
   include Mongoid::Paperclip
 
 
-  has_mongoid_attached_file :dfile
+  has_mongoid_attached_file :file
 end
