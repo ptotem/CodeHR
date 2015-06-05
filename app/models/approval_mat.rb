@@ -8,6 +8,7 @@ class ApprovalMat
   field :description, type: String
   field :link, type: String
   field :finished, type: Boolean
+  field :complete, type: Boolean
   field :rejected, type: Boolean
   field :process_tr_id, type: String
   field :step_no, type: Integer

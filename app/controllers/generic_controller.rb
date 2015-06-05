@@ -314,23 +314,16 @@ class GenericController < ApplicationController
       # return
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
-      # render :json => @process_transact
+      
+      # render :json => params
       # return
       # file present or not checking
       if @process_transact.class_obj[:dfile]
-        @name = params[params[:model_name].to_sym][:dfile].original_filename.gsub(' ','_')
-        @path = "public/files/upload" + "/" +@process_transact._id+ "/" +@name
-        @file = TemporaryFileStorage.create(:dfile_content_type =>params[params[:model_name].to_sym][:dfile].content_type,:dfile_file_name => params[params[:model_name].to_sym][:dfile].original_filename)
-        # @file[:tempfile] = params[params[:model_name].to_sym][:dfile].tempfile
-        # @file.save
-        render :json => @file
-        return
-        # file save and url addition to process_transact object of that file 
-        # @temp = params[params[:model_name].to_sym]
-        # @temp[:url] = @url
-        @process_transact.class_obj[:path] = @path
 
-        # render :json => @process_transact.class_obj
+        @file = TemporaryFileStorage.create(:file => @process_transact.class_obj[:dfile])
+        @process_transact.class_obj[:dfile] = @file.file.path
+
+        # render :json => @file.file
         # return
       end
 
