@@ -48,7 +48,7 @@ if (form_act == "edit"){
             },2000)
 
             var a="step"+(index+1);
-            $('.tab-content').append('<div id='+a+' class="tab-pane in active"><div class="fields">'+$(elem).html()+'</div></div>');
+            $('.tab-content').append('<div id='+a+' class="tab-pane in active action-tab-pane"><div class="fields">'+$(elem).html()+'</div></div>');
               action_name = $("#"+a).find('.drpdwn').children().first().find('option:selected').text();
               console.log("action_name :- " + action_name);
               if (action_name == "Fill") {
