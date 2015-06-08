@@ -144,23 +144,7 @@ module ApplicationHelper
         puts "Current Process is in approval stage"
         puts "Sending approval request to People."
         @step=@pro.step_trs[stepno]
-        @app=ApprovalMat.create!(
-          :name=>@pro.name,
-          ocls:oclass,
-          oid:@pro.chits.first.oid,
-          :description=>content,
-          :link=>'',
-          :complete=>false,
-          :process_tr_id=>@pro._id,
-          :step_no=>stepno,
-          :approved_next_step=> @step.approved_next_step,
-          :reject_next_step=> @step.reject_next_step,
-          :reminder=> @step.reminder,
-          :rep_reminder=> @step.rep_reminder ,
-          :escalate=> @step.escalate ,
-          :rep_escalate=> @step.rep_escalate,
-          :auto_assign=> @step.auto_assign
-        )
+        @app=ApprovalMat.create!(:name=>@pro.name,ocls:oclass, oid:@pro.chits.first.oid,:description=>content,:link=>'',:complete=>false,:process_tr_id=>@pro._id,:step_no=>stepno,:approved_next_step=> @step.approved_next_step,:reject_next_step=> @step.reject_next_step,:reminder=> @step.reminder,:rep_reminder=> @step.rep_reminder ,:escalate=> @step.escalate ,:rep_escalate=> @step.rep_escalate,:auto_assign=> @step.auto_assign)
 
         link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         @app.link=link
@@ -292,44 +276,28 @@ module ApplicationHelper
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
         
-        app_list = @pro.step_transacts.select {|app| app.action_name == "Approve"}
-        app_seq = 0
-        i = 0
-        app_list_len = app_list.length
+        # app_list = @pro.step_transacts.select {|app| app.action_name == "Approve"}
+        # app_seq = 0
+        # i = 0
+        # app_list_len = app_list.length
 
-        while i < app_list_len
-          if app_list[i].approved
-            app_seq++
-          end
-          i++
-        end
+        # while i < app_list_len do
+        #   if app_list[i].approved?
+        #     app_seq = app_seq + 1
+        #   end
+        #   i= i+1
+        # end
 
-        @app=ApprovalMat.create!(
-          :name=>@pro.name,
-          ocls:oclass,
-          oid:"",
-          :description=>"Please approve or reject this step",
-          :link=>'',
-          :complete=>false,
-          :process_tr_id=>@pro._id,
-          :step_no=>stepno,
-          :approved_next_step=> "",
-          :reject_next_step=> "",
-          :reminder=> @pro.app_obj[app_seq]["reminder"],
-          :rep_reminder=> @pro.app_obj[app_seq]["rep_reminder"] ,
-          :escalate=> @pro.app_obj[app_seq]["escalate"] ,
-          :rep_escalate=> "",
-          :auto_assign=> @pro.app_obj[app_seq]["auto_assign"]
-        )
+        @app=ApprovalMat.create!( :name=>@pro.name, ocls:oclass, oid:"", :description=>"Please approve or reject this step", :link=>'', :complete=>false, :process_tr_id=>@pro._id, :step_no=>stepno, :approved_next_step=> "", :reject_next_step=> "", :reminder=> @pro.app_obj["reminder"], :rep_reminder=> @pro.app_obj["rep_reminder"] , :escalate=> @pro.app_obj["escalate"] , :rep_escalate=> "", :auto_assign=> @pro.app_obj["auto_assign"])
 
         #toDo: Making the link for approval page
         #link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         #@app.link=link
         @app.save
-        @pro.app_obj[app_seq]["approvers"].each do |k,a|
+        @pro.app_obj["approvers"].each do |k,a|
           if a["oClass"] == "EmployeeMaster"
             puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-            puts @pro.app_obj[app_seq]["approvers"]
+            puts @pro.app_obj["approvers"]
             a["action_arr"].each do |aaa|
                 puts aaa["id"]
                 if !aaa["approver"].nil?
