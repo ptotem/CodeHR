@@ -53,7 +53,7 @@ class MasterProsController < ApplicationController
     index2 = 0
     @master_steps.each do |master_step|
       if master_step.action == "Approve"
-        master_step.approval_obj = params[:approval][index1.to_s]
+        master_step.approval_obj << params[:approval][index1.to_s]
         index1 = index1+1
       elsif master_step.action == "Notify"
         master_step.notification_obj = params[:notification][index2.to_s]
