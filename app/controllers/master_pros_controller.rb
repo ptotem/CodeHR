@@ -51,22 +51,10 @@ class MasterProsController < ApplicationController
     @master_steps = @master_pro.master_steps
     index1 = 0
     index2 = 0
-    # currentEmp = EmployeeMaster.where(official_email: current_user.email).last
     
     @master_steps.each do |master_step|
       if master_step.action == "Approve"
         master_step.approval_obj = params[:approval][index1.to_s]
-        # if params[:approval][index1.to_s]['ro']
-        #   if !master_step.approval_obj["approvers"]["0"]["action_arr"]
-        #     master_step.approval_obj["approvers"]["0"]["action_arr"] = []
-        #   end
-        #   i = 0
-        #   while i < currentEmp['parent_ids'].length 
-        #     master_step.approval_obj["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i].to_s, approver: "on"}
-        #     i = i+1
-        #   end
-          
-        # end
         index1 = index1+1
       elsif master_step.action == "Notify"
         master_step.notification_obj = params[:notification][index2.to_s]
