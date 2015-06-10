@@ -13,6 +13,7 @@ class EmployeeMaster
   field :date_of_joining, type: Date
   field :role_ids, type: Array
   field :parent_ids, type: Array
+  field :band_master_ids, type: Array
   field :group_master_ids, type: Array
   field :vendor_id, type: String
   field :designation_joined_at, type: String
@@ -23,6 +24,7 @@ class EmployeeMaster
 
   belongs_to :user
   #belongs_to :group_master
+  has_and_belongs_to_many :band_masters
   has_and_belongs_to_many :group_masters
 
   # field :group_master_id, type: String
