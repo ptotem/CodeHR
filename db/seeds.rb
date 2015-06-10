@@ -11,6 +11,7 @@
 ###################################################################################################################################
 # Seeding Roles
 puts ""
+puts "Seeding Roles..."
 @roles = [
 	"Apprentice",
 	"Area Administration Manager",
@@ -67,47 +68,60 @@ puts ""
 ]
 i = 0
 rolesLen = @roles.length
-puts "Seeding Roles..."
 while i < rolesLen do
 	@role = Role.create!(name: @roles[i])
 	@role.save!
 	i = i+1
 end
 puts "Roles Seeded!"
-
-
-
 # ---------------------------------------------------------------------------------------------------------------------------------
+
+
 # Seeding BandMaster
 puts ""
+puts "Seeding BandMaster..."
 @bms = [
 	{band_code:"B001", band_name:"Top Management"},
 	{band_code:"B002", band_name:"Senior Management"},
 	{band_code:"B003", band_name:"Middle Management"},
 	{band_code:"B004", band_name:"Junior Management"}
 ]
+
 i = 0
 bmsLen = @bms.length
-puts "Seeding BandMaster..."
 while i < bmsLen do
 	@bm = BandMaster.create!(@bms[i])
 	@bm.save!
 	i = i+1
 end
 puts "BandMaster Seeded!"
-
-
-
 # ---------------------------------------------------------------------------------------------------------------------------------
+
+
 # Seeding GroupMaster
+puts ""
+puts "Seeding GroupMaster..."
 @gms = [
-	{}
+	{group_code: "G001", group_name: "Top Management"},
+	{group_code: "G002", group_name: "Senior Management"},
+	{group_code: "G003", group_name: "Middle Management"},
+	{group_code: "G004", group_name: "Junior Management"},
 ]
 
-
+i = 0
+gmsLen = @gms.length
+while i < gmsLen do
+	@gm = GroupMaster.create!(@gms[i])
+	@gm.save!
+	i=i+1
+end
+puts "GroupMaster Seeded!"
 # ---------------------------------------------------------------------------------------------------------------------------------
+
+
 # Seeding Users
 puts ""
+puts "Seeding Users..."
 @user = User.create!(:email=>"superadmin@codehr.in", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
 @user.save!
 @user = User.create!(:email=>"hradmin@comp1.com", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
@@ -261,7 +275,6 @@ puts ""
 
 i = 0
 userLen = @users.length
-puts "Seeding Users..."
 while i < userLen do
 	@users[i][:gender] = if @users[i][:gender] == "Male" then "M" elsif @users[i][:gender] == "Female" then "F" else "O" end
 	@users[i][:date_of_birth] = if @users[i][:date_of_birth].blank? then "" else @users[i][:date_of_birth].to_date end
@@ -276,6 +289,7 @@ while i < userLen do
 	i=i+1
 end
 puts "Users Seeded!"
+# ---------------------------------------------------------------------------------------------------------------------------------
 
 
 puts ""
