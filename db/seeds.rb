@@ -9,6 +9,103 @@
 
 
 ###################################################################################################################################
+# Seeding Roles
+puts ""
+@roles = [
+	"Apprentice",
+	"Area Administration Manager",
+	"Area Sales Engineer",
+	"Area Sales Executive",
+	"Area Sales Manager",
+	"Area Service Engineer",
+	"Area Technical Manager",
+	"Area Assistant Manager",
+	"Associate General Manager",
+	"Associate Vice President",
+	"Chief Executive Officer",
+	"Chief Operations Officer",
+	"Coordinator",
+	"Deputy Manager",
+	"Divisional Manager",
+	"Draughtsman",
+	"Engineer",
+	"Executive",
+	"Executive Assistant",
+	"Functional Assistant",
+	"General Manager",
+	"Head",
+	"Helper",
+	"Incharge",
+	"Junior Engineer",
+	"Junior Executive",
+	"Manager",
+	"Managing Director",
+	"Office Assistant",
+	"Operator",
+	"Plant Manager",
+	"President",
+	"Purchase Assistant",
+	"Regional Manager",
+	"Senior Analyst",
+	"Senior Area Engineer",
+	"Senior Area Technical Manager",
+	"Senior Attendant",
+	"Senior Engineer",
+	"Senior Executive",
+	"Senior Manager",
+	"Senior Project Manager",
+	"Senior Service Engineer",
+	"Senior Technical Specialist",
+	"Senior Technician",
+	"Service Engineer",
+	"Shift Engineer",
+	"Shift Incharge",
+	"Supervisor",
+	"Technician",
+	"Vice President",
+	"Zonal Manager"
+]
+i = 0
+rolesLen = @roles.length
+puts "Seeding Roles..."
+while i < rolesLen do
+	@role = Role.create!(name: @roles[i])
+	@role.save!
+	i = i+1
+end
+puts "Roles Seeded!"
+
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+# Seeding BandMaster
+puts ""
+@bms = [
+	{band_code:"B001", band_name:"Top Management"},
+	{band_code:"B002", band_name:"Senior Management"},
+	{band_code:"B003", band_name:"Middle Management"},
+	{band_code:"B004", band_name:"Junior Management"}
+]
+i = 0
+bmsLen = @bms.length
+puts "Seeding BandMaster..."
+while i < bmsLen do
+	@bm = BandMaster.create!(@bms[i])
+	@bm.save!
+	i = i+1
+end
+puts "BandMaster Seeded!"
+
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+# Seeding GroupMaster
+@gms = [
+	{}
+]
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------
 # Seeding Users
 puts ""
 @user = User.create!(:email=>"superadmin@codehr.in", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
@@ -180,91 +277,6 @@ while i < userLen do
 end
 puts "Users Seeded!"
 
-
-# Seeding Roles
-puts ""
-@roles = [
-	"Apprentice",
-	"Area Administration Manager",
-	"Area Sales Engineer",
-	"Area Sales Executive",
-	"Area Sales Manager",
-	"Area Service Engineer",
-	"Area Technical Manager",
-	"Area Assistant Manager",
-	"Associate General Manager",
-	"Associate Vice President",
-	"Chief Executive Officer",
-	"Chief Operations Officer",
-	"Coordinator",
-	"Deputy Manager",
-	"Divisional Manager",
-	"Draughtsman",
-	"Engineer",
-	"Executive",
-	"Executive Assistant",
-	"Functional Assistant",
-	"General Manager",
-	"Head",
-	"Helper",
-	"Incharge",
-	"Junior Engineer",
-	"Junior Executive",
-	"Manager",
-	"Managing Director",
-	"Office Assistant",
-	"Operator",
-	"Plant Manager",
-	"President",
-	"Purchase Assistant",
-	"Regional Manager",
-	"Senior Analyst",
-	"Senior Area Engineer",
-	"Senior Area Technical Manager",
-	"Senior Attendant",
-	"Senior Engineer",
-	"Senior Executive",
-	"Senior Manager",
-	"Senior Project Manager",
-	"Senior Service Engineer",
-	"Senior Technical Specialist",
-	"Senior Technician",
-	"Service Engineer",
-	"Shift Engineer",
-	"Shift Incharge",
-	"Supervisor",
-	"Technician",
-	"Vice President",
-	"Zonal Manager"
-]
-i = 0
-rolesLen = @roles.length
-puts "Seeding Roles..."
-while i < rolesLen do
-	@role = Role.create!(name: @roles[i])
-	@role.save!
-	i = i+1
-end
-puts "Roles Seeded!"
-
-
-# Seeding BandMaster
-puts ""
-@bms = [
-	{band_code:"B001", band_name:"Top Management"},
-	{band_code:"B002", band_name:"Senior Management"},
-	{band_code:"B003", band_name:"Middle Management"},
-	{band_code:"B004", band_name:"Junior Management"}
-]
-i = 0
-bmsLen = @bms.length
-puts "Seeding BandMaster..."
-while i < bmsLen do
-	@bm = BandMaster.create!(band_name: @bms[i]["band_name"], band_code: @bms[i]["band_code"])
-	@bm.save!
-	i = i+1
-end
-puts "BandMaster Seeded!"
 
 puts ""
 puts "Finished Seeding!"
