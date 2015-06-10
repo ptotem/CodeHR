@@ -51,8 +51,6 @@ class MasterProsController < ApplicationController
     @master_steps = @master_pro.master_steps
     index1 = 0
     index2 = 0
-    # render :json => EmployeeMaster.where(:_id =>'538edcb3d6ca3fa66c000031')
-    # return
     @master_steps.each do |master_step|
       if master_step.action == "Approve"
         master_step.approval_obj = params[:approval][index1.to_s]

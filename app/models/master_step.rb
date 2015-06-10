@@ -13,5 +13,6 @@ class MasterStep
   field :notification_obj, type: Hash
   field :erased, type: Boolean
   field :repeat_on, type: String
+  field :reporting_officer, type: Boolean
   belongs_to :master_pro
 end

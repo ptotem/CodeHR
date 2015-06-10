@@ -51,7 +51,24 @@ class ProcessTransactsController < ApplicationController
     @mp.master_steps.order_by(['sequence']).each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class,:auto => sm.auto, :params_mapping=>sm.params_mapping, :action_obj => sm.action_obj, :repeat_on => sm.repeat_on)
       if !sm.approval_obj.nil?
+
         @process_transact.app_obj = sm.approval_obj
+        currentEmp = EmployeeMaster.where(official_email: current_user.email).last
+        if @process_transact.app_obj['ro']
+          if !@process_transact.app_obj["approvers"]["0"]["action_arr"]
+            @process_transact.app_obj["approvers"]["0"]["action_arr"] = []
+            # render :json => currentEmp['parent_ids']
+            # return
+          end
+          i = 0
+          while i < currentEmp['parent_ids'].length 
+            @process_transact.app_obj["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i].to_s, approver: "on"}
+            i = i+1
+          end
+          
+        end
+        # render :json => @process_transact.app_obj
+        # return
       end
       if !sm.notification_obj.nil?
         @process_transact.notification_obj = sm.notification_obj

@@ -14,6 +14,7 @@ class StepTransact
   field :initiated_at, type: DateTime
   field :finished_at, type: DateTime
   field :repeat_on, type: String
+  field :state, type: String
   embedded_in :process_transact
 
   #--------------------------------------------------------------
