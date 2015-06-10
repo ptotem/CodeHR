@@ -24,6 +24,7 @@ class EmployeeMaster
 
   belongs_to :user
   #belongs_to :group_master
+  has_and_belongs_to_many :band_masters
   has_and_belongs_to_many :group_masters
 
   # field :group_master_id, type: String

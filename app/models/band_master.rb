@@ -7,6 +7,8 @@ class BandMaster
 
   belongs_to :company_master
 
+  has_and_belongs_to_many :employee_masters
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     (2..spreadsheet.last_row).each do |i|
