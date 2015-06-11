@@ -303,10 +303,15 @@ puts "GroupMaster Seeded!"
 # Seeding Users
 puts ""
 puts "Seeding Users..."
-@user = User.create!(:email=>"superadmin@codehr.in", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
-@user.save!
-@user = User.create!(:email=>"hradmin@comp1.com", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
-@user.save!
+# @user = User.create!(:email=>"superadmin@codehr.in", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
+# @user.save!
+# @user = User.create!(:email=>"hradmin@comp1.com", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
+# @user.save!
+@defUser = EmployeeMaster.create!(:official_email => "superadmin@codehr.in", :employee_code => "SUP01", :employee_name => "Super Admin")
+@defUser.save!
+@defUser = EmployeeMaster.create!(:official_email => "hradmin@comp1.com", :employee_code => "SUP02", :employee_name => "HR Admin")
+@defUser.save!
+
 
 i = 0
 userLen = @users.length
