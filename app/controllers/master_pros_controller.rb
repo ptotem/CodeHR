@@ -63,11 +63,10 @@ class MasterProsController < ApplicationController
         index2 = index2+1
       end
     end
-
     respond_to do |format|
       if @master_pro.save
-        #render :json => @master_pro.master_steps[1].approval_obj
-        #return
+        # render :json => @master_pro.master_steps
+        # return
         format.html { redirect_to @master_pro, notice: 'Master pro was successfully created.' }
         format.json { render json: @master_pro, status: :created, location: @master_pro }
       else
@@ -75,15 +74,15 @@ class MasterProsController < ApplicationController
         format.json { render json: @master_pro.errors, status: :unprocessable_entity }
       end
     end
-
+    
   end
 
   # PUT /master_pros/1
   # PUT /master_pros/1.json
   def update
     @master_pro = MasterPro.find(params[:id])
-    #render :json => params
-    #return
+    # render :json => params
+    # return
     respond_to do |format|
       if @master_pro.update_attributes(params[:master_pro])
         @master_steps = @master_pro.master_steps

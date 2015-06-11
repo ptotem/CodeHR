@@ -287,7 +287,6 @@ module ApplicationHelper
         #   end
         #   i= i+1
         # end
-
         @app=ApprovalMat.create!( :name=>@pro.name, ocls:oclass, oid:"", :description=>"Please approve or reject this step", :link=>'', :complete=>false, :process_tr_id=>@pro._id, :step_no=>stepno, :approved_next_step=> "", :reject_next_step=> "", :reminder=> @pro.app_obj["reminder"], :rep_reminder=> @pro.app_obj["rep_reminder"] , :escalate=> @pro.app_obj["escalate"] , :rep_escalate=> "", :auto_assign=> @pro.app_obj["auto_assign"])
 
         #toDo: Making the link for approval page
@@ -402,6 +401,7 @@ module ApplicationHelper
       when "Notify"
 
         @pro = ProcessTransact.find(pid)
+        @pro.notification_obj = @pro['notification_arr'][stepno.to_s]
         puts "Notifying"+"ddddd"+@pro.notification_obj["oClass"]
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
           puts "------------------Employee----------------------------"
