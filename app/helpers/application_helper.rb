@@ -399,19 +399,26 @@ module ApplicationHelper
 
 
       when "Notify"
-
         @pro = ProcessTransact.find(pid)
         @pro.notification_obj = @pro['notification_arr'][stepno.to_s]
         puts "Notifying"+"ddddd"+@pro.notification_obj["oClass"]
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
           puts "------------------Employee----------------------------"
           if !@pro.notification_obj["action_arr"].nil?
-            puts @pro.notification_obj["action_arr"]
+            puts @pro.notification_obj["link"]
             @pro.notification_obj["action_arr"].each do |noti|
-              # puts "000000000000000000000000000000000000000000000---"+noti["id"]+"---000000000000000000000000000000000000000000000"
+              fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
+              doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
+              link = false
+              if @pro.notification_obj["link"]
+                link = @pro['class_obj']['dfile']
+                doc[:readers][noti["id"].to_s] = false
+                doc.save!
+              end
+
               user=EmployeeMaster.find(noti["id"]).user
               puts user
-              unm=user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
+              unm=user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: fillStep[0]["obj_name"]
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")

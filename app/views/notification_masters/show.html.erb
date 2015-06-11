@@ -19,6 +19,12 @@
             <th>Description</th>
             <td><%= raw @notification_master.description %></td>
           </tr>
+          <% if !@notification_master.link.nil? %>
+          <tr>
+            <th>File</th>
+            <td><a href="<%= @download %>">Download</a></td>
+          </tr>
+          <% end %>
           <tr>
             <th>Type</th>
             <td><%= @notification_master.type %></td>

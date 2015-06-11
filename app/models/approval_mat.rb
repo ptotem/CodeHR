@@ -39,6 +39,9 @@ class ApprovalMat
 
   def send_notification
     puts "Inside Send Notification"
+    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    puts self.approvers.to_json
+    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     self.approvers.where(:active => true,:is_approver => true).each do |aa|
       puts "<<<<<<<<<<<<<<<<<<<<<<<<<<"
       puts aa.employee_master_id

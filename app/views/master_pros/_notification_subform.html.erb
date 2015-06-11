@@ -1,3 +1,10 @@
+<style>
+  .opacity1 {
+    opacity: 1 !important;
+  }
+
+</style>
+
 <div class="notification">
   <div class="row-fluid">
     <div class="span6">
@@ -5,6 +12,13 @@
         <label for="Title">Title</label>
         <div class="controls">
           <%= text_field_tag "notification[#{counter}][title]" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= check_box_tag "notification[#{counter}][link]", true, false, class: 'opacity1' %>
+          <label for="link" style="margin-left: 25px">Send Document on Notification?</label>
         </div>
       </div>
     </div>
@@ -25,6 +39,7 @@
           <%= select_tag "notification[#{counter}][oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification['+counter.to_s+'][action_arr][]", "notification");'} %>
           <%#= select_tag "notification[#{counter}][oClass]", options_for_select([["Employee Master", "EmployeeMaster"], ["Group Master", "GroupMaster"], ["Role", "Role"], ["Vendor Master", "VendorMaster"]]), {:include_blank => true, class: 'auto_assign_tos', :onchange => 'display_objects($(this),"notification[0][notifires]['+counter.to_s+'][action_arr][]", "notification");'} %>
         </div>
+
       </div>
     </div>
     <div class="span6">
