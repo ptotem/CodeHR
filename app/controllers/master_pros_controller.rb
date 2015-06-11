@@ -47,6 +47,7 @@ class MasterProsController < ApplicationController
   def create
     # render :json => params
     # return
+    # 
     @master_pro = MasterPro.new(params[:master_pro])
     @master_steps = @master_pro.master_steps
     index1 = 0
@@ -54,8 +55,8 @@ class MasterProsController < ApplicationController
     @master_steps.each do |master_step|
       if master_step.action == "Approve"
         master_step.approval_obj = params[:approval][index1.to_s]
-        render :json => master_step.approval_obj['approvers']
-        return
+        # render :json => master_step.approval_obj['approvers']
+        # return
         index1 = index1+1
       elsif master_step.action == "Notify"
         master_step.notification_obj = params[:notification][index2.to_s]

@@ -264,6 +264,7 @@
 
       <ul class="nav nav-list">
         <li>
+        <pre><%= current_user.employee_master.to_json %></pre>
           <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user,:contoller => @controller, :action => @action %>
         </li>
       </ul>
