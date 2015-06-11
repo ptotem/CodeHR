@@ -56,11 +56,11 @@ class ApprovalMat
       puts link1
       puts link2
       @pro = ProcessTransact.find(self.process_tr_id)
-      if @pro.bulk_data_file_name.nil?
-        AdminMailer.show_mail1(@approver.official_email,"Approval Request","#{self.description}",@pro.class_obj,link1,link2).deliver
-      else
-        AdminMailer.send_mail_with_attachment(@approver.official_email,"Approval Request","#{self.description}",@pro.bulk_data_file_name,@pro.bulk_data.path,link1,link2).deliver
-      end
+      # if @pro.bulk_data_file_name.nil?
+      #   AdminMailer.show_mail1(@approver.official_email,"Approval Request","#{self.description}",@pro.class_obj,link1,link2).deliver
+      # else
+      #   AdminMailer.send_mail_with_attachment(@approver.official_email,"Approval Request","#{self.description}",@pro.bulk_data_file_name,@pro.bulk_data.path,link1,link2).deliver
+      # end
 
       puts "Client mail delivered"
       #########To be removed######################
