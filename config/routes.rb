@@ -126,6 +126,9 @@ CodeHR::Application.routes.draw do
   #ActiveAdmin.routes(self)
 
   match '/mark_read' => 'document_masters#mark_read', :as=> :mark_read, :via => [:get, :post]
+  
+
+
   match '/reports' => 'welcomes#report', :as=> :report, :via => [:get, :post]
   match '/my_report' => 'welcomes#my_report', :as=> :my_report, :via => [:get, :post]
   match '/show_report' => 'd_reports#show_report', :as=> :show_report, :via => [:get, :post]
