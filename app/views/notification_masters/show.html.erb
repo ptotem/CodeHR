@@ -22,7 +22,9 @@
           <% if !@notification_master.link.nil? %>
           <tr>
             <th>File</th>
-            <td><a href="<%= @download %>">Download</a></td>
+            <td>
+              <%= link_to "Downlaod",mark_read_path(:test => @download)%>
+            </td>
           </tr>
           <% end %>
           <tr>

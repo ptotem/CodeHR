@@ -36,4 +36,12 @@ class DocumentMastersController < InheritedResources::Base
     return
   end
 
+  def mark_read
+    doc = DocumentMaster.where(:dfile => Rails.root.to_s + '/public' + params[:test]).last
+    emp = EmployeeMaster.where(:official_email => current_user[:email]).last
+    doc.readers[emp[:id].to_s] = true
+    doc.save!
+    send_file Rails.root.to_s + '/public' + params[:test]
+  end
+
 end
