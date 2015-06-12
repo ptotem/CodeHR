@@ -222,6 +222,7 @@ module ApplicationHelper
     puts objid
     puts args
     case action_name
+    
       when "Fill"
         puts "Inside Fill form step of the current process"
         @pro = ProcessTransact.find(pid)
@@ -397,7 +398,6 @@ module ApplicationHelper
         puts "Approval"
         puts "Inside Approval step of the current process"
 
-
       when "Notify"
         @pro = ProcessTransact.find(pid)
         @pro.notification_obj = @pro['notification_arr'][stepno.to_s]
@@ -475,6 +475,7 @@ module ApplicationHelper
           end
         end
         @pro.step_transacts[stepno].end_processing_step
+
       when "MarkComplete"
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
@@ -522,6 +523,7 @@ module ApplicationHelper
         end
         puts @myc
         @pro.step_transacts[stepno].end_processing_step
+      
       when "SpawnD"
         puts "Calling a new process dependently.."
         @pro = ProcessTransact.find(pid)
@@ -545,6 +547,7 @@ module ApplicationHelper
         else
           create_and_load_process(pid,stepno,ao,user_id,true,@pro.app_obj,@pro.notification_obj)
         end
+      
       when "SpawnI"
         puts "Calling a new process independently.."
         @pro = ProcessTransact.find(pid)
@@ -572,6 +575,7 @@ module ApplicationHelper
           create_and_load_process(pid,stepno,ao,user_id,false,@pro.app_obj,@pro.notification_obj)
         end
         @pro.step_transacts[stepno].end_processing_step
+    
     end
   end
 
