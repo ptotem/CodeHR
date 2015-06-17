@@ -344,6 +344,9 @@ module ApplicationHelper
           elsif a["oClass"] == "Role"
             # puts "Inside role"
             a["action_arr"].each do |aaa|
+              puts '/****************************** aaa ****************************************/'
+              puts aaa
+              puts '/****************************** aaa ****************************************/'
               @role = Role.find(aaa["id"])
               @employees = @role.employee_masters
 
@@ -480,7 +483,7 @@ module ApplicationHelper
         puts "Mark Complete Code goes here."
         @pro = ProcessTransact.find(pid)
         @class_name = I18n.translate('forms.'+@pro.step_transacts[0].obj_name+'.object')
-        puts @class_name
+        puts @class_name.to_s
         @step=@pro.step_transacts[stepno]
         if oclass == "Bulk"
           #if @pro.step_transacts[0].action_name == "Fill"
@@ -506,7 +509,17 @@ module ApplicationHelper
           #end
         else
           if @pro.step_transacts[0].action_name == "Fill"
-            @myc = eval(@class_name).create(@pro.class_obj)
+            @temp = @pro.class_obj
+            @temp.delete('employee_master')
+            puts '///////*******************************************************///////////'
+            puts @class_name
+            puts @class_name.is_a? String
+            puts @class_name.classify.constantize.is_a? Class
+            puts @pro.class_obj
+            puts '///////*******************************************************///////////'
+            # @myc = eval(@class_name).create(@pro.class_obj)
+            # @myc = @class_name.classify.constantize.create(@pro.class_obj)
+            @myc = @class_name.classify.constantize.create(@pro.class_obj)
           elsif @pro.step_transacts[0].action_name == "Update"
             puts "In side update action"
             @myc = eval(@class_name).find(objid)

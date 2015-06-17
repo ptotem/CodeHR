@@ -309,7 +309,7 @@ puts "Seeding Users..."
 # @user.save!
 @defUser = EmployeeMaster.create!(:official_email => "superadmin@codehr.in", :employee_code => "SUP01", :employee_name => "Super Admin")
 @defUser.save!
-@defUser = EmployeeMaster.create!(:official_email => "hradmin@comp1.com", :employee_code => "SUP02", :employee_name => "HR Admin")
+@defUser = EmployeeMaster.create!(:official_email => "hradmin@comp1.com", :employee_code => "SUP02", :employee_name => "HR Admin", :parent_ids => [EmployeeMaster.where(:employee_code => "SUP01").first.id ])
 @defUser.save!
 
 

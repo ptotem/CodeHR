@@ -315,7 +315,7 @@ class GenericController < ApplicationController
       @process_transact = ProcessTransact.find(params[:process_id])
       @process_transact.class_obj = params[params[:model_name].to_sym]
       
-      # render :json => params
+      # render :json => @process_transact
       # return
       # file present or not checking
       if @process_transact.class_obj[:dfile]

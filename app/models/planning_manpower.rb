@@ -11,6 +11,8 @@ class PlanningManpower
   field :supervisor, type: String
   field :comments, type: String
   field :erased, type: Boolean
+  field :manpower_plan_dets, type: Hash, :default => {}
+  field :employee_master, type: String
   belongs_to :group_master
   belongs_to :job_description_master
 
