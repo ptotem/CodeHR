@@ -15,6 +15,7 @@ class EmployeeMaster
   field :parent_ids, type: Array
   field :band_master_ids, type: Array
   field :group_master_ids, type: Array
+  field :department, type: String
   field :vendor_id, type: String
   field :designation_joined_at, type: String
   field :official_email, type: String

@@ -323,7 +323,7 @@ while i < defUsersLen do
 	@defUsers[i][:group_master_ids] = @defUsers[i][:department].to_s.split(',').map{|i| GroupMaster.where(:group_name => i).first.id}
 	
 	@defUsers[i].delete :band
-	@defUsers[i].delete :department
+	# @defUsers[i].delete :department
 
 	@em = EmployeeMaster.create!(@defUsers[i])
 	@em.save!
@@ -344,7 +344,7 @@ while i < userLen do
 	@users[i][:group_master_ids] = bandGrp.concat(deptGrp)
 	
 	@users[i].delete :band
-	@users[i].delete :department
+	# @users[i].delete :department
 
 	@em = EmployeeMaster.create!(@users[i])
 	@em.save!
