@@ -244,16 +244,18 @@
         <span class="btn btn-danger"></span>
       </div>
     </div>
-    <!-- #sidebar-shortcuts -->
+    <!-- #sidebar-shortcuts 5582b4dc6c696e1bf3000000 5582b4dc6c696e1bf3000000 -->
 
     <% @ability_matrix = AbilityMatrix.where(:user_id=> current_user.id) %>
     <% @master_pros = MasterPro.all %>
     <% @controller = params[:controller] %>
     <% @action = params[:action] %>
+    <% @emp = EmployeeMaster.where(:official_email => current_user.email).last %>
 
     <%# if current_user.email != "hradmin@comp1.com" %>
 
-    <% if current_user.email == "hradmin@comp1.com" || current_user.email == "sunny@ptotem.com" %>
+    <%# if current_user.email == "hradmin@comp1.com" || current_user.email == "sunny@ptotem.com" %>
+    <% if @emp.roles.first.name == 'Admin'%>
       <ul class="nav nav-list">
         <li>
           <%#= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
@@ -264,6 +266,7 @@
 
       <ul class="nav nav-list">
         <li>
+        
         <!-- <pre><%= current_user.employee_master.to_json %></pre> -->
           <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user,:contoller => @controller, :action => @action %>
         </li>

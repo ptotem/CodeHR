@@ -42,6 +42,7 @@ class LeftMenuCell < Cell::Rails
     @master_pros = args[:master_pros]
     @contoller = args[:contoller]
     @user = args[:current_user]
+    @emp = EmployeeMaster.where(:official_email => @user.email).last 
     @action = args[:action]
     render
   end

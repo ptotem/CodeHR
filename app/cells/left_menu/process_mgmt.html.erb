@@ -4,7 +4,7 @@
   <b class="arrow icon-angle-down"></b>
 </a>
 <ul class="nav nav-list">
-  <% if @user.email == "processadmin@comp1.com" or @user.email == "hradmin@comp1.com" %>
+  <% if @emp.roles.first.name == 'Admin' %>
   <li>
     <a href="/master_pros">
       <i class="icon-group"></i>
