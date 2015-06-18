@@ -47,7 +47,7 @@ class MasterProsController < ApplicationController
   def create
     # render :json => params
     # return
-    # 
+    
     @master_pro = MasterPro.new(params[:master_pro])
     @master_steps = @master_pro.master_steps
     index1 = 0
@@ -63,6 +63,10 @@ class MasterProsController < ApplicationController
         index2 = index2+1
       end
     end
+    
+    # render :json => params[:notification]
+    # return false
+
     respond_to do |format|
       if @master_pro.save
         # render :json => @master_pro.master_steps

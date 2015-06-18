@@ -37,8 +37,9 @@
 <div class="row-fluid">
   <div class="span6">
     <!-- <input type="checkbox" name="approval[<%= counter %>][ro]" value="true" style="opacity: 1"> -->
-      <%= check_box_tag "approval[#{appCounter}][ro]", true, false, class: 'opacity1' %>
-      <div class="span4"> <label style="margin-left: 10px">Add reporting officer as an approver</label>
+    <%= check_box_tag "approval[#{appCounter}][ro]", true, false, class: 'opacity1' %>
+    <div class="span4"> 
+      <label style="margin-left: 10px">Add reporting officer as an approver <i>(Select only with EmployeeMaster)</i></label>
     </div>
   </div>
 </div>
