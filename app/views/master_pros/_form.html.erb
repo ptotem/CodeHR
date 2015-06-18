@@ -396,7 +396,7 @@
                 }
                 else if (model_name == "GroupMaster") {
                     for (var i = 0; i < data.length; i++) {
-                        my_id = data[i]["_id"];
+                        my_id = data[i]["_id"].$oid;
                         if (app=="approval"){
                             $user_row = '<tr>' +
                                     '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
@@ -420,7 +420,7 @@
                 }
                 else if (model_name == "Role") {
                     for (var i = 0; i < data.length; i++) {
-                        my_id = data[i]["_id"];
+                        my_id = data[i]["_id"].$oid;
                         if (app=="approval"){
                             $user_row = '<tr>' +
                                     '<td style="position: relative;"><input onclick="select_this_approver_role($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
@@ -443,7 +443,7 @@
                 }
                 else if (model_name == "VendorMaster") {
                     for (var i = 0; i < data.length; i++) {
-                        my_id = data[i]["_id"];
+                        my_id = data[i]["_id"].$oid;
                         if (app=="approval"){
                             $user_row = '<tr>' +
                                     '<td style="position: relative;"><input onclick="select_this_approver_vm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +

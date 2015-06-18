@@ -11,6 +11,7 @@
 ###################################################################################################################################
 # Seed Data
 @roles = [
+	{name:"Admin"},
 	{name:"Apprentice"},
 	{name:"Area Administration Manager"},
 	{name:"Area Sales Engineer"},
@@ -66,6 +67,7 @@
 ]
 
 @bms = [
+	{band_code:"B000", band_name:"Admin Band"},
 	{band_code:"B001", band_name:"Top Management"},
 	{band_code:"B002", band_name:"Senior Management"},
 	{band_code:"B003", band_name:"Middle Management"},
@@ -73,6 +75,8 @@
 ]
 
 @gms = [
+	{group_code: "G000", group_name: "Admin Group"},
+
 	{group_code: "G001", group_name: "Top Management"},
 	{group_code: "G002", group_name: "Senior Management"},
 	{group_code: "G003", group_name: "Middle Management"},
@@ -252,6 +256,11 @@
 	{employee_code:"STT018",employee_name:"Karan Sigh",employee_middle_name_name:"",status:"",gender:"Male",marital_status:"Married",date_of_birth:"10-Jul-81",date_of_joining:"18-Apr-11",designation_joined_at:"Junior Engineer",official_email:"KaranSigh@stti.com",address_for_communication:"H. No. 2-7-2,Vill URK Puram, Post Pathatekkali, VIA Pundi (RS) Dist Srikakulam, State AP, Pin 532218",parent_ids:"STT005",role_ids:"Junior Engineer",group_master_ids:"",band:"Junior Management",department:"Services"}
 ]
 
+@defUsers = [
+	{employee_code:"SUP01",employee_name:"Super Admin",official_email:"superadmin@codehr.in",parent_ids:"",role_ids:"Admin",group_master_ids:"",band:"Admin Band",department:"Admin Group"},
+	{employee_code:"SUP02",employee_name:"HR Admin",official_email:"hradmin@comp1.com",parent_ids:"SUP01",role_ids:"Admin",group_master_ids:"",band:"Admin Band",department:"Admin Group"},
+]
+
 # ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -303,15 +312,23 @@ puts "GroupMaster Seeded!"
 # Seeding Users
 puts ""
 puts "Seeding Users..."
-# @user = User.create!(:email=>"superadmin@codehr.in", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
-# @user.save!
-# @user = User.create!(:email=>"hradmin@comp1.com", :password=>"password", :password_confirmation=>"password", :designation=>"HR")
-# @user.save!
-@defUser = EmployeeMaster.create!(:official_email => "superadmin@codehr.in", :employee_code => "SUP01", :employee_name => "Super Admin")
-@defUser.save!
-@defUser = EmployeeMaster.create!(:official_email => "hradmin@comp1.com", :employee_code => "SUP02", :employee_name => "HR Admin", :parent_ids => [EmployeeMaster.where(:employee_code => "SUP01").first.id ])
-@defUser.save!
 
+i = 0
+defUsersLen = @defUsers.length
+while i < defUsersLen do
+	@defUsers[i][:parent_ids] = if @defUsers[i][:parent_ids] == "" then [] else [if !EmployeeMaster.where(:employee_code => @defUsers[i][:parent_ids].to_s).first.nil? then EmployeeMaster.where(:employee_code => @defUsers[i][:parent_ids].to_s).first.id end] end
+	@defUsers[i][:role_ids] = [(Role.where(:name => @defUsers[i][:role_ids].to_s).first.id rescue '')]
+	@defUsers[i][:band_master_ids] = @defUsers[i][:band].to_s.split(',').map{|i| BandMaster.where(:band_name => i).first.id}
+	@users[i][:band_master_ids] = @defUsers[i][:band].to_s.split(',').map{|i| BandMaster.where(:band_name => i).first.id}
+	@defUsers[i][:group_master_ids] = @defUsers[i][:department].to_s.split(',').map{|i| GroupMaster.where(:group_name => i).first.id}
+	
+	@defUsers[i].delete :band
+	@defUsers[i].delete :department
+
+	@em = EmployeeMaster.create!(@defUsers[i])
+	@em.save!
+	i=i+1
+end
 
 i = 0
 userLen = @users.length
