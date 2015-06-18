@@ -25,6 +25,10 @@
           <label for="link" style="margin-left: 25px">Notify Reporting Officers?</label>
         </div>
         <div class="controls">
+          <%= check_box_tag "notification[#{counter}][department]", true, false, class: 'opacity1' %>
+          <label for="link" style="margin-left: 25px">Notify Your Deparment Members?</label>
+        </div>
+        <div class="controls">
           <%= check_box_tag "notification[#{counter}][link]", true, false, class: 'opacity1' %>
           <label for="link" style="margin-left: 25px">Send Document on Notification?</label>
         </div>

@@ -1,3 +1,5 @@
+require 'set'
+
 module ApplicationHelper
   def test1
     puts I18n.translate('forms')
@@ -215,12 +217,33 @@ module ApplicationHelper
 
   end
 
+  def notify_users(users, notification_obj, link, class_obj)
+    users.each do |user_id|
+      if notification_obj["link"]
+        doc = eval(class_obj).where(:dfile => link.to_s).last
+        doc[:readers][user_id.to_s] = false
+        doc.save!
+      end
+
+      user = User.find(user_id)
+      unm=user.notification_masters.build title:notification_obj["title"] , description:notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
+      unm.save
+      unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+      unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+      unm.save
+      user.save
+    end
+  end
+
   #todo:Building a totally new function to handle automatic processes
   def step_transaction_processing(action_name,oclass,objid,ao,pid,stepno,user_id,*args)
     puts action_name
     puts oclass
     puts objid
     puts args
+    current_user = User.find(user_id)
+    current_emp = EmployeeMaster.where(:official_email => current_user.email).last
+
     case action_name
     
       when "Fill"
@@ -436,53 +459,32 @@ module ApplicationHelper
         @pro = ProcessTransact.find(pid)
         @pro.notification_obj = @pro['notification_arr'][stepno.to_s]
         puts "Notifying"+"ddddd"+@pro.notification_obj["oClass"]
-        # render :text => 'test'
-        # return
+
+        notification_users = []
+        fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
+        class_obj = ""
+        if !fillStep.nil?
+          class_obj = fillStep[0]["obj_name"]
+
+          link = false
+          if @pro.notification_obj["link"]
+            link = @pro['class_obj']['dfile']
+          end
+        end
+
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
           puts "------------------Employee----------------------------"
           if !@pro.notification_obj["action_arr"].nil?
-            fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
-            class_obj = ""
-            if !fillStep.nil?
-              class_obj = fillStep[0]["obj_name"]
-
-              link = false
-              if @pro.notification_obj["link"]
-                link = @pro['class_obj']['dfile']
-                doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
-              end
-            end
-
             @pro.notification_obj["action_arr"].each do |noti|
-
-              if @pro.notification_obj["link"]
-                doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
-                doc[:readers][noti["id"].to_s] = false
-                doc.save!
-              end
 
               user=EmployeeMaster.find(noti["id"]).user
               puts user
-              unm=user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
-              unm.save
-              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.save
-              user.save
+
+              notification_users << user._id unless notification_users.include?(user._id)
             end
           end
         elsif @pro.notification_obj["oClass"] == "GroupMaster"
           puts "In Side Group Master"
-          fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
-          class_obj = ""
-          if !fillStep.nil?
-            class_obj = fillStep[0]["obj_name"]
-
-            link = false
-            if @pro.notification_obj["link"]
-              link = @pro['class_obj']['dfile']
-            end
-          end
 
           @pro.notification_obj["action_arr"].each do |noti|
 
@@ -492,34 +494,13 @@ module ApplicationHelper
             # @users=@employees.map{|i| i.user}
             puts @users
             @users.each do |user|
-
-              if @pro.notification_obj["link"]
-                doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
-                doc[:readers][noti["id"].to_s] = false
-                doc.save!
-              end
-
               @user = user.user
-              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
-              unm.save
-              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.save
-              @user.save
+              notification_users << @user._id unless notification_users.include?(@user._id)
+
             end
           end
         elsif @pro.notification_obj["oClass"] == "BandMaster"
           puts "In Side Band Master"
-          fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
-          class_obj = ""
-          if !fillStep.nil?
-            class_obj = fillStep[0]["obj_name"]
-
-            link = false
-            if @pro.notification_obj["link"]
-              link = @pro['class_obj']['dfile']
-            end
-          end
 
           @pro.notification_obj["action_arr"].each do |noti|
             @role = BandMaster.find(noti["id"])
@@ -528,33 +509,13 @@ module ApplicationHelper
             # @users=@employees.map{|i| i.user}
             puts @users
             @users.each do |user|
-              if @pro.notification_obj["link"]
-                doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
-                doc[:readers][noti["id"].to_s] = false
-                doc.save!
-              end
-
               @user = user.user
-              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
-              unm.save
-              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.save
-              @user.save
+              notification_users << @user._id unless notification_users.include?(@user._id)
+
             end
           end
         elsif @pro.notification_obj["oClass"] == "Role"
           puts "hhhhhhhhh"
-          fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
-          class_obj = ""
-          if !fillStep.nil?
-            class_obj = fillStep[0]["obj_name"]
-
-            link = false
-            if @pro.notification_obj["link"]
-              link = @pro['class_obj']['dfile']
-            end
-          end
 
           @pro.notification_obj["action_arr"].each do |noti|
             @role = Role.find(noti["id"])
@@ -563,19 +524,9 @@ module ApplicationHelper
             # @users=@employees.map{|i| i.user}
             puts @users
             @users.each do |user|
-              if @pro.notification_obj["link"]
-                doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
-                doc[:readers][noti["id"].to_s] = false
-                doc.save!
-              end
-
               @user = user.user
-              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
-              unm.save
-              unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-              unm.save
-              @user.save
+              notification_users << @user._id unless notification_users.include?(@user._id)
+              
             end
           end
         elsif @pro.notification_obj["oClass"] == "VendorMaster"
@@ -583,14 +534,43 @@ module ApplicationHelper
 
             @user= VendorMaster.find(noti["id"]).user
             puts @user
-            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false, link: link, class_obj: class_obj
-            unm.save
-            unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
-            unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
-            unm.save
-            @user.save
+
+            notification_users << @user._id unless notification_users.include?(@user._id)
+            # notify_user(@user, @pro.notification_obj, link, class_obj)
+            # unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false, link: link, class_obj: class_obj
+            # unm.save
+            # unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
+            # unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
+            # unm.save
+            # @user.save
           end
         end
+
+        if @pro.notification_obj["self"]
+          notification_users << current_user._id unless notification_users.include?(current_user._id)
+          # notify_user(current_emp, @pro.notification_obj, link, class_obj)
+        end
+
+        if @pro.notification_obj["ro"]
+          parents = current_emp.parent_ids
+          parents.each do |p|
+            this_parent = EmployeeMaster.find(p)
+            notification_users << this_parent.user._id unless notification_users.include?(this_parent.user._id)
+          end
+        end
+
+        if @pro.notification_obj["department"]
+          dept_emp = EmployeeMaster.where(:department => current_emp.department)
+          dept_emp.each do |emp|
+            this_emp = EmployeeMaster.find(emp)
+            notification_users << this_emp.user._id unless notification_users.include?(this_emp.user._id)
+          end
+        end
+
+        puts "------------------------ notification_users ------------------------"
+        puts notification_users
+        notify_users(notification_users, @pro.notification_obj, link, class_obj)
+
         @pro.step_transacts[stepno].end_processing_step
 
       when "MarkComplete"
