@@ -631,6 +631,8 @@
 
 
     function get_d_data(dropdown, action){
+      console.log('get_d_data');
+      console.log(dropdown);
         var data = {action_name: []};
         data["action_name"].push(action);
 
@@ -647,6 +649,8 @@
                 for(var i=0; i< substr.length; i++)
                 {
                     v = substr[i].replace('[', '').replace(']', '').replace(/"/g, '').replace(/:/g, '');
+                    console.log('v value');
+                    console.log(v);
                     val = v.split("||")[0];
                     name = v.split("||")[1];
                     $(dropdown).children().first().append("<option value="+val+">"+name+"</option>");

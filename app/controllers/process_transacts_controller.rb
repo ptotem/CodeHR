@@ -64,22 +64,22 @@ class ProcessTransactsController < ApplicationController
             # render :text => 'currentEmp['
             # return
           end
-          j = 0
+          i = 0
           while i < currentEmp['parent_ids'].length 
             @process_transact.app_obj["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i], approver: "on"}  
             i = i+1
           end
           
         end
-        render :json => @process_transact.app_obj
-        return
+        # render :json => @process_transact.app_obj
+        # return
       end
       if !sm.notification_obj.nil? 
         # @process_transact.notification_obj = sm.notification_obj
         @process_transact['notification_arr'][sm.sequence.to_s] = sm.notification_obj
       end
     end
-    # render :json => @process_transact.app_obj
+    # render :json => @process_transact['notification_arr']
     # return
     @process_transact.save
     @process_transact.load_process

@@ -344,9 +344,6 @@ module ApplicationHelper
           elsif a["oClass"] == "Role"
             # puts "Inside role"
             a["action_arr"].each do |aaa|
-              puts '/****************************** aaa ****************************************/'
-              puts aaa
-              puts '/****************************** aaa ****************************************/'
               @role = Role.find(aaa["id"])
               @employees = @role.employee_masters
 
@@ -405,6 +402,8 @@ module ApplicationHelper
         @pro = ProcessTransact.find(pid)
         @pro.notification_obj = @pro['notification_arr'][stepno.to_s]
         puts "Notifying"+"ddddd"+@pro.notification_obj["oClass"]
+        # render :text => 'test'
+        # return
         if @pro.notification_obj["oClass"] == "EmployeeMaster"
           puts "------------------Employee----------------------------"
           if !@pro.notification_obj["action_arr"].nil?
