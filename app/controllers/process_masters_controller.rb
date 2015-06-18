@@ -187,6 +187,16 @@ class ProcessMastersController < ApplicationController
         end
         @a<<@temp
       end
+    elsif @class_name == "BandMaster"
+      @b = ["band_name", "_id"]
+      BandMaster.all.each do |em|
+        @temp=Hash.new
+        @b.each do |i|
+          #@temp[:cname] = i
+          @temp[i] = em.instance_eval(i)
+        end
+        @a<<@temp
+      end
     elsif @class_name == "Role"
         @b = ["name", "_id"]
         Role.all.each do |em|
