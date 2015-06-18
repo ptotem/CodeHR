@@ -276,6 +276,10 @@ module ApplicationHelper
         puts "In side approval"
         @pro = ProcessTransact.find(pid)
         @step=@pro.step_transacts[stepno]
+        puts "******************************************** STEP ********************************************"
+        puts @step.to_json
+        puts "----------------------------------------------------------------------------------------------"
+        puts @pro.to_json
         
         # app_list = @pro.step_transacts.select {|app| app.action_name == "Approve"}
         # app_seq = 0
@@ -288,13 +292,13 @@ module ApplicationHelper
         #   end
         #   i= i+1
         # end
-        @app=ApprovalMat.create!( :name=>@pro.name, ocls:oclass, oid:"", :description=>"Please approve or reject this step", :link=>'', :complete=>false, :process_tr_id=>@pro._id, :step_no=>stepno, :approved_next_step=> "", :reject_next_step=> "", :reminder=> @pro.app_obj["reminder"], :rep_reminder=> @pro.app_obj["rep_reminder"] , :escalate=> @pro.app_obj["escalate"] , :rep_escalate=> "", :auto_assign=> @pro.app_obj["auto_assign"])
+        @app=ApprovalMat.create!( :name=>@pro.name, ocls:oclass, oid:"", :description=>"Please approve or reject this step", :link=>'', :complete=>false, :process_tr_id=>@pro._id, :step_no=>stepno, :approved_next_step=> "", :reject_next_step=> "", :reminder=> @pro.app_obj[stepno.to_s]["reminder"], :rep_reminder=> @pro.app_obj[stepno.to_s]["rep_reminder"] , :escalate=> @pro.app_obj[stepno.to_s]["escalate"] , :rep_escalate=> "", :auto_assign=> @pro.app_obj[stepno.to_s]["auto_assign"])
 
         #toDo: Making the link for approval page
         #link="http://codehr.in/#{oclass.downcase}_#{oaction.downcase}/#{@pro.chits.first.oid}/#{@pro._id}/#{stepno}/#{@app._id}"
         #@app.link=link
         @app.save
-        @pro.app_obj["approvers"].each do |k,a|
+        @pro.app_obj[stepno.to_s]["approvers"].each do |k,a|
           if a["oClass"] == "EmployeeMaster"
             puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
             puts @pro.app_obj["approvers"]
@@ -316,6 +320,36 @@ module ApplicationHelper
             a["action_arr"].each do |aaa|
               puts "here"
               @employees = EmployeeMaster.where(:group_master_ids=>aaa["id"])
+              puts @employees
+              if !aaa["approver"].nil?
+                puts "www"
+                if !@employees.nil?
+                    puts "www2"
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>true, :escalated=>false, :escalated_from=>nil, :auto_assign=>false, :active=>true)
+                  end
+                end
+              elsif !aaa["escalated"].nil?
+                if !@employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>true, :escalated_from=>nil, :auto_assign=>false, :active=>false)
+                  end
+                end
+              elsif !aaa["auto_assign"].nil?
+                if !@employees.nil?
+                  @employees.each do |e|
+                    @app.approvers.create!(:employee_master_id=>e.id, :approved=>false, :is_approver=>false, :escalated=>false, :escalated_from=>nil, :auto_assign=>true, :active=>false)
+                  end
+                end
+              else
+
+              end
+            end
+          elsif a["oClass"] == "BandMaster"
+            puts "sunny"
+            a["action_arr"].each do |aaa|
+              puts "here"
+              @employees = EmployeeMaster.where(:band_master_ids=>aaa["id"])
               puts @employees
               if !aaa["approver"].nil?
                 puts "www"
@@ -431,6 +465,15 @@ module ApplicationHelper
         elsif @pro.notification_obj["oClass"] == "GroupMaster"
           puts "In Side Group Master"
           @pro.notification_obj["action_arr"].each do |noti|
+            fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
+            doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
+            link = false
+            if @pro.notification_obj["link"]
+              link = @pro['class_obj']['dfile']
+              doc[:readers][noti["id"].to_s] = false
+              doc.save!
+            end
+
             @role = GroupMaster.find(noti["id"])
             puts @role.id
             @users = @role.employee_masters
@@ -438,7 +481,7 @@ module ApplicationHelper
             puts @users
             @users.each do |user|
               @user = user.user
-              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
+              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: fillStep[0]["obj_name"]
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
@@ -449,6 +492,15 @@ module ApplicationHelper
         elsif @pro.notification_obj["oClass"] == "Role"
           puts "hhhhhhhhh"
           @pro.notification_obj["action_arr"].each do |noti|
+            fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
+            doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
+            link = false
+            if @pro.notification_obj["link"]
+              link = @pro['class_obj']['dfile']
+              doc[:readers][noti["id"].to_s] = false
+              doc.save!
+            end
+
             @role = Role.find(noti["id"])
             puts @role.id
             @users = @role.employee_masters
@@ -456,7 +508,7 @@ module ApplicationHelper
             puts @users
             @users.each do |user|
               @user = user.user
-              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false
+              unm=@user.notification_masters.build title:@pro.notification_obj["title"] , description:@pro.notification_obj["description"],  type:"test1", read: false, link: link, class_obj: fillStep[0]["obj_name"]
               unm.save
               unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
               unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")
@@ -466,9 +518,18 @@ module ApplicationHelper
           end
         elsif @pro.notification_obj["oClass"] == "VendorMaster"
           @pro.notification_obj["action_arr"].each do |noti|
+            fillStep = @pro.step_transacts.select { |step| step.action_name == 'Fill' }
+            doc = eval(fillStep[0]["obj_name"]).where(:dfile => @pro['class_obj']['dfile'].to_s).last
+            link = false
+            if @pro.notification_obj["link"]
+              link = @pro['class_obj']['dfile']
+              doc[:readers][noti["id"].to_s] = false
+              doc.save!
+            end
+
             @user= VendorMaster.find(noti["id"]).user
             puts @user
-            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false
+            unm=@user.notification_masters.build title:"System Notification" , description:"Notification Description",  type:"test1", read: false, link: link, class_obj: fillStep[0]["obj_name"]
             unm.save
             unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
             unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")

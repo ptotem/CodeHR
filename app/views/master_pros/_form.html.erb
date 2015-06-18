@@ -354,6 +354,7 @@
         var model_name = $(this_obj).val();
         var data = {model_name: []};
         data["model_name"].push(model_name);
+        console.log(data)
         $.ajax({
             url: "/get_column_data",
             type: "post",
@@ -361,6 +362,7 @@
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (data) {
+                console.log(data)
                 $(parent_tab).find('.users-list').show();
                 //$(parent_tab).find('.not-available-text').hide();
                 var $user_row;
@@ -410,6 +412,30 @@
                             $user_row = '<tr>' +
                                     '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
                                     '<td>' + data[i]["group_name"] + '</td>' +
+                                    '</tr>';
+                        }
+
+                        $(parent_tab).find(".users-list").append($user_row);
+                    }
+                    //$(parent_tab).find(".users-list").find("tr:first").find("th:last").hide();
+                    second_row_tds_len = $(parent_tab).find(".users-list tr").eq(1).find("td").length;
+                }
+                else if (model_name == "BandMaster") {
+                    for (var i = 0; i < data.length; i++) {
+                        my_id = data[i]["_id"].$oid;
+                        if (app=="approval"){
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj + "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["band_name"] + '</td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"approver" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"escalated" +'"></td>' +
+                                    '<td><input type="checkbox" name="'+oobj +"auto_assign" +'"></td>' +
+                                    '</tr>';
+                        }
+                        else{
+                            $user_row = '<tr>' +
+                                    '<td style="position: relative;"><input onclick="select_this_approver_gm($(this))" type="checkbox" name="' + oobj+ "id" + '" value=' + my_id + ' class="user_select_checkbox" style="position: relative; top: 0;"></td>' +
+                                    '<td>' + data[i]["band_name"] + '</td>' +
                                     '</tr>';
                         }
 
@@ -471,6 +497,7 @@
 
                 var EmpMasterCols = ["Name", "Email", "Approve", "Escalate", "Auto Assign"];
                 var GrpMasterCols = ["Group Name", "Approve", "Escalate", "Auto Assign"];
+                var BandMasterCols = ["Band Name", "Approve", "Escalate", "Auto Assign"];
                 var RoleMasterCols = ["Role Name", "Approve", "Escalate", "Auto Assign"];
                 var VendorMasterCols = ["Vendor Name", "Approve", "Escalate", "Auto Assign"];
 
@@ -480,6 +507,9 @@
                     }
                     else if (model_name == "GroupMaster") {
                         $(parent_tab).find(".users-list").find("tr:first").append('<th>'+GrpMasterCols[i]+'</th>');
+                    }
+                    else if (model_name == "BandMaster") {
+                        $(parent_tab).find(".users-list").find("tr:first").append('<th>'+BandMasterCols[i]+'</th>');
                     }
                     else if (model_name == "Role") {
                         $(parent_tab).find(".users-list").find("tr:first").append('<th>'+RoleMasterCols[i]+'</th>');

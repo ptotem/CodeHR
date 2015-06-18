@@ -49,38 +49,35 @@ class ProcessTransactsController < ApplicationController
     @mp = MasterPro.find(params[:process_transact][:mp_name])
     @process_transact = ProcessTransact.create!(:code => params[:process_transact][:code],:name => params[:process_transact][:name], :created_by => params[:process_transact][:created_by], :facilitated_by => params[:process_transact][:faciliated_by], :user_id =>params[:process_transact][:user_id],:cobject_id=>params[:process_transact][:cobject_id])
     @process_transact['notification_arr'] = {}
+    @process_transact.app_obj = {}
     @mp.master_steps.order_by(['sequence']).each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class,:auto => sm.auto, :params_mapping=>sm.params_mapping, :action_obj => sm.action_obj, :repeat_on => sm.repeat_on)
       if !sm.approval_obj.nil?
-        # render :json => sm.approval_obj
+        # render :json => @mp.master_steps
         # return
-        @process_transact.app_obj = sm.approval_obj
+        @process_transact.app_obj[sm['sequence'].to_s] = sm.approval_obj
         currentEmp = EmployeeMaster.where(official_email: current_user.email).last
-        if @process_transact.app_obj['ro']
-          if !@process_transact.app_obj["approvers"]["0"]["action_arr"]
-            @process_transact.app_obj["approvers"]["0"]["action_arr"] = []
-            @process_transact.app_obj["approvers"]["0"]['oClass'] = 'EmployeeMaster'
+        if @process_transact.app_obj[sm['sequence'].to_s]['ro']
+          if !@process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"]
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] = []
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]['oClass'] = 'EmployeeMaster'
 
             # render :text => 'currentEmp['
             # return
           end
           i = 0
           while i < currentEmp['parent_ids'].length 
-            @process_transact.app_obj["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i], approver: "on"}  
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i], approver: "on"}  
             i = i+1
           end
-          
         end
-        # render :json => @process_transact.app_obj
-        # return
       end
       if !sm.notification_obj.nil? 
         # @process_transact.notification_obj = sm.notification_obj
         @process_transact['notification_arr'][sm.sequence.to_s] = sm.notification_obj
       end
     end
-    # render :json => @process_transact['notification_arr']
-    # return
+
     @process_transact.save
     @process_transact.load_process
     @user  = User.find(current_user._id)

@@ -16,7 +16,10 @@ class NotificationMastersController < InheritedResources::Base
 
   def show
     @notification_master = NotificationMaster.find(params[:id])
-    @download = @notification_master.link.split('public')[1]
+
+    if @notification_master.link
+      @download = @notification_master.link.split('public')[1]      
+    end
 
     @notification_master.read = true
     @notification_master.save
