@@ -89,13 +89,17 @@
                             <% @col_val.each_with_index do |cv, indi| %>
                                 <%# ti = ti + indi +index %>
                                 <div class="control-group">
-                                  <label for="<%= cv[:label] %>" class="control-label"><%= cv[:label] %></label>
+                                  <label for="<%= cv[:label] %>" class="control-label">
+                                  <% if cv[:label] != 'Attach Document'  %>
+                                    <%= cv[:label] %>
+                                  <% end %>
+                                  </label>
 
                                   <div class="controls">
                                     <% case cv[:type] %>
                                     <% when "text_field_tag" %>
                                         <% if cv[:attribute].include?('code') %>
-                                            <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;",:disabled => true%>
+                                            <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @dynamic_code ,:value =>@cls[cv[:attribute]],:readonly=>true, :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;",:disabled => true%>
                                         <% else %>
                                             <%= text_field_tag "#{params[:model_name]}[#{cv[:attribute]}]", @cls[cv[:attribute]], :tabindex => ti.to_s, :style => "width:#{cv[:width]}px",:disabled => true %>
                                         <% end %>
@@ -111,8 +115,8 @@
                                         </div>
                                     <% when "check_box_tag" %>
                                         <%= check_box_tag "#{params[:model_name]}[#{cv[:attribute]}]",@cls[cv[:attribute]], :tabindex => ti.to_s %>
-                                    <% when "file_field_tag" %>
-                                        <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
+                                    <%# when "file_field_tag" %>
+                                        <%#= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
                                     <% when "select_tag" %>
 
                                         <% if cv[:options] == 'model' %>
@@ -161,13 +165,20 @@
 
       </div>
     </div>
+
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
       <%#= submit_tag "Submit", :class => "btn btn-info" %>
-      <%= text_area_tag 'comment', nil, size: "25x10" %>
-      <a type="button" class="btn btn-success" href="<%= approved_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Accept</a>
-      <a type="button" class="btn btn-danger" href="<%= rejected_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Reject</a>
-    </div>
+      <div class="row-fluid">
+        <a type="button" class="btn btn-primary span3" href="<%= @cls[:dfile].split('/public')[1] %>">Downlaod Document</a>
+        <div class="span5" style="height: 100%">
+          <input type="text" name="comment" class="span12" placeholder="Comment" style="height: 100%; margin-bottom: 0px; margin-top: 5px">
+        </div>
+        <a type="button" class="btn btn-danger span2" href="<%= rejected_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Reject</a>
+        <a type="button" class="btn btn-success span2" href="<%= approved_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Accept</a>
+        </div>
+      </div>
+        
 <% end %>
 
 <script type="text/javascript" src="/assets/chosen.jquery.min.js"></script>
