@@ -251,7 +251,8 @@
     <% @controller = params[:controller] %>
     <% @action = params[:action] %>
     <% @emp = EmployeeMaster.where(:official_email => current_user.email).last %>
-
+    
+    
     <%# if current_user.email == "hradmin@comp1.com" || current_user.email == "sunny@ptotem.com" %>
     <% if @emp.roles.first.name == 'Admin'%>
       <ul class="nav nav-list">

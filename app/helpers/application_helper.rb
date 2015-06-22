@@ -303,6 +303,9 @@ module ApplicationHelper
         puts @step.to_json
         puts "----------------------------------------------------------------------------------------------"
         puts @pro.to_json
+        puts "----------------------------------------------------------------------------------------------"
+        puts oclass
+        puts "----------------------------------------------------------------------------------------------"
         
         # app_list = @pro.step_transacts.select {|app| app.action_name == "Approve"}
         # app_seq = 0
@@ -613,7 +616,38 @@ module ApplicationHelper
             puts '///////*******************************************************///////////'
             # @myc = eval(@class_name).create(@pro.class_obj)
             # @myc = @class_name.classify.constantize.create(@pro.class_obj)
+
+            if @class_name == "PlanningManpower"
+              @pro.class_obj["manpower_plan_dets"]["0"]["status"] = 'Approved'
+              @pro.class_obj["status"] = 'Approved'
+            end
+
             @myc = @class_name.classify.constantize.create(@pro.class_obj)
+            @pro.mongo_id = @myc._id.to_s
+            # @pro.save_mongo_id(@myc._id)
+            @pro.save!
+            puts "0000000000000000000000000"
+            puts @pro.mongo_id
+            puts @pro._id
+            puts @pro.to_json
+
+            if @class_name == "VacancyMaster"
+              puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+              puts @pro.to_json
+              vacancy_id = @pro.mongo_id
+              parentPro = ProcessTransact.find(@pro.parent_pro_id)
+              mp_id = parentPro.mongo_id
+              puts parentPro.to_json
+
+              vacancy_obj = VacancyMaster.find(vacancy_id)
+              vacancy_obj.manpower_id = mp_id
+              vacancy_obj.save!
+
+              mp_obj = PlanningManpower.find(mp_id)
+              mp_obj.vacancy_id = vacancy_id
+              mp_obj.save!
+            end
+
           elsif @pro.step_transacts[0].action_name == "Update"
             puts "In side update action"
             @myc = eval(@class_name).find(objid)
@@ -644,13 +678,13 @@ module ApplicationHelper
           @a2.each do |k|
             @child_class_object[k[0]] = @pro.class_obj[k[1]]
           end
-          if !@step.repeat_on.blank? or !@step.repeat_on.nil?
-            @pro.class_obj[@step.repeat_on].to_i.times do |i|
-              create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
-            end
-          else
+          # if !@step.repeat_on.blank? or !@step.repeat_on.nil?
+          #   @pro.class_obj[@step.repeat_on].to_i.times do |i|
+          #     create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
+          #   end
+          # else
             create_and_load_auto_process(pid,stepno,ao,user_id,true,@child_class_object,@pro.app_obj,@pro.notification_obj)
-          end
+          # end
         else
           create_and_load_process(pid,stepno,ao,user_id,true,@pro.app_obj,@pro.notification_obj)
         end
@@ -689,13 +723,38 @@ module ApplicationHelper
   def create_and_load_process(parent_process_id, parent_step_no, pid,userid,dependent,child_app_obj,child_not_obj)
     @mp=MasterPro.find(pid)
     @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process"+@mp.name, :created_by => userid, :facilitated_by => userid, :user_id =>userid,:app_obj => child_app_obj, :notification_obj => child_not_obj)
+    @process_transact['notification_arr'] = {}
+    @process_transact['parent_process_id'] = parent_process_id
+    @process_transact.app_obj = {}
     @mp.master_steps.order_by(['sequence']).each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
       if !sm.approval_obj.nil?
-        @process_transact.app_obj = sm.approval_obj
+        # @process_transact.app_obj = sm.approval_obj
+        @process_transact.app_obj[sm['sequence'].to_s] = sm.approval_obj
+
+        if @process_transact.app_obj[sm['sequence'].to_s]['ro']
+          currentEmp = EmployeeMaster.where(official_email: current_user.email).last
+          if !@process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"]
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] = []
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]['oClass'] = 'EmployeeMaster'
+
+          end
+          i = 0
+          while i < currentEmp['parent_ids'].length 
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i], approver: "on"}  
+            i = i+1
+          end
+
+          # if sm['sequence'] == 1
+            # render :json => @process_transact
+            # return
+          # end
+          
+        end
       end
       if !sm.notification_obj.nil?
-        @process_transact.notification_obj = sm.notification_obj
+        # @process_transact.notification_obj = sm.notification_obj
+        @process_transact['notification_arr'][sm.sequence.to_s] = sm.notification_obj
       end
     end
     @process_transact.load_process
@@ -706,7 +765,37 @@ module ApplicationHelper
     @process_transact = ProcessTransact.create!(:dependent=>dependent,:created_by_process=>true,:parent_pro_id=>parent_process_id,:parent_step_no=>parent_step_no,:name => "Child process"+@mp.name, :created_by => userid, :facilitated_by => userid, :user_id =>userid, :parameter =>child_cls_obj,:class_obj =>child_cls_obj,:app_obj => child_app_obj, :notification_obj => child_not_obj)
     @mp.master_steps.each do |sm|
       @step_transact = @process_transact.step_transacts.build(:name => sm.step_name,:action_name=> sm.action,:action_object_id=>"",:obj_name => sm.action_class)
+      if !sm.approval_obj.nil?
+        # @process_transact.app_obj = sm.approval_obj
+        @process_transact.app_obj[sm['sequence'].to_s] = sm.approval_obj
+
+        if @process_transact.app_obj[sm['sequence'].to_s]['ro']
+          currentEmp = EmployeeMaster.where(official_email: current_user.email).last
+          if !@process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"]
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] = []
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]['oClass'] = 'EmployeeMaster'
+
+          end
+          i = 0
+          while i < currentEmp['parent_ids'].length 
+            @process_transact.app_obj[sm['sequence'].to_s]["approvers"]["0"]["action_arr"] << {id: currentEmp['parent_ids'][i], approver: "on"}  
+            i = i+1
+          end
+
+          # if sm['sequence'] == 1
+            # render :json => @process_transact
+            # return
+          # end
+          
+        end
+      end
+      if !sm.notification_obj.nil?
+        # @process_transact.notification_obj = sm.notification_obj
+        @process_transact['notification_arr'][sm.sequence.to_s] = sm.notification_obj
+      end
     end
+    puts "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    puts @process_transact.to_json
     @process_transact.load_process
   end
 

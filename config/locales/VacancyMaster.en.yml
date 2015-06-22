@@ -15,36 +15,51 @@ en:
                   label: 'Vacancy ID'
                   type: 'text_field_tag'
                   width: '100'
-                manpower_planning_id:
-                  attribute: 'manpower_planning_id'
-                  label: 'Asscoiated Manpower Planning ID'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'ManpowerPlanning'
-                  select: 'mp_code'
-                  show: 'mp_code'
-                  width: '200'
-                vendor_master_id:
-                  attribute: 'vendor_master_id'
-                  label: 'Assign to Vendor'
-                  type: 'select_tag'
-                  options: 'model'
-                  class : 'VendorMaster'
-                  select: 'id'
-                  show: 'vendor_name'
-                  width: '200'
+                # manpower_planning_id:
+                #   attribute: 'manpower_planning_id'
+                #   label: 'Asscoiated Manpower Planning ID'
+                #   type: 'select_tag'
+                #   options: 'model'
+                #   class : 'ManpowerPlanning'
+                #   select: 'mp_code'
+                #   show: 'mp_code'
+                #   width: '200'
+                # vendor_master_id:
+                #   attribute: 'vendor_master_id'
+                #   label: 'Assign to Vendor'
+                #   type: 'select_tag'
+                #   options: 'model'
+                #   class : 'VendorMaster'
+                #   select: 'id'
+                #   show: 'vendor_name'
+                #   width: '200'
                 ctc_range_from:
                   attribute: 'ctc_range_from'
                   label: 'CTC Range From'
                   type: 'text_field_tag'
                   width: '200'
-                status:
-                  attribute: 'status'
-                  label: 'Status'
-                  type: 'select_tag'
+                ctc_range_to:
+                  attribute: 'ctc_range_to'
+                  label: 'CTC Range To'
+                  type: 'text_field_tag'
                   width: '200'
-                  options: ["Active", "Hiring in Progress", "Hired", "Closed"]
+                no_of_position:
+                  attribute: 'no_of_position'
+                  label: 'Number of Vacancy'
+                  type: 'text_field_tag'
+                  width: '200'
+                # status:
+                #   attribute: 'status'
+                #   label: 'Status'
+                #   type: 'select_tag'
+                #   width: '200'
+                #   options: ["Active", "Closed"]
               col2:
+                # parent_process_id:
+                #   attribute: 'parent_process_id'
+                #   label: 'Manpower Planing Id'
+                #   type: 'text_field_tag'
+                #   width: '200'
                 description:
                   attribute: 'description'
                   label: 'Vacancy Description'
@@ -67,17 +82,23 @@ en:
                   class : 'EmployeeMaster'
                   select: 'id'
                   show: 'employee_name'
-                ctc_range_to:
-                  attribute: 'ctc_range_to'
-                  label: 'CTC Range To'
-                  type: 'text_field_tag'
-                  width: '200'
-                refer_doc_id:
-                  attribute: 'refer_doc_id'
-                  label: 'Related Document Reference'
+                status:
+                  attribute: 'status'
+                  label: 'Status'
                   type: 'select_tag'
                   width: '200'
-                  options: 'model'
-                  class : 'DocumentMaster'
-                  select: 'id'
-                  show: 'name'
+                  options: ["Active", "Closed"]
+                # ctc_range_to:
+                #   attribute: 'ctc_range_to'
+                #   label: 'CTC Range To'
+                #   type: 'text_field_tag'
+                #   width: '200'
+                # refer_doc_id:
+                #   attribute: 'refer_doc_id'
+                #   label: 'Related Document Reference'
+                #   type: 'select_tag'
+                #   width: '200'
+                #   options: 'model'
+                #   class : 'DocumentMaster'
+                #   select: 'id'
+                #   show: 'name'

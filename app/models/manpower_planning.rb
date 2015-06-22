@@ -10,6 +10,10 @@ class ManpowerPlanning
   field :process_id, type:String
   field :status, type: String
   field :erased, type: Boolean
+  field :comments, type: String
+  field :manpower_plan_dets, type: Hash, :default => {}
+  field :employee_master, type: String
+  field :supervisor, type: String
   belongs_to :group_master
   belongs_to :job_description_master
 

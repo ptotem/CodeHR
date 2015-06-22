@@ -18,6 +18,7 @@ class ProcessTransact
   field :dependent, type: Boolean
   field :parent_pro_id, type: String
   field :parent_step_no, type: Integer
+  field :mongo_id, type: String
   has_mongoid_attached_file :bulk_data
   field :erased, type: Boolean
 

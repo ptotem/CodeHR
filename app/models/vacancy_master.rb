@@ -12,12 +12,16 @@ class VacancyMaster
   field :hiring_manager, type: String
   field :ctc_range_from, type: Integer
   field :ctc_range_to, type: Integer
+  field :no_of_position, type: Integer, default: 1 
+  field :occupied_position, type: Integer, default: 0 
+  field :manpower_id, type: String
   field :erased, type: Boolean
 
   belongs_to :group_master
   belongs_to :job_description_master
   belongs_to :manpower_planning
   has_many :vacancy_schedulings
+  has_many :candidate_master
   accepts_nested_attributes_for :vacancy_schedulings
 
   before_create :check_and_create_code

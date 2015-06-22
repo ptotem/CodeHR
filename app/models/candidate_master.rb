@@ -30,6 +30,7 @@ class CandidateMaster
   field :remarks_3, type: String
   field :remarks_4, type: String
   field :remarks_5, type: String
+  field :selcetion_status, type: String, default: 'Applied' 
   field :erased, type: Boolean
 
   has_mongoid_attached_file :employee_cv
@@ -42,6 +43,7 @@ class CandidateMaster
   embeds_many :job_preferences
   embeds_many :location_preferences
   has_many :vacancy_schedulings
+  belongs_to :vacancy_master
 
   accepts_nested_attributes_for :cand_educations
   accepts_nested_attributes_for :candidate_contact_numbers

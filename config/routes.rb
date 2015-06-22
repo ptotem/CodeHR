@@ -1,5 +1,7 @@
 CodeHR::Application.routes.draw do
 
+  resources :resumes
+
   get 'temporary_file_storage/new'
 
   resources :goals
@@ -126,6 +128,8 @@ CodeHR::Application.routes.draw do
   #ActiveAdmin.routes(self)
 
   match '/mark_read' => 'document_masters#mark_read', :as=> :mark_read, :via => [:get, :post]
+  
+  match '/openings' => 'planning_manpowers#show_active_plans', :as=> :openings, :via => [:get, :post]
   
 
 

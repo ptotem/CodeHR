@@ -12,6 +12,8 @@ class PlanningManpower
   field :comments, type: String
   field :erased, type: Boolean
   field :manpower_plan_dets, type: Hash, :default => {}
+  field :status, type: String, :default => 'Initiated'
+  field :vacancy_id, type: String
   field :employee_master, type: String
   belongs_to :group_master
   belongs_to :job_description_master

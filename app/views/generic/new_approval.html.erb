@@ -169,6 +169,7 @@
     <div class="form-actions">
       <%#= f.submit :class => "btn btn-info" %>
       <%#= submit_tag "Submit", :class => "btn btn-info" %>
+      <%if @cls[:dfile] %>
       <div class="row-fluid">
         <a type="button" class="btn btn-primary span3" href="<%= @cls[:dfile].split('/public')[1] %>">Downlaod Document</a>
         <div class="span5" style="height: 100%">
@@ -178,6 +179,18 @@
         <a type="button" class="btn btn-success span2" href="<%= approved_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Accept</a>
         </div>
       </div>
+
+      <% else %> 
+      <div class="row-fluid">
+        <div class="span8" style="height: 100%">
+          <input type="text" name="comment" class="span12" placeholder="Comment" style="height: 100%; margin-bottom: 0px; margin-top: 5px">
+        </div>
+        <a type="button" class="btn btn-danger span2" href="<%= rejected_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Reject</a>
+        <a type="button" class="btn btn-success span2" href="<%= approved_master_path(params[:approval_id],params[:process_id],params[:seq].to_i,current_user.employee_master.id) %>">Accept</a>
+        </div>
+      </div>
+
+      <% end %>
         
 <% end %>
 

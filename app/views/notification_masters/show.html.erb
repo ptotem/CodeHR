@@ -19,7 +19,7 @@
             <th>Description</th>
             <td><%= raw @notification_master.description %></td>
           </tr>
-          <% if !@notification_master.link.nil? %>
+          <% if !@notification_master.link == 'false' %>
           <tr>
             <th>File</th>
             <td>

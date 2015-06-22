@@ -333,6 +333,7 @@ end
 i = 0
 userLen = @users.length
 while i < userLen do
+	@users[i][:official_email] = @users[i][:official_email].downcase
 	@users[i][:gender] = if @users[i][:gender] == "Male" then "M" elsif @users[i][:gender] == "Female" then "F" else "O" end
 	@users[i][:date_of_birth] = if @users[i][:date_of_birth].blank? then "" else @users[i][:date_of_birth].to_date end
 	@users[i][:date_of_joining] = if @users[i][:date_of_joining].blank? then "" else @users[i][:date_of_joining].to_date end

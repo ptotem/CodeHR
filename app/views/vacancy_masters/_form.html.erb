@@ -25,9 +25,9 @@
         <div class="span6">
           <div class="control-group">
             <%#= f.label :manpower_planning_id,:class => "control-label" %>
-            <label for="<%= @form[:manpower_planning_id].to_s %>" class="control-label"><%= @form[:manpower_planning_id].to_s %></label>
+            <label for="<%= @form[:parent_process_id].to_s %>" class="control-label"><%= @form[:parent_process_id].to_s %></label>
             <div class="controls">
-              <%= f.number_field :manpower_planning_id %>
+              <%# f.text_field :parent_process_id, :class => 'test' %>
             </div>
           </div>
         </div>

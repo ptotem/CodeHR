@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<p>_id: <%= @resume._id %></p>
+<p>file_file_name: <%= @resume.file_file_name %></p>
+<p>file_content_type: <%= @resume.file_content_type %></p>
+<p>file_file_size: <%= @resume.file_file_size %></p>
+<p>file_fingerprint: <%= @resume.file_fingerprint %></p>
+<p>file_updated_at: <%= @resume.file_updated_at %></p>
+<p>file.path: <%= @resume.file.path %></p>
+<p>file.url: <%= @resume.file.url %></p>
+
+<%= link_to 'Edit', edit_resume_path(@resume) %> |
+<%= link_to 'Back', resumes_path %>
