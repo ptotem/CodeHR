@@ -641,6 +641,7 @@ module ApplicationHelper
 
               vacancy_obj = VacancyMaster.find(vacancy_id)
               vacancy_obj.manpower_id = mp_id
+              vacancy_obj.status = 'Approved'
               vacancy_obj.save!
 
               mp_obj = PlanningManpower.find(mp_id)

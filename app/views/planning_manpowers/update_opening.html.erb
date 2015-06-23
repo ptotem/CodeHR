@@ -1,0 +1,87 @@
+<style>
+	.test{
+		opacity: 1 !important;
+	}
+</style>
+<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Vacancy Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+          <tr>
+            <th>Code</th>
+            <td><%= @vacancy.vacancy_code %></td>
+          </tr>
+          <tr>
+            <th>Role</th>
+            <td><%= @vacancy['role']['name'] %></td>
+          </tr>
+          <tr>
+            <th>Sourcing Type</th>
+            <td><%= @vacancy['ff_source'] %></td>
+          </tr>
+          <tr>
+            <th>Department</th>
+            <td><%=@vacancy['band_master']['band_name'] %></td>
+          </tr>
+          <tr>
+            <th>CTC Range</th>
+            <td><%="#{@vacancy['ctc_range_from']}" ' - ' "#{@vacancy['ctc_range_to']}"%></td>
+          </tr>
+          <tr>
+            <th>Total Vacancy</th>
+            <td><%=@vacancy.no_of_position %></td>
+          </tr>
+          <tr>
+            <th>No. Vacancy Left</th>
+            <td><%=@vacancy['no_of_position'].to_i - @vacancy['occupied_position'].to_i %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= form_tag :successful_apply, :multipart => true do |f| %>
+<div class="row-fluid">
+  <div class="offset1 span6">
+    <div class="table-header">
+      Candidates Applied Details :-
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+    <thead>
+    	<tr>
+    		<th>Name</th>
+    		<th>Resume</th>
+    		<th>Status</th>
+    	</tr>
+    </thead>
+      <tbody>
+      <% @vacancy.candidates.each do |c| %>
+      	 <tr>
+
+      	 	<%user_id, value = c.first%>
+      	 	<% user = User.find(user_id.to_s)%>
+      	 	<%= hidden_field_tag :user_id, user._id.to_s %>
+      	 	<td><%= text_field_tag :user,user.name,:readonly => true%></td>
+      	 	
+      	 	<%key, resume_id = value.first%>
+      	 	<td><%=link_to 'Download', Resume.find(resume_id.to_s).file.path.split('/public')[1] %></td>
+      	 	<td>
+      	 		<div>
+      	 			<%= radio_button_tag('Applied', false, true,{:class =>'test'}) %>
+      	 		</div>
+      	 	
+      	 	<%=radio_button_tag('In progress', false, false)%>
+			</td>
+          </tr>
+      <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+<%= link_to 'Back', openings_path %>
+
