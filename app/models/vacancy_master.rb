@@ -15,6 +15,9 @@ class VacancyMaster
   field :no_of_position, type: Integer, default: 1 
   field :occupied_position, type: Integer, default: 0 
   field :manpower_id, type: String
+  field :band_master, type: Hash
+  field :ff_source, type: String
+  field :role, type: Hash
   field :candidates, type: Array, default: []
   field :erased, type: Boolean
 

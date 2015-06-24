@@ -626,10 +626,6 @@ module ApplicationHelper
             @pro.mongo_id = @myc._id.to_s
             # @pro.save_mongo_id(@myc._id)
             @pro.save!
-            puts "0000000000000000000000000"
-            puts @pro.mongo_id
-            puts @pro._id
-            puts @pro.to_json
 
             if @class_name == "VacancyMaster"
               puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
@@ -639,14 +635,22 @@ module ApplicationHelper
               mp_id = parentPro.mongo_id
               puts parentPro.to_json
 
-              vacancy_obj = VacancyMaster.find(vacancy_id)
-              vacancy_obj.manpower_id = mp_id
-              vacancy_obj.status = 'Approved'
-              vacancy_obj.save!
-
               mp_obj = PlanningManpower.find(mp_id)
               mp_obj.vacancy_id = vacancy_id
               mp_obj.save!
+
+              vacancy_obj = VacancyMaster.find(vacancy_id)
+              vacancy_obj.manpower_id = mp_id
+              vacancy_obj.status = 'Approved'
+              v_band = BandMaster.find(mp_obj['manpower_plan_dets']['0']['band_master'])
+              vacancy_obj.band_master = {_id: v_band._id.to_s, band_code: v_band.band_code, band_name: v_band.band_name}
+              vacancy_obj.ff_source = mp_obj['manpower_plan_dets']['0']['ff_source']
+              v_role = Role.find(mp_obj['manpower_plan_dets']['0']['role'])
+              vacancy_obj.role = {_id: v_role._id.to_s, name: v_role.name}
+              puts "________________________________________________________________________"
+              puts vacancy_obj.to_json
+              vacancy_obj.save!
+
             end
 
           elsif @pro.step_transacts[0].action_name == "Update"
