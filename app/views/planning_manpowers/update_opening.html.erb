@@ -70,11 +70,7 @@
       	 	<%key, resume_id = value.first%>
       	 	<td><%=link_to 'Download', Resume.find(resume_id.to_s).file.path.split('/public')[1] %></td>
       	 	<td>
-      	 		<div>
-      	 			<%= radio_button_tag('Applied', false, true,{:class =>'test'}) %>
-      	 		</div>
-      	 	
-      	 	<%=radio_button_tag('In progress', false, false)%>
+      	 		
 			</td>
           </tr>
       <%end%>
