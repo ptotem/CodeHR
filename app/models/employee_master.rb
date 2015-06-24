@@ -151,7 +151,7 @@ class EmployeeMaster
   end
 
   def create_user
-    self.user=User.create!(:email =>self.official_email, :password =>"password", :password_confirmation =>"password")
+    self.user=User.create!(:name => self.employee_name, :email =>self.official_email, :password =>"password", :password_confirmation =>"password")
     self.save
   end
 
