@@ -29,6 +29,8 @@ class VacancyMaster
   accepts_nested_attributes_for :vacancy_schedulings
 
   before_create :check_and_create_code
+
+  after_save :change_vacancy_count
   #validates :vacancy_code, :presence => true
   #validates :description, :presence => true
 
@@ -44,6 +46,16 @@ class VacancyMaster
       num = VacancyMaster.all.length rescue 1
       self.vacancy_code = @dynamic_code = I18n.translate('config.AutoCode.VacancyMaster.text')+sprintf('%0'+I18n.translate('config.AutoCode.VacancyMaster.digit')+'d',(num+1))
     end
+  end
+
+  def change_vacancy_count
+    count = 0;
+    self.candidates.each do |uid, obj|
+      if obj['status'] == 'Accepted'
+        count = count + 1
+      end
+    end
+    self.occupied_position = count
   end
 
 end
