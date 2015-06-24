@@ -43,17 +43,14 @@ class PlanningManpowersController < InheritedResources::Base
     vacancy_obj = VacancyMaster.find(params[:vacancy_id])
     if vacancy_obj['occupied_position'].to_i < vacancy_obj['no_of_position'].to_i
       vacancy_obj.candidates[params[:user_id].to_s][:status] = params[params[:user_id].to_s].to_s
-      if params[params[:user_id].to_s].to_s == 'Accepted'
-        vacancy_obj['occupied_position'] = vacancy_obj['occupied_position'].to_i + 1
-      end
       vacancy_obj.save!
 
       if vacancy_obj['occupied_position'].to_i = vacancy_obj['no_of_position'].to_i
-        flash[:notice] = "Vacancies are now Full!"
+        notice = "Vacancies are now Full!"
       end
 
     else
-      flash[:notice] = "Vacancies Full!"
+      notice = "Vacancies Full!"
     end
     redirect_to :back
   end
