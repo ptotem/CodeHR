@@ -1,9 +1,8 @@
-<style>
-	.test{
-		opacity: 1 !important;
-	}
-</style>
-<p id="notice"><%= notice %></p>
+
+<!-- <p id="notice"><%# notice %></p> -->
+<% if flash[:notice] %>
+  <div class="notice"> <%= flash[:notice] %> </div>
+<% end %>
 <div class="row-fluid">
   <div class="offset1 span8">
     <div class="table-header">
@@ -60,7 +59,7 @@
     </thead>
       <tbody>
       <% @vacancy.candidates.each do |key, value| %>
-     <%= form_tag :candidate_status_update, :multipart => true, :remote => true do |f| %>
+     <%= form_tag :candidate_status_update, :multipart => true do |f| %>
       	 <tr>
       	 	<% user = User.find(key.to_s)%>
       	 	<%= hidden_field_tag :user_id, user._id.to_s %>
@@ -71,6 +70,7 @@
       	 	</td>
       	 	<td>
       	 		<%= select_tag user._id.to_s, options_for_select(['Applied','In Process','Accepted','Rejected'], value[:status].to_s)%>
+
 			</td>
       	 	<td>
       	 		<%#submit_tag "Submit", :class => "btn btn-primary btn-block",:remote => true   %>

@@ -8,6 +8,7 @@
             <th>Role</th>
             <th>Sourcing Type</th>
             <th>Department</th>
+            <th>Openings</th>
             <th>Apply</th>
             <% if @emp.roles.first.name == 'Admin'%>
               <th>Update</th>
@@ -21,6 +22,7 @@
                 <td><%= vacancy.role['name'] %></td>
                 <td><%= vacancy['sourcing_strategy'] %></td>
                 <td><%=vacancy.band_master['band_name'] %></td>
+                <td><%=vacancy['no_of_position'] %></td>
                 
                  <td><%= link_to 'Apply', apply_plan_path(vacancy)%></td>
                 <% if @emp.roles.first.name == 'Admin'%>
