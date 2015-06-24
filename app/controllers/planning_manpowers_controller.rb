@@ -49,13 +49,13 @@ class PlanningManpowersController < InheritedResources::Base
       vacancy_obj.save!
 
       if vacancy_obj['occupied_position'].to_i = vacancy_obj['no_of_position'].to_i
-        flash[:notice] = "Vacancies are now Full!"
+        notice = "Vacancies are now Full!"
       end
 
     else
-      flash[:notice] = "Vacancies Full!"
+      notice = "Vacancies Full!"
     end
-    redirect_to :back
+    # redirect_to :back
   end
 
 end

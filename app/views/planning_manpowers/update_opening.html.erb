@@ -1,8 +1,8 @@
 
-<!-- <p id="notice"><%# notice %></p> -->
-<% if flash[:notice] %>
-  <div class="notice"> <%= flash[:notice] %> </div>
-<% end %>
+<p id="notice"><%= notice %></p>
+<%# if flash[:notice] %>
+  <!-- <div class="notice"> <%# flash[:notice] %> </div> -->
+<%# end %>
 <div class="row-fluid">
   <div class="offset1 span8">
     <div class="table-header">
@@ -59,7 +59,7 @@
     </thead>
       <tbody>
       <% @vacancy.candidates.each do |key, value| %>
-     <%= form_tag :candidate_status_update, :multipart => true do |f| %>
+     <%= form_tag :candidate_status_update, :multipart => true, :remote => true do |f| %>
       	 <tr>
       	 	<% user = User.find(key.to_s)%>
       	 	<%= hidden_field_tag :user_id, user._id.to_s %>
