@@ -1,5 +1,7 @@
 CodeHR::Application.routes.draw do
 
+  resources :letters
+
   resources :resumes
 
   get 'temporary_file_storage/new'
@@ -130,8 +132,10 @@ CodeHR::Application.routes.draw do
   match '/mark_read' => 'document_masters#mark_read', :as=> :mark_read, :via => [:get, :post]
   
   
+  match '/closures' => 'planning_manpowers#show_closed_plans', :as=> :closures, :via => [:get, :post]
   match '/openings' => 'planning_manpowers#show_active_plans', :as=> :openings, :via => [:get, :post]
   match '/openings/(:opening_id)' => 'planning_manpowers#apply_plan', :as=> :apply_plan, :via => [:get, :post]
+  match '/openings/(:opening_id)/close' => 'planning_manpowers#close_plan', :as=> :close_plan, :via => [:get, :post]
   match '/successful_apply' => 'planning_manpowers#successful_apply', :as=> :successful_apply, :via => [:get, :post]
   
   match '/update_opening/(:opening_id)' => 'planning_manpowers#update_opening', :as=> :update_opening, :via => [:get, :post]

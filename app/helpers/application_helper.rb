@@ -226,7 +226,7 @@ module ApplicationHelper
       end
 
       user = User.find(user_id)
-      unm=user.notification_masters.build title:notification_obj["title"] , description:notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj
+      unm=user.notification_masters.build title:notification_obj["title"] , description:notification_obj["description"],  type:"test1", read: false, link: link, class_obj: class_obj, link_title: "Document"
       unm.save
       unm.notification_details.build(:notification_master_id => unm._id,:event=>"Info")
       unm.email_details.build(:notification_master_id => unm._id,:event=>"Info")

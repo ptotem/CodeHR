@@ -19,11 +19,15 @@
             <th>Description</th>
             <td><%= raw @notification_master.description %></td>
           </tr>
-          <% if !@notification_master.link == 'false' %>
+          <% if @notification_master.link != 'false' %>
           <tr>
-            <th>File</th>
+            <th><%= @title%></th>
             <td>
+              <% if @title == 'Document' %>
               <%= link_to "Downlaod", mark_read_path(:test => @download)%>
+              <% else %>
+              <%= link_to "Downlaod", @download%>
+              <% end  %>
             </td>
           </tr>
           <% end %>

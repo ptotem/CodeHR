@@ -5,6 +5,7 @@ class NotificationMaster
   field :title, type: String
   field :description, type: String
   field :link, type: String
+  field :link_title, type: String
   field :class_obj, type: String
   field :type, type: String
   field :read, type: Boolean, :default => false

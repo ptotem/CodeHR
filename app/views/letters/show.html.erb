@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<p>_id: <%= @letter._id %></p>
+<p>file_file_name: <%= @letter.file_file_name %></p>
+<p>file_content_type: <%= @letter.file_content_type %></p>
+<p>file_file_size: <%= @letter.file_file_size %></p>
+<p>file_fingerprint: <%= @letter.file_fingerprint %></p>
+<p>file_updated_at: <%= @letter.file_updated_at %></p>
+<p>file.path: <%= @letter.file.path %></p>
+<p>file.url: <%= @letter.file.url %></p>
+
+
+<%= link_to 'Edit', edit_letter_path(@letter) %> |
+<%= link_to 'Back', letters_path %>

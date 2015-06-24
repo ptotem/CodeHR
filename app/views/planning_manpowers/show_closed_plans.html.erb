@@ -1,0 +1,41 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="table-header">Listing Closures</div>
+    <table id="vacancy_table" class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+            <th>Role</th>
+            <th>Sourcing Type</th>
+            <th>Department</th>
+            <th>Openings</th>
+            <th>Created At</th>
+            <th>Closed At</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <% @postings.each do |posting| %>
+              <tr>
+                <td><%= posting.role['name'] %></td>
+                <td><%= posting['sourcing_strategy'] %></td>
+                <td><%=posting.band_master['band_name'] %></td>
+                <td><%=posting['no_of_position'] %></td>
+                <td><%=posting['created_at'].strftime("%F") %></td>
+                <td><%=posting['updated_at'].strftime("%F") %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= javascript_include_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.zbootstrap" %>
+<%= javascript_include_tag "custom_dataTable" %>
+
+
+<script>
+    $(function(){
+        apply_dataTable('#vacancy_table', '#vacancy_table_wrapper','#vacancy_table_length', '#vacancy_table_filter');
+    });
+</script>

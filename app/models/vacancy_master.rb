@@ -30,7 +30,7 @@ class VacancyMaster
 
   before_create :check_and_create_code
 
-  after_save :change_vacancy_count
+  before_save :change_vacancy_count
   #validates :vacancy_code, :presence => true
   #validates :description, :presence => true
 
@@ -49,13 +49,20 @@ class VacancyMaster
   end
 
   def change_vacancy_count
+    puts '___________VACANCY SELF___________________'
     count = 0;
+    puts 'position: ' + self.occupied_position.to_s
     self.candidates.each do |uid, obj|
+      
+      puts obj['status']
       if obj['status'] == 'Accepted'
         count = count + 1
       end
     end
+    puts 'count: '+count.to_s
     self.occupied_position = count
+    puts 'position: ' + self.occupied_position.to_s
+    puts '___________VACANCY SELF___________________'
   end
 
 end

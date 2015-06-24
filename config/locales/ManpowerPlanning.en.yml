@@ -133,4 +133,4 @@ en:
                   label: 'Status'
                   type: 'select_tag'
                   width: '100'
-                  options: ["Initiated", "Updated", "Approved", "Rejected" ]
+                  options: ["Initiated", "Updated", "Approved", "Rejected", "Closed" ]

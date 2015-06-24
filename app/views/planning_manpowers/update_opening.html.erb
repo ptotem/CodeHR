@@ -1,4 +1,8 @@
-
+<style>
+  .hide {
+    display: none !important;
+  }
+</style>
 <p id="notice"><%= notice %></p>
 <%# if flash[:notice] %>
   <!-- <div class="notice"> <%# flash[:notice] %> </div> -->
@@ -35,8 +39,13 @@
             <td><%=@vacancy.no_of_position %></td>
           </tr>
           <tr>
-            <th>No. Vacancy Left</th>
-            <td><%=@vacancy['no_of_position'].to_i - @vacancy['occupied_position'].to_i %></td>
+            <th>Accepted Candidates</th>
+            <td><%= @vacancy['occupied_position'].to_i %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center">
+              <%=link_to 'Close Posting', close_plan_path(@vacancy),class: "btn btn-danger btn-block" %>
+            </td>
           </tr>
       </tbody>
     </table>
@@ -59,18 +68,43 @@
     </thead>
       <tbody>
       <% @vacancy.candidates.each do |key, value| %>
-     <%= form_tag :candidate_status_update, :multipart => true, :remote => true do |f| %>
+     <%= form_tag :candidate_status_update, :multipart => true do |f| %>
       	 <tr>
       	 	<% user = User.find(key.to_s)%>
       	 	<%= hidden_field_tag :user_id, user._id.to_s %>
       	 	<%= hidden_field_tag :vacancy_id, @vacancy._id.to_s %>
-      	 	<td><%= text_field_tag :user,user.name,:readonly => true%></td>
+      	 	<td><%= text_field_tag user._id.to_s+'_name',user.name,:readonly => true%></td>
       	 	<td>
       	 		<%=link_to 'Download', Resume.find(value[:resumeId].to_s).file.path.split('/public')[1] %>
       	 	</td>
       	 	<td>
-      	 		<%= select_tag user._id.to_s, options_for_select(['Applied','In Process','Accepted','Rejected'], value[:status].to_s)%>
+      	 		<%= select_tag user._id.to_s+'_status', options_for_select(['Applied','In Process','Accepted','Rejected'], value[:status].to_s), :onchange =>'inputCTC(this)'%>
 
+            <% status_class = if value[:status].to_s == 'Accepted' then '' else 'hide' end%>
+            <% file_class = if value[:status].to_s == 'Accepted'||value[:status].to_s == 'Rejected' then '' else 'hide' end%>
+
+            <% case value[:status] %>   
+            <% when "Accepted" %> 
+              <% if value[:proposed_ctc] %>
+                <%= text_field_tag user._id.to_s+'_ctc',value[:proposed_ctc]%>
+                <% @download = value[:letter].split('/public')[1] %> 
+                <br/><%= link_to "Download Letter", @download, id: user._id.to_s+'_file', class: "#{file_class}"%>
+              <% else %>
+                <%= text_field_tag user._id.to_s+'_ctc','',placeholder:'Enter CTC', class: "#{status_class}" %>
+                <%= file_field_tag user._id.to_s+'_file', class: "#{file_class}" %>
+              <% end %>
+              
+            <% when "Rejected" %> 
+              <% if value[:letter] %>
+                <% @download = value[:letter].split('/public')[1] %> 
+                <br/><%= link_to "Download Letter", @download, id: user._id.to_s+'_file'%>
+              <% else %>
+                <%= file_field_tag user._id.to_s+'_file', class: "#{file_class}" %>
+              <% end %>
+            <% else %>  
+              <%= text_field_tag user._id.to_s+'_ctc','',placeholder:'Enter CTC', class: "#{status_class}" %>
+              <%= file_field_tag user._id.to_s+'_file', class: "#{file_class}" %>
+            <% end %>   
 			</td>
       	 	<td>
       	 		<%#submit_tag "Submit", :class => "btn btn-primary btn-block",:remote => true   %>
@@ -84,5 +118,18 @@
   </div>
 </div>
 <%= link_to 'Back', openings_path %>
+<script>
+  function inputCTC(status){
+    var uid = $(status).attr('id').split('_')[0];
+    if($(status).val() == 'Accepted')
+      $('#'+uid+'_ctc').attr('class', '');
+    else
+      $('#'+uid+'_ctc').attr('class', 'hide');
 
+    if($(status).val() == 'Accepted' || $(status).val() == 'Rejected')
+      $('#'+uid+'_file').attr('class', '');
+    else
+      $('#'+uid+'_file').attr('class', 'hide');
+  }
+</script>
 <!-- #:remote => true -->
