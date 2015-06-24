@@ -17,15 +17,15 @@
           </tr>
           <tr>
             <th>Role</th>
-            <td><%= @vacancy['role']['name'] %></td>
+            <td><%= @vacancy.role['name'] %></td>
           </tr>
           <tr>
             <th>Sourcing Type</th>
-            <td><%= @vacancy['ff_source'] %></td>
+            <td><%= @vacancy.sourcing_strategy %></td>
           </tr>
           <tr>
             <th>Department</th>
-            <td><%=@vacancy['band_master']['band_name'] %></td>
+            <td><%=@vacancy.band_master['band_name']%></td>
           </tr>
           <tr>
             <th>CTC Range</th>
@@ -59,26 +59,25 @@
     	</tr>
     </thead>
       <tbody>
-      <% @vacancy.candidates.each do |c| %>
+      <% @vacancy.candidates.each do |key, value| %>
+     <%= form_tag :candidate_status_update, :multipart => true, :remote => true do |f| %>
       	 <tr>
-
-      	 	<%user_id, value = c.first%>
-      	 	<%#%>
-      	 	<% user = User.find(user_id.to_s)%>
+      	 	<% user = User.find(key.to_s)%>
       	 	<%= hidden_field_tag :user_id, user._id.to_s %>
+      	 	<%= hidden_field_tag :vacancy_id, @vacancy._id.to_s %>
       	 	<td><%= text_field_tag :user,user.name,:readonly => true%></td>
-      	 	
-      	 	<%key, resume_id = value.first%>
       	 	<td>
-      	 		<%=link_to 'Download', Resume.find(resume_id.to_s).file.path.split('/public')[1] %>
+      	 		<%=link_to 'Download', Resume.find(value[:resumeId].to_s).file.path.split('/public')[1] %>
       	 	</td>
       	 	<td>
-      	 		<%= select_tag "credit_card", options_for_select(['Applied','In Process','Accepted','Rejected'], c[:status].to_s)%>
+      	 		<%= select_tag user._id.to_s, options_for_select(['Applied','In Process','Accepted','Rejected'], value[:status].to_s)%>
 			</td>
       	 	<td>
-      	 		<%= link_to 'update', :controller => 'planning_manpowers',:action =>'test', :remote => true, :class => 'btn btn-primary' %>
+      	 		<%#submit_tag "Submit", :class => "btn btn-primary btn-block",:remote => true   %>
+      	 		<%= button_to 'Submit',candidate_status_update_path(user_id: user._id.to_s), :class => 'btn btn-primary'%>
 			</td>
           </tr>
+          <% end %>
       <%end%>
       </tbody>
     </table>

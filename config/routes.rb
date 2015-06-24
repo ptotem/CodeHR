@@ -136,6 +136,9 @@ CodeHR::Application.routes.draw do
   
   match '/update_opening/(:opening_id)' => 'planning_manpowers#update_opening', :as=> :update_opening, :via => [:get, :post]
 
+  
+  match '/candidate_status_update' => 'planning_manpowers#candidate_status_update', :as=> :candidate_status_update, :via => [:get, :post]
+
 
   match '/reports' => 'welcomes#report', :as=> :report, :via => [:get, :post]
   match '/my_report' => 'welcomes#my_report', :as=> :my_report, :via => [:get, :post]

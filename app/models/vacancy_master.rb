@@ -18,7 +18,7 @@ class VacancyMaster
   field :band_master, type: Hash
   field :ff_source, type: String
   field :role, type: Hash
-  field :candidates, type: Array, default: []
+  field :candidates, type: Hash, default: {}
   field :erased, type: Boolean
 
   belongs_to :group_master

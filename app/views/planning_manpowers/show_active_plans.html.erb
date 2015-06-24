@@ -18,9 +18,9 @@
       <tbody>
           <% @vacancies.each do |vacancy| %>
               <tr>
-                <td><%= vacancy['role']['name'] %></td>
+                <td><%= vacancy.role %></td>
                 <td><%= vacancy['ff_source'] %></td>
-                <td><%=vacancy['band_master']['band_name'] %></td>
+                <td><%=vacancy.band_master %></td>
                 
                  <td><%= link_to 'Apply', apply_plan_path(vacancy)%></td>
                 <% if @emp.roles.first.name == 'Admin'%>

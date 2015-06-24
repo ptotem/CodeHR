@@ -29,19 +29,20 @@ class PlanningManpowersController < InheritedResources::Base
   def successful_apply
     @file = Resume.create(:file => params[:file],:user_id => current_user._id.to_s)
     @vacancy_obj = VacancyMaster.find(params[:vacancy_id])
-    candidate = {}
-    candidate[current_user._id.to_s] = {resumeId: @file._id.to_s}
-    candidate['status'] = 'Applied'
-    @vacancy_obj.candidates << candidate
+    @vacancy_obj.candidates[current_user._id.to_s] = {resumeId: @file._id.to_s, status: 'Applied'}
     @vacancy_obj.save!
   end
 
   def update_opening
     @vacancy = VacancyMaster.find(params[:opening_id])
+
+    
   end
 
-  def test
-    
+  def candidate_status_update
+    vacancy_obj = VacancyMaster.find(params[:vacancy_id])
+    vacancy_obj.candidates[params[:user_id].to_s][:status] = params[params[:user_id].to_s].to_s
+    vacancy_obj.save!
   end
 
 end
