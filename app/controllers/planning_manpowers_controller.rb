@@ -62,4 +62,8 @@ class PlanningManpowersController < InheritedResources::Base
     # return false
   end
 
+  def test
+    
+  end
+
 end

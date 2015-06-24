@@ -5,7 +5,7 @@
 </style>
 <p id="notice"><%= notice %></p>
 <div class="row-fluid">
-  <div class="offset1 span6">
+  <div class="offset1 span8">
     <div class="table-header">
       Vacancy Details :-
     </div>
@@ -44,9 +44,8 @@
   </div>
 </div>
 
-<%= form_tag :successful_apply, :multipart => true do |f| %>
 <div class="row-fluid">
-  <div class="offset1 span6">
+  <div class="offset1 span8">
     <div class="table-header">
       Candidates Applied Details :-
     </div>
@@ -56,6 +55,7 @@
     		<th>Name</th>
     		<th>Resume</th>
     		<th>Status</th>
+    		<th></th>
     	</tr>
     </thead>
       <tbody>
@@ -63,14 +63,20 @@
       	 <tr>
 
       	 	<%user_id, value = c.first%>
+      	 	<%#%>
       	 	<% user = User.find(user_id.to_s)%>
       	 	<%= hidden_field_tag :user_id, user._id.to_s %>
       	 	<td><%= text_field_tag :user,user.name,:readonly => true%></td>
       	 	
       	 	<%key, resume_id = value.first%>
-      	 	<td><%=link_to 'Download', Resume.find(resume_id.to_s).file.path.split('/public')[1] %></td>
       	 	<td>
-      	 		
+      	 		<%=link_to 'Download', Resume.find(resume_id.to_s).file.path.split('/public')[1] %>
+      	 	</td>
+      	 	<td>
+      	 		<%= select_tag "credit_card", options_for_select(['Applied','In Process','Accepted','Rejected'], c[:status].to_s)%>
+			</td>
+      	 	<td>
+      	 		<%= link_to 'update', :controller => 'planning_manpowers',:action =>'test', :remote => true, :class => 'btn btn-primary' %>
 			</td>
           </tr>
       <%end%>
@@ -78,6 +84,6 @@
     </table>
   </div>
 </div>
-<% end %>
 <%= link_to 'Back', openings_path %>
 
+<!-- #:remote => true -->

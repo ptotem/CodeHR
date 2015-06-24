@@ -24,7 +24,7 @@
                 
                  <td><%= link_to 'Apply', apply_plan_path(vacancy)%></td>
                 <% if @emp.roles.first.name == 'Admin'%>
-                  <td><%= link_to 'Update', update_opening_path(vacancy) %></td>
+                  <td><%= link_to 'Edit', update_opening_path(vacancy) %></td>
                 <% end %>
               </tr>
           <% end %>
