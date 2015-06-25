@@ -11,18 +11,20 @@ module RepeatReminderJob
     @app.approvers.each do |aa|
       puts "checking"
 
-      @approver=EmployeeMaster.find(aa.employee_master_id)
-      unm=@approver.user.notification_masters.build title:@app.name , description:"This is th testing of this mailer",  type:"Approval"
-      unm.save
-      unm.notification_details.build(:notification_master_id => unm._id,:event=>@app.description)
-      # unm.email_details.build(:notification_master_id => unm._id,:event=>@app.description)
-      unm.save
-      @approver.save
-      puts "saved"
-      # AdminMailer.admin_mail(@approver.user.email,"repeat Reminder Approval","Testing").deliver
-      # puts "reminder mail is delivered"
-      #Resque.remove_schedule("send_email_#{@app._id}")
-      #call repeat reminder
+      if condition
+        @approver=EmployeeMaster.find(aa.employee_master_id)
+        unm=@approver.user.notification_masters.build title:@app.name , description:"This is th testing of this mailer",  type:"Approval"
+        unm.save
+        unm.notification_details.build(:notification_master_id => unm._id,:event=>@app.description)
+        # unm.email_details.build(:notification_master_id => unm._id,:event=>@app.description)
+        unm.save
+        @approver.save
+        puts "saved"
+        # AdminMailer.admin_mail(@approver.user.email,"repeat Reminder Approval","Testing").deliver
+        # puts "reminder mail is delivered"
+        #Resque.remove_schedule("send_email_#{@app._id}")
+        #call repeat Reminder
+      end
     end
   end
 end
