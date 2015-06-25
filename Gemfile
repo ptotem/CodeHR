@@ -79,8 +79,12 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'activeresource'
 # gem 'activeadmin-mongoid'
 gem 'validates_timeliness', '~> 3.0'
+
 gem 'resque'
 gem 'resque-scheduler'
+# gem 'whenever', :require => false #DONT USE THIS FOR DYNAMIC TASKS
+gem 'rufus-scheduler'
+
 gem "gon"
 gem 'cells'
 gem 'ruport'#, :git => 'https://github.com/ruport/ruport.git'#, :branch => 'ruby19-compat'

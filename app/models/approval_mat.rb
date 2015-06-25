@@ -90,23 +90,17 @@ class ApprovalMat
   end
 
   def set_repeat_reminder
-    #todo: Set repeat every
-    name = "repeat_reminder_#{id}"
-    config = {}
-    config[:class] = 'RepeatReminderJob'
-    config[:args] = id
-    config[:every] = self.rep_reminder
-    puts "-------------------------------------------------set_repeat_reminder--------------------------------------------"
-    puts "id: " + id
-    puts "self: " 
-    puts self.rep_reminder.to_json
-    puts 'config'
-    puts config
-    puts 'name'
-    puts name
-    puts "-------------------------------------------------set_repeat_reminder--------------------------------------------"
-    Resque.set_schedule name, config
-    puts "Resque task is scheduled"
+    puts "---------------------------------------------set_repeat_reminder----------------------------------------"
+    scheduler = Rufus::Scheduler.new
+    scheduler.every self.rep_reminder do |job|
+      stop_schedule = self.schedule_reminder
+      puts "Approval cron..."
+      puts "stop_schedule: " + stop_schedule.to_s
+      if stop_schedule
+        job.unschedule
+      end
+    end
+
   end
 
   def set_escalation
@@ -135,15 +129,15 @@ class ApprovalMat
 
   def auto_assign
     #todo: write logic of auto assigning1
-    self.approvers.where(:active => true).each do |e|
-      @self.active = false
-      self.save
-    end
+    # self.approvers.where(:active => true).each do |e|
+    #   self.active = false
+    #   self.save
+    # end
 
-    self.approvers.where(:auto_assign => true).each do |e|
-      @self.active =true
-      @self.save
-    end
+    # self.approvers.where(:auto_assign => true).each do |e|
+    #   self.active =true
+    #   self.save
+    # end
 
   end
 
@@ -176,7 +170,29 @@ class ApprovalMat
     Resque.enqueue_in(15,SendEmailJob)
     puts "Resque task queued successfully...."
   end
-end
+
+  def schedule_reminder
+    stop_reminder = true;
+    app = ApprovalMat.find(self._id)
+    app.approvers.each do |aa|
+      if aa.approved == true || aa.rejected == true
+      else
+        stop_reminder = false
+        @approver=EmployeeMaster.find(aa.employee_master_id)
+        unm=@approver.user.notification_masters.build title:"Task Reminder!" , description:"This is th testing of this mailer",  type:"Approval", link: false
+        unm.save
+        unm.notification_details.build(:notification_master_id => unm._id,:event=>app.description)
+        # unm.email_details.build(:notification_master_id => unm._id,:event=>@app.description)
+        unm.save
+        @approver.save
+        # puts "saved"
+        # AdminMailer.admin_mail(@approver.user.email,"repeat Reminder Approval","Testing").deliver
+        # puts "reminder mail is delivered"
+      end
+    end
+    
+    return stop_reminder
+  end
 
 #class SendEmailJob
 #  @queue = :send_emails
@@ -186,4 +202,4 @@ end
 #    puts "The process is "
 #    User.create!(email: "q@qwerty1.com",password: "password", password_confirmation:"password")
 #  end
-#end
+end

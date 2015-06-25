@@ -156,6 +156,8 @@ class ProcessTransactsController < ApplicationController
       @approval.active=false
       @approval.save
       @app_mat.save
+      puts "HAHAHAHAHAHHAHAHAHAHAHAHHAHAHAHAHAHAHA"
+      puts @app_mat.to_json
     end
 
     if @app_mat.approvers.where(:active => true).count<=0
