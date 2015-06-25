@@ -10,7 +10,7 @@
             <th>Department</th>
             <th>Openings</th>
             <th>Apply</th>
-            <% if @emp.roles.first.name == 'Admin'%>
+            <% if @emp.roles.first.name == 'Admin' || @emp.roles.first.name == 'Human Resource'%>
               <th>Update</th>
             <% end %>
           </tr>
