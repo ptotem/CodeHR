@@ -91,12 +91,20 @@ class ApprovalMat
 
   def set_repeat_reminder
     #todo: Set repeat every
-    puts ""
     name = "repeat_reminder_#{id}"
     config = {}
     config[:class] = 'RepeatReminderJob'
     config[:args] = id
     config[:every] = self.rep_reminder
+    puts "-------------------------------------------------set_repeat_reminder--------------------------------------------"
+    puts "id: " + id
+    puts "self: " 
+    puts self.rep_reminder.to_json
+    puts 'config'
+    puts config
+    puts 'name'
+    puts name
+    puts "-------------------------------------------------set_repeat_reminder--------------------------------------------"
     Resque.set_schedule name, config
     puts "Resque task is scheduled"
   end
