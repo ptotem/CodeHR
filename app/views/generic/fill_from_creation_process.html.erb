@@ -84,7 +84,7 @@
                                           <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
                                       <% when "select_tag" %>
                                           <% if cv[:options] == 'model' %>
-                                              <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),{:tabindex => ti.to_s,:style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple=>true}%>
+                                              <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),{:tabindex => ti.to_s,:style => "width:#{cv[:width]}px;", :class => "chzn-select 44444", :multiple=>true}%>
                                           <% else %>
                                               <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]), { :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;",:class => "chzn-select" } %>
                                           <% end %>
@@ -130,7 +130,7 @@
                                           <%= file_field_tag "#{params[:model_name]}[#{cv[:attribute]}]",:tabindex => ti.to_s %>
                                       <% when "select_tag" %>
                                           <% if cv[:options] == 'model' %>
-                                              <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),{:tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple]  }%>
+                                              <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_from_collection_for_select(eval(cv[:class]).all, cv[:select], cv[:show]),{:tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :class => "chzn-select #{cv[:multiple]}", :multiple => cv[:multiple].nil? ? false : true  }%>
                                           <% else %>
                                               <%= select_tag "#{params[:model_name]}[#{cv[:attribute]}]", options_for_select([""]+ cv[:options]), { :tabindex => ti.to_s, :style => "width:#{cv[:width]}px;", :class => "chzn-select", :multiple => cv[:multiple]} %>
                                           <% end %>
