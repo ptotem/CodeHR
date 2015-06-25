@@ -455,6 +455,7 @@ module ApplicationHelper
           end
         end
         @app.send_notification
+        @app.set_repeat_reminder
         puts "Approval"
         puts "Inside Approval step of the current process"
 

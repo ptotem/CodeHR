@@ -2,6 +2,7 @@ module RepeatReminderJob
   @queue = :send_emails
   def self.perform(approval_id)
     @app=ApprovalMat.find(approval_id)
+    puts "###################### RepeatReminderJob #########################"
     puts "Inside Send email Job.....#{approval_id}"
     #todo :checking and making it as per the function
 

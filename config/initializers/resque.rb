@@ -1,6 +1,6 @@
-# require 'resque_scheduler'
+require 'resque_scheduler'
 
-# Resque.redis = 'localhost:6379'
+Resque.redis = 'localhost:6379'
 # Resque.redis.namespace = "resque:SchedulerExample"
 
 # If you want to be able to dynamically change the schedule,
@@ -9,7 +9,7 @@
 # When dynamic is set to true, the scheduler process looks for
 # schedule changes and applies them on the fly.
 # Note: This feature is only available in >=2.0.0.
-# Resque::Scheduler.dynamic = true
+Resque::Scheduler.dynamic = true
 
 # Dir["#{Rails.root}/app/jobs/*.rb"].each { |file| require file }
 
