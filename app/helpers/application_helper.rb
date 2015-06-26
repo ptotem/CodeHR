@@ -454,8 +454,13 @@ module ApplicationHelper
             end
           end
         end
+        puts "______________________________APPROVAL OBJ_____________________________________"
+        puts @app.to_json
         @app.send_notification
-        @app.set_repeat_reminder
+
+        if @app.rep_reminder != ""
+          @app.set_repeat_reminder
+        end
         puts "Approval"
         puts "Inside Approval step of the current process"
 
