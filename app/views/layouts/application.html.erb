@@ -189,7 +189,7 @@
 							<span id="user_info">
 								<small>Welcome,</small>
                               <%# if current_user.employee_master.employee_name.blank? %>
-                                User
+                                <%= current_user.name %>
                               <%# else %>
                                 <%#= current_user.employee_master.employee_name %>
                               <%# end %>
@@ -225,162 +225,162 @@
 </div>
 <!--/.navbar-->
 
-<div class="container-fluid" id="main-container">
-  <a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
+  <div class="container-fluid" id="main-container">
+    <a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
 
-  <div id="sidebar">
+    <div id="sidebar">
 
-    <div id="sidebar-shortcuts">
-      <div id="sidebar-shortcuts-large">
-        <a href = "/reports" class="btn btn-small btn-success"><i class="icon-signal"></i></a>
-        <a href="<%= left_panels_path %>" class="btn btn-small btn-info"><i class="icon-pencil"></i></a>
-        <a href="<%= ability_matrices_path %>" class="btn btn-small btn-warning"><i class="icon-group"></i></a>
-        <a href="/power_admin" class="btn btn-small btn-danger"><i class="icon-cogs"></i></a>
+      <div id="sidebar-shortcuts">
+        <div id="sidebar-shortcuts-large">
+          <a href = "/reports" class="btn btn-small btn-success"><i class="icon-signal"></i></a>
+          <a href="<%= left_panels_path %>" class="btn btn-small btn-info"><i class="icon-pencil"></i></a>
+          <a href="<%= ability_matrices_path %>" class="btn btn-small btn-warning"><i class="icon-group"></i></a>
+          <a href="/power_admin" class="btn btn-small btn-danger"><i class="icon-cogs"></i></a>
+        </div>
+        <div id="sidebar-shortcuts-mini">
+          <span class="btn btn-success"></span>
+          <span class="btn btn-info"></span>
+          <span class="btn btn-warning"></span>
+          <span class="btn btn-danger"></span>
+        </div>
       </div>
-      <div id="sidebar-shortcuts-mini">
-        <span class="btn btn-success"></span>
-        <span class="btn btn-info"></span>
-        <span class="btn btn-warning"></span>
-        <span class="btn btn-danger"></span>
-      </div>
-    </div>
-    <!-- #sidebar-shortcuts 5582b4dc6c696e1bf3000000 5582b4dc6c696e1bf3000000 -->
+      <!-- #sidebar-shortcuts 5582b4dc6c696e1bf3000000 5582b4dc6c696e1bf3000000 -->
 
-    <% @ability_matrix = AbilityMatrix.where(:user_id=> current_user.id) %>
-    <% @master_pros = MasterPro.all %>
-    <% @controller = params[:controller] %>
-    <% @action = params[:action] %>
-    <% @emp = EmployeeMaster.where(:official_email => current_user.email).last %>
-    
-    
-    <%# if current_user.email == "hradmin@comp1.com" || current_user.email == "sunny@ptotem.com" %>
-    <% if @emp.roles.first.name == 'Admin'%>
-      <ul class="nav nav-list">
-        <li>
-          <%#= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
-
-          <%#= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
-        </li>
-      </ul>
-
-      <ul class="nav nav-list">
-        <li>
-        
-        <!-- <pre><%= current_user.employee_master.to_json %></pre> -->
-          <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user,:contoller => @controller, :action => @action %>
-        </li>
-      </ul>
-
-      <!--<ul class="nav nav-list">-->
-        <!--<li>-->
-          <!--<%#= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>-->
-        <!--</li>-->
-      <!--</ul>-->
-
-      <!--<ul class="nav nav-list">-->
-        <!--<li>-->
-          <!--<%#= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>-->
-        <!--</li>-->
-      <!--</ul>-->
-
-      <!--<ul class="nav nav-list">-->
-        <!--<li>-->
-
-        <!--</li>-->
-      <!--</ul>-->
-
-      <!--<ul class="nav nav-list">-->
-        <!--<li>-->
-          <!--<%#= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>-->
-        <!--</li>-->
-      <!--</ul>-->
-
-      <ul class="nav nav-list">
-        <li>
-          <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
-        </li>
-      </ul>
-
-      <ul class="nav nav-list">
-        <li>
-            <%#= render_cell :left_menu, :container_list, :ability_mat_path => ability_matrices_path, :approval_mat_path => approval_mats_path %>
-        </li>
-      </ul>
-    <% elsif current_user.email == "processadmin@comp1.com" or current_user.email == "processmanager@comp1.com"%>
+      <% @ability_matrix = AbilityMatrix.where(:user_id=> current_user.id) %>
+      <% @master_pros = MasterPro.all %>
+      <% @controller = params[:controller] %>
+      <% @action = params[:action] %>
+      <% @emp = EmployeeMaster.where(:official_email => current_user.email).last %>
+      
+      
+      <%# if current_user.email == "hradmin@comp1.com" || current_user.email == "sunny@ptotem.com" %>
+      <% if @emp.roles.first.name == 'Admin'%>
         <ul class="nav nav-list">
           <li>
-            <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user, :contoller => @controller, :action => @action %>
+            <%#= render_cell :left_menu, :user_mgmt, :employee_masters_path => employee_masters_path, :candidate_masters_path => candidate_masters_path, :roles_path => roles_path %>
+
+            <%#= render_cell :left_menu, :doc_mgmt, :doc_masters_path => document_masters_path, :doc_template_masters_path => document_template_masters_path %>
           </li>
         </ul>
-    <% else %>
+
         <ul class="nav nav-list">
-          <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
-              <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?("#{current_user.employee_master.role_ids[0]}")} %>
-              <%#= current_user.employee_master.role_ids[0].to_s %>
-              <% @ab_mats.each do |ab| %>
-                  <% @ab_mat = ab %>
-                  <% if !@ab_mat.nil? %>
-                      <% (@ab_mat.access_obj - [""]).each do |i| %>
-                          <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
-                      <% end %>
-                  <% end %>
-              <% end %>
-
-          <% end %>
+          <li>
+          
+          <!-- <pre><%= current_user.employee_master.to_json %></pre> -->
+            <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user,:contoller => @controller, :action => @action %>
+          </li>
         </ul>
-    <% end %>
 
-    <div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<%#= render_cell :left_menu, :rule_mgmt, :rules_path => "/" %>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<%#= render_cell :left_menu, :recruitment, :interview_types_path => interview_types_path, :ratings_path => ratings_path, :rating_scales_path => rating_scales_path, :vacancy_masters_path => vacancy_masters_path, :vacancy_schedulings_path => vacancy_schedulings_path %>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+
+          <!--</li>-->
+        <!--</ul>-->
+
+        <!--<ul class="nav nav-list">-->
+          <!--<li>-->
+            <!--<%#= render_cell :left_menu, :company, :company_masters_path => company_masters_path, :clients_path => clients_path %>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+        <ul class="nav nav-list">
+          <li>
+            <%= render_cell :left_menu, :admin_tools, :administration => "/power_admin" %>
+          </li>
+        </ul>
+
+        <ul class="nav nav-list">
+          <li>
+              <%#= render_cell :left_menu, :container_list, :ability_mat_path => ability_matrices_path, :approval_mat_path => approval_mats_path %>
+          </li>
+        </ul>
+      <% elsif current_user.email == "processadmin@comp1.com" or current_user.email == "processmanager@comp1.com"%>
+          <ul class="nav nav-list">
+            <li>
+              <%= render_cell :left_menu, :process_mgmt, :master_pros => @master_pros, :current_user => current_user, :contoller => @controller, :action => @action %>
+            </li>
+          </ul>
+      <% else %>
+          <ul class="nav nav-list">
+            <% if  !current_user.employee_master.nil? and current_user.employee_master.group_master_ids.count > 0 %>
+                <% @ab_mats =  AbilityMatrix.all.select{|i| i.role_id.include?("#{current_user.employee_master.role_ids[0]}")} %>
+                <%#= current_user.employee_master.role_ids[0].to_s %>
+                <% @ab_mats.each do |ab| %>
+                    <% @ab_mat = ab %>
+                    <% if !@ab_mat.nil? %>
+                        <% (@ab_mat.access_obj - [""]).each do |i| %>
+                            <%= render :partial => 'welcomes/ab_mat', :locals => {:access_name => i } %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+
+            <% end %>
+          </ul>
+      <% end %>
+
+      <div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+
+
+    </div>
+    <!--/#sidebar-->
+
+
+    <div id="main-content" class="clearfix">
+
+      <div id="breadcrumbs">
+        <!--<ul class="breadcrumb">-->
+        <!--<li><i class="icon-home"></i> <a href="#">Home</a><span class="divider"><i class="icon-angle-right"></i></span>-->
+        <!--</li>-->
+        <!--<li><a href="#">Other Pages</a> <span class="divider"><i class="icon-angle-right"></i></span></li>-->
+        <!--<li class="active">Blank Page</li>-->
+        <!--</ul>-->
+        <!--.breadcrumb-->
+
+        <!--<div id="nav-search">-->
+        <!--<form class="form-search">-->
+        <!--<span class="input-icon">-->
+        <!--<input autocomplete="off" id="nav-search-input" type="text" class="input-small search-query" placeholder="Search ..."/>-->
+        <!--<i id="nav-search-icon" class="icon-search"></i>-->
+        <!--</span>-->
+        <!--</form>-->
+        <!--</div>-->
+        <!--#nav-search-->
+      </div>
+      <!--#breadcrumbs-->
+
+
+      <div id="page-content" class="clearfix">
+
+
+        <!--<div class="row-fluid">-->
+        <!-- PAGE CONTENT BEGINS HERE -->
+        <%= yield %>
+        <!-- PAGE CONTENT ENDS HERE -->
+        <!--</div>-->
+        <!--/row-->
+
+      </div>
+      <!--/#page-content-->
+
+
+
+    </div>
+    <!-- #main-content -->
 
 
   </div>
-  <!--/#sidebar-->
-
-
-  <div id="main-content" class="clearfix">
-
-    <div id="breadcrumbs">
-      <!--<ul class="breadcrumb">-->
-      <!--<li><i class="icon-home"></i> <a href="#">Home</a><span class="divider"><i class="icon-angle-right"></i></span>-->
-      <!--</li>-->
-      <!--<li><a href="#">Other Pages</a> <span class="divider"><i class="icon-angle-right"></i></span></li>-->
-      <!--<li class="active">Blank Page</li>-->
-      <!--</ul>-->
-      <!--.breadcrumb-->
-
-      <!--<div id="nav-search">-->
-      <!--<form class="form-search">-->
-      <!--<span class="input-icon">-->
-      <!--<input autocomplete="off" id="nav-search-input" type="text" class="input-small search-query" placeholder="Search ..."/>-->
-      <!--<i id="nav-search-icon" class="icon-search"></i>-->
-      <!--</span>-->
-      <!--</form>-->
-      <!--</div>-->
-      <!--#nav-search-->
-    </div>
-    <!--#breadcrumbs-->
-
-
-    <div id="page-content" class="clearfix">
-
-
-      <!--<div class="row-fluid">-->
-      <!-- PAGE CONTENT BEGINS HERE -->
-      <%= yield %>
-      <!-- PAGE CONTENT ENDS HERE -->
-      <!--</div>-->
-      <!--/row-->
-
-    </div>
-    <!--/#page-content-->
-
-
-
-  </div>
-  <!-- #main-content -->
-
-
-</div>
 <!--/.fluid-container#main-container-->
 
 
